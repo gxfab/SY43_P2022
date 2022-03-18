@@ -1,2 +1,4 @@
-# SY43_P2022
-SY43 GitHub Project
+# Project SY43 : PADNOM
+
+## Authors : Jean-Paul BOUTROS / Thomas STREBLER
+
