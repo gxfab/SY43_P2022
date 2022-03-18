@@ -1,0 +1,2 @@
+[0.0] - 18/03/2022
+-creation of the repository for the Sucelloz app.
