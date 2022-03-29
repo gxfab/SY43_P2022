@@ -7,6 +7,9 @@ SY43 GitHub Project
 
 	This project is made for the SY43 course.
 
+##The Team:
+	-William Man
+	-Marius Bozane
 
 ##Tools used:
 - Penpot : used to make the prototype of the User-interface
