@@ -8,13 +8,13 @@ SY43 GitHub Project
 
 ## Description of the project:
 
-	This project is made for the SY43 course.
+This project is made for the SY43 course.
 
 <br>
 
 ## The Team:
-	-William Man
-	-Marius Bozane
+- William Man
+- Marius Bozane
 
 <br>
 
