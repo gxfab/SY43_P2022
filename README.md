@@ -7,4 +7,4 @@ Pourquoi TahLeRat ? Tah est utilisé par les jeunes, désignant quelque chose / 
 De même pour le rat, c'est un surnom désignant quelqu'un qui économise beaucoup d'argent, en faisant des actions inconcevables en temps normal.  
 Ces deux expressions sont mises en avant en ce moment sur les réseaux sociaux, elles sont très célèbres.  
 
-By **Brice VAN AKEN**, **Evan DENIS**, **Samba Camara**  
+By **Evan DENIS**, **Samba Camara**  
