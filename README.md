@@ -1,22 +1,42 @@
 # SY43_P2022
+
 SY43 GitHub Project
 
-# Project **Écono-misons**
+## Project **Écono-misons**
+
 *Car on aime jouer avec notre argent*
 
-<br>
+&nbsp;
 
-## Description of the project:
+## Description of the project
 
 This project is made for the SY43 course.
 
-<br>
+&nbsp;
 
-## The Team:
-- William Man
+## The Team
+
+- William Mann
 - Marius Bozane
 
-<br>
+&nbsp;
 
-## Tools used:
+## TODO list
+
+- Do the UML
+  - Think about the needed data
+  - Make a general database
+  - normalize database
+
+- Continue the penpot model
+  - Think about the white/dark theme
+  - Do the different tabs
+  - Think about the bottom navigation bar
+  - Redo the general aestethic and visuals
+  - Find a color palette
+
+&nbsp;
+
+## Tools used
+
 - Penpot : used to make the prototype of the User-interface
