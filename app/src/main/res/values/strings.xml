@@ -6,7 +6,32 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!-- Home Page-->
+    <string name = "home_page_title">DashBoard</string>
+    <string name = "home_page_graph">My spending</string>
+    <string name = "home_page_spending">spending money</string>
+    <string name = "home_page_balance">Available balance</string>
+    <string name = "home_page_money_balance">Available money</string>
+    <string name = "home_page_spendings">Spendings</string>
+    <string name = "home_page_saving_goals">Saving goals</string>
+    <string name = "home_page_goals_description">Saving goals description</string>
+
+    <!-- Budget Page-->
+    <string name = "budget_page_category">Budget category</string>
+    <string name = "budget_page_spending">Spended money</string>
+
+    <!-- Saving Goals Page-->
+    <string name = "saving_goals_page_category">Saving category</string>
+    <string name = "saving_goals_amount">budget amount</string>
+    <string name = "saving_goals_editing">Tap to edit</string>
+
+    <!-- Editing Goals Page-->
+    <string name = "editing_goals_category">Saving sub category</string>
+    <string name = "editing_goals_amount">sub budget amount</string>
+    <string name = "editing_goals_editing">Tap to edit</string>
+
+
 </resources>
