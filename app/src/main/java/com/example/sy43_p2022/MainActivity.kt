@@ -1,11 +1,8 @@
 package com.example.sy43_p2022
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sy43_p2022.fragments.HomeFragment
-import com.example.sy43_p2022.fragments.SpendingsFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.fragment_container, HomeFragment()) //remplacement du fragment (en attente)
         transaction.addToBackStack(null) //pas de retour
         transaction.commit() //on effectue le remplacement
-
 
     }
 }
