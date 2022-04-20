@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="135dp">
+
+    <Button
+        android:id="@+id/button_gray_items"
+        style="@style/CustomSubTitle1TextStyle"
+        android:layout_width="327sp"
+        android:layout_height="104sp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/grey50"
+        android:background="@drawable/roundstyle"
+        android:text="SubCategories"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

@@ -18,12 +18,13 @@
 
 
     <Button
-        android:id="@+id/home_page_button_balance"
+        android:id="@+id/home_fragment_button_balance"
         style="@style/CustomSubTitle1TextStyle"
         android:layout_width="327sp"
         android:layout_height="165sp"
         android:layout_marginTop="74dp"
-        android:background="@color/grey50"
+        android:backgroundTint="@color/grey50"
+        android:background="@drawable/roundstyle"
         android:text="@string/home_page_balance"
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -31,12 +32,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/home_page_button_spendings"
+        android:id="@+id/home_fragment_button_spendings"
         style="@style/CustomSubTitle1TextStyle"
         android:layout_width="327sp"
         android:layout_height="104sp"
         android:layout_marginTop="253dp"
-        android:background="@color/grey50"
+        android:backgroundTint="@color/grey50"
+        android:background="@drawable/roundstyle"
         android:text="@string/home_page_spendings"
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -44,12 +46,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/home_page_button_saving_goals"
+        android:id="@+id/home_fragment_button_saving_goals"
         style="@style/CustomSubTitle2TextStyle"
         android:layout_width="327sp"
         android:layout_height="104sp"
         android:layout_marginTop="374sp"
-        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/roundstyle"
         android:text="@string/home_page_saving_goals"
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
