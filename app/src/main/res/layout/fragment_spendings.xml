@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/ic_return"/>
+    <Button
+        android:id="@+id/home_page_button_spendings"
+        style="@style/CustomSubTitle1TextStyle"
+        android:layout_width="327sp"
+        android:layout_height="104sp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@color/grey50"
+        android:text="food"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/home_page_button_spendings2"
+        style="@style/CustomSubTitle1TextStyle"
+        android:layout_width="327sp"
+        android:layout_height="104sp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@color/grey50"
+        android:text="service"
+        android:textAllCaps="false"/>
+</LinearLayout>

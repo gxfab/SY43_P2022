@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/drawable-anydpi/ic_return.xml" value="0.2545" />
         <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/drawable/ic_launcher_background.xml" value="0.158" />
         <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/layout/content_main.xml" value="0.27943840579710144" />
         <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/layout/fragment_first.xml" value="0.27943840579710144" />
+        <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/layout/fragment_home.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/layout/fragment_second.xml" value="0.27943840579710144" />
+        <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/layout/fragment_spending.xml" value="0.2708333333333333" />
+        <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/layout/fragment_spendings.xml" value="0.25" />
+        <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/menu/menu_main.xml" value="0.2708333333333333" />
       </map>
     </option>
   </component>

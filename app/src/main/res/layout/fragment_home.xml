@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey20">
+    <TextView
+        android:id="@+id/home_page_title"
+        style="@style/CustomTitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/home_page_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/home_page_button_balance"
+        style="@style/CustomSubTitle1TextStyle"
+        android:layout_width="327sp"
+        android:layout_height="165sp"
+        android:layout_marginTop="74dp"
+        android:background="@color/grey50"
+        android:text="@string/home_page_balance"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/home_page_button_spendings"
+        style="@style/CustomSubTitle1TextStyle"
+        android:layout_width="327sp"
+        android:layout_height="104sp"
+        android:layout_marginTop="253dp"
+        android:background="@color/grey50"
+        android:text="@string/home_page_spendings"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/home_page_button_saving_goals"
+        style="@style/CustomSubTitle2TextStyle"
+        android:layout_width="327sp"
+        android:layout_height="104sp"
+        android:layout_marginTop="374sp"
+        android:background="@color/white"
+        android:text="@string/home_page_saving_goals"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
