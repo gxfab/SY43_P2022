@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey20">
+
     <TextView
         android:id="@+id/home_page_title"
         style="@style/CustomTitleTextStyle"
@@ -16,48 +17,120 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/home_page_balance_title"
+        style="@style/CustomSubTitle1TextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:text="@string/home_page_balance"
+        android:layout_marginTop="45dp"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_align_end"
+        app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
+        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_balance" />
+
+    <TextView
+        android:id="@+id/home_page_balance_amount"
+        style="@style/MoneyTitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:text="@string/home_page_balance_amount"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_align_end"
+        app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
+        app:layout_constraintTop_toBottomOf="@+id/home_page_balance_title" />
+
+    <TextView
+        android:id="@+id/home_page_spendings_title"
+        style="@style/CustomSubTitle1TextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:text="@string/home_page_spendings"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
+        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_spendings" />
+
+    <TextView
+        android:id="@+id/home_page_spendings_amount"
+        style="@style/MoneySubTitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:elevation="10dp"
+        android:text="@string/home_page_spendings_amount"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_align_end"
+        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_spendings" />
+    <TextView
+        android:id="@+id/home_page_saving_goals_title"
+        style="@style/CustomSubTitle2TextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:text="@string/home_page_saving_goals"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
+        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_saving_goals" />
+
+    <TextView
+        android:id="@+id/home_page_saving_goals_description"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:elevation="10dp"
+        android:text="@string/home_page_saving_goals_description"
+        app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
+        app:layout_constraintTop_toTopOf="@+id/home_page_saving_goals_title" />
+
+    <View
+        android:id="@+id/vertical_align_start"
+        android:layout_width="14dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/home_fragment_button_balance"
+        app:layout_constraintStart_toStartOf="@+id/home_fragment_button_balance"
+        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_balance" />
+
+    <View
+        android:id="@+id/vertical_align_end"
+        android:layout_width="14dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/home_fragment_button_balance"
+        app:layout_constraintEnd_toEndOf="@+id/home_fragment_button_balance"
+        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_balance" />
 
     <Button
         android:id="@+id/home_fragment_button_balance"
-        style="@style/CustomSubTitle1TextStyle"
         android:layout_width="327sp"
         android:layout_height="165sp"
         android:layout_marginTop="74dp"
         android:backgroundTint="@color/grey50"
         android:background="@drawable/roundstyle"
-        android:text="@string/home_page_balance"
-        android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/home_fragment_button_spendings"
-        style="@style/CustomSubTitle1TextStyle"
         android:layout_width="327sp"
         android:layout_height="104sp"
-        android:layout_marginTop="253dp"
-        android:backgroundTint="@color/grey50"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundstyle"
-        android:text="@string/home_page_spendings"
-        android:textAllCaps="false"
+        android:backgroundTint="@color/grey50"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/home_fragment_button_balance" />
 
     <Button
         android:id="@+id/home_fragment_button_saving_goals"
-        style="@style/CustomSubTitle2TextStyle"
         android:layout_width="327sp"
         android:layout_height="104sp"
-        android:layout_marginTop="374sp"
-        android:backgroundTint="@color/white"
         android:background="@drawable/roundstyle"
-        android:text="@string/home_page_saving_goals"
-        android:textAllCaps="false"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/home_fragment_button_spendings" />
 
     <FrameLayout
         android:id="@+id/fragment_container"

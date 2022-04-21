@@ -13,11 +13,21 @@ import com.example.sy43_p2022.R
 class HomeFragment:Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val button = inflater?.inflate(R.layout.fragment_home, container, false)
+
         //définition action bouton spending
         val clickSpendings = button.findViewById<Button>(R.id.home_fragment_button_spendings)
         clickSpendings.setOnClickListener {
             val transaction = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragment_container, SpendingsFragment())
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+
+        //définition action bouton SavingGoals
+        val clickSavingGoals = button.findViewById<Button>(R.id.home_fragment_button_saving_goals)
+        clickSavingGoals.setOnClickListener {
+            val transaction = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, SavingGoalsFragments())
             transaction.addToBackStack(null)
             transaction.commit()
         }

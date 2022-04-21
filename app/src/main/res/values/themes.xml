@@ -44,6 +44,9 @@
     <style name = "MoneySubTitleTextStyle" parent = "MoneyTitleTextStyle">
         <item name="android:textSize">21sp</item>
     </style>
+    <style name = "MoneySubTitleTextStyle2" parent = "MoneySubTitleTextStyle">
+        <item name="android:textColor">@color/grey700</item>
+    </style>
     <style name="Theme.SY43_P2022.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

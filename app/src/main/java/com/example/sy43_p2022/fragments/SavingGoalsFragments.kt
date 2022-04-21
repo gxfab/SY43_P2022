@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.adapter.ButtonAdapter
 
-class SpendingsFragment:Fragment() {
+class SavingGoalsFragments: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater?.inflate(R.layout.fragment_spendings, container, false)
 
         //ici, on va récupérer le recyclerview pour afficher la lsite des boutons
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_vertical_gray)
+        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_vertical_white)
 
         //Ici, on implémente le bouton du retour
         val clickReturn = view.findViewById<ImageView>(R.id.fragment_return)
