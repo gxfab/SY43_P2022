@@ -36,6 +36,9 @@
     <style name = "Default2TextStyle" parent = "DefaultTextStyle">
         <item name="android:textColor">@color/white</item>
     </style>
+    <style name = "Default3TextStyle" parent = "DefaultTextStyle">
+        <item name="android:textColor">@color/grey70</item>
+    </style>
     <style name = "MoneyTitleTextStyle">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">29sp</item>

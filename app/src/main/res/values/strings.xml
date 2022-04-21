@@ -18,9 +18,11 @@
     <string name="saving_goals_editing">Tap to edit</string>
 
     <!-- Editing subGoals Page-->
-    <string name="editing_goals_category">Saving sub category</string>
-    <string name="editing_goals_amount">sub budget amount</string>
+    <string name="editing_goals_category">Sub category</string>
+    <string name="editing_goals_amount">Ex: $10</string>
     <string name="editing_goals_editing">Tap to edit</string>
+    <string name="editing_goals_validate">Validate</string>
+
 
     <!-- Spendings Page -->
     <string name="spending_page_subcategory">Subcategory</string>
