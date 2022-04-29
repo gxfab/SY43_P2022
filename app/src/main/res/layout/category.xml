@@ -41,10 +41,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="27dp"
             android:layout_marginEnd="10dp"
-            <!--android:layout_marginStart="18dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="239dp"
-            android:layout_marginBottom="71dp"-->
+
             android:text="Dépenses"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +49,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             app:layout_constraintVertical_bias="0.0" />
+        <!--android:layout_marginStart="18dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="239dp"
+            android:layout_marginBottom="71dp"-->
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="390dp"
@@ -64,5 +65,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </ScrollView>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recettes" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
