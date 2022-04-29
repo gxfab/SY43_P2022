@@ -19,6 +19,7 @@
         app:layout_constraintStart_toEndOf="@+id/vertical_align_startsub"
         app:layout_constraintTop_toTopOf="@+id/sub_category_button" />
 
+
     <TextView
         android:id="@+id/subcategory_amount"
         style="@style/MoneySubTitleTextStyle2"
@@ -26,7 +27,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:elevation="10dp"
-        android:text="@string/spending_page_amount"
+        android:text="0"
+        android:textAlignment="viewEnd"
+        app:layout_constraintEnd_toStartOf="@+id/subcategory_currency"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sub_category_button" />
+
+    <TextView
+        android:id="@+id/subcategory_currency"
+        style="@style/MoneySubTitleTextStyle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:elevation="10dp"
+        android:text="€"
         android:textAlignment="viewEnd"
         app:layout_constraintEnd_toStartOf="@+id/vertical_align_endsub"
         app:layout_constraintLeft_toLeftOf="parent"

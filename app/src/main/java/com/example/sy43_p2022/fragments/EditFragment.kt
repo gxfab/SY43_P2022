@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.adapter.ButtonAdapter
+import com.example.sy43_p2022.database.entity.Category
 
 class EditFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -18,7 +19,7 @@ class EditFragment : Fragment() {
 
         //ici, on va récupérer le recyclerview pour afficher la liste des boutons
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_sub_white)
+        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_sub_white, Category("Home"))
 
         //Ici, on implémente le bouton du retour
         val clickReturn = view.findViewById<ImageView>(R.id.fragment_return)
