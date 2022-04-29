@@ -1,0 +1,11 @@
+Page avec chaque catégorie d'épargne
+
+Checkbox "Répartition selon pourcentages" (i entouré à côté pour en savoir plus)
+si case cochée :
+	champ de texte apparait à côté de chaque catégorie
+	--> pourcentage d'éparge accordé à la catégorie
+	tant que somme != 100, si l'utilisateur essaye de quitter, popup disant que ses entrées ne sont pas bonnes
+		--> changements non sauvegardés si il part 
+sinon : 
+	champ de texte remplacé par bouton slide down (ex: playlist)
+	--> ordre de priorité
