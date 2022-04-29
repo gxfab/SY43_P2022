@@ -19,7 +19,7 @@ class SavingGoalsFragments: Fragment() {
 
         val db = CategoriesDAO() // TODO: CHANGE FOR SAVINGS GOALS
         val categories: Category = Category("Saving Goals")
-        for (sub_category_name in db.getSubCategoriesOfSpendings()) { // TODO: CHANGE FOR SAVINGS GOALS
+        for (sub_category_name in db.getSubCategories()) { // TODO: CHANGE FOR SAVINGS GOALS
             val sub_category = Category(sub_category_name)
             sub_category.setObjectiveAmount(0);
             categories.addSubCategory(sub_category)

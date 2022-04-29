@@ -12,6 +12,7 @@ import com.example.sy43_p2022.R
 import com.example.sy43_p2022.adapter.ButtonAdapter
 import com.example.sy43_p2022.database.dao.CategoriesDAO
 import com.example.sy43_p2022.database.entity.Category
+import kotlin.random.Random
 
 class SpendingFragment:Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -19,9 +20,15 @@ class SpendingFragment:Fragment() {
 
         val db = CategoriesDAO()
         val categories: Category = Category("Spending")
-        for (sub_category_name in db.getSubCategoriesOfSpendings()) {
-            val sub_category = Category(sub_category_name)
-            sub_category.setObjectiveAmount(0);
+
+        // TODO: update this to use a real database
+        for (sub_category_name in db.getSubCategories()) {
+            val sub_category = Category(sub_category_name) // TODO: GET SUB CATEGORY FROM THAT SUB-CATEGORY (FOOD: UBER EAT, etc.)
+            for (sub_sub_category_name in db.getSubSubCategories(sub_category_name)) {
+                val sub_sub_category = Category(sub_sub_category_name)
+                sub_sub_category.setObjectiveAmount(Random.nextInt(100))
+                sub_category.addSubCategory(sub_sub_category)
+            }
             categories.addSubCategory(sub_category)
         }
 
