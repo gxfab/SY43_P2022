@@ -25,22 +25,13 @@
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="16dp" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Montant Courant (modifier le layout pour afficher valeur de variable)"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="54dp" />
-
         <Switch
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="27dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="0dp"
             android:text="Dépenses"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,10 +43,19 @@
             android:layout_marginTop="27dp"
             android:layout_marginEnd="239dp"
             android:layout_marginBottom="71dp"-->
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="69dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="-25dp"
+            android:text="Recettes" />
+
         <ScrollView
             android:id="@+id/scrollView2"
-            android:layout_width="390dp"
-            android:layout_height="500dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             tools:layout_editor_absoluteX="10dp"
             tools:layout_editor_absoluteY="215dp">
 
@@ -65,10 +65,8 @@
                 android:orientation="vertical" />
         </ScrollView>
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recettes" />
+
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
