@@ -1,2 +1,8 @@
+26/04/2022
+	1st version of the model 
+
+
 StudZero_V_0.0.0
-    Project initialization
+   	Project initialization
+
+	

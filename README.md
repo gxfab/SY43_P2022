@@ -1,7 +1,6 @@
 # STUD ZERO
 
 # StudZero Team
-Alexis ROBIN
 Simon NEMO
 Lucas BRUTON
 
