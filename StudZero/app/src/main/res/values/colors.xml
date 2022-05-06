@@ -6,5 +6,10 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="selected_white">#FFFFFFFF</color>
+    <color name="foreground_white">#AFFFFFFF</color>
+    <color name="unselected_white">#87FFFFFF</color>
+    <color name="BG">#FF202020</color>
+    <color name="BG_taskbar">#FF303030</color>
+    <color name="BG_Objet">#FF414242</color>
 </resources>
