@@ -206,7 +206,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Budget getBudget(int idBudget) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "Select * from " + TABLE_PAYMENT + " where " + PAYMENT_COLUMN_ID + "="+idBudget;
+        String query = "Select * from " + TABLE_BUDGET + " where " + BUDGET_COLUMN_ID + "="+idBudget;
 
         Cursor c = db.rawQuery(query, null);
 
@@ -303,8 +303,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.moveToFirst();
 
         return new User(c.getInt(c.getColumnIndex(USER_COLUMN_ID)),
-                c.getInt(c.getColumnIndex(USER_COLUMN_DATE_NEXT_BUDGET)) > 0 ? new Date(c.getInt(c.getColumnIndex(USER_COLUMN_DATE_NEXT_BUDGET))) : null,
-                c.getInt(c.getColumnIndex(USER_COLUMN_CURRENT_BUDGET)) > 0 ? c.getInt(c.getColumnIndex(USER_COLUMN_CURRENT_BUDGET))  : null
+                new Date(c.getInt(c.getColumnIndex(USER_COLUMN_DATE_NEXT_BUDGET))),
+                c.getInt(c.getColumnIndex(USER_COLUMN_CURRENT_BUDGET))
         );
     }
 
@@ -333,6 +333,84 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return budgets;
+    }
+
+    @SuppressLint("Range")
+    public Budget getCurrentBudget() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = new StringBuilder().append("Select * from ").append(TABLE_BUDGET).append(" where ").
+                append(BUDGET_COLUMN_ID).append("in (Select ").append(USER_COLUMN_ID).append(" from ").
+                append(TABLE_USER).append(" where ").append(USER_COLUMN_ID).append("=1)").toString();
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null) {
+            return null;
+        }
+        c.moveToFirst();
+
+        return new Budget(
+                c.getInt(c.getColumnIndex(BUDGET_COLUMN_ID)),
+                new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_START))),
+                new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_END))),
+                c.getFloat(c.getColumnIndex(BUDGET_COLUMN_BUDGET_AMOUNT))
+        );
+    }
+
+    @SuppressLint("Range")
+    public List<Category> getAllCategories(int idBudget) {
+        List<Category> categories = new LinkedList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "Select * from " + TABLE_CATEGORY + " where " + CATEGORY_COLUMN_BUDGET + "=" + idBudget;
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null) {
+            return null;
+        }
+
+        c.moveToFirst();
+        while(c.moveToNext()) {
+            categories.add(new Category(
+                    c.getInt(c.getColumnIndex(CATEGORY_COLUMN_ID)),
+                    c.getFloat(c.getColumnIndex(CATEGORY_COLUMN_THEORETICAL_AMOUNT)),
+                    c.getFloat(c.getColumnIndex(CATEGORY_COLUMN_REAL_AMOUNT)),
+                    c.getInt(c.getColumnIndex(CATEGORY_COLUMN_BUDGET)),
+                    c.getInt(c.getColumnIndex(CATEGORY_COLUMN_TYPE))
+            ));
+        }
+
+        return categories;
+    }
+
+    public boolean updateCategoryRealAmount(int idCategory, float amount) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(CATEGORY_COLUMN_REAL_AMOUNT, amount);
+        int id = db.update(TABLE_CATEGORY, cv, ""+CATEGORY_COLUMN_ID+"=?", new String[]{""+idCategory});
+        return id != -1;
+    }
+
+    public boolean updateUserDateNextBudget(Date nextBudget) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(USER_COLUMN_DATE_NEXT_BUDGET, nextBudget.getTime());
+        int id = db.update(TABLE_USER, cv, ""+USER_COLUMN_ID+"=?", new String[]{"1"});
+        return id != -1;
+    }
+
+    public boolean updateUserCurrentBudget(int idBudget) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(USER_COLUMN_CURRENT_BUDGET, idBudget);
+        int id = db.update(TABLE_USER, cv, ""+USER_COLUMN_ID+"=?", new String[]{"1"});
+        return id != -1;
     }
 
     // Close database
