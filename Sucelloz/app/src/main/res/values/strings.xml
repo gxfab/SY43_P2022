@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Sucelloz</string>
+    <string name="button">button</string>
+    <string name="spendings">spendings</string>
+    <string name="savings">savings</string>
+    <string name="zero_budget">zero budget</string>
 </resources>

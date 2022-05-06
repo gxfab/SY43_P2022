@@ -13,6 +13,83 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/navigation_bar"
+            style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_gravity="bottom"
+            android:backgroundTint="#01A299"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="659dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:gravity="end"
+            android:orientation="horizontal"
+            app:layout_anchor="@+id/navigation_bar"
+            app:layout_anchorGravity="center">
+
+            <ImageButton
+                android:id="@+id/home_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:contentDescription="@string/button"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:srcCompat="@android:drawable/ic_menu_preferences"
+                tools:ignore="RedundantDescriptionCheck"
+                tools:srcCompat="@drawable/home_white" />
+
+            <ImageButton
+                android:id="@+id/spendings_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:contentDescription="@string/spendings"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:srcCompat="@drawable/chart_pie_green"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageButton
+                android:id="@+id/savings_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:contentDescription="@string/savings"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:layout_anchor="@+id/navigation_bar"
+                app:layout_anchorGravity="end|center"
+                app:srcCompat="@drawable/chart_line_green"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageButton
+                android:id="@+id/zero_budget_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:contentDescription="@string/zero_budget"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:layout_anchor="@+id/savings_button"
+                app:layout_anchorGravity="bottom|center"
+                app:srcCompat="@drawable/book_open_green"
+                tools:ignore="ImageContrastCheck" />
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
