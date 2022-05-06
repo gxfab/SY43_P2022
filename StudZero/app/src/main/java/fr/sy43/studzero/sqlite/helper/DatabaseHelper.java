@@ -303,8 +303,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.moveToFirst();
 
         return new User(c.getInt(c.getColumnIndex(USER_COLUMN_ID)),
-                c.getInt(c.getColumnIndex(USER_COLUMN_DATE_NEXT_BUDGET)) > 0 ? new Date(c.getInt(c.getColumnIndex(USER_COLUMN_DATE_NEXT_BUDGET))) : null,
-                c.getInt(c.getColumnIndex(USER_COLUMN_CURRENT_BUDGET)) > 0 ? c.getInt(c.getColumnIndex(USER_COLUMN_CURRENT_BUDGET))  : null
+                new Date(c.getInt(c.getColumnIndex(USER_COLUMN_DATE_NEXT_BUDGET))),
+                c.getInt(c.getColumnIndex(USER_COLUMN_CURRENT_BUDGET))
         );
     }
 
