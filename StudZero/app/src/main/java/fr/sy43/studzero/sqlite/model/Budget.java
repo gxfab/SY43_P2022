@@ -15,6 +15,13 @@ public class Budget {
         this.budgetAmount = budgetAmount;
     }
 
+    public Budget(Date dateStart, Date dateEnd, float budgetAmount) {
+        this.idBudget = Integer.parseInt(null);
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.budgetAmount = budgetAmount;
+    }
+
     public int getIdBudget() {
         return idBudget;
     }

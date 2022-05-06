@@ -13,6 +13,12 @@ public class User {
         this.currentBudget = currentBudget;
     }
 
+    public User(Date dateNextBudget, int currentBudget) {
+        this.idUser = Integer.parseInt(null);
+        this.dateNextBudget = dateNextBudget;
+        this.currentBudget = currentBudget;
+    }
+
     public int getIdUser() {
         return idUser;
     }

@@ -15,6 +15,14 @@ public class Category {
         this.type = type;
     }
 
+    public Category(float theoreticalAmount, float realAmount, int budget, int type) {
+        this.idCategory = Integer.parseInt(null);
+        this.theoreticalAmount = theoreticalAmount;
+        this.realAmount = realAmount;
+        this.budget = budget;
+        this.type = type;
+    }
+
     public int getIdCategory() {
         return idCategory;
     }

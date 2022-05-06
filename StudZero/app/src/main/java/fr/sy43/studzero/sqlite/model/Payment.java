@@ -15,6 +15,13 @@ public class Payment {
         this.category = category;
     }
 
+    public Payment(float amount, Date datePayment, int category) {
+        this.idPayment = Integer.parseInt(null);
+        this.amount = amount;
+        this.datePayment = datePayment;
+        this.category = category;
+    }
+
     public int getIdPayment() {
         return idPayment;
     }

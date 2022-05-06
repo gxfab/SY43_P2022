@@ -9,6 +9,11 @@ public class CategoryType {
         this.nameCategory = nameCategory;
     }
 
+    public CategoryType(String nameCategory) {
+        this.idCategoryType = Integer.parseInt(null);
+        this.nameCategory = nameCategory;
+    }
+
     public int getIdCategoryType() {
         return idCategoryType;
     }
