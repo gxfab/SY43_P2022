@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MoneyZ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_menu">home</string>
+    <string name="second_menu">Crypto</string>
 </resources>

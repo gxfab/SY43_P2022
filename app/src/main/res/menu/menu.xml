@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+    android:id="@+id/ic_home"
+    android:icon="@drawable/ic_home"
+    android:title="Home"/>
+    <item
+        android:id="@+id/ic_wallet"
+        android:icon="@drawable/ic_wallet"
+        android:title="Crypto"/>
+    <item
+        android:id="@+id/ic_trend"
+        android:icon="@drawable/ic_trend"
+        android:title="Stocks"/>
+
+</menu>

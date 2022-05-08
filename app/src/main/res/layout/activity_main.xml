@@ -1,18 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        tools:listitem="@layout/rv_depenses_item"
+        android:layout_height="wrap_content"
+        android:id="@+id/RV_Spending">
+
+    </androidx.recyclerview.widget.RecyclerView>
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:background="@drawable/btn_round_edge"
+        android:textColor="#FFFFFF"
+        android:layout_margin="5dp"
+        android:padding="8dp"
+        android:textAllCaps="false"
+        android:layout_gravity="end|bottom"
+
+        android:text="Ajouter une dépense"/>
+
+
+
+
+
+
+
+   <!-- ESSAI DE BOTTOM NAVIGATION BAR
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:menu="@menu/menu" />
+        -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- BOUTON ROUND EDGE
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_round_edge"
+        android:textColor="#FFFFFF"
+        android:layout_margin="5dp"
+        android:padding="8dp"
+        android:textAllCaps="false"
+        android:text="Ajouter une dépense"/>
+        -->
+
+
+
+</LinearLayout>
