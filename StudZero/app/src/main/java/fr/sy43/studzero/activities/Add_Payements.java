@@ -5,11 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Date;
+
 import fr.sy43.studzero.R;
+import fr.sy43.studzero.sqlite.model.Payment;
+import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 
 public class Add_Payements extends AppCompatActivity {
 
@@ -52,5 +58,12 @@ public class Add_Payements extends AppCompatActivity {
                 return false;
             }
         });
+
+        RelativeLayout parentLayout = (RelativeLayout) findViewById(R.id.PaymentsParentLayout);
+        ListPaymentLayout listPaymentLayout = new ListPaymentLayout(this);
+        parentLayout.addView(listPaymentLayout);
+        listPaymentLayout.addPayment(new Payment(1, 20, new Date(), 1));
+        listPaymentLayout.addPayment(new Payment(1, 20, new Date(), 1));
+
     }
 }
