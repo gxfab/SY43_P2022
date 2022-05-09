@@ -1,6 +1,5 @@
 package fr.sy43.studzero.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,16 +7,9 @@ import android.os.Bundle;
 
 import java.util.Date;
 
-import fr.sy43.studzero.Add_Payements;
-import fr.sy43.studzero.History;
-import fr.sy43.studzero.Home;
 import fr.sy43.studzero.R;
-import fr.sy43.studzero.Settings;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Budget;
-import fr.sy43.studzero.stats;
-
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
