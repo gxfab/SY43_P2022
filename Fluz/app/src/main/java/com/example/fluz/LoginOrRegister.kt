@@ -33,15 +33,15 @@ class LoginOrRegister : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            findNavController().navigate(R.id.LoginOrRegister_to_Login)
         }
 
         binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            findNavController().navigate(R.id.action_LoginOrRegister_to_Register)
         }
 
         binding.txtWithoutLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            findNavController().navigate(R.id.LoginOrRegister_to_Login)
         }
     }
 

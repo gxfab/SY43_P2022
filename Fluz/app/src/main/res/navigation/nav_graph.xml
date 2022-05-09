@@ -8,21 +8,32 @@
     <fragment
         android:id="@+id/LoginOrRegister"
         android:name="com.example.fluz.LoginOrRegister"
-        android:label="@string/first_fragment_label"
+        android:label="@string/login_or_register_label"
         tools:layout="@layout/login_or_register">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/LoginOrRegister_to_Login"
+            app:destination="@id/Login" />
+        <action
+            android:id="@+id/action_LoginOrRegister_to_Register"
+            app:destination="@id/Register" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/Login"
         android:name="com.example.fluz.Login"
-        android:label="@string/second_fragment_label"
+        android:label="@string/login_label"
         tools:layout="@layout/login">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_Login_to_LoginOrRegister"
+            app:destination="@id/LoginOrRegister" />
+    </fragment>
+    <fragment
+        android:id="@+id/Register"
+        android:name="com.example.fluz.Register"
+        android:label="@string/register" >
+        <action
+            android:id="@+id/action_Register_to_action_LoginOrRegister"
             app:destination="@id/LoginOrRegister" />
     </fragment>
 </navigation>

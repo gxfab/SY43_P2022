@@ -2,8 +2,9 @@
     <string name="app_name">Fluz</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="login_or_register_label">Login Or Register</string>
+    <string name="login_label">Login</string>
+    <string name="register_label">Register</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -18,4 +19,5 @@
     <string name="enter_email">Enter your email address and your password</string>
     <string name="email">Email Address</string>
     <string name="password">Password</string>
+    <string name="confirmed_password">Confirmed your password</string>
 </resources>

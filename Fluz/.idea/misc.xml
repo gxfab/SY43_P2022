@@ -4,12 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/drawable/edit_text_style.xml" value="0.2265" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/content_main.xml" value="0.2033514492753623" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_first.xml" value="0.23711340206185566" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/login.xml" value="0.264" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/login_or_register.xml" value="0.10989583333333333" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/register.xml" value="0.20208333333333334" />
+        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/login_or_register.xml" value="0.264" />
+        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/register.xml" value="0.25" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/menu/menu_main.xml" value="0.25" />
       </map>
     </option>
