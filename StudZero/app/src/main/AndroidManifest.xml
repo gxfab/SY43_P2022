@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudZero">
         <activity
+            android:name=".History"
+            android:exported="false" />
+        <activity
+            android:name=".Settings"
+            android:exported="false" />
+        <activity
+            android:name=".stats"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Payements"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
