@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/LoginOrRegister">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.fluz.FirstFragment"
+        android:id="@+id/LoginOrRegister"
+        android:name="com.example.fluz.LoginOrRegister"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/login_or_register">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -17,12 +17,12 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.fluz.SecondFragment"
+        android:name="com.example.fluz.Login"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/LoginOrRegister" />
     </fragment>
 </navigation>
