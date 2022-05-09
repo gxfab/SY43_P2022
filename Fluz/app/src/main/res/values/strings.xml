@@ -14,4 +14,8 @@
     <string name="register">Register</string>
     <string name="without_login">Continue without login in</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- LOGIN -->
+    <string name="enter_email">Enter your email address and your password</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
 </resources>
