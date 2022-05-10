@@ -16,6 +16,9 @@ public class Add_Payements extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_payements);
 
+        //set status bar name
+        getSupportActionBar().setTitle("Payements");
+
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.history);
 

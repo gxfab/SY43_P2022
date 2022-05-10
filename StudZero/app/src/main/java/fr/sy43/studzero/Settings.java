@@ -19,6 +19,9 @@ public class Settings extends AppCompatActivity {
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.history);
 
+        //set status bar name
+        getSupportActionBar().setTitle("Settings");
+
         // Set Home selected
         bottomNavigationView.setSelectedItemId(R.id.settings);
         // Perform item selected listener

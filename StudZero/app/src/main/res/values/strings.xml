@@ -4,4 +4,12 @@
     <string name="Accueil_Txt_remaining_balance_days"><b>Remaining Balance : \n$val\nRemaining Days : $val</b></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="NewBudget_EnterIncome">Enter total income</string>
+    <string name="NewBudget_EnterIncome_helper"></string>
+    <string name="NewBudgetConfirmButton">Confirm</string>
+    <string name="NewBudgetAddNewCategoryButton">Add New Category</string>
+    <string name="NewBudgetReviewAllButton">Review All</string>
+    <string name="NewBudgetTextViewAllocated">Allocated : $val</string>
+    <string name="NewBudgetTextViewAvailable">Available : $val</string>
+    <string name="NewBudget_EnterExpensesHint">Enter estimated expenses</string>
 </resources>

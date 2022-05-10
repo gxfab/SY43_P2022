@@ -11,6 +11,7 @@ import java.util.Date;
 import fr.sy43.studzero.Add_Payements;
 import fr.sy43.studzero.History;
 import fr.sy43.studzero.Home;
+import fr.sy43.studzero.New_Budget_1;
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.Settings;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
@@ -36,10 +37,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.history);
-
         // Set Home selected
         bottomNavigationView.setSelectedItemId(R.id.home);
-        startActivity(new Intent(getApplicationContext(), Home.class)); //lance la page d'acceuil
+        //lance la page d'acceuil
+        //startActivity(new Intent(getApplicationContext(), Home.class));
+
+        Intent intent = new Intent(this, New_Budget_1.class);
+        intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
+        startActivity(intent);
+
         //overridePendingTransition(0,0);
 
 

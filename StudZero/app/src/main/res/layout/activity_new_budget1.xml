@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/New_Budget_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BG"
+    tools:context=".New_Budget_1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/NewBudgetIncomeConfirmButton"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:text="@string/NewBudgetConfirmButton"
+            android:textColor="@color/selected_white"
+            android:background="@color/BG_taskbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutExpenses" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/TextInputLayoutExpenses"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/NewBudget_EnterIncome"
+            android:outlineSpotShadowColor="@color/foreground_white"
+            android:textColorHint="@color/foreground_white"
+            app:boxStrokeColor="@color/BG_taskbar"
+            app:helperText="@string/NewBudget_EnterIncome_helper"
+            app:helperTextTextColor="@color/red"
+            app:hintTextColor="@color/foreground_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/TextInputIncomeExpenses"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/BG_taskbar"
+                android:singleLine="true"
+
+                android:textColor="@color/selected_white"
+                tools:ignore="TouchTargetSizeCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

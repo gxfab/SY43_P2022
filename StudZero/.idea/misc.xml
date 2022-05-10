@@ -3,17 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/button_background_selector.xml" value="0.31" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/button_selector.xml" value="0.1935" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_add.xml" value="0.31" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1935" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.31" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_history.xml" value="0.1935" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_laucnher_foreground.xml" value="0.121" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1935" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1935" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_plus.xml" value="0.31" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_settings.xml" value="0.18" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/ic_stats.xml" value="0.18" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/selector.xml" value="0.18" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/spinner_bg.xml" value="0.31" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/drawable/text_color_selector.xml" value="0.31" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/acceuil.xml" value="0.152" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/activity_add_payements.xml" value="0.5830437804030577" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/activity_history.xml" value="0.5830437804030577" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/activity_new_budget1.xml" value="0.22" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/activity_new_budget2.xml" value="0.128515625" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/activity_new_budget3.xml" value="0.25" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/activity_settings.xml" value="0.5830437804030577" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/activity_stats.xml" value="0.1" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/fragment_accueil.xml" value="0.271875" />
@@ -21,6 +33,9 @@
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/fragment_param.xml" value="0.25" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/fragment_payements.xml" value="0.25" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/fragment_stats.xml" value="0.2719812426729191" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/liste_deroulante.xml" value="0.271875" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/liste_deroulante_selected_item.xml" value="0.271875" />
+        <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/layout/new_budget_1.xml" value="0.22" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/menu/bottom_menu.xml" value="0.25" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1935" />
         <entry key="..\:/Users/simon/Desktop/Cours/SY43/SY43_P2022/StudZero/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1935" />

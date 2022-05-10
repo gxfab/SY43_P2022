@@ -7,5 +7,4 @@
     <item
         android:state_selected="false"
         android:color="@color/unselected_white"/>
-
 </selector>

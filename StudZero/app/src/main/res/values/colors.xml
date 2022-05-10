@@ -13,4 +13,5 @@
     <color name="BG">#FF202020</color>
     <color name="BG_taskbar">#FF303030</color>
     <color name="BG_Objet">#FF414242</color>
+    <color name="red">#FFD0342C</color>
 </resources>

@@ -16,6 +16,9 @@ public class History extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+        //set status bar name
+        getSupportActionBar().setTitle("History");
+
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.history);
 

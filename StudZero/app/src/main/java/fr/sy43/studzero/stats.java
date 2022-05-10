@@ -19,6 +19,9 @@ public class stats extends AppCompatActivity {
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.history);
 
+        //set status bar name
+        getSupportActionBar().setTitle("Statistics");
+
         // Set Home selected
         bottomNavigationView.setSelectedItemId(R.id.stats);
         // Perform item selected listener

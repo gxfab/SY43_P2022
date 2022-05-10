@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudZero">
         <activity
+            android:name=".New_Budget_3"
+            android:exported="false" />
+        <activity
+            android:name=".New_Budget_2"
+            android:exported="false" />
+        <activity
+            android:name=".New_Budget_1"
+            android:exported="false" />
+        <activity
             android:name=".History"
             android:exported="false" />
         <activity

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BG"
+    tools:context=".New_Budget_3">
+
+    <Button
+        android:id="@+id/NewBudgetIncomeReviewAllButton"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:background="@color/BG_taskbar"
+        android:text="@string/NewBudgetReviewAllButton"
+
+        android:textColor="@color/selected_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NewBudgetAddCategoryButton" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/NewBudgetAddCategoryButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/purple_200"
+        android:backgroundTint="@color/purple_200"
+        android:drawableEnd="@drawable/ic_plus"
+        android:drawableTint="@color/selected_white"
+        android:text="@string/NewBudgetAddNewCategoryButton"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/selected_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="TextContrastCheck" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputLayoutExpenses"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:hint="@string/NewBudget_EnterExpensesHint"
+        android:outlineSpotShadowColor="@color/foreground_white"
+        android:textColorHint="@color/foreground_white"
+        app:boxStrokeColor="@color/BG_taskbar"
+        app:helperText="@string/NewBudget_EnterIncome_helper"
+        app:helperTextTextColor="@color/red"
+        app:hintTextColor="@color/foreground_white"
+        app:layout_constraintBottom_toTopOf="@+id/NewBudgetAddCategoryButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/TextInputIncomeExpenses"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/BG_taskbar"
+            android:singleLine="true"
+
+            android:textColor="@color/selected_white"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/BG_taskbar"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/TextViewAllocated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/NewBudgetTextViewAllocated"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/TextViewAvailable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/NewBudgetTextViewAvailable"
+            android:textAlignment="center"
+            android:textColor="@color/foreground_white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/NewBudgetListeDeroulante"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/BG_taskbar"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/TextInputLayoutExpenses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
