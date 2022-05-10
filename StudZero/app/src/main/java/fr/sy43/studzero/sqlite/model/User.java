@@ -14,7 +14,7 @@ public class User {
     }
 
     public User(Date dateNextBudget, int currentBudget) {
-        this.idUser = Integer.parseInt(null);
+        this.idUser = 0;
         this.dateNextBudget = dateNextBudget;
         this.currentBudget = currentBudget;
     }

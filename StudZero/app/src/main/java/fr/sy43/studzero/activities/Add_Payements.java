@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Date;
+import java.util.List;
 
 import fr.sy43.studzero.R;
+import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Payment;
 import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 
@@ -25,7 +28,7 @@ public class Add_Payements extends AppCompatActivity {
         setContentView(R.layout.activity_add_payements);
 
         //set status bar name
-        getSupportActionBar().setTitle("Payements");
+        getSupportActionBar().setTitle("Payments");
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.history);
@@ -62,11 +65,18 @@ public class Add_Payements extends AppCompatActivity {
             }
         });
 
-        RelativeLayout parentLayout = (RelativeLayout) findViewById(R.id.PaymentsParentLayout);
+        ScrollView scrollView = (ScrollView) findViewById(R.id.ScrollViewPayments);
         ListPaymentLayout listPaymentLayout = new ListPaymentLayout(this);
-        parentLayout.addView(listPaymentLayout);
-        listPaymentLayout.addPayment(new Payment(1, 20, new Date(), 1));
-        listPaymentLayout.addPayment(new Payment(1, 20, new Date(), 1));
+        scrollView.addView(listPaymentLayout);
+
+        DatabaseHelper db = new DatabaseHelper(this.getApplicationContext());
+        List<Payment> payments = db.getAllPaymentsOfBudget(db.getCurrentBudget().getIdBudget());
+
+        for(int i = 0; i < payments.size(); ++i) {
+            listPaymentLayout.addPayment(payments.get(i));
+        }
+        db.closeDB();
+
 
     }
 }

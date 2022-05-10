@@ -10,7 +10,7 @@ public class CategoryType {
     }
 
     public CategoryType(String nameCategory) {
-        this.idCategoryType = Integer.parseInt(null);
+        this.idCategoryType = 0;
         this.nameCategory = nameCategory;
     }
 

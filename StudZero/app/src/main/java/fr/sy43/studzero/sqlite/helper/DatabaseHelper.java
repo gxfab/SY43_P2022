@@ -67,7 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Budget create table statement
     private static final String CREATE_TABLE_BUDGET = "CREATE TABLE "
             + TABLE_BUDGET + "("
-            + BUDGET_COLUMN_ID + " INTEGER PRIMARY KEY,"
+            + BUDGET_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
             + BUDGET_COLUMN_DATE_START + " DATE,"
             + BUDGET_COLUMN_DATE_END + " DATE,"
             + BUDGET_COLUMN_BUDGET_AMOUNT + " NUMERIC)";
@@ -75,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Category create table statement
     private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE "
             + TABLE_CATEGORY + "("
-            + CATEGORY_COLUMN_ID + " INTEGER PRIMARY KEY,"
+            + CATEGORY_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
             + CATEGORY_COLUMN_THEORETICAL_AMOUNT + " NUMERIC,"
             + CATEGORY_COLUMN_REAL_AMOUNT + " NUMERIC,"
             + CATEGORY_COLUMN_TYPE + " INTEGER REFERENCES " + TABLE_CATEGORY_TYPE + ","
@@ -90,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Payment create table statement
     private static final String CREATE_TABLE_PAYMENT = "CREATE TABLE "
             + TABLE_PAYMENT + "("
-            + PAYMENT_COLUMN_ID + " INTEGER PRIMARY KEY,"
+            + PAYMENT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
             + PAYMENT_COLUMN_AMOUNT + " NUMERIC,"
             + PAYMENT_COLUMN_DATE_PAYMENT + " DATE,"
             + PAYMENT_COLUMN_CATEGORY + " INT REFERENCES "+ TABLE_CATEGORY +")";
@@ -98,7 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // User create table statement
     private static final String CREATE_TABLE_USER = "CREATE TABLE "
             + TABLE_USER + "("
-            + USER_COLUMN_ID + " INTEGER PRIMARY KEY,"
+            + USER_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
             + USER_COLUMN_DATE_NEXT_BUDGET + " NUMERIC,"
             + USER_COLUMN_CURRENT_BUDGET + " INTEGER REFERENCES "+ TABLE_BUDGET +")";
 
@@ -121,8 +121,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_USER);
 
         ContentValues cv = new ContentValues();
-        cv.put(USER_COLUMN_ID, 1);
-        db.insert(TABLE_USER, null, cv);
+        cv.put(BUDGET_COLUMN_ID, 1);
+        db.insert(TABLE_BUDGET, null, cv);
+
+        ContentValues cv2 = new ContentValues();
+        cv2.put(CATEGORY_TYPE_COLUMN_ID, 1);
+        cv2.put(CATEGORY_TYPE_COLUMN_NAME, "Loyer");
+        db.insert(TABLE_CATEGORY_TYPE, null, cv2);
+
+        ContentValues cv3 = new ContentValues();
+        cv3.put(CATEGORY_COLUMN_TYPE, 1);
+        cv3.put(CATEGORY_COLUMN_BUDGET, 1);
+        db.insert(TABLE_CATEGORY, null, cv3);
+
+        ContentValues cv4 = new ContentValues();
+        cv4.put(USER_COLUMN_ID, 1);
+        cv4.put(USER_COLUMN_CURRENT_BUDGET, 1);
+        db.insert(TABLE_USER, null, cv4);
+
+        ContentValues cv5 = new ContentValues();
+        cv5.put(PAYMENT_COLUMN_CATEGORY, 1);
+        cv5.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
+        cv5.put(PAYMENT_COLUMN_DATE_PAYMENT, 1);
+        db.insert(TABLE_PAYMENT, null, cv5);
+
+        ContentValues cv6 = new ContentValues();
+        cv6.put(PAYMENT_COLUMN_CATEGORY, 1);
+        cv6.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
+        cv6.put(PAYMENT_COLUMN_DATE_PAYMENT, 1);
+        db.insert(TABLE_PAYMENT, null, cv6);
+
+        ContentValues cv7 = new ContentValues();
+        cv7.put(PAYMENT_COLUMN_CATEGORY, 1);
+        cv7.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
+        cv7.put(PAYMENT_COLUMN_DATE_PAYMENT, 1);
+        db.insert(TABLE_PAYMENT, null, cv7);
     }
 
     // Called when the database is upgraded
@@ -323,14 +356,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         c.moveToFirst();
-        while(c.moveToNext()) {
+         do {
             budgets.add(new Budget(
                         c.getInt(c.getColumnIndex(BUDGET_COLUMN_ID)),
                         new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_START))),
                         new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_END))),
                         c.getFloat(c.getColumnIndex(BUDGET_COLUMN_BUDGET_AMOUNT))
                     ));
-        }
+        }while(c.moveToNext());
 
         return budgets;
     }
@@ -340,7 +373,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String query = new StringBuilder().append("Select * from ").append(TABLE_BUDGET).append(" where ").
-                append(BUDGET_COLUMN_ID).append("in (Select ").append(USER_COLUMN_ID).append(" from ").
+                append(BUDGET_COLUMN_ID).append(" in (Select ").append(USER_COLUMN_ID).append(" from ").
                 append(TABLE_USER).append(" where ").append(USER_COLUMN_ID).append("=1)").toString();
 
         Cursor c = db.rawQuery(query, null);
@@ -373,7 +406,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         c.moveToFirst();
-        while(c.moveToNext()) {
+         do {
             categories.add(new Category(
                     c.getInt(c.getColumnIndex(CATEGORY_COLUMN_ID)),
                     c.getFloat(c.getColumnIndex(CATEGORY_COLUMN_THEORETICAL_AMOUNT)),
@@ -381,10 +414,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     c.getInt(c.getColumnIndex(CATEGORY_COLUMN_BUDGET)),
                     c.getInt(c.getColumnIndex(CATEGORY_COLUMN_TYPE))
             ));
-        }
+        } while(c.moveToNext());
 
         return categories;
     }
+
+    @SuppressLint("Range")
+    public List<Payment> getAllPaymentsOfBudget(int idBudget) {
+        List<Payment> payments = new LinkedList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "Select * from " + TABLE_PAYMENT +" INNER JOIN " + TABLE_CATEGORY  +
+                " ON "+ PAYMENT_COLUMN_CATEGORY+ "=" + CATEGORY_COLUMN_ID +
+                " where " + CATEGORY_COLUMN_BUDGET + "=" + idBudget + " ORDER BY " + PAYMENT_COLUMN_DATE_PAYMENT + " DESC";
+
+        Cursor c = db.rawQuery(query, null);
+        Log.i("payment", ""+ c.getCount());
+
+        if(c == null) {
+            return null;
+        }
+
+        c.moveToFirst();
+        do {
+            payments.add(new Payment(
+                    c.getInt(c.getColumnIndex(PAYMENT_COLUMN_ID)),
+                    c.getFloat(c.getColumnIndex(PAYMENT_COLUMN_AMOUNT)),
+                    new Date(c.getInt(c.getColumnIndex(PAYMENT_COLUMN_DATE_PAYMENT))),
+                    c.getInt(c.getColumnIndex(PAYMENT_COLUMN_CATEGORY))
+            ));
+        } while(c.moveToNext());
+
+        return payments;
+    }
+
+
 
     public boolean updateCategoryRealAmount(int idCategory, float amount) {
         SQLiteDatabase db = this.getWritableDatabase();

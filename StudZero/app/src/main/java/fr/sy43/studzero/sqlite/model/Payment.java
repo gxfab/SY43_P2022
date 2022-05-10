@@ -16,7 +16,7 @@ public class Payment {
     }
 
     public Payment(float amount, Date datePayment, int category) {
-        this.idPayment = Integer.parseInt(null);
+        this.idPayment = 0;
         this.amount = amount;
         this.datePayment = datePayment;
         this.category = category;
