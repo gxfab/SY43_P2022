@@ -3,7 +3,7 @@
     <style name="Theme.StudZero" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/BG_taskbar</item>
-        <item name="colorPrimaryVariant">@color/BG</item>
+        <item name="colorPrimaryVariant">@color/BG_taskbar</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

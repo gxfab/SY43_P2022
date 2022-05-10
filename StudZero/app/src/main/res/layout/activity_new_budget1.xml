@@ -12,13 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <View
+            android:id="@+id/New_Budget_BG_View_P1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/TextInputLayoutExpenses"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/NewBudgetIncomeConfirmButton"
             android:layout_width="200dp"
             android:layout_height="80dp"
+            android:background="@color/BG_taskbar"
             android:text="@string/NewBudgetConfirmButton"
             android:textColor="@color/selected_white"
-            android:background="@color/BG_taskbar"
             app:layout_constraintBottom_toBottomOf="parent"
 
             app:layout_constraintEnd_toEndOf="parent"

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(new Intent(getApplicationContext(), Home.class));
 
         Intent intent = new Intent(this, New_Budget_1.class);
-        intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
+        intent.putExtra("caller", "Main"); //permet à la nouvelle activity de connaitre son lanceur
         startActivity(intent);
 
         //overridePendingTransition(0,0);

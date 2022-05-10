@@ -12,4 +12,5 @@
     <string name="NewBudgetTextViewAllocated">Allocated : $val</string>
     <string name="NewBudgetTextViewAvailable">Available : $val</string>
     <string name="NewBudget_EnterExpensesHint">Enter estimated expenses</string>
+    <string name="NewBudgetCreateButton">Create</string>
 </resources>

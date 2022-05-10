@@ -26,7 +26,11 @@ public class New_Budget_2 extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                startActivity(new Intent(getApplicationContext(), New_Budget_1.class)); //renvoye vers la page settings précédente
+                //startActivity(new Intent(getApplicationContext(), New_Budget_1.class));
+                //renvoye vers la page settings précédente
+                Intent intent = new Intent(this, New_Budget_1.class);
+                intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
+                startActivity(intent);
                 return true;
         }
 

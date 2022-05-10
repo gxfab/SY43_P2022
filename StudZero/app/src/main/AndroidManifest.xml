@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudZero">
         <activity
+            android:name=".New_Budget_4"
+            android:exported="false" />
+        <activity
             android:name=".New_Budget_3"
             android:exported="false" />
         <activity
@@ -19,7 +22,6 @@
             android:name=".New_Budget_1"
             android:exported="false" />
         <activity
-
             android:name=".activities.History"
             android:exported="false" />
         <activity
