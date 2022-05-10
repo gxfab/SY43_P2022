@@ -1,4 +1,4 @@
-package fr.sy43.studzero;
+package fr.sy43.studzero.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import fr.sy43.studzero.R;
 
 public class History extends AppCompatActivity {
 

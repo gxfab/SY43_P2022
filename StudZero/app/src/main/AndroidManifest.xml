@@ -20,18 +20,19 @@
             android:exported="false" />
         <activity
             android:name=".History"
+            android:name=".activities.History"
             android:exported="false" />
         <activity
-            android:name=".Settings"
+            android:name=".activities.Settings"
             android:exported="false" />
         <activity
-            android:name=".stats"
+            android:name=".activities.stats"
             android:exported="false" />
         <activity
-            android:name=".Add_Payements"
+            android:name=".activities.Add_Payements"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".activities.Home"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"
