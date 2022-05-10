@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="blanc">#FFFFFFFF</color>
+    <color name="bleu_fonce">#002738</color>
+    <color name="bleu_clair">#00a0e5</color>
+    <color name="vert">#7ccd49</color>
+    <color name="gris_fonce">#1e1e1e</color>
+    <color name="gris_clair">#8b8b8b</color>
+
 </resources>
