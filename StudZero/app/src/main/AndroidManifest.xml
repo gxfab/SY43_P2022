@@ -19,7 +19,7 @@
             android:name=".New_Budget_1"
             android:exported="false" />
         <activity
-            android:name=".History"
+
             android:name=".activities.History"
             android:exported="false" />
         <activity

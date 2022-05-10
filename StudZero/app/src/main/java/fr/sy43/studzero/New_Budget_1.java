@@ -13,6 +13,8 @@ import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import fr.sy43.studzero.activities.Settings;
+
 public class New_Budget_1 extends AppCompatActivity {
 
     @Override

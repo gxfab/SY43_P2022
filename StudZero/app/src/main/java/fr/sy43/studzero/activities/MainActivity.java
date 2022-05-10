@@ -7,9 +7,9 @@ import android.os.Bundle;
 
 import java.util.Date;
 
-import fr.sy43.studzero.Add_Payements;
-import fr.sy43.studzero.History;
-import fr.sy43.studzero.Home;
+import fr.sy43.studzero.activities.Add_Payements;
+import fr.sy43.studzero.activities.History;
+import fr.sy43.studzero.activities.Home;
 import fr.sy43.studzero.New_Budget_1;
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
