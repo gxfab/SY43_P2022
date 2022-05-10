@@ -28,10 +28,10 @@ import com.google.android.material.textfield.TextInputLayout;
 import fr.sy43.studzero.activities.Settings;
 
 
-//faire envoie vers la BD qd on confirm
-//modif le string allocated : $val et Available : $val
-//setup la liste déroulante avec les noms des catégories
-//link le button Review ALL et Add new category
+//faire envoie vers la BD qd on confirm // CTRL+F : "update DB"
+//setup la liste déroulante avec les noms des catégories de la DB
+//affecter allocated et available avec les var de la DB : CTRL + F : "here"
+//recalcul de allocated lors d'un confirm : CTRL + F : "recalcul"
 
 
 
@@ -40,11 +40,32 @@ public class New_Budget_3 extends AppCompatActivity {
     private Spinner spinner;
     final float[] val = {0.0f};
     String Cat_Selected;
+    int allocated;
+    int available;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_budget3);
+
+        // here
+        allocated = 1000; //DB.budget.budgetamount
+        available = 1200; // somme : DB.category.theoricalamount
+
+        //apply
+        TextView txtAllocated = (TextView) findViewById(R.id.TextViewAllocated);
+        TextView txtAvailable = (TextView) findViewById(R.id.TextViewAvailable);
+
+        txtAllocated.setText(getString(R.string.NewBudgetTextViewAllocated) + " " + String.valueOf(allocated) + getString(R.string.currency));
+        txtAvailable.setText(getString(R.string.NewBudgetTextViewAvailable) + " " + String.valueOf(available) + getString(R.string.currency));
+        if(allocated != available){
+            txtAllocated.setTextColor(getResources().getColor(R.color.red));
+        }
+        else{
+            txtAllocated.setTextColor(getResources().getColor(R.color.green));
+        }
+
 
         getSupportActionBar().setTitle("Setup New Budget");
         //avoir la flèche retour dans le status bar que si on viens de l'écran param
@@ -56,7 +77,7 @@ public class New_Budget_3 extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
 
-        Button button = (Button) findViewById(R.id.ConfirmButtonExpenses);
+        Button button = (Button) findViewById(R.id.ConfirmButton);
         button.setEnabled(false);
         this.setupFloatingLabelError();
 
@@ -75,6 +96,27 @@ public class New_Budget_3 extends AppCompatActivity {
                 else{
                     //renvoye vers la page précédente
                     Intent intent = new Intent(getApplicationContext(), New_Budget_4.class);
+                    intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
+                    startActivity(intent);
+                }
+            }
+        });
+
+        Button ReviewButton = (Button) findViewById(R.id.NewBudgetIncomeReviewAllButton);
+        ReviewButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //lance new budget 5
+                finish();
+                String caller     = getIntent().getStringExtra("caller"); //caller contient le nom de la class appelante
+                if(caller.equals("Settings")){
+                    //renvoye vers la page précédente
+                    Intent intent = new Intent(getApplicationContext(), New_Budget_5.class);
+                    intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
+                    startActivity(intent);
+                }
+                else{
+                    //renvoye vers la page précédente
+                    Intent intent = new Intent(getApplicationContext(), New_Budget_5.class);
                     intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
                     startActivity(intent);
                 }
@@ -205,13 +247,27 @@ public class New_Budget_3 extends AppCompatActivity {
 
     //message d'erreur du champ de texte et récupération de la valeur
     private void setupFloatingLabelError() {
-        Button button = (Button) findViewById(R.id.ConfirmButtonExpenses);
+        Button button = (Button) findViewById(R.id.ConfirmButton);
         final TextInputLayout textInputLayoutExpenses = (TextInputLayout) findViewById(R.id.TextInputLayoutExpenses);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                // update DB
                 //Ajouter val[0] au budget contenant le montant estimé de la dépenses de la catégorie selected (Cat_Selected)
 
+                // recalcul
+                allocated = 1200; // refaire la somme des category.theoricalamount
+
+                TextView txtAllocated = (TextView) findViewById(R.id.TextViewAllocated);
+                TextView txtAvailable = (TextView) findViewById(R.id.TextViewAvailable);
+                txtAllocated.setText(getString(R.string.NewBudgetTextViewAllocated) + " " + String.valueOf(allocated) + getString(R.string.currency));
+                txtAvailable.setText(getString(R.string.NewBudgetTextViewAvailable) + " " + String.valueOf(available) + getString(R.string.currency));
+                if(allocated != available){
+                    txtAllocated.setTextColor(getResources().getColor(R.color.red));
+                }
+                else{
+                    txtAllocated.setTextColor(getResources().getColor(R.color.green));
+                }
             }
         });
 

@@ -15,11 +15,21 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 import fr.sy43.studzero.activities.Settings;
+import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
+import fr.sy43.studzero.sqlite.model.CategoryType;
+
+//comparaison avec les categories déjà existantes : ctrl + F : "compare cat here"
+//créer la catégory dans la BD sur appuis du button : ctrl + F : "appuis button"
+//changer le string NewBudget4_NbCatTextViewTXT avec la vrai valeur de $val au OnCreate ctrl + F : "here"
+
 
 public class New_Budget_4 extends AppCompatActivity {
     String category_name;
@@ -29,11 +39,18 @@ public class New_Budget_4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_budget4);
 
+        // here
+        int nb_cat = 13; //db.nbcat
+
+
+        TextView txtV = (TextView) (findViewById(R.id.NewBudget4_NbCatTextView));
+        txtV.setText(getString(R.string.NewBudget4_NbCatTextViewTXT) + " " + String.valueOf(nb_cat));
+
         getSupportActionBar().setTitle("Create New Category");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //avoir la flèche retour dans le status bar que si on viens de l'écran param
 
         Button button = (Button) findViewById(R.id.NewBudget4CreateButton);
-        button.setEnabled(false);
+        button.setEnabled(true);
         this.setupFloatingLabelError();
 
         setupForKeyboardDismiss((View) findViewById(R.id.New_Budget_bg_view_4), (Activity) this);//enlève le keyboard si on click ailleurs
@@ -72,8 +89,8 @@ public class New_Budget_4 extends AppCompatActivity {
 
     //view listener
     public void setupForKeyboardDismiss(View view, final Activity activity) {
-        final TextInputLayout textInputLayoutUserName = (TextInputLayout) findViewById(R.id.TextInputLayoutExpenses);
-        final TextInputEditText TextInputIncomeExpenses = (TextInputEditText) findViewById(R.id.TextInputIncomeExpenses);
+        final TextInputLayout TextInputLayoutCategory = (TextInputLayout) findViewById(R.id.TextInputLayoutCategory);
+        final TextInputEditText TextInputCategoryName = (TextInputEditText) findViewById(R.id.TextInputCategoryName);
         //Set up touch listener for non-text box views to hide keyboard.
         if(!(view instanceof EditText)) {
 
@@ -81,10 +98,9 @@ public class New_Budget_4 extends AppCompatActivity {
 
                 public boolean onTouch(View v, MotionEvent event) {
                     hideSoftKeyboard(activity);
-                    if(TextInputIncomeExpenses.getText().length() == 0){//champ vide reset le text field
-                        TextInputIncomeExpenses.setText(""); //permet le raise d'erreur
-                        TextInputIncomeExpenses.clearFocus();
-                        textInputLayoutUserName.clearFocus();
+                    if(TextInputCategoryName.getText().length() == 0){//champ vide reset le text field
+                        TextInputCategoryName.clearFocus();
+                        TextInputLayoutCategory.clearFocus();
                     }
                     return false;
                 }
@@ -119,13 +135,21 @@ public class New_Budget_4 extends AppCompatActivity {
     //message d'erreur du champ de texte et récupération de la valeur
     private void setupFloatingLabelError() {
         final TextInputLayout textInputLayoutCategoryName = (TextInputLayout) findViewById(R.id.TextInputLayoutCategory);
+        final TextInputEditText TextInputCategoryName = (TextInputEditText) findViewById(R.id.TextInputCategoryName);
         Button button = (Button) findViewById(R.id.NewBudget4CreateButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if(TextInputCategoryName.getText().length() == 0){
+                    textInputLayoutCategoryName.setError("required*");
+                    textInputLayoutCategoryName.setErrorEnabled(true);
+                    return;
+                }
+
+
                 //créer les catégory avec de nom String category_name
 
                 // a faire
-
+                // appuis button
 
 
 
@@ -145,23 +169,31 @@ public class New_Budget_4 extends AppCompatActivity {
         });
 
         textInputLayoutCategoryName.getEditText().addTextChangedListener(new TextWatcher() {
-            // ...
             @Override
             public void onTextChanged(CharSequence text, int start, int count, int after) {
-                button.setEnabled(false);
-                if (text.length() == 0 ) {
-                    textInputLayoutCategoryName.setError("required*");
-                    textInputLayoutCategoryName.setErrorEnabled(true);
-                    button.setEnabled(false);
-                } else if (text.length() > 0) {
+                button.setEnabled(true);
+                if (text.length() > 0) {
                     String s = String.valueOf(text);
-                    
+
+                    // compare cat here
+                    //comparer le string s au nom de categories deja existante : modif la suite
+
+                    String[] cat_existante = {"cat1", "cat2", "cat3"};
+                    for(int i = 0; i < cat_existante.length; i++){
+                        if(s.equals(cat_existante[i])){
+                            textInputLayoutCategoryName.setError("This category already exists");
+                            textInputLayoutCategoryName.setErrorEnabled(true);
+                            button.setEnabled(false);
+                            return;
+                        }
+                    }
+
                     category_name = s;
                     textInputLayoutCategoryName.setErrorEnabled(false);
                     button.setEnabled(true);
                 } else {
                     textInputLayoutCategoryName.setErrorEnabled(false);
-                    button.setEnabled(false);
+                    button.setEnabled(true);
                 }
             }
             @Override
