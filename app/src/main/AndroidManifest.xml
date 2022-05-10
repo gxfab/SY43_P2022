@@ -8,12 +8,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Lafocheuse">
+        android:theme="@style/Theme.Test">
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Lafocheuse.NoActionBar">
+            android:name="com.example.lafo_cheuse.DisplayMessageActivity"
+            android:parentActivityName="com.example.lafo_cheuse.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lafo_cheuse.MainActivity"
+                android:exported="false" />
+        </activity>
+        <activity
+            android:name="com.example.lafo_cheuse.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
