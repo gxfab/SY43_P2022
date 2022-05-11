@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeScreen">
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="com.sucelloztm.sucelloz.HomeScreen"
+        android:label="fragment_home_screen"
+        tools:layout="@layout/fragment_home_screen" />
+    <fragment
+        android:id="@+id/spendingsScreen"
+        android:name="com.sucelloztm.sucelloz.SpendingsScreen"
+        android:label="fragment_spendings_screen"
+        tools:layout="@layout/fragment_spendings_screen" />
+    <fragment
+        android:id="@+id/savingsScreen"
+        android:name="com.sucelloztm.sucelloz.SavingsScreen"
+        android:label="fragment_savings_screen"
+        tools:layout="@layout/fragment_savings_screen" />
+    <fragment
+        android:id="@+id/zeroBudgetScreen"
+        android:name="com.sucelloztm.sucelloz.ZeroBudgetScreen"
+        android:label="fragment_zero_budget_screen"
+        tools:layout="@layout/fragment_zero_budget_screen" />
+</navigation>

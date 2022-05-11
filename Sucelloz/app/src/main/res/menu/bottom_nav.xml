@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Home"
+        android:icon="@drawable/home_green"
+        android:id="@id/homeScreen"/>
+    <item android:title="Spendings"
+        android:icon="@drawable/chart_pie_green"
+        android:id="@id/spendingsScreen"/>
+    <item android:title="Savings"
+        android:icon="@drawable/chart_line_green"
+        android:id="@id/savingsScreen"/>
+    <item android:title="Zero Budget"
+        android:icon="@drawable/book_open_green"
+        android:id="@id/zeroBudgetScreen"/>
+
+</menu>
