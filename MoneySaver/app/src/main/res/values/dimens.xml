@@ -6,4 +6,5 @@
     <dimen name="logo_height">75dp</dimen>
     <dimen name="logo_width">75dp</dimen>
     <dimen name="nav_bottom_height">60dp</dimen>
+    <dimen name="depense_view_margin">15dp</dimen>
 </resources>
