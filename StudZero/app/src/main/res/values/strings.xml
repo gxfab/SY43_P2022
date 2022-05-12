@@ -16,4 +16,6 @@
     <string name="NewBudget_EnterCategoryName">Enter Category Name</string>
     <string name="NewBudget4_NbCatTextViewTXT">Total number of category : </string>
     <string name="currency">£</string>
+    <string name="NewBudget2_helper">Select the categories you want to keep</string>
+    <string name="NewBudget2_ConfirmButtonTxt">CONFIRM</string>
 </resources>
