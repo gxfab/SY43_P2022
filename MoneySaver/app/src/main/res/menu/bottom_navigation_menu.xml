@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/button_home"
+        android:title="@string/nav_Home_button"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/button_stat"
+        android:title="@string/nav_Statistiques_button"
+        android:icon="@drawable/ic_stats"/>
+    <item
+        android:id="@+id/button_gestionbudget"
+        android:title="@string/nav_GestionBudget_button"
+        android:icon="@drawable/ic_person"/>
+    <item
+        android:id="@+id/button_deconnection"
+        android:title="@string/nav_Deconnection_button"
+        android:icon="@drawable/ic_deconnection"/>
+</menu>

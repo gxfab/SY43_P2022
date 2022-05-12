@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin">20dp</dimen>
+    <dimen name="menu_height">75dp</dimen>
+    <dimen name="container_margin">65dp</dimen>
+    <dimen name="logo_height">75dp</dimen>
+    <dimen name="logo_width">75dp</dimen>
+    <dimen name="nav_bottom_height">60dp</dimen>
+</resources>
