@@ -5,12 +5,15 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.sucelloztm.sucelloz.databinding.ActivityNavigationBinding;
+import com.sucelloztm.sucelloz.view.HomeScreen;
+import com.sucelloztm.sucelloz.view.SavingsScreen;
+import com.sucelloztm.sucelloz.view.SpendingsScreen;
+import com.sucelloztm.sucelloz.view.ZeroBudgetScreen;
 
 public class Nav extends AppCompatActivity {
 
@@ -22,16 +25,35 @@ public class Nav extends AppCompatActivity {
 
         binding = ActivityNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        replaceFragment(new HomeScreen());
+        BottomNavigationView bottomNav = findViewById(R.id.nav_view);
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.homeScreen, R.id.spendingsScreen, R.id.savingsScreen,R.id.zeroBudgetScreen)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_navigation);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        bottomNav.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.homeScreen:
+                    replaceFragment(new HomeScreen());
+                    break;
+
+                case R.id.spendingsScreen:
+                    replaceFragment(new SpendingsScreen());
+                    break;
+
+                case R.id.savingsScreen:
+                    replaceFragment(new SavingsScreen());
+                    break;
+
+                case R.id.zeroBudgetScreen:
+                    replaceFragment(new ZeroBudgetScreen());
+                    break;
+            }
+            return true;
+        });
     }
 
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment_activity_navigation,fragment);
+        fragmentTransaction.commit();
+    }
 }
