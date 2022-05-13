@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,8 +44,12 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         if (category != null) {
             TextView price = v.findViewById(R.id.tvCurrentPrice);
             TextView name = v.findViewById(R.id.tvName);
+            ProgressBar progressBar = v.findViewById(R.id.progressBar);
+            progressBar.setMax((int) category.getMaxValue());
+            progressBar.setProgress((int) category.CurrentValue(), true);
+
             name.setText(category.getCatName());
-            price.setText(category.CurrentValue() + "$");
+            price.setText("$" + category.CurrentValue() + "/$" + category.getMaxValue() );
         }
 
         return v;    }

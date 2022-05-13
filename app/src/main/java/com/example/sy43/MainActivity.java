@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         final Button button = findViewById(R.id.category);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "test", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(v.getContext(), CategoryActivity.class);
                 v.getContext().startActivity(intent);
             }
