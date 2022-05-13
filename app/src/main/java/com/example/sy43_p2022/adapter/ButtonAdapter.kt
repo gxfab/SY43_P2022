@@ -1,5 +1,6 @@
 package com.example.sy43_p2022.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,10 @@ import com.example.sy43_p2022.database.entity.Category
 class ButtonAdapter(private val layoutId: Int, private val category: Category, private val onClickListener: OnClickListener)
     : RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder>() {
 
-    class OnClickListener(private val recyclerView: RecyclerView, private val layoutId: Int) {
+    class OnClickListener(private val recyclerView: RecyclerView, private val layoutType: String) {
         fun onClick(category: Category) {
-            recyclerView.swapAdapter(
-                ButtonAdapter(layoutId, category, this),
-                true
-            )
+            var id: Int = if (layoutType == "white") R.layout.item_sub_white else R.layout.item_sub_gray
+            recyclerView.adapter = TextEditAdapter(id, category)
         }
     }
 

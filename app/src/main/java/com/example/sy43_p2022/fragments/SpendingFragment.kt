@@ -34,7 +34,11 @@ class SpendingFragment:Fragment() {
 
         // Get back the recycler view to draw the buttons list
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_vertical_gray, categories, ButtonAdapter.OnClickListener(verticalRecyclerView, R.layout.item_sub_white))
+        verticalRecyclerView.adapter = ButtonAdapter(
+            R.layout.item_vertical_gray,
+            categories,
+            ButtonAdapter.OnClickListener(verticalRecyclerView, "gray")
+        )
 
         // Go back button
         val clickReturn = view.findViewById<ImageView>(R.id.fragment_return)

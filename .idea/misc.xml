@@ -25,10 +25,14 @@
         <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/menu/menu_main.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1675" />
         <entry key="..\:/Users/Brice/SY43_P2022/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1675" />
+        <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/drawable-anydpi/ic_return.xml" value="0.134" />
+        <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/drawable/editbackground.xml" value="0.2295" />
+        <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/drawable/roundstyle.xml" value="0.2295" />
         <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/layout/fragment_edit.xml" value="0.2817028985507246" />
         <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/layout/fragment_home.xml" value="0.2817028985507246" />
         <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/layout/fragment_spendings.xml" value="0.2817028985507246" />
-        <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/layout/item_sub_white.xml" value="0.5" />
+        <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/layout/item_sub_gray.xml" value="0.3669421487603306" />
+        <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/layout/item_sub_white.xml" value="0.25" />
         <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/layout/item_vertical_gray.xml" value="1.1" />
         <entry key="..\:/Users/julie/StudioProjects/SY43_P2022c/app/src/main/res/layout/item_vertical_white.xml" value="0.67" />
       </map>

@@ -34,7 +34,11 @@ class SavingGoalsFragments: Fragment() {
 
         //ici, on va récupérer le recyclerview pour afficher la lsite des boutons
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_vertical_white, categories, ButtonAdapter.OnClickListener(verticalRecyclerView, R.layout.item_sub_white))
+        verticalRecyclerView.adapter = ButtonAdapter(
+            R.layout.item_vertical_white,
+            categories,
+            ButtonAdapter.OnClickListener(verticalRecyclerView, "white")
+        )
 
         //Ici, on implémente le bouton du retour
         val clickReturn = view.findViewById<ImageView>(R.id.fragment_return)
