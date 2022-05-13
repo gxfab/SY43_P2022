@@ -19,24 +19,24 @@ class SpendingFragment:Fragment() {
         val view = inflater?.inflate(R.layout.fragment_spendings, container, false)
 
         val db = CategoriesDAO()
-        val categories: Category = Category("Spending")
+        val categories = Category("Spending")
 
         // TODO: update this to use a real database
-        for (sub_category_name in db.getSubCategories()) {
-            val sub_category = Category(sub_category_name) // TODO: GET SUB CATEGORY FROM THAT SUB-CATEGORY (FOOD: UBER EAT, etc.)
-            for (sub_sub_category_name in db.getSubSubCategories(sub_category_name)) {
-                val sub_sub_category = Category(sub_sub_category_name)
-                sub_sub_category.setObjectiveAmount(Random.nextInt(100))
-                sub_category.addSubCategory(sub_sub_category)
+        for (subCategoryName in db.getSubCategories()) {
+            val subCategory = Category(subCategoryName) // TODO: GET SUB CATEGORY FROM THAT SUB-CATEGORY (FOOD: UBER EAT, etc.)
+            for (subSubCategoryName in db.getSubSubCategories(subCategoryName)) {
+                val subSubCategory = Category(subSubCategoryName)
+                subSubCategory.setObjectiveAmount(Random.nextInt(100))
+                subCategory.addSubCategory(subSubCategory)
             }
-            categories.addSubCategory(sub_category)
+            categories.addSubCategory(subCategory)
         }
 
-        //ici, on va récupérer le recyclerview pour afficher la liste des boutons
+        // Get back the recycler view to draw the buttons list
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_vertical_gray, categories)
+        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_vertical_gray, categories, ButtonAdapter.OnClickListener(verticalRecyclerView, R.layout.item_sub_white))
 
-        //Ici, on implémente le bouton du retour
+        // Go back button
         val clickReturn = view.findViewById<ImageView>(R.id.fragment_return)
         clickReturn.setOnClickListener {
             val transaction = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
@@ -44,6 +44,7 @@ class SpendingFragment:Fragment() {
             transaction.addToBackStack(null)
             transaction.commit()
         }
+
         return view
     }
 }

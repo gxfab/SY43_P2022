@@ -21,8 +21,12 @@ class Category {
         this.subCategories = subCategories;
     }
 
-    fun getSubCategories(position: Int): Category {
+    fun getSubCategory(position: Int): Category {
         return subCategories.elementAt(position);
+    }
+
+    fun getAllSubCategories(): List<Category> {
+        return subCategories;
     }
 
     fun getGlobalObjectiveAmount(): Int {

@@ -19,7 +19,7 @@ class EditFragment : Fragment() {
 
         //ici, on va récupérer le recyclerview pour afficher la liste des boutons
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_sub_white, Category("Home"))
+        verticalRecyclerView.adapter = ButtonAdapter(R.layout.item_sub_white, Category("Home"), ButtonAdapter.OnClickListener(verticalRecyclerView, R.layout.item_sub_white))
 
         //Ici, on implémente le bouton du retour
         val clickReturn = view.findViewById<ImageView>(R.id.fragment_return)
@@ -29,6 +29,7 @@ class EditFragment : Fragment() {
             transaction.addToBackStack(null)
             transaction.commit()
         }
+
         return view
     }
 }

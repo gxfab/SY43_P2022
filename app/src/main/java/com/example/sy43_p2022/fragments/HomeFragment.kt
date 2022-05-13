@@ -16,13 +16,13 @@ class HomeFragment: Fragment(){
         // Construct "spending" Home Fragment button
         val spendingBtn = button.findViewById<Button>(R.id.home_fragment_button_spendings)
         spendingBtn.setOnClickListener {
-            val fab = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
-            fab.replace(R.id.fragment_container, SpendingFragment())
-            fab.addToBackStack(null)
-            fab.commit()
+            val transaction = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, SpendingFragment())
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
 
-        //définition action bouton SavingGoals
+        // définition action bouton SavingGoals
         val clickSavingGoals = button.findViewById<Button>(R.id.home_fragment_button_saving_goals)
         clickSavingGoals.setOnClickListener {
             val transaction = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
