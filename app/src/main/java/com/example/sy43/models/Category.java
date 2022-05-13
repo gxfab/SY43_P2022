@@ -1,26 +1,17 @@
-/*package com.example.sy43.db.entity;
-
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-
-import androidx.room.Entity;
-
-@Entity(tableName = "Category", indices = 
-{@Index(value = {"CatName"},unique=true)})
+package com.example.sy43.models;
 
 public class Category {
-    @PrimaryKey(autoGenerate = true)
+    public Category(String name, float currentValue, float maxValue) {
+        this.setCatName(name);
+        this.setCurrentValue(currentValue);
+        this.setMaxValue(maxValue);
+    }
     private int CatID;
-    
-    @ColumnInfo( name = "CatName")
+
     private String CatName;
 
-    @ColumnInfo( name = "MaxValue")
     private float MaxValue;
 
-    @ColumnInfo( name = "CurrentValue")
     private float CurrentValue;
 
     public int getCatID(){
@@ -43,7 +34,7 @@ public class Category {
         this.CatID=CatID;
     }
 
-    public void setCatName(string CatName){
+    public void setCatName(String CatName){
         this.CatName = CatName;
     }
 
@@ -54,6 +45,8 @@ public class Category {
     public void setCurrentValue(float CurrentValue){
         this.CurrentValue=CurrentValue;
     }
-}
 
-*/
+    public String toString() {
+        return this.getCatName() + ", $" + this.CurrentValue() + "/$" + this.getMaxValue();
+    }
+}

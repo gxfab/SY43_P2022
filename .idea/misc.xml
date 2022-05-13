@@ -3,13 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ercan/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/activity_list_item.xml" value="0.1" />
+        <entry key="..\:/Users/ercan/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.17391304347826086" />
+        <entry key="..\:/Users/ercan/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_2.xml" value="0.17391304347826086" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.147" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/drawable/app_icon.xml" value="0.147" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/drawable/ic_launcher_background.xml" value="0.147" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/layout/activity_category.xml" value="0.2" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/layout/activity_category_detail.xml" value="0.17391304347826086" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/layout/activity_category_details.xml" value="0.264" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/layout/category_list_item.xml" value="0.2" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.202" />
+        <entry key="..\:/Users/ercan/Documents/code/SY43_P2022/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.202" />
         <entry key="..\:/Users/malak/AndroidStudioProjects/SY43_P2022/app/src/main/res/layout/activity_category.xml" value="0.5509138381201044" />
         <entry key="..\:/Users/malak/AndroidStudioProjects/SY43_P2022/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/malak/AndroidStudioProjects/SY43_P2022/app/src/main/res/layout/category.xml" value="0.264" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

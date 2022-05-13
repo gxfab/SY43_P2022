@@ -1,3 +1,5 @@
+/*
+
 package om.example.sy43.db.entity;
 
 import android.arch.persistence.room.ColumnInfo;
@@ -69,3 +71,4 @@ public class SubCategory {
         this.Category=Category;
     }
 }
+*/

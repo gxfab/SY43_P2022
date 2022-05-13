@@ -1,4 +1,6 @@
-package om.example.sy43.db.entity;
+/*
+
+package com.example.sy43.db.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -77,3 +79,4 @@ public class Transaction {
         this.Date=Date;
     }
 } 
+*/

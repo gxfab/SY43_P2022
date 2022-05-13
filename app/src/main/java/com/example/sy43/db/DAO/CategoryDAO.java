@@ -1,4 +1,5 @@
-import java.utitl.List;
+/*
+import java.utiL.List;
 import om.example.sy43.db.entity.Category;
 
 @DAO
@@ -13,3 +14,4 @@ public interface CategoryDAO{
     @Delete
     void deleteCategory(Category category);
 }
+*/

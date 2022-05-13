@@ -1,4 +1,5 @@
-import java.utitl.List;
+/*
+import java.util.List;
 import om.example.sy43.db.entity.SubCategory;
 
 @DAO
@@ -16,3 +17,4 @@ public interface CategoryDAO{
     @Delete
     void deleteSubCategory(SubCategory Subcategory);
 }
+*/

@@ -1,3 +1,5 @@
+/*
+
 package com.example.sy43.db.mainDB;
 
 import android.arch.persistence.room.Database;
@@ -16,7 +18,7 @@ import com.example.sy43.entity.SubCategory;
 public abstract class DepenseDatabase extends RoomDatabase{
     
     private static DepenseDatabase INSTANCE;
-
+x
     //public abstract DAONAME funcdao();
 
     public static DepenseDatabase getAppDatabase(Context context){
@@ -31,3 +33,5 @@ public abstract class DepenseDatabase extends RoomDatabase{
         INSTANCE = null;
     }
 }
+
+ */
