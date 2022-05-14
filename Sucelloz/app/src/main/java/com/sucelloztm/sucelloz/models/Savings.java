@@ -9,16 +9,17 @@ import java.lang.String;
 @Entity(tableName = "savings")
 public class Savings {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "savings_id")
     private long id;
 
-    @ColumnInfo(name="name")
+    @ColumnInfo(name = "name")
     private String name;
 
-    @ColumnInfo(name="date")
+    @ColumnInfo(name = "date")
     private int date;
 
-    @ColumnInfo(name="amount")
+    @ColumnInfo(name = "amount")
     private int amount;
 
     // CONSTRUCTOR

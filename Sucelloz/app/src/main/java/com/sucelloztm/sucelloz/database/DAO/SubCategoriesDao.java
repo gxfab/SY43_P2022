@@ -18,13 +18,13 @@ public interface SubCategoriesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSubCategory(SubCategories subCategory);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSubCategories(SubCategories... subCategories);
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateSubCategory(SubCategories subCategory);
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateSubCategories(SubCategories... subCategories);
 
     @Delete
@@ -33,6 +33,9 @@ public interface SubCategoriesDao {
     @Delete
     void deleteSubCategories(SubCategories... subCategories);
 
+    @Query("SELECT * FROM sub_categories")
+    List<SubCategories> getSubCategories();
+
     @Transaction
     @Query("SELECT * FROM sub_categories")
     List<SubCategoriesWithStableExpensesAndIncome> getSubCategoriesWithStableExpensesAndIncome();
@@ -40,5 +43,6 @@ public interface SubCategoriesDao {
     @Transaction
     @Query("SELECT * FROM sub_categories")
     List<SubCategoriesWithInfrequentExpensesAndIncome> getSubCategoriesWithInfrequentExpensesAndIncome();
+
 
 }

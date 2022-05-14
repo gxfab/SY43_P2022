@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Update;
 import androidx.room.Transaction;
 import androidx.room.Query;
+
 import java.util.List;
 
 
@@ -27,11 +28,11 @@ public interface CategoriesDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateCategories(Categories... categories);
 
-    @Query("DELETE FROM categories WHERE category_id=:categoryId")
-    void deleteCategory(long categoryId);
+    @Delete
+    void deleteCategory(Categories category);
 
-    @Query("DELETE FROM categories WHERE category_id IN (:categoryId)")
-    void deleteCategories(long... categoryId);
+    @Delete
+    void deleteCategories(Categories... categories);
 
     @Query("SELECT * FROM categories")
     List<Categories> getCategories();
