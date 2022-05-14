@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/planificationFragment"
+        android:icon="@drawable/ic_edit"
+        android:title="Plannification" />
+    <item
+        android:id="@+id/expensesFragment"
+        android:icon="@drawable/ic_card"
+        android:title="Dépenses" />
+    <item
+        android:id="@+id/savingsFragment"
+        android:icon="@drawable/ic_dollar"
+        android:title="Épargne" />
+</menu>

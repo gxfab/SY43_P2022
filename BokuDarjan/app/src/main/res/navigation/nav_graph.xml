@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/planificationFragment">
+
+    <fragment
+        android:id="@+id/planificationFragment"
+        android:name="com.example.bokudarjan.planificationFragment"
+        android:label="fragment_planification"
+        tools:layout="@layout/fragment_planification" />
+    <fragment
+        android:id="@+id/savingsFragment"
+        android:name="com.example.bokudarjan.SavingsFragment"
+        android:label="fragment_savings"
+        tools:layout="@layout/fragment_savings" />
+    <fragment
+        android:id="@+id/expensesFragment"
+        android:name="com.example.bokudarjan.ExpensesFragment"
+        android:label="fragment_expenses"
+        tools:layout="@layout/fragment_expenses" />
+</navigation>
