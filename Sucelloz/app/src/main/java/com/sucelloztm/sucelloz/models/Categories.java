@@ -8,7 +8,8 @@ import java.lang.String;
 @Entity(tableName = "categories")
 public class Categories {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name="category_id")
     private long id;
 
     @ColumnInfo(name="name")
@@ -17,9 +18,10 @@ public class Categories {
     @ColumnInfo(name="read_only")
     private boolean readOnly;
 
+
     //CONSTRUCTOR
     public Categories(){}
-    public Categories(String name,boolean readOnly,long subCategoriesId){
+    public Categories(String name,boolean readOnly){
         this.name=name;
         this.readOnly=readOnly;
     }
@@ -43,4 +45,6 @@ public class Categories {
     public void setReadOnly(boolean readOnly){
         this.readOnly=readOnly;
     }
+
+
 }

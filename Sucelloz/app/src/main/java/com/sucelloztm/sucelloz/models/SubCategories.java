@@ -3,12 +3,15 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.Transaction;
+import androidx.room.Query;
+import java.util.List;
 
 import java.lang.String;
 
 @Entity(tableName = "sub_categories",
         foreignKeys = {@ForeignKey(entity = Categories.class,
-                parentColumns = "id",
+                parentColumns = "category_id",
                 childColumns = "categories_id",
                 onDelete = ForeignKey.CASCADE)}
 )
@@ -46,4 +49,6 @@ public class SubCategories {
         this.name=name;
     }
     public void setCategoriesId(long categoriesId){ this.categoriesId=categoriesId; }
+
+
 }
