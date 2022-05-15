@@ -3,9 +3,13 @@ package com.example.nomoola.database.repository;
 import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
+import androidx.room.Insert;
+
 import com.example.nomoola.database.dao.CategoryDAO;
+import com.example.nomoola.database.dao.InOutComeDAO;
 import com.example.nomoola.database.dao.SubCategoryDAO;
 import com.example.nomoola.database.entity.Category;
+import com.example.nomoola.database.entity.InOutCome;
 import com.example.nomoola.database.entity.SubCategory;
 import com.example.nomoola.database.roomDataBase.NomoolaRoomDataBase;
 import java.util.List;
@@ -15,8 +19,11 @@ public class DataRepository {
     private CategoryDAO mCategoryDAO;
     private LiveData<List<Category>> mAllCategory;
 
-    private SubCategoryDAO mSubCategory;
+    private SubCategoryDAO mSubCategoryDAO;
     private LiveData<List<SubCategory>> mAllSubCategory;
+
+    private InOutComeDAO mInOutComeDAO;
+    private LiveData<List<InOutCome>> mAllInOutCome;
 
     public DataRepository(Application application) {
         Log.d("CREATION", "Instantiation of CategoryRepository");
@@ -25,8 +32,11 @@ public class DataRepository {
         mCategoryDAO = db.categoryDAO();
         mAllCategory = mCategoryDAO.getAllCategories();
 
-        mSubCategory = db.subCategoryDAO();
-        mAllSubCategory = mSubCategory.getAllSubCategories();
+        mSubCategoryDAO = db.subCategoryDAO();
+        mAllSubCategory = mSubCategoryDAO.getAllSubCategories();
+
+        mInOutComeDAO = db.inOutComeDAO();
+        mAllInOutCome = mInOutComeDAO.getALlInOutComes();
     }
 
     public LiveData<List<Category>> getAllCategories() {
@@ -38,11 +48,21 @@ public class DataRepository {
         });
     }
 
-    public LiveData<List<SubCategory>> getAllUnderCategories(){return mAllSubCategory;}
+    public LiveData<List<SubCategory>> getAllSubCategories(){
+        return mAllSubCategory;
+    }
     public void insert(SubCategory subCategory) {
         NomoolaRoomDataBase.databaseWriteExecutor.execute(() -> {
-            mSubCategory.insertSubCategory(subCategory);
+            mSubCategoryDAO.insertSubCategory(subCategory);
         });
     }
 
+    public LiveData<List<InOutCome>> getmAllInOutCome(){
+        return mAllInOutCome;
+    }
+    public void insert(InOutCome inOutCome){
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mInOutComeDAO.insertInOutCome(inOutCome);
+        });
+    }
 }

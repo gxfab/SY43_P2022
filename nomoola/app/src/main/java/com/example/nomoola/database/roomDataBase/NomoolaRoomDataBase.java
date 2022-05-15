@@ -7,21 +7,28 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.nomoola.database.converter.Converters;
 import com.example.nomoola.database.dao.CategoryDAO;
+import com.example.nomoola.database.dao.InOutComeDAO;
 import com.example.nomoola.database.dao.SubCategoryDAO;
 import com.example.nomoola.database.entity.Category;
+import com.example.nomoola.database.entity.InOutCome;
 import com.example.nomoola.database.entity.SubCategory;
 
+import java.time.LocalDate;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Category.class, SubCategory.class}, version = 1, exportSchema = false)
+@Database(entities = {Category.class, SubCategory.class, InOutCome.class}, version = 1, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class NomoolaRoomDataBase extends RoomDatabase {
 
     public abstract CategoryDAO categoryDAO();
     public abstract SubCategoryDAO subCategoryDAO();
+    public abstract InOutComeDAO inOutComeDAO();
 
     private static volatile NomoolaRoomDataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -57,6 +64,7 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
                 // Populate the database in the background.
                 populateCategory();
                 populateSubCategory();
+                populateInOutCome();
             });
         }
 
@@ -81,6 +89,20 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
             dao.insertSubCategory(undCat);
             undCat = new SubCategory("Car", "Gaz");
             dao.insertSubCategory(undCat);
+        }
+
+        private void populateInOutCome(){
+            InOutComeDAO dao = INSTANCE.inOutComeDAO();
+
+            InOutCome come = new InOutCome("week grocery at SuperU", "Food", "Groceries", 56.89, LocalDate.now());
+            dao.insertInOutCome(come);
+            come = new InOutCome("BK with my friends", "Food", "Restaurants", 13.50, LocalDate.now());
+            dao.insertInOutCome(come);
+            come = new InOutCome("motor reparation", "Car", "Reparations", 207.90, LocalDate.now());
+            dao.insertInOutCome(come);
+            come = new InOutCome("weekly fuel", "Car", "Gaz", 60.00, LocalDate.now());
+            dao.insertInOutCome(come);
+
         }
     };
 
