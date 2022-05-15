@@ -1,6 +1,5 @@
 package com.example.lafo_cheuse.database.dao
 
-import android.content.ClipData.Item
 import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -15,7 +14,7 @@ interface BudgetDao {
     fun getItemsWithCursor(): Cursor?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertBudget(budget: Budget?): Long
+    fun createBudget(budget: Budget?): Long
 
     @Update
     fun updateBudget(budget: Budget?): Int
