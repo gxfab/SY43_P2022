@@ -10,7 +10,6 @@ class Budget {
     var budgetId: Long = 0
 
     var budgetCategory: String = ""
-    var expenses: Double = 0.0
-    var incomes: Double = 0.0
+    var moneyChange: MoneyChange = MoneyChange()
     var duration: Duration = Duration.MONTH
 }

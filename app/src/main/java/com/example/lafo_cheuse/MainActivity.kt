@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         val data = PieData(dataSet)
         chart.data = data
         val description = Description()
-        description.textColor = Color.WHITE
+        description.textColor = Color.RED
         description.text = "Bootleg graph"
         chart.description = description
         chart.animateX(2000)
