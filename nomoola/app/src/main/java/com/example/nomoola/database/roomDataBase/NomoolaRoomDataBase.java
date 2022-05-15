@@ -10,18 +10,18 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.nomoola.database.dao.CategoryDAO;
-import com.example.nomoola.database.dao.UnderCategoryDAO;
+import com.example.nomoola.database.dao.SubCategoryDAO;
 import com.example.nomoola.database.entity.Category;
-import com.example.nomoola.database.entity.UnderCategory;
+import com.example.nomoola.database.entity.SubCategory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Category.class, UnderCategory.class}, version = 1, exportSchema = false)
+@Database(entities = {Category.class, SubCategory.class}, version = 1, exportSchema = false)
 public abstract class NomoolaRoomDataBase extends RoomDatabase {
 
     public abstract CategoryDAO categoryDAO();
-    public abstract UnderCategoryDAO underCategoryDAO();
+    public abstract SubCategoryDAO subCategoryDAO();
 
     private static volatile NomoolaRoomDataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -56,7 +56,7 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 populateCategory();
-                populateUnderCategory();
+                populateSubCategory();
             });
         }
 
@@ -69,18 +69,18 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
             dao.insertCategory(cat);
         }
 
-        private void populateUnderCategory(){
-            UnderCategoryDAO dao = INSTANCE.underCategoryDAO();
+        private void populateSubCategory(){
+            SubCategoryDAO dao = INSTANCE.subCategoryDAO();
 
-            UnderCategory undCat = new UnderCategory("Food", "Groceries");
-            dao.insertUnderCategory(undCat);
-            undCat = new UnderCategory("Food", "Restaurants");
-            dao.insertUnderCategory(undCat);
+            SubCategory undCat = new SubCategory("Food", "Groceries");
+            dao.insertSubCategory(undCat);
+            undCat = new SubCategory("Food", "Restaurants");
+            dao.insertSubCategory(undCat);
 
-            undCat = new UnderCategory("Car", "Reparations");
-            dao.insertUnderCategory(undCat);
-            undCat = new UnderCategory("Car", "Gaz");
-            dao.insertUnderCategory(undCat);
+            undCat = new SubCategory("Car", "Reparations");
+            dao.insertSubCategory(undCat);
+            undCat = new SubCategory("Car", "Gaz");
+            dao.insertSubCategory(undCat);
         }
     };
 

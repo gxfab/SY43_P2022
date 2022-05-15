@@ -8,22 +8,23 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.nomoola.database.entity.UnderCategory;
+
+import com.example.nomoola.database.entity.SubCategory;
 
 import java.util.List;
 
 @Dao
-public interface UnderCategoryDAO {
+public interface SubCategoryDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertUnderCategory(UnderCategory...underCategories);
+    void insertSubCategory(SubCategory...subCategories);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateUnderCategory(UnderCategory...underCategories);
+    void updateSubCategory(SubCategory...subCategories);
 
     @Delete
-    void deleteCategory(UnderCategory underCategory);
+    void deleteSubCategory(SubCategory subCategory);
 
-    @Query("SELECT * FROM T_UNDERCATEGORY")
-    LiveData<List<UnderCategory>> getAllUnderCategories();
+    @Query("SELECT * FROM T_SUBCATEGORY")
+    LiveData<List<SubCategory>> getAllSubCategories();
 }
