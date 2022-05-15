@@ -1,0 +1,33 @@
+package com.example.nomoola.viewModel;
+
+import android.app.Application;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import com.example.nomoola.database.entity.Category;
+import com.example.nomoola.database.repository.CategoryRepository;
+import java.util.List;
+
+public class CategoryViewModel extends AndroidViewModel {
+
+    private final CategoryRepository mRepository;
+    private final LiveData<List<Category>> mAllCategories;
+
+
+    public CategoryViewModel(@NonNull Application application) {
+        super(application);
+        Log.d("CREATION", "Instantiation of CategoryViewModel");
+        mRepository = new CategoryRepository(application);
+        mAllCategories = mRepository.getAllCategories();
+    }
+
+    public LiveData<List<Category>> getAllCategories(){
+        return mAllCategories;
+    }
+
+    public void insert(Category category){
+        mRepository.insert(category);
+    }
+}
