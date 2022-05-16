@@ -9,7 +9,14 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.example.fluz.data.AppDatabase
+import com.example.fluz.data.entities.Budget
+import com.example.fluz.data.entities.User
+import com.example.fluz.data.relashionships.UserWithBudgets
 import com.example.fluz.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +39,59 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        val db = AppDatabase(this)
+        val userDao = db.UserDao()
+        val budgetDao = db.BudgetDao()
+
+        var users: List<User> = emptyList()
+        var budgets: List<Budget> = emptyList()
+
+        var userWithBudgets: UserWithBudgets? = null
+
+        runBlocking {
+            launch {
+                /**
+                try {
+                    userDao.insert(
+                        User(
+                            username = "Robert",
+                            email_address = "robert@gmail.com",
+                            hash_password = "krfzkfjzjekfk",
+                            currency = "euro",
+                            created_at = System.currentTimeMillis().toString()
+                        )
+                    )
+                } catch (e: RuntimeException) {
+                    println("Cet utilisateur existe déja dans la base !")
+                }
+
+                // userDao.deleteAll()
+                users = userDao.getAll()
+
+                budgetDao.insert(
+                    Budget(
+                        start_date = System.currentTimeMillis().toString(),
+                        end_date = System.currentTimeMillis().toString(),
+                        total_amount = 2000,
+                        userId = 5
+                    )
+                )
+
+                budgets = budgetDao.getAll()
+                */
+
+                // userWithBudgets = userDao.getWithBudgets(5)
+            }
+        }
+
+        for (user in users)
+            println(user)
+
+        for (budget in budgets)
+            println(budget)
+
+        // println(userWithBudgets?.budgets)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
