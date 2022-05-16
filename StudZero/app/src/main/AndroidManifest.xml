@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudZero">
         <activity
+            android:name=".activities.AddPayment"
+            android:exported="false" />
+        <activity
             android:name=".New_Budget_4"
             android:exported="false" />
         <activity
@@ -31,7 +34,7 @@
             android:name=".activities.stats"
             android:exported="false" />
         <activity
-            android:name=".activities.Add_Payements"
+            android:name=".activities.Add_Payments"
             android:exported="false" />
         <activity
             android:name=".activities.Home"

@@ -129,10 +129,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv2.put(CATEGORY_TYPE_COLUMN_NAME, "Loyer");
         db.insert(TABLE_CATEGORY_TYPE, null, cv2);
 
+        ContentValues cv8 = new ContentValues();
+        cv8.put(CATEGORY_TYPE_COLUMN_ID, 2);
+        cv8.put(CATEGORY_TYPE_COLUMN_NAME, "Courses");
+        db.insert(TABLE_CATEGORY_TYPE, null, cv8);
+
         ContentValues cv3 = new ContentValues();
         cv3.put(CATEGORY_COLUMN_TYPE, 1);
         cv3.put(CATEGORY_COLUMN_BUDGET, 1);
         db.insert(TABLE_CATEGORY, null, cv3);
+
+        ContentValues cv9 = new ContentValues();
+        cv9.put(CATEGORY_COLUMN_TYPE, 2);
+        cv9.put(CATEGORY_COLUMN_BUDGET, 1);
+        db.insert(TABLE_CATEGORY, null, cv9);
 
         ContentValues cv4 = new ContentValues();
         cv4.put(USER_COLUMN_ID, 1);
@@ -141,14 +151,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues cv5 = new ContentValues();
         cv5.put(PAYMENT_COLUMN_CATEGORY, 1);
-        cv5.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
-        cv5.put(PAYMENT_COLUMN_DATE_PAYMENT, 1);
+        cv5.put(PAYMENT_COLUMN_AMOUNT, 50.0f);
+        cv5.put(PAYMENT_COLUMN_DATE_PAYMENT, 2);
         db.insert(TABLE_PAYMENT, null, cv5);
 
         ContentValues cv6 = new ContentValues();
         cv6.put(PAYMENT_COLUMN_CATEGORY, 1);
         cv6.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
-        cv6.put(PAYMENT_COLUMN_DATE_PAYMENT, 1);
+        cv6.put(PAYMENT_COLUMN_DATE_PAYMENT, 3);
         db.insert(TABLE_PAYMENT, null, cv6);
 
         ContentValues cv7 = new ContentValues();
@@ -430,7 +440,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " where " + CATEGORY_COLUMN_BUDGET + "=" + idBudget + " ORDER BY " + PAYMENT_COLUMN_DATE_PAYMENT + " DESC";
 
         Cursor c = db.rawQuery(query, null);
-        Log.i("payment", ""+ c.getCount());
 
         if(c == null) {
             return null;
@@ -449,6 +458,57 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return payments;
     }
 
+    @SuppressLint("Range")
+    public List<CategoryType> getAllCategoriesTypes() {
+        List<CategoryType> categorieTypes = new LinkedList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "Select * from " + TABLE_CATEGORY_TYPE;
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null) {
+            return null;
+        }
+
+        c.moveToFirst();
+        do {
+            categorieTypes.add(new CategoryType(
+                    c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
+                    c.getString(c.getColumnIndex(CATEGORY_TYPE_COLUMN_NAME))
+            ));
+        } while(c.moveToNext());
+
+        return categorieTypes;
+    }
+
+
+    @SuppressLint("Range")
+    public Category getCurrentCategoryOfCategoryType(String categoryTypeName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int currentBudgetId = getCurrentBudget().getIdBudget();
+
+        String query = "Select * from " + TABLE_CATEGORY +" INNER JOIN " + TABLE_CATEGORY_TYPE  +
+                " ON "+ CATEGORY_COLUMN_TYPE+ "=" + CATEGORY_TYPE_COLUMN_ID +
+                " where " + CATEGORY_TYPE_COLUMN_NAME + "=\"" + categoryTypeName + "\" AND " + CATEGORY_COLUMN_BUDGET + "=" + currentBudgetId;
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null) {
+            return null;
+        }
+
+        c.moveToFirst();
+
+        return new Category(
+                c.getInt(c.getColumnIndex(CATEGORY_COLUMN_ID)),
+                c.getFloat(c.getColumnIndex(CATEGORY_COLUMN_THEORETICAL_AMOUNT)),
+                c.getFloat(c.getColumnIndex(CATEGORY_COLUMN_REAL_AMOUNT)),
+                c.getInt(c.getColumnIndex(CATEGORY_COLUMN_BUDGET)),
+                c.getInt(c.getColumnIndex(CATEGORY_COLUMN_TYPE))
+        );
+    }
 
 
     public boolean updateCategoryRealAmount(int idCategory, float amount) {

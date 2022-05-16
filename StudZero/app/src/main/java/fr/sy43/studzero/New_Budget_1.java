@@ -176,8 +176,7 @@ public class New_Budget_1 extends AppCompatActivity {
                 }
             }
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
@@ -185,5 +184,9 @@ public class New_Budget_1 extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

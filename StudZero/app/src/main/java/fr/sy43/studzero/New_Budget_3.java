@@ -25,8 +25,6 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import fr.sy43.studzero.activities.Settings;
-
 
 //faire envoie vers la BD qd on confirm
 //modif le string allocated : $val et Available : $val
@@ -261,5 +259,9 @@ public class New_Budget_3 extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }
