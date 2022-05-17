@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/body_container"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".views.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

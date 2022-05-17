@@ -1,7 +1,8 @@
-package com.example.zeroday
+package com.example.zeroday.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.zeroday.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
