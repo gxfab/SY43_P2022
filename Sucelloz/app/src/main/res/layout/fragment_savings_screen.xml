@@ -11,18 +11,4 @@
         android:layout_height="match_parent"
         android:text="@string/hello_savings_fragment" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        >
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="234dp"
-            android:layout_height="495dp"
-            tools:itemCount="5"
-            tools:listitem="@layout/text_row_item" />
-
-    </RelativeLayout>
-
 </FrameLayout>
