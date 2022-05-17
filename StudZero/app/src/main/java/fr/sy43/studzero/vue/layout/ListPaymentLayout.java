@@ -11,7 +11,15 @@ import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Payment;
 
+/**
+ * This class is used the show a list of payments.
+ * ListPaymentLayout inherits from LinearLayout
+ */
 public class ListPaymentLayout extends LinearLayout {
+    /**
+     * Constructor of the class
+     * @param context
+     */
     public ListPaymentLayout(Context context) {
         super(context);
         setOrientation(VERTICAL);
@@ -25,6 +33,10 @@ public class ListPaymentLayout extends LinearLayout {
         setLayoutParams(params);
     }
 
+    /**
+     * Add a payment to the layout
+     * @param payment payment to add to the layout
+     */
     public void addPayment(Payment payment) {
         LinearLayout layout = createPaymentLayout();
         LayoutParams params = generateDefaultLayoutParams();
@@ -35,7 +47,7 @@ public class ListPaymentLayout extends LinearLayout {
         TextView category = new TextView(layout.getContext());
         category.setPadding(convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f), 0, convertDpToPx(layout.getContext(), 10.0f));
         category.setLayoutParams(params);
-        category.setTextSize(35);
+        category.setTextSize(convertSpToPx(layout.getContext(), 10.0f));
         DatabaseHelper dbHelper = new DatabaseHelper(category.getContext());
         category.setText(""+dbHelper.getTypeCategory(payment.getCategory()).getNameCategory());
         dbHelper.closeDB();
@@ -48,12 +60,16 @@ public class ListPaymentLayout extends LinearLayout {
         amount.setTextAlignment(TEXT_ALIGNMENT_VIEW_END);
         amount.setText(""+String.format("%.2f", payment.getAmount())+"€");
         amount.setTextColor(getResources().getColor(R.color.white));
-        amount.setTextSize(35);
+        amount.setTextSize(convertSpToPx(layout.getContext(), 10.0f));
 
         layout.addView(amount);
         addView(layout);
     }
 
+    /**
+     * Creates the layout for a payment
+     * @return LinearLayout
+     */
     private LinearLayout createPaymentLayout() {
         LinearLayout layout = new LinearLayout(this.getContext());
         layout.setOrientation(HORIZONTAL);
@@ -66,7 +82,23 @@ public class ListPaymentLayout extends LinearLayout {
         return layout;
     }
 
+    /**
+     * Converts dp to pixels
+     * @param context
+     * @param dp
+     * @return pixels
+     */
     private int convertDpToPx(Context context, float dp) {
-        return (int)(dp * context.getResources().getDisplayMetrics().density);
+        return (int) (dp * context.getResources().getDisplayMetrics().density);
+    }
+
+    /**
+     * Converts sp to pixels
+     * @param context
+     * @param sp
+     * @return pixels
+     */
+    private int convertSpToPx(Context context, float sp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
     }
 }

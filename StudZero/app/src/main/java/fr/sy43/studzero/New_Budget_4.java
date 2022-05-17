@@ -19,8 +19,6 @@ import android.widget.EditText;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import fr.sy43.studzero.activities.Settings;
-
 public class New_Budget_4 extends AppCompatActivity {
     String category_name;
 
@@ -174,5 +172,9 @@ public class New_Budget_4 extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

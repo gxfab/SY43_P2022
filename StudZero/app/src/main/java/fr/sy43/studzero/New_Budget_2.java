@@ -40,4 +40,8 @@ public class New_Budget_2 extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

@@ -31,7 +31,7 @@ public class Home extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.add_payements:
-                        startActivity(new Intent(getApplicationContext(), Add_Payements.class));
+                        startActivity(new Intent(getApplicationContext(), Add_Payments.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.home:

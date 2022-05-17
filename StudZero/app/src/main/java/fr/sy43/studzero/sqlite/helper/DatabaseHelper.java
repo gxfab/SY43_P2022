@@ -20,51 +20,136 @@ import fr.sy43.studzero.sqlite.model.CategoryType;
 import fr.sy43.studzero.sqlite.model.Payment;
 import fr.sy43.studzero.sqlite.model.User;
 
+/**
+ * This class is used to access the database of the app
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    // Database name
+    /**
+     * Database name
+     */
+
     private static final String DATABASE_NAME = "studzero.db";
 
-    // Database version
+    /**
+     * Database version
+     */
     private static final int DATABASE_VERSION = 1;
 
     // Table names
+    /**
+     * Name of the budget table
+     */
     private static final String TABLE_BUDGET = "budget";
+    /**
+     * Name of the category table
+     */
     private static final String TABLE_CATEGORY = "category";
+    /**
+     * Name of the category type table
+     */
     private static final String TABLE_CATEGORY_TYPE = "category_type";
+    /**
+     * Name of the payment table
+     */
     private static final String TABLE_PAYMENT = "payment";
+    /**
+     * Name of the user table
+     */
     private static final String TABLE_USER = "user";
 
-    // Columns of the budget table
-    private static final String BUDGET_COLUMN_ID = "id_budget";
-    private static final String BUDGET_COLUMN_DATE_START = "date_start";
-    private static final String BUDGET_COLUMN_DATE_END = "date_end";
-    private static final String BUDGET_COLUMN_BUDGET_AMOUNT = "budget_amount";
-
-    // Columns of the category table
-    private static final String CATEGORY_COLUMN_ID = "id_category";
-    private static final String CATEGORY_COLUMN_THEORETICAL_AMOUNT = "theoretical_amount";
-    private static final String CATEGORY_COLUMN_REAL_AMOUNT = "real_amount";
-    private static final String CATEGORY_COLUMN_TYPE = "type";
-    private static final String CATEGORY_COLUMN_BUDGET = "budget";
 
     // -------------------- Columns of tables -------------------
+    // Columns of the budget table
+    /**
+     * Name of the id column of the budget table
+     */
+    private static final String BUDGET_COLUMN_ID = "id_budget";
+    /**
+     * Name of the start date column of the budget table
+     */
+    private static final String BUDGET_COLUMN_DATE_START = "date_start";
+    /**
+     * Name of the end date column of the budget table
+     */
+    private static final String BUDGET_COLUMN_DATE_END = "date_end";
+    /**
+     * Name of the id column of the budget table
+     */
+    private static final String BUDGET_COLUMN_BUDGET_AMOUNT = "budget_amount";
+
+
+    // Columns of the category table
+    /**
+     * Name of the id column of the category table
+     */
+    private static final String CATEGORY_COLUMN_ID = "id_category";
+    /**
+     * Name of the theoretical amount column of the category table
+     */
+    private static final String CATEGORY_COLUMN_THEORETICAL_AMOUNT = "theoretical_amount";
+    /**
+     * Name of the real amount column of the category table
+     */
+    private static final String CATEGORY_COLUMN_REAL_AMOUNT = "real_amount";
+    /**
+     * Name of the type column of the category table
+     */
+    private static final String CATEGORY_COLUMN_TYPE = "type";
+    /**
+     * Name of the budget column of the category table
+     */
+    private static final String CATEGORY_COLUMN_BUDGET = "budget";
+
+
     // Columns of the category type table
+    /**
+     * Name of the id column of the category type table
+     */
     private static final String CATEGORY_TYPE_COLUMN_ID = "id_category_type";
+    /**
+     * Name of the name column of the category type table
+     */
     private static final String CATEGORY_TYPE_COLUMN_NAME = "name_category";
 
+
     // Columns of the payment table
+    /**
+     * Name of the id column of the payment table
+     */
     private static final String PAYMENT_COLUMN_ID = "id_payment";
+    /**
+     * Name of the amount column of the payment table
+     */
     private static final String PAYMENT_COLUMN_AMOUNT = "amount";
+    /**
+     * Name of the payment date of the payment table
+     */
     private static final String PAYMENT_COLUMN_DATE_PAYMENT = "date_payment";
+    /**
+     * Name of the category of the payment table
+     */
     private static final String PAYMENT_COLUMN_CATEGORY = "category";
 
+
     // Columns of the user table
+    /**
+     * Name of the id column of the user table
+     */
     private static final String USER_COLUMN_ID = "id_user";
+    /**
+     * Name of the next budget date column of the user table
+     */
     private static final String USER_COLUMN_DATE_NEXT_BUDGET = "date_next_budget";
+    /**
+     * Name of the current budget column of the user table
+     */
     private static final String USER_COLUMN_CURRENT_BUDGET = "current_budget";
 
+
     // ----------------- Create table statements -----------------
-    // Budget create table statement
+    /**
+     * Budget create table statement
+     */
     private static final String CREATE_TABLE_BUDGET = "CREATE TABLE "
             + TABLE_BUDGET + "("
             + BUDGET_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
@@ -72,7 +157,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + BUDGET_COLUMN_DATE_END + " DATE,"
             + BUDGET_COLUMN_BUDGET_AMOUNT + " NUMERIC)";
 
-    // Category create table statement
+    /**
+     * Category create table statement
+     */
     private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE "
             + TABLE_CATEGORY + "("
             + CATEGORY_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
@@ -81,13 +168,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + CATEGORY_COLUMN_TYPE + " INTEGER REFERENCES " + TABLE_CATEGORY_TYPE + ","
             + CATEGORY_COLUMN_BUDGET + " INTEGER REFERENCES "+ TABLE_BUDGET +")";
 
-    // Category type create table statement
+    /**
+     * Category type create table statement
+     */
     private static final String CREATE_TABLE_CATEGORY_TYPE = "CREATE TABLE "
             + TABLE_CATEGORY_TYPE + "("
             + CATEGORY_TYPE_COLUMN_ID + " INTEGER PRIMARY KEY,"
             + CATEGORY_TYPE_COLUMN_NAME + " TEXT)";
 
-    // Payment create table statement
+    /**
+     * Payment create table statement
+     */
     private static final String CREATE_TABLE_PAYMENT = "CREATE TABLE "
             + TABLE_PAYMENT + "("
             + PAYMENT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
@@ -95,7 +186,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + PAYMENT_COLUMN_DATE_PAYMENT + " DATE,"
             + PAYMENT_COLUMN_CATEGORY + " INT REFERENCES "+ TABLE_CATEGORY +")";
 
-    // User create table statement
+    /**
+     * User create table statement
+     */
     private static final String CREATE_TABLE_USER = "CREATE TABLE "
             + TABLE_USER + "("
             + USER_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
@@ -103,7 +196,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + USER_COLUMN_CURRENT_BUDGET + " INTEGER REFERENCES "+ TABLE_BUDGET +")";
 
 
-    // Drop table statement
+    /**
+     * Drop table statement
+     */
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS ";
 
     // Constructor
@@ -111,7 +206,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // Creates the database
+    /**
+     * Creates the database.
+     * Called when the database file hasn't been created yet
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_BUDGET);
@@ -129,10 +228,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv2.put(CATEGORY_TYPE_COLUMN_NAME, "Loyer");
         db.insert(TABLE_CATEGORY_TYPE, null, cv2);
 
+        ContentValues cv8 = new ContentValues();
+        cv8.put(CATEGORY_TYPE_COLUMN_ID, 2);
+        cv8.put(CATEGORY_TYPE_COLUMN_NAME, "Courses");
+        db.insert(TABLE_CATEGORY_TYPE, null, cv8);
+
         ContentValues cv3 = new ContentValues();
         cv3.put(CATEGORY_COLUMN_TYPE, 1);
         cv3.put(CATEGORY_COLUMN_BUDGET, 1);
         db.insert(TABLE_CATEGORY, null, cv3);
+
+        ContentValues cv9 = new ContentValues();
+        cv9.put(CATEGORY_COLUMN_TYPE, 2);
+        cv9.put(CATEGORY_COLUMN_BUDGET, 1);
+        db.insert(TABLE_CATEGORY, null, cv9);
 
         ContentValues cv4 = new ContentValues();
         cv4.put(USER_COLUMN_ID, 1);
@@ -141,14 +250,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues cv5 = new ContentValues();
         cv5.put(PAYMENT_COLUMN_CATEGORY, 1);
-        cv5.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
-        cv5.put(PAYMENT_COLUMN_DATE_PAYMENT, 1);
+        cv5.put(PAYMENT_COLUMN_AMOUNT, 50.0f);
+        cv5.put(PAYMENT_COLUMN_DATE_PAYMENT, 2);
         db.insert(TABLE_PAYMENT, null, cv5);
 
         ContentValues cv6 = new ContentValues();
         cv6.put(PAYMENT_COLUMN_CATEGORY, 1);
         cv6.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
-        cv6.put(PAYMENT_COLUMN_DATE_PAYMENT, 1);
+        cv6.put(PAYMENT_COLUMN_DATE_PAYMENT, 3);
         db.insert(TABLE_PAYMENT, null, cv6);
 
         ContentValues cv7 = new ContentValues();
@@ -159,6 +268,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Called when the database is upgraded
+
+    /**
+     * Updates the data base.
+     * Called when the data base is upgraded.
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DROP_TABLE+TABLE_PAYMENT);
@@ -171,6 +288,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Add a new budget to the budget table
+
+    /**
+     * Add a budget to the database
+     * @param budget
+     * @return true if the budget has successfully been added to the database, otherwise false
+     */
     public boolean addBudget(Budget budget) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -183,7 +306,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
-    // Add a new category to the category table
+    /**
+     * Add a category to the database
+     * @param category
+     * @return true if the category has successfully been added to the database, otherwise false
+     */
     public boolean addCategory(Category category) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -197,7 +324,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
-    // Add a new category type to the category type table
+    /**
+     * Add a category type to the database
+     * @param categoryType
+     * @return true if the category type has successfully been added to the database, otherwise false
+     */
     public boolean addCategoryType(CategoryType categoryType) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -210,6 +341,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Add a new payment to the payment table
+    /**
+     * Add a payment to the database
+     * @param payment
+     * @return true if the payment has successfully been added to the database, otherwise false
+     */
     public boolean addPayment(Payment payment) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -222,7 +358,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
-    // Add a new user to the user table
+    /**
+     * Add a category to the database
+     * @param user
+     * @return true if the user has successfully been added to the database, otherwise false
+     */
     public boolean addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -234,7 +374,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
-    // Get a budget from the budget table
+    /**
+     * get a budget from the database
+     * @param idBudget id of the budget to get
+     * @return the budget that corresponds to the give id, null is returned if no budget corresponds to the id
+     */
     @SuppressLint("Range")
     public Budget getBudget(int idBudget) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -256,7 +400,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    // Get a category from the category table
+    /**
+     * get a category from the database
+     * @param idCategory id of the budget to get
+     * @return the category that corresponds to the give id, null is returned if no category corresponds to the id
+     */
     @SuppressLint("Range")
     public Category getCategory(int idCategory) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -279,7 +427,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    // Get a type category type from the category type table
+    /**
+     * get a category type from the database
+     * @param idCategoryType id of the budget to get
+     * @return the category type that corresponds to the give id, null is returned if no category type corresponds to the id
+     */
     @SuppressLint("Range")
     public CategoryType getTypeCategory(int idCategoryType) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -299,7 +451,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    // Get a payment from the budget payment
+    /**
+     * get a payment from the database
+     * @param idPayment id of the budget to get
+     * @return the payment that corresponds to the give id, null is returned if no payment corresponds to the id
+     */
     @SuppressLint("Range")
     public Payment getPayment(int idPayment) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -321,7 +477,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    // Get the only user of the user table
+    /**
+     * get the user from the database
+     * @return the user from the databse, null is returned if no users exist
+     */
     @SuppressLint("Range")
     public User getUser() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -341,7 +500,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    // Get all budgets
+    /**
+     * get all budgets from the database
+     * @return all budgets from the database, null is returned if no budgets exist
+     */
     @SuppressLint("Range")
     public List<Budget> getAllBudgets() {
         List<Budget> budgets = new LinkedList<>();
@@ -368,6 +530,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return budgets;
     }
 
+    /**
+     * get the current budget
+     * @return the current budget, null is returned if no current budget exists
+     */
     @SuppressLint("Range")
     public Budget getCurrentBudget() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -391,6 +557,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
+    /**
+     * get all categories that are linked to a budget
+     * @param idBudget id of the budget
+     * @return categories that are linked to the given budget, null is returned if no categories are linked to the id
+     */
     @SuppressLint("Range")
     public List<Category> getAllCategories(int idBudget) {
         List<Category> categories = new LinkedList<>();
@@ -419,6 +590,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return categories;
     }
 
+    /**
+     * get all payments that are linked to a budget
+     * @param idBudget id of the budget
+     * @return payments that are linked to the given budget, null is returned if no categories are linked to the id
+     */
     @SuppressLint("Range")
     public List<Payment> getAllPaymentsOfBudget(int idBudget) {
         List<Payment> payments = new LinkedList<>();
@@ -430,7 +606,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " where " + CATEGORY_COLUMN_BUDGET + "=" + idBudget + " ORDER BY " + PAYMENT_COLUMN_DATE_PAYMENT + " DESC";
 
         Cursor c = db.rawQuery(query, null);
-        Log.i("payment", ""+ c.getCount());
 
         if(c == null) {
             return null;
@@ -449,8 +624,72 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return payments;
     }
 
+    /**
+     * get all category types from the database
+     * @return all category types from the database, null is returned if no category types exist
+     */
+    @SuppressLint("Range")
+    public List<CategoryType> getAllCategoriesTypes() {
+        List<CategoryType> categorieTypes = new LinkedList<>();
 
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        String query = "Select * from " + TABLE_CATEGORY_TYPE;
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null) {
+            return null;
+        }
+
+        c.moveToFirst();
+        do {
+            categorieTypes.add(new CategoryType(
+                    c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
+                    c.getString(c.getColumnIndex(CATEGORY_TYPE_COLUMN_NAME))
+            ));
+        } while(c.moveToNext());
+
+        return categorieTypes;
+    }
+
+    /**
+     * Get the category of the current budget of a category type
+     * @param categoryTypeName name of the category type
+     * @return category of the current budget that is linked to the given name of a category type, null is returned if no category of the current budget is linked to the name
+     */
+    @SuppressLint("Range")
+    public Category getCurrentCategoryOfCategoryType(String categoryTypeName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int currentBudgetId = getCurrentBudget().getIdBudget();
+
+        String query = "Select * from " + TABLE_CATEGORY +" INNER JOIN " + TABLE_CATEGORY_TYPE  +
+                " ON "+ CATEGORY_COLUMN_TYPE+ "=" + CATEGORY_TYPE_COLUMN_ID +
+                " where " + CATEGORY_TYPE_COLUMN_NAME + "=\"" + categoryTypeName + "\" AND " + CATEGORY_COLUMN_BUDGET + "=" + currentBudgetId;
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null) {
+            return null;
+        }
+
+        c.moveToFirst();
+
+        return new Category(
+                c.getInt(c.getColumnIndex(CATEGORY_COLUMN_ID)),
+                c.getFloat(c.getColumnIndex(CATEGORY_COLUMN_THEORETICAL_AMOUNT)),
+                c.getFloat(c.getColumnIndex(CATEGORY_COLUMN_REAL_AMOUNT)),
+                c.getInt(c.getColumnIndex(CATEGORY_COLUMN_BUDGET)),
+                c.getInt(c.getColumnIndex(CATEGORY_COLUMN_TYPE))
+        );
+    }
+
+    /**
+     * Update the real amount of money spend of a category
+     * @param idCategory id of the category to update
+     * @param amount amount used for the update
+     * @return true if the update was successful, otherwise false
+     */
     public boolean updateCategoryRealAmount(int idCategory, float amount) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -460,6 +699,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
+    /**
+     * Update the date of the next budget
+     * @param nextBudget date of the next budget
+     * @return true if the update was successful, otherwise false
+     */
     public boolean updateUserDateNextBudget(Date nextBudget) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -469,6 +713,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
+    /**
+     * Update the id of the current budget
+     * @param idBudget id of the budget
+     * @return true if the update was successful, otherwise false
+     */
     public boolean updateUserCurrentBudget(int idBudget) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -478,7 +727,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
-    // Close database
+    /**
+     * Closes the access to the database
+     */
     public void closeDB() {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen()) {

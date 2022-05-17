@@ -13,4 +13,19 @@
     <string name="NewBudgetTextViewAvailable">Available : $val</string>
     <string name="NewBudget_EnterExpensesHint">Enter estimated expenses</string>
     <string name="NewBudgetCreateButton">Create</string>
+    <string name="NewPayment">New payment</string>
+    <string name="title_activity_add_payment">AddPayment</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="SelectCategory">Select a category</string>
+    <string name="AddPaymentEnterPayment">Enter payment value</string>
+    <string name="AddPaymentEnterPaymentHelper">Payment</string>
+    <string name="AddPaymentEnterPaymentHint">Enter payment</string>
+    <string name="AddPaymentConfirmButton">Confirm</string>
 </resources>
