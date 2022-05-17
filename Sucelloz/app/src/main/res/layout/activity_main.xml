@@ -32,4 +32,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav"/>
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_view"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
