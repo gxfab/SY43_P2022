@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="green_CookUT">#FF20603F</color>
+    <color name="darkgreen_CookUT">#FF1A4A31</color>
+    <color name="gold_CookUT">#FFE1AA35</color>
+    <color name="darkgold_CookUT">#FF9E9E1D</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

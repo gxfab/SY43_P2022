@@ -6,17 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    android:background="@drawable/unknown"
     tools:context=".MainActivity"
     tools:visibility="visible">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_saisie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="288dp"
-        android:backgroundTint="#E1AA35"
-        android:text="Button"
+        android:backgroundTint="@color/gold_CookUT"
+        android:onClick="changeActivity"
+        android:text="Saisie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,9 +27,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="360dp"
-        android:backgroundTint="#E1AA35"
+        android:backgroundTint="@color/gold_CookUT"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
