@@ -1,0 +1,6 @@
+William :
+    - Front end
+    - voyage entre inerfaces
+Marius :
+    - Bdd
+    - Treemap
