@@ -2,23 +2,44 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BG"
-    tools:context=".New_Budget_2">
+    tools:context=".New_Budget_5">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="@string/NewBudget2_helper"
-        android:textColor="@color/foreground_white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        android:layout_marginEnd="24dp"
+        android:background="@color/BG_taskbar"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/TextViewAllocated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/NewBudgetTextViewAllocated"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/TextViewAvailable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/NewBudgetTextViewAvailable"
+            android:textAlignment="center"
+            android:textColor="@color/foreground_white"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/NewBudget2_ConfirmButton"
@@ -42,6 +63,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

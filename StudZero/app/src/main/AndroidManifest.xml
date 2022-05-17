@@ -11,6 +11,7 @@
         android:theme="@style/Theme.StudZero">
         <activity
             android:name=".activities.AddPayment"
+            android:name=".New_Budget_5"
             android:exported="false" />
         <activity
             android:name=".New_Budget_4"

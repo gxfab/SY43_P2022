@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:hint="@string/NewBudget_EnterIncome"
+        android:hint="@string/NewBudget_EnterCategoryName"
         android:outlineSpotShadowColor="@color/foreground_white"
         android:textColorHint="@color/foreground_white"
         app:boxStrokeColor="@color/BG_taskbar"
@@ -58,4 +58,16 @@
             android:textColor="@color/selected_white"
             tools:ignore="TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/NewBudget4_NbCatTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NewBudget4_NbCatTextViewTXT"
+        android:textColor="@color/foreground_white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/TextInputLayoutCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

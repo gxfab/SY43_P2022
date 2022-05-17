@@ -9,10 +9,15 @@
     <string name="NewBudgetConfirmButton">Confirm</string>
     <string name="NewBudgetAddNewCategoryButton">Add New Category</string>
     <string name="NewBudgetReviewAllButton">Review All</string>
-    <string name="NewBudgetTextViewAllocated">Allocated : $val</string>
-    <string name="NewBudgetTextViewAvailable">Available : $val</string>
+    <string name="NewBudgetTextViewAllocated">Currently allocated :</string>
+    <string name="NewBudgetTextViewAvailable">Budget :</string>
     <string name="NewBudget_EnterExpensesHint">Enter estimated expenses</string>
     <string name="NewBudgetCreateButton">Create</string>
+    <string name="NewBudget_EnterCategoryName">Enter Category Name</string>
+    <string name="NewBudget4_NbCatTextViewTXT">Total number of category : </string>
+    <string name="currency">£</string>
+    <string name="NewBudget2_helper">Select the categories you want to keep</string>
+    <string name="NewBudget2_ConfirmButtonTxt">CONFIRM</string>
     <string name="NewPayment">New payment</string>
     <string name="title_activity_add_payment">AddPayment</string>
     <!-- Strings used for fragments for navigation -->
