@@ -6,29 +6,34 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.lafo_cheuse.database.dao.BudgetDao
-import com.example.lafo_cheuse.models.Budget
+import com.example.lafo_cheuse.database.dao.*
+import com.example.lafo_cheuse.models.*
 import java.util.concurrent.Executors
 
-@Database(entities = [Budget::class], version = 1, exportSchema = false)
-abstract class SaveLafoCheuseDatabase : RoomDatabase(){
+@Database(entities = [Budget::class, Category::class, Income::class, Expense::class, Option::class, OptionField::class ], version = 1, exportSchema = false)
+abstract class LafoCheuseDatabase : RoomDatabase(){
 
     // --- DAO ---
-    abstract fun budgetDao(): BudgetDao?
+    //abstract fun budgetDao(): BudgetDao?
+    abstract fun categoryDao(): CategoryDao?
+    //abstract fun expenseDao(): ExpenseDao?
+    //abstract fun incomeDao(): IncomeDao?
+    //abstract fun optionDao(): OptionDao?
+    //abstract fun optionFieldDao(): OptionFieldDao?
 
     companion object {
         // --- SINGLETON ---
         @Volatile
-        private var INSTANCE: SaveLafoCheuseDatabase? = null
+        private var INSTANCE: LafoCheuseDatabase? = null
 
         // --- INSTANCE ---
-        fun getInstance(context: Context): SaveLafoCheuseDatabase? {
+        fun getInstance(context: Context): LafoCheuseDatabase? {
             if (INSTANCE == null) {
-                synchronized(SaveLafoCheuseDatabase::class.java) {
+                synchronized(LafoCheuseDatabase::class.java) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
                             context.getApplicationContext(),
-                            SaveLafoCheuseDatabase::class.java, "LafoCheuseDatabase.db"
+                            LafoCheuseDatabase::class.java, "LafoCheuseDatabase.db"
                         )
                             .addCallback(prepopulateDatabase())
                             .build()
@@ -43,15 +48,12 @@ abstract class SaveLafoCheuseDatabase : RoomDatabase(){
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     Executors.newSingleThreadExecutor().execute {
-                        /*
-                        INSTANCE!!.budgetDao().createBudget(
-                            User(
-                                1,
-                                "Philippe",
-                                "https://oc-user.imgix.net/users/avatars/15175844164713_frame_523.jpg?auto=compress,format&q=80&h=100&dpr=2"
-                            )
+                        INSTANCE!!.categoryDao()?.createCategory(
+                            Category("Courses","\uD83D\uDED2")
                         )
-                         */
+                        INSTANCE!!.categoryDao()?.createCategory(
+                            Category("Bourses","\uD83D\uDCB0")
+                        )
                     }
                 }
             }
