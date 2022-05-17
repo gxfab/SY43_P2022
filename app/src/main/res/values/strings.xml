@@ -5,4 +5,5 @@
     <string name="first_menu">home</string>
     <string name="second_menu">Crypto</string>
     <string name="default_account_name">Compte</string>
+    <string name="create_account">Créer un nouveau compte</string>
 </resources>
