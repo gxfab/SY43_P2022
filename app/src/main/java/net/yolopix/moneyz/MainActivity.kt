@@ -16,6 +16,7 @@ import androidx.room.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.database.Account
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,10 +28,11 @@ class MainActivity : AppCompatActivity() {
         var db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "moneyz_db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
 
         lifecycleScope.launch {
             loadAccounts(db)
+            initStubData(db)
         }
     }
 
@@ -40,12 +42,13 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.account_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
 
+        val adapter = AccountAdapter(db.accountDao().getAll())
+        recyclerView.adapter = adapter
 
-        runBlocking {
-            val adapter = AccountAdapter(db.accountDao().getAll())
-            recyclerView.adapter = adapter
-        }
+    }
 
+    private suspend fun initStubData(db: AppDatabase) {
+        val test = Account(1,"test compte");
     }
 
     fun openAccount(view: View) {

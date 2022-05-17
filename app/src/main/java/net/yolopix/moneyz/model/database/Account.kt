@@ -4,6 +4,6 @@ import androidx.room.*
 
 @Entity
 data class Account(
-    @PrimaryKey val uid: Int,
+    @PrimaryKey(autoGenerate = true) val uid: Int,
     val name: String?
 )
