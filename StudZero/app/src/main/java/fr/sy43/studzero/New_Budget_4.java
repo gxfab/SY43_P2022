@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textfield.TextInputLayout;
 import java.util.List;
 
 import fr.sy43.studzero.activities.Settings;
