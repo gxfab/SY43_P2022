@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class Category() {
+class Category {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "categoryId")
     var categoryId: Long = 0
@@ -16,7 +16,7 @@ class Category() {
     @ColumnInfo(name = "emoji")
     var categoryEmoji: String = "💰"
 
-    constructor(categoryName: String,categoryEmoji: String) : this() {
+    constructor(categoryName: String,categoryEmoji: String) {
         this.categoryName = categoryName
         this.categoryEmoji = categoryEmoji
     }
