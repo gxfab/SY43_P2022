@@ -26,8 +26,6 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import fr.sy43.studzero.activities.Settings;
-
 
 //faire envoie vers la BD qd on confirm // CTRL+F : "update DB"
 //setup la liste déroulante avec les noms des catégories de la DB
@@ -341,5 +339,9 @@ public class New_Budget_3 extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

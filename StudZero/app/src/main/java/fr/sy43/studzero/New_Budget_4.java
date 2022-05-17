@@ -18,8 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
+import com.google.android.material.textfield.TextInputLayout
 import java.util.List;
 
 import fr.sy43.studzero.activities.Settings;
@@ -29,7 +28,6 @@ import fr.sy43.studzero.sqlite.model.CategoryType;
 //comparaison avec les categories déjà existantes : ctrl + F : "compare cat here"
 //créer la catégory dans la BD sur appuis du button : ctrl + F : "appuis button"
 //changer le string NewBudget4_NbCatTextViewTXT avec la vrai valeur de $val au OnCreate ctrl + F : "here"
-
 
 public class New_Budget_4 extends AppCompatActivity {
     String category_name;
@@ -206,5 +204,9 @@ public class New_Budget_4 extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

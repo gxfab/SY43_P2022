@@ -7,9 +7,6 @@ import android.os.Bundle;
 
 import java.util.Date;
 
-import fr.sy43.studzero.activities.Add_Payements;
-import fr.sy43.studzero.activities.History;
-import fr.sy43.studzero.activities.Home;
 import fr.sy43.studzero.New_Budget_1;
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
@@ -35,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
         // Set Home selected
         bottomNavigationView.setSelectedItemId(R.id.home);
         //lance la page d'acceuil
-        //startActivity(new Intent(getApplicationContext(), Home.class));
+        // startActivity(new Intent(getApplicationContext(), Home.class));
 
         Intent intent = new Intent(this, New_Budget_1.class);
         intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
         startActivity(intent);
 
-        //overridePendingTransition(0,0);
+        overridePendingTransition(0,0);
 
 
     }
