@@ -26,8 +26,6 @@ import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 
 /**
  * Activity that shows the payments that have bee done for the current budget
- * @see AppCompatActivity
- * <a href="./path to build.gradle/build.gradle">Link</a>
  */
 public class Add_Payments extends AppCompatActivity {
 

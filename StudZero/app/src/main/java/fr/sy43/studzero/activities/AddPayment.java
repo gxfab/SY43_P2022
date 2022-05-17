@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class AddPayment extends AppCompatActivity {
 
         //set status bar name
         getSupportActionBar().setTitle("Add Payment");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Spinner spinner = (Spinner) findViewById(R.id.AddPaymentSpinner);
         DatabaseHelper db = new DatabaseHelper(this.getApplicationContext());
@@ -211,5 +213,20 @@ public class AddPayment extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * Returns to list of payments activity if the back arrow of the support action bar is tapped
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
