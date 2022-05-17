@@ -11,9 +11,14 @@ import com.example.fluz.data.entities.UserCategory
 data class UserWithCategories(
     @Embedded val user: User,
     @Relation(
-        parentColumn = "userId",
-        entityColumn = "categoryId",
-        associateBy = Junction(UserCategory::class)
+        parentColumn = "id",
+        entity = Category::class,
+        entityColumn = "id",
+        associateBy = Junction(
+            value = UserCategory::class,
+            parentColumn = "userId",
+            entityColumn = "categoryId"
+        )
     )
     val categories: List<Category>
 )

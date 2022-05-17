@@ -14,6 +14,6 @@ interface TransactionDao {
     suspend fun insert(transaction: Transaction)
 
     @androidx.room.Transaction
-    @Query("SELECT * FROM Transaction WHERE id = :transactionId")
+    @Query("SELECT * FROM 'Transaction' WHERE id =:transactionId")
     fun getWithCategory(transactionId: Int): Flow<TransactionAndCategory>
 }

@@ -9,6 +9,6 @@ data class Transaction(
     val amount: Int,
     val type: String,
     val categoryId: Int,
-    val BudgetId: Int?,
-    val UserId: Int?,
+    val budgetId: Int?,
+    val userId: Int?,
 )
