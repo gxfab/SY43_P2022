@@ -161,7 +161,7 @@ public class AddPayment extends AppCompatActivity {
                 Spinner spinner = (Spinner) findViewById(R.id.AddPaymentSpinner);
                 db.addPayment(new Payment(paymentAmount, new Date(), db.getCurrentCategoryOfCategoryType(spinner.getSelectedItem().toString()).getIdCategory()));
                 db.closeDB();
-                Intent intent = new Intent(getApplicationContext(), Add_Payments.class);
+                Intent intent = new Intent(getApplicationContext(), AddPayments.class);
                 intent.putExtra("caller", "AddPayment");
                 startActivity(intent);
             }

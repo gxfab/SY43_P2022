@@ -6,10 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ScrollView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 import fr.sy43.studzero.R;
+import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
+import fr.sy43.studzero.sqlite.model.Category;
+import fr.sy43.studzero.sqlite.model.Payment;
+import fr.sy43.studzero.vue.layout.HomeLayout;
+import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 
 public class Home extends AppCompatActivity {
 
@@ -31,7 +39,7 @@ public class Home extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.add_payements:
-                        startActivity(new Intent(getApplicationContext(), Add_Payments.class));
+                        startActivity(new Intent(getApplicationContext(), AddPayments.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.home:
@@ -52,5 +60,16 @@ public class Home extends AppCompatActivity {
                 return false;
             }
         });
+
+        ScrollView scrollView = (ScrollView) findViewById(R.id.ScrollViewHome);
+        HomeLayout homeLayout = new HomeLayout(this);
+        DatabaseHelper db = new DatabaseHelper(this);
+        List<Category> categories = db.getAllCategories(db.getCurrentBudget().getIdBudget());
+
+        // Add the categories to the layout
+        for(int i = 0; i < categories.size(); ++i) {
+            homeLayout.addCategory(categories.get(i));
+        }
+        scrollView.addView(homeLayout);
     }
 }

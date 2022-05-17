@@ -221,6 +221,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues cv = new ContentValues();
         cv.put(BUDGET_COLUMN_ID, 1);
+        cv.put(BUDGET_COLUMN_DATE_END, 1);
+        cv.put(BUDGET_COLUMN_BUDGET_AMOUNT, 2500);
         db.insert(TABLE_BUDGET, null, cv);
 
         ContentValues cv2 = new ContentValues();
@@ -235,16 +237,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues cv3 = new ContentValues();
         cv3.put(CATEGORY_COLUMN_TYPE, 1);
+        cv3.put(CATEGORY_COLUMN_THEORETICAL_AMOUNT, 800);
+        cv3.put(CATEGORY_COLUMN_REAL_AMOUNT, 600);
         cv3.put(CATEGORY_COLUMN_BUDGET, 1);
         db.insert(TABLE_CATEGORY, null, cv3);
 
         ContentValues cv9 = new ContentValues();
         cv9.put(CATEGORY_COLUMN_TYPE, 2);
+        cv9.put(CATEGORY_COLUMN_THEORETICAL_AMOUNT, 500);
+        cv9.put(CATEGORY_COLUMN_REAL_AMOUNT, 300);
         cv9.put(CATEGORY_COLUMN_BUDGET, 1);
         db.insert(TABLE_CATEGORY, null, cv9);
 
         ContentValues cv4 = new ContentValues();
         cv4.put(USER_COLUMN_ID, 1);
+        cv4.put(USER_COLUMN_DATE_NEXT_BUDGET, 300000000);
         cv4.put(USER_COLUMN_CURRENT_BUDGET, 1);
         db.insert(TABLE_USER, null, cv4);
 
@@ -684,6 +691,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
+    @SuppressLint("Range")
+    public Float getRemainingAmountOfCurrentBudget() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Budget currentBudget = getCurrentBudget();
+        String query = "Select sum(" + CATEGORY_COLUMN_REAL_AMOUNT + ") as sum from "+ TABLE_CATEGORY
+                + " where " + CATEGORY_COLUMN_BUDGET + "=" + currentBudget.getIdBudget();
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null) {
+            return null;
+        }
+        c.moveToFirst();
+        return  currentBudget.getBudgetAmount() - c.getFloat(c.getColumnIndex("sum"));
+    }
+
+    public int getRemainingDaysOfCurrentBudget() {
+        User user = getUser();
+        Budget currentBudget = getCurrentBudget();
+        int day1 = (int) Math.floor(user.getDateNextBudget().getTime() / 86400000);
+        int day2 = (int) Math.floor(currentBudget.getDateEnd().getTime() / 86400000);
+        return day1 - day2;
+    }
+
     /**
      * Update the real amount of money spend of a category
      * @param idCategory id of the category to update
@@ -726,6 +757,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int id = db.update(TABLE_USER, cv, ""+USER_COLUMN_ID+"=?", new String[]{"1"});
         return id != -1;
     }
+
+
 
     /**
      * Closes the access to the database

@@ -27,7 +27,7 @@ import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 /**
  * Activity that shows the payments that have bee done for the current budget
  */
-public class Add_Payments extends AppCompatActivity {
+public class AddPayments extends AppCompatActivity {
 
     /**
      * onCreate is called when the activity is created.
@@ -90,8 +90,6 @@ public class Add_Payments extends AppCompatActivity {
             listPaymentLayout.addPayment(payments.get(i));
         }
         db.closeDB();
-
-
     }
 
     /**

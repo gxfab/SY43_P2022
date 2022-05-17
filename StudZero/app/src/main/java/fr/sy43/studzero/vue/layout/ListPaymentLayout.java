@@ -58,7 +58,7 @@ public class ListPaymentLayout extends LinearLayout {
         amount.setPadding(0, convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f));
         amount.setLayoutParams(params);
         amount.setTextAlignment(TEXT_ALIGNMENT_VIEW_END);
-        amount.setText(""+String.format("%.2f", payment.getAmount())+"€");
+        amount.setText(String.format("%.2f", payment.getAmount())+"€");
         amount.setTextColor(getResources().getColor(R.color.white));
         amount.setTextSize(convertSpToPx(layout.getContext(), 10.0f));
 

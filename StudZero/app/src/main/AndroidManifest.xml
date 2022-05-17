@@ -37,7 +37,7 @@
             android:name=".activities.stats"
             android:exported="false" />
         <activity
-            android:name=".activities.Add_Payments"
+            android:name=".activities.AddPayments"
             android:exported="false" />
         <activity
             android:name=".activities.Home"
