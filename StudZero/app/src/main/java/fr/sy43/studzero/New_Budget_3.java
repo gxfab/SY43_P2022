@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,7 +34,7 @@ import fr.sy43.studzero.activities.Settings;
 //affecter allocated et available avec les var de la DB : CTRL + F : "here"
 //recalcul de allocated lors d'un confirm : CTRL + F : "recalcul"
 
-
+//Liée la base de donnée pour récupérer la valeur associé a une catégorie à partir de sa position si elle existe CTRL+F " la" et "pour test"
 
 public class New_Budget_3 extends AppCompatActivity {
 
@@ -43,6 +44,15 @@ public class New_Budget_3 extends AppCompatActivity {
     int allocated;
     int available;
 
+
+    private int GetAllocated(int pos){ //pour test
+        if(pos != 0){
+            return 1000;
+        }
+        else{
+            return 0;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +86,7 @@ public class New_Budget_3 extends AppCompatActivity {
         else{
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
+
 
         Button button = (Button) findViewById(R.id.ConfirmButton);
         button.setEnabled(false);
@@ -147,7 +158,14 @@ public class New_Budget_3 extends AppCompatActivity {
                 final TextInputEditText TextInputIncomeExpenses = (TextInputEditText) findViewById(R.id.TextInputIncomeExpenses);
                 onItemSelectedHandler(parent, view, position, id);
                 Cat_Selected = category[position];
-                TextInputIncomeExpenses.setText("");
+                // la
+                // si une somme est deja allouée a cette catégorie, la mettre par defaut dans le champ texte
+                if(GetAllocated(position) != 0){
+                    TextInputIncomeExpenses.setText(String.valueOf(GetAllocated(position)));
+                }
+                else {
+                    TextInputIncomeExpenses.setText("");
+                }
                 textInputLayoutUserName.setErrorEnabled(false);
                 TextInputIncomeExpenses.clearFocus();
                 textInputLayoutUserName.clearFocus();
@@ -159,6 +177,12 @@ public class New_Budget_3 extends AppCompatActivity {
                 Cat_Selected = "";
             }
         });
+
+        if(getIntent().getStringExtra("subcaller") != null){ //on vient de New_Budget_5 par click sur une catégorie
+            int pos = Integer.parseInt(getIntent().getStringExtra("pos"));
+            Log.i("pos : ", String.valueOf(pos));
+            this.spinner.setSelection(pos);
+        }
 
 
     }

@@ -24,6 +24,7 @@
         android:id="@+id/NewBudget2_ConfirmButton"
         android:layout_width="200dp"
         android:layout_height="80dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/NewBudget2_ConfirmButtonTxt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
