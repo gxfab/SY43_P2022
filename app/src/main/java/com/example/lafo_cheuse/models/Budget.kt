@@ -15,9 +15,6 @@ class Budget(budgetCategory: Category?, duration: Duration?) {
     @Embedded(prefix="category_")
     var budgetCategory: Category? = null
 
-    @Embedded(prefix="moneyChange_")
-    var moneyChange: MoneyChange? = null
-
     @ColumnInfo(name = "duration")
     var duration: Duration = Duration.MONTH
 
