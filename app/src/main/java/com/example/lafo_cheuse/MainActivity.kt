@@ -1,11 +1,14 @@
 package com.example.lafo_cheuse
 
+import android.app.UiModeManager.MODE_NIGHT_YES
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.room.Room
 import com.example.lafo_cheuse.database.LafoCheuseDatabase
 import com.example.lafo_cheuse.models.Category
@@ -23,6 +26,7 @@ const val EXTRA_MESSAGE = "com.exemple.test.MESSAGE"
 @DelicateCoroutinesApi
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
