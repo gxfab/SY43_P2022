@@ -6,7 +6,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class OptionField(@ColumnInfo(name = "value") var fieldValue: String?) {
+class OptionField(
+    @ColumnInfo(name = "value")
+    var fieldValue: String?
+    ) {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
