@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">gest_imali</string>
+    <string name="app_name">Gest\'Imali</string>
+
+    <!-- Home page -->
+    <string name="home_page_btn1">Month Overview</string>
+    <string name="home_page_btn2">Saving and Wish</string>
+    <string name="home_page_btn3">Transaction History</string>
+    <string name="home_page_btn4">Statistics and Graphics</string>
+
 </resources>
