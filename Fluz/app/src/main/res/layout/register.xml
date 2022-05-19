@@ -4,20 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
+    tools:context=".ui.Register">
+
+    <ImageButton
+        android:id="@+id/backArrowRegister"
+        android:layout_width="45dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:background="#000000"
+        android:backgroundTint="#FFFFFF"
+        android:src="?attr/homeAsUpIndicator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/txt_welcome"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="84dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/welcome"
         android:textAlignment="center"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/txt_enter_email"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,8 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/enter_email"
-        app:layout_constraintBottom_toTopOf="@+id/etxt_email"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_welcome" />
 
@@ -49,16 +63,15 @@
         android:id="@+id/etxt_email"
         android:layout_width="370dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:autofillHints=""
+        android:layout_marginTop="28dp"
         android:background="@drawable/edit_text_style"
         android:ems="10"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:text="@string/email"
+        android:paddingLeft="20dp"
         android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/etxt_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_enter_email" />
 
@@ -66,30 +79,29 @@
         android:id="@+id/etxt_password"
         android:layout_width="370dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/edit_text_style"
         android:ems="10"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        android:text="@string/password"
+        android:paddingLeft="20dp"
         app:layout_constraintBottom_toTopOf="@+id/txt_confirmed_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etxt_email"
-        tools:ignore="DuplicateSpeakableTextCheck"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.526"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <EditText
         android:id="@+id/etxt_password_confirmed"
         android:layout_width="370dp"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints=""
+        android:layout_marginTop="36dp"
         android:background="@drawable/edit_text_style"
         android:ems="10"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        android:text="@string/password"
-        app:layout_constraintBottom_toTopOf="@+id/btn_register_final"
+        android:paddingLeft="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +111,7 @@
         android:id="@+id/btn_register_final"
         android:layout_width="370dp"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/fluz"
         android:insetLeft="0dp"
         android:insetTop="0dp"
@@ -109,7 +121,6 @@
         android:textAlignment="viewStart"
         android:textSize="18sp"
         app:cornerRadius="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/txt_without_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,12 +132,23 @@
         android:id="@+id/txt_confirmed_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="356dp"
         android:text="@string/confirmed_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/error_text_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:textColor="#DF3636"
         app:layout_constraintBottom_toTopOf="@+id/etxt_password_confirmed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etxt_password" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_confirmed_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

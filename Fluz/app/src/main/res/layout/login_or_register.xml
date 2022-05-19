@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginOrRegister">
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
+    tools:context=".ui.LoginOrRegister">
 
     <TextView
         android:id="@+id/txt_welcome"
@@ -14,6 +16,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="@string/welcome"
         android:textAlignment="center"
+        android:textColor="@color/teal_700"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -26,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="82dp"
         android:text="@string/manage"
+        android:textColor="@color/teal_700"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +62,8 @@
         android:backgroundTint="@color/fluz"
         android:text="@string/register"
         android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
         android:textSize="26sp"
         app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="49dp"
         android:text="@string/without_login"
+        android:textColor="@color/teal_700"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

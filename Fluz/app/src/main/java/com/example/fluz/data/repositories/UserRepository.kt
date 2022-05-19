@@ -11,14 +11,15 @@ import kotlinx.coroutines.flow.Flow
 class UserRepository(private val userDao: UserDao) {
 
     fun allUsers(): Flow<List<User>> = userDao.getAll()
+    fun oneUser(userId: Int): Flow<User> = userDao.get(userId)
     fun oneWithBudgets(userId: Int): Flow<UserWithBudgets> = userDao.getWithBudgets(userId)
     fun oneWithCategories(userId: Int): Flow<UserWithCategories> = userDao.getWithCategories(userId)
     fun oneWithTransactions(userId: Int): Flow<UserWithTransactions> = userDao.getWithTransactions(userId)
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(user: User) {
-        userDao.insert(user)
+    suspend fun insert(user: User): Long {
+        return userDao.insert(user)
     }
 
     @Suppress("RedundantSuspendModifier")
