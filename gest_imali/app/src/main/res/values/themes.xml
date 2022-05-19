@@ -17,8 +17,8 @@
     <!-- Title style -->
     <style name="TitleStyle">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">28sp</item>
-        <item name="android:fontFamily">@font/Spartan-Regular</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:fontFamily">@font/spartan_regular</item>
     </style>
 
     <!-- button text style -->
