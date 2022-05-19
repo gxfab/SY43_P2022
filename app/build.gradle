@@ -54,6 +54,6 @@ dependencies {
 
     //VIEW MODEL & LIVE DATA
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    kapt "android.arch.lifecycle:common-java8:1.1.1:1.1.1"
+    kapt "android.arch.lifecycle:common-java8:1.1.1"
 
 }

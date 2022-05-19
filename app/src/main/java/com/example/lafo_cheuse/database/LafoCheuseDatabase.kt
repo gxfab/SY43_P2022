@@ -10,12 +10,14 @@ import com.example.lafo_cheuse.database.dao.*
 import com.example.lafo_cheuse.models.*
 import java.util.concurrent.Executors
 
-@Database(entities = [Budget::class, Category::class, Income::class, Expense::class, Option::class, OptionField::class ], version = 1, exportSchema = false)
+@Database(entities = [Budget::class, Category::class, Income::class, Expense::class, Option::class, OptionField::class, ExpensesBudget::class, IncomesBudget::class ], version = 1, exportSchema = false)
 abstract class LafoCheuseDatabase : RoomDatabase(){
 
     // --- DAO ---
     //abstract fun budgetDao(): BudgetDao?
     abstract fun categoryDao(): CategoryDao?
+    abstract fun expensesBudgetDao(): ExpensesBudgetDao?
+    abstract fun incomesBudgetDao(): IncomesBudgetDao?
     //abstract fun expenseDao(): ExpenseDao?
     //abstract fun incomeDao(): IncomeDao?
     //abstract fun optionDao(): OptionDao?

@@ -4,13 +4,13 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
-class ExpensesBudget(_budget : Budget, _expense : Expense) {
-    @PrimaryKey
+@Entity(primaryKeys = ["budget_budgetId","expense_moneyChangeId"])
+class ExpensesBudget(
     @Embedded(prefix = "budget_")
-    val budget : Budget = _budget
+    var budget: Budget,
 
-    @PrimaryKey
     @Embedded(prefix = "expense_")
-    val expense : Expense = _expense
+    var expense: Expense
+) {
+
 }
