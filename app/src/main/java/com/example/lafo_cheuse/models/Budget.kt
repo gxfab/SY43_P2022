@@ -1,6 +1,7 @@
 package com.example.lafo_cheuse.models
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -11,10 +12,12 @@ class Budget(budgetCategory: Category?, duration: Duration?) {
     @ColumnInfo(name = "budgetId")
     var budgetId: Long = 0
 
-    @ColumnInfo(name = "category")
+    @Embedded(prefix="category_")
     var budgetCategory: Category? = null
-    @ColumnInfo(name = "moneyChange")
+
+    @Embedded(prefix="moneyChange_")
     var moneyChange: MoneyChange? = null
+
     @ColumnInfo(name = "duration")
     var duration: Duration = Duration.MONTH
 
