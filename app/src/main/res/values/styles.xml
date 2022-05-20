@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="ShapeAppearance.MoneyZ.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+		<item name="cornerFamily">rounded</item>
+		<item name="cornerSize">12dp</item>
+	</style>
+
+	<style name="TextAppearance.MoneyZ.Button" parent="TextAppearance.MaterialComponents.Button">
+		<item name="android:letterSpacing">0.05</item>
+	</style>
+
+	<style name="Widget.MoneyZ.Button" parent="Widget.MaterialComponents.Button">
+		<item name="android:textAppearance">@style/TextAppearance.MoneyZ.Button</item>
+	</style>
+</resources>
