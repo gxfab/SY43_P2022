@@ -3,4 +3,6 @@
     <string name="default_account_name">Compte</string>
     <string name="create_account">Créer un nouveau compte</string>
     <string name="default_category_name">Category</string>
+    <string name="add">Ajouter</string>
+    <string name="account_name_placeholder">Nom du compte</string>
 </resources>
