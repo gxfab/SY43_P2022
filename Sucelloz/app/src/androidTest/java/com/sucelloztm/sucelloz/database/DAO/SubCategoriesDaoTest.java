@@ -72,6 +72,7 @@ public class SubCategoriesDaoTest {
         subCategory.setId(insertedId);
         subCategory.setName("testName");
         subCategoriesDao.updateSubCategory(subCategory);
+        subCategories = subCategoriesDao.getSubCategories();
         assertEquals(subCategories.get(0).getName(), subCategory.getName());
     }
 
@@ -89,6 +90,7 @@ public class SubCategoriesDaoTest {
         subCategory2.setId(insertedId.get(1));
         subCategory2.setName("testName");
         subCategoriesDao.updateSubCategories(subCategory1, subCategory2);
+        subCategories = subCategoriesDao.getSubCategories();
         assertEquals(subCategories.get(0).getName(), subCategory1.getName());
         assertEquals(subCategories.get(1).getName(), subCategory2.getName());
     }

@@ -17,7 +17,7 @@ import java.lang.String;
 )
 public class SubCategories {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long id;
 
     @ColumnInfo(name = "name")
