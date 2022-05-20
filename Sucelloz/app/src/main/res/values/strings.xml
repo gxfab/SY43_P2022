@@ -9,4 +9,7 @@
     <string name="yearly_savings_button_home_name">Yearly Savings</string>
     <string name="my_categories_name">My Categories</string>
     <string name="element_text">Element</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sub_categories_name">Sub Categories</string>
 </resources>

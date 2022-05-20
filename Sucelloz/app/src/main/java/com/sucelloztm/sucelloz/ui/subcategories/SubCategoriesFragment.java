@@ -1,25 +1,22 @@
-package com.sucelloztm.sucelloz.ui.categories;
-
+package com.sucelloztm.sucelloz.ui.subcategories;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.sucelloztm.sucelloz.R;
-import com.sucelloztm.sucelloz.databinding.CategoriesFragmentBinding;
+import com.sucelloztm.sucelloz.databinding.SubCategoriesFragmentBinding;
 
-public class CategoriesFragment extends Fragment {
+public class SubCategoriesFragment extends Fragment {
 
-    private CategoriesFragmentBinding binding;
+    private SubCategoriesFragmentBinding binding;
     private String[] dataSet;
     private static final int DATASET_COUNT = 60;
 
@@ -38,12 +35,12 @@ public class CategoriesFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        binding = CategoriesFragmentBinding.inflate(inflater,container,false);
+        binding = SubCategoriesFragmentBinding.inflate(inflater,container,false);
 
         View root = binding.getRoot();
-        RecyclerView recyclerView = binding.outerRecyclerView;
+        RecyclerView recyclerView = binding.innerRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ParentAdapter adapter = new ParentAdapter(dataSet);
+        ChildAdapter adapter = new ChildAdapter(dataSet);
         recyclerView.setAdapter(adapter);
 
         return root;
@@ -52,10 +49,10 @@ public class CategoriesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
 
-        binding.returnHomeButtonCategories.setOnClickListener(new View.OnClickListener() {
+        binding.returnCategoriesButtonSubcategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(CategoriesFragment.this).navigate(R.id.action_navigation_categories_to_navigation_home);
+                NavHostFragment.findNavController(SubCategoriesFragment.this).navigate(R.id.action_navigation_sub_categories_to_navigation_categories);
             }
         });
     }
@@ -74,7 +71,7 @@ public class CategoriesFragment extends Fragment {
             dataSet[i] = "This is element #" + i;
         }
     }
+    }
 
 
 
-}

@@ -43,6 +43,19 @@
             app:destination="@id/navigation_home"
 
             />
+        <action
+            android:id="@+id/action_navigation_categories_to_navigation_sub_categories"
+            app:destination="@id/navigation_sub_categories" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_sub_categories"
+        android:name="com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesFragment"
+        android:label="@string/sub_categories_name"
+        tools:layout="@layout/sub_categories_fragment" >
+        <action
+            android:id="@+id/action_navigation_sub_categories_to_navigation_categories"
+            app:destination="@id/navigation_categories" />
     </fragment>
 
 
