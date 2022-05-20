@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/without_login"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,10 +50,10 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_continue_user_info" />
 
     <EditText
-        android:id="@+id/etxt_username"
+        android:id="@+id/etxt_email"
         android:layout_width="370dp"
         android:layout_height="60dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_style"
         android:ems="10"
         android:hint="@string/email"
@@ -62,32 +62,30 @@
         android:textAlignment="textStart"
         app:layout_constraintBottom_toTopOf="@+id/etxt_currency"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_enter_email" />
 
     <EditText
-        android:id="@+id/etxt_currency"
+        android:id="@+id/etxt_password"
         android:layout_width="370dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_style"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:paddingLeft="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_continue_user_info"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etxt_username" />
+        app:layout_constraintTop_toBottomOf="@+id/etxt_email" />
 
     <Button
         android:id="@+id/btn_login_final"
         android:layout_width="370dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="30dp"
         android:backgroundTint="@color/fluz"
         android:insetLeft="0dp"
         android:insetTop="0dp"
@@ -97,11 +95,10 @@
         android:textAlignment="viewStart"
         android:textSize="18sp"
         app:cornerRadius="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/txt_without_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etxt_currency"
+        app:layout_constraintTop_toBottomOf="@+id/error_txt_login"
         app:strokeColor="@color/fluz"
         app:strokeWidth="2dp" />
 
@@ -117,5 +114,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/error_txt_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etxt_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

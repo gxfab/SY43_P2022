@@ -43,7 +43,7 @@ class Register : Fragment() {
                 errorText.text = "Confirmed password is different than password"
             } else if (password.length < 5) {
                 errorText.text = "Password length must be at least 5"
-            } else if (!emailAddress.contains("@")) {
+            } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()) {
                 errorText.text = "Email format is not valid"
             } else {
                 val data: Array<String> = arrayOf(emailAddress, password)

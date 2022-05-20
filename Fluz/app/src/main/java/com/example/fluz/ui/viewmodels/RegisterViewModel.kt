@@ -1,16 +1,20 @@
-package com.example.fluz.ui
+package com.example.fluz.ui.viewmodels
 
 import androidx.lifecycle.*
 import com.example.fluz.HashUtils
-import com.example.fluz.data.AppDatabase
 import com.example.fluz.data.entities.User
 import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.launch
 import java.lang.RuntimeException
 
 class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
-    var userId: Long? = null
-    var errorMessage: MutableLiveData<String>? = null
+    var userId = MutableLiveData<Long?>()
+    var errorMessage = MutableLiveData<String?>()
+
+    init {
+        userId.value = -1
+        errorMessage.value = ""
+    }
 
     val allUsers = repository.allUsers().asLiveData()
 
@@ -18,7 +22,8 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val hashPassword = HashUtils.sha256(password)
             try {
-                userId = repository.insert(
+
+                val insertedUserId = repository.insert(
                     User(
                         email_address = email_address,
                         hash_password = hashPassword,
@@ -28,12 +33,18 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
                     )
                 )
 
+                userId.value = insertedUserId
+
 
             } catch (e: RuntimeException) {
-                errorMessage = MutableLiveData("This email address is already taken")
+                errorMessage.value = "This email address is already taken"
             }
 
         }
+
+    fun deleteAll() = viewModelScope.launch {
+        repository.deleteAll()
+    }
 }
 
 class RegisterViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {

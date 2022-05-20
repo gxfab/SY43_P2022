@@ -1,5 +1,6 @@
 package com.example.fluz.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,6 +27,9 @@ class Home : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
+
+        val sharedPref = this.activity!!.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
+        println("Fluz Home, connected user : " + sharedPref.getLong("connectedUserId", -1))
 
         return binding.root
     }

@@ -1,5 +1,7 @@
 package com.example.fluz.ui
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -27,60 +29,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-
-        val db = AppDatabase(this)
-        val userDao = db.UserDao()
-        val budgetDao = db.BudgetDao()
-
-        var users: List<User> = emptyList()
-        var budgets: List<Budget> = emptyList()
-
-        var userWithBudgets: UserWithBudgets? = null
-
-        runBlocking {
-            launch {
-                /**
-                try {
-                    userDao.insert(
-                        User(
-                            username = "Robert",
-                            email_address = "robert@gmail.com",
-                            hash_password = "krfzkfjzjekfk",
-                            currency = "euro",
-                            created_at = System.currentTimeMillis().toString()
-                        )
-                    )
-                } catch (e: RuntimeException) {
-                    println("Cet utilisateur existe déja dans la base !")
-                }
-
-                // userDao.deleteAll()
-                users = userDao.getAll()
-
-                budgetDao.insert(
-                    Budget(
-                        start_date = System.currentTimeMillis().toString(),
-                        end_date = System.currentTimeMillis().toString(),
-                        total_amount = 2000,
-                        userId = 5
-                    )
-                )
-
-                budgets = budgetDao.getAll()
-                */
-
-                // userWithBudgets = userDao.getWithBudgets(5)
-            }
+        /**
+        val sharedPref = this.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
+        if (sharedPref.getLong("connectedUserId", -1) != -1L) {
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
+        **/
 
-        for (user in users)
-            println(user)
-
-        for (budget in budgets)
-            println(budget)
-
-        // println(userWithBudgets?.budgets)
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -16,6 +16,8 @@ import com.example.fluz.R
 import com.example.fluz.data.AppDatabase
 import com.example.fluz.data.repositories.UserRepository
 import com.example.fluz.databinding.FragmentUserInfoBinding
+import com.example.fluz.ui.viewmodels.RegisterViewModel
+import com.example.fluz.ui.viewmodels.RegisterViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
@@ -65,6 +67,29 @@ class UserInfo : Fragment() {
             println(user)
         }
 
+        registerViewModel.userId.observe(this) { userId ->
+            println(userId)
+            if (userId != -1L) {
+                val sharedPref = this.activity!!.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
+                with(sharedPref.edit()) {
+                    putLong("connectedUserId", userId!!)
+                    apply()
+
+                    val intent = Intent(this@UserInfo.context, HomeActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
+            }
+        }
+
+        registerViewModel.errorMessage.observe(this) { errorMessage ->
+            println(errorMessage)
+            if (errorMessage != "") {
+                val errorText = binding.errorTextUserInfo
+                errorText.text = registerViewModel.errorMessage.value
+            }
+        }
+
         binding.btnContinueUserInfo.setOnClickListener {
             val username: String = binding.etxtUsername.text.toString()
             val currency: String = binding.currencySpinner.selectedItem.toString()
@@ -79,31 +104,9 @@ class UserInfo : Fragment() {
                 errorText.text = "Please fill all fields"
             } else {
                 registerViewModel.register(emailAddress, password, username, currency)
-
-                if (registerViewModel.userId != null) {
-                    val sharedPref = this.activity!!.getPreferences(Context.MODE_PRIVATE)
-                    with(sharedPref.edit()) {
-                        putLong("connectedUserId", registerViewModel.userId!!)
-                        apply()
-                    }
-
-                }
-
-                if (registerViewModel.errorMessage != null) {
-                    errorText.text = registerViewModel.errorMessage!!.value
-                } else {
-                    val intent = Intent(this.context!!, HomeActivity::class.java)
-                    startActivity(intent)
-                }
-
-
             }
 
-
         }
-
-        val sharedPref = this.activity!!.getPreferences(Context.MODE_PRIVATE)
-        println(sharedPref.getLong("connectedUserId", -1))
 
         return binding.root
     }

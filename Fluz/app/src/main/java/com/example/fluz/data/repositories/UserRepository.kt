@@ -12,6 +12,7 @@ class UserRepository(private val userDao: UserDao) {
 
     fun allUsers(): Flow<List<User>> = userDao.getAll()
     fun oneUser(userId: Int): Flow<User> = userDao.get(userId)
+    fun oneByEmailAddress(emailAddress: String): Flow<User> = userDao.getByEmailAddress(emailAddress)
     fun oneWithBudgets(userId: Int): Flow<UserWithBudgets> = userDao.getWithBudgets(userId)
     fun oneWithCategories(userId: Int): Flow<UserWithCategories> = userDao.getWithCategories(userId)
     fun oneWithTransactions(userId: Int): Flow<UserWithTransactions> = userDao.getWithTransactions(userId)
