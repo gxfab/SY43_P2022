@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.sucelloztm.sucelloz.ui.home.HomeFragment"
+        android:label="@string/home_name"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_categories"
+            app:destination="@id/navigation_categories"
+            app:popUpTo="@+id/navigation_home"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_spendings"
+        android:name="com.sucelloztm.sucelloz.ui.spendings.SpendingsFragment"
+        android:label="@string/spendings_name"
+        tools:layout="@layout/spendings_fragment" />
+    <fragment
+        android:id="@+id/navigation_savings"
+        android:name="com.sucelloztm.sucelloz.ui.savings.SavingsFragment"
+        android:label="@string/savings_name"
+        tools:layout="@layout/savings_fragment" />
+    <fragment
+        android:id="@+id/navigation_zero_budget"
+        android:name="com.sucelloztm.sucelloz.ui.zerobudget.ZeroBudgetFragment"
+        android:label="@string/zero_budget_name"
+        tools:layout="@layout/zero_budget_fragment" />
+    <fragment
+        android:id="@+id/navigation_categories"
+        android:name="com.sucelloztm.sucelloz.ui.categories.CategoriesFragment"
+        android:label="@string/my_categories_name"
+        tools:layout="@layout/categories_fragment">
+        <action
+            android:id="@+id/action_navigation_categories_to_navigation_home"
+            app:destination="@id/navigation_home"
+
+            />
+    </fragment>
+
+
+</navigation>

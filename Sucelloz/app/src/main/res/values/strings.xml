@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Sucelloz</string>
+    <string name="home_name">Home</string>
+    <string name="spendings_name">Spendings</string>
+    <string name="savings_name">Savings</string>
+    <string name="zero_budget_name">Zero Budget</string>
+    <string name="my_categories_button_home_name">My Categories</string>
+    <string name="add_spending_button_home_name">Add Spending</string>
+    <string name="yearly_savings_button_home_name">Yearly Savings</string>
+    <string name="my_categories_name">My Categories</string>
+    <string name="element_text">Element</string>
+</resources>
