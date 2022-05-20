@@ -1,4 +1,4 @@
-package net.yolopix.moneyz.model.database
+package net.yolopix.moneyz.model.entities
 
 import androidx.room.*
 import java.util.Date

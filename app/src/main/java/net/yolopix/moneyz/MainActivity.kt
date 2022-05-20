@@ -1,22 +1,17 @@
 package net.yolopix.moneyz
 
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
 import net.yolopix.moneyz.model.AppDatabase
-import net.yolopix.moneyz.model.database.Account
+import net.yolopix.moneyz.model.entities.Account
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var db = Room.databaseBuilder(
+        val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "moneyz_db"
         ).fallbackToDestructiveMigration().build()
@@ -48,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private suspend fun initStubData(db: AppDatabase) {
-        val test = Account(1,"test compte");
+        val test = Account(1,"test compte")
     }
 
     fun openAccount(view: View) {

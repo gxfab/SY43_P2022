@@ -1,13 +1,6 @@
 package net.yolopix.moneyz
 
 
-import net.yolopix.moneyz.model.database.Category
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import net.yolopix.moneyz.model.database.Account
 /*
 class CategoryAdapter(private val accountList: List<Category>):
 

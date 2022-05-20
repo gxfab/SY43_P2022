@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import net.yolopix.moneyz.model.database.Account
+import net.yolopix.moneyz.model.entities.Account
 
 
 class AccountAdapter(private val accountList: List<Account>) :
