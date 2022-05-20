@@ -13,19 +13,19 @@
             android:name=".activities.AddPayment"
             android:exported="false" />
         <activity
-            android:name=".New_Budget_5"
+            android:name=".activities.New_Budget_5"
             android:exported="false" />
         <activity
-            android:name=".New_Budget_4"
+            android:name=".activities.New_Budget_4"
             android:exported="false" />
         <activity
-            android:name=".New_Budget_3"
+            android:name=".activities.New_Budget_3"
             android:exported="false" />
         <activity
-            android:name=".New_Budget_2"
+            android:name=".activities.New_Budget_2"
             android:exported="false" />
         <activity
-            android:name=".New_Budget_1"
+            android:name=".activities.New_Budget_1"
             android:exported="false" />
         <activity
             android:name=".activities.History"

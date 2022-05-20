@@ -19,8 +19,16 @@ import fr.sy43.studzero.sqlite.model.Payment;
 import fr.sy43.studzero.vue.layout.HomeLayout;
 import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 
+/**
+ * Activity that is used for the home screen of the app
+ */
 public class Home extends AppCompatActivity {
 
+    /**
+     * onCreate is called when the activity is created.
+     * This method displays the view for the home page
+     * @param savedInstanceState
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,15 +69,18 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        // Add a scrollView + layout that shows information about the current budget
         ScrollView scrollView = (ScrollView) findViewById(R.id.ScrollViewHome);
         HomeLayout homeLayout = new HomeLayout(this);
         DatabaseHelper db = new DatabaseHelper(this);
         List<Category> categories = db.getAllCategories(db.getCurrentBudget().getIdBudget());
+        db.closeDB();
 
         // Add the categories to the layout
         for(int i = 0; i < categories.size(); ++i) {
             homeLayout.addCategory(categories.get(i));
         }
+        // Add layout to scrollView
         scrollView.addView(homeLayout);
     }
 }

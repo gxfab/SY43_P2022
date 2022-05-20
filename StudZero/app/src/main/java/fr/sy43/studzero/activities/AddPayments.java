@@ -7,18 +7,14 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.Date;
 import java.util.List;
 
-import fr.sy43.studzero.New_Budget_4;
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Payment;
@@ -77,7 +73,7 @@ public class AddPayments extends AppCompatActivity {
             }
         });
 
-        // Add a scrollView + layout that show the payments of the month
+        // Add a scrollView + layout that shows the payments of the month
         ScrollView scrollView = (ScrollView) findViewById(R.id.ScrollViewPayments);
         ListPaymentLayout listPaymentLayout = new ListPaymentLayout(this);
         scrollView.addView(listPaymentLayout);

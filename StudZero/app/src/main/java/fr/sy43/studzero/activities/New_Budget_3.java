@@ -1,4 +1,4 @@
-package fr.sy43.studzero;
+package fr.sy43.studzero.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import fr.sy43.studzero.R;
 
 
 //faire envoie vers la BD qd on confirm // CTRL+F : "update DB"

@@ -1,4 +1,4 @@
-package fr.sy43.studzero;
+package fr.sy43.studzero.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +19,7 @@ import android.widget.EditText;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import fr.sy43.studzero.activities.Settings;
+import fr.sy43.studzero.R;
 
 
 // reste a communiquer a la BD lors de l'appuis du boutton confirm la val[0]

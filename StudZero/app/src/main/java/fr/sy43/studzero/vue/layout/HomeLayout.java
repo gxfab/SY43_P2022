@@ -54,6 +54,7 @@ public class HomeLayout extends LinearLayout {
         remainingBalanceAmount.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         remainingBalanceAmount.setTextSize(convertSpToPx(this.getContext(), 10.0f));
 
+        // Remaining days text
         params.topMargin = convertDpToPx(this.getContext(), 0);
         params.bottomMargin = convertDpToPx(this.getContext(), 0);
         TextView remainingDays = new TextView(this.getContext());
@@ -63,6 +64,7 @@ public class HomeLayout extends LinearLayout {
         remainingDays.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         remainingDays.setTextSize(convertSpToPx(this.getContext(), 10.0f));
 
+        // Remaining days amount text
         params.bottomMargin = convertDpToPx(this.getContext(), 40);
         TextView numberRemainingDays = new TextView(this.getContext());
         numberRemainingDays.setLayoutParams(params);
@@ -71,6 +73,7 @@ public class HomeLayout extends LinearLayout {
         numberRemainingDays.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         numberRemainingDays.setTextSize(convertSpToPx(this.getContext(), 10.0f));
 
+        // Add views to the layout
         addView(remainingBalance);
         addView(remainingBalanceAmount);
         addView(remainingDays);
@@ -79,6 +82,10 @@ public class HomeLayout extends LinearLayout {
         db.closeDB();
     }
 
+    /**
+     * Add a category to the layout
+     * @param category
+     */
     public void addCategory(Category category) {
         LayoutParams params = generateDefaultLayoutParams();
         params.width = LayoutParams.MATCH_PARENT;
