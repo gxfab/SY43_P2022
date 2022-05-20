@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BG"
-    tools:context=".New_Budget_3">
+    tools:context=".activities.New_Budget_3">
 
     <Button
         android:id="@+id/NewBudgetIncomeReviewAllButton"

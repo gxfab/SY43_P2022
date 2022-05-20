@@ -1,4 +1,4 @@
-package fr.sy43.studzero;
+package fr.sy43.studzero.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,11 +19,8 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import java.util.List;
 
-import fr.sy43.studzero.activities.Settings;
-import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
-import fr.sy43.studzero.sqlite.model.CategoryType;
+import fr.sy43.studzero.R;
 
 //comparaison avec les categories déjà existantes : ctrl + F : "compare cat here"
 //créer la catégory dans la BD sur appuis du button : ctrl + F : "appuis button"

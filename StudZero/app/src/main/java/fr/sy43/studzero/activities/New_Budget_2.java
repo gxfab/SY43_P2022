@@ -1,4 +1,4 @@
-package fr.sy43.studzero;
+package fr.sy43.studzero.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import fr.sy43.studzero.activities.CustomAdapter;
+import fr.sy43.studzero.R;
 
 //récupération des catégories déjà existante : CTRL+F "récup data"
 //remplir la BD : CTRL+F : "remplir la BD"

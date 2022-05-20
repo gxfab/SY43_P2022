@@ -34,7 +34,7 @@ public class History extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.add_payements:
-                        startActivity(new Intent(getApplicationContext(), Add_Payments.class));
+                        startActivity(new Intent(getApplicationContext(), AddPayments.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.history:
