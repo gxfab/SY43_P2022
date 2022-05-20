@@ -8,23 +8,23 @@ import java.util.List;
 import java.util.Objects;
 
 public class IncomesCategory implements Parcelable {
-    private String idCategoryType;
-    private String codeCategoryType;
-    private String labelCategoryType;
+    private String idIncomesCategory;
+    private String codeIncomesCategory;
+    private String labelIncomesCategory;
 
-    public IncomesCategory(String idCategoryType, String codeCategoryType, String labelCategoryType) {
-        this.idCategoryType = idCategoryType;
-        this.codeCategoryType = codeCategoryType;
-        this.labelCategoryType = labelCategoryType;
+    public IncomesCategory(String idIncomesCategory, String codeIncomesCategory, String labelIncomesCategory) {
+        this.idIncomesCategory = idIncomesCategory;
+        this.codeIncomesCategory = codeIncomesCategory;
+        this.labelIncomesCategory = labelIncomesCategory;
     }
 
     public IncomesCategory() {
     }
 
     protected IncomesCategory(Parcel in) {
-        idCategoryType = in.readString();
-        codeCategoryType = in.readString();
-        labelCategoryType = in.readString();
+        idIncomesCategory = in.readString();
+        codeIncomesCategory = in.readString();
+        labelIncomesCategory = in.readString();
     }
 
     public static final Creator<IncomesCategory> CREATOR = new Creator<IncomesCategory>() {
@@ -41,28 +41,28 @@ public class IncomesCategory implements Parcelable {
 
 
 
-    public String getIdCategoryType() {
-        return idCategoryType;
+    public String getIdIncomesCategory() {
+        return idIncomesCategory;
     }
 
-    public void setIdCategoryType(String idCategoryType) {
-        this.idCategoryType = idCategoryType;
+    public void setIdIncomesCategory(String idIncomesCategory) {
+        this.idIncomesCategory = idIncomesCategory;
     }
 
-    public String getCodeCategoryType() {
-        return codeCategoryType;
+    public String getCodeIncomesCategory() {
+        return codeIncomesCategory;
     }
 
-    public void setCodeCategoryType(String codeCategoryType) {
-        this.codeCategoryType = codeCategoryType;
+    public void setCodeIncomesCategory(String codeIncomesCategory) {
+        this.codeIncomesCategory = codeIncomesCategory;
     }   
 
-    public String getLabelCategoryType() {
-        return labelCategoryType;
+    public String getLabelIncomesCategory() {
+        return labelIncomesCategory;
     }
 
-    public void setLabelCategoryType(String labelCategoryType) {
-        this.labelCategoryType = labelCategoryType;
+    public void setLabelIncomesCategory(String labelIncomesCategory) {
+        this.labelIncomesCategory = labelIncomesCategory;
     }
 
     @Override
@@ -70,12 +70,12 @@ public class IncomesCategory implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IncomesCategory that = (IncomesCategory) o;
-        return Objects.equals(getIdCategoryType(), that.getIdCategoryType()) && Objects.equals(getCodeCategoryType(), that.getCodeCategoryType()) && Objects.equals(getLabelCategoryType(), that.getLabelCategoryType());
+        return Objects.equals(getIdIncomesCategory(), that.getIdIncomesCategory()) && Objects.equals(getCodeIncomesCategory(), that.getCodeIncomesCategory()) && Objects.equals(getLabelIncomesCategory(), that.getLabelIncomesCategory());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdCategoryType(), getCodeCategoryType(), getLabelCategoryType());
+        return Objects.hash(getIdIncomesCategory(), getCodeIncomesCategory(), getLabelIncomesCategory());
     }
 
     @Override
@@ -85,14 +85,23 @@ public class IncomesCategory implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        if(idCategoryType == null){
+        if(idIncomesCategory == null){
             parcel.writeByte((byte) 0);
         }else{
             parcel.writeByte((byte) 1);
-            parcel.writeString(idCategoryType);
+            parcel.writeString(idIncomesCategory);
         }
-        parcel.writeString(idCategoryType);
-        parcel.writeString(codeCategoryType);
-        parcel.writeString(labelCategoryType);
+        parcel.writeString(idIncomesCategory);
+        parcel.writeString(codeIncomesCategory);
+        parcel.writeString(labelIncomesCategory);
+    }
+
+    @Override
+    public String toString() {
+        return "IncomesCategory{" +
+                "idIncomesCategory='" + idIncomesCategory + '\'' +
+                ", codeIncomesCategory='" + codeIncomesCategory + '\'' +
+                ", labelIncomesCategory='" + labelIncomesCategory + '\'' +
+                '}';
     }
 }

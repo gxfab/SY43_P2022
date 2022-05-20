@@ -9,8 +9,6 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
 
     // Database object
-    private static SQLiteDatabase database;
-    
     // Database Version
     private static final int DATABASE_VERSION = 1;
 
@@ -55,8 +53,6 @@ public class DbHelper extends SQLiteOpenHelper {
         //IncomesCategory table create statement
         sqLiteDatabase.execSQL(CREATE_TABLE_INCOMES_CATEGORY);
 
-        database = sqLiteDatabase;
-
     }
 
     @Override
@@ -69,11 +65,6 @@ public class DbHelper extends SQLiteOpenHelper {
         
     }
 
-    public static SQLiteDatabase getDatabase() {
-        return database;
-    }
 
-    public static void setDatabase(SQLiteDatabase database) {
-        DbHelper.database = database;
+
     }
-}
