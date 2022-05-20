@@ -12,4 +12,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sub_categories_name">Sub Categories</string>
+    <string name="name_spending">Name</string>
+    <string name="date_spending">Date</string>
+    <string name="amount_spending">Amount</string>
+    <string name="ok_spending">OK</string>
+    <string name="cancel_spending">Cancel</string>
+    <string name="title_spending">Add a spending</string>
 </resources>
