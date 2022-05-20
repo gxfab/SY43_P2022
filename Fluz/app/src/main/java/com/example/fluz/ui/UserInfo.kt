@@ -1,6 +1,7 @@
 package com.example.fluz.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -79,17 +80,23 @@ class UserInfo : Fragment() {
             } else {
                 registerViewModel.register(emailAddress, password, username, currency)
 
-                if (registerViewModel.errorMessage != null) {
-                    errorText.text = registerViewModel.errorMessage!!.value
-                }
-
                 if (registerViewModel.userId != null) {
                     val sharedPref = this.activity!!.getPreferences(Context.MODE_PRIVATE)
                     with(sharedPref.edit()) {
                         putLong("connectedUserId", registerViewModel.userId!!)
                         apply()
                     }
+
                 }
+
+                if (registerViewModel.errorMessage != null) {
+                    errorText.text = registerViewModel.errorMessage!!.value
+                } else {
+                    val intent = Intent(this.context!!, HomeActivity::class.java)
+                    startActivity(intent)
+                }
+
+
             }
 
 
