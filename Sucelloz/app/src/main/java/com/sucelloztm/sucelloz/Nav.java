@@ -18,6 +18,10 @@ import com.sucelloztm.sucelloz.view.ZeroBudgetScreen;
 public class Nav extends AppCompatActivity {
 
     private ActivityNavigationBinding binding;
+    private Fragment myFragment;
+
+    public static HomeScreen HS = new HomeScreen();
+    public static SavingsScreen SaS = new SavingsScreen();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +29,16 @@ public class Nav extends AppCompatActivity {
 
         binding = ActivityNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeScreen());
+        replaceFragment(HS);
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
 
         bottomNav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.homeScreen:
-                    replaceFragment(new HomeScreen());
+                    if (savedInstanceState != null){
+                        HS.setArguments(savedInstanceState);
+                    }
+                    replaceFragment(HS);
                     break;
 
                 case R.id.spendingsScreen:
@@ -39,15 +46,30 @@ public class Nav extends AppCompatActivity {
                     break;
 
                 case R.id.savingsScreen:
-                    replaceFragment(new SavingsScreen());
+                    if(savedInstanceState!=null){
+                        SaS.setArguments(savedInstanceState);
+                    }
+                    replaceFragment(SaS);
                     break;
 
                 case R.id.zeroBudgetScreen:
                     replaceFragment(new ZeroBudgetScreen());
                     break;
+                default:
+                    replaceFragment(HS);
+                    break;
             }
             return true;
         });
+
+        if (savedInstanceState != null){
+            myFragment = getSupportFragmentManager().getFragment(savedInstanceState, "HomeScreen");
+        }
+    }
+    @Override
+    public void onSaveInstanceState(Bundle i){
+        super.onSaveInstanceState(i);
+        getSupportFragmentManager().putFragment(i,"HomeScreen", myFragment);
     }
 
     private void replaceFragment(Fragment fragment){

@@ -2,11 +2,14 @@ package com.sucelloztm.sucelloz.view;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.sucelloztm.sucelloz.R;
 
@@ -25,6 +28,7 @@ public class SavingsScreen extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private EditText editText;
 
     public SavingsScreen() {
         // Required empty public constructor
@@ -60,7 +64,20 @@ public class SavingsScreen extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            String tmp = savedInstanceState.getString("text_to_save");
+            editText = getView().findViewById(R.id.form_editable);
+            editText.setText(tmp);
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_savings_screen, container, false);
+        return inflater.inflate(R.layout.fragment_home_screen, container, false);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        editText = getView().findViewById(R.id.form_editable);
+        Log.w("toto", editText.getText().toString());
+        outState.putString("text_to_save", editText.getText().toString());
+        super.onSaveInstanceState(outState);
     }
 }

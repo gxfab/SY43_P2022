@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.SavingsScreen">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,5 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_savings_fragment" />
+
+    <EditText
+        android:id="@+id/form_editable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:ems="10"
+        android:hint="@string/test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text"
+        android:autofillHints="test"/>
 
 </FrameLayout>
