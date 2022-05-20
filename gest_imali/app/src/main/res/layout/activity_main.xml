@@ -28,5 +28,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/title_rectangle" />
 
+    <Button
+        android:id="@+id/homePageButton1"
+        style="@style/ButtonTextStyle"
+        android:layout_width="@dimen/home_page_btn_width"
+        android:layout_height="@dimen/home_page_btn_height"
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/home_page_btn1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="147dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
