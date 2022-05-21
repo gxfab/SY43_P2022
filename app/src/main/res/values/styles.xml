@@ -4,6 +4,12 @@
 	<style name="ShapeAppearance.MoneyZ.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
 		<item name="cornerFamily">rounded</item>
 		<item name="cornerSize">12dp</item>
+		<item name="colorOnPrimary">@color/white</item>
+	</style>
+
+	<style name="ShapeAppearance.MoneyZ.MediumComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+		<item name="cornerFamily">rounded</item>
+		<item name="cornerSize">12dp</item>
 	</style>
 
 	<style name="TextAppearance.MoneyZ.Button" parent="TextAppearance.MaterialComponents.Button">

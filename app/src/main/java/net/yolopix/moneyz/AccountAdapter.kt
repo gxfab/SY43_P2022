@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import net.yolopix.moneyz.model.entities.Account
 
@@ -14,7 +15,8 @@ class AccountAdapter(private val accountList: List<Account>) :
 
     // Inner class for the view holder
     class AccountViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var accountNameTextView: TextView = itemView.findViewById(R.id.account_name)
+        val accountNameTextView: TextView = itemView.findViewById(R.id.account_name)
+        val cardContainer: CardView = itemView.findViewById(R.id.card_container)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountViewHolder {
@@ -27,7 +29,7 @@ class AccountAdapter(private val accountList: List<Account>) :
         viewHolder.accountNameTextView.text = accountList[position].name
 
         // When the account item is clicked, open a specific account passed in extra
-        viewHolder.itemView.setOnClickListener {
+        viewHolder.cardContainer.setOnClickListener {
             val intent = Intent(it.context, AccountActivity::class.java).apply {
                 putExtra("net.yolopix.moneyz.ACCOUNT_UID", accountList[position].uid)
             }
