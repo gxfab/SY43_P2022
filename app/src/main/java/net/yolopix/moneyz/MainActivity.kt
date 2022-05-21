@@ -1,70 +1,49 @@
 package net.yolopix.moneyz
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
 
 
 class MainActivity : AppCompatActivity() {
 
+	private lateinit var db: AppDatabase
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
 
-		val db = Room.databaseBuilder(
+		db = Room.databaseBuilder(
 			applicationContext,
 			AppDatabase::class.java, "moneyz_db"
 		).fallbackToDestructiveMigration().build()
 
 		lifecycleScope.launch {
-			loadAccounts(db)
+			loadAccounts()
+		}
+
+		// Show the account creation fragment when clicking on the new account button
+		val addAccountButton = findViewById<Button>(R.id.button_add_account)
+		addAccountButton.setOnClickListener {
+			AddAccountBottomSheet(db).apply {
+				show(supportFragmentManager, tag)
+			}
 		}
 	}
 
-	private suspend fun loadAccounts(db: AppDatabase) {
-		Log.d("MoneyZ.MainActivity", "Début chargement comptes")
-
+	// Asynchronously load all accounts from the database and display them in a RecyclerView
+	private suspend fun loadAccounts() {
 		val recyclerView = findViewById<RecyclerView>(R.id.account_recycler_view)
 		recyclerView.layoutManager = LinearLayoutManager(applicationContext)
 
 		val adapter = AccountAdapter(db.accountDao().getAll())
 		recyclerView.adapter = adapter
-
-	}
-
-	fun openAccount(view: View) {
-		val intent = Intent(this, AccountActivity::class.java).apply {}
-		startActivity(intent)
-	}
-
-	fun openAccountCreation(view: View) {
-		AddAccountBottomSheet().apply {
-			show(supportFragmentManager, tag)
-		}
-	}
-
-	class AddAccountBottomSheet : BottomSheetDialogFragment() {
-
-		override fun onCreateView(
-			inflater: LayoutInflater,
-			container: ViewGroup?,
-			savedInstanceState: Bundle?
-		): View? {
-			return inflater.inflate(R.layout.bottom_sheet_add_account, container, false)
-		}
-
-
 	}
 
 }

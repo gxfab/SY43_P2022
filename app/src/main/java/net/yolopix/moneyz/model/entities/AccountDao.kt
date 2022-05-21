@@ -4,7 +4,9 @@ import androidx.room.*
 
 @Dao
 interface AccountDao {
-    @Query("SELECT * FROM account")
-    suspend fun getAll(): List<Account>
+	@Query("SELECT * FROM account")
+	suspend fun getAll(): List<Account>
 
+	@Insert
+	suspend fun insertAccount(account: Account)
 }
