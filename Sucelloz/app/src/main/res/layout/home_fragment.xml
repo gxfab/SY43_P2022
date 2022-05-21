@@ -44,11 +44,11 @@
         app:layout_constraintTop_toBottomOf="@+id/my_categories_button_home" />
 
     <Button
-        android:id="@+id/yearly_savings_button_home"
+        android:id="@+id/add_savings_button_home"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/yearly_savings_button_home_name"
+        android:text="@string/add_savings_button_home_name"
         app:layout_constraintEnd_toEndOf="@+id/add_spending_button_home"
         app:layout_constraintStart_toStartOf="@+id/add_spending_button_home"
         app:layout_constraintTop_toBottomOf="@+id/add_spending_button_home" />

@@ -6,7 +6,7 @@
     <string name="zero_budget_name">Zero Budget</string>
     <string name="my_categories_button_home_name">My Categories</string>
     <string name="add_spending_button_home_name">Add Spending</string>
-    <string name="yearly_savings_button_home_name">Yearly Savings</string>
+    <string name="add_savings_button_home_name">Add Savings</string>
     <string name="my_categories_name">My Categories</string>
     <string name="element_text">Element</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -18,4 +18,10 @@
     <string name="ok_spending">OK</string>
     <string name="cancel_spending">Cancel</string>
     <string name="title_spending">Add a spending</string>
+    <string name="name_savings">Name</string>
+    <string name="date_savings">Due date</string>
+    <string name="goal_savings">Goal</string>
+    <string name="ok_savings">OK</string>
+    <string name="cancel_savings">Cancel</string>
+    <string name="title_savings">Add savings</string>
 </resources>

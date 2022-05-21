@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.HomeFragmentBinding;
+import com.sucelloztm.sucelloz.ui.dialogs.AddSavingsDialogFragment;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSpendingDialogFragment;
 
 public class HomeFragment extends Fragment {
@@ -40,6 +41,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 new AddSpendingDialogFragment().show(getChildFragmentManager(),AddSpendingDialogFragment.TAG);
+            }
+        });
+        binding.addSavingsButtonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AddSavingsDialogFragment().show(getChildFragmentManager(),AddSpendingDialogFragment.TAG);
             }
         });
     }
