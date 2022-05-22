@@ -14,7 +14,7 @@ import java.lang.String;
 }
 )
 public class StableExpensesAndIncome {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long id;
 
     @ColumnInfo(name="name")
@@ -37,7 +37,7 @@ public class StableExpensesAndIncome {
 
     //CONSTRUCTOR
     public StableExpensesAndIncome(){}
-    public StableExpensesAndIncome(String name, int amount, char sign,int date,int frequency, int subCategoriesId){
+    public StableExpensesAndIncome(String name, int amount, char sign,int date,int frequency, long subCategoriesId){
         this.name=name;
         this.amount=amount;
         this.sign=sign;
@@ -88,7 +88,7 @@ public class StableExpensesAndIncome {
     public void setFrequency(int frequency){
         this.frequency=frequency;
     }
-    public void setSubCategoriesId(int subCategoriesId){
+    public void setSubCategoriesId(long subCategoriesId){
         this.subCategoriesId=subCategoriesId;
     }
 }

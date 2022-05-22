@@ -4,17 +4,21 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 import androidx.room.Update;
 
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
+import com.sucelloztm.sucelloz.models.StableExpensesAndIncome;
+
+import java.util.List;
 
 @Dao
 public interface InfrequentExpensesAndIncomeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertInfrequentExpenseOrIncome(InfrequentExpensesAndIncome infrequentExpensesAndIncome);
+    long insertInfrequentExpenseOrIncome(InfrequentExpensesAndIncome infrequentExpensesAndIncome);
 
     @Insert
-    void insertInfrequentExpensesAndIncome(InfrequentExpensesAndIncome... infrequentExpensesAndIncomes);
+    List<Long> insertInfrequentExpensesAndIncome(InfrequentExpensesAndIncome... infrequentExpensesAndIncomes);
 
     @Update
     void updateInfrequentExpenseOrIncome(InfrequentExpensesAndIncome infrequentExpenseOrIncome);
@@ -27,4 +31,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     @Delete
     void deleteInfrequentExpensesAndIncome(InfrequentExpensesAndIncome... infrequentExpensesAndIncomes);
+
+    @Query("SELECT * FROM infrequent_expenses")
+    List<InfrequentExpensesAndIncome> getInfrequent();
 }

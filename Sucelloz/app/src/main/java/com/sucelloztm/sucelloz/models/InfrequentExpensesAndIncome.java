@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey;
         onDelete = ForeignKey.CASCADE)
 })
 public class InfrequentExpensesAndIncome {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long id;
 
     @ColumnInfo(name="name")
@@ -32,7 +32,7 @@ public class InfrequentExpensesAndIncome {
 
     //CONSTRUCTOR
     public InfrequentExpensesAndIncome(){}
-    public InfrequentExpensesAndIncome(String name, int amount, char sign,int date,int frequency, int subCategoriesId){
+    public InfrequentExpensesAndIncome(String name, int amount, char sign,int date, long subCategoriesId){
         this.name=name;
         this.amount=amount;
         this.sign=sign;
@@ -74,7 +74,7 @@ public class InfrequentExpensesAndIncome {
     public void setDate(int date){
         this.date=date;
     }
-    public void setSubCategoriesId(int subCategoriesId){
+    public void setSubCategoriesId(long subCategoriesId){
         this.subCategoriesId=subCategoriesId;
     }
 }
