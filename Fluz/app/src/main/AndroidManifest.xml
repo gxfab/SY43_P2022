@@ -16,7 +16,7 @@
             android:name=".ui.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.UserInfo"
+            android:name=".ui.fragments.UserInfo"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
@@ -29,6 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

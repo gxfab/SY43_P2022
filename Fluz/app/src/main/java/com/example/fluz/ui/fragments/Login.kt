@@ -1,4 +1,4 @@
-package com.example.fluz.ui
+package com.example.fluz.ui.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -14,10 +14,9 @@ import com.example.fluz.R
 import com.example.fluz.data.AppDatabase
 import com.example.fluz.data.repositories.UserRepository
 import com.example.fluz.databinding.LoginBinding
+import com.example.fluz.ui.HomeActivity
 import com.example.fluz.ui.viewmodels.LoginViewModel
 import com.example.fluz.ui.viewmodels.LoginViewModelFactory
-import com.example.fluz.ui.viewmodels.RegisterViewModel
-import com.example.fluz.ui.viewmodels.RegisterViewModelFactory
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.

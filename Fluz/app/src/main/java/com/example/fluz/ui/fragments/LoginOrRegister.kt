@@ -1,4 +1,4 @@
-package com.example.fluz.ui
+package com.example.fluz.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

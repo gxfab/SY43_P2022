@@ -16,4 +16,10 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
     suspend fun insert(transaction: Transaction) {
         transactionDao.insert(transaction)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteOne(transactionId: Int) {
+        transactionDao.delete(transactionId)
+    }
 }

@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-    tools:context=".ui.Login">
+    tools:context=".ui.fragments.Login">
 
 
     <TextView

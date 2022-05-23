@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/LoginOrRegister"
-        android:name="com.example.fluz.ui.LoginOrRegister"
+        android:name="com.example.fluz.ui.fragments.LoginOrRegister"
         android:label="@string/login_or_register_label"
         tools:layout="@layout/login_or_register">
 
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/Login"
-        android:name="com.example.fluz.ui.Login"
+        android:name="com.example.fluz.ui.fragments.Login"
         android:label="@string/login_label"
         tools:layout="@layout/login">
 
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/Register"
-        android:name="com.example.fluz.ui.Register"
+        android:name="com.example.fluz.ui.fragments.Register"
         android:label="@string/register" >
 
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/userInfo"
-        android:name="com.example.fluz.ui.UserInfo"
+        android:name="com.example.fluz.ui.fragments.UserInfo"
         android:label="UserInfo" >
         <action
             android:id="@+id/action_userInfo_to_Register"

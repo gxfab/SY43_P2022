@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/home2"
-        android:name="com.example.fluz.ui.Home"
+        android:name="com.example.fluz.ui.fragments.Home"
         android:label="Home" />
 </navigation>

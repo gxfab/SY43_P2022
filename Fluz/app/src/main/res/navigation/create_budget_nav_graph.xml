@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/create_budget_nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_budget_nav_graph"
+    app:startDestination="@id/fixedIncome">
 
+    <fragment
+        android:id="@+id/fixedIncome"
+        android:name="com.example.fluz.ui.fragments.FixedIncome"
+        android:label="fragment_fixed_income"
+        tools:layout="@layout/fragment_fixed_income" >
+        <action
+            android:id="@+id/action_fixedIncome_to_fixedExpenses"
+            app:destination="@id/fixedExpenses" />
+    </fragment>
+    <fragment
+        android:id="@+id/fixedExpenses"
+        android:name="com.example.fluz.ui.fragments.FixedExpenses"
+        android:label="fragment_fixed_expenses"
+        tools:layout="@layout/fragment_fixed_expenses" >
+        <argument
+            android:name="total_income"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_fixedExpenses_to_fixedIncome"
+            app:destination="@id/fixedIncome" />
+    </fragment>
 </navigation>

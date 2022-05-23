@@ -1,6 +1,5 @@
-package com.example.fluz.ui
+package com.example.fluz.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,7 +23,6 @@ class Register : Fragment() {
 
         _binding = RegisterBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

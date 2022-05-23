@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
-    tools:context=".ui.LoginOrRegister">
+    tools:context=".ui.fragments.LoginOrRegister">
 
     <TextView
         android:id="@+id/txt_welcome"

@@ -9,7 +9,7 @@ import com.example.fluz.data.entities.*
 
 @Database(
     entities = [Budget::class, BudgetItem::class, Category::class, SubCategory::class, Transaction::class, User::class, UserCategory::class],
-    version = 3
+    version = 4
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun UserDao(): UserDao

@@ -11,10 +11,13 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.fluz.R
 import com.example.fluz.data.AppDatabase
+import com.example.fluz.data.dao.CategoryDao
 import com.example.fluz.data.entities.Budget
+import com.example.fluz.data.entities.Category
 import com.example.fluz.data.entities.User
 import com.example.fluz.data.relashionships.UserWithBudgets
 import com.example.fluz.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -29,16 +32,38 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /**
-        val sharedPref = this.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
+
+        /*val sharedPref = this.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
         if (sharedPref.getLong("connectedUserId", -1) != -1L) {
             val intent = Intent(this, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+        }*/
+
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        val categoryDao: CategoryDao = AppDatabase(this).CategoryDao()
+        val transactionsDao = AppDatabase(this).TransactionDao()
+
+        /**
+        runBlocking {
+            launch {
+                // categoryDao.insert(Category(title = "Food"))
+                val categories = categoryDao.getAll()
+                for (category in categories.first()){
+                    println(category)
+                }
+
+                val transactions = transactionsDao.getAll()
+                for (transaction in transactions.first()) {
+                    println(transaction)
+                }
+
+                transactionsDao.deleteAll()
+            }
         }
         **/
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
