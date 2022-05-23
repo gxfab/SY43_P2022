@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyZ">
         <activity
+            android:name=".prevision_budget_activity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -18,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AccountActivity"
+            android:name=".Expenses_activity"
             android:exported="false" />
     </application>
 

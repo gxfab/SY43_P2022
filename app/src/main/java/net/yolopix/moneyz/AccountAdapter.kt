@@ -30,7 +30,7 @@ class AccountAdapter(private val accountList: List<Account>) :
 
         // When the account item is clicked, open a specific account passed in extra
         viewHolder.cardContainer.setOnClickListener {
-            val intent = Intent(it.context, AccountActivity::class.java).apply {
+            val intent = Intent(it.context, Expenses_activity::class.java).apply {
                 putExtra("net.yolopix.moneyz.ACCOUNT_UID", accountList[position].uid)
             }
             it.context.startActivity(intent)

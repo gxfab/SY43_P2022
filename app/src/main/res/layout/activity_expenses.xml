@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AccountActivity"
+    tools:context=".Expenses_activity"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        tools:listitem="@layout/rv_depenses_item"
+        tools:listitem="@layout/rv_categorie_item"
         android:layout_height="wrap_content"
-        android:id="@+id/RV_Spending">
+        android:id="@+id/expenses_recy_view">
 
     </androidx.recyclerview.widget.RecyclerView>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
