@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
 
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        navigationView.setSelectedItemId(R.id.add)
-        loadFragment(AddFragment())
+        navigationView.setSelectedItemId(R.id.chart)
+        loadFragment(ChartFragment())
 
         navigationView.setOnItemSelectedListener {
             when (it.itemId) {
