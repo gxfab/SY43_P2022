@@ -47,11 +47,11 @@ class FixedIncome : Fragment() {
 
         fixedTransactionViewModel.connectedUserId = connectedUserId.toInt()
 
-        fixedTransactionViewModel.transactionsWithCategory.observe(this) { transactions ->
+        fixedTransactionViewModel.incomeWithCategory.observe(this) { transactions ->
             transactions.let { adapter.submitList(it) }
         }
 
-        fixedTransactionViewModel.getTransactionsWithCategory()
+        fixedTransactionViewModel.getTransactionsWithCategory("income")
 
         binding.btnAddFixedIncome.setOnClickListener {
             val tag = binding.editTextIncomeTag.text.toString()
@@ -80,11 +80,11 @@ class FixedIncome : Fragment() {
 
         binding.btnContinueFixedIncome.setOnClickListener {
             val errorText = binding.errorTxtFixedIncome
-            if (fixedTransactionViewModel.transactionsWithCategory.value!!.isEmpty()) {
+            if (fixedTransactionViewModel.incomeWithCategory.value!!.isEmpty()) {
                 errorText.text = "Add at least one income"
             } else {
                 var totalIncome: Int = 0;
-                for (transaction in fixedTransactionViewModel.transactionsWithCategory.value!!) {
+                for (transaction in fixedTransactionViewModel.incomeWithCategory.value!!) {
                     totalIncome += transaction.transaction.amount
                 }
 

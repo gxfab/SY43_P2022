@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/dm_sans"
-        android:text="Total Expenses = 0 €"
+        android:text="Total Expenses = "
         android:textColor="#DA6B6B"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_total_income" />
 
     <Button
-        android:id="@+id/btn_continue_fixed_income"
+        android:id="@+id/btn_continue_fixed_expense"
         android:layout_width="302dp"
         android:layout_height="57dp"
         android:layout_marginBottom="16dp"
@@ -39,13 +39,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/error_txt_fixed_income"
+        app:layout_constraintTop_toBottomOf="@+id/error_txt_fixed_expenses"
         app:layout_constraintVertical_bias="1.0"
         app:strokeColor="@color/fluz"
         app:strokeWidth="2dp" />
 
     <Button
-        android:id="@+id/btn_add_fixed_income"
+        android:id="@+id/btn_add_fixed_expense"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
@@ -115,7 +115,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fixed_income_rv"
+        android:id="@+id/fixed_expenses_rv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -140,7 +140,7 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fixed_income_rv" />
+        app:layout_constraintTop_toBottomOf="@+id/fixed_expenses_rv" />
 
     <EditText
         android:id="@+id/editTextAmount"
@@ -163,7 +163,7 @@
         android:layout_marginTop="24dp"
         android:text="Category"
         app:layout_constraintStart_toEndOf="@+id/editTextExpenseTag"
-        app:layout_constraintTop_toBottomOf="@+id/fixed_income_rv" />
+        app:layout_constraintTop_toBottomOf="@+id/fixed_expenses_rv" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -179,13 +179,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.738"
         app:layout_constraintStart_toEndOf="@+id/txt_category"
-        app:layout_constraintTop_toBottomOf="@+id/fixed_income_rv" />
+        app:layout_constraintTop_toBottomOf="@+id/fixed_expenses_rv" />
 
     <TextView
-        android:id="@+id/error_txt_fixed_income"
+        android:id="@+id/error_txt_fixed_expenses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:textColor="#EA2525"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"

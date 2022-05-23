@@ -17,6 +17,7 @@ class UserRepository(private val userDao: UserDao) {
     fun oneWithCategories(userId: Int): Flow<UserWithCategories> = userDao.getWithCategories(userId)
     fun oneWithTransactions(userId: Int): Flow<UserWithTransactions> = userDao.getWithTransactions(userId)
 
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(user: User): Long {

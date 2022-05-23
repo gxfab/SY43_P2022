@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.fluz.data.entities.Transaction
 import com.example.fluz.data.relashionships.TransactionAndCategory
+import com.example.fluz.data.relashionships.UserWithTransactions
 import com.example.fluz.data.repositories.TransactionRepository
 import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.flow.first
@@ -16,21 +17,31 @@ class FixedTransactionViewModel(
     private val transactionRepository: TransactionRepository
 ) : ViewModel() {
 
-    val transactionsWithCategory = MutableLiveData<MutableList<TransactionAndCategory>>()
+    val incomeWithCategory = MutableLiveData<MutableList<TransactionAndCategory>>()
+    val expensesWithCategory = MutableLiveData<MutableList<TransactionAndCategory>>()
     var connectedUserId: Int = -1
 
-
-
-    fun getTransactionsWithCategory() = viewModelScope.launch {
-        val userWithTransactions = userRepository.oneWithTransactions(connectedUserId).first()
+    fun getTransactionsWithCategory(type: String) = viewModelScope.launch {
+        var userWithTransactions: UserWithTransactions = userRepository.oneWithTransactions(connectedUserId).first()
 
         val transactions: MutableList<TransactionAndCategory> = mutableListOf()
         for (transaction in userWithTransactions.transactions) {
-            val item = transactionRepository.oneWithCategory(transaction.id)
-            transactions.add(item.first())
+            if (type == "income" && transaction.type == "income") {
+                val item = transactionRepository.oneWithCategory(transaction.id)
+                transactions.add(item.first())
+            } else if (type == "expense" && transaction.type == "expense") {
+                val item = transactionRepository.oneWithCategory(transaction.id)
+                transactions.add(item.first())
+            }
+
         }
 
-        transactionsWithCategory.value = transactions
+        if (type == "income") {
+            incomeWithCategory.value = transactions
+        } else {
+            expensesWithCategory.value = transactions
+        }
+
     }
 
     fun insert(amount: Int, tag: String?, type: String, categoryId: Int, userId: Int) =
@@ -46,12 +57,12 @@ class FixedTransactionViewModel(
                 )
             )
 
-            getTransactionsWithCategory()
+            getTransactionsWithCategory(type)
         }
 
-    fun delete(transactionId: Int) = viewModelScope.launch {
+    fun delete(transactionId: Int, type: String) = viewModelScope.launch {
         transactionRepository.deleteOne(transactionId)
-        getTransactionsWithCategory()
+        getTransactionsWithCategory(type)
     }
 }
 

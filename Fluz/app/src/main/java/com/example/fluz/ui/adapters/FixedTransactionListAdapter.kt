@@ -2,6 +2,7 @@ package com.example.fluz.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -15,14 +16,14 @@ import com.example.fluz.ui.fragments.FixedIncome
 import com.example.fluz.ui.viewmodels.FixedTransactionViewModel
 import com.example.fluz.ui.viewmodels.FixedTransactionViewModelFactory
 
-class FixedTransactionListAdapter(fixedIncome: FixedIncome) :
+class FixedTransactionListAdapter(fragment: Fragment) :
     ListAdapter<TransactionAndCategory, FixedTransactionListAdapter.ViewHolder>(TransactionComparator()) {
 
-    private val database by lazy { AppDatabase(fixedIncome.requireContext()) }
+    private val database by lazy { AppDatabase(fragment.requireContext()) }
     private val userRepository by lazy { UserRepository(database.UserDao()) }
     private val transactionRepository by lazy { TransactionRepository(database.TransactionDao()) }
 
-    private val fixedTransactionViewModel: FixedTransactionViewModel by fixedIncome.viewModels {
+    private val fixedTransactionViewModel: FixedTransactionViewModel by fragment.viewModels {
         FixedTransactionViewModelFactory(userRepository, transactionRepository)
     }
 
@@ -64,8 +65,12 @@ class FixedTransactionListAdapter(fixedIncome: FixedIncome) :
 
                 list.remove(current)
                 submitList(list)*/
-
-                fixedTransactionViewModel.delete(current.transaction.id)
+                val type = if (current.transaction.type == "income") {
+                    "income"
+                } else {
+                    "expense"
+                }
+                fixedTransactionViewModel.delete(current.transaction.id, type)
             }
         }
     }
