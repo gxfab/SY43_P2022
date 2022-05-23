@@ -14,6 +14,9 @@
         <entry key="app/src/main/res/drawable/piggy_selector.xml" value="0.166" />
         <entry key="app/src/main/res/drawable/round_corner.xml" value="0.2085" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/fragment_chart.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/fragment_piggy.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/menu/item_menu.xml" value="0.1" />
       </map>
     </option>
