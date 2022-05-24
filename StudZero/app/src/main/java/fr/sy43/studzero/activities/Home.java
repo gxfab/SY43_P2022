@@ -15,9 +15,7 @@ import java.util.List;
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Category;
-import fr.sy43.studzero.sqlite.model.Payment;
 import fr.sy43.studzero.vue.layout.HomeLayout;
-import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 
 /**
  * Activity that is used for the home screen of the app
@@ -53,7 +51,7 @@ public class Home extends AppCompatActivity {
                     case R.id.home:
                         return true;
                     case R.id.stats:
-                        startActivity(new Intent(getApplicationContext(), stats.class));
+                        startActivity(new Intent(getApplicationContext(), Stats.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.settings:

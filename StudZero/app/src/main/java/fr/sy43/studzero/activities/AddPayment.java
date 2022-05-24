@@ -3,6 +3,7 @@ package fr.sy43.studzero.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -156,10 +157,11 @@ public class AddPayment extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.AddPaymentConfirmButton);
         final TextInputLayout textInputLayoutExpenses = (TextInputLayout) findViewById(R.id.AddPaymentTextInputLayout);
         button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("DefaultLocale")
             public void onClick(View v) {
                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 Spinner spinner = (Spinner) findViewById(R.id.AddPaymentSpinner);
-                db.addPayment(new Payment(paymentAmount, new Date(), db.getCurrentCategoryOfCategoryType(spinner.getSelectedItem().toString()).getIdCategory()));
+                db.addPayment(new Payment(Float.parseFloat(String.format("%.2f", paymentAmount)), new Date(), db.getCurrentCategoryOfCategoryType(spinner.getSelectedItem().toString()).getIdCategory()));
                 db.closeDB();
                 Intent intent = new Intent(getApplicationContext(), AddPayments.class);
                 intent.putExtra("caller", "AddPayment");

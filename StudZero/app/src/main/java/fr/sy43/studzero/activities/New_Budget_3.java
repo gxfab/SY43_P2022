@@ -46,10 +46,12 @@ import fr.sy43.studzero.R;
 public class New_Budget_3 extends AppCompatActivity {
 
     private Spinner spinner;
-    final float[] val = {0.0f};
-    String Cat_Selected;
-    int allocated;
-    int available;
+    private final float[] val = {0.0f};
+    private String Cat_Selected;
+    private int allocated;
+    private int available;
+    private float idNewBudget;
+
 
 
     private int GetAllocated(int pos){ //pour test
@@ -73,8 +75,18 @@ public class New_Budget_3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_budget3);
 
+        idNewBudget = getIntent().getLongExtra(New_Budget_1.ID_NEW_BUDGET, -1);
+        if(idNewBudget == -1) {
+            Intent intent = new Intent(this, New_Budget_1.class);
+            intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
+            intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
+            startActivity(intent);
+        }
+
+
         // here
         allocated = 1000; //DB.budget.budgetamount
+
         available = 1200; // somme : DB.category.theoricalamount
 
         //apply

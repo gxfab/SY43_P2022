@@ -6,9 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -195,6 +192,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + USER_COLUMN_DATE_NEXT_BUDGET + " NUMERIC,"
             + USER_COLUMN_CURRENT_BUDGET + " INTEGER REFERENCES "+ TABLE_BUDGET +")";
 
+    // public static final String
 
     /**
      * Drop table statement
@@ -299,9 +297,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * Add a budget to the database
      * @param budget
-     * @return true if the budget has successfully been added to the database, otherwise false
+     * @return id of new budget
      */
-    public boolean addBudget(Budget budget) {
+    public long addBudget(Budget budget) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -310,7 +308,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(BUDGET_COLUMN_BUDGET_AMOUNT, budget.getBudgetAmount());
         long id = db.insert(TABLE_BUDGET, null, cv);
 
-        return id != -1;
+        return id;
     }
 
     /**
@@ -384,7 +382,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * get a budget from the database
      * @param idBudget id of the budget to get
-     * @return the budget that corresponds to the give id, null is returned if no budget corresponds to the id
+     * @return the budget that corresponds to the given id, null is returned if no budget corresponds to the id
      */
     @SuppressLint("Range")
     public Budget getBudget(int idBudget) {
@@ -410,7 +408,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * get a category from the database
      * @param idCategory id of the budget to get
-     * @return the category that corresponds to the give id, null is returned if no category corresponds to the id
+     * @return the category that corresponds to the given id, null is returned if no category corresponds to the id
      */
     @SuppressLint("Range")
     public Category getCategory(int idCategory) {
@@ -436,8 +434,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * get a category type from the database
-     * @param idCategoryType id of the budget to get
-     * @return the category type that corresponds to the give id, null is returned if no category type corresponds to the id
+     * @param idCategoryType id of the category type to get
+     * @return the category type that corresponds to the given id, null is returned if no category type corresponds to the id
      */
     @SuppressLint("Range")
     public CategoryType getTypeCategory(int idCategoryType) {
@@ -459,9 +457,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * get a category type from the database
+     * @param nameCategoryType name of the category type to get
+     * @return the category type that corresponds to the given name, null is returned if no category type corresponds to the id
+     */
+    @SuppressLint("Range")
+    public CategoryType getTypeCategory(String nameCategoryType) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "Select * from " + TABLE_CATEGORY_TYPE + " where " + CATEGORY_TYPE_COLUMN_NAME + "=\""+nameCategoryType + "\"";
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null) {
+            return null;
+        }
+        c.moveToFirst();
+
+        return new CategoryType(
+                c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
+                c.getString(c.getColumnIndex(CATEGORY_TYPE_COLUMN_NAME))
+        );
+    }
+
+    /**
      * get a payment from the database
      * @param idPayment id of the budget to get
-     * @return the payment that corresponds to the give id, null is returned if no payment corresponds to the id
+     * @return the payment that corresponds to the given id, null is returned if no payment corresponds to the id
      */
     @SuppressLint("Range")
     public Payment getPayment(int idPayment) {
@@ -486,7 +508,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * get the user from the database
-     * @return the user from the databse, null is returned if no users exist
+     * @return the user from the database, null is returned if no users exist
      */
     @SuppressLint("Range")
     public User getUser() {
@@ -691,6 +713,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
+
     @SuppressLint("Range")
     public Float getRemainingAmountOfCurrentBudget() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -758,7 +781,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
+    /**
+     * Update the id of the current budget
+     * @param budget budget to update
+     * @return true if the update was successful, otherwise false
+     */
+    public boolean updateBudget(Budget budget) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
 
+        cv.put(BUDGET_COLUMN_DATE_START, budget.getDateStart().getTime());
+        cv.put(BUDGET_COLUMN_DATE_END, budget.getDateEnd().getTime());
+        cv.put(BUDGET_COLUMN_BUDGET_AMOUNT, budget.getBudgetAmount());
+
+        int id = db.update(TABLE_BUDGET, cv, ""+BUDGET_COLUMN_ID+"=?", new String[]{""+budget.getIdBudget()});
+        return id != -1;
+    }
+
+    public void deleteBudgetCategories(int idBudget) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_CATEGORY, CATEGORY_COLUMN_BUDGET+"=?", new String[]{""+idBudget});
+        db.close();
+    }
 
     /**
      * Closes the access to the database

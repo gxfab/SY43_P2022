@@ -11,7 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import fr.sy43.studzero.R;
 
-public class stats extends AppCompatActivity {
+public class Stats extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -24,6 +24,16 @@ public class Budget {
     private float budgetAmount;
 
     /**
+     * Default constructor of the class
+     */
+    public Budget() {
+        this.idBudget = 0;
+        this.dateStart = new Date();
+        this.dateEnd = new Date();
+        this.budgetAmount = 0;
+    }
+
+    /**
      * Constructor of the class
      * @param idBudget
      * @param dateStart

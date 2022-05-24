@@ -40,7 +40,7 @@ public class Settings extends AppCompatActivity {
                     case R.id.settings:
                         return true;
                     case R.id.stats:
-                        startActivity(new Intent(getApplicationContext(), stats.class));
+                        startActivity(new Intent(getApplicationContext(), Stats.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.home:
