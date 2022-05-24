@@ -4,6 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/David/SY43_P2022/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/drawable/ic_baseline_expense_income_24.xml" value="0.2975" />
+        <entry key="app/src/main/res/drawable/ic_round_home_24.xml" value="0.2975" />
+        <entry key="app/src/main/res/drawable/ic_round_settings_24.xml" value="0.2975" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_chart.xml" value="0.35487232933819696" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_set_incomes_expenses.xml" value="0.35487232933819696" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.35487232933819696" />
+        <entry key="app/src/main/res/menu/nav_menu.xml" value="0.18072916666666666" />
       </map>
     </option>
   </component>
