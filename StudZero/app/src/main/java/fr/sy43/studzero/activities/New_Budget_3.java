@@ -26,15 +26,11 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 import fr.sy43.studzero.R;
-
-
-//faire envoie vers la BD qd on confirm // CTRL+F : "update DB"
-//setup la liste déroulante avec les noms des catégories de la DB
-//affecter allocated et available avec les var de la DB : CTRL + F : "here"
-//recalcul de allocated lors d'un confirm : CTRL + F : "recalcul"
-
-//Liée la base de donnée pour récupérer la valeur associé a une catégorie à partir de sa position si elle existe CTRL+F " la" et "pour test"
+import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
+import fr.sy43.studzero.sqlite.model.Category;
 
 /**
  * 3rd screen of the budget's creation
@@ -48,20 +44,10 @@ public class New_Budget_3 extends AppCompatActivity {
     private Spinner spinner;
     private final float[] val = {0.0f};
     private String Cat_Selected;
-    private int allocated;
-    private int available;
-    private float idNewBudget;
+    private float allocated;
+    private float available;
+    private long idNewBudget;
 
-
-
-    private int GetAllocated(int pos){ //pour test
-        if(pos != 0){
-            return 1000;
-        }
-        else{
-            return 0;
-        }
-    }
 
     /**
      * get the budget value from the DB and display it
@@ -83,11 +69,17 @@ public class New_Budget_3 extends AppCompatActivity {
             startActivity(intent);
         }
 
-
-        // here
-        allocated = 1000; //DB.budget.budgetamount
-
-        available = 1200; // somme : DB.category.theoricalamount
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        allocated = 0;
+        List<Category> listCategories = db.getAllCategories((int) idNewBudget);
+        String[] category = new String[listCategories.size()];
+        for(int i = 0; i < listCategories.size(); ++i) {
+            allocated += listCategories.get(i).getTheoreticalAmount();
+            category[i] = db.getTypeCategory(listCategories.get(i).getType()).getNameCategory();
+        }
+        allocated = Float.parseFloat(String.format("%.2f", allocated));
+        available = Float.parseFloat(String.format("%.2f", db.getBudget((int) idNewBudget).getBudgetAmount()));
+        db.closeDB();
 
         //apply
         TextView txtAllocated = (TextView) findViewById(R.id.TextViewAllocated);
@@ -131,12 +123,14 @@ public class New_Budget_3 extends AppCompatActivity {
                 if(caller.equals("Settings")){
                     //renvoye vers la page précédente
                     Intent intent = new Intent(getApplicationContext(), New_Budget_4.class);
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
                     startActivity(intent);
                 }
                 else{
                     //renvoye vers la page précédente
                     Intent intent = new Intent(getApplicationContext(), New_Budget_4.class);
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
                     startActivity(intent);
                 }
@@ -156,12 +150,14 @@ public class New_Budget_3 extends AppCompatActivity {
                 if(caller.equals("Settings")){
                     //renvoye vers la page précédente
                     Intent intent = new Intent(getApplicationContext(), New_Budget_5.class);
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
                     startActivity(intent);
                 }
                 else{
                     //renvoye vers la page précédente
                     Intent intent = new Intent(getApplicationContext(), New_Budget_5.class);
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
                     startActivity(intent);
                 }
@@ -176,7 +172,7 @@ public class New_Budget_3 extends AppCompatActivity {
         // https://devstory.net/12617/android-spinner
 
         this.spinner = (Spinner) findViewById(R.id.NewBudgetListeDeroulante);
-        String[] category = {"cat1","cat2","cat3"}; //a modif avec les datas de la data base
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.liste_deroulante_selected_item, category);
 
         adapter.setDropDownViewResource(R.layout.liste_deroulante);
@@ -199,14 +195,15 @@ public class New_Budget_3 extends AppCompatActivity {
                 final TextInputEditText TextInputIncomeExpenses = (TextInputEditText) findViewById(R.id.TextInputIncomeExpenses);
                 onItemSelectedHandler(parent, view, position, id);
                 Cat_Selected = category[position];
-                // la
-                // si une somme est deja allouée a cette catégorie, la mettre par defaut dans le champ texte
-                if(GetAllocated(position) != 0){
-                    TextInputIncomeExpenses.setText(String.valueOf(GetAllocated(position)));
-                }
-                else {
+
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                Category category = db.getCategoryOfCategoryType((int) idNewBudget, Cat_Selected);
+                if(category.getTheoreticalAmount() == 0) {
                     TextInputIncomeExpenses.setText("");
+                } else {
+                    TextInputIncomeExpenses.setText( String.format("%.2f", category.getTheoreticalAmount()));
                 }
+                db.closeDB();
                 textInputLayoutUserName.setErrorEnabled(false);
                 TextInputIncomeExpenses.clearFocus();
                 textInputLayoutUserName.clearFocus();
@@ -307,8 +304,6 @@ public class New_Budget_3 extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Selected Category : " + category ,Toast.LENGTH_SHORT).show(); //print une notif
     }
 
-    //permet le retour vers la page settings sur l'appuis de la back arrow
-
     /**
      * go back to the previous page when the return button of the top bar is pressed
      * @param item
@@ -328,7 +323,7 @@ public class New_Budget_3 extends AppCompatActivity {
                 }
                 else{
                     //renvoye vers la page précédente
-                    Intent intent = new Intent(this, New_Budget_3.class);
+                    Intent intent = new Intent(this, New_Budget_2.class);
                     intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
                     startActivity(intent);
                 }
@@ -357,15 +352,25 @@ public class New_Budget_3 extends AppCompatActivity {
             public void onClick(View v) {
 
                 // update DB
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 //Ajouter val[0] au budget contenant le montant estimé de la dépenses de la catégorie selected (Cat_Selected)
+                Category categoryToUpdate = db.getCategoryOfCategoryType((int) idNewBudget, Cat_Selected);
+                categoryToUpdate.setTheoreticalAmount(Float.parseFloat(String.format("%.2f", val[0])));
+                db.updateCategory(categoryToUpdate);
 
                 // recalcul
-                allocated = 1200; // refaire la somme des category.theoricalamount
+                allocated = 0;
+                List<Category> listCategories = db.getAllCategories((int) idNewBudget);
+                for(int i = 0; i < listCategories.size(); ++i) {
+                    allocated += listCategories.get(i).getTheoreticalAmount();
+                }
+                allocated = Float.parseFloat(String.format("%.2f", allocated));
+                db.closeDB();
 
                 TextView txtAllocated = (TextView) findViewById(R.id.TextViewAllocated);
                 TextView txtAvailable = (TextView) findViewById(R.id.TextViewAvailable);
-                txtAllocated.setText(getString(R.string.NewBudgetTextViewAllocated) + " " + String.valueOf(allocated) + getString(R.string.currency));
-                txtAvailable.setText(getString(R.string.NewBudgetTextViewAvailable) + " " + String.valueOf(available) + getString(R.string.currency));
+                txtAllocated.setText(getString(R.string.NewBudgetTextViewAllocated) + " " + String.format("%.2f", allocated) + getString(R.string.currency));
+                txtAvailable.setText(getString(R.string.NewBudgetTextViewAvailable) + " " + String.format("%.2f", available) + getString(R.string.currency));
                 if(allocated != available){
                     txtAllocated.setTextColor(getResources().getColor(R.color.red));
                 }

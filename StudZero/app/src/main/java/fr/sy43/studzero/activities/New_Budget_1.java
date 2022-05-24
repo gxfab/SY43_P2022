@@ -200,6 +200,7 @@ public class New_Budget_1 extends AppCompatActivity {
                 }
                 else{
                     Intent intent = new Intent(new Intent(getApplicationContext(), New_Budget_3.class));
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "MainActivity"); //ecran creation catégorie + non retour
                     startActivity(intent);
                 }

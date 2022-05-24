@@ -19,9 +19,6 @@ import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Category;
 import fr.sy43.studzero.sqlite.model.CategoryType;
 
-//récupération des catégories déjà existante : CTRL+F "récup data"
-//remplir la BD : CTRL+F : "remplir la BD"
-
 /**
  * 2nd screen of the creation of a new budget : select the categories you want to keep from the old budget
  */
@@ -82,8 +79,6 @@ public class New_Budget_2 extends AppCompatActivity {
             }
         });
     }
-
-    //récupérer les datas de la DB courrante
 
     /**
      * retrieve the name of the old budget's categories

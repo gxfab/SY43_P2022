@@ -332,17 +332,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * Add a category type to the database
      * @param categoryType
-     * @return true if the category type has successfully been added to the database, otherwise false
+     * @return id of new category typz
      */
-    public boolean addCategoryType(CategoryType categoryType) {
+    public int addCategoryType(CategoryType categoryType) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(CATEGORY_TYPE_COLUMN_NAME, categoryType.getNameCategory());
 
-        long id = db.insert(TABLE_CATEGORY_TYPE, null, cv);
-
-        return id != -1;
+        return (int) db.insert(TABLE_CATEGORY_TYPE, null, cv);
     }
 
     // Add a new payment to the payment table
@@ -713,6 +711,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
+    /**
+     * Get the category of budget of a category type
+     * @param idBudget id of the budget
+     * @param categoryTypeName name of the category type
+     * @return category of the budget that is linked to the given name of a category type, null is returned if no category of the current budget is linked to the name
+     */
+    @SuppressLint("Range")
+    public Category getCategoryOfCategoryType(int idBudget, String categoryTypeName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "Select * from " + TABLE_CATEGORY +" INNER JOIN " + TABLE_CATEGORY_TYPE  +
+                " ON "+ CATEGORY_COLUMN_TYPE+ "=" + CATEGORY_TYPE_COLUMN_ID +
+                " where " + CATEGORY_TYPE_COLUMN_NAME + "=\"" + categoryTypeName + "\" AND " + CATEGORY_COLUMN_BUDGET + "=" + idBudget;
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null) {
+            return null;
+        }
+
+        c.moveToFirst();
+
+        return new Category(
+                c.getInt(c.getColumnIndex(CATEGORY_COLUMN_ID)),
+                c.getFloat(c.getColumnIndex(CATEGORY_COLUMN_THEORETICAL_AMOUNT)),
+                c.getFloat(c.getColumnIndex(CATEGORY_COLUMN_REAL_AMOUNT)),
+                c.getInt(c.getColumnIndex(CATEGORY_COLUMN_BUDGET)),
+                c.getInt(c.getColumnIndex(CATEGORY_COLUMN_TYPE))
+        );
+    }
+
 
     @SuppressLint("Range")
     public Float getRemainingAmountOfCurrentBudget() {
@@ -782,7 +811,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Update the id of the current budget
+     * Update a budget
      * @param budget budget to update
      * @return true if the update was successful, otherwise false
      */
@@ -795,6 +824,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(BUDGET_COLUMN_BUDGET_AMOUNT, budget.getBudgetAmount());
 
         int id = db.update(TABLE_BUDGET, cv, ""+BUDGET_COLUMN_ID+"=?", new String[]{""+budget.getIdBudget()});
+        return id != -1;
+    }
+
+    /**
+     * Update a category
+     * @param category category to update
+     * @return true if the update was successful, otherwise false
+     */
+    public boolean updateCategory(Category category) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(CATEGORY_COLUMN_THEORETICAL_AMOUNT, category.getTheoreticalAmount());
+        cv.put(CATEGORY_COLUMN_REAL_AMOUNT, category.getRealAmount());
+        cv.put(CATEGORY_COLUMN_TYPE, category.getType());
+        cv.put(CATEGORY_COLUMN_BUDGET, category.getBudget());
+
+        int id = db.update(TABLE_CATEGORY, cv, ""+CATEGORY_COLUMN_ID+"=?", new String[]{""+category.getIdCategory()});
         return id != -1;
     }
 
