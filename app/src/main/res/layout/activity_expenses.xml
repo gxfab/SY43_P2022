@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Expenses_activity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ExpensesActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/expenses_recy_view"
         android:layout_width="match_parent"
-        tools:listitem="@layout/rv_categorie_item"
         android:layout_height="wrap_content"
-        android:id="@+id/expenses_recy_view">
+        tools:listitem="@layout/item_category">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -20,36 +18,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_gravity="end|bottom"
         android:layout_margin="5dp"
         android:padding="8dp"
-        android:layout_gravity="end|bottom"
 
-        android:text="Ajouter une dépense"/>
-
+        android:text="@string/add_expense" />
 
 
+    <!-- ESSAI DE BOTTOM NAVIGATION BAR
+     <FrameLayout
+         android:id="@+id/container"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>
 
-
-
-
-   <!-- ESSAI DE BOTTOM NAVIGATION BAR
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/menu" />
-        -->
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:id="@+id/navigationView"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginEnd="0dp"
+         android:layout_marginStart="0dp"
+         android:background="?android:attr/windowBackground"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+         app:menu="@menu/menu" />
+         -->
 
 
     <!-- BOUTON ROUND EDGE
@@ -63,7 +56,6 @@
         android:textAllCaps="false"
         android:text="Ajouter une dépense"/>
         -->
-
 
 
 </LinearLayout>

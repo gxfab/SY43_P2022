@@ -1,8 +1,6 @@
 package net.yolopix.moneyz
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +14,7 @@ import net.yolopix.moneyz.model.AppDatabase
 class MainActivity : AppCompatActivity() {
 
 	private lateinit var db: AppDatabase
-	lateinit var recyclerView: RecyclerView
+	private lateinit var recyclerView: RecyclerView
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -36,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 		}
 
 		// Set up recycler view
-		recyclerView = findViewById<RecyclerView>(R.id.account_recycler_view)
+		recyclerView = findViewById(R.id.account_recycler_view)
 		recyclerView.layoutManager = LinearLayoutManager(applicationContext)
 		lifecycleScope.launch {
 			loadAccounts()
