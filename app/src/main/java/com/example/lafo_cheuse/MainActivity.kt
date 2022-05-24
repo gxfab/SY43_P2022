@@ -26,7 +26,7 @@ const val EXTRA_MESSAGE = "com.exemple.test.MESSAGE"
 @DelicateCoroutinesApi
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+        //AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -72,6 +72,11 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, DisplayMessageActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE, message)
         }
+        startActivity(intent)
+    }
+
+    fun openSettings(view: View){
+        val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
 
