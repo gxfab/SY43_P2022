@@ -1,16 +1,14 @@
 package net.yolopix.moneyz
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Account
 
@@ -36,7 +34,9 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
             // Fetch the account name in the EditText and add it to the database
             val editTextAccountName = view.findViewById<EditText>(R.id.edit_text_account_name)
             val newAccountName = editTextAccountName?.text.toString()
-            lifecycleScope.launch { db.accountDao().insertAccount(Account(0, newAccountName)) }
+            runBlocking {
+                db.accountDao().insertAccount(Account(0, newAccountName))
+            }
             lifecycleScope.launch {
                 (activity as MainActivity).loadAccounts()
             }
