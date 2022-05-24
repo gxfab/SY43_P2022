@@ -32,6 +32,9 @@
     <string name="add">Add</string>
     <string name="fixed_expenses">Fixed Expenses</string>
 
+    <!-- HOME -->
+    <string name="spent_on">spent on</string>
+
     <!-- for spinner -->
     <string-array name="Currencies">
         <item>Euro</item>

@@ -1,6 +1,7 @@
 package com.example.fluz.ui.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.example.fluz.data.AppDatabase
 import com.example.fluz.data.repositories.TransactionRepository
 import com.example.fluz.data.repositories.UserRepository
 import com.example.fluz.databinding.FragmentFixedExpensesBinding
+import com.example.fluz.ui.HomeActivity
 import com.example.fluz.ui.adapters.FixedTransactionListAdapter
 import com.example.fluz.ui.viewmodels.FixedTransactionViewModel
 import com.example.fluz.ui.viewmodels.FixedTransactionViewModelFactory
@@ -105,6 +107,12 @@ class FixedExpenses : Fragment() {
                 binding.editTextExpenseTag.text.clear()
                 binding.editTextAmount.text.clear()
             }
+        }
+
+        binding.btnContinueFixedExpense.setOnClickListener {
+            val intent = Intent(this.context, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
 
         return binding.root

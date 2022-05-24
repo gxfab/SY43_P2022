@@ -38,13 +38,13 @@ class Home : Fragment() {
         val sharedPref = this.activity!!.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
         val connectedUserId = sharedPref.getLong("connectedUserId", -1)
 
-        homeViewModel.budgets.observe(this) {budgets ->
+        /*homeViewModel.budgets.observe(this) {budgets ->
             if (budgets.isEmpty()) {
                 val intent = Intent(this@Home.context, CreateBudgetActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }
-        }
+        }*/
 
         homeViewModel.getUserBudgetList(connectedUserId.toInt())
 
