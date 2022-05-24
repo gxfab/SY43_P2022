@@ -18,12 +18,20 @@ import java.util.ArrayList;
 
 import fr.sy43.studzero.R;
 
+/**
+ * custom adapter for the recycler view of the new budget 2 screen (select the categories to keep from the old budget)
+ */
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
     private ArrayList category_name;
     public ArrayList<Integer> state = new ArrayList<Integer>();
 
+    /**
+     * constructor : initialize the arraylists with the ones given in arguments
+     * @param context
+     * @param category_name
+     */
     public CustomAdapter(Context context, ArrayList category_name){
         this.category_name = category_name;
         this.context = context;
@@ -32,6 +40,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         }
     }
 
+    /**
+     * create a view holder
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,6 +54,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return new MyViewHolder(view);
     }
 
+    /**
+     * manage the inputs of a view holder (onClick listener)
+     * @param holder
+     * @param position
+     */
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -47,6 +66,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.button.setChecked(true);
 
         holder.button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * update the state arraylist
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 if(holder.button.isChecked()){
@@ -60,6 +83,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             }
         });
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            /**
+             * change the state of the button and update the state arraylist
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 //change le state du button / switch
@@ -78,15 +105,27 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     }
 
+    /**
+     * return the size of the category_name arraylist
+     * @return
+     */
     @Override
     public int getItemCount() {
         return category_name.size();
     }
 
+    /**
+     * Contains the textView, the CompoundButton and the layout of the view
+     */
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView category_name;
         CompoundButton button;
         LinearLayout mainLayout;
+
+        /**
+         * init the variables with the corresponding items in the view
+         * @param itemView
+         */
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             category_name = itemView.findViewById(R.id.cat_name_txt);

@@ -18,12 +18,23 @@ import fr.sy43.studzero.R;
 
 //récupération des catégories déjà existante : CTRL+F "récup data"
 //remplir la BD : CTRL+F : "remplir la BD"
+
+/**
+ * 2nd screen of the creation of a new budget : select the categories you want to keep from the old budget
+ */
 public class New_Budget_2 extends AppCompatActivity {
 
     private CustomAdapter customAdapter;
     private ArrayList<String> category_name;
     private RecyclerView recyclerView;
 
+    /**
+     * enable the return button on the top bar
+     * get the categories from the old budget
+     * update the recycler view with these categories
+     * setup a listener for the confirm button
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +55,11 @@ public class New_Budget_2 extends AppCompatActivity {
 
         Button button = (Button) findViewById(R.id.NewBudget2_ConfirmButton);
         button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Add the categories the user want to keep to the DB
+             * launch the intent of the next screen
+             * @param v
+             */
             public void onClick(View v) {
                 //Ajouter les catégories que l'on garde à la BD
                 SetSelectedCat(category_name, customAdapter.state);
@@ -58,6 +74,10 @@ public class New_Budget_2 extends AppCompatActivity {
     }
 
     //récupérer les datas de la DB courrante
+
+    /**
+     * retrieve the name of the old budget's categories
+     */
     private void GetData() {
         // récup data
         category_name.add("cat 1");
@@ -74,6 +94,12 @@ public class New_Budget_2 extends AppCompatActivity {
         category_name.add("cat 12");
     }
 
+    /**
+     * update the DB by adding the categories the user want to keep
+     * display the selected categories (the one the user keep) in Log.I (debug)
+     * @param category_name
+     * @param state
+     */
     private  void SetSelectedCat(ArrayList category_name,ArrayList state){
         //remplir la BD
         for(int i = 0; i < category_name.size(); ++i){
@@ -85,6 +111,12 @@ public class New_Budget_2 extends AppCompatActivity {
 
 
     //permet le retour vers la page précédente
+
+    /**
+     * handle the top bar inputs : if the user press the return button, we go back to the previous screen
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -101,10 +133,18 @@ public class New_Budget_2 extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * return true if the top bar is sucessfully created
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
 
+    /**
+     * override the onBackPressed method to "disable" it
+     */
     @Override
     public void onBackPressed() {
     }

@@ -25,10 +25,19 @@ import fr.sy43.studzero.R;
 // reste a communiquer a la BD lors de l'appuis du boutton confirm la val[0]
 
 
-
+/**
+ *  First screen of the creation of a budget : total income input
+ */
 
 public class New_Budget_1 extends AppCompatActivity {
 
+    /**
+     * Setup the screen at launch :
+     * -enable/disable the return button on the top bar that depends on if the user is force to create a new budget (1st budget / end of the last budget) or if the user chose to setup a new budget (from the settings screen)
+     * -disable the confirm button
+     * -setup the listener to hide the keyboard (if the user touch elsewhere and the keyboard is visible)
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +59,11 @@ public class New_Budget_1 extends AppCompatActivity {
         setupForKeyboardDismiss((View) findViewById(R.id.New_Budget_BG_View_P1), (Activity) this);//enlève le keyboard si on click ailleurs
     }
 
+    /**
+     * Setup the listener for all the views
+     * @param view
+     * @param activity
+     */
     public void setupForKeyboardDismiss(View view, final Activity activity) {
         final TextInputLayout textInputLayoutUserName = (TextInputLayout) findViewById(R.id.TextInputLayoutExpenses);
         final TextInputEditText TextInputIncomeExpenses = (TextInputEditText) findViewById(R.id.TextInputIncomeExpenses);
@@ -58,6 +72,12 @@ public class New_Budget_1 extends AppCompatActivity {
 
             view.setOnTouchListener(new View.OnTouchListener() {
 
+                /**
+                 * hide the keyboard and clear the focus of the text field and raise error label of the text field if needed
+                 * @param v
+                 * @param event
+                 * @return
+                 */
                 public boolean onTouch(View v, MotionEvent event) {
                     hideSoftKeyboard(activity);
                     if(TextInputIncomeExpenses.getText().length() == 0){//champ vide reset le text field
@@ -82,6 +102,11 @@ public class New_Budget_1 extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     * hide the keyboard
+     * @param activity
+     */
     public static void hideSoftKeyboard(Activity activity) {
         try {
             InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -93,6 +118,12 @@ public class New_Budget_1 extends AppCompatActivity {
 
 
     //permet le retour vers la page settings sur l'appuis de la back arrow
+
+    /**
+     * handle the top bar inputs : if the user press the return button, we go back to the settings screen
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -109,6 +140,11 @@ public class New_Budget_1 extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * return true if the top bar is create successfully
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
@@ -116,11 +152,20 @@ public class New_Budget_1 extends AppCompatActivity {
 
 
     //message d'erreur du champ de texte et récupération de la valeur
+
+    /**
+     *setup the listener of the text field and the confirm button
+     */
     private void setupFloatingLabelError() {
         final TextInputLayout textInputLayoutUserName = (TextInputLayout) findViewById(R.id.TextInputLayoutExpenses);
         final float[] val = {0.0f};
         Button button = (Button) findViewById(R.id.NewBudgetIncomeConfirmButton);
         button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Update the database with the value of the text field
+             * Go to next screen
+             * @param v
+             */
             public void onClick(View v) {
                 //Ajouter val[0] au budget contenant la valeur du revenu
 
@@ -148,6 +193,14 @@ public class New_Budget_1 extends AppCompatActivity {
 
         textInputLayoutUserName.getEditText().addTextChangedListener(new TextWatcher() {
             // ...
+
+            /**
+             * When the text is changed, try to convert the input into float and raise an error label if it fails
+             * @param text
+             * @param start
+             * @param count
+             * @param after
+             */
             @Override
             public void onTextChanged(CharSequence text, int start, int count, int after) {
                 button.setEnabled(false);
@@ -175,10 +228,22 @@ public class New_Budget_1 extends AppCompatActivity {
                     button.setEnabled(false);
                 }
             }
+
+            /**
+             * do nothing
+             * @param s
+             * @param start
+             * @param count
+             * @param after
+             */
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
+            /**
+             * do nothing
+             * @param s
+             */
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -186,6 +251,9 @@ public class New_Budget_1 extends AppCompatActivity {
         });
     }
 
+    /**
+     *override the onBackPressed method to "disable" it
+     */
     @Override
     public void onBackPressed() {
     }

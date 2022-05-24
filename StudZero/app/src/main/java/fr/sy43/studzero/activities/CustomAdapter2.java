@@ -17,6 +17,9 @@ import java.util.ArrayList;
 
 import fr.sy43.studzero.R;
 
+/**
+ * CustomAdapter for the new budget 5 recycler view
+ */
 public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.MyViewHolder> {
 
     private Context context;
@@ -24,6 +27,13 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.MyViewHo
     private ArrayList allocated;
     private float available;
 
+    /**
+     * constructor : init the class variables with the ones given in argument
+     * @param context
+     * @param category_name
+     * @param allocated
+     * @param available
+     */
     public CustomAdapter2(Context context, ArrayList category_name, ArrayList allocated, float available){
         this.category_name = category_name;
         this.context = context;
@@ -31,6 +41,12 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.MyViewHo
         this.available = available;
     }
 
+    /**
+     * Create a view holder
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,6 +55,11 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.MyViewHo
         return new MyViewHolder(view);
     }
 
+    /**
+     * manage the view holder
+     * @param holder
+     * @param position
+     */
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -48,6 +69,10 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.MyViewHo
         holder.progbar.setProgress((int)(100 * all/this.available));
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            /**
+             * return to the new budget 3 screen to modify the allocated amount of the category which the user clicked ons
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 ((New_Budget_5)context).OnCategoryClicked(holder.getAdapterPosition());
@@ -56,16 +81,28 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.MyViewHo
 
     }
 
+    /**
+     * return the size of the category_name arraylist
+     * @return
+     */
     @Override
     public int getItemCount() {
         return category_name.size();
     }
 
+    /**
+     * class that contains the textViews and the progress bar
+     */
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView category_name;
         TextView allocatedAvailable;
         ProgressBar progbar;
         LinearLayout mainLayout;
+
+        /**
+         * init the class variables with their corresponding views
+         * @param itemView
+         */
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             category_name = itemView.findViewById(R.id.cat_name_txt);

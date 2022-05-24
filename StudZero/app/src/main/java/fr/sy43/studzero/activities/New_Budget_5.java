@@ -17,6 +17,11 @@ import java.util.ArrayList;
 
 import fr.sy43.studzero.R;
 
+/**
+ * 5th screen of a new budget creation
+ * Display all the information : allocated amount, budget amount, categories with their allocated amount and a progress bar to show the %of the total budget
+ * A confirm button to finish the creation of the budget
+ */
 public class New_Budget_5 extends AppCompatActivity {
 
     private CustomAdapter2 customAdapter2;
@@ -25,6 +30,13 @@ public class New_Budget_5 extends AppCompatActivity {
     private float Available;
     private RecyclerView recyclerView;
 
+    /**
+     * setup the text fields with the correct value
+     * setup the top bar
+     * setup the confirm button listener
+     * setup the recycler view (customAdapter2 and arraylists)
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +79,11 @@ public class New_Budget_5 extends AppCompatActivity {
 
 
         button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Confirm the budget creation and go to home page
+             * update the budget id of the user in the DB
+             * @param v
+             */
             public void onClick(View v) {
                 Log.i("button", "confirmed");
                 finish();
@@ -79,6 +96,10 @@ public class New_Budget_5 extends AppCompatActivity {
     }
 
     //récupérer les datas de la DB courrante
+
+    /**
+     * Get the data from the database and put it into the arraylists (category_name and allocated)
+     */
     private void GetData() {
         // récup data
         category_name.add("cat 1");
@@ -109,6 +130,10 @@ public class New_Budget_5 extends AppCompatActivity {
         Available = 1200f; //this budget.allocated
     }
 
+    /**
+     * When a category is clicked, go back to the new budget 3 screen (setup allocated amount for each category)
+     * @param pos
+     */
     public void OnCategoryClicked(int pos){ //appuis sur une catégorie du recycler view
 
         Intent intent = new Intent(this.getApplicationContext(), New_Budget_3.class);
@@ -120,6 +145,12 @@ public class New_Budget_5 extends AppCompatActivity {
     }
 
     //permet le retour vers la page précédente
+
+    /**
+     * go back to the previous screen when the return button of the top bar is pressed
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -143,6 +174,11 @@ public class New_Budget_5 extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * return true if the top bar is created successfully
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }

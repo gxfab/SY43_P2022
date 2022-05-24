@@ -36,6 +36,13 @@ import fr.sy43.studzero.R;
 
 //Liée la base de donnée pour récupérer la valeur associé a une catégorie à partir de sa position si elle existe CTRL+F " la" et "pour test"
 
+/**
+ * 3rd screen of the budget's creation
+ * display the allocated amount and the available amount
+ * allows to setup the estimated expenses of a category
+ * provide a button to add a new category
+ * provide a button to go to the review all screen
+ */
 public class New_Budget_3 extends AppCompatActivity {
 
     private Spinner spinner;
@@ -54,6 +61,13 @@ public class New_Budget_3 extends AppCompatActivity {
         }
     }
 
+    /**
+     * get the budget value from the DB and display it
+     * get the allocated value and display it
+     * setup the top bar
+     * setup listeners for the buttons
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +108,10 @@ public class New_Budget_3 extends AppCompatActivity {
 
         Button buttonAddCategory = (Button) findViewById(R.id.NewBudgetAddCategoryButton);
         buttonAddCategory.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Add category button pressed : go to the add category screen
+             * @param v
+             */
             public void onClick(View v) {
                 //lance new budget 4
                 finish();
@@ -115,6 +133,10 @@ public class New_Budget_3 extends AppCompatActivity {
 
         Button ReviewButton = (Button) findViewById(R.id.NewBudgetIncomeReviewAllButton);
         ReviewButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Review all Button pressed : go to the corresponding screen
+             * @param v
+             */
             public void onClick(View v) {
                 //lance new budget 5
                 finish();
@@ -151,7 +173,14 @@ public class New_Budget_3 extends AppCompatActivity {
 
         // When user select a List-Item.
         this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
+            /**
+             * Update the Cat_Selected variable with the one selected
+             * Enter the allocated amount of this category in the text field if not null
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             */
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 final TextInputLayout textInputLayoutUserName = (TextInputLayout) findViewById(R.id.TextInputLayoutExpenses);
@@ -172,6 +201,10 @@ public class New_Budget_3 extends AppCompatActivity {
 
             }
 
+            /**
+             * If no category is selected : set the Cat_Selected variable to ""
+             * @param parent
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 Cat_Selected = "";
@@ -187,6 +220,11 @@ public class New_Budget_3 extends AppCompatActivity {
 
     }
 
+    /**
+     * setup listeners on the view to hide the keyboard when the user click elsewhere
+     * @param view
+     * @param activity
+     */
     public  void setupForKeyboardDismiss(View view, final Activity activity) {
         final TextInputLayout textInputLayoutUserName = (TextInputLayout) findViewById(R.id.TextInputLayoutExpenses);
         final TextInputEditText TextInputIncomeExpenses = (TextInputEditText) findViewById(R.id.TextInputIncomeExpenses);
@@ -195,7 +233,12 @@ public class New_Budget_3 extends AppCompatActivity {
         if(!(view instanceof EditText)) {
 
             view.setOnTouchListener(new View.OnTouchListener() {
-
+                /**
+                 * On touch, hide keyboard and raise text label error if needed
+                 * @param v
+                 * @param event
+                 * @return
+                 */
                 public boolean onTouch(View v, MotionEvent event) {
                     hideSoftKeyboard(activity);
                     if(TextInputIncomeExpenses.getText().length() == 0){//champ vide reset le text field
@@ -220,6 +263,11 @@ public class New_Budget_3 extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     * hide the keyboard
+     * @param activity
+     */
     public static void hideSoftKeyboard(Activity activity) {
         try {
             InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -230,10 +278,13 @@ public class New_Budget_3 extends AppCompatActivity {
     }
 
 
-
-
-
-
+    /**
+     * display a message ton confirm the category selected
+     * @param adapterView
+     * @param view
+     * @param position
+     * @param id
+     */
     private void onItemSelectedHandler(AdapterView<?> adapterView, View view, int position, long id) {
         Adapter adapter = adapterView.getAdapter();
         String category = (String) adapter.getItem(position);
@@ -245,6 +296,12 @@ public class New_Budget_3 extends AppCompatActivity {
     }
 
     //permet le retour vers la page settings sur l'appuis de la back arrow
+
+    /**
+     * go back to the previous page when the return button of the top bar is pressed
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -270,10 +327,21 @@ public class New_Budget_3 extends AppCompatActivity {
     }
 
     //message d'erreur du champ de texte et récupération de la valeur
+
+    /**
+     * Setup the error handler for the input text field
+     * Setup the listener for the confirm button
+     */
     private void setupFloatingLabelError() {
         Button button = (Button) findViewById(R.id.ConfirmButton);
         final TextInputLayout textInputLayoutExpenses = (TextInputLayout) findViewById(R.id.TextInputLayoutExpenses);
         button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Confirm button clicked :
+             * set the value of the text field to the DB for the category Cat_Selected
+             * compute the new allocated amount and update the display of this value
+             * @param v
+             */
             public void onClick(View v) {
 
                 // update DB
@@ -296,6 +364,11 @@ public class New_Budget_3 extends AppCompatActivity {
         });
 
         textInputLayoutExpenses.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            /**
+             * disable the focus of the input text field
+             * @param view
+             * @param b
+             */
             @Override
             public void onFocusChange(View view, boolean b) {
                 textInputLayoutExpenses.setHint("focus");
@@ -304,6 +377,14 @@ public class New_Budget_3 extends AppCompatActivity {
 
         textInputLayoutExpenses.getEditText().addTextChangedListener(new TextWatcher() {
             // ...
+
+            /**
+             * manage the error label of the input text field
+             * @param text
+             * @param start
+             * @param count
+             * @param after
+             */
             @Override
             public void onTextChanged(CharSequence text, int start, int count, int after) {
                 button.setEnabled(false);
@@ -331,11 +412,23 @@ public class New_Budget_3 extends AppCompatActivity {
                     button.setEnabled(false);
                 }
             }
+
+            /**
+             * do nothing (auto generated)
+             * @param s
+             * @param start
+             * @param count
+             * @param after
+             */
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
             }
 
+            /**
+             * do nothing (auto generated)
+             * @param s
+             */
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -343,6 +436,9 @@ public class New_Budget_3 extends AppCompatActivity {
         });
     }
 
+    /**
+     * override the onBackPressed function to "disable" it
+     */
     @Override
     public void onBackPressed() {
     }

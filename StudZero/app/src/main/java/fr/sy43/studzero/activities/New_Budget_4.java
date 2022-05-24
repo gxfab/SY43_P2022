@@ -26,9 +26,18 @@ import fr.sy43.studzero.R;
 //créer la catégory dans la BD sur appuis du button : ctrl + F : "appuis button"
 //changer le string NewBudget4_NbCatTextViewTXT avec la vrai valeur de $val au OnCreate ctrl + F : "here"
 
+/**
+ * 4th screen of a new budget creation : add a new category
+ */
 public class New_Budget_4 extends AppCompatActivity {
     String category_name;
 
+    /**
+     * setup the text field with the correct values
+     * setup the top bar
+     * setup the keyboarddismiss
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +61,12 @@ public class New_Budget_4 extends AppCompatActivity {
     }
 
     //back arrow status bar
+
+    /**
+     * return to the previous screen of the return arrow of the top bar is pressed
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -75,6 +90,12 @@ public class New_Budget_4 extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * return true if the top bar is created successfully
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
@@ -83,6 +104,12 @@ public class New_Budget_4 extends AppCompatActivity {
 
 
     //view listener
+
+    /**
+     * setup listeners on the view to hide the keyboard when the user click elsewhere
+     * @param view
+     * @param activity
+     */
     public void setupForKeyboardDismiss(View view, final Activity activity) {
         final TextInputLayout TextInputLayoutCategory = (TextInputLayout) findViewById(R.id.TextInputLayoutCategory);
         final TextInputEditText TextInputCategoryName = (TextInputEditText) findViewById(R.id.TextInputCategoryName);
@@ -90,7 +117,12 @@ public class New_Budget_4 extends AppCompatActivity {
         if(!(view instanceof EditText)) {
 
             view.setOnTouchListener(new View.OnTouchListener() {
-
+                /**
+                 * On touch, hide keyboard and raise text label error if needed
+                 * @param v
+                 * @param event
+                 * @return
+                 */
                 public boolean onTouch(View v, MotionEvent event) {
                     hideSoftKeyboard(activity);
                     if(TextInputCategoryName.getText().length() == 0){//champ vide reset le text field
@@ -114,6 +146,11 @@ public class New_Budget_4 extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     * hide the keyboard
+     * @param activity
+     */
     public static void hideSoftKeyboard(Activity activity) {
         try {
             InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -128,11 +165,21 @@ public class New_Budget_4 extends AppCompatActivity {
 
     //input text
     //message d'erreur du champ de texte et récupération de la valeur
+
+    /**
+     * Setup the error handler for the input text field
+     * Setup the listener for the create button
+     */
     private void setupFloatingLabelError() {
         final TextInputLayout textInputLayoutCategoryName = (TextInputLayout) findViewById(R.id.TextInputLayoutCategory);
         final TextInputEditText TextInputCategoryName = (TextInputEditText) findViewById(R.id.TextInputCategoryName);
         Button button = (Button) findViewById(R.id.NewBudget4CreateButton);
         button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * raise an error if the text is incorrect
+             * otherwise, and the new category to the DB and launch the new budget 3 screen (setup allocated amount for each category)
+             * @param v
+             */
             public void onClick(View v) {
                 if(TextInputCategoryName.getText().length() == 0){
                     textInputLayoutCategoryName.setError("required*");
@@ -164,6 +211,13 @@ public class New_Budget_4 extends AppCompatActivity {
         });
 
         textInputLayoutCategoryName.getEditText().addTextChangedListener(new TextWatcher() {
+            /**
+             * manage the error label of the input text field
+             * @param text
+             * @param start
+             * @param count
+             * @param after
+             */
             @Override
             public void onTextChanged(CharSequence text, int start, int count, int after) {
                 button.setEnabled(true);
@@ -191,11 +245,23 @@ public class New_Budget_4 extends AppCompatActivity {
                     button.setEnabled(true);
                 }
             }
+
+            /**
+             * do nothing (auto generated)
+             * @param s
+             * @param start
+             * @param count
+             * @param after
+             */
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
             }
 
+            /**
+             * do noting (auto generated)
+             * @param s
+             */
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -203,6 +269,9 @@ public class New_Budget_4 extends AppCompatActivity {
         });
     }
 
+    /**
+     * override the onBackPressed function to "disable" it
+     */
     @Override
     public void onBackPressed() {
     }
