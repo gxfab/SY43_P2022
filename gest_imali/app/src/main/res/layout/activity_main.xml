@@ -33,11 +33,51 @@
         style="@style/ButtonTextStyle"
         android:layout_width="@dimen/home_page_btn_width"
         android:layout_height="@dimen/home_page_btn_height"
+        android:layout_marginTop="70dp"
         android:backgroundTint="@color/purple_700"
         android:text="@string/home_page_btn1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="147dp" />
+        app:layout_constraintTop_toBottomOf="@+id/titleRectangle" />
+
+    <Button
+        android:id="@+id/homePageButton2"
+        style="@style/ButtonTextStyle"
+        android:layout_width="@dimen/home_page_btn_width"
+        android:layout_height="@dimen/home_page_btn_height"
+        android:layout_marginTop="92dp"
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/home_page_btn2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homePageButton1" />
+
+    <Button
+        android:id="@+id/homePageButton3"
+        style="@style/ButtonTextStyle"
+        android:layout_width="@dimen/home_page_btn_width"
+        android:layout_height="@dimen/home_page_btn_height"
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/home_page_btn3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homePageButton2" />
+
+    <Button
+        android:id="@+id/homePageButton4"
+        style="@style/ButtonTextStyle"
+        android:layout_width="@dimen/home_page_btn_width"
+        android:layout_height="@dimen/home_page_btn_height"
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/home_page_btn4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homePageButton3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
