@@ -7,7 +7,9 @@ import androidx.room.PrimaryKey
 
 @Entity
 open class MoneyChange(
-    @ColumnInfo(name = "frequency") var frequency: Frequency,
+    @ColumnInfo(name = "frequency")
+    var frequency: Frequency,
+
     category: Category
 ) {
 
