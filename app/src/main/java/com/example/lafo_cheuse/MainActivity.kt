@@ -1,16 +1,20 @@
 package com.example.lafo_cheuse
 
-import android.app.UiModeManager.MODE_NIGHT_YES
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+import androidx.fragment.app.Fragment
 import androidx.room.Room
 import com.example.lafo_cheuse.database.LafoCheuseDatabase
+import com.example.lafo_cheuse.fragment.view.ChartFragment
+import com.example.lafo_cheuse.fragment.view.HomeFragment
+import com.example.lafo_cheuse.fragment.view.SetIncomesExpensesFragment
+import com.example.lafo_cheuse.fragment.view.SettingsFragment
 import com.example.lafo_cheuse.models.Category
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Description
@@ -18,6 +22,8 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import kotlinx.coroutines.*
 
 
@@ -25,10 +31,32 @@ const val EXTRA_MESSAGE = "com.exemple.test.MESSAGE"
 
 @DelicateCoroutinesApi
 class MainActivity : AppCompatActivity() {
+
+    private var navigationView: BottomNavigationView? = null;
+
+    var homeFragment: HomeFragment = HomeFragment();
+    var chartFragment: ChartFragment = ChartFragment();
+    var setIncomesExpensesFragment: SetIncomesExpensesFragment = SetIncomesExpensesFragment();
+    var settingsFragment: SettingsFragment = SettingsFragment();
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        navigationView = findViewById(R.id.bottom_navigation);
+
+        makeCurrentFragment(homeFragment)
+
+        navigationView!!.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.home -> makeCurrentFragment(homeFragment)
+                R.id.chart -> makeCurrentFragment(chartFragment)
+                R.id.income_expense -> makeCurrentFragment(setIncomesExpensesFragment)
+                R.id.settings -> makeCurrentFragment(settingsFragment)
+            }
+            true
+        }
 
         GlobalScope.launch(Dispatchers.Main) {
 
@@ -43,36 +71,18 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-            val chart = findViewById<PieChart>(R.id.piechart)
 
-            val entries = ArrayList<PieEntry>()
-
-            for (i in 0..3) {
-                entries.add(PieEntry((Math.random() * 70 + 30).toFloat(), "Quarter " + (i + 1)))
-            }
-            val dataSet = PieDataSet(entries, "")
-
-            dataSet.colors = ColorTemplate.PASTEL_COLORS.toList()
-            dataSet.valueTextColor = Color.WHITE
-            dataSet.valueTextSize = 12f
-
-            val data = PieData(dataSet)
-
-            chart.data = data
-            val description = Description()
-            description.textColor = Color.RED
-            description.text = "Bootleg graph"
-            chart.description = description
-            chart.animateX(2000)
         }
     }
-    fun sendMessage(view: View) {
-        val editText = findViewById<EditText>(R.id.editTextTextPersonName)
-        val message = editText.text.toString()
-        val intent = Intent(this, DisplayMessageActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, message)
+
+    private fun makeCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.container, fragment)
+            commit()
         }
-        startActivity(intent)
+
+    fun sendMessage(view: View) {
+
     }
 
 }
