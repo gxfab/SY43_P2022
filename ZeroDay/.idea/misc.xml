@@ -5,11 +5,17 @@
       <map>
         <entry key="..\:/Users/folly/OneDrive - Universite De Technologie De Belfort-Montbeliard/INFO 2/SY43/Projet/SY43_P2022/ZeroDay/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/custom_name_validation_tick.xml" value="0.164" />
+        <entry key="app/src/main/res/drawable/custom_round_rectangle.xml" value="0.164" />
+        <entry key="app/src/main/res/drawable/custom_start_next_button.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/ic_euro.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/item_selector.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/round_corner.xml" value="0.2085" />
+        <entry key="app/src/main/res/layout/activity_cycle_setting.xml" value="0.2328125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_name_validation.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="app/src/main/res/menu/item_menu.xml" value="0.165" />
       </map>
     </option>
