@@ -1,21 +1,31 @@
-import java.utitl.List;
-import om.example.sy43.db.entity.Category;
+package com.example.sy43.db.DAO;
 
-@DAO
-public interface CategoryDAO{
 
-    @Query("SELECT * FROM Transaction WHERE SubCatID LIKE :SubCatID")
-    Category findByID(int SubCatID);
+import androidx.room.Delete;
+import androidx.room.Query;
+import androidx.room.Transaction;
 
-    @Query("SELECT Value FROM Transaction")
-    float findValues();
+import com.example.sy43.Category;
+import com.google.common.util.concurrent.ListenableFuture;
 
-    @Query("SELECT * FROM Transaction WHERE Category LIKE :Category")
-    Transaction findByCategorie(int category);
+import java.util.List;
+import androidx.room.Dao;
 
-    @Query("SELECT * FROM Transaction WHERE SubCategory LIKE :SubCategory")
-    Transaction findBySubCategorie(int Subcategory);
+@Dao
+public interface TransactionDAO{
+
+    @Query("SELECT * FROM `transaction` WHERE TransactionID LIKE :transactionID")
+    public ListenableFuture<List<com.example.sy43.db.entity.Transaction>> findByID(int transactionID);
+
+    @Query("SELECT Value FROM `transaction`")
+    public ListenableFuture<List<Float>> findValues();
+
+    @Query("SELECT * FROM `transaction` WHERE Category LIKE :category")
+    public ListenableFuture<List<com.example.sy43.db.entity.Transaction>> findByCategorie(int category);
+
+    @Query("SELECT * FROM `transaction` WHERE SubCategory LIKE :subcategory")
+    public ListenableFuture<List<com.example.sy43.db.entity.Transaction>> findBySubCategorie(int subcategory);
 
     @Delete
-    void deleteTransaction(Transaction transaction);
+    void deleteTransaction(com.example.sy43.db.entity.Transaction transaction);
 }

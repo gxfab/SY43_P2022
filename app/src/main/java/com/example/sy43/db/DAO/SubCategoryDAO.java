@@ -1,17 +1,29 @@
-import java.utitl.List;
-import om.example.sy43.db.entity.SubCategory;
+package com.example.sy43.db.DAO;
 
-@DAO
-public interface CategoryDAO{
+import androidx.room.Delete;
+import androidx.room.Query;
+
+import com.example.sy43.Category;
+import com.example.sy43.db.entity.SubCategory;
+import com.google.common.util.concurrent.ListenableFuture;
+
+import java.util.List;
+import androidx.room.Dao;
+
+@Dao
+public interface SubCategoryDAO{
 
     @Query("SELECT * FROM SubCategory WHERE SubCatID LIKE :SubCatID")
-    Category findByID(int SubCatID);
+    public ListenableFuture<List<SubCategory>> findByID(int SubCatID);
 
-    @Query("SELECT MaxValue,CurrentValue FROM SubCategory")
-    float findValues();
+    @Query("SELECT CurrentValue FROM SubCategory")
+    public ListenableFuture<List<Float>> findValues();
 
-    @Query("SELECT * FROM SubCategory WHERE Category LIKE :Category")
-    SubCategory findByCategorie(int category);
+    @Query("SELECT MaxValue FROM SubCategory")
+    public ListenableFuture<List<Float>> findMaxValues();
+
+    @Query("SELECT * FROM SubCategory WHERE Category LIKE :category")
+    public ListenableFuture<List<SubCategory>> findByCategorie(int category);
 
     @Delete
     void deleteSubCategory(SubCategory Subcategory);

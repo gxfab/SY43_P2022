@@ -1,14 +1,15 @@
-package om.example.sy43.db.entity;
+package com.example.sy43.db.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.roomForeignKey;
 
-@Entity(tableName = "transaction", 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "transaction",
 indices = {@Index(value = {"TransactionID"})},
-foreignKeys = {@ForeignKey(entity = Category.class, parentColumns = "CatID", childColumns = "Category"),
+foreignKeys = {@ForeignKey(entity = Categorydb.class, parentColumns = "CatID", childColumns = "Category", onDelete = ForeignKey.CASCADE),
 @ForeignKey(entity = SubCategory.class, parentColumns = "SubCatID", childColumns = "SubCategory")})
 public class Transaction {
     @PrimaryKey(autoGenerate = true)
@@ -76,4 +77,4 @@ public class Transaction {
     public void setDate(int Date){
         this.Date=Date;
     }
-} 
+}

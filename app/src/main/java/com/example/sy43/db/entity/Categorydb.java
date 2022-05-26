@@ -1,17 +1,17 @@
-package om.example.sy43.db.entity;
+package com.example.sy43.db.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Category", indices = 
+@Entity(tableName = "Categorydb", indices =
 {@Index(value = {"CatName"},unique=true)})
 
-public class Category {
+public class Categorydb {
     @PrimaryKey(autoGenerate = true)
     private int CatID;
-    
+
     @ColumnInfo( name = "CatName")
     private String CatName;
 
@@ -41,7 +41,7 @@ public class Category {
         this.CatID=CatID;
     }
 
-    public void setCatName(string CatName){
+    public void setCatName(String CatName){
         this.CatName = CatName;
     }
 
