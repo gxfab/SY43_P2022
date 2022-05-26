@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey20">
+
     <ImageView
         android:id="@+id/fragment_return"
         android:layout_width="24dp"
@@ -21,14 +22,14 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <Button
-        android:layout_width="218dp"
-        android:layout_height="63dp"
-        android:background="@drawable/roundstyle"
-        android:text="@string/editing_goals_validate"
-        style = "@style/CustomSubTitle1TextStyle"
-        android:textAllCaps="false"
-        android:backgroundTint="@color/grey50"
+        style="@style/CustomSubTitle1TextStyle"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center"/>
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/grey50"
+        android:text="@string/editing_goals_validate"
+        android:textAllCaps="false" />
 
 </LinearLayout>
