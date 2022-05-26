@@ -4,7 +4,6 @@ import androidx.room.Delete;
 import androidx.room.Query;
 import androidx.room.Dao;
 
-import com.example.sy43.Category;
 import com.example.sy43.db.entity.Categorydb;
 import com.google.common.util.concurrent.ListenableFuture;
 

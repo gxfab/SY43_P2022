@@ -5,7 +5,6 @@ import androidx.room.Delete;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
-import com.example.sy43.Category;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.List;

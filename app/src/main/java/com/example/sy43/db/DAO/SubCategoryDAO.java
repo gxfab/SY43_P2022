@@ -3,7 +3,7 @@ package com.example.sy43.db.DAO;
 import androidx.room.Delete;
 import androidx.room.Query;
 
-import com.example.sy43.Category;
+
 import com.example.sy43.db.entity.SubCategory;
 import com.google.common.util.concurrent.ListenableFuture;
 
