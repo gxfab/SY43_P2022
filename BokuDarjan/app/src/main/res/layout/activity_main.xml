@@ -14,20 +14,10 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/toolbarTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fontFamily="sans-serif-medium"
-            android:text="Bokudarjan"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFFFFF"
-            tools:ignore="TextContrastCheck"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="18dp" />
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -37,11 +27,27 @@
             android:backgroundTint="#00FFFFFF"
             android:minHeight="48dp"
             app:srcCompat="@drawable/ic_more"
+            tools:ignore="SpeakableTextPresentCheck"
             tools:layout_editor_absoluteX="364dp"
             tools:layout_editor_absoluteY="6dp" />
 
 
     </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/toolbarTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Bokudarjan"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toEndOf="@+id/menuButton"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -71,6 +77,38 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.0"
         app:navGraph="@navigation/nav_graph" />
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/my_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:context=".MainActivity"
+        tools:ignore="HardcodedText,SpeakableTextPresentCheck">
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/fragment_side_bar" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFFFF"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:srcCompat="@drawable/ic_menu"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
