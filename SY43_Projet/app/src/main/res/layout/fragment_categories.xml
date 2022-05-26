@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".categories">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="105dp"
+        android:layout_marginRight="15dp"
+        android:elevation="12dp"
+        app:cardCornerRadius="50dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50sp"
+            android:background="#00FF60"
+            android:src="@drawable/add" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/view9"
+        android:layout_width="match_parent"
+        android:layout_height="110sp"
+        android:layout_gravity="top"
+        android:layout_marginTop="-10dp"
+        app:cardBackgroundColor="#f87f7f"
+        app:cardCornerRadius="15dp" >
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="30sp"
+        android:text="Categories"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="40sp" />
+    </androidx.cardview.widget.CardView>
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="225sp"
+        android:layout_marginTop="150sp"
+        android:dropDownWidth="match_parent"
+        android:entries="@array/Months_Array"
+        android:minHeight="48dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25sp"
+        android:layout_marginTop="160sp"
+        android:text="Period"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="185dp">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="359dp"
+            android:layout_height="600sp"
+            app:layout_column="0"
+            app:layout_gravity="bottom|center"
+            app:layout_row="0">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view14"
+                android:layout_width="160dp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                app:cardBackgroundColor="#f87f7f"
+                app:cardCornerRadius="15dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view15"
+                android:layout_width="160dp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                app:cardBackgroundColor="#f87f7f"
+                app:cardCornerRadius="15dp"
+                app:layout_column="0"
+                app:layout_row="1" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view16"
+                android:layout_width="160dp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                app:cardBackgroundColor="#f87f7f"
+                app:cardCornerRadius="15dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view17"
+                android:layout_width="160dp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                app:cardBackgroundColor="#f87f7f"
+                app:cardCornerRadius="15dp"
+                app:layout_column="0"
+                app:layout_row="2" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view18"
+                android:layout_width="160dp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                app:cardBackgroundColor="#f87f7f"
+                app:cardCornerRadius="15dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view19"
+                android:layout_width="160dp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                app:cardBackgroundColor="#f87f7f"
+                app:cardCornerRadius="15dp"
+                app:layout_column="0"
+                app:layout_row="3" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view20"
+                android:layout_width="160dp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                app:cardBackgroundColor="#f87f7f"
+                app:cardCornerRadius="15dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view21"
+                android:layout_width="160dp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                app:cardBackgroundColor="#f87f7f"
+                app:cardCornerRadius="15dp"
+                app:layout_column="0"
+                app:layout_row="4" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view13"
+                android:layout_width="160sp"
+                android:layout_height="100sp"
+                android:layout_margin="10sp"
+                app:cardBackgroundColor="#f87f7f"
+                app:cardCornerRadius="15dp"
+                app:layout_column="1"
+                app:layout_row="0" />
+        </androidx.gridlayout.widget.GridLayout>
+
+    </androidx.gridlayout.widget.GridLayout>
+
+</FrameLayout>
