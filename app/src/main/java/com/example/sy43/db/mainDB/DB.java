@@ -12,10 +12,14 @@ import com.example.sy43.db.DAO.TransactionDAO;
 import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.db.entity.SubCategory;
 import com.example.sy43.db.entity.Transaction;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
-@Database(entities = {Categorydb.class, SubCategory.class, Transaction.class}, version = 1)
+@Database(entities = {Categorydb.class, SubCategory.class, Transaction.class}, version = 1, exportSchema = false)
 
 public abstract class DB extends RoomDatabase{
 
@@ -36,6 +40,7 @@ public abstract class DB extends RoomDatabase{
         }
         return INSTANCE;
     }
+
 
     public static void destroyInstance() {
         INSTANCE = null;
