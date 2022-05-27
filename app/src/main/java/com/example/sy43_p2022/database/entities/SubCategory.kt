@@ -29,7 +29,6 @@ class SubCategory {
 
     @ColumnInfo(name = "spendings")
     var spendings : Int = 0
-    constructor() {}
 
     constructor(id: Int, name: String, objective: Int, spendings: Int) {
         this.id = id

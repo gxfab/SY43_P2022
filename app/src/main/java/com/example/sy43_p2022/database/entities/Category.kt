@@ -21,7 +21,6 @@ class Category {
 
     @ColumnInfo(name = "totalSpendings")
     var totalSpendings : Int = 0
-    constructor() {}
 
     constructor(id: Int, name: String, totalObjective: Int, totalSpendings: Int) {
         this.id = id

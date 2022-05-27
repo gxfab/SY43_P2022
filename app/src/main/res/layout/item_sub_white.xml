@@ -20,16 +20,17 @@
 
     <EditText
         android:id="@+id/editText"
+        style="@style/Default3TextStyle"
         android:layout_width="256dp"
         android:layout_height="28dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/editbackground"
         android:backgroundTint="@color/white"
         android:hint="@string/editing_goals_amount"
-        style="@style/Default3TextStyle"
         android:paddingLeft="20dp"
         android:paddingBottom="5dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +45,20 @@
         android:text="@string/editing_goals_editing"
         app:layout_constraintStart_toStartOf="@+id/editText"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <Button
+        android:id="@+id/validate_button"
+        style="@style/CustomSubTitle1TextStyle"
+        android:layout_width="70sp"
+        android:layout_height="40sp"
+        android:layout_marginStart="4dp"
+        android:backgroundTint="@color/grey50"
+        android:text="Validate"
+        android:textAllCaps="false"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintTop_toTopOf="@+id/editText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

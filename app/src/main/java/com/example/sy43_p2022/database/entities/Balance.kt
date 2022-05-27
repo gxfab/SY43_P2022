@@ -18,7 +18,6 @@ class Balance {
 
     @ColumnInfo(name = "spendings")
     var spendings : Int = 0
-    constructor() {}
 
     constructor(id: Int, objective: Int, spendings: Int) {
         this.id = id
