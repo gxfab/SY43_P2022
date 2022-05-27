@@ -7,22 +7,25 @@ import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "subcategory", foreignKeys = [ForeignKey(entity = Category::class,
-            parentColumns = ["id"],
-            childColumns = ["categoryID"],
-            onDelete = CASCADE)])
-
+@Entity(tableName = "subcategory", foreignKeys = [
+    ForeignKey(
+        entity = Category::class,
+        parentColumns = ["id"],
+        childColumns = ["categoryId"],
+        onDelete = CASCADE
+    )
+])
 class SubCategory {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
     var id : Int = 0
 
-    @ColumnInfo(name = "categoryID")
-    var categoryID : Int = 0;
+    @ColumnInfo(name = "categoryId")
+    var parentCategoryId : Int = 0
 
     @ColumnInfo(name = "name")
-    var name : String? = null
+    var name : String = "Unknown"
 
     @ColumnInfo(name = "objective")
     var objective : Int = 0
@@ -30,11 +33,9 @@ class SubCategory {
     @ColumnInfo(name = "spending")
     var spending : Int = 0
 
-    constructor(id: Int, name: String, objective: Int, spending: Int) {
-        this.id = id
+    constructor(name: String, parentCategoryId: Int) {
         this.name = name
-        this.objective = objective
-        this.spending = spending
+        this.parentCategoryId = parentCategoryId
     }
 
 }

@@ -39,6 +39,7 @@ class ButtonAdapter(private val layoutId: Int, private val category: Category, p
                 onClickListener.onClick(holder.category)
             }
         }
+
     }
 
     override fun getItemCount(): Int = category.getAllSubCategories().size

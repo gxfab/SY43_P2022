@@ -6,7 +6,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "balance")
-
 class Balance {
     @PrimaryKey(autoGenerate = true)
     @NonNull

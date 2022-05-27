@@ -18,7 +18,7 @@ interface BalanceDAO {
     @Query("SELECT SUM(objective) FROM subcategory")
     suspend fun getAllObjectives(id: Int): LiveData<List<Balance>>
 
-    @Query("SELECT SUM(spending) FROM subcategory WHERE categoryID")
+    @Query("SELECT SUM(spending) FROM subcategory WHERE parentCategoryId")
     suspend fun getAllSpending(id: Int): LiveData<List<Balance>>
 
     @Query("DELETE FROM balance")

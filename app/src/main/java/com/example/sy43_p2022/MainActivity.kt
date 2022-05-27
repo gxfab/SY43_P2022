@@ -9,11 +9,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //On injecte le HomeFragment dans notre fragment_container de activity_main
-        val transaction = supportFragmentManager.beginTransaction() //necessaire pour manipuler les fragments
-        transaction.replace(R.id.fragment_container, HomeFragment()) //remplacement du fragment (en attente)
-        transaction.addToBackStack(null) //pas de retour
-        transaction.commit() //on effectue le remplacement
-
+        // We inject the HomeFragment into the fragment container
+        val transaction = supportFragmentManager.beginTransaction() // mandatory to manipulate fragments
+        transaction.replace(R.id.fragment_container, HomeFragment())
+        transaction.addToBackStack(null) // no returns
+        transaction.commit()
     }
 }

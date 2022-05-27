@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.adapter.ButtonAdapter
-import com.example.sy43_p2022.database.dao.CategoriesDAO
 import com.example.sy43_p2022.database.entity.Category
 import kotlin.random.Random
 

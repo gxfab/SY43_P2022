@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.adapter.ButtonAdapter
-import com.example.sy43_p2022.database.dao.CategoriesDAO
 import com.example.sy43_p2022.database.entity.Category
 import kotlin.random.Random
 
@@ -32,7 +31,7 @@ class SavingGoalsFragments: Fragment() {
             categories.addSubCategory(subCategory)
         }
 
-        //ici, on va récupérer le recyclerview pour afficher la lsite des boutons
+        // ici, on va récupérer le recyclerview pour afficher la liste des boutons
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
         verticalRecyclerView.adapter = ButtonAdapter(
             R.layout.item_vertical_white,
