@@ -1,19 +1,14 @@
-/*
+package com.example.sy43.db.entity;
 
-package om.example.sy43.db.entity;
-
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-
-import java.util.Locale.Category;
-
-import android.arch.persistence.roomForeignKey;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "SubCategory",indices ={
 @Index(value = {"SubCatID"}, unique = true)},
-foreignKeys ={@ForeignKey(entity = Category.class, parentColumns ="CatID", childColumns = "Category")})
+foreignKeys ={@ForeignKey(entity = Categorydb.class, parentColumns ="CatID", childColumns = "Category",onDelete = ForeignKey.CASCADE)})
 
 public class SubCategory {
     @PrimaryKey(autoGenerate = true)
@@ -55,7 +50,7 @@ public class SubCategory {
         this.SubCatID=SubCatID;
     }
 
-    public void setSubCatName(string SubCatName){
+    public void setSubCatName(String SubCatName){
         this.SubCatName = SubCatName;
     }
 
@@ -71,4 +66,3 @@ public class SubCategory {
         this.Category=Category;
     }
 }
-*/
