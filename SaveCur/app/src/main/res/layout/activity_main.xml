@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signInBtn"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:text="Sign in"
+        android:layout_centerInParent="true"
+        app:cornerRadius="25px"
+        android:backgroundTint="#62AD62"
+        android:textSize="40px"
+        android:textStyle="bold"
+        android:onClick="onSignInBtnClicked"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/registerBtn"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/signInBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Register"
+        app:cornerRadius="25px"
+        android:backgroundTint="#62AD62"
+        android:textSize="40px"
+        android:textStyle="bold"
+        />
+
+
+</RelativeLayout>
