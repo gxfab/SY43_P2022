@@ -1,20 +1,25 @@
 <resources>
-	<!-- Base application theme. -->
-	<style name="Theme.MoneyZ" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-		<!-- Primary brand color. -->
-		<item name="colorPrimary">@color/blue_theme</item>
-		<item name="colorPrimaryVariant">@color/blue_theme</item>
-		<item name="colorOnPrimary">@color/black</item>
-		<!-- Secondary brand color. -->
-		<item name="colorSecondary">@color/blue_theme</item>
-		<item name="colorSecondaryVariant">@color/blue_theme</item>
-		<item name="colorOnSecondary">@color/black</item>
-		<!-- Status bar color. -->
-		<item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-		<!-- Customize your theme here. -->
-		<item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MoneyZ.SmallComponent
-		</item>
-		<item name="android:textAllCaps">false</item>
-		<item name="textAppearanceButton">@style/TextAppearance.MoneyZ.Button</item>
+    <!-- Base application theme. -->
+    <style name="Theme.MoneyZ" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue_theme</item>
+        <item name="colorPrimaryVariant">@android:color/transparent</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue_theme</item>
+        <item name="colorSecondaryVariant">@color/blue_theme</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MoneyZ.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MoneyZ.MediumComponent
+        </item>
+        <item name="android:textAllCaps">false</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MoneyZ.Button</item>
+
+
+		<item name='android:navigationBarColor'>@android:color/transparent</item>
 	</style>
 </resources>

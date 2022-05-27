@@ -12,8 +12,8 @@ class ExpensesActivity : AppCompatActivity() {
 
     private lateinit var account: Account
     private lateinit var db: AppDatabase
-
     private lateinit var depensesRV: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expenses)
@@ -26,16 +26,19 @@ class ExpensesActivity : AppCompatActivity() {
         lifecycleScope.launch {
             if (accountUid == null) {
                 finish()
-            }
-            else {
+            } else {
                 loadAccount(accountUid)
             }
         }
 
     }
 
+    /**
+     * @param uid: Account identifier in the database
+     */
     private suspend fun loadAccount(uid: Int) {
         account = db.accountDao().getAccountById(uid)
-        title = "Dépenses de " + account.name
+        title = getString(R.string.expenses_title,account.name)
+        supportActionBar?.subtitle = "mettre le mois ici ???"
     }
 }

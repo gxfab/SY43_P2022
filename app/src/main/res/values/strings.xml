@@ -8,4 +8,6 @@
     <string name="account_created">Compte créé avec succès</string>
     <string name="add_expense">Ajouter une dépense</string>
     <string name="placeholder_short">Texte à remplacer</string>
+    <string name="previsions_title">Définition des prévisions</string>
+    <string name="expenses_title">Dépenses de %1$s</string>
 </resources>
