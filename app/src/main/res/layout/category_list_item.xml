@@ -9,8 +9,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:cardCornerRadius="20dp"
+        android:layout_height="150dp"
+        app:cardCornerRadius="1dp"
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true">
@@ -54,6 +54,16 @@
             android:layout_marginBottom="20dp"
             android:text="Current price"
             android:textSize="20sp" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginHorizontal="24dp"
+            android:progress="0"/>
+
 
     </androidx.cardview.widget.CardView>
 

@@ -6,9 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
-
         <!--android:layout_marginStart="18dp"
             android:layout_marginTop="27dp"
             android:layout_marginEnd="239dp"
@@ -39,16 +36,34 @@
 
                 <TextView  android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Catégories"/>
-                    <ListView
-                        android:id="@+id/categoryListView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:dividerHeight="0dp"
-                        android:layout_marginBottom="50dp"
-                        android:divider="#00000000"
-                        tools:context="abhiandroid.com.listexample.MainActivity" >
-                    </ListView>
+                        android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="24dp"
+
+                    android:text="Catégories"/>
+                <ListView
+                    android:id="@+id/categoryListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:dividerHeight="0dp"
+                    android:layout_marginBottom="50dp"
+                    tools:context="abhiandroid.com.listexample.MainActivity" >
+                </ListView>
+
+                <TextView  android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="24dp"
+                    android:text="Objectifs"/>
+                <ListView
+                    android:id="@+id/objectiveListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:dividerHeight="0dp"
+                    android:layout_marginBottom="50dp"
+                    tools:context="abhiandroid.com.listexample.MainActivity" >
+                </ListView>
             </LinearLayout>
 
     <RelativeLayout
@@ -56,11 +71,13 @@
         android:layout_height="fill_parent"
         android:gravity="bottom"
         tools:ignore="MissingConstraints">
+
         <Button
+            android:id="@+id/add"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginBottom="20dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
             android:background="@color/teal_200"
             android:text="+" />
     </RelativeLayout>

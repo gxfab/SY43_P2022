@@ -5,9 +5,17 @@ public class Category {
         this.setCatName(name);
         this.setCurrentValue(currentValue);
         this.setMaxValue(maxValue);
+        this.isObjective = false;
+    }
+
+    public Category(String name, float currentValue, float maxValue, boolean isObjective) {
+        this.setCatName(name);
+        this.setCurrentValue(currentValue);
+        this.setMaxValue(maxValue);
+        this.isObjective = isObjective;
     }
     private int CatID;
-
+    public boolean isObjective;
     private String CatName;
 
     private float MaxValue;

@@ -9,10 +9,11 @@ import com.example.sy43.models.Category;
 import com.example.sy43.repositories.CategoryRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CategoryViewModel extends ViewModel {
     private MutableLiveData<List<Category>> categories;
-    private CategoryRepository catRepo;
+    public CategoryRepository catRepo;
 
     public void init() {
         if (categories != null) {
@@ -22,6 +23,12 @@ public class CategoryViewModel extends ViewModel {
         categories = catRepo.getCategories();
     }
 
+    public void addNewCategory(final Category category) {
+        // TODO: une fois la DAO fini, faire une requête vers l'api au lieu d'ajouter en dur
+        List<Category> currentCategories = this.categories.getValue();
+        currentCategories.add(category);
+        categories.postValue(currentCategories);
+    }
     public LiveData<List<Category>> getCategories() {
         return categories;
     }

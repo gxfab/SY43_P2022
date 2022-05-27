@@ -25,11 +25,17 @@ public class CategoryRepository {
         return data;
     }
 
+    public void addCategory(String name) {
+        this.dataSet.add(new Category(name, 10, 20));
+    }
+
     public void setCategories() {
         dataSet.add(new Category("Groceries", 10, 100));
         dataSet.add(new Category("Work", 10, 100));
         dataSet.add(new Category("School", 10, 100));
         dataSet.add(new Category("QSDQDSQ", 120, 140));
+        dataSet.add(new Category("Buy a car", 0, 10000, true));
+        dataSet.add(new Category("Buy a cqdqdqar", 0, 10000, true));
 
     }
 }
