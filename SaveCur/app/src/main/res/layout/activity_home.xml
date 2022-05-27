@@ -12,6 +12,23 @@
         android:gravity="bottom"
         android:orientation="vertical">
 
+        <!-- Logo space -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOGO"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+            </TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Account Preview -->
         <com.google.android.material.card.MaterialCardView
@@ -23,17 +40,67 @@
             app:strokeColor="@color/material_on_surface_stroke"
             app:strokeWidth="1dp">
 
-            <com.google.android.material.textview.MaterialTextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter"
-                android:paddingLeft="20dp"
-                android:paddingTop="6dp"
-                android:text="Hello, Jacob"
-                android:textFontWeight="900"
-                android:textSize="70px"></com.google.android.material.textview.MaterialTextView>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="6dp"
+                    android:text="Hello, Jacob"
+                    android:textFontWeight="900"
+                    android:textSize="70px"></com.google.android.material.textview.MaterialTextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.4"
+                        >
+
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            >
+
+                        </ProgressBar>
+
+                    </RelativeLayout>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="16px"
+                        android:layout_height="match_parent"
+                        app:dividerColor="@color/green"
+                        android:layout_marginBottom="30px"
+                        android:layout_marginTop="10px">
+
+                    </com.google.android.material.divider.MaterialDivider>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        >
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Categories -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="220pt"
@@ -48,7 +115,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <!-- Categories -->
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

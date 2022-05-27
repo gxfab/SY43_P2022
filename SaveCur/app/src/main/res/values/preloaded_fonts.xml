@@ -2,6 +2,5 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/inter</item>
-        <item>@font/inter_extrabold</item>
     </array>
 </resources>
