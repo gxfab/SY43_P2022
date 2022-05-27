@@ -7,11 +7,23 @@ import android.view.View
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.view_overview)
     }
 
-    fun changeView(view: View){
+    fun setHomeView(view: View){
+        setContentView(R.layout.view_overview)
     }
 
+    fun setBalanceView(view: View){
+        setContentView(R.layout.view_balance)
+    }
+
+    fun setEntreeView(view: View){
+        setContentView(R.layout.view_entrees)
+    }
+
+    fun setDepenseView(view: View){
+        setContentView(R.layout.view_depense)
+    }
 
 }

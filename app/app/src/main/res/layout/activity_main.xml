@@ -7,8 +7,8 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <include layout="@layout/menu"/>
+    <include layout="@layout/menu_home"/>
 
-    <include layout="@layout/overview"/>
+    <include layout="@layout/view_overview"/>
 
 </LinearLayout>
