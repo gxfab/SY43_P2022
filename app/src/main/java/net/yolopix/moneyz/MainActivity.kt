@@ -10,6 +10,7 @@ import androidx.room.Room
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
 
+const val EXTRA_MESSAGE = "net.yolopix.moneyz.ACCOUNT_UID"
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,10 +21,7 @@ class MainActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
 
-		db = Room.databaseBuilder(
-			applicationContext,
-			AppDatabase::class.java, "moneyz_db"
-		).fallbackToDestructiveMigration().build()
+		db = DatabaseFactory.getDB(applicationContext)
 
 		// Show the account creation fragment when clicking on the new account button
 		val addAccountButton = findViewById<Button>(R.id.button_add_account)
@@ -45,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 	suspend fun loadAccounts() {
 		val adapter = AccountAdapter(db.accountDao().getAll())
 		recyclerView.adapter = adapter
-
 	}
 
 }
