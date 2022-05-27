@@ -19,14 +19,14 @@ class Category {
     @ColumnInfo(name = "totalObjective")
     var totalObjective : Int = 0
 
-    @ColumnInfo(name = "totalSpendings")
-    var totalSpendings : Int = 0
+    @ColumnInfo(name = "totalSpending")
+    var totalSpending : Int = 0
 
-    constructor(id: Int, name: String, totalObjective: Int, totalSpendings: Int) {
+    constructor(id: Int, name: String, totalObjective: Int, totalSpending: Int) {
         this.id = id
         this.name = name
         this.totalObjective = totalObjective
-        this.totalSpendings = totalSpendings
+        this.totalSpending = totalSpending
     }
 
 }

@@ -16,13 +16,13 @@ class Balance {
     @ColumnInfo(name = "objective")
     var objective : Int = 0
 
-    @ColumnInfo(name = "spendings")
-    var spendings : Int = 0
+    @ColumnInfo(name = "spending")
+    var spending : Int = 0
 
-    constructor(id: Int, objective: Int, spendings: Int) {
+    constructor(id: Int, objective: Int, spending: Int) {
         this.id = id
         this.objective = objective
-        this.spendings = spendings
+        this.spending = spending
     }
 
 }

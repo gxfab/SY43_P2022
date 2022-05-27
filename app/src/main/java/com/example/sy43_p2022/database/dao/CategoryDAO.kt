@@ -1,8 +1,8 @@
 package com.example.sy43_p2022.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.sy43_p2022.database.entities.Category
-import com.example.sy43_p2022.database.entities.SubCategory
 
 @Dao
 interface CategoryDAO {
@@ -16,16 +16,16 @@ interface CategoryDAO {
     suspend fun updateTotalObjective(vararg totalObjective: Category)
 
     @Update
-    suspend fun updateTotalSpendings(vararg totalSpendings: Category)
+    suspend fun updateTotalSpending(vararg totalSpending: Category)
 
     @Query("SELECT * FROM category WHERE name LIKE :name")
-    suspend fun getAllCategoryByName(name: String): List<Category>
+    suspend fun getAllCategoryByName(name: String): LiveData<List<Category>>
 
     @Query("SELECT SUM(objective) FROM subcategory WHERE categoryID LIKE :id")
-    suspend fun getAllObjectiveByCategory(id: Int): List<Category>
+    suspend fun getAllObjectiveByCategory(id: Int): LiveData<List<Category>>
 
-    @Query("SELECT SUM(spendings) FROM subcategory WHERE categoryID LIKE :id")
-    suspend fun getAllSpendingsByCategory(id: Int): List<Category>
+    @Query("SELECT SUM(spending) FROM subcategory WHERE categoryID LIKE :id")
+    suspend fun getAllSpendingByCategory(id: Int): LiveData<List<Category>>
 
     @Query("DELETE FROM category")
     suspend fun nukeTable()

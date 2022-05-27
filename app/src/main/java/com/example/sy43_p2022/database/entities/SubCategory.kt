@@ -27,14 +27,14 @@ class SubCategory {
     @ColumnInfo(name = "objective")
     var objective : Int = 0
 
-    @ColumnInfo(name = "spendings")
-    var spendings : Int = 0
+    @ColumnInfo(name = "spending")
+    var spending : Int = 0
 
-    constructor(id: Int, name: String, objective: Int, spendings: Int) {
+    constructor(id: Int, name: String, objective: Int, spending: Int) {
         this.id = id
         this.name = name
         this.objective = objective
-        this.spendings = spendings
+        this.spending = spending
     }
 
 }
