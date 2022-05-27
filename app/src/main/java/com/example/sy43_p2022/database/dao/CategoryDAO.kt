@@ -7,27 +7,26 @@ import com.example.sy43_p2022.database.entities.SubCategory
 @Dao
 interface CategoryDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCategory(category: Category)
+    suspend fun insertCategory(category: Category)
 
     @Query ("SELECT * FROM category")
-    fun getAllCategory(): List<Category>
+    suspend fun getAllCategory(): List<Category>
 
     @Update
-    fun updateTotalObjective(vararg totalObjective: Category)
+    suspend fun updateTotalObjective(vararg totalObjective: Category)
 
     @Update
-    fun updateTotalSpendings(vararg totalSpendings: Category)
+    suspend fun updateTotalSpendings(vararg totalSpendings: Category)
 
     @Query("SELECT * FROM category WHERE name LIKE :name")
-    fun getAllCategoryByName(name: String): List<Category>
+    suspend fun getAllCategoryByName(name: String): List<Category>
 
-    @Query("SELECT * FROM subcategory WHERE objective LIKE :totalObjective")
-    fun getAllCategoryByObjective(totalObjective: Int): List<Category>
+    @Query("SELECT SUM(objective) FROM subcategory WHERE categoryID LIKE :id")
+    suspend fun getAllObjectiveByCategory(id: Int): List<Category>
 
-    @Query("SELECT * FROM subcategory WHERE spendings LIKE :totalSpendings")
-    fun getAllCategoryBySpendings(totalSpendings: Int): List<SubCategory>
-
+    @Query("SELECT SUM(spendings) FROM subcategory WHERE categoryID LIKE :id")
+    suspend fun getAllSpendingsByCategory(id: Int): List<Category>
 
     @Query("DELETE FROM category")
-    fun nukeTable()
+    suspend fun nukeTable()
 }

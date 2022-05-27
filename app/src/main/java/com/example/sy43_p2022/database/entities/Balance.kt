@@ -11,7 +11,7 @@ class Balance {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    var id : Int = 0;
+    var id : Int = 0
 
     @ColumnInfo(name = "objective")
     var objective : Int = 0

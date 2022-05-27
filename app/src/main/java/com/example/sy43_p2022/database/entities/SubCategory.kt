@@ -16,7 +16,10 @@ class SubCategory {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    var id : Int = 0;
+    var id : Int = 0
+
+    @ColumnInfo(name = "categoryID")
+    var categoryID : Int = 0;
 
     @ColumnInfo(name = "name")
     var name : String? = null

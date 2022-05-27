@@ -5,17 +5,13 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "category", foreignKeys = [androidx.room.ForeignKey(
-    entity = com.example.sy43_p2022.database.entities.Balance::class,
-    parentColumns = ["id"],
-    childColumns = ["balanceID"],
-    onDelete = androidx.room.ForeignKey.CASCADE)])
+@Entity(tableName = "category")
 
 class Category {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    var id : Int = 0;
+    var id : Int = 0
 
     @ColumnInfo(name = "name")
     var name : String? = null
