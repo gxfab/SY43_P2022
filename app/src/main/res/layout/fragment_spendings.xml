@@ -20,15 +20,4 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-    <Button
-        style="@style/CustomSubTitle1TextStyle"
-        android:layout_width="218dp"
-        android:layout_height="63dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/grey50"
-        android:text="@string/editing_goals_validate"
-        android:textAllCaps="false" />
-
 </LinearLayout>
