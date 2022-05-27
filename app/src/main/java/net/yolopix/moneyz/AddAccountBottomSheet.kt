@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -22,26 +23,40 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
         return inflater.inflate(R.layout.bottom_sheet_add_account, container, false)
     }
 
+    private lateinit var editTextAccountName: EditText
+
     // When the bottom sheet is created
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val buttonAdd =
             view.findViewById<com.google.android.material.button.MaterialButton>(R.id.button_add)
+        editTextAccountName = view.findViewById(R.id.edit_text_account_name)
 
         // Add click listener to the add button
         buttonAdd.setOnClickListener {
-            // Fetch the account name in the EditText and add it to the database
-            val editTextAccountName = view.findViewById<EditText>(R.id.edit_text_account_name)
-            val newAccountName = editTextAccountName?.text.toString()
-            runBlocking {
-                db.accountDao().insertAccount(Account(0, newAccountName))
-            }
-            lifecycleScope.launch {
-                (activity as MainActivity).loadAccounts()
-            }
-            dismiss()
+            addAccount()
         }
 
+        // When the done button is pressed on the soft keyboard
+        editTextAccountName.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                addAccount()
+            }
+            true
+        }
     }
+
+    private fun addAccount() {
+        // Fetch the account name in the EditText and add it to the database
+        val newAccountName = editTextAccountName.text.toString()
+        runBlocking {
+            db.accountDao().insertAccount(Account(0, newAccountName))
+        }
+        lifecycleScope.launch {
+            (activity as MainActivity).loadAccounts()
+        }
+        dismiss()
+    }
+
 }

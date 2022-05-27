@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:padding="16dp"
-	android:importantForAutofill="no"
-	app:behavior_peekHeight="52dp"
-	app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:importantForAutofill="no"
+    android:padding="16dp"
+    app:behavior_peekHeight="52dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-	<com.google.android.material.button.MaterialButton
-		android:id="@+id/button_add"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="@string/add"
-		app:behavior_hideable="true"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toTopOf="@id/text_field_account_name" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        app:behavior_hideable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_field_account_name" />
 
-	<com.google.android.material.textfield.TextInputLayout
-		android:id="@+id/text_field_account_name"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_marginEnd="16dp"
-		android:hint="@string/account_name_placeholder"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toStartOf="@+id/button_add"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field_account_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/account_name_placeholder"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-		<com.google.android.material.textfield.TextInputEditText
-			android:id="@+id/edit_text_account_name"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="TextContrastCheck">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_account_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
+            tools:ignore="TextContrastCheck">
 
-			<requestFocus />
-		</com.google.android.material.textfield.TextInputEditText>
+            <requestFocus />
+        </com.google.android.material.textfield.TextInputEditText>
 
-	</com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
