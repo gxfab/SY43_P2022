@@ -67,12 +67,55 @@
                         android:layout_weight="1.4"
                         >
 
+
+
                         <ProgressBar
+                            style="?android:progressBarStyleHorizontal"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            >
+                            android:layout_margin="10dp"
+                            android:progress="65"
+                            android:progressDrawable="@drawable/complete_progress_bar"
+                            android:rotation="-90"/>
 
-                        </ProgressBar>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@id/moneyDivider"
+                                android:layout_centerInParent="true"
+                                android:text="125 €"
+                                android:textAlignment="center"
+                                app:fontFamily="@font/inter"
+                                android:textFontWeight="2000"
+                                android:textSize="52px"
+                                android:textColor="@color/blue"></com.google.android.material.textview.MaterialTextView>
+
+                            <com.google.android.material.divider.MaterialDivider
+                                android:id="@+id/moneyDivider"
+                                android:layout_width="45dp"
+                                android:layout_height="1dp"
+                                app:dividerColor="@color/light_blue"
+                                android:layout_centerInParent="true"></com.google.android.material.divider.MaterialDivider>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/moneyDivider"
+                                android:layout_centerInParent="true"
+                                android:text="230 €"
+                                android:textAlignment="center"
+                                app:fontFamily="@font/inter"
+                                android:textFontWeight="500"
+                                android:textSize="48px"
+                                android:textColor="@color/light_blue"></com.google.android.material.textview.MaterialTextView>
+
+
+                        </RelativeLayout>
+
 
                     </RelativeLayout>
 

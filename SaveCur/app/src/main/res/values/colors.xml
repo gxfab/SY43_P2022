@@ -11,4 +11,7 @@
     <color name="green">#629462</color>
     <color name="light_green">#82C082</color>
     <color name="dark_green">#406340</color>
+    <color name="blue">#0066FF</color>
+    <color name="light_blue">#3fb0d9</color>
+
 </resources>
