@@ -12,4 +12,5 @@
     <string name="incomes_and_expenses_fragment">Incomes and Expenses Fragment</string>
     <string name="settings_fragment">Settings Fragment</string>
     <string name="display_the_charts">display the charts</string>
+    <string name="budgetNameHolder">Aucun budget à afficher</string>
 </resources>
