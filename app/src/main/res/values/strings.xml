@@ -11,4 +11,5 @@
     <string name="chart_fragment">Chart Fragment</string>
     <string name="incomes_and_expenses_fragment">Incomes and Expenses Fragment</string>
     <string name="settings_fragment">Settings Fragment</string>
+    <string name="display_the_charts">display the charts</string>
 </resources>
