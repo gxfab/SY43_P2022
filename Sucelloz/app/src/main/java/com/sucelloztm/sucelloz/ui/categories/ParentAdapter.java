@@ -6,8 +6,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 
 import com.sucelloztm.sucelloz.R;
@@ -17,18 +19,23 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
 
     private final String[] localDataSet;
 
+
+
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
+        private final CardView cardView;
+
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
 
             textView = view.findViewById(R.id.text_view_categories);
+            cardView = view.findViewById(R.id.category_card_clickable);
         }
 
         public TextView getTextView() {
@@ -40,7 +47,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
      * Initialize the dataset of the Adapter.
      *
      * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
+     *                by RecyclerView.
      */
     public ParentAdapter(String[] dataSet) {
         localDataSet = dataSet;
@@ -53,6 +60,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.categories_item, viewGroup, false);
+
         return new ViewHolder(view);
     }
 
@@ -63,7 +71,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.getTextView().setText(localDataSet[position]);
-        viewHolder.itemView.findViewById(R.id.categories_item_button).setOnClickListener(
+        viewHolder.itemView.findViewById(R.id.category_card_clickable).setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_navigation_categories_to_navigation_sub_categories));
     }
 
