@@ -32,10 +32,10 @@ const val EXTRA_MESSAGE = "com.exemple.test.MESSAGE"
 @DelicateCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
-    private var navigationView: BottomNavigationView? = null;
+    var navigationView: BottomNavigationView? = null;
 
-    var homeFragment: HomeFragment = HomeFragment();
     var chartFragment: ChartFragment = ChartFragment();
+    var homeFragment: HomeFragment = HomeFragment();
     var setIncomesExpensesFragment: SetIncomesExpensesFragment = SetIncomesExpensesFragment();
     var settingsFragment: SettingsFragment = SettingsFragment();
 
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun makeCurrentFragment(fragment: Fragment) =
+    fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.container, fragment)
             commit()
