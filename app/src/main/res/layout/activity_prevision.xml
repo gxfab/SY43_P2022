@@ -1,7 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:ignore="ExtraText">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Définition des prévisions"
+        android:textAlignment="center"
+        android:layout_margin= "10dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        >
+
+    </TextView>
+    <com.google.android.material.slider.Slider
+        android:id="@+id/salary_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:valueFrom="0"
+        android:value="780"
+        android:valueTo="1800"
+        app:haloColor="@color/white"
+        app:thumbColor="@color/white"
+        app:trackColor="@color/white"
+        >
+
+    </com.google.android.material.slider.Slider>
+
+    <TextView
+        android:id="@+id/salary_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="780/1800€"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp"
+        />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Conseils de budgetisation"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp">
+
+            </TextView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/grey_prevision"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+
+
+                    >
+                <TextView
+                    android:layout_width="405dp"
+                    android:layout_height="match_parent"
+                    android:text="Vous avez dépassé votre budget Nourriture le\nmois dernier"
+                    android:textColor="@color/black"
+                    android:textSize="16sp">
+
+                </TextView>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Augmenter en conséquence"
+                    android:layout_marginLeft="120dp"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black">
+
+                </Button>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
 
 </LinearLayout>
