@@ -3,13 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChartFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="fragment.view.ChartFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/chart_fragment"
-        android:textSize="25sp"
-        android:layout_centerInParent="true" />
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/specBudgetChart"
+        android:layout_width="311dp"
+        android:layout_height="481dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="101dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>
