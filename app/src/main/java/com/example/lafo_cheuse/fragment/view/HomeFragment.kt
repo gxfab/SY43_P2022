@@ -2,7 +2,7 @@ package com.example.lafo_cheuse.fragment.view
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +29,15 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment() : Fragment() {
     var chartView : PieChart? = null;
+    var context : MainActivity? = null;
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        exitTransition = inflater.inflateTransition(R.transition.slide_in_left)
+        enterTransition = inflater.inflateTransition(R.transition.slide_in_right)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
