@@ -29,7 +29,6 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment() : Fragment() {
     var chartView : PieChart? = null;
-    var context : MainActivity? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
