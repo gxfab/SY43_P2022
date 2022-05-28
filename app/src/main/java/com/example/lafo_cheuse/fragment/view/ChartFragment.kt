@@ -40,18 +40,31 @@ class ChartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         chartView = view.findViewById<BarChart>(R.id.specBudgetChart)
-        configureChartAppearance()
+        createGraph()
 
+
+    }
+
+    private fun createGraph() {
+        configureChartAppearance()
         val entries = ArrayList<BarEntry>()
 
-        val x : Float = 0.0F
-        val y: Float = (Math.random() * 70 + 30).toFloat()
+        val x : Float = 0.0f
+        val y: Float = (Math.random() * 100).toFloat()
         entries.add(BarEntry(x, y))
-
 
         val dataSet = BarDataSet(entries, "")
 
-        dataSet.colors = ColorTemplate.PASTEL_COLORS.toList()
+        val customColors = ArrayList<Int>()
+        if(y > 50) {
+            customColors.add(Color.rgb(175,236,61))
+        } else if(y > 25) {
+            customColors.add(Color.rgb(236,199,61))
+        } else {
+            customColors.add(Color.rgb(238,73,60))
+        }
+
+        dataSet.colors = customColors
         dataSet.valueTextColor = Color.WHITE
         dataSet.valueTextSize = 12f
 
@@ -59,8 +72,7 @@ class ChartFragment : Fragment() {
 
         chartView!!.data = data
         val description = Description()
-        description.textColor = Color.RED
-        description.text = "Bootleg graph"
+        description.text = ""
 
         chartView!!.legend.isEnabled = false
         chartView!!.description = description
@@ -71,13 +83,21 @@ class ChartFragment : Fragment() {
         chartView!!.renderer = RoundedBarChart(chartView,chartView!!.animator,chartView!!.viewPortHandler, 50)
         chartView!!.description.isEnabled = false
         chartView!!.setDrawValueAboveBar(false)
+        //chartView!!.setBackgroundColor(Color.rgb(121,121,121))
         val xAxis: XAxis = chartView!!.xAxis
+        xAxis.setDrawAxisLine(false)
+        xAxis.setDrawGridLines(false)
+        xAxis.setDrawLabels(false)
 
         val axisLeft: YAxis = chartView!!.axisLeft
         axisLeft.granularity = 10f
         axisLeft.axisMinimum = 0f
-        val axisRight: YAxis = chartView!!.axisRight
-        axisRight.granularity = 10f
-        axisRight.axisMinimum = 0f
+        axisLeft.axisMaximum = 100f
+
+        axisLeft.setDrawLabels(false)
+        axisLeft.setDrawAxisLine(false)
+        axisLeft.setDrawGridLines(false)
+
+        chartView!!.axisRight.isEnabled = false
     }
 }
