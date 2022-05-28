@@ -8,9 +8,8 @@
     <string name="add_spending_button_home_name">Add Spending</string>
     <string name="add_savings_button_home_name">Add Savings</string>
     <string name="my_categories_name">My Categories</string>
+    <string name="add_category_name">Add category</string>
     <string name="element_text">Element</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sub_categories_name">Sub Categories</string>
     <string name="name_spending">Name</string>
     <string name="date_spending">Date</string>
@@ -24,4 +23,8 @@
     <string name="ok_savings">OK</string>
     <string name="cancel_savings">Cancel</string>
     <string name="title_savings">Add savings</string>
+    <string name="title_category">Add a category</string>
+    <string name="ok_category">OK</string>
+    <string name="cancel_category">Cancel</string>
+    <string name="name_category">Name</string>
 </resources>

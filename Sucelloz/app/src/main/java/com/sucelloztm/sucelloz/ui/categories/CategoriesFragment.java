@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.CategoriesFragmentBinding;
+import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
 
 public class CategoriesFragment extends Fragment {
 
@@ -56,6 +57,12 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(CategoriesFragment.this).navigate(R.id.action_navigation_categories_to_navigation_home);
+            }
+        });
+        binding.addCategoryButtonCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AddCategoryDialogFragment().show(getChildFragmentManager(),AddCategoryDialogFragment.TAG);
             }
         });
     }
