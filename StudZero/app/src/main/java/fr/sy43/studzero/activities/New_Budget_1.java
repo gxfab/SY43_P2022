@@ -142,6 +142,9 @@ public class New_Budget_1 extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                db.deleteBudgetCategories((int) idNewBudget);
+                db.deleteBudget((int) idNewBudget);
                 finish();
                 //startActivity(new Intent(getApplicationContext(), Settings.class));
                 // renvoye vers la page settings sur appuis de la back arrow

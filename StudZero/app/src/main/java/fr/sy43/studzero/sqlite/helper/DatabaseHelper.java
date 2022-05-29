@@ -360,6 +360,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(PAYMENT_COLUMN_DATE_PAYMENT, getStringFromDate(payment.getDatePayment()));
         cv.put(PAYMENT_COLUMN_CATEGORY, payment.getCategory());
         long id = db.insert(TABLE_PAYMENT, null, cv);
+        updateCategoryRealAmount(payment.getCategory(), payment.getAmount());
 
         return id != -1;
     }
@@ -759,11 +760,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param amount amount used for the update
      * @return true if the update was successful, otherwise false
      */
-    public boolean updateCategoryRealAmount(int idCategory, float amount) {
+    private boolean updateCategoryRealAmount(int idCategory, float amount) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(CATEGORY_COLUMN_REAL_AMOUNT, amount);
+        float updatesRealAmount = getCategory(idCategory).getRealAmount() + amount;
+        cv.put(CATEGORY_COLUMN_REAL_AMOUNT, updatesRealAmount);
         int id = db.update(TABLE_CATEGORY, cv, ""+CATEGORY_COLUMN_ID+"=?", new String[]{""+idCategory});
         return id != -1;
     }
@@ -835,6 +837,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteBudgetCategories(int idBudget) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CATEGORY, CATEGORY_COLUMN_BUDGET+"=?", new String[]{""+idBudget});
+        db.close();
+    }
+
+    public void deleteBudget(int idBudget) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_BUDGET, BUDGET_COLUMN_ID+"=?", new String[]{""+idBudget});
         db.close();
     }
 

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         User user = db.getUser();
-        if(user.getCurrentBudget() > 0 || db.getRemainingDaysOfCurrentBudget() <= 0) {
+        if(user.getCurrentBudget() > 0 && db.getRemainingDaysOfCurrentBudget() > 0) {
             db.closeDB();
             startActivity(new Intent(getApplicationContext(), Home.class));
         } else {

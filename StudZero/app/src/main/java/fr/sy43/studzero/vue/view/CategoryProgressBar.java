@@ -37,6 +37,8 @@ public class CategoryProgressBar extends View {
      */
     private float ratioBar;
 
+    private boolean overPayed;
+
     /**
      * Constructor of the class
      * @param context
@@ -57,6 +59,7 @@ public class CategoryProgressBar extends View {
         } else {
           ratioBar = category.getRealAmount() / category.getTheoreticalAmount();
         }
+        overPayed = category.getRealAmount() > category.getTheoreticalAmount();
     }
 
     /**
@@ -77,6 +80,9 @@ public class CategoryProgressBar extends View {
         Rect bounds = new Rect();
         this.paint.getTextBounds(this.textToDraw, 0, this.textToDraw.length(), bounds);
         int heightText = bounds.height();
+        if(overPayed) {
+            this.paint.setColor(res.getColor(R.color.red));
+        }
         canvas.drawText(textToDraw, widthText-this.getWidth()*0.02f, this.getHeight() * 0.8f, paint);
         // Draw the progress bar
         this.paint.setStrokeWidth(5f);
