@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import fr.sy43.studzero.sqlite.model.Budget;
 import fr.sy43.studzero.sqlite.model.Category;
@@ -745,12 +747,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  currentBudget.getBudgetAmount() - c.getFloat(c.getColumnIndex("sum"));
     }
 
-    public int getRemainingDaysOfCurrentBudget() {
+    public long getRemainingDaysOfCurrentBudget() {
         User user = getUser();
-        Budget currentBudget = getCurrentBudget();
-        int day1 = (int) Math.floor(user.getDateNextBudget().getTime() / 86400000);
-        int day2 = (int) Math.floor(currentBudget.getDateEnd().getTime() / 86400000);
-        return day1 - day2;
+        long diff = user.getDateNextBudget().getTime() - (new Date()).getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -854,16 +854,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return String
      */
     private String getStringFromDate(Date d) {
-        SimpleDateFormat f = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+        SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy HH:MM:SS.SSS", Locale.FRANCE);
         return f.format(d);
     }
 
     private Date getDateFromString(String s) {
-        SimpleDateFormat f = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+        SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy HH:MM:SS.SSS", Locale.FRANCE);
         try {
             return f.parse(s);
-        } catch (ParseException e) {
-            return null;
+        } catch (Exception e) {
+            return new Date();
         }
     }
 }
