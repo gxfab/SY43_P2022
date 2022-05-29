@@ -1,39 +1,52 @@
 package com.example.bokudarjan
 
-import android.app.ActionBar
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
+import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.bokudarjan.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import kotlinx.coroutines.delay
 
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //Setup the binding
         val binding : ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+
+        val host = findViewById<ConstraintLayout>(R.id.main_layout);
+
+
         val bottom = findViewById<BottomNavigationView>(R.id.bottomNavigationView);
+
+        val handler = Handler();
+
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController;
 
+
+
         bottom.setupWithNavController(navController);
+
 
         val button = findViewById<ImageButton>(R.id.menuButton);
         val drawer = findViewById<DrawerLayout>(R.id.my_drawer_layout);
 
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         button.setOnClickListener {
             if (drawer.isDrawerOpen(GravityCompat.START)){
@@ -48,22 +61,30 @@ class MainActivity : AppCompatActivity() {
         val machin = truc.getHeaderView(0);
         val bidule = machin.findViewById<LinearLayout>(R.id.buttonlay);
 
+        val anim = AnimationUtils.loadAnimation(this, R.anim.fade_out_up);
+
         for(i in 0..5){
             val child: View = layoutInflater.inflate(R.layout.fragment_month, null);
-            child.findViewById<TextView>(R.id.txt).text = "Mois n°" + (i+1).toString();
+            child.findViewById<TextView>(R.id.txtMonth).text = "Mois n°" + (i+1).toString();
+            child.setOnClickListener { child.startAnimation(anim); handler.postDelayed({bidule.removeView(child)},500);}
             bidule.addView(child);
+
         }
 
         val scrl = machin.findViewById<HorizontalScrollView>(R.id.scrollview);
-        scrl.setOnScrollChangeListener { view, i, i2, i3, i4 ->
-            Toast.makeText(applicationContext, "Cringe", Toast.LENGTH_SHORT).show()
+
+
+        drawer.setOnTouchListener { view, ev ->
+            if(ev.y < scrl.y + scrl.height && ev.x < scrl.x + scrl.width){
+                scrl.dispatchTouchEvent(ev);
+                true;
+            }else{
+                false
+            }
         }
 
 
-
-
-
-
-        Log.i("[CRINGE]", bidule.toString());
     }
+
+
 }

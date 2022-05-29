@@ -22,7 +22,7 @@
         android:src="@drawable/ic_rectangle_bresom" />
 
     <TextView
-        android:id="@+id/txt"
+        android:id="@+id/txtMonth"
         android:layout_width="110dp"
         android:layout_height="21dp"
         android:layout_alignEnd="@+id/imageView4"
@@ -32,5 +32,34 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="111dp"
         android:text="Mois de XXX"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/txtValue"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/imageView4"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_alignEnd="@+id/imageView4"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="42dp"
+        android:gravity="center"
+        android:text="XXX€"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_alignEnd="@+id/imageView4"
+        android:layout_marginTop="99dp"
+        android:layout_marginEnd="19dp"
+        android:gravity="center"
+        android:text="Restant à classer"
         android:textColor="#FFFFFF" />
 </RelativeLayout>
