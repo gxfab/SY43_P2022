@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sucelloztm.sucelloz.databinding.SpendingsFragmentBinding;
+import com.sucelloztm.sucelloz.ui.dialogs.AddSpendingDialogFragment;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -51,7 +52,12 @@ public class SpendingsFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        binding.addSpendingButtonSpendings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AddSpendingDialogFragment().show(getChildFragmentManager(),AddSpendingDialogFragment.TAG);
+            }
+        });
     }
 
     @Override
