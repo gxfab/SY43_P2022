@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -45,7 +44,7 @@ public class CategoriesFragment extends Fragment {
         View root = binding.getRoot();
         RecyclerView recyclerView = binding.outerRecyclerView;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        ParentAdapter adapter = new ParentAdapter(dataSet);
+        CategoriesAdapter adapter = new CategoriesAdapter(dataSet);
         recyclerView.setAdapter(adapter);
 
         return root;

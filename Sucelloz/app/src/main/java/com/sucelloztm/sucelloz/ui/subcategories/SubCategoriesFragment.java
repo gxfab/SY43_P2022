@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.SubCategoriesFragmentBinding;
+import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
+import com.sucelloztm.sucelloz.ui.dialogs.AddSubCategoryDialogFragment;
 
 public class SubCategoriesFragment extends Fragment {
 
@@ -40,7 +42,7 @@ public class SubCategoriesFragment extends Fragment {
         View root = binding.getRoot();
         RecyclerView recyclerView = binding.innerRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ChildAdapter adapter = new ChildAdapter(dataSet);
+        SubCategoriesAdapter adapter = new SubCategoriesAdapter(dataSet);
         recyclerView.setAdapter(adapter);
 
         return root;
@@ -53,6 +55,12 @@ public class SubCategoriesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(SubCategoriesFragment.this).navigate(R.id.action_navigation_sub_categories_to_navigation_categories);
+            }
+        });
+        binding.addSubcategoryButtonSubcategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AddSubCategoryDialogFragment().show(getChildFragmentManager(),AddCategoryDialogFragment.TAG);
             }
         });
     }

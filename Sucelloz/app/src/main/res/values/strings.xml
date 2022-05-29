@@ -29,4 +29,9 @@
     <string name="name_category">Name</string>
     <string name="add_subcategory_name">Add subcategory</string>
     <string name="logs_name">LOGS</string>
+    <string name="title_subcategory">Add a subcategory</string>
+    <string name="name_subcategory">Name</string>
+    <string name="spendings_name_text_view">Spendings</string>
+    <string name="spendings_date_text_view">01/01/00</string>
+    <string name="spendings_amount_text_view">XXX€</string>
 </resources>
