@@ -23,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-        Budget budget = new Budget(new Date(), new Date(), 1700);
-        db.addBudget(budget);
         //User user = db.getUser();
         //Log.i("DB", "id "+user.getIdUser()+" budget "+user.getCurrentBudget() + " Date "+user.getDateNextBudget());
 

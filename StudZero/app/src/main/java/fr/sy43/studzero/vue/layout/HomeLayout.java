@@ -1,6 +1,7 @@
 package fr.sy43.studzero.vue.layout;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.LinearLayout;
 import android.widget.TextView;

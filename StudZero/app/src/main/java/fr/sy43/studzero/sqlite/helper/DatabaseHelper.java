@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -217,16 +219,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PAYMENT);
         db.execSQL(CREATE_TABLE_USER);
 
+        ContentValues cv4 = new ContentValues();
+        cv4.put(USER_COLUMN_ID, 1);
+        db.insert(TABLE_USER, null, cv4);
+
+        ContentValues cv2 = new ContentValues();
+        cv2.put(CATEGORY_TYPE_COLUMN_ID, 1);
+        cv2.put(CATEGORY_TYPE_COLUMN_NAME, "Rent");
+        db.insert(TABLE_CATEGORY_TYPE, null, cv2);
+
+        /*
         ContentValues cv = new ContentValues();
         cv.put(BUDGET_COLUMN_ID, 1);
         cv.put(BUDGET_COLUMN_DATE_END, 1);
         cv.put(BUDGET_COLUMN_BUDGET_AMOUNT, 2500);
         db.insert(TABLE_BUDGET, null, cv);
-
-        ContentValues cv2 = new ContentValues();
-        cv2.put(CATEGORY_TYPE_COLUMN_ID, 1);
-        cv2.put(CATEGORY_TYPE_COLUMN_NAME, "Loyer");
-        db.insert(TABLE_CATEGORY_TYPE, null, cv2);
 
         ContentValues cv8 = new ContentValues();
         cv8.put(CATEGORY_TYPE_COLUMN_ID, 2);
@@ -247,12 +254,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv9.put(CATEGORY_COLUMN_BUDGET, 1);
         db.insert(TABLE_CATEGORY, null, cv9);
 
-        ContentValues cv4 = new ContentValues();
-        cv4.put(USER_COLUMN_ID, 1);
-        cv4.put(USER_COLUMN_DATE_NEXT_BUDGET, 300000000);
-        cv4.put(USER_COLUMN_CURRENT_BUDGET, 1);
-        db.insert(TABLE_USER, null, cv4);
-
         ContentValues cv5 = new ContentValues();
         cv5.put(PAYMENT_COLUMN_CATEGORY, 1);
         cv5.put(PAYMENT_COLUMN_AMOUNT, 50.0f);
@@ -269,7 +270,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv7.put(PAYMENT_COLUMN_CATEGORY, 1);
         cv7.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
         cv7.put(PAYMENT_COLUMN_DATE_PAYMENT, 1);
-        db.insert(TABLE_PAYMENT, null, cv7);
+        db.insert(TABLE_PAYMENT, null, cv7);*/
     }
 
     // Called when the database is upgraded
@@ -303,8 +304,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(BUDGET_COLUMN_DATE_START, budget.getDateStart().getTime());
-        cv.put(BUDGET_COLUMN_DATE_END, budget.getDateEnd().getTime());
+        cv.put(BUDGET_COLUMN_DATE_START, getStringFromDate(budget.getDateStart()));
+        cv.put(BUDGET_COLUMN_DATE_END, getStringFromDate(budget.getDateEnd()));
         cv.put(BUDGET_COLUMN_BUDGET_AMOUNT, budget.getBudgetAmount());
         long id = db.insert(TABLE_BUDGET, null, cv);
 
@@ -354,7 +355,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
 
         cv.put(PAYMENT_COLUMN_AMOUNT, payment.getAmount());
-        cv.put(PAYMENT_COLUMN_DATE_PAYMENT, payment.getDatePayment().getTime());
+        cv.put(PAYMENT_COLUMN_DATE_PAYMENT, getStringFromDate(payment.getDatePayment()));
         cv.put(PAYMENT_COLUMN_CATEGORY, payment.getCategory());
         long id = db.insert(TABLE_PAYMENT, null, cv);
 
@@ -370,7 +371,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(USER_COLUMN_DATE_NEXT_BUDGET, user.getDateNextBudget().getTime());
+        cv.put(USER_COLUMN_DATE_NEXT_BUDGET, getStringFromDate(user.getDateNextBudget()));
         cv.put(USER_COLUMN_CURRENT_BUDGET, user.getCurrentBudget());
         long id = db.insert(TABLE_BUDGET, null, cv);
 
@@ -390,15 +391,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
+        if(c == null || !c.moveToFirst()) {
             return null;
         }
-        c.moveToFirst();
 
         return new Budget(
                 c.getInt(c.getColumnIndex(BUDGET_COLUMN_ID)),
-                new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_START))),
-                new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_END))),
+                getDateFromString(c.getString(c.getColumnIndex(BUDGET_COLUMN_DATE_START))),
+                getDateFromString(c.getString(c.getColumnIndex(BUDGET_COLUMN_DATE_END))),
                 c.getFloat(c.getColumnIndex(BUDGET_COLUMN_BUDGET_AMOUNT))
         );
     }
@@ -416,10 +416,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
+        if(c == null || !c.moveToFirst()) {
             return null;
         }
-        c.moveToFirst();
 
         return new Category(
                 c.getInt(c.getColumnIndex(CATEGORY_COLUMN_ID)),
@@ -443,10 +442,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
+        if(c == null || !c.moveToFirst()) {
             return null;
         }
-        c.moveToFirst();
 
         return new CategoryType(
                 c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
@@ -467,10 +465,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
+        if(c == null || !c.moveToFirst()) {
             return null;
         }
-        c.moveToFirst();
 
         return new CategoryType(
                 c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
@@ -491,15 +488,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
+        if(c == null || !c.moveToFirst()) {
             return null;
         }
-        c.moveToFirst();
 
         return new Payment(
                 c.getInt(c.getColumnIndex(PAYMENT_COLUMN_ID)),
                 c.getFloat(c.getColumnIndex(PAYMENT_COLUMN_AMOUNT)),
-                new Date(c.getInt(c.getColumnIndex(PAYMENT_COLUMN_DATE_PAYMENT))),
+                getDateFromString(c.getString(c.getColumnIndex(PAYMENT_COLUMN_DATE_PAYMENT))),
                 c.getInt(c.getColumnIndex(PAYMENT_COLUMN_CATEGORY))
         );
     }
@@ -516,13 +512,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
+        if(c == null || !c.moveToFirst()) {
             return null;
         }
-        c.moveToFirst();
 
         return new User(c.getInt(c.getColumnIndex(USER_COLUMN_ID)),
-                new Date(c.getInt(c.getColumnIndex(USER_COLUMN_DATE_NEXT_BUDGET))),
+                getDateFromString(c.getString(c.getColumnIndex(USER_COLUMN_DATE_NEXT_BUDGET))),
                 c.getInt(c.getColumnIndex(USER_COLUMN_CURRENT_BUDGET))
         );
     }
@@ -540,16 +535,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
-            return null;
+        if(c == null || !c.moveToFirst()) {
+            return new LinkedList<Budget>();
         }
 
-        c.moveToFirst();
          do {
             budgets.add(new Budget(
                         c.getInt(c.getColumnIndex(BUDGET_COLUMN_ID)),
-                        new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_START))),
-                        new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_END))),
+                        getDateFromString(c.getString(c.getColumnIndex(BUDGET_COLUMN_DATE_START))),
+                        getDateFromString(c.getString(c.getColumnIndex(BUDGET_COLUMN_DATE_END))),
                         c.getFloat(c.getColumnIndex(BUDGET_COLUMN_BUDGET_AMOUNT))
                     ));
         }while(c.moveToNext());
@@ -571,15 +565,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
+        if(c == null || !c.moveToFirst()) {
             return null;
         }
-        c.moveToFirst();
 
         return new Budget(
                 c.getInt(c.getColumnIndex(BUDGET_COLUMN_ID)),
-                new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_START))),
-                new Date(c.getInt(c.getColumnIndex(BUDGET_COLUMN_DATE_END))),
+                getDateFromString(c.getString(c.getColumnIndex(BUDGET_COLUMN_DATE_START))),
+                getDateFromString(c.getString(c.getColumnIndex(BUDGET_COLUMN_DATE_END))),
                 c.getFloat(c.getColumnIndex(BUDGET_COLUMN_BUDGET_AMOUNT))
         );
     }
@@ -599,11 +592,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
-            return null;
+        if(c == null || !c.moveToFirst()) {
+            return new LinkedList<Category>();
         }
 
-        c.moveToFirst();
          do {
             categories.add(new Category(
                     c.getInt(c.getColumnIndex(CATEGORY_COLUMN_ID)),
@@ -634,16 +626,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
-            return null;
+        if(c == null || !c.moveToFirst()) {
+            return new LinkedList<Payment>();
         }
 
-        c.moveToFirst();
         do {
             payments.add(new Payment(
                     c.getInt(c.getColumnIndex(PAYMENT_COLUMN_ID)),
                     c.getFloat(c.getColumnIndex(PAYMENT_COLUMN_AMOUNT)),
-                    new Date(c.getInt(c.getColumnIndex(PAYMENT_COLUMN_DATE_PAYMENT))),
+                    getDateFromString(c.getString(c.getColumnIndex(PAYMENT_COLUMN_DATE_PAYMENT))),
                     c.getInt(c.getColumnIndex(PAYMENT_COLUMN_CATEGORY))
             ));
         } while(c.moveToNext());
@@ -665,11 +656,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
-            return null;
+        if(c == null || !c.moveToFirst()) {
+            return new LinkedList<CategoryType>();
         }
 
-        c.moveToFirst();
         do {
             categorieTypes.add(new CategoryType(
                     c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
@@ -696,11 +686,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
+        if(c == null || !c.moveToFirst()) {
             return null;
         }
-
-        c.moveToFirst();
 
         return new Category(
                 c.getInt(c.getColumnIndex(CATEGORY_COLUMN_ID)),
@@ -727,11 +715,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery(query, null);
 
-        if(c == null) {
+        if(c == null || !c.moveToFirst()) {
             return null;
         }
-
-        c.moveToFirst();
 
         return new Category(
                 c.getInt(c.getColumnIndex(CATEGORY_COLUMN_ID)),
@@ -791,13 +777,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(USER_COLUMN_DATE_NEXT_BUDGET, nextBudget.getTime());
+        cv.put(USER_COLUMN_DATE_NEXT_BUDGET, getStringFromDate(nextBudget));
         int id = db.update(TABLE_USER, cv, ""+USER_COLUMN_ID+"=?", new String[]{"1"});
         return id != -1;
     }
 
     /**
-     * Update the id of the current budget
+     * Update the id of the current budget + the date of the next budget
      * @param idBudget id of the budget
      * @return true if the update was successful, otherwise false
      */
@@ -806,6 +792,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
 
         cv.put(USER_COLUMN_CURRENT_BUDGET, idBudget);
+        cv.put(USER_COLUMN_DATE_NEXT_BUDGET, getStringFromDate(getBudget(idBudget).getDateNextBudget()));
         int id = db.update(TABLE_USER, cv, ""+USER_COLUMN_ID+"=?", new String[]{"1"});
         return id != -1;
     }
@@ -819,8 +806,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(BUDGET_COLUMN_DATE_START, budget.getDateStart().getTime());
-        cv.put(BUDGET_COLUMN_DATE_END, budget.getDateEnd().getTime());
+        cv.put(BUDGET_COLUMN_DATE_START, getStringFromDate(budget.getDateStart()));
+        cv.put(BUDGET_COLUMN_DATE_END, getStringFromDate(budget.getDateEnd()));
         cv.put(BUDGET_COLUMN_BUDGET_AMOUNT, budget.getBudgetAmount());
 
         int id = db.update(TABLE_BUDGET, cv, ""+BUDGET_COLUMN_ID+"=?", new String[]{""+budget.getIdBudget()});
@@ -858,6 +845,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen()) {
             db.close();
+        }
+    }
+
+    /**
+     * Convert a Date to a ISO8601 string format
+     * @param d date to convert
+     * @return String
+     */
+    private String getStringFromDate(Date d) {
+        SimpleDateFormat f = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+        return f.format(d);
+    }
+
+    private Date getDateFromString(String s) {
+        SimpleDateFormat f = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+        try {
+            return f.parse(s);
+        } catch (ParseException e) {
+            return null;
         }
     }
 }

@@ -71,11 +71,6 @@ public class New_Budget_1 extends AppCompatActivity {
             textInput.setText(""+db.getBudget((int)idNewBudget).getBudgetAmount());
         }
         db.closeDB();
-
-        // To pass:
-        // intent.putExtra("KEY_NAME", myObject);
-        // To retrieve object in second Activity
-        // myObject = (YourClass) getIntent().getSerializableExtra("KEY_NAME");
     }
 
     /**
