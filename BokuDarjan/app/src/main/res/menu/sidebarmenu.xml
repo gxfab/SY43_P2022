@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Mois archivés" />
-    <item android:title="Paramètres" />
-    <item android:title="À Propos" />
+    <item
+        android:icon="@drawable/ic_calendar"
+        android:title="Mois archivés" />
+    <item
+        android:icon="@drawable/ic_setting"
+        android:iconTint="#FFFFFF"
+        android:title="Paramètres" />
+    <item
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="À Propos" />
 </menu>

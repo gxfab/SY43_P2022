@@ -3,6 +3,7 @@ package com.example.bokudarjan
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -13,8 +14,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.*
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import androidx.slidingpanelayout.widget.SlidingPaneLayout.LOCK_MODE_LOCKED
 import com.example.bokudarjan.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -38,10 +41,6 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController;
-
-
-
-        bottom.setupWithNavController(navController);
 
 
         val button = findViewById<ImageButton>(R.id.menuButton);
@@ -73,16 +72,23 @@ class MainActivity : AppCompatActivity() {
 
         val scrl = machin.findViewById<HorizontalScrollView>(R.id.scrollview);
 
+        var onScroll = false;
+        var locked = false;
+
+        drawer.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED);
 
         drawer.setOnTouchListener { view, ev ->
-            if(ev.y < scrl.y + scrl.height && ev.x < scrl.x + scrl.width){
-                scrl.dispatchTouchEvent(ev);
-                true;
-            }else{
-                false
+            if (ev.actionMasked == MotionEvent.ACTION_DOWN && (ev.x > drawer.x || ev.y > drawer.y)){
+                drawer.closeDrawer(GravityCompat.START);
             }
+            onTouchEvent(ev)
         }
 
+        bottom.setOnNavigationItemSelectedListener {
+            drawer.closeDrawer(GravityCompat.START);
+            true;
+        }
+        bottom.setupWithNavController(navController);
 
     }
 
