@@ -3,20 +3,20 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@android:drawable/ic_menu_always_landscape_portrait"
+        android:icon="@drawable/baseline_home_white_24dp"
         android:title="@string/home_name"
         android:visible="true" />
     <item
         android:id="@+id/navigation_spendings"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/baseline_pie_chart_white_24dp"
         android:title="@string/spendings_name"
         android:visible="true" />
     <item
         android:id="@+id/navigation_savings"
-        android:icon="@android:drawable/ic_dialog_email"
+        android:icon="@drawable/baseline_bar_chart_white_24dp"
         android:title="@string/savings_name" />
     <item
         android:id="@+id/navigation_zero_budget"
-        android:icon="@android:drawable/ic_lock_idle_lock"
+        android:icon="@drawable/baseline_account_balance_wallet_white_24dp"
         android:title="@string/zero_budget_name" />
 </menu>

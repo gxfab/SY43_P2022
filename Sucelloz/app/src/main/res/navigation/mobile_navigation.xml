@@ -13,9 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_categories"
             app:destination="@id/navigation_categories"
+            app:enterAnim="@android:anim/slide_in_left"
             app:popUpTo="@+id/navigation_home"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -42,10 +42,14 @@
             android:id="@+id/action_navigation_categories_to_navigation_home"
             app:destination="@id/navigation_home"
 
-            />
+            app:exitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_navigation_categories_to_navigation_sub_categories"
-            app:destination="@id/navigation_sub_categories" />
+            app:destination="@id/navigation_sub_categories"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom" />
     </fragment>
 
     <fragment
@@ -55,7 +59,9 @@
         tools:layout="@layout/sub_categories_fragment" >
         <action
             android:id="@+id/action_navigation_sub_categories_to_navigation_categories"
-            app:destination="@id/navigation_categories" />
+            app:destination="@id/navigation_categories"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_top" />
     </fragment>
 
 

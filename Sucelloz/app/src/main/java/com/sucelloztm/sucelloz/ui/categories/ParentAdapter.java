@@ -71,6 +71,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.getTextView().setText(localDataSet[position]);
+        //TODO:fix bug when clicking two categories at the same time
         viewHolder.itemView.findViewById(R.id.category_card_clickable).setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_navigation_categories_to_navigation_sub_categories));
     }

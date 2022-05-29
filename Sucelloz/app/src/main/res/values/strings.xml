@@ -28,4 +28,5 @@
     <string name="cancel_category">Cancel</string>
     <string name="name_category">Name</string>
     <string name="add_subcategory_name">Add subcategory</string>
+    <string name="logs_name">LOGS</string>
 </resources>
