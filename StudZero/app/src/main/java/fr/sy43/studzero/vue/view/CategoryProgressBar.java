@@ -96,7 +96,12 @@ public class CategoryProgressBar extends View {
         this.paint.setColor(res.getColor(R.color.purple_200));
         canvas.drawLine(startX, y, stopX, y, paint);
         this.paint.setColor(res.getColor(R.color.purple_500));
-        canvas.drawLine(startX, y, stopX * ratioBar, y, paint);
-        canvas.drawCircle(stopX * ratioBar, y, 15f, paint);
+        if(ratioBar == 0f) {
+            canvas.drawLine(startX, y, startX, y, paint);
+            canvas.drawCircle(startX, y, 10f, paint);
+        } else {
+            canvas.drawLine(stopX * ratioBar, y, startX, y, paint);
+            canvas.drawCircle(stopX * ratioBar, y, 10f, paint);
+        }
     }
 }

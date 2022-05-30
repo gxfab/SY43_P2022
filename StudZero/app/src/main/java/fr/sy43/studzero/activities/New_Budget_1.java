@@ -19,9 +19,13 @@ import android.widget.EditText;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Budget;
+import fr.sy43.studzero.sqlite.model.Category;
+import fr.sy43.studzero.sqlite.model.CategoryType;
 
 
 // reste a communiquer a la BD lors de l'appuis du boutton confirm la val[0]
@@ -186,7 +190,7 @@ public class New_Budget_1 extends AppCompatActivity {
             public void onClick(View v) {
                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 Budget newBudget = db.getBudget((int) idNewBudget);
-                newBudget.setBudgetAmount(Float.parseFloat(String.format("%.2f", val[0])));
+                newBudget.setBudgetAmount(Float.parseFloat(String.format("%.2f", val[0]).replace(",", ".")));
                 db.updateBudget(newBudget);
                 //changer d'écran : sauter la resélection des anciennes catégories si premier budget (parent != Settings)
                 String caller     = getIntent().getStringExtra("caller"); //caller contient le nom de la class appelante
@@ -194,9 +198,16 @@ public class New_Budget_1 extends AppCompatActivity {
                     Intent intent = new Intent(new Intent(getApplicationContext(), New_Budget_2.class));
                     intent.putExtra("caller", "Settings"); //ecran choix des anciennes catégories + option retour
                     intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
+                    db.closeDB();
                     startActivity(intent);
                 }
                 else{
+                    db.deleteBudgetCategories((int) idNewBudget);
+                    List<CategoryType> categoryTypeList = db.getAllCategoriesTypes();
+                    for(int i = 0; i < categoryTypeList.size(); ++i){
+                        db.addCategory(new Category(0f, 0f, (int) idNewBudget, categoryTypeList.get(i).getIdCategoryType()));
+                    }
+                    db.closeDB();
                     Intent intent = new Intent(new Intent(getApplicationContext(), New_Budget_3.class));
                     intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "MainActivity"); //ecran creation catégorie + non retour

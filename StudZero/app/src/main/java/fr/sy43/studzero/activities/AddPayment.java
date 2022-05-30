@@ -176,7 +176,7 @@ public class AddPayment extends AppCompatActivity {
             public void onClick(View v) {
                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 Spinner spinner = (Spinner) findViewById(R.id.AddPaymentSpinner);
-                db.addPayment(new Payment(Float.parseFloat(String.format("%.2f", paymentAmount)), new Date(), db.getCurrentCategoryOfCategoryType(spinner.getSelectedItem().toString()).getIdCategory()));
+                db.addPayment(new Payment(Float.parseFloat(String.format("%.2f", paymentAmount).replace(",", ".")), new Date(), db.getCurrentCategoryOfCategoryType(spinner.getSelectedItem().toString()).getIdCategory()));
                 db.closeDB();
                 Intent intent = new Intent(getApplicationContext(), AddPayments.class);
                 intent.putExtra("caller", "AddPayment");

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             db.closeDB();
             Intent intent = new Intent(this, New_Budget_1.class);
-            intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
+            intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
             startActivity(intent);
         }
         overridePendingTransition(0,0);

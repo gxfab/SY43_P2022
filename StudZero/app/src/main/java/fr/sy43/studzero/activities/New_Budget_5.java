@@ -77,7 +77,7 @@ public class New_Budget_5 extends AppCompatActivity {
             allocated += listCategories.get(i).getTheoreticalAmount();
             category[i] = db.getTypeCategory(listCategories.get(i).getType()).getNameCategory();
         }
-        allocated = Float.parseFloat(String.format("%.2f", allocated));
+        allocated = Float.parseFloat(String.format("%.2f", allocated).replace(",", "."));
         db.closeDB();
         //apply
         TextView txtAllocated = (TextView) findViewById(R.id.TextViewAllocated);
@@ -131,9 +131,9 @@ public class New_Budget_5 extends AppCompatActivity {
         Available = 0f;
         for(int i = 0; i < categoryTypes.size(); ++i) {
             category_name.add(categoryTypes.get(i).getNameCategory());
-            Allocated.add(Float.parseFloat(String.format("%.2f", db.getCategoryOfCategoryType((int) idNewBudget, categoryTypes.get(i).getNameCategory()).getTheoreticalAmount())));
+            Allocated.add(Float.parseFloat(String.format("%.2f", db.getCategoryOfCategoryType((int) idNewBudget, categoryTypes.get(i).getNameCategory()).getTheoreticalAmount()).replace(",", ".")));
         }
-        Available = Float.parseFloat(String.format("%.2f", db.getBudget((int) idNewBudget).getBudgetAmount()));
+        Available = Float.parseFloat(String.format("%.2f", db.getBudget((int) idNewBudget).getBudgetAmount()).replace(",", "."));
         db.closeDB();
     }
 

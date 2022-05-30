@@ -77,8 +77,8 @@ public class New_Budget_3 extends AppCompatActivity {
             allocated += listCategories.get(i).getTheoreticalAmount();
             category[i] = db.getTypeCategory(listCategories.get(i).getType()).getNameCategory();
         }
-        allocated = Float.parseFloat(String.format("%.2f", allocated));
-        available = Float.parseFloat(String.format("%.2f", db.getBudget((int) idNewBudget).getBudgetAmount()));
+        allocated = Float.parseFloat(String.format("%.2f", allocated).replace(",", "."));
+        available = Float.parseFloat(String.format("%.2f", db.getBudget((int) idNewBudget).getBudgetAmount()).replace(",", "."));
         db.closeDB();
 
         //apply
@@ -96,14 +96,7 @@ public class New_Budget_3 extends AppCompatActivity {
 
 
         getSupportActionBar().setTitle("Setup New Budget");
-        //avoir la flèche retour dans le status bar que si on viens de l'écran param
-        String caller     = getIntent().getStringExtra("caller"); //caller contient le nom de la class appelante
-        if(caller.equals("Settings")){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        else{
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Button button = (Button) findViewById(R.id.ConfirmButton);
@@ -319,12 +312,14 @@ public class New_Budget_3 extends AppCompatActivity {
                     //renvoye vers la page précédente
                     Intent intent = new Intent(this, New_Budget_2.class);
                     intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     startActivity(intent);
                 }
                 else{
                     //renvoye vers la page précédente
-                    Intent intent = new Intent(this, New_Budget_2.class);
+                    Intent intent = new Intent(this, New_Budget_1.class);
                     intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     startActivity(intent);
                 }
                 return true;
@@ -355,7 +350,7 @@ public class New_Budget_3 extends AppCompatActivity {
                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 //Ajouter val[0] au budget contenant le montant estimé de la dépenses de la catégorie selected (Cat_Selected)
                 Category categoryToUpdate = db.getCategoryOfCategoryType((int) idNewBudget, Cat_Selected);
-                categoryToUpdate.setTheoreticalAmount(Float.parseFloat(String.format("%.2f", val[0])));
+                categoryToUpdate.setTheoreticalAmount(Float.parseFloat(String.format("%.2f", val[0]).replace(",", ".")));
                 db.updateCategory(categoryToUpdate);
 
                 // recalcul
@@ -364,7 +359,7 @@ public class New_Budget_3 extends AppCompatActivity {
                 for(int i = 0; i < listCategories.size(); ++i) {
                     allocated += listCategories.get(i).getTheoreticalAmount();
                 }
-                allocated = Float.parseFloat(String.format("%.2f", allocated));
+                allocated = Float.parseFloat(String.format("%.2f", allocated).replace(",", "."));
                 db.closeDB();
 
                 TextView txtAllocated = (TextView) findViewById(R.id.TextViewAllocated);
