@@ -28,6 +28,12 @@ public class History extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.history);
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            /**
+             * This function is used by the nav bar the bottom of the screen.
+             * If calls an activity depending on the item selected by the user.
+             * @param item
+             * @return
+             */
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -40,7 +46,7 @@ public class History extends AppCompatActivity {
                     case R.id.history:
                         return true;
                     case R.id.stats:
-                        startActivity(new Intent(getApplicationContext(), stats.class));
+                        startActivity(new Intent(getApplicationContext(), Stats.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.settings:

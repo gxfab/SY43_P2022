@@ -18,7 +18,7 @@ import fr.sy43.studzero.sqlite.model.Payment;
 public class ListPaymentLayout extends LinearLayout {
     /**
      * Constructor of the class
-     * @param context
+     * @param context used by the parent of the classed
      */
     public ListPaymentLayout(Context context) {
         super(context);

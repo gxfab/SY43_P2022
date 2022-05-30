@@ -6,27 +6,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.sy43.studzero.R;
-
-//récupération des catégories déjà existante : CTRL+F "récup data"
-//remplir la BD : CTRL+F : "remplir la BD"
+import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
+import fr.sy43.studzero.sqlite.model.Category;
+import fr.sy43.studzero.sqlite.model.CategoryType;
 
 /**
  * 2nd screen of the creation of a new budget : select the categories you want to keep from the old budget
  */
 public class New_Budget_2 extends AppCompatActivity {
-
     private CustomAdapter customAdapter;
     private ArrayList<String> category_name;
     private RecyclerView recyclerView;
+    private long idNewBudget;
 
     /**
      * enable the return button on the top bar
@@ -52,6 +52,13 @@ public class New_Budget_2 extends AppCompatActivity {
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
 
+        idNewBudget = getIntent().getLongExtra(New_Budget_1.ID_NEW_BUDGET, -1);
+        if(idNewBudget == -1) {
+            Intent intent = new Intent(this, New_Budget_1.class);
+            intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
+            intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
+            startActivity(intent);
+        }
 
         Button button = (Button) findViewById(R.id.NewBudget2_ConfirmButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -66,32 +73,23 @@ public class New_Budget_2 extends AppCompatActivity {
                 finish();
                 //on viens forcement de settings pur cette page
                 Intent intent = new Intent(getApplicationContext(), New_Budget_3.class);
+                intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                 intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
                 startActivity(intent);
             }
         });
-
     }
-
-    //récupérer les datas de la DB courrante
 
     /**
      * retrieve the name of the old budget's categories
      */
     private void GetData() {
-        // récup data
-        category_name.add("cat 1");
-        category_name.add("cat 2");
-        category_name.add("cat 3");
-        category_name.add("cat 4");
-        category_name.add("cat 5");
-        category_name.add("cat 6");
-        category_name.add("cat 7");
-        category_name.add("cat 8");
-        category_name.add("cat 9");
-        category_name.add("cat 10");
-        category_name.add("cat 11");
-        category_name.add("cat 12");
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        List<CategoryType> categoryTypes = db.getAllCategoriesTypes();
+        for(int i = 0; i < categoryTypes.size(); ++i) {
+            category_name.add(categoryTypes.get(i).getNameCategory());
+        }
+        db.closeDB();
     }
 
     /**
@@ -102,11 +100,14 @@ public class New_Budget_2 extends AppCompatActivity {
      */
     private  void SetSelectedCat(ArrayList category_name,ArrayList state){
         //remplir la BD
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        db.deleteBudgetCategories((int) idNewBudget);
         for(int i = 0; i < category_name.size(); ++i){
             if(state.get(i).equals(1)){//on garde cette catégorie
-                Log.i("add cat", String.valueOf(category_name.get(i)));
+                db.addCategory(new Category(0f, 0f, (int) idNewBudget, db.getTypeCategory(String.valueOf(category_name.get(i))).getIdCategoryType()));
             }
         }
+        db.closeDB();
     }
 
 
@@ -126,6 +127,7 @@ public class New_Budget_2 extends AppCompatActivity {
                 //renvoye vers la page settings précédente
                 Intent intent = new Intent(this, New_Budget_1.class);
                 intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
+                intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                 startActivity(intent);
                 return true;
         }

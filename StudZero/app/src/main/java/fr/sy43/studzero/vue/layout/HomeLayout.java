@@ -1,6 +1,7 @@
 package fr.sy43.studzero.vue.layout;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +15,10 @@ import fr.sy43.studzero.vue.view.CategoryProgressBar;
  * Layout used for the home page view
  */
 public class HomeLayout extends LinearLayout {
+    /**
+     * Constructor of the layout
+     * @param context used by the parent class
+     */
     public HomeLayout(Context context) {
         super(context);
         DatabaseHelper db = new DatabaseHelper(context);

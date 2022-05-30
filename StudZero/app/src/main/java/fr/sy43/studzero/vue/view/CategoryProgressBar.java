@@ -38,6 +38,12 @@ public class CategoryProgressBar extends View {
     private float ratioBar;
 
     /**
+     * True if the real amount payed by the category is superior to the theoretical amount
+     * Used to determine if the color red should be used for the string stored in textToDraw
+     */
+    private boolean overPayed;
+
+    /**
      * Constructor of the class
      * @param context
      * @param attrs
@@ -57,6 +63,7 @@ public class CategoryProgressBar extends View {
         } else {
           ratioBar = category.getRealAmount() / category.getTheoreticalAmount();
         }
+        overPayed = category.getRealAmount() > category.getTheoreticalAmount();
     }
 
     /**
@@ -77,6 +84,9 @@ public class CategoryProgressBar extends View {
         Rect bounds = new Rect();
         this.paint.getTextBounds(this.textToDraw, 0, this.textToDraw.length(), bounds);
         int heightText = bounds.height();
+        if(overPayed) {
+            this.paint.setColor(res.getColor(R.color.red));
+        }
         canvas.drawText(textToDraw, widthText-this.getWidth()*0.02f, this.getHeight() * 0.8f, paint);
         // Draw the progress bar
         this.paint.setStrokeWidth(5f);
@@ -86,7 +96,12 @@ public class CategoryProgressBar extends View {
         this.paint.setColor(res.getColor(R.color.purple_200));
         canvas.drawLine(startX, y, stopX, y, paint);
         this.paint.setColor(res.getColor(R.color.purple_500));
-        canvas.drawLine(startX, y, stopX * ratioBar, y, paint);
-        canvas.drawCircle(stopX * ratioBar, y, 15f, paint);
+        if(ratioBar == 0f) {
+            canvas.drawLine(startX, y, startX, y, paint);
+            canvas.drawCircle(startX, y, 10f, paint);
+        } else {
+            canvas.drawLine(stopX * ratioBar, y, startX, y, paint);
+            canvas.drawCircle(stopX * ratioBar, y, 10f, paint);
+        }
     }
 }

@@ -3,6 +3,7 @@ package fr.sy43.studzero.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -69,12 +70,17 @@ public class AddPayment extends AppCompatActivity {
 
         // When user select a List-Item.
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
+            /**
+             * Update the selected type of category and reset the text input of the layout
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             */
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 final TextInputLayout textInputLayoutUserName = (TextInputLayout) findViewById(R.id.AddPaymentTextInputLayout);
                 final TextInputEditText TextInputIncomeExpenses = (TextInputEditText) findViewById(R.id.AddPaymentTextInputEditText);
-                onItemSelectedHandler(parent, view, position, id);
                 selectedString = categoryNames[position];
                 TextInputIncomeExpenses.setText("");
                 textInputLayoutUserName.setErrorEnabled(false);
@@ -82,7 +88,10 @@ public class AddPayment extends AppCompatActivity {
                 textInputLayoutUserName.clearFocus();
 
             }
-
+            /**
+             * If no category is selected : set the selected type of category variable to ""
+             * @param parent
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 selectedString = "";
@@ -91,14 +100,6 @@ public class AddPayment extends AppCompatActivity {
 
         setupForKeyboardDismiss((View) findViewById(R.id.AddPaymentBGView), (Activity) this);//enlève le keyboard si on click ailleurs
         this.setupFloatingLabelError();
-    }
-
-    private void onItemSelectedHandler(AdapterView<?> adapterView, View view, int position, long id) {
-        Adapter adapter = adapterView.getAdapter();
-        String category = (String) adapter.getItem(position);
-
-        ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.selected_white));
-        ((TextView) adapterView.getChildAt(0)).setTextSize(16);
     }
 
     /**
@@ -114,7 +115,12 @@ public class AddPayment extends AppCompatActivity {
         if(!(view instanceof EditText)) {
 
             view.setOnTouchListener(new View.OnTouchListener() {
-
+                /**
+                 * On touch, hide keyboard and raise text label error if needed
+                 * @param v
+                 * @param event
+                 * @return
+                 */
                 public boolean onTouch(View v, MotionEvent event) {
                     hideSoftKeyboard(activity);
                     if(TextInputIncomeExpenses.getText().length() == 0){//champ vide reset le text field
@@ -140,6 +146,10 @@ public class AddPayment extends AppCompatActivity {
         }
     }
 
+    /**
+     * hide the keyboard
+     * @param activity
+     */
     public static void hideSoftKeyboard(Activity activity) {
         try {
             InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -156,10 +166,17 @@ public class AddPayment extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.AddPaymentConfirmButton);
         final TextInputLayout textInputLayoutExpenses = (TextInputLayout) findViewById(R.id.AddPaymentTextInputLayout);
         button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Confirm button clicked :
+             * set the value of the text field to the DB for the category Cat_Selected
+             * compute the new allocated amount and update the display of this value
+             * @param v
+             */
+            @SuppressLint("DefaultLocale")
             public void onClick(View v) {
                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 Spinner spinner = (Spinner) findViewById(R.id.AddPaymentSpinner);
-                db.addPayment(new Payment(paymentAmount, new Date(), db.getCurrentCategoryOfCategoryType(spinner.getSelectedItem().toString()).getIdCategory()));
+                db.addPayment(new Payment(Float.parseFloat(String.format("%.2f", paymentAmount).replace(",", ".")), new Date(), db.getCurrentCategoryOfCategoryType(spinner.getSelectedItem().toString()).getIdCategory()));
                 db.closeDB();
                 Intent intent = new Intent(getApplicationContext(), AddPayments.class);
                 intent.putExtra("caller", "AddPayment");
@@ -168,6 +185,11 @@ public class AddPayment extends AppCompatActivity {
         });
 
         textInputLayoutExpenses.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            /**
+             * disable the focus of the input text field
+             * @param view
+             * @param b
+             */
             @Override
             public void onFocusChange(View view, boolean b) {
                 textInputLayoutExpenses.setHint("focus");
@@ -175,7 +197,14 @@ public class AddPayment extends AppCompatActivity {
         });
 
         textInputLayoutExpenses.getEditText().addTextChangedListener(new TextWatcher() {
-            // ...
+
+            /**
+             * manage the error label of the input text field
+             * @param text
+             * @param start
+             * @param count
+             * @param after
+             */
             @Override
             public void onTextChanged(CharSequence text, int start, int count, int after) {
                 button.setEnabled(false);
@@ -203,11 +232,22 @@ public class AddPayment extends AppCompatActivity {
                     button.setEnabled(false);
                 }
             }
+            /**
+             * do nothing (auto generated)
+             * @param s
+             * @param start
+             * @param count
+             * @param after
+             */
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
             }
 
+            /**
+             * do nothing (auto generated)
+             * @param s
+             */
             @Override
             public void afterTextChanged(Editable s) {
 

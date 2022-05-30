@@ -19,7 +19,13 @@ import android.widget.EditText;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 import fr.sy43.studzero.R;
+import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
+import fr.sy43.studzero.sqlite.model.Budget;
+import fr.sy43.studzero.sqlite.model.Category;
+import fr.sy43.studzero.sqlite.model.CategoryType;
 
 
 // reste a communiquer a la BD lors de l'appuis du boutton confirm la val[0]
@@ -30,6 +36,8 @@ import fr.sy43.studzero.R;
  */
 
 public class New_Budget_1 extends AppCompatActivity {
+    public static final String ID_NEW_BUDGET = "id new budget";
+    private long idNewBudget;
 
     /**
      * Setup the screen at launch :
@@ -57,6 +65,16 @@ public class New_Budget_1 extends AppCompatActivity {
         this.setupFloatingLabelError();
 
         setupForKeyboardDismiss((View) findViewById(R.id.New_Budget_BG_View_P1), (Activity) this);//enlève le keyboard si on click ailleurs
+
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        idNewBudget = getIntent().getLongExtra(New_Budget_1.ID_NEW_BUDGET, -1);
+        if(idNewBudget == -1) {
+            idNewBudget = db.addBudget(new Budget());
+        } else {
+            TextInputEditText textInput = (TextInputEditText) findViewById(R.id.TextInputIncomeExpenses);
+            textInput.setText(""+db.getBudget((int)idNewBudget).getBudgetAmount());
+        }
+        db.closeDB();
     }
 
     /**
@@ -128,6 +146,9 @@ public class New_Budget_1 extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                db.deleteBudgetCategories((int) idNewBudget);
+                db.deleteBudget((int) idNewBudget);
                 finish();
                 //startActivity(new Intent(getApplicationContext(), Settings.class));
                 // renvoye vers la page settings sur appuis de la back arrow
@@ -167,24 +188,28 @@ public class New_Budget_1 extends AppCompatActivity {
              * @param v
              */
             public void onClick(View v) {
-                //Ajouter val[0] au budget contenant la valeur du revenu
-
-
-
-                // a faire
-
-
-
-
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                Budget newBudget = db.getBudget((int) idNewBudget);
+                newBudget.setBudgetAmount(Float.parseFloat(String.format("%.2f", val[0]).replace(",", ".")));
+                db.updateBudget(newBudget);
                 //changer d'écran : sauter la resélection des anciennes catégories si premier budget (parent != Settings)
                 String caller     = getIntent().getStringExtra("caller"); //caller contient le nom de la class appelante
                 if(caller.equals("Settings")){
                     Intent intent = new Intent(new Intent(getApplicationContext(), New_Budget_2.class));
                     intent.putExtra("caller", "Settings"); //ecran choix des anciennes catégories + option retour
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
+                    db.closeDB();
                     startActivity(intent);
                 }
                 else{
+                    db.deleteBudgetCategories((int) idNewBudget);
+                    List<CategoryType> categoryTypeList = db.getAllCategoriesTypes();
+                    for(int i = 0; i < categoryTypeList.size(); ++i){
+                        db.addCategory(new Category(0f, 0f, (int) idNewBudget, categoryTypeList.get(i).getIdCategoryType()));
+                    }
+                    db.closeDB();
                     Intent intent = new Intent(new Intent(getApplicationContext(), New_Budget_3.class));
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "MainActivity"); //ecran creation catégorie + non retour
                     startActivity(intent);
                 }
