@@ -19,26 +19,25 @@
             android:layout_weight="1"
             android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LOGO"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-            </TextView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/logo"
+                android:padding="16dp"
+                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Account Preview -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="80pt"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             app:cardBackgroundColor="@color/light_green"
             app:cardCornerRadius="20dp"
             app:strokeColor="@color/material_on_surface_stroke"
-            app:strokeWidth="1dp">
+            app:strokeWidth="1dp"
+            android:layout_weight="0.9">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,11 +52,11 @@
                     android:paddingTop="6dp"
                     android:text="Hello, Jacob"
                     android:textFontWeight="900"
-                    android:textSize="70px"></com.google.android.material.textview.MaterialTextView>
+                    android:textSize="26sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -66,8 +65,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1.4"
                         >
-
-
 
                         <ProgressBar
                             style="?android:progressBarStyleHorizontal"
@@ -91,15 +88,15 @@
                                 android:textAlignment="center"
                                 app:fontFamily="@font/inter"
                                 android:textFontWeight="2000"
-                                android:textSize="52px"
-                                android:textColor="@color/blue"></com.google.android.material.textview.MaterialTextView>
+                                android:textSize="20sp"
+                                android:textColor="@color/blue" />
 
                             <com.google.android.material.divider.MaterialDivider
                                 android:id="@+id/moneyDivider"
                                 android:layout_width="45dp"
                                 android:layout_height="1dp"
                                 app:dividerColor="@color/light_blue"
-                                android:layout_centerInParent="true"></com.google.android.material.divider.MaterialDivider>
+                                android:layout_centerInParent="true" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
@@ -110,8 +107,8 @@
                                 android:textAlignment="center"
                                 app:fontFamily="@font/inter"
                                 android:textFontWeight="500"
-                                android:textSize="48px"
-                                android:textColor="@color/light_blue"></com.google.android.material.textview.MaterialTextView>
+                                android:textSize="16sp"
+                                android:textColor="@color/light_blue" />
 
 
                         </RelativeLayout>
@@ -146,7 +143,8 @@
         <!-- Categories -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="220pt"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:layout_margin="10dp"
             app:cardBackgroundColor="@color/green"
             app:cardCornerRadius="20dp"
@@ -216,7 +214,6 @@
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-
 
 
 </RelativeLayout>
