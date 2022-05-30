@@ -15,6 +15,10 @@ import fr.sy43.studzero.vue.view.CategoryProgressBar;
  * Layout used for the home page view
  */
 public class HomeLayout extends LinearLayout {
+    /**
+     * Constructor of the layout
+     * @param context used by the parent class
+     */
     public HomeLayout(Context context) {
         super(context);
         DatabaseHelper db = new DatabaseHelper(context);

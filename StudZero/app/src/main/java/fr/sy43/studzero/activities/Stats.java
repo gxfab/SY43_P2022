@@ -30,7 +30,12 @@ public class Stats extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                /**
+                 * This function is used by the nav bar the bottom of the screen.
+                 * If calls an activity depending on the item selected by the user.
+                 * @param item
+                 * @return
+                 */
                 switch(item.getItemId())
                 {
                     case R.id.add_payements:

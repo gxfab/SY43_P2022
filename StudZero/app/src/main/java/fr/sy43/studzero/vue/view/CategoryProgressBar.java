@@ -37,6 +37,10 @@ public class CategoryProgressBar extends View {
      */
     private float ratioBar;
 
+    /**
+     * True if the real amount payed by the category is superior to the theoretical amount
+     * Used to determine if the color red should be used for the string stored in textToDraw
+     */
     private boolean overPayed;
 
     /**

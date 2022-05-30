@@ -196,14 +196,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + USER_COLUMN_DATE_NEXT_BUDGET + " NUMERIC,"
             + USER_COLUMN_CURRENT_BUDGET + " INTEGER REFERENCES "+ TABLE_BUDGET +")";
 
-    // public static final String
-
     /**
      * Drop table statement
      */
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS ";
 
-    // Constructor
+    /**
+     * Constructor of the class
+     * @param context
+     */
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -221,61 +222,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PAYMENT);
         db.execSQL(CREATE_TABLE_USER);
 
-        ContentValues cv4 = new ContentValues();
-        cv4.put(USER_COLUMN_ID, 1);
-        db.insert(TABLE_USER, null, cv4);
+        // Insert a user in the database
+        ContentValues cv = new ContentValues();
+        cv.put(USER_COLUMN_ID, 1);
+        db.insert(TABLE_USER, null, cv);
 
+        // Insert a default category type
         ContentValues cv2 = new ContentValues();
         cv2.put(CATEGORY_TYPE_COLUMN_ID, 1);
         cv2.put(CATEGORY_TYPE_COLUMN_NAME, "Rent");
         db.insert(TABLE_CATEGORY_TYPE, null, cv2);
 
-        /*
-        ContentValues cv = new ContentValues();
-        cv.put(BUDGET_COLUMN_ID, 1);
-        cv.put(BUDGET_COLUMN_DATE_END, 1);
-        cv.put(BUDGET_COLUMN_BUDGET_AMOUNT, 2500);
-        db.insert(TABLE_BUDGET, null, cv);
-
-        ContentValues cv8 = new ContentValues();
-        cv8.put(CATEGORY_TYPE_COLUMN_ID, 2);
-        cv8.put(CATEGORY_TYPE_COLUMN_NAME, "Courses");
-        db.insert(TABLE_CATEGORY_TYPE, null, cv8);
-
-        ContentValues cv3 = new ContentValues();
-        cv3.put(CATEGORY_COLUMN_TYPE, 1);
-        cv3.put(CATEGORY_COLUMN_THEORETICAL_AMOUNT, 800);
-        cv3.put(CATEGORY_COLUMN_REAL_AMOUNT, 600);
-        cv3.put(CATEGORY_COLUMN_BUDGET, 1);
-        db.insert(TABLE_CATEGORY, null, cv3);
-
-        ContentValues cv9 = new ContentValues();
-        cv9.put(CATEGORY_COLUMN_TYPE, 2);
-        cv9.put(CATEGORY_COLUMN_THEORETICAL_AMOUNT, 500);
-        cv9.put(CATEGORY_COLUMN_REAL_AMOUNT, 300);
-        cv9.put(CATEGORY_COLUMN_BUDGET, 1);
-        db.insert(TABLE_CATEGORY, null, cv9);
-
-        ContentValues cv5 = new ContentValues();
-        cv5.put(PAYMENT_COLUMN_CATEGORY, 1);
-        cv5.put(PAYMENT_COLUMN_AMOUNT, 50.0f);
-        cv5.put(PAYMENT_COLUMN_DATE_PAYMENT, 2);
-        db.insert(TABLE_PAYMENT, null, cv5);
-
-        ContentValues cv6 = new ContentValues();
-        cv6.put(PAYMENT_COLUMN_CATEGORY, 1);
-        cv6.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
-        cv6.put(PAYMENT_COLUMN_DATE_PAYMENT, 3);
-        db.insert(TABLE_PAYMENT, null, cv6);
-
-        ContentValues cv7 = new ContentValues();
-        cv7.put(PAYMENT_COLUMN_CATEGORY, 1);
-        cv7.put(PAYMENT_COLUMN_AMOUNT, 123.45f);
-        cv7.put(PAYMENT_COLUMN_DATE_PAYMENT, 1);
-        db.insert(TABLE_PAYMENT, null, cv7);*/
     }
-
-    // Called when the database is upgraded
 
     /**
      * Updates the data base.
@@ -294,8 +252,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         onCreate(db);
     }
-
-    // Add a new budget to the budget table
 
     /**
      * Add a budget to the database
@@ -346,7 +302,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return (int) db.insert(TABLE_CATEGORY_TYPE, null, cv);
     }
 
-    // Add a new payment to the payment table
     /**
      * Add a payment to the database
      * @param payment
@@ -731,7 +686,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-
+    /**
+     * @return amount of money that is still to be used by the current budget
+     */
     @SuppressLint("Range")
     public Float getRemainingAmountOfCurrentBudget() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -748,6 +705,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  currentBudget.getBudgetAmount() - c.getFloat(c.getColumnIndex("sum"));
     }
 
+    /**
+     * @return the number of days left for the current budget
+     */
     public long getRemainingDaysOfCurrentBudget() {
         User user = getUser();
         long diff = user.getDateNextBudget().getTime() - (new Date()).getTime();
@@ -834,12 +794,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
+    /**
+     * Delete all the budget categories of a budget
+     * @param idBudget id of the budget
+     */
     public void deleteBudgetCategories(int idBudget) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CATEGORY, CATEGORY_COLUMN_BUDGET+"=?", new String[]{""+idBudget});
         db.close();
     }
 
+    /**
+     * Delete a budget
+     * @param idBudget id of the budget
+     */
     public void deleteBudget(int idBudget) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_BUDGET, BUDGET_COLUMN_ID+"=?", new String[]{""+idBudget});
@@ -866,6 +834,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return f.format(d);
     }
 
+    /**
+     * Convert a ISO8601 string format to a Date
+     * @param s
+     * @return Date
+     */
     private Date getDateFromString(String s) {
         SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy HH:MM:SS.SSS", Locale.FRANCE);
         try {

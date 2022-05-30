@@ -393,7 +393,6 @@ public class New_Budget_3 extends AppCompatActivity {
         });
 
         textInputLayoutExpenses.getEditText().addTextChangedListener(new TextWatcher() {
-            // ...
 
             /**
              * manage the error label of the input text field

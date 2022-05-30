@@ -34,6 +34,7 @@ public class Budget {
         Calendar calendar = (GregorianCalendar) GregorianCalendar.getInstance();
         calendar.setTime(dateStart);
         calendar.add(Calendar.DATE, 30);
+        // DateEnd = dateStart + 30 days
         this.dateEnd = calendar.getTime();
         this.budgetAmount = 0;
     }
