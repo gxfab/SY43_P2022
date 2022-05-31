@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="fluz">#6900A9</color>
+    <color name="background">#cbd5e0</color>
+    <color name="fluz_text">#9879AB</color>
 </resources>

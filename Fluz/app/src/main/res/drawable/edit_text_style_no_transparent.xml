@@ -4,7 +4,7 @@
         android:width="2dp"
         android:color="@color/fluz"/>
     <solid
-        android:color="#00FFFFFF"
+        android:color="#FFFFFF"
         android:paddingLeft="20dp"
         android:paddingTop="6dp" />
     <padding
