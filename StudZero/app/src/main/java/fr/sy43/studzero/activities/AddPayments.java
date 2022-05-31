@@ -79,7 +79,7 @@ public class AddPayments extends AppCompatActivity {
             }
         });
 
-        // Add a scrollView + layout that shows the payments of the month
+        // Add a layout to the scroll view that shows the payments of the month
         ScrollView scrollView = (ScrollView) findViewById(R.id.ScrollViewPayments);
         ListPaymentLayout listPaymentLayout = new ListPaymentLayout(this);
         scrollView.addView(listPaymentLayout);

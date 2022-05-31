@@ -73,7 +73,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        // Add a scrollView + layout that shows information about the current budget
+        // Add a layout to the scroll view that shows the payments of the month
         ScrollView scrollView = (ScrollView) findViewById(R.id.ScrollViewHome);
         HomeLayout homeLayout = new HomeLayout(this);
         DatabaseHelper db = new DatabaseHelper(this);

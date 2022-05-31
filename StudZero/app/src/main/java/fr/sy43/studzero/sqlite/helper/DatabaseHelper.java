@@ -480,7 +480,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * get all budgets from the database
+     * get all budgets from the database by reverse id order
      * @return all budgets from the database, null is returned if no budgets exist
      */
     @SuppressLint("Range")
@@ -488,7 +488,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Budget> budgets = new LinkedList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "Select * from " + TABLE_BUDGET;
+        String query = "Select * from " + TABLE_BUDGET + " order by " + BUDGET_COLUMN_ID + " desc";
 
         Cursor c = db.rawQuery(query, null);
 
@@ -517,7 +517,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String query = new StringBuilder().append("Select * from ").append(TABLE_BUDGET).append(" where ").
-                append(BUDGET_COLUMN_ID).append(" in (Select ").append(USER_COLUMN_ID).append(" from ").
+                append(BUDGET_COLUMN_ID).append(" in (Select ").append(USER_COLUMN_CURRENT_BUDGET).append(" from ").
                 append(TABLE_USER).append(" where ").append(USER_COLUMN_ID).append("=1)").toString();
 
         Cursor c = db.rawQuery(query, null);
@@ -828,8 +828,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param d date to convert
      * @return String
      */
-    private String getStringFromDate(Date d) {
+    public static String getStringFromDate(Date d) {
         SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy HH:MM:SS.SSS", Locale.FRANCE);
+        return f.format(d);
+    }
+
+    /**
+     * Convert a Date to a ISO8601 string format with only the day, the month and the year
+     * @param d date to convert
+     * @return String
+     */
+    public static String getStringWithoutTimeFromDate(Date d) {
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
         return f.format(d);
     }
 
@@ -838,7 +848,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param s
      * @return Date
      */
-    private Date getDateFromString(String s) {
+    public static Date getDateFromString(String s) {
         SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy HH:MM:SS.SSS", Locale.FRANCE);
         try {
             return f.parse(s);
