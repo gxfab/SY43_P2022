@@ -53,7 +53,7 @@
         android:iconifiedByDefault="false"
         />
 
-    <GridView
+    <ScrollView
         android:id="@+id/category_grid"
         android:layout_width="match_parent"
         android:layout_height="350dp"

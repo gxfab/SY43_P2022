@@ -23,6 +23,7 @@
         <entry key="app/src/main/res/drawable/piggy_selector.xml" value="0.166" />
         <entry key="app/src/main/res/drawable/round_corner.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/search_bar.xml" value="0.166" />
+        <entry key="app/src/main/res/layout/activity_category.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/activity_expense.xml" value="0.21653594970703127" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.10164108752212997" />
