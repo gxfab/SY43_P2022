@@ -5,8 +5,8 @@ import androidx.room.*
 @Dao
 interface CategoryDao {
 	@Query("SELECT * FROM category")
-	suspend fun getAll(): List<Account>
+	suspend fun getAll(): List<Category>
 
 	@Insert
-	suspend fun insertCategory(account: Account)
+	suspend fun insertCategory(account: Category)
 }
