@@ -16,4 +16,6 @@
     <string name="expense_name">Nom de la dépense</string>
     <string name="category_name_bottom_sheeet">Nom de la catégorie</string>
     <string name="category_price_bottom_sheet">Montant aloué</string>
+    <string name="select_date">Sélectionner une date</string>
+    <string name="expense_date">Date de la dépense</string>
 </resources>
