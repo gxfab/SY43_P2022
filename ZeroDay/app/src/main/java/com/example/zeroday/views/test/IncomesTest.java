@@ -9,6 +9,7 @@ import com.example.zeroday.R;
 import com.example.zeroday.dao.DbHelper;
 import com.example.zeroday.models.IncomesCategory;
 import com.example.zeroday.repositories.IncomesCategoryRepository;
+import com.example.zeroday.services.IncomeCategoryService;
 
 import java.util.List;
 
@@ -21,14 +22,12 @@ public class IncomesTest extends AppCompatActivity {
         // setContentView(R.layout.activity_incomes_test);
         // show category list fragmnt
         setContentView(R.layout.activity_incomes_test);
-        db  = new DbHelper(this);
-        IncomesCategoryRepository incomesCategoryRepository = new IncomesCategoryRepository(db.getWritableDatabase());
-        incomesCategoryRepository.createDefaultIncomesCategory();
 
-        List<IncomesCategory> incomesCategoryList = incomesCategoryRepository.findAll();
+        IncomeCategoryService incomeCategoryService = new IncomeCategoryService(this);
 
-            Log.i("Test", incomesCategoryList.toString());
+        List<IncomesCategory> incomesCategoryList = incomeCategoryService.findAll();
 
+        Log.i("Test", incomesCategoryList.toString());
 
     }
 

@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class IncomesCategory implements Parcelable {
-    private String idIncomesCategory;
+    private Long idIncomesCategory;
     private String codeIncomesCategory;
     private String labelIncomesCategory;
 
-    public IncomesCategory(String idIncomesCategory, String codeIncomesCategory, String labelIncomesCategory) {
+    public IncomesCategory(Long idIncomesCategory, String codeIncomesCategory, String labelIncomesCategory) {
         this.idIncomesCategory = idIncomesCategory;
         this.codeIncomesCategory = codeIncomesCategory;
         this.labelIncomesCategory = labelIncomesCategory;
@@ -22,7 +22,7 @@ public class IncomesCategory implements Parcelable {
     }
 
     protected IncomesCategory(Parcel in) {
-        idIncomesCategory = in.readString();
+        idIncomesCategory = in.readLong();
         codeIncomesCategory = in.readString();
         labelIncomesCategory = in.readString();
     }
@@ -41,11 +41,11 @@ public class IncomesCategory implements Parcelable {
 
 
 
-    public String getIdIncomesCategory() {
+    public Long getIdIncomesCategory() {
         return idIncomesCategory;
     }
 
-    public void setIdIncomesCategory(String idIncomesCategory) {
+    public void setIdIncomesCategory(Long idIncomesCategory) {
         this.idIncomesCategory = idIncomesCategory;
     }
 
@@ -89,9 +89,8 @@ public class IncomesCategory implements Parcelable {
             parcel.writeByte((byte) 0);
         }else{
             parcel.writeByte((byte) 1);
-            parcel.writeString(idIncomesCategory);
+            parcel.writeLong(idIncomesCategory);
         }
-        parcel.writeString(idIncomesCategory);
         parcel.writeString(codeIncomesCategory);
         parcel.writeString(labelIncomesCategory);
     }

@@ -51,7 +51,7 @@ public class IncomesCategoryRepository {
             List<IncomesCategory> incomesCategories = new ArrayList<>();
             while(cursor.moveToNext()) {
                 incomesCategories.add(new IncomesCategory(
-                        cursor.getString(DbHelper.COL_ID_CATEGORY_TYPE_INDEX),
+                        cursor.getLong(DbHelper.COL_ID_CATEGORY_TYPE_INDEX),
                         cursor.getString(DbHelper.COL_CODE_CATEGORY_TYPE_INDEX),
                         cursor.getString(DbHelper.COL_LABEL_CATEGORY_TYPE_INDEX)
                 ));
@@ -104,7 +104,8 @@ public class IncomesCategoryRepository {
 
     public void delete(IncomesCategory incomesCategory) {
         try {
-            this.sqLiteDatabase.delete(DbHelper.TABLE_INCOMES_CATEGORY, DbHelper.KEY_ID_CATEGORY_TYPE + " = ?", new String[]{incomesCategory.getIdIncomesCategory()});
+            // TODO: correct datatype of id
+            this.sqLiteDatabase.delete(DbHelper.TABLE_INCOMES_CATEGORY, DbHelper.KEY_ID_CATEGORY_TYPE + " = ?", new String[]{String.valueOf(incomesCategory.getIdIncomesCategory())});
          } catch (Exception e) {
             e.printStackTrace();
 
@@ -133,10 +134,11 @@ public class IncomesCategoryRepository {
 
 
     public void createDefaultIncomesCategory(){
-        this.save(new IncomesCategory("1", "1", "Salary"));
-        this.save(new IncomesCategory("2", "2", "Bonus"));
-        this.save(new IncomesCategory("3", "3", "Gift"));
-        this.save(new IncomesCategory("4", "4", "Other"));
+        this.sqLiteDatabase.execSQL("DELETE FROM " + DbHelper.TABLE_INCOMES_CATEGORY);
+        this.save(new IncomesCategory(1L, "1", "Salary"));
+        this.save(new IncomesCategory(2L, "2", "Bonus"));
+        this.save(new IncomesCategory(3L, "3", "Gift"));
+        this.save(new IncomesCategory(4L, "4", "Other"));
         Log.i("RTT", "Created");
     }
 }

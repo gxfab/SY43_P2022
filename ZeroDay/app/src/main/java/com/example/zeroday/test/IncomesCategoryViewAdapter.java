@@ -37,7 +37,7 @@ public class IncomesCategoryViewAdapter extends RecyclerView.Adapter<IncomesCate
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getIdIncomesCategory());
+        holder.mIdView.setText(String.valueOf(Math.toIntExact(mValues.get(position).getIdIncomesCategory())));
         holder.mContentView.setText(mValues.get(position).getLabelIncomesCategory());
     }
 
