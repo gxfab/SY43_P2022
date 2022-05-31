@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.entities.Category
 
 class PrevisionActivity : AppCompatActivity() {
 
@@ -46,8 +47,16 @@ class PrevisionActivity : AppCompatActivity() {
 
 
     }
+     fun deleteCategory(category: Category){
+        lifecycleScope.launch{
+            db.categoryDao().deleteCategory(category)
+        }
+
+    }
+
+
     suspend fun loadCategory() {
-        val adapter = CategoryAdapter(db.categoryDao().getAll())
+        val adapter = CategoryAdapter(db.categoryDao().getAll() as MutableList<Category>)
         recyclerView.adapter = adapter
     }
 }

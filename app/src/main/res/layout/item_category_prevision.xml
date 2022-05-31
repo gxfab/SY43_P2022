@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayoutContainerCategory"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,12 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:orientation="horizontal">
-        <ImageView
-            android:layout_width="30sp"
-            android:layout_height="30sp"
-            android:src="@drawable/colored_circle"
-            android:layout_marginLeft="20dp"
-            > </ImageView>
+
         <TextView
 
             android:layout_width="wrap_content"
@@ -25,15 +21,33 @@
             android:layout_marginLeft="20dp"
             android:id="@+id/categoryName"
             > </TextView>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </Space>
         <TextView
             android:id="@+id/categoryPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/item_category_prevision_price"
-            android:layout_marginLeft="165dp"
+            android:paddingRight="10dp"
             android:textSize="17sp">
 
         </TextView>
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_delete_category"
+            app:icon = "@drawable/ic_baseline_delete_24"
+            app:iconPadding = "0dp"
+            app:iconGravity = "textStart"
+
+            >
+
+        </Button>
+
 
 
 
