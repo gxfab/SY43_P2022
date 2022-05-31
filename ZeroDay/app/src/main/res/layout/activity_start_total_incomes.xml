@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".views.StartTotalIncomesActivity">
     
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/custom_cycle_setting_continue_button.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/custom_cycle_setting_cycle_shape.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/custom_cycle_setting_start_date_shape.xml" value="0.164" />
+        <entry key="app/src/main/res/drawable/custom_details_income_expense_background.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/custom_name_validation_tick.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/custom_round_rectangle.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/custom_start_next_button.xml" value="0.164" />
@@ -23,8 +24,9 @@
         <entry key="app/src/main/res/layout/activity_name_validation.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_start_total_incomes.xml" value="0.246875" />
-        <entry key="app/src/main/res/layout/fragment_category_expenses_incomes.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_category_expenses_incomes.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_category_your_budget.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_income_expense_details.xml" value="0.24820512820512822" />
         <entry key="app/src/main/res/menu/item_menu.xml" value="0.165" />
       </map>
     </option>

@@ -17,7 +17,7 @@
         android:id="@+id/zero_logo"
         android:src="@drawable/zero_logo"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:background="@drawable/custom_round_rectangle"

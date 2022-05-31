@@ -17,7 +17,7 @@
         app:tint="@color/zero_purple"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
+        <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@drawable/custom_round_rectangle"

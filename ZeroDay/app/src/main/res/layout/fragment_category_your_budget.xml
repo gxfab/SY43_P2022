@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     tools:context=".views.CategoryYourBudgetFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/custom_category_icon_circle"
