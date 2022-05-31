@@ -59,9 +59,9 @@
         android:drawableRight="@drawable/custom_start_next_button"
         android:text="Next"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="15dp"
-        android:background="@color/zero_purple"
+        android:background="@color/transparent"
         app:backgroundTint="@null"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

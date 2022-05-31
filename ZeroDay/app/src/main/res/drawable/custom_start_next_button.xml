@@ -3,5 +3,5 @@
     <item
         android:drawable="@drawable/zero_start_next_button_arrow"
         android:width="40dp"
-        android:height="50dp"/>
+        android:height="50dp" />
 </layer-list>
