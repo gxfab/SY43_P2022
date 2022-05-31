@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
@@ -44,6 +45,13 @@ class AddExpenseBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
                 addExpense()
             true
         }
+
+        // Date picker
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText(R.string.expense_date)
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .build()
+
     }
 
     private fun addExpense() {

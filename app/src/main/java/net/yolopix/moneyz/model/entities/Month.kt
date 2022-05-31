@@ -5,7 +5,7 @@ import java.util.Date
 
 @Entity
 class Month(
-    @PrimaryKey val id: Int,
+    @PrimaryKey val uid: Int,
     var prevision: Double,
-    var payday: Date
+    var payday: Int
 )

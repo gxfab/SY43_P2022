@@ -19,4 +19,6 @@
     <string name="item_category_prevision_name">Nourriture</string>
     <string name="item_category_prevision_price">68,00€</string>
     <string name="item_category_prevision_advice">+4,5€ le mois dernier</string>
+    <string name="select_date">Sélectionner une date</string>
+    <string name="expense_date">Date de la dépense</string>
 </resources>

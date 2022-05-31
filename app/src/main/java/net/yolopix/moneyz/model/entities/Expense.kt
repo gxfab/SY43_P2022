@@ -5,8 +5,9 @@ import androidx.room.*
 
 @Entity
 data class Expense(
-    @PrimaryKey val uid: Int,
-    var date: Date,
+    @PrimaryKey(autoGenerate = true) val uid: Int,
+    var dayOfMonth: Int,
+    var monthUid: Int,
     var name: String,
     var recurring: Boolean,
     var amount: Double
