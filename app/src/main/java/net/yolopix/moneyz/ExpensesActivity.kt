@@ -1,6 +1,7 @@
 package net.yolopix.moneyz
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,13 @@ class ExpensesActivity : AppCompatActivity() {
             }
         }
 
+        val addExpenseButton = findViewById<Button>(R.id.button_add_expense)
+        addExpenseButton.setOnClickListener {
+            AddExpenseBottomSheet(db).apply {
+                show(supportFragmentManager, tag)
+            }
+        }
+
     }
 
     /**
@@ -39,6 +47,6 @@ class ExpensesActivity : AppCompatActivity() {
     private suspend fun loadAccount(uid: Int) {
         account = db.accountDao().getAccountById(uid)
         title = getString(R.string.expenses_title,account.name)
-        supportActionBar?.subtitle = "mettre le mois ici ???"
+        //supportActionBar?.subtitle = "mettre le mois ici ???"
     }
 }
