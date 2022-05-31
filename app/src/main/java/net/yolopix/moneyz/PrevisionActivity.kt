@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
 
 class PrevisionActivity : AppCompatActivity() {
@@ -32,6 +35,19 @@ class PrevisionActivity : AppCompatActivity() {
             AddCategoryBottomSheet(db).apply {
                 show(supportFragmentManager, tag)
             }
+
         }
+
+        recyclerView = findViewById(R.id.category_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        lifecycleScope.launch {
+            loadCategory()
+        }
+
+
+    }
+    suspend fun loadCategory() {
+        val adapter = CategoryAdapter(db.categoryDao().getAll())
+        recyclerView.adapter = adapter
     }
 }

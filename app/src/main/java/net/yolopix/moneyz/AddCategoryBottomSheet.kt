@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Category
+import kotlin.properties.Delegates
 
 class AddCategoryBottomSheet(private val db: AppDatabase) : BottomSheetDialogFragment(){
     private lateinit var editTextCategoryName: EditText
@@ -54,17 +57,23 @@ class AddCategoryBottomSheet(private val db: AppDatabase) : BottomSheetDialogFra
 
 
     private fun addCategory() {
+        var newCategoryPrice by Delegates.notNull<Float>()
         // Fetch the account name in the EditText and add it to the database
         val newCategoryName = editTextCategoryName.text.toString()
-        val newCategoryPrice = editTextCategoryprice.text.toString().toFloat()
+        if(editTextCategoryprice.text.toString() == ""){
+             newCategoryPrice = 0F
+        }else{
+             newCategoryPrice = editTextCategoryprice.text.toString().toFloat()
+        }
+
         val newCategory = Category(0,newCategoryName, newCategoryPrice)
         runBlocking {
             //db.accountDao().insertAccount(Account(0, newAccountName))
                 db.categoryDao().insertCategory(newCategory)
         }
-        /*lifecycleScope.launch {
-            (activity as PrevisionActivity).loadAccounts()
-        }*/
+        lifecycleScope.launch {
+            (activity as PrevisionActivity).loadCategory()
+        }
         dismiss()
     }
 }
