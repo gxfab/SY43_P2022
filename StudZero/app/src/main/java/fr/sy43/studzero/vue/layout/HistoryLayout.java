@@ -9,18 +9,19 @@ import android.widget.TextView;
 
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
+import fr.sy43.studzero.sqlite.model.Budget;
 import fr.sy43.studzero.sqlite.model.Payment;
 
 /**
- * This class is used to show a list of payments.
+ * This class is used to show the list of old budgets
  * ListPaymentLayout inherits from LinearLayout
  */
-public class ListPaymentLayout extends LinearLayout {
+public class HistoryLayout extends LinearLayout {
     /**
      * Constructor of the class
      * @param context used by the parent of the classed
      */
-    public ListPaymentLayout(Context context) {
+    public HistoryLayout(Context context) {
         super(context);
         setOrientation(VERTICAL);
         LayoutParams params = generateDefaultLayoutParams();
@@ -34,31 +35,21 @@ public class ListPaymentLayout extends LinearLayout {
     }
 
     /**
-     * Add a payment to the layout
-     * @param payment payment to add to the layout
+     * Add a budget to the layout
+     * @param budget
      */
-    public void addPayment(Payment payment) {
+    public void addBudget(Budget budget) {
         LinearLayout layout = createPaymentLayout();
         LayoutParams params = generateDefaultLayoutParams();
         params.width = LayoutParams.MATCH_PARENT;
         params.height = LayoutParams.WRAP_CONTENT;
         params.weight = 1f;
 
-        TextView category = new TextView(layout.getContext());
-        category.setPadding(convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f), 0, convertDpToPx(layout.getContext(), 10.0f));
-        category.setLayoutParams(params);
-        category.setTextSize(convertSpToPx(layout.getContext(), 10.0f));
-        DatabaseHelper dbHelper = new DatabaseHelper(category.getContext());
-        category.setText(""+dbHelper.getTypeCategory(payment.getCategory()).getNameCategory());
-        dbHelper.closeDB();
-        category.setTextColor(getResources().getColor(R.color.white));
-        layout.addView(category);
-
         TextView amount = new TextView(layout.getContext());
         amount.setPadding(0, convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f));
         amount.setLayoutParams(params);
-        amount.setTextAlignment(TEXT_ALIGNMENT_VIEW_END);
-        amount.setText(String.format("%.2f", payment.getAmount())+"€");
+        amount.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+        amount.setText(DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateStart()) + " - " + DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateEnd()));
         amount.setTextColor(getResources().getColor(R.color.white));
         amount.setTextSize(convertSpToPx(layout.getContext(), 10.0f));
 

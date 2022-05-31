@@ -54,8 +54,13 @@ public class HomeLayout extends LinearLayout {
         params.topMargin = convertDpToPx(this.getContext(), 10);
         TextView remainingBalanceAmount = new TextView(this.getContext());
         remainingBalanceAmount.setLayoutParams(params);
-        remainingBalanceAmount.setText(String.format("%.2f", db.getRemainingAmountOfCurrentBudget())+"€");
-        remainingBalanceAmount.setTextColor(getResources().getColor(R.color.white));
+        float remainingBalanceValue = db.getRemainingAmountOfCurrentBudget();
+        remainingBalanceAmount.setText(String.format("%.2f", remainingBalanceValue)+"€");
+        if(remainingBalanceValue < 0.f) {
+            remainingBalanceAmount.setTextColor(getResources().getColor(R.color.red));
+        } else {
+            remainingBalanceAmount.setTextColor(getResources().getColor(R.color.white));
+        }
         remainingBalanceAmount.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         remainingBalanceAmount.setTextSize(convertSpToPx(this.getContext(), 10.0f));
 
