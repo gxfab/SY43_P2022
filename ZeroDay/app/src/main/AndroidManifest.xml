@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.zeroday" >
+    package="com.example.zeroday">
 
     <application
         android:allowBackup="true"
@@ -8,9 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ZeroDay" >
+        android:theme="@style/Theme.ZeroDay">
         <activity
             android:name=".views.CycleSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.NameValidationActivity"
             android:exported="false" />
         <activity
             android:name=".views.StartActivity"
@@ -19,8 +22,8 @@
             android:name=".views.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".views.NameValidationActivity"
-            android:exported="true" >
+            android:name=".views.StartTotalIncomesActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
