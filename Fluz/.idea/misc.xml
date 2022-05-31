@@ -5,11 +5,11 @@
       <map>
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/drawable-v24/ic_accounts.xml" value="0.2555" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/drawable/edit_text_style.xml" value="0.2265" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/attrs.xml" value="0.10989583333333333" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/content_create_budget.xml" value="0.25" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/content_home_main.xml" value="0.25" />
+        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/content_home_main.xml" value="0.1" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/content_main.xml" value="0.2033514492753623" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/create_budget_item.xml" value="0.25" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/demo.xml" value="0.10989583333333333" />
@@ -19,6 +19,7 @@
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_parameters.xml" value="0.22282608695652173" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_spending_history.xml" value="0.22282608695652173" />
+        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_transaction.xml" value="0.2125" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_user_info.xml" value="0.25" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/home.xml" value="0.176" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/login.xml" value="0.264" />

@@ -14,7 +14,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.HomeActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.Fab_Bottom_app_bar">
         </activity>
