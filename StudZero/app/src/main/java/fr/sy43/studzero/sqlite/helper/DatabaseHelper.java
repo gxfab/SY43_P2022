@@ -605,7 +605,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     @SuppressLint("Range")
     public List<CategoryType> getAllCategoriesTypes() {
-        List<CategoryType> categorieTypes = new LinkedList<>();
+        List<CategoryType> categoryTypes = new LinkedList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -618,13 +618,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         do {
-            categorieTypes.add(new CategoryType(
+            categoryTypes.add(new CategoryType(
                     c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
                     c.getString(c.getColumnIndex(CATEGORY_TYPE_COLUMN_NAME))
             ));
         } while(c.moveToNext());
 
-        return categorieTypes;
+        return categoryTypes;
+    }
+
+    /**
+     * get all category types from the database
+     * @return all category types from the database, null is returned if no category types exist
+     */
+    @SuppressLint("Range")
+    public List<CategoryType> getAllCategoriesTypesOfBudget(int idBudget) {
+        List<CategoryType> categoryTypes = new LinkedList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = new StringBuilder().append("Select * from ").append(TABLE_CATEGORY_TYPE).append(" where ").
+                append(CATEGORY_TYPE_COLUMN_ID).append(" in (Select ").append(CATEGORY_COLUMN_TYPE).append(" from ").
+                append(TABLE_CATEGORY).append(" where ").append(CATEGORY_COLUMN_BUDGET).append("=").append(idBudget).append(")").toString();
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null || !c.moveToFirst()) {
+            return new LinkedList<CategoryType>();
+        }
+
+        do {
+            categoryTypes.add(new CategoryType(
+                    c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
+                    c.getString(c.getColumnIndex(CATEGORY_TYPE_COLUMN_NAME))
+            ));
+        } while(c.moveToNext());
+
+        return categoryTypes;
     }
 
     /**
