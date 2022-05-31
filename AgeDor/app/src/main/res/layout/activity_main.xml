@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:paddingTop="60dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/texteBienvenue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/bienvenue"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.087" />
+
+    <Button
+        android:id="@+id/boutonSuivreBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="suivreMonBudget"
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="188dp"
+        android:text="@string/suivreMonBudget" />
+
+    <Button
+        android:id="@+id/boutonNouvelleDepense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="nouvelleDepense"
+        android:text="@string/nouvelleDepense"
+        tools:layout_editor_absoluteX="249dp"
+        tools:layout_editor_absoluteY="320dp" />
+
+    <Button
+        android:id="@+id/boutonConsulterDepenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="consulterMesDepenses"
+        android:text="@string/consulterMesDepenses"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="258dp" />
+
+    <Button
+        android:id="@+id/boutonEditerBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="editerLeBudget"
+        android:text="@string/editerLeBudget"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="400dp" />
+
+    <Button
+        android:id="@+id/boutonMesProjets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="mesProjets"
+        android:text="@string/MesProjets"
+        tools:layout_editor_absoluteX="251dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+</LinearLayout>

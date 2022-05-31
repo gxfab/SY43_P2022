@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AgeDor</string>
+    <string name="suivreMonBudget">Suivre mon budget</string>
+    <string name="consulterMesDepenses">Consulter mes dépenses</string>
+    <string name="nouvelleDepense">Nouvelle dépense</string>
+    <string name="editerLeBudget">Editer le budget</string>
+    <string name="MesProjets">Mes projets</string>
+    <string name="bienvenue">Bienvenue, Jesse</string>
+</resources>
