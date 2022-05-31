@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/nav_home">
 
@@ -8,4 +9,19 @@
         android:id="@+id/nav_home"
         android:name="com.example.fluz.ui.fragments.Home"
         android:label="Home" />
+    <fragment
+        android:id="@+id/nav_expenses"
+        android:name="com.example.fluz.ui.fragments.Expenses"
+        android:label="fragment_expenses"
+        tools:layout="@layout/fragment_expenses" />
+    <fragment
+        android:id="@+id/nav_spendingHistory"
+        android:name="com.example.fluz.ui.fragments.SpendingHistory"
+        android:label="fragment_spending_history"
+        tools:layout="@layout/fragment_spending_history" />
+    <fragment
+        android:id="@+id/nav_parameters"
+        android:name="com.example.fluz.ui.fragments.Parameters"
+        android:label="fragment_parameters"
+        tools:layout="@layout/fragment_parameters" />
 </navigation>
