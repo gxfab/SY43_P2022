@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayoutContainerCategory"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:src="@drawable/colored_circle"
+            android:layout_marginLeft="20dp"
+            > </ImageView>
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_category_prevision_name"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/categoryName"
+            > </TextView>
+        <TextView
+            android:id="@+id/categoryPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_category_prevision_price"
+            android:layout_marginLeft="165dp"
+            android:textSize="17sp">
+
+        </TextView>
+
+
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:text="@string/item_category_prevision_advice"
+        android:textColor="@color/red"
+        android:layout_gravity="right|end">
+
+    </TextView>
+</LinearLayout>
