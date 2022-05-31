@@ -15,7 +15,8 @@
         android:text="nomoola"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="57dp" />
+        tools:layout_editor_absoluteY="57dp"
+        tools:ignore="MissingConstraints" />
 
     <FrameLayout
         android:layout_width="match_parent"
