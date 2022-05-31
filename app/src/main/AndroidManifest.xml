@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyZ">
         <activity
+            android:name=".AddCategoryBottomSheet"
+            android:exported="false" />
+        <activity
             android:name=".PrevisionActivity"
             android:exported="false" />
         <activity

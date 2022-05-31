@@ -62,6 +62,7 @@
                 android:textSize="17sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="20dp"
+                android:visibility="gone"
                 android:layout_marginTop="20dp">
 
             </TextView>
@@ -71,6 +72,8 @@
                 app:cardBackgroundColor="@color/grey_prevision"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:visibility="gone"
+
 
                 >
                 <LinearLayout
@@ -261,11 +264,11 @@
 
             </LinearLayout>
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/button_add_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|center"
                 android:backgroundTint="@color/white"
-
                 android:text= "Nouvelle catégorie"
                 android:textColor="@color/black"
                 app:icon="@drawable/ic_outline_add_24" />

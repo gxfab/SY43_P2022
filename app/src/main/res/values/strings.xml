@@ -10,4 +10,6 @@
     <string name="placeholder_short">Texte à remplacer</string>
     <string name="previsions_title">Définition des prévisions</string>
     <string name="expenses_title">Dépenses de %1$s</string>
+    <string name="category_name_bottom_sheeet">Nom de la catégorie</string>
+    <string name="category_price_bottom_sheet">Montant aloué</string>
 </resources>

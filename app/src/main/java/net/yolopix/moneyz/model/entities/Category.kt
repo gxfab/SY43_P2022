@@ -1,10 +1,11 @@
 package net.yolopix.moneyz.model.entities
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity
 data class Category(
-    @PrimaryKey val uid: Int,
-    var color: Int,
-    var name: String
+    @PrimaryKey(autoGenerate = true) val uid: Int,
+    var name: String,
+    var predictedAmount : Float,
 )
