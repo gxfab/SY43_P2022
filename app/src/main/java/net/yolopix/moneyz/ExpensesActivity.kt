@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
@@ -13,13 +14,11 @@ class ExpensesActivity : AppCompatActivity() {
 
     private lateinit var account: Account
     private lateinit var db: AppDatabase
-    private lateinit var depensesRV: RecyclerView
+    private lateinit var expensesRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expenses)
-
-        //depensesRV = findViewById(R.id.expenses_recy_view)
 
         db = DatabaseFactory.getDB(applicationContext)
 
@@ -39,6 +38,12 @@ class ExpensesActivity : AppCompatActivity() {
             }
         }
 
+        // RecylerView
+        expensesRecyclerView = findViewById(R.id.expenses_recy_view)
+        expensesRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        lifecycleScope.launch {
+            loadExpenses()
+        }
     }
 
     /**
@@ -48,5 +53,9 @@ class ExpensesActivity : AppCompatActivity() {
         account = db.accountDao().getAccountById(uid)
         title = getString(R.string.expenses_title,account.name)
         //supportActionBar?.subtitle = "mettre le mois ici ???"
+    }
+
+    private suspend fun loadExpenses() {
+        expensesRecyclerView.adapter = ExpensesAdapter(db.expenseDao().getAll())
     }
 }

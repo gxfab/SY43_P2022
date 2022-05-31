@@ -1,90 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TableRow>
-
-        <TextView
-            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            android:text="@string/add_expense" />
-    </TableRow>
-
-    <TableRow
+    <TextView
+        android:id="@+id/text_view_title"
+        style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:text="@string/add_expense" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/category" />
-
-        <Spinner
-            android:id="@+id/spinner_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:prompt="@string/category"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </TableRow>
-
-    <TableRow
+    <Spinner
+        android:id="@+id/spinner_category"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:contentDescription="@string/category"
+        android:minHeight="48dp" />
 
-        <CheckBox
-            android:id="@+id/checkBox_recurring"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recurring_expense" />
-    </TableRow>
-
-    <TableRow
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:hint="@string/expense_name">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_expense_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/expense_amount">
+            android:layout_marginVertical="8dp"
+            android:inputType="text" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <CheckBox
+        android:id="@+id/checkBox_recurring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:text="@string/recurring_expense" />
 
-    </TableRow>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/expense_date">
 
-    <TableRow>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/expense_name">
+            android:layout_marginVertical="8dp"
+            android:ems="10"
+            android:inputType="date" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_expense_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-    </TableRow>
-
-    <TableRow
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_amount"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="end">
+        android:layout_height="wrap_content"
+        android:hint="@string/expense_amount">
 
-        <Button
-            android:id="@+id/button_add"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add" />
-    </TableRow>
-</TableLayout>
+            android:layout_marginVertical="8dp"
+            android:inputType="numberDecimal"
+            tools:ignore="TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/add" />
+
+</LinearLayout>

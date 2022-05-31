@@ -1,18 +1,24 @@
 package net.yolopix.moneyz
 
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.DEBUG
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.Spinner
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Account
+import android.util.Log.*
 
 class AddExpenseBottomSheet(private val db: AppDatabase) : BottomSheetDialogFragment() {
 
@@ -51,6 +57,18 @@ class AddExpenseBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
             .setTitleText(R.string.expense_date)
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
+
+        // Category selection spinner
+        val spinner: Spinner = view.findViewById(R.id.spinner_category)
+        //val adapter = ArrayAdapter.createFromResource(requireContext(), android.R.string ,android.R.layout.item_category)
+        lifecycleScope.launch {
+            spinner.adapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                db.categoryDao().getAll()
+            )
+        }
+
 
     }
 

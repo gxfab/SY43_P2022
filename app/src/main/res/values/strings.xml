@@ -21,4 +21,7 @@
     <string name="item_category_prevision_advice">+4,5€ le mois dernier</string>
     <string name="select_date">Sélectionner une date</string>
     <string name="expense_date">Date de la dépense</string>
+    <string name="add_account">Ajouter un compte</string>
+    <string name="expense_placeholder">Nom de la dépense</string>
+    <string name="money_placeholder">0€</string>
 </resources>

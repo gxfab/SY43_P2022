@@ -7,5 +7,6 @@ import java.util.Date
 class Month(
     @PrimaryKey val uid: Int,
     var prevision: Double,
-    var payday: Int
+    var payday: Int,
+    var accountUid: Int
 )
