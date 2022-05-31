@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/ic_gauge.xml" value="0.2825" />
         <entry key="app/src/main/res/drawable/ic_round_home_24.xml" value="0.2975" />
         <entry key="app/src/main/res/drawable/ic_round_settings_24.xml" value="0.2975" />
+        <entry key="app/src/main/res/drawable/lafo-cheuse_icon_background.xml" value="0.3005" />
         <entry key="app/src/main/res/layout/activity_display_message.xml" value="0.278125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.278125" />
@@ -18,6 +19,8 @@
         <entry key="app/src/main/res/layout/fragment_set_incomes_expenses.xml" value="0.35487232933819696" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.35487232933819696" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.18072916666666666" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/lafo-cheuse_icon.xml" value="0.3005" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/lafo_cheuse_icon.xml" value="0.2825" />
       </map>
     </option>
   </component>
