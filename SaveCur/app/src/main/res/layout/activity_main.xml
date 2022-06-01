@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".FirstActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/signInBtn"
+        android:src="@drawable/logo"
+        android:padding="90dp"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signInBtn"
         android:layout_width="225dp"
