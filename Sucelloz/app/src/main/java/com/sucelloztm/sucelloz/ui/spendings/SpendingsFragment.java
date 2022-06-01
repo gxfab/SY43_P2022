@@ -65,6 +65,7 @@ public class SpendingsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+//TODO : Put this method in the MVP Pattern
 
     private String getDate() {
         Date actualDate = new Date();
@@ -74,6 +75,7 @@ public class SpendingsFragment extends Fragment {
                 DateFormat.SHORT);
         return shortDateFormat.format(actualDate);
     }
+//TODO : Put this method in the MVP Pattern
 
     private void initDataset() {
         dataSet = new ArrayList<>();

@@ -1,5 +1,7 @@
 package com.sucelloztm.sucelloz.ui.spendings;
 
+//TODO : Put this class in the MVP Pattern
+
 class Spendings {
     String name;
     String date;

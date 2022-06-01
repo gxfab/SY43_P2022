@@ -74,6 +74,7 @@ public class CategoriesFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+//TODO : Put this method in the MVP Pattern
 
     private void initDataset() {
         dataSet = new String[DATASET_COUNT];
