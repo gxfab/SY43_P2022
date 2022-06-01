@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/home"
+    <item android:id="@+id/homeFragment"
         android:title="@string/home"
+        android:label="@string/home_french"
         android:icon="@drawable/ic_round_home_24" />
-    <item android:id="@+id/chart"
+    <item android:id="@+id/chartFragment"
         android:title="@string/chart"
+        android:label="@string/budgets"
         android:icon="@drawable/ic_round_bar_chart_24" />
-    <item android:id="@+id/income_expense"
+    <item android:id="@+id/setIncomesExpensesFragment"
+        android:label="@string/expenses_incomes"
         android:title="@string/income_expense"
         android:icon="@drawable/ic_round_currency_exchange_24" />
-    <item android:id="@+id/settings"
+    <item android:id="@+id/settingsFragment"
+        android:label="@string/settings_french"
         android:title="@string/settings"
         android:icon="@drawable/ic_round_settings_24" />
 </menu>
