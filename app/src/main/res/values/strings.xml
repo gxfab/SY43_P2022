@@ -13,4 +13,8 @@
     <string name="settings_fragment">Settings Fragment</string>
     <string name="display_the_charts">display the charts</string>
     <string name="budgetNameHolder">Aucun budget à afficher</string>
+    <string name="budgets">Budgets</string>
+    <string name="home_french">Accueil</string>
+    <string name="expenses_incomes">Dépenses</string>
+    <string name="settings_french">Paramètres</string>
 </resources>
