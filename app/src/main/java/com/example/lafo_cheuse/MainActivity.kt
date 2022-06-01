@@ -18,33 +18,51 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.*
 
 
-const val EXTRA_MESSAGE = "com.exemple.test.MESSAGE"
+const val EXTRA_MESSAGE = "com.example.test.MESSAGE"
 
 @DelicateCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
-    var navigationView: BottomNavigationView? = null;
+    var navigationView: BottomNavigationView? = null
 
-    var chartFragment: ChartFragment = ChartFragment();
-    var homeFragment: HomeFragment = HomeFragment();
-    var setIncomesExpensesFragment: SetIncomesExpensesFragment = SetIncomesExpensesFragment();
-    var settingsFragment: SettingsFragment = SettingsFragment();
+    var chartFragment: ChartFragment? = ChartFragment();
+    var homeFragment: HomeFragment? = HomeFragment();
+    var setIncomesExpensesFragment: SetIncomesExpensesFragment? = SetIncomesExpensesFragment();
+    var settingsFragment: SettingsFragment? = SettingsFragment();
+    var fragmentsList : ArrayList<Fragment>? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        fragmentsList = arrayListOf<Fragment>(homeFragment!!, chartFragment!!, setIncomesExpensesFragment!!, settingsFragment!!);
+
         navigationView = findViewById(R.id.bottom_navigation);
 
-        makeCurrentFragment(homeFragment)
+        val adapter = ViewPagerAdapter(
+            fragmentsList!!,
+            supportFragmentManager,
+            lifecycle
+        )
+
+        val pager = findViewById<ViewPager2>(R.id.pager)
+        pager.adapter = adapter
 
         navigationView!!.setOnItemSelectedListener {
             when(it.itemId) {
-                R.id.home -> makeCurrentFragment(homeFragment)
-                R.id.chart -> makeCurrentFragment(chartFragment)
-                R.id.income_expense -> makeCurrentFragment(setIncomesExpensesFragment)
-                R.id.settings -> makeCurrentFragment(settingsFragment)
+                R.id.homeFragment -> {
+                    pager.currentItem = 0;
+                }
+                R.id.chartFragment -> {
+                    pager.currentItem = 1;
+                }
+                R.id.setIncomesExpensesFragment->  {
+                    pager.currentItem = 2;
+                }
+                R.id.settingsFragment -> {
+                    pager.currentItem = 3;
+                }
             }
             true
         }
@@ -61,8 +79,6 @@ class MainActivity : AppCompatActivity() {
                 catDao.createCategory(Category("Bourses", "\uD83D\uDCB0"))
             }
 
-
-
         }
     }
 
@@ -72,8 +88,6 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
 
-    fun sendMessage(view: View) {
 
-    }
 
 }
