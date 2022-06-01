@@ -3,12 +3,17 @@ package fr.sy43.studzero.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,6 +25,7 @@ import java.util.List;
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.CategoryType;
+import fr.sy43.studzero.vue.view.CategoryGraph;
 
 public class Stats extends AppCompatActivity {
 
@@ -45,7 +51,6 @@ public class Stats extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.StatsSpinner);
         DatabaseHelper db = new DatabaseHelper(this.getApplicationContext());
         List<CategoryType> categoryTypes = db.getAllCategoriesTypes();
-        db.closeDB();
         String[] categoryNames = new String[categoryTypes.size()];
         for(int i = 0; i < categoryTypes.size(); ++i) {
             categoryNames[i] = categoryTypes.get(i).getNameCategory();
@@ -113,5 +118,38 @@ public class Stats extends AppCompatActivity {
                 selectedString = "";
             }
         });
+
+        CategoryGraph categoryGraph = new CategoryGraph(getApplicationContext(), db.getCategoryOfCategoryType(db.getCurrentBudget().getIdBudget(), selectedString));
+        categoryGraph.setBackgroundColor(getColor(R.color.BG_Objet));
+        LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutStats);
+        layout.addView(categoryGraph);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) categoryGraph.getLayoutParams();
+        params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
+        params.height = convertDpToPx(getApplicationContext(), 400);
+        params.leftMargin = convertDpToPx(getApplicationContext(), 20);
+        params.rightMargin = convertDpToPx(getApplicationContext(), 20);
+        params.bottomMargin = convertDpToPx(getApplicationContext(), 30);
+        categoryGraph.setLayoutParams(params);
+        db.closeDB();
+    }
+
+    /**
+     * Converts dp to pixels
+     * @param context
+     * @param dp
+     * @return pixels
+     */
+    private int convertDpToPx(Context context, float dp) {
+        return (int) (dp * context.getResources().getDisplayMetrics().density);
+    }
+
+    /**
+     * Converts sp to pixels
+     * @param context
+     * @param sp
+     * @return pixels
+     */
+    private int convertSpToPx(Context context, float sp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
     }
 }
