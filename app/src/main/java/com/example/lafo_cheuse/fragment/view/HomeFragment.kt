@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.lafo_cheuse.MainActivity
 import com.example.lafo_cheuse.R
 import com.github.mikephil.charting.charts.PieChart
@@ -16,19 +17,16 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class HomeFragment() : Fragment() {
-    var chartView : PieChart? = null;
+    var chartView : PieChart? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +38,11 @@ class HomeFragment() : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view : View = inflater.inflate(R.layout.fragment_home, container, false)
-        var chartButton : FloatingActionButton = view.findViewById(R.id.floatingActionButton)
-        chartButton.setOnClickListener { view ->
-            displayChart(view)
+        val chartButton : FloatingActionButton = view.findViewById(R.id.floatingActionButton)
+        chartButton.setOnClickListener { v ->
+            displayChart(v)
         }
 
         return view
@@ -54,7 +52,6 @@ class HomeFragment() : Fragment() {
 
 
         super.onViewCreated(view, savedInstanceState)
-
         chartView = view.findViewById<PieChart>(R.id.piechart)
 
         val entries = ArrayList<PieEntry>()
@@ -80,8 +77,9 @@ class HomeFragment() : Fragment() {
         chartView!!.animateX(2000)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun displayChart(view : View) {
-        (this.activity as MainActivity).navigationView!!.selectedItemId = R.id.chart
+        (this.activity as MainActivity).navigationView!!.selectedItemId = R.id.chartFragment
     }
 
 }
