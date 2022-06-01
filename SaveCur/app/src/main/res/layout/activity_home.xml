@@ -22,9 +22,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/logo"
                 android:padding="16dp"
-                />
+                android:src="@drawable/logo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -33,11 +32,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
+            android:layout_weight="0.9"
             app:cardBackgroundColor="@color/light_green"
             app:cardCornerRadius="20dp"
             app:strokeColor="@color/material_on_surface_stroke"
-            app:strokeWidth="1dp"
-            android:layout_weight="0.9">
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,17 +62,16 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1.4"
-                        >
+                        android:layout_weight="1.4">
 
                         <ProgressBar
                             style="?android:progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/circle"
                             android:progress="65"
-                            android:progressDrawable="@drawable/complete_progress_bar"
-                            android:rotation="-90"/>
+                            android:progressDrawable="@drawable/circular_progress_bar" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -86,17 +84,16 @@
                                 android:layout_centerInParent="true"
                                 android:text="125 €"
                                 android:textAlignment="center"
-                                app:fontFamily="@font/inter"
-                                android:textFontWeight="2000"
+                                android:textColor="@color/blue"
                                 android:textSize="20sp"
-                                android:textColor="@color/blue" />
+                                app:fontFamily="@font/inter" />
 
                             <com.google.android.material.divider.MaterialDivider
                                 android:id="@+id/moneyDivider"
                                 android:layout_width="45dp"
                                 android:layout_height="1dp"
-                                app:dividerColor="@color/light_blue"
-                                android:layout_centerInParent="true" />
+                                android:layout_centerInParent="true"
+                                app:dividerColor="@color/light_blue" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
@@ -105,10 +102,9 @@
                                 android:layout_centerInParent="true"
                                 android:text="230 €"
                                 android:textAlignment="center"
-                                app:fontFamily="@font/inter"
-                                android:textFontWeight="500"
+                                android:textColor="@color/light_blue"
                                 android:textSize="16sp"
-                                android:textColor="@color/light_blue" />
+                                app:fontFamily="@font/inter" />
 
 
                         </RelativeLayout>
@@ -119,17 +115,16 @@
                     <com.google.android.material.divider.MaterialDivider
                         android:layout_width="16px"
                         android:layout_height="match_parent"
-                        app:dividerColor="@color/green"
+                        android:layout_marginTop="10px"
                         android:layout_marginBottom="30px"
-                        android:layout_marginTop="10px">
+                        app:dividerColor="@color/green">
 
                     </com.google.android.material.divider.MaterialDivider>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        >
+                        android:layout_weight="1">
 
                     </RelativeLayout>
 
@@ -144,8 +139,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
             android:layout_margin="10dp"
+            android:layout_weight="0.5"
             app:cardBackgroundColor="@color/green"
             app:cardCornerRadius="20dp"
             app:strokeColor="@color/material_on_surface_stroke"
