@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.lafo_cheuse" >
+    package="com.example.lafo_cheuse">
 
     <application
         android:allowBackup="true"
@@ -9,10 +9,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/lafo_cheuse_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Test" >
+        android:theme="@style/Theme.Test">
+        <activity
+            android:name=".BudgetSetterActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/budgetTitle"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lafo_cheuse.MainActivity" />
+        </activity>
         <activity
             android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:exported="false"
@@ -20,7 +29,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
