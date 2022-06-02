@@ -1,0 +1,15 @@
+plugins {
+    id 'com.eden.orchidPlugin' version '0.21.1' apply true
+}
+
+dependencies {
+    def orchid_version = "1.0.0-SNAPSHOT"
+    orchidRuntimeOnly "io.github.copper-leaf.orchid:orchid-core:$orchid_version"
+    orchidRuntimeOnly "io.github.copper-leaf.orchid:orchid-kotlindoc-feature:$orchid_version"
+    orchidRuntimeOnly "io.github.copper-leaf.orchid:orchid-plugin-docs-feature:$orchid_version"
+    orchidRuntimeOnly "io.github.copper-leaf.orchid:orchid-bsdoc-theme:$orchid_version"
+}
+
+orchid {
+    version = "1.0.0"
+}

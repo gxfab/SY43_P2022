@@ -1,0 +1,22 @@
+site:
+  about:
+    siteName: 'MoneyZ Documentation'
+  theme: 'BsDoc'
+kotlindoc:
+  sourceDirs:
+    - './../../../../app/src/main/java'
+theme:
+  primaryColor: '#3a46f2'
+  menu:
+    - type: 'sourcedocModules'
+      moduleType: 'kotlindoc'
+    - type: 'sourcedocPages'
+      moduleType: 'kotlindoc'
+      node: 'classes'
+      asSubmenu: true
+      submenuTitle: 'Classes'
+    - type: 'sourcedocPages'
+      moduleType: 'kotlindoc'
+      node: 'packages'
+      asSubmenu: true
+      submenuTitle: 'Packages'
