@@ -11,16 +11,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nomoola.R;
 import com.example.nomoola.database.entity.Category;
+import com.example.nomoola.viewModel.CategoryViewModel;
 
 public class CategoryDialog extends DialogFragment {
 
     private TextView view_CategoryTitle, view_CategoryName, view_CategoryBudgetAmount;
     private EditText edit_CategoryName, edit_CategoryBudgetAmount;
-    private ImageButton exitButton;
+    private ImageButton exitButton, deleteButton, confirmEditButton;
 
+    private CategoryViewModel categoryViewModel;
     private Category category;
 
     public CategoryDialog(Category category){
@@ -39,13 +42,26 @@ public class CategoryDialog extends DialogFragment {
         this.edit_CategoryName = view.findViewById(R.id.editTextCategoryName);
         this.edit_CategoryBudgetAmount = view.findViewById(R.id.editTextCatBudgetAmount);
         this.exitButton = view.findViewById(R.id.exitButton);
+        this.deleteButton = view.findViewById(R.id.deleteCategoryButton);
+        this.confirmEditButton = view.findViewById(R.id.confirmEditButton);
 
         this.view_CategoryTitle.setText(category.getM_CAT_NAME());
+        this.edit_CategoryName.setText(category.getM_CAT_NAME());
+        this.edit_CategoryBudgetAmount.setText(String.valueOf(category.getM_CAT_BUDGET_AMOUNT()));
 
+        this.categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
 
         this.exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dismiss();
+            }
+        });
+
+        this.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                categoryViewModel.delete(category);
                 dismiss();
             }
         });

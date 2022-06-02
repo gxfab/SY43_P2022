@@ -46,7 +46,7 @@ public class Category {
         this.m_CAT_NAME = m_CAT_NAME;
     }
 
-    public Double getM_CAT_BUDGET_AMOUNT() {
+    public double getM_CAT_BUDGET_AMOUNT() {
         return m_CAT_BUDGET_AMOUNT;
     }
 

@@ -3,6 +3,8 @@ package com.example.nomoola.activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceControl;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,6 +24,9 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("CREATION", "onCreate from " + this.getClass().toString() + " started");
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_category);
 
         FragmentTransaction trans = getSupportFragmentManager().beginTransaction();

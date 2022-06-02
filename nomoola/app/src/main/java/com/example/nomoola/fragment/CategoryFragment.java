@@ -38,7 +38,9 @@ public class CategoryFragment extends Fragment {
 
         this.categoryAdapter = new CategoryAdapter(new CategoryAdapter.CategoryDiff(), this.getParentFragmentManager());
         this.categoryRecyclerView = view.findViewById(R.id.category_recyclerView);
+
         this.categoryRecyclerView.setAdapter(this.categoryAdapter);
+
 
         mCatViewModel.getAllCategories().observe(getViewLifecycleOwner(), categories -> {
             categoryAdapter.submitList(categories);
