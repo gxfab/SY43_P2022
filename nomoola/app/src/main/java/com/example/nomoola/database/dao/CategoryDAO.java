@@ -26,4 +26,7 @@ public interface CategoryDAO {
 
     @Query("SELECT * FROM T_CATEGORY")
     LiveData<List<Category>> getAllCategories();
+
+    @Query("UPDATE T_CATEGORY SET CAT_NAME=:name, CAT_BUDGET_AMOUNT=:budgetAmount WHERE CAT_ID=:id")
+    void updateCategory(String name, double budgetAmount, int id);
 }

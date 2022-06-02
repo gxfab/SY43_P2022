@@ -66,6 +66,17 @@ public class CategoryDialog extends DialogFragment {
             }
         });
 
+        this.confirmEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = edit_CategoryName.getText().toString();
+                double budgetAmount = Double.valueOf(edit_CategoryBudgetAmount.getText().toString());
+                int id = category.getM_CAT_ID();
+                categoryViewModel.update(name, budgetAmount, id);
+                dismiss();
+            }
+        });
+
         return view;
     }
 }

@@ -13,7 +13,11 @@ public class Category {
      * ATTRIBUTE
      */
 
-    @PrimaryKey()
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "CAT_ID")
+    private int m_CAT_ID;
+
     @NonNull
     @ColumnInfo(name = "CAT_NAME")
     private String m_CAT_NAME;
@@ -52,5 +56,13 @@ public class Category {
 
     public void setM_CAT_BUDGET_AMOUNT(double m_CAT_BUDGET_AMOUNT) {
         this.m_CAT_BUDGET_AMOUNT = m_CAT_BUDGET_AMOUNT;
+    }
+
+    public int getM_CAT_ID() {
+        return m_CAT_ID;
+    }
+
+    public void setM_CAT_ID(int m_CAT_ID) {
+        this.m_CAT_ID = m_CAT_ID;
     }
 }

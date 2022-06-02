@@ -52,6 +52,14 @@ public class DataRepository {
             mCategoryDAO.deleteCategory(category);
         });
     }
+    public void update(String name, double amount, int id) {
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mCategoryDAO.updateCategory(name, amount, id);
+        });
+    }
+
+
+
 
     public LiveData<List<SubCategory>> getAllSubCategories(){
         return mAllSubCategory;
@@ -70,6 +78,7 @@ public class DataRepository {
             mInOutComeDAO.insertInOutCome(inOutCome);
         });
     }
+
 
 
 }
