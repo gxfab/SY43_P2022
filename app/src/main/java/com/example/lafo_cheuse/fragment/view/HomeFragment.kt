@@ -53,6 +53,7 @@ class HomeFragment() : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
         chartView = view.findViewById<PieChart>(R.id.piechart)
+        chartView?.setTouchEnabled(false);
 
         val entries = ArrayList<PieEntry>()
 

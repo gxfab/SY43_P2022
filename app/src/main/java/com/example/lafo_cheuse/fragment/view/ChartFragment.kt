@@ -80,6 +80,7 @@ class ChartFragment : Fragment() {
     }
 
     private fun configureChartAppearance() {
+        chartView?.setTouchEnabled(false);
         chartView!!.renderer = RoundedBarChart(chartView,chartView!!.animator,chartView!!.viewPortHandler, 50)
         chartView!!.description.isEnabled = false
         chartView!!.setDrawValueAboveBar(false)
