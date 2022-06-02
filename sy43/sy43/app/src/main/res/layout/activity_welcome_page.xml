@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Welcome_Page">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:fitsSystemWindows="true">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:background="#ff95cc" />
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="25dp"
+            android:id="@+id/getStarted_button"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="650dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="1"
+            android:backgroundTint="#ff95cc"
+            tools:visibility="visible" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="Get Started"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+        </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:layout_width="257dp"
+            android:layout_height="264dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="320dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:text="Track your spending"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="237dp"
+                android:layout_height="60dp"
+                android:text="Add your expenses to see how you spend money"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="italic"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:text="Build a budget"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="245dp"
+                android:layout_height="60dp"
+                android:text="Know how much you can spend by making a budget for it"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:text="Fund your projects"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="237dp"
+                android:layout_height="60dp"
+                android:text="Allocate the rest of your budget to your dream projects"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:layout_marginTop="170dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Welcome to your"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Budget Buddy"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="85dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="320dp"
+            android:src="@drawable/money" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="85dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="410dp"
+            android:src="@drawable/charts" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="85dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="495dp"
+            android:src="@drawable/table" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/money_hand" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
