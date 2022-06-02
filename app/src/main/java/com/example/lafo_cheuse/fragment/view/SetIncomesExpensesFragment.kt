@@ -1,11 +1,14 @@
 package com.example.lafo_cheuse.fragment.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.lafo_cheuse.BudgetSetterActivity
 import com.example.lafo_cheuse.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +27,13 @@ class SetIncomesExpensesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_set_incomes_expenses, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_set_incomes_expenses, container, false)
+        val  budgetDisplayButton : FloatingActionButton = view.findViewById(R.id.budgetSetterFragment)
+
+        budgetDisplayButton.setOnClickListener {
+            val intent = Intent(activity, BudgetSetterActivity::class.java)
+            startActivity(intent)
+        }
+        return view;
     }
 }
