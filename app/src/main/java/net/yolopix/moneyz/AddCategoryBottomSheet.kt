@@ -23,7 +23,7 @@ class AddCategoryBottomSheet(private val db: AppDatabase) : BottomSheetDialogFra
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_add_category_bottom_sheet, container, false)
+        return inflater.inflate(R.layout.bottom_sheet_add_prevision, container, false)
     }
 
 

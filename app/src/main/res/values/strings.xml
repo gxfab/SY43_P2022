@@ -15,7 +15,7 @@
     <string name="expense_amount">Montant</string>
     <string name="expense_name">Nom de la dépense</string>
     <string name="category_name_bottom_sheeet">Nom de la catégorie</string>
-    <string name="category_price_bottom_sheet">Montant aloué</string>
+    <string name="category_price_bottom_sheet">Montant alloué</string>
     <string name="item_category_prevision_name">Nourriture</string>
     <string name="item_category_prevision_price">68,00€</string>
     <string name="item_category_prevision_advice">+4,5€ le mois dernier</string>
@@ -24,4 +24,10 @@
     <string name="add_account">Ajouter un compte</string>
     <string name="expense_placeholder">Nom de la dépense</string>
     <string name="money_placeholder">0€</string>
+    <string name="salary_placeholder">1539€</string>
+    <string name="month_placeholder">1</string>
+    <string name="payday">Jour de fin de mois</string>
+    <string name="salary_amount">Salaire du mois</string>
+    <string name="new_category">Nouvelle catégorie</string>
+    <string name="done">Terminé</string>
 </resources>

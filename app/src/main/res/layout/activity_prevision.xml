@@ -1,238 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:ignore="ExtraText">
+    tools:ignore="ExtraText, SpeakableTextPresentCheck">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Définition des prévisions"
-        android:textAlignment="center"
-        android:layout_margin= "10dp"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        >
-
-    </TextView>
-    <com.google.android.material.slider.Slider
-        android:id="@+id/salary_slider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:valueFrom="0"
-        android:value="780"
-        android:valueTo="1800"
-        app:haloColor="@color/white"
-        app:thumbColor="@color/white"
-        app:trackColor="@color/white"
-        >
-
-    </com.google.android.material.slider.Slider>
-
-    <TextView
-        android:id="@+id/salary_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="780/1800€"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textAlignment="center"
-        android:layout_marginBottom="20dp"
-        />
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        >
-        <ScrollView
+        <com.google.android.material.slider.Slider
+            android:id="@+id/salary_slider"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:value="780"
+            android:valueFrom="0"
+            android:valueTo="1800"
+            app:thumbRadius="0dp"
+            app:trackColorActive="@color/white"
+            app:trackColorInactive="#90FFFFFF"
+            app:trackHeight="16dp" />
+
+        <TextView
+            android:id="@+id/salary_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="780/1800€"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:theme="@style/Widget.MoneyZ.MaterialCardView.BackgroundCard">
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:padding="16dp">
 
-                >
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Conseils de budgetisation"
-                    android:textColor="@color/black"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="20dp">
+                    android:orientation="vertical">
 
-                </TextView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/grey_prevision"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:visibility="gone"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Conseils de budgetisation"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:visibility="gone" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mes revenus"
+                        android:textSize="22sp"
+                        android:paddingVertical="8dp"/>
 
-                    >
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-
-                        >
                         <TextView
-                            android:layout_width="405dp"
-                            android:layout_height="match_parent"
-                            android:text="Vous avez dépassé votre budget Nourriture le\nmois dernier"
-                            android:textColor="@color/black"
-                            android:textSize="16sp">
-
-                        </TextView>
-
-                        <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Augmenter en conséquence"
-                            android:layout_marginLeft="120dp"
-                            android:backgroundTint="@color/white"
-                            android:textColor="@color/black">
+                            android:text="@string/payday"
+                            android:visibility="gone" />
 
-                        </Button>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/payday"
+                            android:layout_marginVertical="8dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/month_placeholder"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mes revenus"
-                    android:textColor="@color/black"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="20dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                </TextView>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/salary_amount"
+                            android:visibility="gone" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textField"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/salary_amount"
+                            android:layout_marginVertical="8dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/salary_placeholder" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Jour de début de mois"
-                        android:layout_marginLeft="20dp">
-                    </TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="155dp"
-                        android:text="12">
+                        android:text="Mes catégories de dépenses"
+                        android:textSize="22sp"
+                        android:paddingVertical="8dp">
 
                     </TextView>
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        app:icon = "@drawable/ic_baseline_calendar_today_24"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="10dp"
-                        >
-                    </Button>
 
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/category_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_category_prevision">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+
+                    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                        android:id="@+id/button_add_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/new_category"
+                        app:icon="@drawable/ic_outline_add_24"
+                        android:elevation="0dp"
+                        app:elevation="0dp"/>
 
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
+            </ScrollView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Montant"
-                        android:layout_marginLeft="20dp">
-                    </TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="220dp"
-                        android:text="1800€">
+        </com.google.android.material.card.MaterialCardView>
 
-                    </TextView>
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        app:icon = "@drawable/ic_baseline_create_24"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="10dp"
-                        >
-                    </Button>
+    </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/button_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:text="@string/done"
+        app:icon="@drawable/ic_outline_check_24" />
 
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mes catégories de dépenses"
-                    android:textColor="@color/black"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="10dp"
-                    >
-
-                </TextView>
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/category_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    >
-
-                </androidx.recyclerview.widget.RecyclerView>
-
-
-
-
-                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:id="@+id/button_add_category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|center"
-                    android:backgroundTint="@color/white"
-                    android:text= "Nouvelle catégorie"
-                    android:textColor="@color/black"
-                    app:icon="@drawable/ic_outline_add_24" />
-                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="16dp"
-                    android:text="Validez vos choix"
-                    app:icon="@drawable/ic_outline_add_24" />
-
-
-
-            </LinearLayout>
-        </ScrollView>
-
-
-
-
-
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

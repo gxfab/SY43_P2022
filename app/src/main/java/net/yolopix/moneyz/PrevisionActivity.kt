@@ -18,15 +18,16 @@ class PrevisionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContentView(R.layout.activity_prevision)
-        var slider = findViewById<com.google.android.material.slider.Slider>(R.id.salary_slider)
-        var text_salary = findViewById<TextView>(R.id.salary_text);
+
+        /*
+        val slider = findViewById<com.google.android.material.slider.Slider>(R.id.salary_slider)
+        val text_salary = findViewById<TextView>(R.id.salary_text)
 
         slider.addOnChangeListener { slider, value, fromUser ->
             text_salary.text = String.format("%.2f", value.toDouble())
         }
+        */
 
 
 
@@ -45,10 +46,20 @@ class PrevisionActivity : AppCompatActivity() {
             loadCategory()
         }
 
+        // When the user has finished to make previsions
+        val doneButton: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton =
+            findViewById(R.id.button_done)
+        doneButton.setOnClickListener {
+            finish()
+        }
+
+        setTitle(R.string.previsions_title)
+
 
     }
-     fun deleteCategory(category: Category){
-        lifecycleScope.launch{
+
+    fun deleteCategory(category: Category) {
+        lifecycleScope.launch {
             db.categoryDao().deleteCategory(category)
         }
 
