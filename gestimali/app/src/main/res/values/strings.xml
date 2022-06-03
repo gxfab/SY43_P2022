@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">gestimali</string>
+
+    <!-- Home page -->
+    <string name="home_page_btn1">Month Overview</string>
+    <string name="home_page_btn2">Saving and Wish</string>
+    <string name="home_page_btn3">Transaction History</string>
+    <string name="home_page_btn4">Stats and Charts</string>
+    <string name="title_activity_wish_and_saving">Wish_and_Saving</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+</resources>
