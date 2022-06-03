@@ -14,9 +14,9 @@ import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Category
 import kotlin.properties.Delegates
 
-class AddCategoryBottomSheet(private val db: AppDatabase) : BottomSheetDialogFragment(){
+class AddCategoryBottomSheet(private val db: AppDatabase, private val monthNumber: Int, private val yearNumber: Int) : BottomSheetDialogFragment() {
     private lateinit var editTextCategoryName: EditText
-    private lateinit var editTextCategoryprice : EditText
+    private lateinit var editTextCategoryprice: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +29,6 @@ class AddCategoryBottomSheet(private val db: AppDatabase) : BottomSheetDialogFra
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
 
         val buttonAddCategoryName =
@@ -52,27 +51,22 @@ class AddCategoryBottomSheet(private val db: AppDatabase) : BottomSheetDialogFra
     }
 
 
-
-
-
-
     private fun addCategory() {
         var newCategoryPrice by Delegates.notNull<Float>()
         // Fetch the account name in the EditText and add it to the database
         val newCategoryName = editTextCategoryName.text.toString()
-        if(editTextCategoryprice.text.toString() == ""){
-             newCategoryPrice = 0F
-        }else{
-             newCategoryPrice = editTextCategoryprice.text.toString().toFloat()
+        newCategoryPrice = if (editTextCategoryprice.text.toString() == "") {
+            0F
+        } else {
+            editTextCategoryprice.text.toString().toFloat()
         }
 
-        val newCategory = Category(0,newCategoryName, newCategoryPrice)
+        val newCategory = Category(0, newCategoryName, newCategoryPrice, monthNumber, yearNumber)
         runBlocking {
-            //db.accountDao().insertAccount(Account(0, newAccountName))
-                db.categoryDao().insertCategory(newCategory)
+            db.categoryDao().insertCategory(newCategory)
         }
         lifecycleScope.launch {
-            (activity as PrevisionActivity).loadCategory()
+            (activity as PrevisionActivity).loadCategory(monthNumber, yearNumber)
         }
         dismiss()
     }

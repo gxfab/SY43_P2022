@@ -4,56 +4,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Category
 
-class CategoryAdapter(private val categoryList : MutableList<Category>)
-    : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>()
-
-{
-    private lateinit var db: AppDatabase
+class CategoryAdapter(private val categoryList: List<Category>) :
+    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryNameTextView: TextView = itemView.findViewById(R.id.categoryName)
         val categoryPriceTextView: TextView = itemView.findViewById(R.id.categoryPrice)
-        val linearLayoutCategory: LinearLayout = itemView.findViewById(R.id.linearLayoutContainerCategory)
-        val buttonDelete : Button = itemView.findViewById(R.id.button_delete_category)
+        val buttonDelete: Button = itemView.findViewById(R.id.button_delete_category)
 
     }
-
-
-
 
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
-        viewHolder.categoryNameTextView.text  = categoryList[position].name
+        viewHolder.categoryNameTextView.text = categoryList[position].name
         viewHolder.categoryPriceTextView.text = categoryList[position].predictedAmount.toString()
-
-
     }
-
-
 
     override fun getItemCount(): Int {
         return categoryList.size
     }
-    suspend fun deleteItem(index: Int, applicationContext : android.content.Context){
-
-        categoryList.removeAt(index)
-        db = DatabaseFactory.getDB(applicationContext)
-        db.categoryDao().deleteCategory(categoryList[index])
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view:View = inflater.inflate(R.layout.item_category_prevision, parent, false)
-        return CategoryAdapter.CategoryViewHolder(view)
+        val view: View = inflater.inflate(R.layout.item_category_prevision, parent, false)
+        return CategoryViewHolder(view)
     }
-
-
 
 }
 

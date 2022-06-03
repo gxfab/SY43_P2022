@@ -10,6 +10,9 @@ interface CategoryDao {
 	@Query("SELECT * FROM category")
 	suspend fun getAll(): List<Category>
 
+	@Query("SELECT * FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber")
+	suspend fun getCategoriesForMonth(monthNumber: Int, yearNumber: Int): List<Category>
+
 	@Insert
 	suspend fun insertCategory(category: Category)
 	@Delete

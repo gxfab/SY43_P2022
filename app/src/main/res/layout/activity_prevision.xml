@@ -77,9 +77,10 @@
                             android:hint="@string/payday">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editetext_payday"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/month_placeholder" />
+                                android:text="@string/default_month" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,10 +107,11 @@
                             android:hint="@string/salary_amount">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edittext_salary"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/salary_placeholder"
-                                android:inputType="numberDecimal"/>
+                                android:inputType="numberDecimal"
+                                android:text="@string/default_salary" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 

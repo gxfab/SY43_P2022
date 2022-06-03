@@ -2,14 +2,16 @@ package net.yolopix.moneyz
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
-import net.yolopix.moneyz.model.entities.Category
+import net.yolopix.moneyz.model.entities.Month
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class PrevisionActivity : AppCompatActivity() {
 
@@ -20,21 +22,27 @@ class PrevisionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prevision)
 
-        /*
-        val slider = findViewById<com.google.android.material.slider.Slider>(R.id.salary_slider)
-        val text_salary = findViewById<TextView>(R.id.salary_text)
+        // Make previsions for the current month
+        val now = LocalDate.now()
 
-        slider.addOnChangeListener { slider, value, fromUser ->
-            text_salary.text = String.format("%.2f", value.toDouble())
-        }
-        */
-
-
+        val monthNumber = now.monthValue
+        val yearNumber = now.year
 
         db = DatabaseFactory.getDB(applicationContext)
+
+        // Get account passed as extra message
+        val accountUid: Int? = intent.getStringExtra(EXTRA_MESSAGE)?.toInt()
+        lifecycleScope.launch {
+            if (accountUid == null) {
+                finish()
+            } else {
+                //loadAccount(accountUid)
+            }
+        }
+
         val addCategoryButton = findViewById<Button>(R.id.button_add_category)
         addCategoryButton.setOnClickListener {
-            AddCategoryBottomSheet(db).apply {
+            AddCategoryBottomSheet(db, monthNumber, yearNumber).apply {
                 show(supportFragmentManager, tag)
             }
 
@@ -43,31 +51,38 @@ class PrevisionActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.category_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
         lifecycleScope.launch {
-            loadCategory()
+            loadCategory(monthNumber, yearNumber)
         }
 
         // When the user has finished to make previsions
         val doneButton: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton =
             findViewById(R.id.button_done)
         doneButton.setOnClickListener {
+            val editTextSalary: EditText = findViewById(R.id.edittext_salary)
+            val editTextPayday: EditText = findViewById(R.id.editetext_payday)
+            val newMonth = Month(
+                now.monthValue,
+                now.year,
+                editTextSalary.text.toString().toDouble(),
+                editTextPayday.text.toString().toInt(),
+                accountUid!!
+            )
+            lifecycleScope.launch {
+                db.monthDao().insertMonth(newMonth)
+            }
             finish()
         }
 
         setTitle(R.string.previsions_title)
-
-
-    }
-
-    fun deleteCategory(category: Category) {
-        lifecycleScope.launch {
-            db.categoryDao().deleteCategory(category)
-        }
+        val monthFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+        val formattedMonth: String = now.format(monthFormat)
+        supportActionBar?.subtitle = "Pour le mois de $formattedMonth"
 
     }
 
-
-    suspend fun loadCategory() {
-        val adapter = CategoryAdapter(db.categoryDao().getAll() as MutableList<Category>)
+    suspend fun loadCategory(monthNumber: Int, yearNumber: Int) {
+        val adapter =
+            CategoryAdapter(db.categoryDao().getCategoriesForMonth(monthNumber, yearNumber))
         recyclerView.adapter = adapter
     }
 }

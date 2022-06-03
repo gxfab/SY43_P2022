@@ -1,11 +1,11 @@
 package net.yolopix.moneyz.model.entities
 
-import androidx.room.*
-import java.util.Date
+import androidx.room.Entity
 
-@Entity
+@Entity(primaryKeys = ["monthNumber", "yearNumber"])
 class Month(
-    @PrimaryKey val uid: Int,
+    val monthNumber: Int,
+    val yearNumber: Int,
     var prevision: Double,
     var payday: Int,
     var accountUid: Int

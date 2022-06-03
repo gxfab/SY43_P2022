@@ -23,8 +23,8 @@
     <string name="add_account">Ajouter un compte</string>
     <string name="expense_placeholder">Nom de la dépense</string>
     <string name="money_placeholder">0€</string>
-    <string name="salary_placeholder">1539€</string>
-    <string name="month_placeholder">1</string>
+    <string name="default_salary">1539</string>
+    <string name="default_month">1</string>
     <string name="payday">Jour de fin de mois</string>
     <string name="salary_amount">Salaire du mois</string>
     <string name="new_category">Nouvelle catégorie</string>
