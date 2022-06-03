@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/baseline_home_white_24dp"
+        android:title="@string/home_name"
+        android:visible="true" />
+    <item
+        android:id="@+id/navigation_spendings"
+        android:icon="@drawable/baseline_pie_chart_white_24dp"
+        android:title="@string/spendings_name"
+        android:visible="true" />
+    <item
+        android:id="@+id/navigation_savings"
+        android:icon="@drawable/baseline_bar_chart_white_24dp"
+        android:title="@string/savings_name" />
+    <item
+        android:id="@+id/navigation_zero_budget"
+        android:icon="@drawable/baseline_account_balance_wallet_white_24dp"
+        android:title="@string/zero_budget_name" />
+</menu>
