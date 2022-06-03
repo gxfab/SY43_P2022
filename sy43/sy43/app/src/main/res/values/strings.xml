@@ -99,7 +99,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_home">Home</string>
-    <string name="description"><i>Tell us what are your main expenses. You can always modify these later in settings!</i></string>
+    <string name="description"><i>Tell us what are your main expenses and set an expected expenditure for each. You can always modify these later in settings!</i></string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

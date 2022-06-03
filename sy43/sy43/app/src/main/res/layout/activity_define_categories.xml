@@ -21,7 +21,7 @@
         />
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
         android:text="@string/description"
         android:gravity="center"
@@ -41,7 +41,7 @@
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/food_cat"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -57,7 +57,7 @@
                     android:id="@+id/food_icon"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="-105dp"
                     android:src="@drawable/food"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -76,9 +76,9 @@
                     app:layout_constraintLeft_toRightOf="@+id/food_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/housing_cat"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -89,15 +89,15 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:background="#ff95cc"/>
+
                 <ImageView
                     android:id="@+id/housing_icon"
                     android:layout_width="120dp"
                     android:layout_height="90dp"
                     android:layout_marginTop="0dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/house"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginStart="-120dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/house" />
 
                 <TextView
                     android:id="@+id/housing"
@@ -113,9 +113,9 @@
                     app:layout_constraintLeft_toRightOf="@+id/housing_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/communication_cat"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -131,9 +131,9 @@
                     android:id="@+id/communication_icon"
                     android:layout_width="85dp"
                     android:layout_height="85dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="-105dp"
                     android:layout_marginTop="4dp"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     android:src="@drawable/phone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -152,9 +152,9 @@
                     app:layout_constraintLeft_toRightOf="@+id/communication_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/transport_cat"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -170,7 +170,7 @@
                     android:id="@+id/transport_icon"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="-110dp"
                     android:src="@drawable/transport"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -189,9 +189,9 @@
                     app:layout_constraintLeft_toRightOf="@+id/transport_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/clothing_cat"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -207,7 +207,7 @@
                     android:id="@+id/clothing_icon"
                     android:layout_width="85dp"
                     android:layout_height="85dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="-105dp"
                     android:layout_marginTop="4dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/clothing"
@@ -228,9 +228,9 @@
                     app:layout_constraintLeft_toRightOf="@+id/clothing_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/entertainment_cat"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -247,6 +247,7 @@
                     android:layout_width="120dp"
                     android:layout_height="85dp"
                     android:layout_marginTop="4dp"
+                    android:layout_marginStart="-120dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/entertainment"
                     app:layout_constraintStart_toStartOf="parent"
@@ -266,9 +267,9 @@
                     app:layout_constraintLeft_toRightOf="@+id/entertainment_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/finance_cat"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -284,7 +285,7 @@
                     android:id="@+id/finance_icon"
                     android:layout_width="85dp"
                     android:layout_height="85dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="-105dp"
                     android:layout_marginTop="4dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/finance"
@@ -305,9 +306,9 @@
                     app:layout_constraintLeft_toRightOf="@+id/finance_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/health_cat"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -323,7 +324,7 @@
                     android:id="@+id/health_icon"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="-110dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/health"
                     app:layout_constraintStart_toStartOf="parent"
@@ -343,8 +344,7 @@
                     app:layout_constraintLeft_toRightOf="@+id/health_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
     </ScrollView>
@@ -365,6 +365,13 @@
             android:text="Continue"
             android:layout_gravity="center"/>
     </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container_frame_back"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"/>
 </FrameLayout>
 
 

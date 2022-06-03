@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Welcome_Page">
-
-    <FrameLayout
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
@@ -21,7 +16,6 @@
 
         <androidx.cardview.widget.CardView
             app:cardCornerRadius="25dp"
-            android:id="@+id/getStarted_button"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginLeft="50dp"
@@ -30,15 +24,16 @@
             android:layout_weight="1"
             android:backgroundTint="#ff95cc"
             tools:visibility="visible" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/getStarted_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:fontFamily="sans-serif-light"
+                android:background="#00FFFFFF"
                 android:text="Get Started"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="35sp"
+                android:textSize="35dp"
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 android:layout_gravity="center"/>
         </androidx.cardview.widget.CardView>
         <LinearLayout
@@ -161,4 +156,3 @@
 
     </FrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>

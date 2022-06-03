@@ -2,21 +2,32 @@ package com.example.sy43;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 public class define_categories extends AppCompatActivity {
 
-    CardView continue_home, clothing_cat, communication_cat, entertainment_cat, finance_cat, food_cat, health_cat, housing_cat, transport_cat;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    boolean addToBackStack;
+    CardView continue_home;
+    LinearLayout clothing_cat, communication_cat, entertainment_cat, finance_cat, food_cat, health_cat, housing_cat, transport_cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_define_categories);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE );
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction= fragmentManager.beginTransaction();
+        addToBackStack=false;
+        /*SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE );
 
         String firstTime = sharedPreferences.getString("First Time Install","");
 
@@ -28,8 +39,17 @@ public class define_categories extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("First Time Install", "Yes");
             editor.apply();
-        }
+        }*/
 
+        toHome();
+        popupClothes();
+        popupCommunication();
+        popupEntertainment();
+        popupFinance();
+        popupFood();
+        popupHealth();
+        popupHousing();
+        popupTransport();
     }
     @Override
     public void onBackPressed() {
@@ -134,4 +154,13 @@ public class define_categories extends AppCompatActivity {
         });
     }
 
+    public void addFragmentBackStack(Fragment fragment, boolean addToBackStack, String tag) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+
+        if (addToBackStack) {
+            ft.addToBackStack(tag);
+        }
+        ft.commitAllowingStateLoss();
+    }
 }
