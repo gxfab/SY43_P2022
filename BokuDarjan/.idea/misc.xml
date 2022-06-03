@@ -9,13 +9,12 @@
         <entry key="app/src/main/res/drawable/ic_card.xml" value="0.313" />
         <entry key="app/src/main/res/drawable/ic_dollar.xml" value="0.313" />
         <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.313" />
+
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2975" />
         <entry key="app/src/main/res/drawable/ic_menu.xml" value="0.34" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.344" />
         <entry key="app/src/main/res/drawable/ic_rectangle.xml" value="0.311" />
         <entry key="app/src/main/res/drawable/ic_rectangle_bresom.xml" value="0.344" />
-        <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.3505" />
-        <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.313" />
         <entry key="app/src/main/res/drawable/icon_plan.xml" value="0.344" />
         <entry key="app/src/main/res/drawable/navbar_color.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/settings.xml" value="0.313" />
@@ -26,11 +25,12 @@
         <entry key="app/src/main/res/layout/fragment_list_expense.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_list_expense_list.xml" value="0.24864130434782608" />
         <entry key="app/src/main/res/layout/fragment_month.xml" value="0.5" />
+
         <entry key="app/src/main/res/layout/fragment_planification.xml" value="0.3496376811594203" />
         <entry key="app/src/main/res/layout/fragment_savings.xml" value="0.3496376811594203" />
-        <entry key="app/src/main/res/layout/fragment_side_bar.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_side_bar.xml" value="0.67" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.353125" />
-        <entry key="app/src/main/res/menu/sidebarmenu.xml" value="0.3536458333333333" />
+        <entry key="app/src/main/res/menu/sidebarmenu.xml" value="0.35260416666666666" />
       </map>
     </option>
   </component>
