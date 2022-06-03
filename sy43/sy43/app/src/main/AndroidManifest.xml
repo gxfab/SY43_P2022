@@ -17,17 +17,16 @@
             android:name=".define_categories"
             android:exported="false" />
         <activity
-            android:name=".Welcome_Page"
+            android:name=".Home"
             android:exported="false" />
         <activity
             android:name=".Categories"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".Welcome_Page"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -62,9 +62,9 @@
     </string-array>
 
     <string-array name="Food_Sub">
+        <item>Canteen</item>
         <item>Groceries</item>
         <item>Restaurant</item>
-        <item>Canteen</item>
     </string-array>
 
     <string-array name="Health_Sub">

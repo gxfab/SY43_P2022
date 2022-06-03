@@ -3,10 +3,12 @@ package com.example.sy43;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 
@@ -32,6 +34,8 @@ public class Categories extends AppCompatActivity {
                 housingFragment.show(getSupportFragmentManager(), "Housing Sub Categories");
             }
         });
+
+        toHome();
 
         /*sp_categories = findViewById(R.id.add_expense_category);
         sp_subcategories = findViewById(R.id.add_expense_subcategory);
@@ -86,5 +90,15 @@ public class Categories extends AppCompatActivity {
             }
         });*/
 
+    }
+
+    private void toHome(){
+        ImageView home_icon = findViewById(R.id.home_icon);
+        home_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Categories.this, Home.class));
+            }
+        });
     }
 }
