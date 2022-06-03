@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.widget.TextView
+import androidx.core.view.isVisible
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +38,41 @@ class planificationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_planification, container, false)
+        val view = inflater.inflate(R.layout.fragment_planification, container, false)
+
+        val expandBtn = view.findViewById<FloatingActionButton>(R.id.expandButton);
+        val btn1 = view.findViewById<FloatingActionButton>(R.id.addCategoryBtn);
+        val btn2 = view.findViewById<FloatingActionButton>(R.id.addExpenseBtn);
+        val lbl1 = view.findViewById<TextView>(R.id.lbl1);
+        val lbl2 = view.findViewById<TextView>(R.id.lbl2);
+
+        val animIn = AnimationUtils.loadAnimation(view.context, R.anim.in_up);
+        val animOut = AnimationUtils.loadAnimation(view.context, R.anim.out_up);
+
+        expandBtn.setOnClickListener {
+            if(btn1.isVisible){
+                btn2.startAnimation(animOut)
+                btn1.startAnimation(animOut)
+                lbl2.startAnimation(animOut)
+                lbl1.startAnimation(animOut)
+                lbl1.visibility = View.INVISIBLE
+                lbl2.visibility = View.INVISIBLE
+                btn1.visibility = View.INVISIBLE
+                btn2.visibility = View.INVISIBLE
+
+            }else{
+                lbl1.startAnimation(animIn)
+                lbl2.startAnimation(animIn)
+                btn1.startAnimation(animIn)
+                btn2.startAnimation(animIn)
+                btn1.visibility = View.VISIBLE
+                btn2.visibility = View.VISIBLE
+                lbl1.visibility = View.VISIBLE
+                lbl2.visibility = View.VISIBLE
+            }
+        }
+
+        return view;
     }
 
     companion object {
