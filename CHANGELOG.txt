@@ -1,2 +1,5 @@
 [0.0] - 18/03/2022
 -creation of the repository for the Sucelloz app.
+
+[0.1] - 03/06/2022
+-merge of the DAO and interface branches to the main app
