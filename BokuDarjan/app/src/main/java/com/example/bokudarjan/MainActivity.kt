@@ -15,6 +15,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.*
+import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.slidingpanelayout.widget.SlidingPaneLayout.LOCK_MODE_LOCKED
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
             // Code here executes on main thread after user presses button
         }
 
+        //TODO: renames theses variables
         val truc = drawer.findViewById<NavigationView>(R.id.nav);
         val machin = truc.getHeaderView(0);
         val bidule = machin.findViewById<LinearLayout>(R.id.buttonlay);
@@ -67,13 +69,16 @@ class MainActivity : AppCompatActivity() {
             child.findViewById<TextView>(R.id.txtMonth).text = "Mois n°" + (i+1).toString();
             child.setOnClickListener { child.startAnimation(anim); handler.postDelayed({bidule.removeView(child)},500);}
             bidule.addView(child);
-
         }
+
+
 
         val scrl = machin.findViewById<HorizontalScrollView>(R.id.scrollview);
 
         var onScroll = false;
         var locked = false;
+
+        var fragement = findViewById<FragmentContainerView>(R.id.nav_host_fragment)
 
         drawer.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED);
 
@@ -81,13 +86,10 @@ class MainActivity : AppCompatActivity() {
             if (ev.actionMasked == MotionEvent.ACTION_DOWN && (ev.x > drawer.x || ev.y > drawer.y)){
                 drawer.closeDrawer(GravityCompat.START);
             }
+            fragement.dispatchTouchEvent(ev);
             onTouchEvent(ev)
         }
 
-        bottom.setOnNavigationItemSelectedListener {
-            drawer.closeDrawer(GravityCompat.START);
-            true;
-        }
         bottom.setupWithNavController(navController);
 
     }
