@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/1 COURS/BR02 - P22/SY43/Projet/SY43_PROJET/SY43_P2022/gest_imali/app/src/main/res/drawable-anydpi/ic_calendar.xml" value="0.1985" />
+        <entry key="..\:/1 COURS/BR02 - P22/SY43/Projet/SY43_PROJET/SY43_P2022/gest_imali/app/src/main/res/drawable/title_rectangle.xml" value="0.1605" />
+        <entry key="..\:/1 COURS/BR02 - P22/SY43/Projet/SY43_PROJET/SY43_P2022/gest_imali/app/src/main/res/layout/activity_main.xml" value="0.536" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

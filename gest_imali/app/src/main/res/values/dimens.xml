@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="title_margin">12dp</dimen>
-    <dimen name="home_page_btn_width">300dp</dimen>
+    <dimen name="home_page_btn_width">350dp</dimen>
     <dimen name="home_page_btn_height">80dp</dimen>
+    <dimen name="home_page_btn_radius">45dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
 </resources>
