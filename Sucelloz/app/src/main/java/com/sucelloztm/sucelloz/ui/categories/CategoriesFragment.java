@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,7 @@ public class CategoriesFragment extends Fragment {
     private CategoriesFragmentBinding binding;
     private String[] dataSet;
     private static final int DATASET_COUNT = 60;
+    private ViewModel categoriesViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class CategoriesFragment extends Fragment {
         // Initialize dataset, this data would usually come from a local content provider or
         // remote server.
         initDataset();
+
+        categoriesViewModel = new ViewModelProvider(requireActivity()).get(CategoriesViewModel.class);
     }
 
 
