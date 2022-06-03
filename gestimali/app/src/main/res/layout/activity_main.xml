@@ -31,12 +31,11 @@
         android:id="@+id/calendarIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="194dp"
-        android:translationZ="1dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/titleRectangle"
-        app:layout_constraintStart_toStartOf="@+id/titleRectangle"
-        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="10dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homePageButton1"
+        app:layout_constraintStart_toStartOf="@+id/homePageButton1"
+        app:layout_constraintTop_toTopOf="@+id/homePageButton1"
         app:srcCompat="@drawable/ic_calendar" />
 
 
