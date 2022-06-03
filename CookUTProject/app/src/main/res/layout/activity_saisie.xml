@@ -6,4 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".Saisie">
 
+    <EditText
+        android:layout_width="297dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="268dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:hint="Saisir valeur"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        android:onClick="changeActivity"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

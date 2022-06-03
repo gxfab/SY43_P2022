@@ -10,26 +10,38 @@
     tools:visibility="visible">
 
     <Button
-        android:id="@+id/button_saisie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="288dp"
+        android:id="@+id/button"
+        android:layout_width="130dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="384dp"
         android:backgroundTint="@color/gold_CookUT"
-        android:onClick="changeActivity"
-        android:text="Saisie"
+        android:text="Bilan évènement"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
+        android:id="@+id/button_saisie"
+        android:layout_width="125dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="460dp"
         android:backgroundTint="@color/gold_CookUT"
-        android:text="Button"
+        android:onClick="changeActivity"
+        android:text="Saisie"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="134dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="308dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:text="Récapitulatif détaillé"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

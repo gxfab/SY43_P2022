@@ -1,3 +1,7 @@
 DO Christian
 DURAND Sulyvan
+FANTOU Guillaume
 Cook'UT
+
+- Mise en place du background + Ajout de 2 boutons dont un fonctionnel (renvoyant à une nouvelle activité de saisie) (Guillaume)
+- Ajout des boutons avec leurs utilités, ajout d'un bouton Home pour l'acitivité "saisie", ajout d'une barre de saisie (Christian et Sulyvan)
