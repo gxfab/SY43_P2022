@@ -1,6 +1,7 @@
 package com.sucelloztm.sucelloz;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -36,5 +37,4 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
         getSupportActionBar().hide();
     }
-
 }
