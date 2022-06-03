@@ -10,13 +10,14 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/expense_placeholder"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/text_view_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00/00">
+        android:text="@string/daymonth_placeholder"
+        android:paddingHorizontal="8dp">
 
     </TextView>
 

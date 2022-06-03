@@ -34,7 +34,7 @@ class ExpensesActivity : AppCompatActivity() {
 
         val addExpenseButton: Button = findViewById(R.id.button_add_expense)
         addExpenseButton.setOnClickListener {
-            AddExpenseBottomSheet(db).apply {
+            AddExpenseBottomSheet(db, accountUid!!).apply {
                 show(supportFragmentManager, tag)
             }
         }

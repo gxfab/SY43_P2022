@@ -7,7 +7,7 @@
     <string name="account_name_placeholder">Nom du compte</string>
     <string name="account_created">Compte créé avec succès</string>
     <string name="add_expense">Ajouter une dépense</string>
-    <string name="placeholder_short">Texte à remplacer</string>
+    <string name="placeholder_short">\?\?\?</string>
     <string name="previsions_title">Définition des prévisions</string>
     <string name="expenses_title">Dépenses de %1$s</string>
     <string name="category">Catégorie</string>
@@ -17,10 +17,9 @@
     <string name="category_name_bottom_sheeet">Nom de la catégorie</string>
     <string name="category_price_bottom_sheet">Montant alloué</string>
     <string name="item_category_prevision_name">Nourriture</string>
-    <string name="item_category_prevision_price">68,00€</string>
     <string name="item_category_prevision_advice">+4,5€ le mois dernier</string>
     <string name="select_date">Sélectionner une date</string>
-    <string name="expense_date">Date de la dépense</string>
+    <string name="expense_date">Jour du mois de la dépense</string>
     <string name="add_account">Ajouter un compte</string>
     <string name="expense_placeholder">Nom de la dépense</string>
     <string name="money_placeholder">0€</string>
@@ -33,4 +32,5 @@
     <string name="make_previsions">Budgetiser maintenant</string>
     <string name="section_income_title">Mes revenus</string>
     <string name="section_prevision_category">Mes catégories de dépenses</string>
+    <string name="daymonth_placeholder">00/00</string>
 </resources>

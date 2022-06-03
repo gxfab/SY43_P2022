@@ -17,14 +17,15 @@
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_margin="16dp"
             android:text="@string/make_previsions"
             android:textColor="@color/white"
             app:icon="@drawable/ic_outline_chevron_right_24"
-            app:strokeColor="@color/white"
             app:iconGravity="end"
-            app:strokeWidth="2dp"
-            app:iconTint="@color/white"/>
+            app:iconTint="@color/white"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp" />
 
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MoneyZ.MaterialCardView.BackgroundCard"
@@ -36,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
+                tools:itemCount="6"
                 tools:listitem="@layout/item_category" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
