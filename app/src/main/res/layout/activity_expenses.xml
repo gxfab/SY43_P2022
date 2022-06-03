@@ -12,22 +12,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/button_make_previsions"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"/>
+            android:layout_margin="16dp"
+            android:text="@string/make_previsions"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_outline_chevron_right_24"
+            app:strokeColor="@color/white"
+            app:iconGravity="end"
+            app:strokeWidth="2dp"
+            app:iconTint="@color/white"/>
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MoneyZ.MaterialCardView.BackgroundCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            style="@style/Widget.MoneyZ.MaterialCardView.BackgroundCard">
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/expenses_recy_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/item_category"
-                android:padding="16dp"/>
+                android:padding="16dp"
+                tools:listitem="@layout/item_category" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 

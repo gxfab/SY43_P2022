@@ -53,15 +53,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Conseils de budgetisation"
-                        android:textColor="@color/black"
-                        android:textSize="17sp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mes revenus"
+                        android:text="@string/section_income_title"
                         android:textSize="22sp"
                         android:paddingVertical="8dp"/>
 
@@ -126,7 +118,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Mes catégories de dépenses"
+                        android:text="@string/section_prevision_category"
                         android:textSize="22sp"
                         android:paddingVertical="8dp">
 

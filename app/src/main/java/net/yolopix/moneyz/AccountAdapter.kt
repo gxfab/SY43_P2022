@@ -30,7 +30,7 @@ class AccountAdapter(private val accountList: List<Account>) :
 
         // When the account item is clicked, open a specific account passed in extra
         viewHolder.cardContainer.setOnClickListener {
-            val intent = Intent(it.context, PrevisionActivity::class.java).apply {
+            val intent = Intent(it.context, ExpensesActivity::class.java).apply {
                 putExtra(EXTRA_MESSAGE, accountList[position].uid.toString())
             }
             it.context.startActivity(intent)

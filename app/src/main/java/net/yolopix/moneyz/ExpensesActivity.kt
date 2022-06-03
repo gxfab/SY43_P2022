@@ -1,5 +1,6 @@
 package net.yolopix.moneyz
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -31,11 +32,19 @@ class ExpensesActivity : AppCompatActivity() {
             }
         }
 
-        val addExpenseButton = findViewById<Button>(R.id.button_add_expense)
+        val addExpenseButton: Button = findViewById(R.id.button_add_expense)
         addExpenseButton.setOnClickListener {
             AddExpenseBottomSheet(db).apply {
                 show(supportFragmentManager, tag)
             }
+        }
+
+        val makePrevisionButton: Button = findViewById(R.id.button_make_previsions)
+        makePrevisionButton.setOnClickListener {
+            val intent = Intent(it.context, PrevisionActivity::class.java).apply {
+                putExtra(EXTRA_MESSAGE, account.uid.toString())
+            }
+            it.context.startActivity(intent)
         }
 
         // RecylerView

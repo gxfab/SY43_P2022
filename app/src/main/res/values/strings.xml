@@ -30,4 +30,7 @@
     <string name="salary_amount">Salaire du mois</string>
     <string name="new_category">Nouvelle catégorie</string>
     <string name="done">Terminé</string>
+    <string name="make_previsions">Budgetiser maintenant</string>
+    <string name="section_income_title">Mes revenus</string>
+    <string name="section_prevision_category">Mes catégories de dépenses</string>
 </resources>
