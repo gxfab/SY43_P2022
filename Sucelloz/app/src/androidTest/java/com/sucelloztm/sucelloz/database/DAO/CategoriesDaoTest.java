@@ -44,7 +44,7 @@ public class CategoriesDaoTest {
     public void insertCategory() throws Exception {
         Categories category = new Categories("test", true);
         categoriesDao.insertCategory(category);
-        List<Categories> categories = categoriesDao.getCategories();
+        List<Categories> categories = categoriesDao.getAllCategories();
         assertEquals(categories.get(0).getName(), category.getName());
     }
 
@@ -53,7 +53,7 @@ public class CategoriesDaoTest {
         Categories category1 = new Categories("test1", true);
         Categories category2 = new Categories("test2", true);
         categoriesDao.insertCategories(category1, category2);
-        List<Categories> categories = categoriesDao.getCategories();
+        List<Categories> categories = categoriesDao.getAllCategories();
         assertEquals(categories.get(0).getName(), category1.getName());
         assertEquals(categories.get(1).getName(), category2.getName());
     }
@@ -65,7 +65,7 @@ public class CategoriesDaoTest {
         category.setId(insertedId);
         category.setReadOnly(false);
         categoriesDao.updateCategory(category);
-        List<Categories> categories = categoriesDao.getCategories();
+        List<Categories> categories = categoriesDao.getAllCategories();
         assertFalse(categories.get(0).getReadOnly());
     }
 
@@ -79,7 +79,7 @@ public class CategoriesDaoTest {
         category2.setId(insertedId.get(1));
         category2.setReadOnly(false);
         categoriesDao.updateCategories(category1, category2);
-        List<Categories> categories = categoriesDao.getCategories();
+        List<Categories> categories = categoriesDao.getAllCategories();
         assertFalse(categories.get(0).getReadOnly());
         assertFalse(categories.get(1).getReadOnly());
 
@@ -91,7 +91,7 @@ public class CategoriesDaoTest {
         long insertedId = categoriesDao.insertCategory(category);
         category.setId(insertedId);
         categoriesDao.deleteCategory(category);
-        List<Categories> categories = categoriesDao.getCategories();
+        List<Categories> categories = categoriesDao.getAllCategories();
         assertThat(categories.isEmpty(), is(true));
 
     }
@@ -104,7 +104,7 @@ public class CategoriesDaoTest {
         category1.setId(insertedId.get(0));
         category2.setId(insertedId.get(1));
         categoriesDao.deleteCategories(category1, category2);
-        List<Categories> categories = categoriesDao.getCategories();
+        List<Categories> categories = categoriesDao.getAllCategories();
         assertThat(categories.isEmpty(), is(true));
     }
 

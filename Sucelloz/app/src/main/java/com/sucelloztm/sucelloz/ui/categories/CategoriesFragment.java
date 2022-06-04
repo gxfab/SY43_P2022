@@ -2,40 +2,34 @@ package com.sucelloztm.sucelloz.ui.categories;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.CategoriesFragmentBinding;
+import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
+
+import java.util.List;
 
 public class CategoriesFragment extends Fragment {
 
     private CategoriesFragmentBinding binding;
-    private String[] dataSet;
-    private static final int DATASET_COUNT = 60;
-    private ViewModel categoriesViewModel;
+    private CategoriesViewModel categoriesViewModel;
+    private List<Categories> categoriesDataSet;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Initialize dataset, this data would usually come from a local content provider or
-        // remote server.
-        initDataset();
-
-        categoriesViewModel = new ViewModelProvider(requireActivity()).get(CategoriesViewModel.class);
     }
 
 
@@ -45,11 +39,12 @@ public class CategoriesFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = CategoriesFragmentBinding.inflate(inflater,container,false);
-
         View root = binding.getRoot();
+        categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
+        categoriesDataSet=categoriesViewModel.getAllCategories();
         RecyclerView recyclerView = binding.outerRecyclerView;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        CategoriesAdapter adapter = new CategoriesAdapter(dataSet);
+        CategoriesAdapter adapter = new CategoriesAdapter(categoriesDataSet);
         recyclerView.setAdapter(adapter);
 
         return root;
@@ -78,14 +73,6 @@ public class CategoriesFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-//TODO : Put this method in the MVP Pattern
-
-    private void initDataset() {
-        dataSet = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            dataSet[i] = "This is element #" + i;
-        }
     }
 
 

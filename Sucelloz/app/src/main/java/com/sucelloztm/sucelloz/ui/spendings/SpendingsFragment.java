@@ -85,7 +85,7 @@ public class SpendingsFragment extends Fragment {
         Spendings spendings;
         for (int i = 0; i < DATASET_COUNT; i++) {
             name = "Spendings #" + i;
-            date =getDate();
+            date=getDate();
             amount = i+"€";
             spendings=new Spendings(name,date,amount);
             dataSet.add(spendings);

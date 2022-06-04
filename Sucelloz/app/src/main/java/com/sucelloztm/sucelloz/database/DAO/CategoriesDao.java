@@ -35,7 +35,7 @@ public interface CategoriesDao {
     void deleteCategories(Categories... categories);
 
     @Query("SELECT * FROM categories")
-    List<Categories> getCategories();
+    List<Categories> getAllCategories();
 
     @Transaction
     @Query("SELECT * FROM categories")

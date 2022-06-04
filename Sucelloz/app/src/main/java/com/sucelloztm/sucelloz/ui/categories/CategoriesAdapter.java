@@ -1,5 +1,6 @@
 package com.sucelloztm.sucelloz.ui.categories;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.sucelloztm.sucelloz.R;
+import com.sucelloztm.sucelloz.models.Categories;
+import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
+
+import java.util.List;
 
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
 
-    private final String[] localDataSet;
+    private List<Categories> categoriesList;
 
 
 
@@ -43,14 +48,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         }
     }
 
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     *                by RecyclerView.
-     */
-    public CategoriesAdapter(String[] dataSet) {
-        localDataSet = dataSet;
+    public CategoriesAdapter(List<Categories> dataSet) {
+        this.categoriesList = dataSet;
     }
 
     // Create new views (invoked by the layout manager)
@@ -70,7 +69,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getTextView().setText(localDataSet[position]);
+        viewHolder.getTextView().setText(categoriesList.get(position).getName());
         //TODO:fix bug when clicking two categories at the same time
         viewHolder.itemView.findViewById(R.id.category_card_clickable).setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_navigation_categories_to_navigation_sub_categories));
@@ -79,7 +78,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+        return categoriesList.size();
     }
 
 }
