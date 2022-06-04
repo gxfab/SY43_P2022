@@ -55,6 +55,7 @@ public class Stats extends AppCompatActivity {
         for(int i = 0; i < categoryTypes.size(); ++i) {
             categoryNames[i] = categoryTypes.get(i).getNameCategory();
         }
+        selectedString = categoryNames[0];
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.liste_deroulante_selected_item, categoryNames);
 

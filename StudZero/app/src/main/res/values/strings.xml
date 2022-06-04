@@ -35,4 +35,5 @@
     <string name="AddPaymentConfirmButton">Confirm</string>
     <string name="RemainingBalance">Remaining balance :</string>
     <string name="RemainingDays">Remaining day(s) :</string>
+    <string name="EvolutionPayments">Evolution of payments</string>
 </resources>
