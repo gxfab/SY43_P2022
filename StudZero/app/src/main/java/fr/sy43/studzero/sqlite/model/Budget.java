@@ -1,6 +1,8 @@
 package fr.sy43.studzero.sqlite.model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * This class represents a budget
@@ -22,6 +24,20 @@ public class Budget {
      * Amount of money of the budget
      */
     private float budgetAmount;
+
+    /**
+     * Default constructor of the class
+     */
+    public Budget() {
+        this.idBudget = 0;
+        this.dateStart = new Date();
+        Calendar calendar = (GregorianCalendar) GregorianCalendar.getInstance();
+        calendar.setTime(dateStart);
+        calendar.add(Calendar.DATE, 30);
+        // DateEnd = dateStart + 30 days
+        this.dateEnd = calendar.getTime();
+        this.budgetAmount = 0;
+    }
 
     /**
      * Constructor of the class
@@ -108,5 +124,15 @@ public class Budget {
      */
     public void setBudgetAmount(float budgetAmount) {
         this.budgetAmount = budgetAmount;
+    }
+
+    /**
+     * @return the day after the end of the budget
+     */
+    public Date getDateNextBudget() {
+        Calendar calendar = (GregorianCalendar) GregorianCalendar.getInstance();
+        calendar.setTime(dateEnd);
+        calendar.add(Calendar.DATE, 1);
+        return calendar.getTime();
     }
 }

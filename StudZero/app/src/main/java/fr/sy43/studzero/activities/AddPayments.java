@@ -45,6 +45,12 @@ public class AddPayments extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.add_payements);
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            /**
+             * This function is used by the nav bar the bottom of the screen.
+             * If calls an activity depending on the item selected by the user.
+             * @param item
+             * @return
+             */
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -57,7 +63,7 @@ public class AddPayments extends AppCompatActivity {
                     case R.id.add_payements:
                         return true;
                     case R.id.stats:
-                        startActivity(new Intent(getApplicationContext(), stats.class));
+                        startActivity(new Intent(getApplicationContext(), Stats.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.settings:
@@ -73,7 +79,7 @@ public class AddPayments extends AppCompatActivity {
             }
         });
 
-        // Add a scrollView + layout that shows the payments of the month
+        // Add a layout to the scroll view that shows the payments of the month
         ScrollView scrollView = (ScrollView) findViewById(R.id.ScrollViewPayments);
         ListPaymentLayout listPaymentLayout = new ListPaymentLayout(this);
         scrollView.addView(listPaymentLayout);

@@ -11,7 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import fr.sy43.studzero.R;
 
-public class stats extends AppCompatActivity {
+public class Stats extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,12 @@ public class stats extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                /**
+                 * This function is used by the nav bar the bottom of the screen.
+                 * If calls an activity depending on the item selected by the user.
+                 * @param item
+                 * @return
+                 */
                 switch(item.getItemId())
                 {
                     case R.id.add_payements:

@@ -1,6 +1,7 @@
 package fr.sy43.studzero.vue.layout;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +15,10 @@ import fr.sy43.studzero.vue.view.CategoryProgressBar;
  * Layout used for the home page view
  */
 public class HomeLayout extends LinearLayout {
+    /**
+     * Constructor of the layout
+     * @param context used by the parent class
+     */
     public HomeLayout(Context context) {
         super(context);
         DatabaseHelper db = new DatabaseHelper(context);
@@ -49,8 +54,13 @@ public class HomeLayout extends LinearLayout {
         params.topMargin = convertDpToPx(this.getContext(), 10);
         TextView remainingBalanceAmount = new TextView(this.getContext());
         remainingBalanceAmount.setLayoutParams(params);
-        remainingBalanceAmount.setText(String.format("%.2f", db.getRemainingAmountOfCurrentBudget())+"€");
-        remainingBalanceAmount.setTextColor(getResources().getColor(R.color.white));
+        float remainingBalanceValue = db.getRemainingAmountOfCurrentBudget();
+        remainingBalanceAmount.setText(String.format("%.2f", remainingBalanceValue)+"€");
+        if(remainingBalanceValue < 0.f) {
+            remainingBalanceAmount.setTextColor(getResources().getColor(R.color.red));
+        } else {
+            remainingBalanceAmount.setTextColor(getResources().getColor(R.color.white));
+        }
         remainingBalanceAmount.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         remainingBalanceAmount.setTextSize(convertSpToPx(this.getContext(), 10.0f));
 

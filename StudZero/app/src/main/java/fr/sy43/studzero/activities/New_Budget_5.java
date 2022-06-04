@@ -14,8 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.sy43.studzero.R;
+import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
+import fr.sy43.studzero.sqlite.model.Category;
+import fr.sy43.studzero.sqlite.model.CategoryType;
 
 /**
  * 5th screen of a new budget creation
@@ -29,6 +33,7 @@ public class New_Budget_5 extends AppCompatActivity {
     private ArrayList<Float> Allocated;
     private float Available;
     private RecyclerView recyclerView;
+    private long idNewBudget;
 
     /**
      * setup the text fields with the correct value
@@ -41,6 +46,14 @@ public class New_Budget_5 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_budget5);
+
+        idNewBudget = getIntent().getLongExtra(New_Budget_1.ID_NEW_BUDGET, -1);
+        if(idNewBudget == -1) {
+            Intent intent = new Intent(this, New_Budget_1.class);
+            intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
+            intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
+            startActivity(intent);
+        }
 
         getSupportActionBar().setTitle("Review New Budget");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -56,10 +69,16 @@ public class New_Budget_5 extends AppCompatActivity {
 
         Button button = (Button) findViewById(R.id.NewBudget2_ConfirmButton);
 
-
-        // here
-        float allocated = 1000; //DB.budget.budgetamount ou somme de Allocated (arraylist)
-
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        float allocated = 0f;
+        List<Category> listCategories = db.getAllCategories((int) idNewBudget);
+        String[] category = new String[listCategories.size()];
+        for(int i = 0; i < listCategories.size(); ++i) {
+            allocated += listCategories.get(i).getTheoreticalAmount();
+            category[i] = db.getTypeCategory(listCategories.get(i).getType()).getNameCategory();
+        }
+        allocated = Float.parseFloat(String.format("%.2f", allocated).replace(",", "."));
+        db.closeDB();
         //apply
         TextView txtAllocated = (TextView) findViewById(R.id.TextViewAllocated);
         TextView txtAvailable = (TextView) findViewById(R.id.TextViewAvailable);
@@ -86,9 +105,13 @@ public class New_Budget_5 extends AppCompatActivity {
              */
             public void onClick(View v) {
                 Log.i("button", "confirmed");
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                db.updateUserCurrentBudget((int) idNewBudget);
+                db.closeDB();
                 finish();
                 //go to home
                 Intent intent = new Intent(getApplicationContext(), Home.class);
+                intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                 intent.putExtra("caller", "New_Budget_5"); //permet à la nouvelle activity de connaitre son lanceur
                 startActivity(intent);
             }
@@ -102,32 +125,16 @@ public class New_Budget_5 extends AppCompatActivity {
      */
     private void GetData() {
         // récup data
-        category_name.add("cat 1");
-        Allocated.add(10.0f);
-        category_name.add("cat 2");
-        Allocated.add(10.0f);
-        category_name.add("cat 3");
-        Allocated.add(10.0f);
-        category_name.add("cat 4");
-        Allocated.add(10.0f);
-        category_name.add("cat 5");
-        Allocated.add(10.0f);
-        category_name.add("cat 6");
-        Allocated.add(1000.0f);
-        category_name.add("cat 7");
-        Allocated.add(10.0f);
-        category_name.add("cat 8");
-        Allocated.add(50.0f);
-        category_name.add("cat 9");
-        Allocated.add(10.0f);
-        category_name.add("cat 10");
-        Allocated.add(10.0f);
-        category_name.add("cat 11");
-        Allocated.add(200.0f);
-        category_name.add("cat 12");
-        Allocated.add(100.0f);
 
-        Available = 1200f; //this budget.allocated
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        List<CategoryType> categoryTypes = db.getAllCategoriesTypes();
+        Available = 0f;
+        for(int i = 0; i < categoryTypes.size(); ++i) {
+            category_name.add(categoryTypes.get(i).getNameCategory());
+            Allocated.add(Float.parseFloat(String.format("%.2f", db.getCategoryOfCategoryType((int) idNewBudget, categoryTypes.get(i).getNameCategory()).getTheoreticalAmount()).replace(",", ".")));
+        }
+        Available = Float.parseFloat(String.format("%.2f", db.getBudget((int) idNewBudget).getBudgetAmount()).replace(",", "."));
+        db.closeDB();
     }
 
     /**
@@ -141,6 +148,7 @@ public class New_Budget_5 extends AppCompatActivity {
         intent.putExtra("caller", caller); //permet à la nouvelle activity de connaitre son lanceur
         intent.putExtra("subcaller", "NB5"); //permet à la nouvelle activity de connaitre son lanceur
         intent.putExtra("pos", String.valueOf(pos)); //envoie la position a présélectionée
+        intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
         startActivity(intent);
     }
 
@@ -160,12 +168,14 @@ public class New_Budget_5 extends AppCompatActivity {
                 String caller     = getIntent().getStringExtra("caller"); //caller contient le nom de la class appelante
                 if(caller.equals("Settings")){
                     Intent intent = new Intent(this, New_Budget_3.class);
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
                     startActivity(intent);
                 }
                 else{
                     Intent intent = new Intent(this, New_Budget_3.class);
                     intent.putExtra("caller", "MAinActivity"); //permet à la nouvelle activity de connaitre son lanceur
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     startActivity(intent);
                 }
                 return true;

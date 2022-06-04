@@ -15,9 +15,7 @@ import java.util.List;
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Category;
-import fr.sy43.studzero.sqlite.model.Payment;
 import fr.sy43.studzero.vue.layout.HomeLayout;
-import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 
 /**
  * Activity that is used for the home screen of the app
@@ -41,6 +39,12 @@ public class Home extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.home);
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            /**
+             * This function is used by the nav bar the bottom of the screen.
+             * If calls an activity depending on the item selected by the user.
+             * @param item
+             * @return
+             */
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -53,7 +57,7 @@ public class Home extends AppCompatActivity {
                     case R.id.home:
                         return true;
                     case R.id.stats:
-                        startActivity(new Intent(getApplicationContext(), stats.class));
+                        startActivity(new Intent(getApplicationContext(), Stats.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.settings:
@@ -69,7 +73,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        // Add a scrollView + layout that shows information about the current budget
+        // Add a layout to the scroll view that shows the payments of the month
         ScrollView scrollView = (ScrollView) findViewById(R.id.ScrollViewHome);
         HomeLayout homeLayout = new HomeLayout(this);
         DatabaseHelper db = new DatabaseHelper(this);

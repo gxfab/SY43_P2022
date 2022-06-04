@@ -20,7 +20,12 @@ import android.widget.TextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 import fr.sy43.studzero.R;
+import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
+import fr.sy43.studzero.sqlite.model.Category;
+import fr.sy43.studzero.sqlite.model.CategoryType;
 
 //comparaison avec les categories déjà existantes : ctrl + F : "compare cat here"
 //créer la catégory dans la BD sur appuis du button : ctrl + F : "appuis button"
@@ -30,7 +35,8 @@ import fr.sy43.studzero.R;
  * 4th screen of a new budget creation : add a new category
  */
 public class New_Budget_4 extends AppCompatActivity {
-    String category_name;
+    private String category_name;
+    private long idNewBudget;
 
     /**
      * setup the text field with the correct values
@@ -43,9 +49,18 @@ public class New_Budget_4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_budget4);
 
-        // here
-        int nb_cat = 13; //db.nbcat
+        idNewBudget = getIntent().getLongExtra(New_Budget_1.ID_NEW_BUDGET, -1);
+        if(idNewBudget == -1) {
+            Intent intent = new Intent(this, New_Budget_1.class);
+            intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
+            intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
+            startActivity(intent);
+        }
 
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        List<CategoryType> list = db.getAllCategoriesTypes();
+        int nb_cat = list.size();
+        db.closeDB();
 
         TextView txtV = (TextView) (findViewById(R.id.NewBudget4_NbCatTextView));
         txtV.setText(getString(R.string.NewBudget4_NbCatTextViewTXT) + " " + String.valueOf(nb_cat));
@@ -76,12 +91,14 @@ public class New_Budget_4 extends AppCompatActivity {
                 if(caller.equals("Settings")){
                     //renvoye vers la page précédente
                     Intent intent = new Intent(this, New_Budget_3.class);
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "Settings"); //permet à la nouvelle activity de connaitre son lanceur
                     startActivity(intent);
                 }
                 else{
                     //renvoye vers la page précédente
                     Intent intent = new Intent(this, New_Budget_3.class);
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
                     startActivity(intent);
                 }
@@ -192,19 +209,22 @@ public class New_Budget_4 extends AppCompatActivity {
 
                 // a faire
                 // appuis button
-
-
-
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                int idCategoryType = db.addCategoryType(new CategoryType(TextInputCategoryName.getText().toString()));
+                db.addCategory(new Category(0f, 0f, (int) idNewBudget, idCategoryType));
+                db.closeDB();
                 //changer d'écran : revenir a l'étape 3
                 String caller     = getIntent().getStringExtra("caller"); //caller contient le nom de la class appelante
                 if(caller.equals("Settings")){
                     Intent intent = new Intent(new Intent(getApplicationContext(), New_Budget_3.class));
                     intent.putExtra("caller", "Settings");
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     startActivity(intent);
                 }
                 else{
                     Intent intent = new Intent(new Intent(getApplicationContext(), New_Budget_3.class));
                     intent.putExtra("caller", "MainActivity");
+                    intent.putExtra(New_Budget_1.ID_NEW_BUDGET, idNewBudget);
                     startActivity(intent);
                 }
             }
@@ -224,10 +244,15 @@ public class New_Budget_4 extends AppCompatActivity {
                 if (text.length() > 0) {
                     String s = String.valueOf(text);
 
-                    // compare cat here
-                    //comparer le string s au nom de categories deja existante : modif la suite
+                    //comparer le string s au nom de categories deja existante
+                    DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                    List<Category> listCategories = db.getAllCategories((int) idNewBudget);
+                    String[] cat_existante = new String[listCategories.size()];
+                    for(int i = 0; i < listCategories.size(); ++i) {
+                        cat_existante[i] = db.getTypeCategory(listCategories.get(i).getType()).getNameCategory();
+                    }
+                    db.closeDB();
 
-                    String[] cat_existante = {"cat1", "cat2", "cat3"};
                     for(int i = 0; i < cat_existante.length; i++){
                         if(s.equals(cat_existante[i])){
                             textInputLayoutCategoryName.setError("This category already exists");
