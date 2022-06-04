@@ -93,6 +93,19 @@ public class Stats extends AppCompatActivity {
                 return false;
             }
         });
+
+        CategoryGraph categoryGraph = new CategoryGraph(getApplicationContext(), db.getCategoryOfCategoryType(db.getCurrentBudget().getIdBudget(), selectedString));
+        categoryGraph.setBackgroundColor(getColor(R.color.BG_Objet));
+        LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutStats);
+        layout.addView(categoryGraph);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) categoryGraph.getLayoutParams();
+        params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
+        params.height = convertDpToPx(getApplicationContext(), 400);
+        params.leftMargin = convertDpToPx(getApplicationContext(), 20);
+        params.rightMargin = convertDpToPx(getApplicationContext(), 20);
+        params.bottomMargin = convertDpToPx(getApplicationContext(), 30);
+        categoryGraph.setLayoutParams(params);
+
         adapter.setDropDownViewResource(R.layout.liste_deroulante);
 
         spinner.setAdapter(adapter);
@@ -109,6 +122,7 @@ public class Stats extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedString = categoryNames[position];
+                categoryGraph.setNewCategory(db.getCategoryOfCategoryType(db.getCurrentBudget().getIdBudget(), selectedString));
             }
             /**
              * If no category is selected : set the selected type of category variable to ""
@@ -120,17 +134,6 @@ public class Stats extends AppCompatActivity {
             }
         });
 
-        CategoryGraph categoryGraph = new CategoryGraph(getApplicationContext(), db.getCategoryOfCategoryType(db.getCurrentBudget().getIdBudget(), selectedString));
-        categoryGraph.setBackgroundColor(getColor(R.color.BG_Objet));
-        LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutStats);
-        layout.addView(categoryGraph);
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) categoryGraph.getLayoutParams();
-        params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
-        params.height = convertDpToPx(getApplicationContext(), 400);
-        params.leftMargin = convertDpToPx(getApplicationContext(), 20);
-        params.rightMargin = convertDpToPx(getApplicationContext(), 20);
-        params.bottomMargin = convertDpToPx(getApplicationContext(), 30);
-        categoryGraph.setLayoutParams(params);
         db.closeDB();
     }
 

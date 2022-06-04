@@ -8,9 +8,13 @@ import android.graphics.Rect;
 import android.util.Log;
 import android.view.View;
 
+import java.util.Date;
 import java.util.Dictionary;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
@@ -21,7 +25,7 @@ public class CategoryGraph extends View {
     private Paint paint;
     private Category category;
     private Resources resources;
-    private Dictionary<Int, Float> sumPaymentsPerDay;
+    private LinkedHashMap<Integer, Float> sumPaymentsPerDay;
     private float ratioRealTheoreticalAmount;
 
     public CategoryGraph(Context context, Category category) {
@@ -29,24 +33,52 @@ public class CategoryGraph extends View {
         this.paint = new Paint();
         this.category = category;
         this.resources = this.getResources();
+        setGraphData(category);
+    }
+
+    private void setGraphData(Category category) {
         DatabaseHelper db = new DatabaseHelper(getContext());
         List<Payment>payments = db.getAllPaymentsOfCategory(category.getIdCategory());
-        db.closeDB();
-        this.sumPaymentsPerDay = new LinkedList<>();
-        sumPaymentsPerDay.add(payments.get(0).getAmount());
-        for(int i = 1; i < payments.size(); ++i) {
-            if(new String(DatabaseHelper.getStringWithoutTimeFromDate(payments.get(i-1).getDatePayment())).equals(DatabaseHelper.getStringWithoutTimeFromDate(payments.get(i).getDatePayment()))) {
-                sumPaymentsPerDay.set(sumPaymentsPerDay.size()-1, sumPaymentsPerDay.get(sumPaymentsPerDay.size()-1) + payments.get(i).getAmount());
-            } else {
-                sumPaymentsPerDay.add(sumPaymentsPerDay.get(sumPaymentsPerDay.size()-1) + payments.get(i).getAmount());
+        sumPaymentsPerDay = new LinkedHashMap<>();
+
+        if(payments.size() > 0) {
+            long diffBudgetStart = db.getBudget(category.getBudget()).getDateStart().getTime() - payments.get(0).getDatePayment().getTime();
+            db.closeDB();
+            int numberOfDaysBetweenBudgetStartAnd1stPayment =  1 + (int) TimeUnit.DAYS.convert(diffBudgetStart, TimeUnit.MILLISECONDS);
+            for(int i = 0; i < numberOfDaysBetweenBudgetStartAnd1stPayment; ++i)  {
+                sumPaymentsPerDay.put(i, 0f);
             }
+            sumPaymentsPerDay.put(numberOfDaysBetweenBudgetStartAnd1stPayment, payments.get(0).getAmount());
+            for(int i = numberOfDaysBetweenBudgetStartAnd1stPayment + 1; i <= 30; ++i) {
+                sumPaymentsPerDay.put(i, -1f);
+            }
+            int day = 1;
+            for(int i = 1; i < payments.size(); ++i) {
+                if(!new String(DatabaseHelper.getStringWithoutTimeFromDate(payments.get(i - 1).getDatePayment())).equals(DatabaseHelper.getStringWithoutTimeFromDate(payments.get(i).getDatePayment()))) {
+                    long diff = payments.get(i).getDatePayment().getTime() - payments.get(i - 1).getDatePayment().getTime();
+                    int numberOfDaysBetween2Dates = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+                    for (int j = 1; j <= numberOfDaysBetween2Dates; ++j) {
+                        day++;
+                        sumPaymentsPerDay.put(day, sumPaymentsPerDay.get(day - 1));
+                    }
+                }
+                sumPaymentsPerDay.put(day, sumPaymentsPerDay.get(day) + payments.get(i).getAmount());
+            }
+
+            if(category.getTheoreticalAmount() > category.getRealAmount()) {
+                this.ratioRealTheoreticalAmount = 1;
+            } else {
+                this.ratioRealTheoreticalAmount = category.getTheoreticalAmount() / category.getRealAmount();
+            }
+        } else {
+            this.ratioRealTheoreticalAmount = 1;
         }
 
-        if(category.getTheoreticalAmount() > category.getRealAmount()) {
-            this.ratioRealTheoreticalAmount = 1;
-        } else {
-            this.ratioRealTheoreticalAmount = category.getTheoreticalAmount() / category.getRealAmount();
-        }
+    }
+
+    public void setNewCategory(Category category) {
+        setGraphData(category);
+        this.invalidate();
     }
 
     @Override
@@ -102,11 +134,29 @@ public class CategoryGraph extends View {
         canvas.drawText(getContext().getString(R.string.TheoreticalAmountGraphicalLegend), graphLegendTheoreticalAmountXEnd * 1.1f, graphLegendTheoreticalAmountY, paint);
         canvas.drawText(getContext().getString(R.string.RealAmountGraphicalLegend), graphLegendRealAmountXEnd * 1.1f, graphLegendRealAmountY, paint);
 
-        // Draw the theoretical line
+        // Draw the theoretical amount curve
         this.paint.setStrokeWidth(5f);
         this.paint.setColor(this.resources.getColor(R.color.teal_200));
         float yTheoreticalAmount = yGraphXTitle - (yGraphXTitle - yStartYAxis) * ratioRealTheoreticalAmount;
         canvas.drawLine( xValueYAxis,  yTheoreticalAmount,  xEndXAxis,  yTheoreticalAmount, this.paint);
 
+        // Draw the real amount curve
+        this.paint.setColor(this.resources.getColor(R.color.purple_200));
+        for(int i = 1; i <= 30 && sumPaymentsPerDay.size() > 0; ++i) {
+            if(sumPaymentsPerDay.get(i) == -1f) {
+                break;
+            }
+            float xPreviousDay = xValueYAxis + (xEndXAxis - xValueYAxis) * (i-1)/30;
+            float yPreviousDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i-1)/category.getRealAmount();
+            float xDay = xValueYAxis + (xEndXAxis - xValueYAxis) * (i)/30;
+            float yDay;
+            if(category.getTheoreticalAmount() > category.getRealAmount()) {
+                yDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i)/category.getTheoreticalAmount();
+            } else {
+                yDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i)/category.getRealAmount();
+            }
+
+            canvas.drawLine( xPreviousDay,  yPreviousDay,  xDay,  yDay, this.paint);
+        }
     }
 }
