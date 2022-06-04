@@ -36,4 +36,8 @@
     <string name="RemainingBalance">Remaining balance :</string>
     <string name="RemainingDays">Remaining day(s) :</string>
     <string name="EvolutionPayments">Evolution of payments</string>
+    <string name="RealAmountGraphicalLegend">Real amount payed</string>
+    <string name="TheoreticalAmountGraphicalLegend">Theoretical amount payed</string>
+    <string name="GraphYAxisTitle">Payments</string>
+    <string name="GraphXAxisTitle">Days</string>
 </resources>

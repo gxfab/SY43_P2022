@@ -569,7 +569,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * get all payments that are linked to a budget
      * @param idBudget id of the budget
-     * @return payments that are linked to the given budget, null is returned if no categories are linked to the id
+     * @return payments that are linked to the given budget, null is returned if no payments are linked to the id
      */
     @SuppressLint("Range")
     public List<Payment> getAllPaymentsOfBudget(int idBudget) {
@@ -580,6 +580,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "Select * from " + TABLE_PAYMENT +" INNER JOIN " + TABLE_CATEGORY  +
                 " ON "+ PAYMENT_COLUMN_CATEGORY+ "=" + CATEGORY_COLUMN_ID +
                 " where " + CATEGORY_COLUMN_BUDGET + "=" + idBudget + " ORDER BY " + PAYMENT_COLUMN_DATE_PAYMENT + " DESC";
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null || !c.moveToFirst()) {
+            return new LinkedList<Payment>();
+        }
+
+        do {
+            payments.add(new Payment(
+                    c.getInt(c.getColumnIndex(PAYMENT_COLUMN_ID)),
+                    c.getFloat(c.getColumnIndex(PAYMENT_COLUMN_AMOUNT)),
+                    getDateFromString(c.getString(c.getColumnIndex(PAYMENT_COLUMN_DATE_PAYMENT))),
+                    c.getInt(c.getColumnIndex(PAYMENT_COLUMN_CATEGORY))
+            ));
+        } while(c.moveToNext());
+
+        return payments;
+    }
+
+    /**
+     * get all payments that are linked to a category
+     * @param idCategory id of the category
+     * @return payments that are linked to the given category, null is returned if no payments are linked to the id
+     */
+    @SuppressLint("Range")
+    public List<Payment> getAllPaymentsOfCategory(int idCategory) {
+        List<Payment> payments = new LinkedList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "Select * from " + TABLE_PAYMENT +
+                " where " + PAYMENT_COLUMN_CATEGORY + "=" + idCategory + " ORDER BY " + PAYMENT_COLUMN_DATE_PAYMENT + " DESC";
 
         Cursor c = db.rawQuery(query, null);
 
