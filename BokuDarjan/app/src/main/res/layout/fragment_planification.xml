@@ -8,6 +8,46 @@
     tools:context=".planificationFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/expandButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add"
+        android:translationZ="20dp"
+        app:backgroundTint="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_hardrectangle"
+        android:translationZ="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/budget"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center|start"
+        android:text="Encore XXXX€ à budgetiser"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:translationZ="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/expandButton"
+        app:layout_constraintStart_toStartOf="@+id/footer"
+        app:layout_constraintTop_toTopOf="@+id/footer" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addExpenseBtn"
         android:layout_width="40dp"
@@ -15,6 +55,7 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:src="@drawable/ic_dollar"
+        android:tint="#4CAF50"
         android:visibility="invisible"
         app:backgroundTint="@color/white"
         app:fabSize="mini"
@@ -36,44 +77,15 @@
         app:layout_constraintStart_toStartOf="@+id/addExpenseBtn" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello pannification fragment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:src="@drawable/ic_hardrectangle"
-        android:translationZ="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/expandButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
         android:id="@+id/lbl1"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="#4CAF50"
+        android:background="@drawable/ic_rectangle"
+        android:padding="5dp"
         android:text=" Dépenses "
         android:textColor="#FFFFFF"
+        android:translationZ="10dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/addExpenseBtn"
         app:layout_constraintEnd_toStartOf="@+id/addExpenseBtn"
@@ -84,12 +96,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="#4CAF50"
+        android:background="@drawable/ic_rectangle"
+        android:padding="5dp"
         android:text=" Catégories "
         android:textColor="#FFFFFF"
+        android:translationZ="10dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/addExpenseBtn"
         app:layout_constraintEnd_toStartOf="@+id/addCategoryBtn"
         app:layout_constraintTop_toTopOf="@+id/addCategoryBtn" />
+
+    <ImageView
+        android:id="@+id/darken"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_darken"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/footer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/categoryScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:translationZ="-10dp"
+        app:layout_constraintBottom_toTopOf="@+id/footer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/catLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
