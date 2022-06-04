@@ -41,18 +41,21 @@ class PrevisionActivity : AppCompatActivity() {
             }
         }
 
+        db = DatabaseFactory.getDB(applicationContext)
+        recyclerView = findViewById(R.id.category_recycler_view)
         progressTextView = findViewById(R.id.progress_text)
         salaryEditText = findViewById(R.id.edittext_salary)
         salarySlider = findViewById(R.id.slider_salary)
-
-        // Make previsions for the current month
         now = LocalDate.now()
 
-        db = DatabaseFactory.getDB(applicationContext)
+        // Restrict day of month input to proper values
+        val paydayEditText: EditText = findViewById(R.id.editetext_payday)
+        paydayEditText.filters = arrayOf(NumberRangeInputFilter(1, now.lengthOfMonth()))
 
-        // Load the bar when the activity is created
+        // Set salary value
         lifecycleScope.launch {
-            loadBudgetBar()
+            val categorizedAmount = calculateCategorizedAmount()
+            if (categorizedAmount > 0f) salaryEditText.setText(categorizedAmount.toString())
         }
 
         // Refresh the bar when the salary was changed
@@ -72,17 +75,15 @@ class PrevisionActivity : AppCompatActivity() {
         }
 
         // Initialize the category RecyclerView
-        recyclerView = findViewById(R.id.category_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
-        lifecycleScope.launch {
-            loadCategories()
-        }
+
+        // Load asynchronous databases operations when the activity is created
+        loadAll()
 
         // When the user has finished to make previsions
         val doneButton: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton =
             findViewById(R.id.button_done)
         doneButton.setOnClickListener {
-            val paydayEditText: EditText = findViewById(R.id.editetext_payday)
             val newMonth = Month(
                 now.monthValue,
                 now.year,
@@ -100,18 +101,43 @@ class PrevisionActivity : AppCompatActivity() {
         setTitle(R.string.previsions_title)
         val monthFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
         val formattedMonth: String = now.format(monthFormat)
-        supportActionBar?.subtitle = "Pour le mois de $formattedMonth"
+        supportActionBar?.subtitle = getString(R.string.prevision_subtitle_month, formattedMonth)
 
+    }
+
+    /**
+     * Load categories, limits and budget bar
+     */
+    fun loadAll() {
+        lifecycleScope.launch() {
+            loadCategories()
+            loadBudgetBar()
+            loadLimits()
+        }
     }
 
     /**
      * Load all categories from the current prevision from the database
      * and display the recyclerview containing these categories
      */
-    suspend fun loadCategories() {
+    private suspend fun loadCategories() {
         val adapter =
-            CategoryAdapter(db.categoryDao().getCategoriesForMonth(now.monthValue, now.year))
+            CategoryAdapter(
+                db.categoryDao().getCategoriesForMonth(now.monthValue, now.year), this
+            )
         recyclerView.adapter = adapter
+    }
+
+    /**
+     * Load min and max values for EditText
+     */
+    private suspend fun loadLimits() {
+        val categorizedAmount: Float = calculateCategorizedAmount()
+        salaryEditText.filters = arrayOf(NumberRangeInputFilter(categorizedAmount, Float.MAX_VALUE))
+
+        if (salaryEditText.text.toString().toFloat() < categorizedAmount) {
+            salaryEditText.setText(categorizedAmount.toString())
+        }
     }
 
     /**
@@ -119,22 +145,40 @@ class PrevisionActivity : AppCompatActivity() {
      * and refresh the progress bar at the top of the screen
      */
     private suspend fun loadBudgetBar() {
+
+        val categorizedAmount = calculateCategorizedAmount()
+        var totalAmount: Float? = salaryEditText.text.toString().toFloatOrNull()
+
+        if (totalAmount == null)
+            totalAmount = 0f
+
+        progressTextView.text = getString(
+            R.string.prevision_progress_format,
+            String.format("%.2f", categorizedAmount),
+            String.format("%.2f", totalAmount)
+        )
+
+        if (totalAmount >= categorizedAmount)
+            salarySlider.valueTo = java.lang.Float.max(totalAmount, 1f)
+
+        if (categorizedAmount in 0f..totalAmount)
+            salarySlider.value = categorizedAmount
+        else
+            salarySlider.value = 0f
+    }
+
+    /**
+     * Calculate the total amount of categorized money
+     * @return total amount of all previsions from the categories
+     */
+    private suspend fun calculateCategorizedAmount(): Float {
         val categories = db.categoryDao().getCategoriesForMonth(now.monthValue, now.year)
         var categorizedAmount = 0f
 
         for (category in categories) {
             categorizedAmount += category.predictedAmount
         }
-        val totalAmount: Float = salaryEditText.text.toString().toFloat()
-
-        progressTextView.text = getString(
-            R.string.prevision_progress_format,
-            categorizedAmount.toString(),
-            totalAmount.toString()
-        )
-
-        salarySlider.value = categorizedAmount
-        salarySlider.valueTo = totalAmount
+        return categorizedAmount
     }
 
 }

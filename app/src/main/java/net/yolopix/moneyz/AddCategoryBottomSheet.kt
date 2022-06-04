@@ -14,7 +14,11 @@ import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Category
 import kotlin.properties.Delegates
 
-class AddCategoryBottomSheet(private val db: AppDatabase, private val monthNumber: Int, private val yearNumber: Int) : BottomSheetDialogFragment() {
+class AddCategoryBottomSheet(
+    private val db: AppDatabase,
+    private val monthNumber: Int,
+    private val yearNumber: Int
+) : BottomSheetDialogFragment() {
     private lateinit var editTextCategoryName: EditText
     private lateinit var editTextCategoryprice: EditText
 
@@ -66,7 +70,8 @@ class AddCategoryBottomSheet(private val db: AppDatabase, private val monthNumbe
             db.categoryDao().insertCategory(newCategory)
         }
         lifecycleScope.launch {
-            (activity as PrevisionActivity).loadCategories()
+            val parent = activity as PrevisionActivity
+            parent.loadAll()
         }
         dismiss()
     }

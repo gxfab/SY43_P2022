@@ -16,15 +16,12 @@
             android:id="@+id/slider_salary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
             android:enabled="false"
-            android:value="780"
-            android:valueFrom="0"
-            android:valueTo="1800"
             app:thumbRadius="0dp"
             app:trackColorActive="@color/white"
             app:trackColorInactive="#90FFFFFF"
-            app:trackHeight="16dp"
-            android:layout_marginVertical="8dp"/>
+            app:trackHeight="16dp" />
 
         <TextView
             android:id="@+id/progress_text"
@@ -37,9 +34,9 @@
             android:textSize="25sp" />
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MoneyZ.MaterialCardView.BackgroundCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:theme="@style/Widget.MoneyZ.MaterialCardView.BackgroundCard">
+            android:layout_height="match_parent">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -81,8 +78,9 @@
                                 android:id="@+id/editetext_payday"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/default_month"
-                                android:inputType="number"/>
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:text="@string/default_month" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,6 +111,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberDecimal"
+                                android:maxLines="1"
                                 android:text="@string/default_salary" />
 
                         </com.google.android.material.textfield.TextInputLayout>

@@ -1,5 +1,6 @@
 package net.yolopix.moneyz
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import net.yolopix.moneyz.model.entities.Category
 
-class CategoryAdapter(private val categoryList: List<Category>) :
+class CategoryAdapter(private val categoryList: List<Category>, private val context: Context) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -20,7 +21,10 @@ class CategoryAdapter(private val categoryList: List<Category>) :
 
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
         viewHolder.categoryNameTextView.text = categoryList[position].name
-        viewHolder.categoryPriceTextView.text = categoryList[position].predictedAmount.toString()
+        viewHolder.categoryPriceTextView.text = context.getString(
+            R.string.money_format,
+            String.format("%.2f", categoryList[position].predictedAmount)
+        )
     }
 
     override fun getItemCount(): Int {
