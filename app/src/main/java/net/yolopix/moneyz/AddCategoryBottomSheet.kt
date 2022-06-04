@@ -66,7 +66,7 @@ class AddCategoryBottomSheet(private val db: AppDatabase, private val monthNumbe
             db.categoryDao().insertCategory(newCategory)
         }
         lifecycleScope.launch {
-            (activity as PrevisionActivity).loadCategory(monthNumber, yearNumber)
+            (activity as PrevisionActivity).loadCategories()
         }
         dismiss()
     }
