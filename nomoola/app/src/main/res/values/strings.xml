@@ -8,4 +8,16 @@
     <string name="home">Home</string>
     <string name="history">History</string>
     <string name="profile">Profile</string>
+
+    <!-- Category page -->
+
+    <string name="add_category_button">Add Category</string>
+    <string name="category_name">Name</string>
+    <string name="category_left_amount">Left</string>
+    <string name="category_budget_amount">Budget</string>
+    <string name="category_edit_button">Edit Pen</string>
+    <string name="budget_preview">999.99</string>
+    <string name="exitButton">Exit Cross</string>
+    <string name="month_nav">May</string>
+    <string name="nomoola_delete_category">Delete Category</string>
 </resources>

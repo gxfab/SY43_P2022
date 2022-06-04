@@ -42,11 +42,24 @@ public class DataRepository {
     public LiveData<List<Category>> getAllCategories() {
         return mAllCategory;
     }
-    public void insert(Category Category) {
+    public void insert(Category category) {
         NomoolaRoomDataBase.databaseWriteExecutor.execute(() -> {
-            mCategoryDAO.insertCategory(Category);
+            mCategoryDAO.insertCategory(category);
         });
     }
+    public void delete(Category category) {
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mCategoryDAO.deleteCategory(category);
+        });
+    }
+    public void update(String name, double amount, int id) {
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mCategoryDAO.updateCategory(name, amount, id);
+        });
+    }
+
+
+
 
     public LiveData<List<SubCategory>> getAllSubCategories(){
         return mAllSubCategory;
@@ -65,4 +78,7 @@ public class DataRepository {
             mInOutComeDAO.insertInOutCome(inOutCome);
         });
     }
+
+
+
 }
