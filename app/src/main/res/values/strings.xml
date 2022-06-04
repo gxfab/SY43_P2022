@@ -2,7 +2,6 @@
     <string name="app_name">Lafo-cheuse</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="chart">Chart</string>
@@ -30,4 +29,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="sumName">Nom de la somme</string>
+    <string name="sumValue">Somme</string>
+    <string name="deleteForever">Effacer définitivement</string>
 </resources>
