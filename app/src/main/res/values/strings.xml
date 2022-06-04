@@ -36,4 +36,6 @@
     <string name="prevision_progress_format">%1$s€ / %2$s€</string>
     <string name="prevision_subtitle_month">"Pour le mois de %1$s"</string>
     <string name="money_format">%1$s€</string>
+    <string name="error_salary_greater_than_previsions">Le salaire doit être supérieur aux budget prévisionnel</string>
+    <string name="error_empty_text">Vous devez entrer une valeur</string>
 </resources>

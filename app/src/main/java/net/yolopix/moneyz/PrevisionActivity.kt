@@ -58,10 +58,22 @@ class PrevisionActivity : AppCompatActivity() {
             if (categorizedAmount > 0f) salaryEditText.setText(categorizedAmount.toString())
         }
 
-        // Refresh the bar when the salary was changed
+        // When the salary value was changed
         salaryEditText.addTextChangedListener {
             lifecycleScope.launch {
+                // Refresh the bar
                 loadBudgetBar()
+
+                // Show an error if the salary value is less than the previsions
+                val salaryTextField: com.google.android.material.textfield.TextInputLayout =
+                    findViewById(R.id.textfield_salary)
+                val salaryValue = salaryEditText.text.toString().toFloatOrNull()
+                if (salaryValue == null)
+                    salaryTextField.error = getString(R.string.error_empty_text)
+                else if (calculateCategorizedAmount() > salaryValue)
+                    salaryTextField.error = getString(R.string.error_salary_greater_than_previsions)
+                else
+                    salaryTextField.error = null
             }
         }
 
