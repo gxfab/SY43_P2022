@@ -1,12 +1,12 @@
-package com.example.bokudarjan.viewModel
+package com.example.bokudarjan.expense
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.bokudarjan.data.Expense
+import com.example.bokudarjan.expense.Expense
 import com.example.bokudarjan.database.BokudarjanDatabase
-import com.example.bokudarjan.repository.ExpenseRepository
+import com.example.bokudarjan.expense.ExpenseRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -1,8 +1,8 @@
-package com.example.bokudarjan.repository
+package com.example.bokudarjan.expense
 
 import androidx.lifecycle.LiveData
-import com.example.bokudarjan.dao.ExpenseDAO
-import com.example.bokudarjan.data.Expense
+import com.example.bokudarjan.expense.ExpenseDAO
+import com.example.bokudarjan.expense.Expense
 
 
 class ExpenseRepository(private val expenseDao: ExpenseDAO) {
