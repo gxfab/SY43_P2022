@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("caller", "MainActivity"); //permet à la nouvelle activity de connaitre son lanceur
             startActivity(intent);
         }
+
         overridePendingTransition(0,0);
     }
 }
