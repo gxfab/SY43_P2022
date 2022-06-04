@@ -13,7 +13,6 @@ import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.utils.ColorTemplate
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,7 +38,7 @@ class ChartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        chartView = view.findViewById<BarChart>(R.id.specBudgetChart)
+        chartView = view.findViewById<BarChart>(R.id.budgetGauge)
         createGraph()
 
 
