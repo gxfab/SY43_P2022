@@ -30,6 +30,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final CardView cardView;
@@ -80,5 +82,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     public int getItemCount() {
         return categoriesList.size();
     }
+
+
 
 }

@@ -8,19 +8,23 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sucelloztm.sucelloz.MainActivity;
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.CategoriesFragmentBinding;
 import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
-public class CategoriesFragment extends Fragment {
+public class CategoriesFragment extends Fragment implements LifecycleOwner {
 
     private CategoriesFragmentBinding binding;
     private CategoriesViewModel categoriesViewModel;
@@ -46,7 +50,6 @@ public class CategoriesFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         CategoriesAdapter adapter = new CategoriesAdapter(categoriesDataSet);
         recyclerView.setAdapter(adapter);
-
         return root;
     }
 
