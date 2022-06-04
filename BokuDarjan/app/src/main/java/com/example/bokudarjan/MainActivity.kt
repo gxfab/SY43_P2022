@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.*
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
@@ -27,6 +28,7 @@ import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Setup the binding
@@ -88,6 +90,14 @@ class MainActivity : AppCompatActivity() {
             }
             fragement.dispatchTouchEvent(ev);
             onTouchEvent(ev)
+        }
+
+        val callback = this.onBackPressedDispatcher.addCallback(this) {
+            if(drawer.isDrawerOpen(GravityCompat.START)){
+                drawer.closeDrawer(GravityCompat.START)
+            }else {
+                finish();
+            }
         }
 
         bottom.setupWithNavController(navController);

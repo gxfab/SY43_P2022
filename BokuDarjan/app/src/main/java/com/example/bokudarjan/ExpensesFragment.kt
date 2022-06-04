@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.Space
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +37,37 @@ class ExpensesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_expenses, container, false)
+        var view = inflater.inflate(R.layout.fragment_expenses, container, false)
+        var lay = view.findViewById<LinearLayout>(R.id.linLay)
+
+        val txt1 = TextView(view.context)
+        txt1.textSize = 20f
+        txt1.text = "  Jour 30"
+
+        val txt2 = TextView(view.context)
+        txt2.textSize = 20f
+        txt2.text = "  Jour 29"
+
+        val tv = Space(view.context)
+        val layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            60
+        )
+        tv.layoutParams = layoutParams
+
+
+
+        //To test, not final
+        lay.addView(txt1)
+        lay.addView(inflater.inflate(R.layout.expense_card, container, false));
+        lay.addView(inflater.inflate(R.layout.expense_card, container, false));
+        lay.addView(inflater.inflate(R.layout.expense_card, container, false));
+        lay.addView(tv)
+        lay.addView(txt2)
+        lay.addView(inflater.inflate(R.layout.expense_card, container, false));
+        lay.addView(inflater.inflate(R.layout.expense_card, container, false));
+
+        return view;
     }
 
     companion object {

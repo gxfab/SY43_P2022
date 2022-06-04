@@ -69,7 +69,6 @@
         android:layout_width="0dp"
         android:layout_height="68dp"
         android:background="#FF4CAF50"
-        android:foregroundTint="#FF0000"
         android:visibility="visible"
         app:itemBackground="@null"
         app:itemIconTint="@drawable/navbar_color"
