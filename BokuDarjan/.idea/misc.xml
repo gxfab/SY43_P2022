@@ -21,7 +21,9 @@
         <entry key="app/src/main/res/drawable/settings.xml" value="0.313" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/expense_row.xml" value="0.24864130434782608" />
-        <entry key="app/src/main/res/layout/fragment_add_expense.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_add_category.xml" value="0.2786458333333333" />
+        <entry key="app/src/main/res/layout/fragment_add_envelope.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/fragment_add_expense.xml" value="0.296998420221169" />
         <entry key="app/src/main/res/layout/fragment_expenses.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_list_expense.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_list_expense_list.xml" value="0.24864130434782608" />

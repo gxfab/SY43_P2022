@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddExpenseFragment">
+    tools:context=".AddCategoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -12,35 +12,13 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/addExpenseName"
+            android:id="@+id/addCategoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Name" />
+            android:hint="Category name"
+            android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/addExpenseAmount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/expenseAmount"
-            android:inputType="numberDecimal"
-            android:minHeight="48dp" />
-
-
-        <NumberPicker
-            android:id="@+id/addExpenseDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible" />
-
-        <Switch
-            android:id="@+id/toggleExpenseIncome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:text="@string/expenseIncomeBoolean" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +30,7 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/addExpenseButton"
+                android:id="@+id/addCategoryButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add" />

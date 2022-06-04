@@ -4,18 +4,24 @@ import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
-
-import com.example.bokudarjan.dao.ExpenseDAO;
-import com.example.bokudarjan.data.Expense;
 import androidx.room.RoomDatabase;
+
+import com.example.bokudarjan.expense.ExpenseDAO;
+import com.example.bokudarjan.expense.Expense;
+import com.example.bokudarjan.category.CategoryDAO
+import com.example.bokudarjan.category.Category
+import com.example.bokudarjan.envelope.Envelope
+import com.example.bokudarjan.envelope.EnvelopeDAO
 
 import kotlin.jvm.Volatile;
 
 //Build a singleton of the Database
-@Database(version = 1, entities = [Expense::class], exportSchema = false)
+@Database(version = 1, entities = [Expense::class, Category::class, Envelope::class], exportSchema = false)
 abstract class BokudarjanDatabase : RoomDatabase() {
 
     abstract fun expenseDao(): ExpenseDAO
+    abstract fun categoryDao() : CategoryDAO
+    abstract fun envelopeDao() : EnvelopeDAO
 
     companion object {
         @Volatile
@@ -30,7 +36,7 @@ abstract class BokudarjanDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     BokudarjanDatabase::class.java,
-                    "expense_database"
+                    "bokudarkan_database"
                 ).build()
                 INSTANCE = instance
                 return instance
