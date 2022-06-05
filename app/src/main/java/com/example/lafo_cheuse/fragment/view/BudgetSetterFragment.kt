@@ -1,5 +1,6 @@
 package com.example.lafo_cheuse.fragment.view
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.lafo_cheuse.CategoryChooserActivity
 import com.example.lafo_cheuse.R
@@ -17,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class BudgetSetterFragment : Fragment() {
+    private var resultLauncher : ActivityResultLauncher<Intent>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,15 +33,15 @@ class BudgetSetterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val budgetSetterView : View = inflater.inflate(R.layout.fragment_budget_setter, container, false)
 
         // Set the category
-        val budgetCategoryChooserButton : View = budgetSetterView.findViewById<Button>(R.id.categoryButton)
+        val budgetCategoryChooserButton : Button = budgetSetterView.findViewById<Button>(R.id.categoryButton)
 
         budgetCategoryChooserButton.setOnClickListener {
             val intent = Intent(activity, CategoryChooserActivity::class.java)
-            startActivity(intent)
+            resultLauncher!!.launch(intent)
         }
 
         // Delete the fragment
@@ -70,7 +74,21 @@ class BudgetSetterFragment : Fragment() {
 
         }
 
+        resultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // There are no request codes
+                val data: Intent? = result.data
+                val emoji = data?.getStringExtra("categoryEmoji")
+                budgetCategoryChooserButton.text = emoji
+
+            }
+        }
+
         return budgetSetterView
     }
+
+
 
 }
