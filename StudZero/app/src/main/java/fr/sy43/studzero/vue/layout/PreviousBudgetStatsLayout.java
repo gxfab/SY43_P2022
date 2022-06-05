@@ -72,7 +72,7 @@ public class PreviousBudgetStatsLayout extends LinearLayout {
         // Add progress bars for every category of the budget
         params = generateDefaultLayoutParams();
         params.width = LayoutParams.MATCH_PARENT;
-        params.height = convertDpToPx(getContext(), 40);
+        params.height = convertDpToPx(getContext(), 50);
         params.bottomMargin = convertDpToPx(getContext(), 30);
 
         for(int i = 0; i < categories.size(); ++i) {
