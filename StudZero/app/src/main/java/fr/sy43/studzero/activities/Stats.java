@@ -27,6 +27,9 @@ import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.CategoryType;
 import fr.sy43.studzero.vue.view.CategoryGraph;
 
+/**
+ * Activity that show the stats of the current budget
+ */
 public class Stats extends AppCompatActivity {
 
     /**
@@ -34,6 +37,11 @@ public class Stats extends AppCompatActivity {
      */
     private String selectedString;
 
+    /**
+     * onCreate is called when the activity is created.
+     * This method displays the view of the stats
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +57,9 @@ public class Stats extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.stats);
 
         Spinner spinner = (Spinner) findViewById(R.id.StatsSpinner);
+        // Retrieve the category types of the current budget
         DatabaseHelper db = new DatabaseHelper(this.getApplicationContext());
-        List<CategoryType> categoryTypes = db.getAllCategoriesTypes();
+        List<CategoryType> categoryTypes = db.getAllCategoriesTypesOfBudget(db.getCurrentBudget().getIdBudget());
         String[] categoryNames = new String[categoryTypes.size()];
         for(int i = 0; i < categoryTypes.size(); ++i) {
             categoryNames[i] = categoryTypes.get(i).getNameCategory();
@@ -93,7 +102,7 @@ public class Stats extends AppCompatActivity {
                 return false;
             }
         });
-
+        // Add a category graph to the view
         CategoryGraph categoryGraph = new CategoryGraph(getApplicationContext(), db.getCategoryOfCategoryType(db.getCurrentBudget().getIdBudget(), selectedString));
         categoryGraph.setBackgroundColor(getColor(R.color.BG_Objet));
         LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutStats);
@@ -113,7 +122,7 @@ public class Stats extends AppCompatActivity {
         // When user select a List-Item.
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             /**
-             * Update the selected type of category and reset the text input of the layout
+             * Update the selected type of category and show the category of the selected category
              * @param parent
              * @param view
              * @param position

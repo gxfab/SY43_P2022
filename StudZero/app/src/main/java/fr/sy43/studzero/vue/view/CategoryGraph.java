@@ -21,13 +21,36 @@ import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Category;
 import fr.sy43.studzero.sqlite.model.Payment;
 
+/**
+ * View that draws a graph for a category
+ */
 public class CategoryGraph extends View {
+    /**
+     * Variable that is used to paint the graph
+     */
     private Paint paint;
+    /**
+     * Category used for the graph
+     */
     private Category category;
+    /**
+     * Variable that stores the resources of the app
+     */
     private Resources resources;
+    /**
+     * Hash map that links the sum of payments done by day x to an int that represents a day of the budget
+     */
     private LinkedHashMap<Integer, Float> sumPaymentsPerDay;
+    /**
+     * Ration between the real amount and the theoretical amount of money spend on the category
+     */
     private float ratioRealTheoreticalAmount;
 
+    /**
+     * Constructor the view
+     * @param context
+     * @param category category used for the drawn graph
+     */
     public CategoryGraph(Context context, Category category) {
         super(context);
         this.paint = new Paint();
@@ -36,6 +59,10 @@ public class CategoryGraph extends View {
         setGraphData(category);
     }
 
+    /**
+     * Sets the value of attributes used for to draw the curves of the graph
+     * @param category
+     */
     private void setGraphData(Category category) {
         DatabaseHelper db = new DatabaseHelper(getContext());
         List<Payment>payments = db.getAllPaymentsOfCategory(category.getIdCategory());
@@ -73,14 +100,21 @@ public class CategoryGraph extends View {
         } else {
             this.ratioRealTheoreticalAmount = 1;
         }
-
     }
 
+    /**
+     * Set a new category to be used for the graph + draws the graph of the new category
+     * @param category
+     */
     public void setNewCategory(Category category) {
         setGraphData(category);
         this.invalidate();
     }
 
+    /**
+     * Draw the graph of a category
+     * @param canvas
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);

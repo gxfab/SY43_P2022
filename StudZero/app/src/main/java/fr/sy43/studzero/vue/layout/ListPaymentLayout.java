@@ -49,7 +49,7 @@ public class ListPaymentLayout extends LinearLayout {
         category.setLayoutParams(params);
         category.setTextSize(convertSpToPx(layout.getContext(), 10.0f));
         DatabaseHelper dbHelper = new DatabaseHelper(category.getContext());
-        category.setText(""+dbHelper.getTypeCategory(payment.getCategory()).getNameCategory());
+        category.setText(""+dbHelper.getTypeCategory(dbHelper.getCategory(payment.getCategory()).getType()).getNameCategory());
         dbHelper.closeDB();
         category.setTextColor(getResources().getColor(R.color.white));
         layout.addView(category);

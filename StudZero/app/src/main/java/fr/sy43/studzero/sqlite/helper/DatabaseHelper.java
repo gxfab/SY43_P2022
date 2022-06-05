@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -394,7 +395,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public CategoryType getTypeCategory(int idCategoryType) {
         SQLiteDatabase db = this.getReadableDatabase();
-
         String query = "Select * from " + TABLE_CATEGORY_TYPE + " where " + CATEGORY_TYPE_COLUMN_ID + "="+idCategoryType;
 
         Cursor c = db.rawQuery(query, null);
@@ -417,7 +417,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public CategoryType getTypeCategory(String nameCategoryType) {
         SQLiteDatabase db = this.getReadableDatabase();
-
         String query = "Select * from " + TABLE_CATEGORY_TYPE + " where " + CATEGORY_TYPE_COLUMN_NAME + "=\""+nameCategoryType + "\"";
 
         Cursor c = db.rawQuery(query, null);

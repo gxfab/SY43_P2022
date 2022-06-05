@@ -25,7 +25,7 @@ public class CategoryProgressBar extends View {
      */
     private Paint paint;
     /**
-     * Name of the categeory
+     * Name of the category
      */
     private String categoryName;
     /**
