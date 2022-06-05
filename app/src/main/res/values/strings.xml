@@ -38,4 +38,11 @@
     <string name="questionMarkEmoji">❔</string>
     <string name="emojiHolder">😃</string>
     <string name="textHolder">cuck</string>
+    <string name="addNewCategory">Ajouter une nouvelle catégorie</string>
+    <string name="nameCategoryTitle">Nommez votre catégorie</string>
+    <string name="setCategoryName">Indiquez le nom de la catégorie</string>
+    <string name="setCategoryEmoji">Indquez un emoji pour votre catégorie</string>
+    <string name="chooseEmojiHint">Choisissez un emoji...</string>
+    <string name="chooseCategoryTitleHint">Donnez un titre...</string>
+    <string name="confirmButton">Valider</string>
 </resources>
