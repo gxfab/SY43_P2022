@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -394,7 +395,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public CategoryType getTypeCategory(int idCategoryType) {
         SQLiteDatabase db = this.getReadableDatabase();
-
         String query = "Select * from " + TABLE_CATEGORY_TYPE + " where " + CATEGORY_TYPE_COLUMN_ID + "="+idCategoryType;
 
         Cursor c = db.rawQuery(query, null);
@@ -417,7 +417,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public CategoryType getTypeCategory(String nameCategoryType) {
         SQLiteDatabase db = this.getReadableDatabase();
-
         String query = "Select * from " + TABLE_CATEGORY_TYPE + " where " + CATEGORY_TYPE_COLUMN_NAME + "=\""+nameCategoryType + "\"";
 
         Cursor c = db.rawQuery(query, null);
@@ -569,7 +568,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * get all payments that are linked to a budget
      * @param idBudget id of the budget
-     * @return payments that are linked to the given budget, null is returned if no categories are linked to the id
+     * @return payments that are linked to the given budget, null is returned if no payments are linked to the id
      */
     @SuppressLint("Range")
     public List<Payment> getAllPaymentsOfBudget(int idBudget) {
@@ -600,12 +599,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * get all payments that are linked to a category
+     * @param idCategory id of the category
+     * @return payments that are linked to the given category, null is returned if no payments are linked to the id
+     */
+    @SuppressLint("Range")
+    public List<Payment> getAllPaymentsOfCategory(int idCategory) {
+        List<Payment> payments = new LinkedList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "Select * from " + TABLE_PAYMENT +
+                " where " + PAYMENT_COLUMN_CATEGORY + "=" + idCategory + " ORDER BY " + PAYMENT_COLUMN_DATE_PAYMENT + " DESC";
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null || !c.moveToFirst()) {
+            return new LinkedList<Payment>();
+        }
+
+        do {
+            payments.add(new Payment(
+                    c.getInt(c.getColumnIndex(PAYMENT_COLUMN_ID)),
+                    c.getFloat(c.getColumnIndex(PAYMENT_COLUMN_AMOUNT)),
+                    getDateFromString(c.getString(c.getColumnIndex(PAYMENT_COLUMN_DATE_PAYMENT))),
+                    c.getInt(c.getColumnIndex(PAYMENT_COLUMN_CATEGORY))
+            ));
+        } while(c.moveToNext());
+
+        return payments;
+    }
+
+    /**
      * get all category types from the database
      * @return all category types from the database, null is returned if no category types exist
      */
     @SuppressLint("Range")
     public List<CategoryType> getAllCategoriesTypes() {
-        List<CategoryType> categorieTypes = new LinkedList<>();
+        List<CategoryType> categoryTypes = new LinkedList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -618,13 +649,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         do {
-            categorieTypes.add(new CategoryType(
+            categoryTypes.add(new CategoryType(
                     c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
                     c.getString(c.getColumnIndex(CATEGORY_TYPE_COLUMN_NAME))
             ));
         } while(c.moveToNext());
 
-        return categorieTypes;
+        return categoryTypes;
+    }
+
+    /**
+     * get all category types from the database
+     * @return all category types from the database, null is returned if no category types exist
+     */
+    @SuppressLint("Range")
+    public List<CategoryType> getAllCategoriesTypesOfBudget(int idBudget) {
+        List<CategoryType> categoryTypes = new LinkedList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = new StringBuilder().append("Select * from ").append(TABLE_CATEGORY_TYPE).append(" where ").
+                append(CATEGORY_TYPE_COLUMN_ID).append(" in (Select ").append(CATEGORY_COLUMN_TYPE).append(" from ").
+                append(TABLE_CATEGORY).append(" where ").append(CATEGORY_COLUMN_BUDGET).append("=").append(idBudget).append(")").toString();
+
+        Cursor c = db.rawQuery(query, null);
+
+        if(c == null || !c.moveToFirst()) {
+            return new LinkedList<CategoryType>();
+        }
+
+        do {
+            categoryTypes.add(new CategoryType(
+                    c.getInt(c.getColumnIndex(CATEGORY_TYPE_COLUMN_ID)),
+                    c.getString(c.getColumnIndex(CATEGORY_TYPE_COLUMN_NAME))
+            ));
+        } while(c.moveToNext());
+
+        return categoryTypes;
     }
 
     /**

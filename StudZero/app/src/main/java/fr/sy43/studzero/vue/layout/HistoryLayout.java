@@ -1,8 +1,6 @@
 package fr.sy43.studzero.vue.layout;
 
 import android.content.Context;
-import android.text.PrecomputedText;
-import android.util.Log;
 import android.util.TypedValue;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -10,7 +8,6 @@ import android.widget.TextView;
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Budget;
-import fr.sy43.studzero.sqlite.model.Payment;
 
 /**
  * This class is used to show the list of old budgets
@@ -38,8 +35,8 @@ public class HistoryLayout extends LinearLayout {
      * Add a budget to the layout
      * @param budget
      */
-    public void addBudget(Budget budget) {
-        LinearLayout layout = createPaymentLayout();
+    public LinearLayout addBudget(Budget budget) {
+        LinearLayout layout = createBudgetLayout();
         LayoutParams params = generateDefaultLayoutParams();
         params.width = LayoutParams.MATCH_PARENT;
         params.height = LayoutParams.WRAP_CONTENT;
@@ -49,19 +46,20 @@ public class HistoryLayout extends LinearLayout {
         amount.setPadding(0, convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f));
         amount.setLayoutParams(params);
         amount.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-        amount.setText(DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateStart()) + " - " + DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateEnd()));
+        String dates = DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateStart()) + " - " + DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateEnd());
+        amount.setText(dates);
         amount.setTextColor(getResources().getColor(R.color.white));
         amount.setTextSize(convertSpToPx(layout.getContext(), 10.0f));
-
         layout.addView(amount);
         addView(layout);
+        return layout;
     }
 
     /**
-     * Creates the layout for a payment
+     * Creates the layout for a budget
      * @return LinearLayout
      */
-    private LinearLayout createPaymentLayout() {
+    private LinearLayout createBudgetLayout() {
         LinearLayout layout = new LinearLayout(this.getContext());
         layout.setOrientation(HORIZONTAL);
         LayoutParams params = generateDefaultLayoutParams();

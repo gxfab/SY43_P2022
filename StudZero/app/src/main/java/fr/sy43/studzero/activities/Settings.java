@@ -14,7 +14,11 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import fr.sy43.studzero.R;
-//CTRL+F "here" settext la date réel de reset de budget (date de fin du budget courant)
+import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
+
+/**
+ * This class is used for the settings screen of the app
+ */
 public class Settings extends AppCompatActivity {
 
     @Override
@@ -29,8 +33,9 @@ public class Settings extends AppCompatActivity {
         getSupportActionBar().setTitle("Settings");
 
         TextView txtV = findViewById(R.id.TextViewDate);
-        txtV.setText("la date"); //here
-
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        txtV.setText(DatabaseHelper.getStringWithoutTimeFromDate(db.getCurrentBudget().getDateNextBudget()));
+        db.closeDB();
         Button btn = (Button) findViewById(R.id.SettingsButtonReset);
         btn.setOnClickListener(new View.OnClickListener() {
             /**

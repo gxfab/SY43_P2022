@@ -99,7 +99,7 @@ public class HomeLayout extends LinearLayout {
     public void addCategory(Category category) {
         LayoutParams params = generateDefaultLayoutParams();
         params.width = LayoutParams.MATCH_PARENT;
-        params.height = convertDpToPx(getContext(), 40);
+        params.height = convertDpToPx(getContext(), 50);
         params.leftMargin = convertDpToPx(getContext(), 20);
         params.rightMargin = convertDpToPx(getContext(), 20);
         params.bottomMargin = convertDpToPx(getContext(), 30);

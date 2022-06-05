@@ -37,7 +37,14 @@ import fr.sy43.studzero.sqlite.model.Payment;
  * Activity that is used to create a new payment
  */
 public class AddPayment extends AppCompatActivity {
+    /**
+     * Corresponds to the category type chosen with the spinner
+     */
     private String selectedString;
+
+    /**
+     * Amount payed
+     */
     private float paymentAmount = 0.0f;
 
     /**
@@ -56,7 +63,7 @@ public class AddPayment extends AppCompatActivity {
 
         Spinner spinner = (Spinner) findViewById(R.id.AddPaymentSpinner);
         DatabaseHelper db = new DatabaseHelper(this.getApplicationContext());
-        List<CategoryType> categoryTypes = db.getAllCategoriesTypes();
+        List<CategoryType> categoryTypes = db.getAllCategoriesTypesOfBudget(db.getCurrentBudget().getIdBudget());
         db.closeDB();
         String[] categoryNames = new String[categoryTypes.size()];
         for(int i = 0; i < categoryTypes.size(); ++i) {
