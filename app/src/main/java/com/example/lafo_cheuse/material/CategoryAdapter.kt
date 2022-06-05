@@ -1,10 +1,13 @@
 package com.example.lafo_cheuse.material
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lafo_cheuse.R
@@ -12,7 +15,7 @@ import com.example.lafo_cheuse.models.Category
 
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
-class CategoryAdapter() : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter(var context : Activity) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var mCategories: List<Category> = ArrayList<Category>()
 
     // Provide a direct reference to each of the views within a data item
@@ -39,15 +42,28 @@ class CategoryAdapter() : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
         // Set item views based on your views and data model
         holder.categoryName.text = category.categoryName
         holder.categoryEmojiButton.text = category.categoryEmoji
+
+        holder.categoryEmojiButton.setOnClickListener {
+            chooseCategory(category)
+        }
     }
 
     override fun getItemCount(): Int {
-        return mCategories.size;
+        return mCategories.size
 
     }
 
     fun setCategories(mCategories : List<Category>) {
         this.mCategories = mCategories
-        notifyDataSetChanged();
+        notifyDataSetChanged()
+    }
+
+    fun chooseCategory(categoryChosen : Category) {
+        val resultIntent = Intent()
+        resultIntent.putExtra("categoryId", categoryChosen.categoryId)
+        resultIntent.putExtra("categoryName", categoryChosen.categoryName)
+        resultIntent.putExtra("categoryEmoji",categoryChosen.categoryEmoji)
+        context.setResult(AppCompatActivity.RESULT_OK, resultIntent)
+        context.finish()
     }
 }
