@@ -1,0 +1,35 @@
+package com.example.lafo_cheuse.viewmodels
+
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+import com.example.lafo_cheuse.models.Category
+import com.example.lafo_cheuse.repository.CategoryRepository
+import kotlinx.coroutines.launch
+
+class CategoryViewModel(application: Application) : AndroidViewModel(application) {
+    private var repository : CategoryRepository
+    var allCategories : LiveData<List<Category>>?
+
+    init {
+        repository = CategoryRepository(application)
+        allCategories = repository.getCategories()
+    }
+
+    fun getCategories() : LiveData<List<Category>>? {
+        return allCategories;
+    }
+
+    fun createCategory(category: Category) = viewModelScope.launch {
+        repository.createCategory(category)
+    }
+
+    fun updateCategory(category: Category) = viewModelScope.launch {
+        repository.updateCategory(category)
+    }
+
+    fun deleteCategory(bId : Long) = viewModelScope.launch {
+        repository.deleteCategory(bId)
+    }
+}
