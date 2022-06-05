@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CategoryDao {
     @Query("SELECT * FROM Category")
-    fun getCategories(): LiveData<List<Category?>?>?
+    fun getCategories(): LiveData<List<Category>>?
 
     @Insert
     fun createCategory(category: Category)
