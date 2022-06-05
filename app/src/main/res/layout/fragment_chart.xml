@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/budgetGauge"
+            android:id="@+id/categoryButton"
             android:layout_width="0dp"
             android:layout_height="420dp"
             android:layout_marginStart="25dp"

@@ -38,7 +38,7 @@ class ChartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        chartView = view.findViewById<BarChart>(R.id.budgetGauge)
+        chartView = view.findViewById<BarChart>(R.id.categoryButton)
         createGraph()
 
 
