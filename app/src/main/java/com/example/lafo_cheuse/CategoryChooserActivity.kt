@@ -3,9 +3,6 @@ package com.example.lafo_cheuse
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -24,21 +21,19 @@ class CategoryChooserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_chooser)
 
-        var mCategories : LiveData<List<Category>>?
-        var adapter : CategoryAdapter? = null
+        val adapter : CategoryAdapter?
 
         val recyclerView : RecyclerView = findViewById<RecyclerView>(R.id.catgoryList)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        adapter = CategoryAdapter()
+        adapter = CategoryAdapter(this)
         recyclerView.adapter = adapter
 
         val categoryViewModel : CategoryViewModel by viewModels()
-        categoryViewModel.getCategories()?.observe(this, Observer<List<Category>> { list ->
+        categoryViewModel.getCategories()?.observe(this) { list ->
             adapter.setCategories(list)
-        })
-
+        }
 
         val addCategoryButton : View = findViewById<FloatingActionButton>(R.id.addCategoryButton)
         addCategoryButton.setOnClickListener {
