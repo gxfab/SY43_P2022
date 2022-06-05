@@ -20,7 +20,6 @@ public class HistoryStats extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         int idBudget = getIntent().getIntExtra(HistoryStats.KEY_ID_BUDGET, -1);
         String datesBudget = getIntent().getStringExtra(HistoryStats.KEY_DATES_BUDGET);
         if(idBudget == -1 || datesBudget == null) {
@@ -29,7 +28,7 @@ public class HistoryStats extends AppCompatActivity {
             startActivity(intent);
         }
         Log.i("Extra", datesBudget + " " + idBudget);
-        getSupportActionBar().setTitle("History");
+        getSupportActionBar().setTitle(datesBudget);
         setContentView(R.layout.activity_history_stats);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

@@ -45,7 +45,7 @@ public class HistoryLayout extends LinearLayout {
      * @param budget
      */
     public LinearLayout addBudget(Budget budget) {
-        LinearLayout layout = createPaymentLayout();
+        LinearLayout layout = createBudgetLayout();
         LayoutParams params = generateDefaultLayoutParams();
         params.width = LayoutParams.MATCH_PARENT;
         params.height = LayoutParams.WRAP_CONTENT;
@@ -65,10 +65,10 @@ public class HistoryLayout extends LinearLayout {
     }
 
     /**
-     * Creates the layout for a payment
+     * Creates the layout for a budget
      * @return LinearLayout
      */
-    private LinearLayout createPaymentLayout() {
+    private LinearLayout createBudgetLayout() {
         LinearLayout layout = new LinearLayout(this.getContext());
         layout.setOrientation(HORIZONTAL);
         LayoutParams params = generateDefaultLayoutParams();

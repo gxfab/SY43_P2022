@@ -40,4 +40,5 @@
     <string name="TheoreticalAmountGraphicalLegend">Theoretical amount payed</string>
     <string name="GraphYAxisTitle">Payments</string>
     <string name="GraphXAxisTitle">Days</string>
+    <string name="EstimatedTotal">Estimated total</string>
 </resources>
