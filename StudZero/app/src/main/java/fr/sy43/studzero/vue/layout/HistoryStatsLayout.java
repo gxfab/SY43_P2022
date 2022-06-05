@@ -15,7 +15,6 @@ public class HistoryStatsLayout extends LinearLayout {
 
     public HistoryStatsLayout(Context context, int idBudget) {
         super(context);
-        setBackgroundColor(getResources().getColor(R.color.teal_200));
         setOrientation(VERTICAL);
         this.idBudget = idBudget;
         // Parameters of the layout
@@ -29,8 +28,9 @@ public class HistoryStatsLayout extends LinearLayout {
         DatabaseHelper db = new DatabaseHelper(getContext());
         Budget budget = db.getBudget(idBudget);
         db.closeDB();
-        // Estimated total view
+        // Estimated total amount view
         LinearLayout estimatedTotal = createTotalMoneyLayout(getResources().getString(R.string.EstimatedTotal), budget.getBudgetAmount());
+        // Real total amount view
         LinearLayout realTotal = createTotalMoneyLayout(getResources().getString(R.string.EstimatedTotal), budget.getBudgetAmount());
 
         addView(estimatedTotal);
@@ -47,11 +47,14 @@ public class HistoryStatsLayout extends LinearLayout {
         LayoutParams params = generateDefaultLayoutParams();
         params.width = LayoutParams.MATCH_PARENT;
         params.height = LayoutParams.WRAP_CONTENT;
-        params.weight = 1f;
         params.bottomMargin = convertDpToPx(this.getContext(), 30);
         layout.setLayoutParams(params);
         layout.setBackgroundColor(getResources().getColor(R.color.BG_Objet));
 
+        params = generateDefaultLayoutParams();
+        params.width = LayoutParams.MATCH_PARENT;
+        params.height = LayoutParams.WRAP_CONTENT;
+        params.weight = 1f;
         TextView titleText = new TextView(layout.getContext());
         titleText.setPadding(convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f), 0, convertDpToPx(layout.getContext(), 10.0f));
         titleText.setLayoutParams(params);
