@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudZero">
         <activity
-            android:name=".activities.HistoryStats"
+            android:name=".activities.PreviousBudgetStats"
             android:exported="false" />
         <activity
             android:name=".activities.AddPayment"

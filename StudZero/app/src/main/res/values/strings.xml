@@ -41,4 +41,5 @@
     <string name="GraphYAxisTitle">Payments</string>
     <string name="GraphXAxisTitle">Days</string>
     <string name="EstimatedTotal">Estimated total</string>
+    <string name="RealTotal">Real total</string>
 </resources>

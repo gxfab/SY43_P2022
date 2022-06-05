@@ -9,33 +9,41 @@ import android.view.MenuItem;
 import android.widget.ScrollView;
 
 import fr.sy43.studzero.R;
-import fr.sy43.studzero.vue.layout.HistoryStatsLayout;
-import fr.sy43.studzero.vue.layout.ListPaymentLayout;
+import fr.sy43.studzero.vue.layout.PreviousBudgetStatsLayout;
 
-public class HistoryStats extends AppCompatActivity {
+/**
+ * Activity used to display stats about a previous budget
+ */
+public class PreviousBudgetStats extends AppCompatActivity {
     public static final String KEY_DATES_BUDGET = "Dates budget";
     public static final String KEY_ID_BUDGET = "id budget";
 
+    /**
+     * onCreate is called when the activity is created.
+     * This method adds a PreviousBudgetStatsLayout to the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int idBudget = getIntent().getIntExtra(HistoryStats.KEY_ID_BUDGET, -1);
-        String datesBudget = getIntent().getStringExtra(HistoryStats.KEY_DATES_BUDGET);
+        // Retrieve send data from parent activity
+        int idBudget = getIntent().getIntExtra(PreviousBudgetStats.KEY_ID_BUDGET, -1);
+        String datesBudget = getIntent().getStringExtra(PreviousBudgetStats.KEY_DATES_BUDGET);
+        // If the data can't be retrieved, return to History activity
         if(idBudget == -1 || datesBudget == null) {
             finish();
             Intent intent = new Intent(this, History.class);
             startActivity(intent);
         }
-        Log.i("Extra", datesBudget + " " + idBudget);
         getSupportActionBar().setTitle(datesBudget);
-        setContentView(R.layout.activity_history_stats);
+        setContentView(R.layout.activity_previous_budget);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Add a layout to the scroll view that shows stats about a budget
+        // Add a layout to the scroll view that shows stats about a previous budget
         ScrollView scrollView = (ScrollView) findViewById(R.id.ScrollViewHistoryStats);
-        HistoryStatsLayout historyStatsLayout = new HistoryStatsLayout(this, idBudget);
-        scrollView.addView(historyStatsLayout);
+        PreviousBudgetStatsLayout previousBudgetStatsLayout = new PreviousBudgetStatsLayout(this, idBudget);
+        scrollView.addView(previousBudgetStatsLayout);
     }
 
     /**

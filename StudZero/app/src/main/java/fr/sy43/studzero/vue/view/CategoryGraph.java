@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.Log;
 import android.view.View;
 
 import java.util.Date;
@@ -54,7 +53,6 @@ public class CategoryGraph extends View {
     public CategoryGraph(Context context, Category category) {
         super(context);
         this.paint = new Paint();
-        this.category = category;
         this.resources = this.getResources();
         setGraphData(category);
     }
@@ -67,6 +65,7 @@ public class CategoryGraph extends View {
         DatabaseHelper db = new DatabaseHelper(getContext());
         List<Payment>payments = db.getAllPaymentsOfCategory(category.getIdCategory());
         sumPaymentsPerDay = new LinkedHashMap<>();
+        this.category = category;
 
         if(payments.size() > 0) {
             long diffBudgetStart = db.getBudget(category.getBudget()).getDateStart().getTime() - payments.get(0).getDatePayment().getTime();
@@ -100,6 +99,8 @@ public class CategoryGraph extends View {
         } else {
             this.ratioRealTheoreticalAmount = 1;
         }
+
+        db.closeDB();
     }
 
     /**
@@ -181,15 +182,15 @@ public class CategoryGraph extends View {
                 break;
             }
             float xPreviousDay = xValueYAxis + (xEndXAxis - xValueYAxis) * (i-1)/30;
-            float yPreviousDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i-1)/category.getRealAmount();
             float xDay = xValueYAxis + (xEndXAxis - xValueYAxis) * (i)/30;
-            float yDay;
+            float yPreviousDay, yDay;
             if(category.getTheoreticalAmount() > category.getRealAmount()) {
+                yPreviousDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i-1)/category.getTheoreticalAmount();
                 yDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i)/category.getTheoreticalAmount();
             } else {
+                yPreviousDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i-1)/category.getRealAmount();
                 yDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i)/category.getRealAmount();
             }
-
             canvas.drawLine( xPreviousDay,  yPreviousDay,  xDay,  yDay, this.paint);
         }
     }

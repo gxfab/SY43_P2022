@@ -5,7 +5,7 @@
     android:id="@+id/HistoryStatsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.HistoryStats">
+    tools:context=".activities.PreviousBudgetStats">
 
     <ScrollView
         android:id="@+id/ScrollViewHistoryStats"

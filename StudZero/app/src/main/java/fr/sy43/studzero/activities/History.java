@@ -6,10 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -20,9 +17,7 @@ import java.util.List;
 import fr.sy43.studzero.R;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Budget;
-import fr.sy43.studzero.sqlite.model.Payment;
 import fr.sy43.studzero.vue.layout.HistoryLayout;
-import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 
 public class History extends AppCompatActivity {
 
@@ -91,9 +86,9 @@ public class History extends AppCompatActivity {
                 LinearLayout budgetLayout = historyLayout.addBudget(budgets.get(i));
                 int finalI = i;
                 budgetLayout.setOnTouchListener((v, event) -> {
-                        Intent intent = new Intent(new Intent(getApplicationContext(), HistoryStats.class));
-                        intent.putExtra(HistoryStats.KEY_DATES_BUDGET, DatabaseHelper.getStringWithoutTimeFromDate(budgets.get(finalI).getDateStart()) + " - " + DatabaseHelper.getStringWithoutTimeFromDate(budgets.get(finalI).getDateEnd()));
-                        intent.putExtra(HistoryStats.KEY_ID_BUDGET, budgets.get(finalI).getIdBudget());
+                        Intent intent = new Intent(new Intent(getApplicationContext(), PreviousBudgetStats.class));
+                        intent.putExtra(PreviousBudgetStats.KEY_DATES_BUDGET, DatabaseHelper.getStringWithoutTimeFromDate(budgets.get(finalI).getDateStart()) + " - " + DatabaseHelper.getStringWithoutTimeFromDate(budgets.get(finalI).getDateEnd()));
+                        intent.putExtra(PreviousBudgetStats.KEY_ID_BUDGET, budgets.get(finalI).getIdBudget());
                         startActivity(intent);
                         return false;
                 });

@@ -130,8 +130,10 @@ public class Stats extends AppCompatActivity {
              */
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 selectedString = categoryNames[position];
                 categoryGraph.setNewCategory(db.getCategoryOfCategoryType(db.getCurrentBudget().getIdBudget(), selectedString));
+                db.closeDB();
             }
             /**
              * If no category is selected : set the selected type of category variable to ""

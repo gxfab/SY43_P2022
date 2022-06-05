@@ -1,22 +1,13 @@
 package fr.sy43.studzero.vue.layout;
 
 import android.content.Context;
-import android.content.Intent;
-import android.text.PrecomputedText;
-import android.util.Log;
 import android.util.TypedValue;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import fr.sy43.studzero.R;
-import fr.sy43.studzero.activities.HistoryStats;
-import fr.sy43.studzero.activities.New_Budget_1;
-import fr.sy43.studzero.activities.New_Budget_3;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Budget;
-import fr.sy43.studzero.sqlite.model.Payment;
 
 /**
  * This class is used to show the list of old budgets
