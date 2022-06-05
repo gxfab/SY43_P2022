@@ -3,9 +3,14 @@ package fr.sy43.studzero.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,6 +26,7 @@ import fr.sy43.studzero.vue.layout.ListPaymentLayout;
 
 public class History extends AppCompatActivity {
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +88,15 @@ public class History extends AppCompatActivity {
         // Add the payments to the layout
         for(int i = 0; i < budgets.size(); ++i) {
             if(currentBudget.getIdBudget() != budgets.get(i).getIdBudget()) {
-                historyLayout.addBudget(budgets.get(i));
+                LinearLayout budgetLayout = historyLayout.addBudget(budgets.get(i));
+                int finalI = i;
+                budgetLayout.setOnTouchListener((v, event) -> {
+                        Intent intent = new Intent(new Intent(getApplicationContext(), HistoryStats.class));
+                        intent.putExtra(HistoryStats.KEY_DATES_BUDGET, DatabaseHelper.getStringWithoutTimeFromDate(budgets.get(finalI).getDateStart()) + " - " + DatabaseHelper.getStringWithoutTimeFromDate(budgets.get(finalI).getDateEnd()));
+                        intent.putExtra(HistoryStats.KEY_ID_BUDGET, budgets.get(finalI).getIdBudget());
+                        startActivity(intent);
+                        return false;
+                });
             }
         }
         db.closeDB();

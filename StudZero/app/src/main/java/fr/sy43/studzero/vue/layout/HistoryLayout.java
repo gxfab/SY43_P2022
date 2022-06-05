@@ -1,13 +1,19 @@
 package fr.sy43.studzero.vue.layout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.PrecomputedText;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import fr.sy43.studzero.R;
+import fr.sy43.studzero.activities.HistoryStats;
+import fr.sy43.studzero.activities.New_Budget_1;
+import fr.sy43.studzero.activities.New_Budget_3;
 import fr.sy43.studzero.sqlite.helper.DatabaseHelper;
 import fr.sy43.studzero.sqlite.model.Budget;
 import fr.sy43.studzero.sqlite.model.Payment;
@@ -38,7 +44,7 @@ public class HistoryLayout extends LinearLayout {
      * Add a budget to the layout
      * @param budget
      */
-    public void addBudget(Budget budget) {
+    public LinearLayout addBudget(Budget budget) {
         LinearLayout layout = createPaymentLayout();
         LayoutParams params = generateDefaultLayoutParams();
         params.width = LayoutParams.MATCH_PARENT;
@@ -49,12 +55,13 @@ public class HistoryLayout extends LinearLayout {
         amount.setPadding(0, convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f), convertDpToPx(layout.getContext(), 10.0f));
         amount.setLayoutParams(params);
         amount.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-        amount.setText(DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateStart()) + " - " + DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateEnd()));
+        String dates = DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateStart()) + " - " + DatabaseHelper.getStringWithoutTimeFromDate(budget.getDateEnd());
+        amount.setText(dates);
         amount.setTextColor(getResources().getColor(R.color.white));
         amount.setTextSize(convertSpToPx(layout.getContext(), 10.0f));
-
         layout.addView(amount);
         addView(layout);
+        return layout;
     }
 
     /**
