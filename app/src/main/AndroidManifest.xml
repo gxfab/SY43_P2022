@@ -11,10 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
+            android:name=".CategoryChooserActivity"
+            android:exported="false"
+            android:label="@string/categoryTitle"
+            android:launchMode="singleTop"
+            android:parentActivityName=".BudgetSetterActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lafo_cheuse.BudgetSetterActivity" />
+        </activity>
+
+        <activity
             android:name=".BudgetSetterActivity"
-            android:parentActivityName=".MainActivity"
             android:label="@string/budgetTitle"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lafo_cheuse.MainActivity" />
