@@ -1,26 +1,24 @@
 package com.example.lafo_cheuse
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.widget.LinearLayout
+import android.view.View
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
-import com.example.lafo_cheuse.database.LafoCheuseDatabase
-import com.example.lafo_cheuse.database.dao.CategoryDao
 import com.example.lafo_cheuse.material.CategoryAdapter
 import com.example.lafo_cheuse.models.Category
 import com.example.lafo_cheuse.viewmodels.CategoryViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 class CategoryChooserActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,12 +40,11 @@ class CategoryChooserActivity : AppCompatActivity() {
         })
 
 
-
-
-
-
-
-
+        val addCategoryButton : View = findViewById<FloatingActionButton>(R.id.addCategoryButton)
+        addCategoryButton.setOnClickListener {
+            val intent = Intent(this, CreateCategoryActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }
