@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import fr.sy.lebudgetduzero.fragments.IncomeFragment
 
 /**
  *
@@ -57,6 +58,12 @@ class MainActivity : AppCompatActivity() {
      */
     fun setEntreeView(view: View){
         setContentView(R.layout.view_entrees)
+
+        //Injection du fragment dans la boite
+        val transaction=supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, IncomeFragment(this))
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     /**
