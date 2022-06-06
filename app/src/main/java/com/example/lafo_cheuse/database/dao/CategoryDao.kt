@@ -12,7 +12,10 @@ interface CategoryDao {
     @Query("SELECT * FROM Category")
     fun getCategories(): LiveData<List<Category>>?
 
-    @Insert
+    @Query("SELECT * FROM Category WHERE name = :categoryName AND emoji = :categoryEmoji")
+    fun getCategory(categoryName : String, categoryEmoji : String): LiveData<List<Category>>?
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun createCategory(category: Category)
 
     @Update
@@ -20,4 +23,7 @@ interface CategoryDao {
 
     @Query("DELETE FROM Category WHERE categoryId = :bId")
     fun deleteCategory(bId: Long) : Int
+
+    @Query("DELETE FROM Category")
+    fun deleteAllCategories() : Int
 }
