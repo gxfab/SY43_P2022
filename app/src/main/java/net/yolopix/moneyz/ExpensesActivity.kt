@@ -64,7 +64,7 @@ class ExpensesActivity : AppCompatActivity() {
         //supportActionBar?.subtitle = "mettre le mois ici ???"
     }
 
-    private suspend fun loadExpenses() {
+    public suspend fun loadExpenses() {
         expensesRecyclerView.adapter = ExpensesAdapter(db.expenseDao().getAll())
     }
 }

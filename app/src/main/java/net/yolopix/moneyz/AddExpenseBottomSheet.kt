@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.entities.Expense
 
 class AddExpenseBottomSheet(private val db: AppDatabase, private val accountUid: Int) :
     BottomSheetDialogFragment() {
@@ -26,6 +29,9 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val accountUid:
     }
 
     private lateinit var editTextExpenseName: EditText
+    private lateinit var editTextExpenseAmount: EditText
+    private lateinit var editTextExpenseDay: EditText
+    private lateinit var isRecurring : CheckBox
 
     // When the bottom sheet is created
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,6 +40,9 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val accountUid:
         val buttonAdd =
             view.findViewById<com.google.android.material.button.MaterialButton>(R.id.button_add)
         editTextExpenseName = view.findViewById(R.id.edit_text_expense_name)
+        editTextExpenseAmount = view.findViewById(R.id.edit_text_expense_price)
+        isRecurring = view.findViewById(R.id.checkBox_recurring)
+        editTextExpenseDay = view.findViewById(R.id.editTextDate)
 
         // Add click listener to the add button
         buttonAdd.setOnClickListener {
@@ -65,13 +74,36 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val accountUid:
         }
 
 
+
+
     }
 
     private fun addExpense() {
         // Fetch the account name in the EditText and add it to the database
         val expenseName = editTextExpenseName.text.toString()
+        val expensePrice = editTextExpenseAmount.text.toString().toDouble()
+        val expenseDay = editTextExpenseDay.text.toString().toInt()
+        var recurring = false
+        if(isRecurring.isChecked){
+             recurring = true
+        }else{
+             recurring = false
+        }
+        val categoryUid = 1
+
+
+        val newExpense = Expense(0, expenseDay,categoryUid, expenseName, recurring, expensePrice)
+
+        runBlocking {
+            db.expenseDao().insertExpense(newExpense)
+        }
+        lifecycleScope.launch{
+            val parent  = activity as ExpensesActivity
+            parent.loadExpenses()
+        }
 
         dismiss()
     }
+
 
 }
