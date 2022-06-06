@@ -5,15 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.fragment.app.Fragment
-import androidx.room.Room
 import androidx.viewpager2.widget.ViewPager2
-import com.example.lafo_cheuse.database.LafoCheuseDatabase
 import com.example.lafo_cheuse.fragment.view.ChartFragment
 import com.example.lafo_cheuse.fragment.view.HomeFragment
 import com.example.lafo_cheuse.fragment.view.SetIncomesExpensesFragment
 import com.example.lafo_cheuse.fragment.view.SettingsFragment
 import com.example.lafo_cheuse.material.ViewPagerAdapter
-import com.example.lafo_cheuse.models.Category
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.*
 
@@ -76,21 +73,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
-
-        GlobalScope.launch(Dispatchers.Main) {
-
-            val db = Room.databaseBuilder(
-                applicationContext,
-                LafoCheuseDatabase::class.java, "BDD Lafo-Cheuse"
-            ).build()
-            launch(Dispatchers.IO) {
-                val catDao = db.categoryDao()
-                catDao!!.createCategory(Category("Courses", "\uD83D\uDED2"))
-                catDao.createCategory(Category("Bourses", "\uD83D\uDCB0"))
-            }
-
-        }
     }
 
 
