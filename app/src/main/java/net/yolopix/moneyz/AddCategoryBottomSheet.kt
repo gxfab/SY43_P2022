@@ -17,7 +17,8 @@ import kotlin.properties.Delegates
 class AddCategoryBottomSheet(
     private val db: AppDatabase,
     private val monthNumber: Int,
-    private val yearNumber: Int
+    private val yearNumber: Int,
+    private val accountUid: Int
 ) : BottomSheetDialogFragment() {
     private lateinit var editTextCategoryName: EditText
     private lateinit var editTextCategoryprice: EditText
@@ -65,7 +66,7 @@ class AddCategoryBottomSheet(
             editTextCategoryprice.text.toString().toFloat()
         }
 
-        val newCategory = Category(0, newCategoryName, newCategoryPrice, monthNumber, yearNumber)
+        val newCategory = Category(0, newCategoryName, newCategoryPrice, monthNumber, yearNumber, accountUid)
         runBlocking {
             db.categoryDao().insertCategory(newCategory)
         }

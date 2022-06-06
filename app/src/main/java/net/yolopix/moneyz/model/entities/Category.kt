@@ -8,6 +8,11 @@ data class Category(
     @PrimaryKey(autoGenerate = true) val uid: Int,
     var name: String,
     var predictedAmount : Float,
-    var monthNumber: Int,
-    var yearNumber: Int
-)
+    val monthNumber: Int,
+    val yearNumber: Int,
+    val accountUid: Int
+) {
+    override fun toString(): String {
+        return name
+    }
+}

@@ -33,12 +33,8 @@ class PrevisionActivity : AppCompatActivity() {
 
         // Get account passed as extra message
         val accountUid: Int? = intent.getStringExtra(EXTRA_MESSAGE)?.toInt()
-        lifecycleScope.launch {
-            if (accountUid == null) {
-                finish()
-            } else {
-                //loadAccount(accountUid)
-            }
+        if (accountUid == null) {
+            finish()
         }
 
         db = DatabaseFactory.getDB(applicationContext)
@@ -80,7 +76,7 @@ class PrevisionActivity : AppCompatActivity() {
         // Open the bottom sheet to add a new category when clicking on the "add category" button
         val addCategoryButton = findViewById<Button>(R.id.button_add_category)
         addCategoryButton.setOnClickListener {
-            AddCategoryBottomSheet(db, now.monthValue, now.year).apply {
+            AddCategoryBottomSheet(db, now.monthValue, now.year, accountUid!!).apply {
                 show(supportFragmentManager, tag)
             }
 

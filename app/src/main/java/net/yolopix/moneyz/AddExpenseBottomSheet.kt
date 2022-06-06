@@ -16,8 +16,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Expense
+import net.yolopix.moneyz.model.entities.Month
 
-class AddExpenseBottomSheet(private val db: AppDatabase, private val accountUid: Int) :
+class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Month) :
     BottomSheetDialogFragment() {
 
     override fun onCreateView(
@@ -31,7 +32,7 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val accountUid:
     private lateinit var editTextExpenseName: EditText
     private lateinit var editTextExpenseAmount: EditText
     private lateinit var editTextExpenseDay: EditText
-    private lateinit var isRecurring : CheckBox
+    private lateinit var recurringCheckBox: CheckBox
 
     // When the bottom sheet is created
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +42,7 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val accountUid:
             view.findViewById<com.google.android.material.button.MaterialButton>(R.id.button_add)
         editTextExpenseName = view.findViewById(R.id.edit_text_expense_name)
         editTextExpenseAmount = view.findViewById(R.id.edit_text_expense_price)
-        isRecurring = view.findViewById(R.id.checkBox_recurring)
+        recurringCheckBox = view.findViewById(R.id.checkBox_recurring)
         editTextExpenseDay = view.findViewById(R.id.editTextDate)
 
         // Add click listener to the add button
@@ -73,9 +74,6 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val accountUid:
             )
         }
 
-
-
-
     }
 
     private fun addExpense() {
@@ -83,22 +81,16 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val accountUid:
         val expenseName = editTextExpenseName.text.toString()
         val expensePrice = editTextExpenseAmount.text.toString().toDouble()
         val expenseDay = editTextExpenseDay.text.toString().toInt()
-        var recurring = false
-        if(isRecurring.isChecked){
-             recurring = true
-        }else{
-             recurring = false
-        }
+        val recurring = recurringCheckBox.isChecked
         val categoryUid = 1
 
-
-        val newExpense = Expense(0, expenseDay,categoryUid, expenseName, recurring, expensePrice)
+        val newExpense = Expense(0, expenseDay, categoryUid, expenseName, recurring, expensePrice, month.accountUid, month.monthNumber, month.yearNumber)
 
         runBlocking {
             db.expenseDao().insertExpense(newExpense)
         }
-        lifecycleScope.launch{
-            val parent  = activity as ExpensesActivity
+        lifecycleScope.launch {
+            val parent = activity as ExpensesActivity
             parent.loadExpenses()
         }
 
