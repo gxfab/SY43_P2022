@@ -21,6 +21,10 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
         return allCategories;
     }
 
+    fun getCategory(categoryName : String, categoryEmoji : String) : LiveData<List<Category>>? {
+        return repository.getCategory(categoryName,categoryEmoji)
+    }
+
     fun createCategory(category: Category) = viewModelScope.launch {
         repository.createCategory(category)
     }
@@ -31,5 +35,9 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
 
     fun deleteCategory(bId : Long) = viewModelScope.launch {
         repository.deleteCategory(bId)
+    }
+
+    fun deleteAllCategories() = viewModelScope.launch {
+        repository.deleteAllCategories()
     }
 }
