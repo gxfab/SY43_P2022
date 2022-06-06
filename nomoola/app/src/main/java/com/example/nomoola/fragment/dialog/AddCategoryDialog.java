@@ -17,7 +17,7 @@ import com.example.nomoola.R;
 import com.example.nomoola.database.entity.Category;
 import com.example.nomoola.viewModel.CategoryViewModel;
 
-public class CategoryDialog extends DialogFragment {
+public class AddCategoryDialog extends DialogFragment {
 
     private TextView view_CategoryTitle, view_CategoryName, view_CategoryBudgetAmount;
     private EditText edit_CategoryName, edit_CategoryBudgetAmount;
@@ -26,8 +26,8 @@ public class CategoryDialog extends DialogFragment {
     private CategoryViewModel categoryViewModel;
     private Category category;
 
-    public CategoryDialog(Category category){
-        this.category = category;
+    public AddCategoryDialog(){
+        this.category = new Category();
     }
 
     @Nullable
@@ -45,9 +45,8 @@ public class CategoryDialog extends DialogFragment {
         this.deleteButton = view.findViewById(R.id.deleteCategoryButton);
         this.confirmEditButton = view.findViewById(R.id.confirmEditButton);
 
-        this.view_CategoryTitle.setText(category.getM_CAT_NAME());
-        this.edit_CategoryName.setText(category.getM_CAT_NAME());
-        this.edit_CategoryBudgetAmount.setText(String.valueOf(category.getM_CAT_BUDGET_AMOUNT()));
+        this.view_CategoryTitle.setText("New Category");
+
 
         this.categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
 
@@ -61,7 +60,6 @@ public class CategoryDialog extends DialogFragment {
         this.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                categoryViewModel.delete(category);
                 dismiss();
             }
         });
@@ -70,9 +68,12 @@ public class CategoryDialog extends DialogFragment {
             @Override
             public void onClick(View view) {
                 String name = edit_CategoryName.getText().toString();
-                double budgetAmount = Double.valueOf(edit_CategoryBudgetAmount.getText().toString());
-                int id = category.getM_CAT_ID();
-                categoryViewModel.update(name, budgetAmount, id);
+                double budgetAmount = Double.valueOf(edit_CategoryBudgetAmount.getText().toString()); //TODO check if the amount is null
+
+                category.setM_CAT_NAME(name);
+                category.setM_CAT_BUDGET_AMOUNT(budgetAmount);
+
+                categoryViewModel.insert(category);
                 dismiss();
             }
         });

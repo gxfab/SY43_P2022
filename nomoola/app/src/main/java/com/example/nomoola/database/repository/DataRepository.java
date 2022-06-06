@@ -39,6 +39,10 @@ public class DataRepository {
         mAllInOutCome = mInOutComeDAO.getALlInOutComes();
     }
 
+    /*
+        CATEGORY
+     */
+
     public LiveData<List<Category>> getAllCategories() {
         return mAllCategory;
     }
@@ -58,7 +62,9 @@ public class DataRepository {
         });
     }
 
-
+    /*
+        SUBCATEGORY
+     */
 
 
     public LiveData<List<SubCategory>> getAllSubCategories(){
@@ -69,6 +75,19 @@ public class DataRepository {
             mSubCategoryDAO.insertSubCategory(subCategory);
         });
     }
+    public void delete(SubCategory subCategory){
+        mSubCategoryDAO.deleteSubCategory(subCategory);
+    }
+    public void update(String catName, String subcatName, int id){
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mSubCategoryDAO.updateSubCategory(catName, subcatName, id);
+        });
+    }
+
+
+    /*
+        INOUTCOME
+     */
 
     public LiveData<List<InOutCome>> getmAllInOutCome(){
         return mAllInOutCome;

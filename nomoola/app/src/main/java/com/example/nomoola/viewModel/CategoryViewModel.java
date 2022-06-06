@@ -19,8 +19,8 @@ public class CategoryViewModel extends AndroidViewModel {
     public CategoryViewModel(@NonNull Application application) {
         super(application);
         Log.d("CREATION", "Instantiation of CategoryViewModel");
-        mRepository = new DataRepository(application);
-        mAllCategories = mRepository.getAllCategories();
+        this.mRepository = new DataRepository(application);
+        this.mAllCategories = mRepository.getAllCategories();
     }
 
     public LiveData<List<Category>> getAllCategories(){

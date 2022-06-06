@@ -12,6 +12,10 @@
     <string name="exitButton">Exit Cross</string>
     <string name="month_nav">May</string>
     <string name="nomoola_delete_category">Delete Category</string>
+    <string name="nomoola_add_subcategory">Add Subcategory</string>
+    <string name="nomoola_category">Category</string>
+    <string name="nomoola_subcategory">Subcategory</string>
+    <string name="nomoola_subcategory_budget">Budget</string>
 
 
 </resources>

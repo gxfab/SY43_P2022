@@ -71,10 +71,13 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
         private void populateCategory(){
             CategoryDAO dao = INSTANCE.categoryDAO();
 
-            Category cat = new Category("Food", 150);
-            dao.insertCategory(cat);
-            cat = new Category("Car", 250);
-            dao.insertCategory(cat);
+            dao.insertCategory(new Category("Food", 150));
+            dao.insertCategory(new Category("Car", 250));
+            dao.insertCategory(new Category("Health", 50));
+            dao.insertCategory(new Category("Hobby", 50));
+            dao.insertCategory(new Category("Party", 100));
+            dao.insertCategory(new Category("Subscription", 35));
+            dao.insertCategory(new Category("School", 20));
         }
 
         private void populateSubCategory(){

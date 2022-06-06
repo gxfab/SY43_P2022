@@ -8,24 +8,23 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nomoola.R;
 import com.example.nomoola.adapter.CategoryAdapter;
-import com.example.nomoola.database.entity.Category;
+import com.example.nomoola.fragment.dialog.AddCategoryDialog;
+import com.example.nomoola.fragment.dialog.EditCategoryDialog;
 import com.example.nomoola.viewModel.CategoryViewModel;
-import java.util.List;
 
 public class CategoryFragment extends Fragment {
 
     private CategoryViewModel mCatViewModel;
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
+    private AppCompatButton addCategoryButton;
 
     @Nullable
     @Override
@@ -33,24 +32,26 @@ public class CategoryFragment extends Fragment {
         Log.d("CREATION", "onCreateView from " + this.getClass().toString() + " started");
         super.onCreateView(inflater, container, savedInstanceState);
         this.mCatViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
-
+        this.categoryAdapter = new CategoryAdapter(new CategoryAdapter.CategoryDiff(), this.getParentFragmentManager());
         View view = inflater.inflate(R.layout.fragment_category, container, false);
 
-        this.categoryAdapter = new CategoryAdapter(new CategoryAdapter.CategoryDiff(), this.getParentFragmentManager());
         this.categoryRecyclerView = view.findViewById(R.id.category_recyclerView);
-
         this.categoryRecyclerView.setAdapter(this.categoryAdapter);
+
+        this.addCategoryButton = view.findViewById(R.id.add_category_button);
+        this.addCategoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddCategoryDialog addCategoryDialog = new AddCategoryDialog();
+                addCategoryDialog.show(getParentFragmentManager(), "Category_dialog");
+            }
+        });
+
 
 
         mCatViewModel.getAllCategories().observe(getViewLifecycleOwner(), categories -> {
             categoryAdapter.submitList(categories);
         });
-
-        mCatViewModel.insert(new Category("Health", 50));
-        mCatViewModel.insert(new Category("Hobby", 50));
-        mCatViewModel.insert(new Category("Party", 100));
-        mCatViewModel.insert(new Category("Subscription", 35));
-        mCatViewModel.insert(new Category("School", 20));
 
         Log.d("CREATION", "onCreateView from " + this.getClass().toString() + " finished");
         return view;

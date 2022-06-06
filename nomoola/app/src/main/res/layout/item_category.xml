@@ -6,12 +6,13 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/item_cat_cardView"
         android:layout_width="150dp"
         android:layout_height="230dp"
         android:elevation="10dp"
         app:cardBackgroundColor="#EFEFEF"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardCornerRadius="@dimen/nomoola_cardView_cornerRadius"
+        app:cardElevation="@dimen/nomoola_cardView_elevation"
         app:cardPreventCornerOverlap="false">
 
 
@@ -39,7 +40,7 @@
                     android:textColor="#616161" />
 
                 <ImageButton
-                    android:id="@+id/editCategory"
+                    android:id="@+id/item_subCat_editSubCat"
                     android:contentDescription="@string/category_edit_button"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
