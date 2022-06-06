@@ -30,8 +30,16 @@ class CategoryRepository(application: Application) {
         categoryDao?.deleteCategory(bId)
     }
 
+    suspend fun deleteAllCategories() = withContext(Dispatchers.IO) {
+        categoryDao?.deleteAllCategories()
+    }
+
     fun getCategories() : LiveData<List<Category>>? {
         return allCategories;
+    }
+
+    fun getCategory(categoryName : String, categoryEmoji : String) : LiveData<List<Category>>? {
+        return getCategory(categoryName,categoryEmoji)
     }
 
 
