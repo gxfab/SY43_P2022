@@ -4,22 +4,23 @@ import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.lafo_cheuse.models.Budget
+import com.example.lafo_cheuse.models.Category
+import com.example.lafo_cheuse.models.Income
 
 @Dao
 interface IncomeDao {
-    /* TODO : Implement queries */
-    @Query("SELECT * FROM Budget")
-    fun getBudgets(): LiveData<List<Budget?>?>?
-
-    @Query("SELECT * FROM Budget")
-    fun getItemsWithCursor(): Cursor?
+    @Query("SELECT * FROM Income")
+    fun getIncomes(): LiveData<List<Income>>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertBudget(budget: Budget?): Long
+    fun insertIncome(income : Income): Long
 
     @Update
-    fun updateBudget(budget: Budget?): Int
+    fun updateIncome(income: Income): Int
 
-    @Query("DELETE FROM Budget WHERE budgetId = :bId")
-    fun deleteBudget(bId: Long): Int
+    @Query("DELETE FROM Income WHERE moneyChangeId = :bId")
+    fun deleteIncome(bId: Long): Int
+
+    @Query("DELETE FROM Income WHERE category_categoryId = :categoryID")
+    fun deleteIncomeByCategory(categoryId : Long) : Int
 }
