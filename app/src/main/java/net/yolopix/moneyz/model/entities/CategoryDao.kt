@@ -7,14 +7,9 @@ import androidx.room.Query
 
 @Dao
 interface CategoryDao {
-	@Query("SELECT * FROM category")
-	suspend fun getAll(): List<Category>
 
-	@Query("SELECT * FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber")
-	suspend fun getCategoriesForMonth(monthNumber: Int, yearNumber: Int): List<Category>
-
-	@Query("SELECT SUM(predictedAmount) FROM Category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber")
-	suspend fun getTotalCategorizedAmountForMonth(monthNumber: Int, yearNumber: Int): Float
+	@Query("SELECT * FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid")
+	suspend fun getCategoriesForMonth(monthNumber: Int, yearNumber: Int, accountUid: Int): List<Category>
 
 	@Insert
 	suspend fun insertCategory(category: Category)

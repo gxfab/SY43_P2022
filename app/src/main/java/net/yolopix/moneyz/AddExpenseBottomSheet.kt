@@ -70,7 +70,7 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
             spinner.adapter = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
-                db.categoryDao().getAll()
+                db.categoryDao().getCategoriesForMonth(month.monthNumber, month.yearNumber, month.accountUid)
             )
         }
 

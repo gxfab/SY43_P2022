@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Account
 import net.yolopix.moneyz.model.entities.Month
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ExpensesActivity : AppCompatActivity() {
 
@@ -59,12 +61,13 @@ class ExpensesActivity : AppCompatActivity() {
     }
 
     /**
+     * Load the account from the database and set the current month
+     * to the last month that already had previsions
      * @param uid: Account identifier in the database
      */
     private suspend fun loadAccount(uid: Int) {
         account = db.accountDao().getAccountById(uid)
         title = getString(R.string.expenses_title, account.name)
-        //supportActionBar?.subtitle = "mettre le mois ici ???"
 
         // Load the latest month
         // (not always matching the current month, switching to the next month
@@ -75,10 +78,16 @@ class ExpensesActivity : AppCompatActivity() {
         // Open the previsions activity if no prevision has ever been done
         if (monthsForCurrentAccount.isEmpty()) {
             openPrevisions()
+            supportActionBar?.subtitle = getString(R.string.account_just_created_subtitle)
             //finish()
-        }
-        else {
+        } else {
             currentMonth = monthsForCurrentAccount.last()
+
+            val monthAsLocalDate: LocalDate =
+                LocalDate.of(currentMonth.yearNumber, currentMonth.monthNumber, currentMonth.payday)
+            val monthFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+            val formattedMonth: String = monthAsLocalDate.format(monthFormat)
+            supportActionBar?.subtitle = getString(R.string.expenses_subtitle_month, formattedMonth)
         }
     }
 
