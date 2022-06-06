@@ -10,4 +10,5 @@
     <color name="nomoola_dark_title_dialog">#4E4E4E</color>
     <color name="nomoola_red">#f44336</color>
     <color name="nomoola_green">#aae425</color>
+    <color  name="nomoola_light_green">#33cc33</color>
 </resources>
