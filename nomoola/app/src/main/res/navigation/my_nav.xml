@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homePage"
-        android:name="com.example.nomoola.homePage"
+        android:name="com.example.nomoola.activity.CategoryActivity"
         android:label="Home"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/activity_category" />
     <fragment
         android:id="@+id/historyPage"
-        android:name="com.example.nomoola.historyPage"
+        android:name="com.example.nomoola.activity.HistoryActivity"
         android:label="History"
-        tools:layout="@layout/fragment_history_page" />
+        tools:layout="@layout/activity_history" />
     <fragment
         android:id="@+id/profilePage"
-        android:name="com.example.nomoola.profilePage"
+        android:name="com.example.nomoola.activity.ProfileActivity"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile_page" />
+        tools:layout="@layout/activity_profile" />
 </navigation>

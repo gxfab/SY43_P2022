@@ -1,4 +1,4 @@
-package com.example.nomoola;
+package com.example.nomoola.activity;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.nomoola.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link homePage#newInstance} factory method to
+ * Use the {@link ProfileActivity#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class homePage extends Fragment {
+public class ProfileActivity extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class homePage extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public homePage() {
+    public ProfileActivity() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class homePage extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment homePage.
+     * @return A new instance of fragment profilePage.
      */
     // TODO: Rename and change types and number of parameters
-    public static homePage newInstance(String param1, String param2) {
-        homePage fragment = new homePage();
+    public static ProfileActivity newInstance(String param1, String param2) {
+        ProfileActivity fragment = new ProfileActivity();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class homePage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_page, container, false);
+        return inflater.inflate(R.layout.activity_profile, container, false);
     }
 }
