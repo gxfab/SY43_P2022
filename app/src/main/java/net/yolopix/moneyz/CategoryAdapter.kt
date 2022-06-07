@@ -53,7 +53,7 @@ class CategoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.item_category_prevision, parent, false)
+        val view: View = inflater.inflate(R.layout.item_category, parent, false)
         return CategoryViewHolder(view)
     }
 

@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 tools:itemCount="2"
-                tools:listitem="@layout/item_category_prevision" />
+                tools:listitem="@layout/item_category" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 

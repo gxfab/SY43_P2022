@@ -133,7 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:itemCount="2"
-                        tools:listitem="@layout/item_category_prevision" />
+                        tools:listitem="@layout/item_category" />
 
                     <Button
                         android:id="@+id/button_add_category"
