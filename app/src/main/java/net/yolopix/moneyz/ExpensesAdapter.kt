@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import net.yolopix.moneyz.model.entities.Expense
 import java.text.NumberFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ExpensesAdapter(private val expenseList: List<Expense>) :
     RecyclerView.Adapter<ExpensesAdapter.ExpensesViewHolder>() {
@@ -30,8 +32,13 @@ class ExpensesAdapter(private val expenseList: List<Expense>) :
         moneyFormat.maximumFractionDigits = 2
         val expense = expenseList[position]
         holder.textViewExpenseName.text = expense.name
-        holder.textViewDate.text = expense.dayOfMonth.toString()
         holder.textViewAmount.text = moneyFormat.format(expense.amount)
+
+        // Date format
+        val expenseLocalDate: LocalDate =
+            LocalDate.of(2021, 1, expense.dayOfMonth)
+        val expenseFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        holder.textViewDate.text = expenseLocalDate.format(expenseFormat)
     }
 
     override fun getItemCount(): Int {

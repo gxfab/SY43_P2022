@@ -10,8 +10,5 @@ data class Expense(
     var categoryUid: Int,
     var name: String,
     var recurring: Boolean,
-    var amount: Double,
-    val accountUid: Int,
-    val monthNumber: Int,
-    val yearNumber: Int
+    var amount: Double
 )

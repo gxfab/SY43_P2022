@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayoutContainerCategory"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,12 +10,16 @@
     android:paddingVertical="8dp">
 
     <LinearLayout
+        android:id="@+id/layout_category_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/categoryName"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,20 +46,21 @@
 
         <ImageView
             android:id="@+id/button_expand"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:backgroundTint="@android:color/transparent"
-            android:stateListAnimator="@null"
-            app:iconTint="@color/material_on_background_emphasis_high_type"
-            app:srcCompat="@drawable/ic_outline_keyboard_arrow_down_24" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/desc_expand"
+            android:rotation="180"
+            app:srcCompat="@drawable/ic_outline_keyboard_arrow_down_24"
+            app:tint="@color/material_on_background_emphasis_high_type" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_expenses"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_expense" />
 
     <TextView
         android:layout_width="wrap_content"

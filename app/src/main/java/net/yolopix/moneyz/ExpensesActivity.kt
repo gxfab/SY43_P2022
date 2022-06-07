@@ -36,7 +36,7 @@ class ExpensesActivity : AppCompatActivity() {
             if (accountUid == null) {
                 finish()
             } else {
-                loadAccount(accountUid!!)
+                loadAccount()
             }
         }
 
@@ -54,7 +54,7 @@ class ExpensesActivity : AppCompatActivity() {
             openPrevisions()
         }
 
-        // RecylerView
+        // Initialize the main RecylerView
         expensesRecyclerView = findViewById(R.id.expenses_recy_view)
         expensesRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
     }
@@ -62,17 +62,18 @@ class ExpensesActivity : AppCompatActivity() {
     /**
      * Load the account from the database and set the current month
      * to the last month that already had previsions
-     * @param uid: Account identifier in the database
      */
-    private suspend fun loadAccount(uid: Int) {
-        account = db.accountDao().getAccountById(uid)
+    private suspend fun loadAccount() {
+        account = db.accountDao().getAccountById(accountUid!!)
         title = getString(R.string.expenses_title, account.name)
 
         // Load the latest month
         // (not always matching the current month, switching to the next month
         // should be a manual action triggered by the user)
 
-        val monthsForCurrentAccount = db.monthDao().getMonthsForAccountUid(uid)
+        val makePrevisionsButton: Button = findViewById(R.id.button_make_previsions)
+
+        val monthsForCurrentAccount = db.monthDao().getMonthsForAccountUid(accountUid!!)
 
         // Open the previsions activity if no prevision has ever been done
         if (monthsForCurrentAccount.isEmpty()) {
@@ -89,6 +90,13 @@ class ExpensesActivity : AppCompatActivity() {
             supportActionBar?.subtitle = getString(R.string.expenses_subtitle_month, formattedMonth)
 
             loadExpenses()
+
+            // Check if the month has passed and the user can make a new prevision
+            val now: LocalDate = LocalDate.now()
+            if (!now.isAfter(monthAsLocalDate)) {// If the month has non ended yet
+                makePrevisionsButton.visibility = View.GONE //TODO check if total expenses reached 0
+            }
+
         }
     }
 
@@ -101,7 +109,7 @@ class ExpensesActivity : AppCompatActivity() {
                 currentMonth.monthNumber,
                 currentMonth.yearNumber,
                 account.uid
-            ), this, true
+            ), this, true, db
         )
     }
 
@@ -116,12 +124,12 @@ class ExpensesActivity : AppCompatActivity() {
     }
 
     /**
-     * When the user goes back to the already created activity, reload expenses
+     * When the user goes back to the already created activity, reload expenses from account
      */
     override fun onRestart() {
         super.onRestart()
         lifecycleScope.launch {
-            loadAccount(accountUid!!)
+            loadAccount()
         }
     }
 }

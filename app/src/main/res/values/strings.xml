@@ -40,4 +40,5 @@
     <string name="error_empty_text">Vous devez entrer une valeur</string>
     <string name="expenses_subtitle_month">Mois de %1$s</string>
     <string name="account_just_created_subtitle">Compte nouvellement créé</string>
+    <string name="desc_expand">Réduire</string>
 </resources>

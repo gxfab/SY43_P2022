@@ -15,6 +15,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.entities.Category
 import net.yolopix.moneyz.model.entities.Expense
 import net.yolopix.moneyz.model.entities.Month
 
@@ -33,6 +34,7 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
     private lateinit var editTextExpenseAmount: EditText
     private lateinit var editTextExpenseDay: EditText
     private lateinit var recurringCheckBox: CheckBox
+    private lateinit var categorySpinner: Spinner
 
     // When the bottom sheet is created
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,6 +46,7 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
         editTextExpenseAmount = view.findViewById(R.id.edit_text_expense_price)
         recurringCheckBox = view.findViewById(R.id.checkBox_recurring)
         editTextExpenseDay = view.findViewById(R.id.editTextDate)
+        categorySpinner = view.findViewById(R.id.spinner_category)
 
         // Add click listener to the add button
         buttonAdd.setOnClickListener {
@@ -63,11 +66,9 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
 
-        // Category selection spinner
-        val spinner: Spinner = view.findViewById(R.id.spinner_category)
         //val adapter = ArrayAdapter.createFromResource(requireContext(), android.R.string ,android.R.layout.item_category)
         lifecycleScope.launch {
-            spinner.adapter = ArrayAdapter(
+            categorySpinner.adapter = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 db.categoryDao().getCategoriesForMonth(month.monthNumber, month.yearNumber, month.accountUid)
@@ -82,9 +83,9 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
         val expensePrice = editTextExpenseAmount.text.toString().toDouble()
         val expenseDay = editTextExpenseDay.text.toString().toInt()
         val recurring = recurringCheckBox.isChecked
-        val categoryUid = 1
+        val category = categorySpinner.selectedItem as Category
 
-        val newExpense = Expense(0, expenseDay, categoryUid, expenseName, recurring, expensePrice, month.accountUid, month.monthNumber, month.yearNumber)
+        val newExpense = Expense(0, expenseDay, category.uid, expenseName, recurring, expensePrice)
 
         runBlocking {
             db.expenseDao().insertExpense(newExpense)
