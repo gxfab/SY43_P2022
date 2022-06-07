@@ -17,29 +17,29 @@ class IncomeViewModel(application : Application) : AndroidViewModel(application)
     init {
         repository = IncomeRepository(application)
         allIncomes = repository.getIncomes()
+    }
 
-        fun getIncomes() : LiveData<List<Income>>? {
-            return allIncomes
-        }
+    fun getIncomes() : LiveData<List<Income>>? {
+        return allIncomes
+    }
 
-        fun getMonthlyIncome() : LiveData<List<Income>>? {
-            return repository.getIncomesByFrequency(Frequency.OUNCE_A_MONTH)
-        }
+    fun getMonthlyIncome() : LiveData<List<Income>>? {
+        return repository.getIncomesByFrequency(Frequency.OUNCE_A_MONTH)
+    }
 
-        fun insertIncome(income : Income) = viewModelScope.launch {
-            repository.insertIncome(income)
-        }
+    fun insertIncome(income : Income) = viewModelScope.launch {
+        repository.insertIncome(income)
+    }
 
-        fun updateIncome(income : Income) = viewModelScope.launch {
-            repository.updateIncome(income)
-        }
+    fun updateIncome(income : Income) = viewModelScope.launch {
+        repository.updateIncome(income)
+    }
 
-        fun deleteIncome(income: Income) = viewModelScope.launch {
-            repository.deleteIncome(income.moneyChangeId)
-        }
+    fun deleteIncome(income: Income) = viewModelScope.launch {
+        repository.deleteIncome(income.moneyChangeId)
+    }
 
-        fun deleteIncomeByCategory(category: Category) = viewModelScope.launch {
-            repository.deleteIncomeByCategory(category.categoryId)
-        }
+    fun deleteIncomeByCategory(category: Category) = viewModelScope.launch {
+        repository.deleteIncomeByCategory(category.categoryId)
     }
 }
