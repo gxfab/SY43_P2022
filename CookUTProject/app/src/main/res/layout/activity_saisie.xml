@@ -9,15 +9,59 @@
     <EditText
         android:layout_width="297dp"
         android:layout_height="58dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="252dp"
         android:backgroundTint="@color/gold_CookUT"
-        android:hint="Saisir valeur"
+        android:hint="Saisir titre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:layout_width="297dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="324dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:hint="Saisir évènement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:layout_width="297dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="404dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:hint="Saisir montant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_valider"
+        android:layout_width="130dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="508dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:text="Valider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_annuler"
+        android:layout_width="130dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="508dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:text="annuler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButton_saisie"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="16dp"
@@ -28,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
-        android:onClick="changeActivity"/>
+        android:onClick="changeActivityMain"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,8 +16,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void changeActivity(View view){
+    public void changeActivitySaisie(View view){
         Intent intent = new Intent(this, Saisie.class);
+        startActivity(intent);
+    }
+    public void changeActivityRecap(View view){
+        Intent intent = new Intent(this, Recap.class);
+        startActivity(intent);
+    }
+    public void changeActivityEvent(View view){
+        Intent intent = new Intent(this, Event.class);
         startActivity(intent);
     }
 }
