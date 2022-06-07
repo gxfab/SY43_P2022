@@ -66,7 +66,8 @@ class AddCategoryBottomSheet(
             editTextCategoryprice.text.toString().toFloat()
         }
 
-        val newCategory = Category(0, newCategoryName, newCategoryPrice, monthNumber, yearNumber, accountUid)
+        val newCategory =
+            Category(0, newCategoryName, newCategoryPrice, monthNumber, yearNumber, accountUid)
         runBlocking {
             db.categoryDao().insertCategory(newCategory)
         }

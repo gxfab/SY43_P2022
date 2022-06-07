@@ -8,11 +8,16 @@ import androidx.room.Query
 @Dao
 interface CategoryDao {
 
-	@Query("SELECT * FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid")
-	suspend fun getCategoriesForMonth(monthNumber: Int, yearNumber: Int, accountUid: Int): List<Category>
+    @Query("SELECT * FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid")
+    suspend fun getCategoriesForMonth(
+        monthNumber: Int,
+        yearNumber: Int,
+        accountUid: Int
+    ): List<Category>
 
-	@Insert
-	suspend fun insertCategory(category: Category)
-	@Delete
-	suspend fun deleteCategory(category: Category)
+    @Insert
+    suspend fun insertCategory(category: Category)
+
+    @Delete
+    suspend fun deleteCategory(category: Category)
 }

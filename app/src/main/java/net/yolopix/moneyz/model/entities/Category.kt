@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class Category(
     @PrimaryKey(autoGenerate = true) val uid: Int,
     var name: String,
-    var predictedAmount : Float,
+    var predictedAmount: Float,
     val monthNumber: Int,
     val yearNumber: Int,
     val accountUid: Int

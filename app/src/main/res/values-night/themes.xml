@@ -20,6 +20,6 @@
         <item name="textAppearanceButton">@style/TextAppearance.MoneyZ.Button</item>
 
 
-		<item name='android:navigationBarColor'>@android:color/transparent</item>
-	</style>
+        <item name='android:navigationBarColor'>@android:color/transparent</item>
+    </style>
 </resources>

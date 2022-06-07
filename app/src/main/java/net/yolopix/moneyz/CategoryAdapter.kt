@@ -50,8 +50,7 @@ class CategoryAdapter(
                 if (viewHolder.expensesRecyclerView.visibility == View.GONE) {
                     viewHolder.expensesRecyclerView.visibility = View.VISIBLE
                     viewHolder.expandButton.rotation = 180f
-                }
-                else {
+                } else {
                     viewHolder.expensesRecyclerView.visibility = View.GONE
                     viewHolder.expandButton.rotation = 0f
                 }

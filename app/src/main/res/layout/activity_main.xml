@@ -25,13 +25,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/create_account"
+        android:textColor="@color/white"
         app:icon="@drawable/ic_outline_add_24"
         app:iconTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_recycler_view"
         app:strokeColor="@color/white"
-        app:strokeWidth="2dp"
-        android:textColor="@color/white"/>
+        app:strokeWidth="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

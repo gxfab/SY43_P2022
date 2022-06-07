@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:importantForAutofill="no"
+    android:orientation="vertical"
     android:paddingHorizontal="16dp"
     android:paddingVertical="8dp"
-    android:orientation="vertical"
     app:behavior_peekHeight="52dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -16,17 +15,17 @@
         style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
         android:text="@string/add_account"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginVertical="8dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_account_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
         android:hint="@string/account_name_placeholder"
-        app:errorEnabled="true"
-        android:layout_marginVertical="8dp">
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_account_name"
@@ -45,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="@string/add"
-        android:layout_marginVertical="8dp"/>
+        android:layout_marginVertical="8dp"
+        android:text="@string/add" />
 
 </LinearLayout>

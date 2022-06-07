@@ -28,8 +28,7 @@
 
         app:layout_constraintEnd_toStartOf="@+id/button_add_category_bottom_sheet"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_category_name"
@@ -52,10 +51,10 @@
 
         android:hint="@string/category_price_bottom_sheet"
         app:errorEnabled="true"
-        app:layout_constraintTop_toBottomOf="@id/text_field_category_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_add_category_bottom_sheet"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_field_category_name"
 
         >
 
