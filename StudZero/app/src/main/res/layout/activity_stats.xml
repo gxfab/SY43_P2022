@@ -5,10 +5,19 @@
     android:id="@+id/stats"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="10dp"
     android:background="@color/BG"
     android:orientation="vertical"
     tools:context=".activities.Stats">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/history"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/BG_taskbar"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu_navigation" />
 
     <ScrollView
         android:id="@+id/ScrollViewStats"
@@ -57,15 +66,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/history"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        app:itemBackground="@color/BG_taskbar"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu_navigation" />
 
 </RelativeLayout>

@@ -610,7 +610,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String query = "Select * from " + TABLE_PAYMENT +
-                " where " + PAYMENT_COLUMN_CATEGORY + "=" + idCategory + " ORDER BY " + PAYMENT_COLUMN_DATE_PAYMENT + " DESC";
+                " where " + PAYMENT_COLUMN_CATEGORY + "=" + idCategory + " ORDER BY " + PAYMENT_COLUMN_DATE_PAYMENT + " ASC";
 
         Cursor c = db.rawQuery(query, null);
 

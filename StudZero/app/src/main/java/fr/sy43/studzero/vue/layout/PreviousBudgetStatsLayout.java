@@ -126,7 +126,7 @@ public class PreviousBudgetStatsLayout extends LinearLayout {
         addView(evolutionPayments);
 
         // Add a category graph to the layout
-        CategoryGraph categoryGraph = new CategoryGraph(getContext(), db.getCategoryOfCategoryType(db.getCurrentBudget().getIdBudget(), categoryNames[0]));
+        CategoryGraph categoryGraph = new CategoryGraph(getContext(), db.getCategoryOfCategoryType(idBudget, categoryNames[0]));
         categoryGraph.setBackgroundColor(getResources().getColor(R.color.BG_Objet));
         params = generateDefaultLayoutParams();
         params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
@@ -147,7 +147,7 @@ public class PreviousBudgetStatsLayout extends LinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 DatabaseHelper db = new DatabaseHelper(getContext());
-                categoryGraph.setNewCategory(db.getCategoryOfCategoryType(db.getBudget(idBudget).getIdBudget(), categoryNames[position]));
+                categoryGraph.setNewCategory(db.getCategoryOfCategoryType(idBudget, categoryNames[position]));
                 db.getCurrentBudget();
             }
             /**

@@ -46,6 +46,18 @@ public class CategoryGraph extends View {
     private float ratioRealTheoreticalAmount;
 
     /**
+     * True if the category used for the graph is not attached to the current budget
+     */
+    private boolean isNotCurrentBudget;
+
+    /**
+     * If no payments have been done for the category used by the graph,
+     * the variable corresponds to the number of days that have passed since the start of the budget.
+     * Otherwise = -1
+     */
+    private int daysWithoutPayment;
+
+    /**
      * Constructor the view
      * @param context
      * @param category category used for the drawn graph
@@ -54,6 +66,9 @@ public class CategoryGraph extends View {
         super(context);
         this.paint = new Paint();
         this.resources = this.getResources();
+        DatabaseHelper db = new DatabaseHelper(getContext());
+        this.isNotCurrentBudget = category.getBudget() != db.getCurrentBudget().getIdBudget();
+        db.closeDB();
         setGraphData(category);
     }
 
@@ -68,16 +83,13 @@ public class CategoryGraph extends View {
         this.category = category;
 
         if(payments.size() > 0) {
-            long diffBudgetStart = db.getBudget(category.getBudget()).getDateStart().getTime() - payments.get(0).getDatePayment().getTime();
-            db.closeDB();
+            long diffBudgetStart =  payments.get(0).getDatePayment().getTime() - db.getBudget(category.getBudget()).getDateStart().getTime();
             int numberOfDaysBetweenBudgetStartAnd1stPayment =  1 + (int) TimeUnit.DAYS.convert(diffBudgetStart, TimeUnit.MILLISECONDS);
             for(int i = 0; i < numberOfDaysBetweenBudgetStartAnd1stPayment; ++i)  {
                 sumPaymentsPerDay.put(i, 0f);
             }
             sumPaymentsPerDay.put(numberOfDaysBetweenBudgetStartAnd1stPayment, payments.get(0).getAmount());
-            for(int i = numberOfDaysBetweenBudgetStartAnd1stPayment + 1; i <= 30; ++i) {
-                sumPaymentsPerDay.put(i, -1f);
-            }
+
             int day = 1;
             for(int i = 1; i < payments.size(); ++i) {
                 if(!new String(DatabaseHelper.getStringWithoutTimeFromDate(payments.get(i - 1).getDatePayment())).equals(DatabaseHelper.getStringWithoutTimeFromDate(payments.get(i).getDatePayment()))) {
@@ -90,14 +102,22 @@ public class CategoryGraph extends View {
                 }
                 sumPaymentsPerDay.put(day, sumPaymentsPerDay.get(day) + payments.get(i).getAmount());
             }
+            if(day > 1) {
+                sumPaymentsPerDay.put(day + 1, -1f);
+            } else {
+                sumPaymentsPerDay.put(numberOfDaysBetweenBudgetStartAnd1stPayment + 1, -1f);
+            }
 
             if(category.getTheoreticalAmount() > category.getRealAmount()) {
                 this.ratioRealTheoreticalAmount = 1;
             } else {
                 this.ratioRealTheoreticalAmount = category.getTheoreticalAmount() / category.getRealAmount();
             }
+            this.daysWithoutPayment = -1;
         } else {
             this.ratioRealTheoreticalAmount = 1;
+            long diffBudgetStart =  (new Date().getTime()) - db.getBudget(category.getBudget()).getDateStart().getTime();
+            this.daysWithoutPayment = (int) TimeUnit.DAYS.convert(diffBudgetStart, TimeUnit.MILLISECONDS);
         }
 
         db.closeDB();
@@ -150,7 +170,6 @@ public class CategoryGraph extends View {
             canvas.drawText(""+i, xDayI, yGraphXTitle * 1.1f, paint);
         }
 
-
         // Draw the legends of the graph
         this.paint.setStrokeWidth(5f);
         this.paint.setColor(this.resources.getColor(R.color.teal_200));
@@ -177,21 +196,37 @@ public class CategoryGraph extends View {
 
         // Draw the real amount curve
         this.paint.setColor(this.resources.getColor(R.color.purple_200));
-        for(int i = 1; i <= 30 && sumPaymentsPerDay.size() > 0; ++i) {
-            if(sumPaymentsPerDay.get(i) == -1f) {
-                break;
-            }
-            float xPreviousDay = xValueYAxis + (xEndXAxis - xValueYAxis) * (i-1)/30;
-            float xDay = xValueYAxis + (xEndXAxis - xValueYAxis) * (i)/30;
-            float yPreviousDay, yDay;
-            if(category.getTheoreticalAmount() > category.getRealAmount()) {
-                yPreviousDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i-1)/category.getTheoreticalAmount();
-                yDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i)/category.getTheoreticalAmount();
+        // If no payments have been done without payments, draw a line for the number that have passed at 0
+        if(this.daysWithoutPayment != -1) {
+            float xEndWithoutPayment = xValueYAxis + (xEndXAxis - xValueYAxis) * (this.daysWithoutPayment)/30;
+            // If not current budget, draw until the end of the axis
+            if(isNotCurrentBudget) {
+                canvas.drawLine( xValueYAxis,  yGraphXTitle,  xEndXAxis,  yGraphXTitle, this.paint);
             } else {
-                yPreviousDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i-1)/category.getRealAmount();
-                yDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i)/category.getRealAmount();
+                canvas.drawLine( xValueYAxis,  yGraphXTitle,  xEndWithoutPayment,  yGraphXTitle, this.paint);
             }
-            canvas.drawLine( xPreviousDay,  yPreviousDay,  xDay,  yDay, this.paint);
+        } else {
+            for(int i = 1; i <= 30 && sumPaymentsPerDay.size() > 0; ++i) {
+
+                float xPreviousDay = xValueYAxis + (xEndXAxis - xValueYAxis) * (i-1)/30;
+                float xDay = xValueYAxis + (xEndXAxis - xValueYAxis) * (i)/30;
+                float yPreviousDay, yDay;
+                if(category.getTheoreticalAmount() > category.getRealAmount()) {
+                    yPreviousDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i-1)/category.getTheoreticalAmount();
+                    yDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i)/category.getTheoreticalAmount();
+                } else {
+                    yPreviousDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i-1)/category.getRealAmount();
+                    yDay = yGraphXTitle - (yGraphXTitle - yStartYAxis) * sumPaymentsPerDay.get(i)/category.getRealAmount();
+                }
+                if(sumPaymentsPerDay.get(i) == -1f) {
+                    if(isNotCurrentBudget) {
+                        canvas.drawLine( xPreviousDay,  yPreviousDay,  xEndXAxis,  yPreviousDay, this.paint);
+                    }
+                    break;
+                }
+                canvas.drawLine( xPreviousDay,  yPreviousDay,  xDay,  yDay, this.paint);
+            }
         }
+
     }
 }
