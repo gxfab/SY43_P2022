@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nomoola.R;
 import com.example.nomoola.database.entity.SubCategory;
+import com.example.nomoola.fragment.dialog.EditSubCategoryDialog;
 
 public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
 
@@ -30,6 +31,14 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
         this.subcatName = view.findViewById(R.id.item_subCat_name);
         this.editSubcatButton = view.findViewById(R.id.item_subCat_editSubCat);
         this.percentBudgetLeft = view.findViewById(R.id.item_subCat_progressBar);
+
+        this.editSubcatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditSubCategoryDialog editSubCategoryDialog = new EditSubCategoryDialog(subCategory);
+                editSubCategoryDialog.show(fragmentManager, "Subcategory_dialog");
+            }
+        });
     }
 
     public void bind(SubCategory subcategory){

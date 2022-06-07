@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nomoola.R;
 import com.example.nomoola.adapter.SubcategoryAdapter;
 import com.example.nomoola.database.entity.Category;
+import com.example.nomoola.fragment.dialog.AddSubCategoryDialog;
 import com.example.nomoola.viewModel.SubcategoryViewModel;
 
 public class SubcategoryFragment extends Fragment {
@@ -53,6 +54,13 @@ public class SubcategoryFragment extends Fragment {
         this.subcategory_titlename.setText(category.getM_CAT_NAME());
 
         this.addSubcatButton = view.findViewById(R.id.subcategory_addSubcategory_button);
+        this.addSubcatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddSubCategoryDialog addSubCategoryDialog = new AddSubCategoryDialog(category);
+                addSubCategoryDialog.show(getParentFragmentManager(), "AddSubCat_dialog");
+            }
+        });
 
         this.navBackButton = view.findViewById(R.id.subcategory_nav_back);
         this.navBackButton.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +73,8 @@ public class SubcategoryFragment extends Fragment {
             }
         });
 
-        mSubcategoryViewModel.getmAllSubCategories().observe(getViewLifecycleOwner(), subCategories -> {
+
+        mSubcategoryViewModel.getSubCategoriesOf(category.getM_CAT_ID()).observe(getViewLifecycleOwner(), subCategories -> {
             subcategoryAdapter.submitList(subCategories);
         });
 

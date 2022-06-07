@@ -16,6 +16,8 @@
     <string name="nomoola_category">Category</string>
     <string name="nomoola_subcategory">Subcategory</string>
     <string name="nomoola_subcategory_budget">Budget</string>
+    <string name="nomoola_subcategory_newSubCat">New Subcategory</string>
+    <string name="nomoola_category_newCat">New Category</string>
 
 
 </resources>

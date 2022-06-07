@@ -28,6 +28,10 @@ public interface SubCategoryDAO {
     @Query("SELECT * FROM T_SUBCATEGORY")
     LiveData<List<SubCategory>> getAllSubCategories();
 
-    @Query("UPDATE T_SUBCATEGORY SET CAT_NAME=:catName, SUBCAT_NAME=:subcatName WHERE SUBCAT_ID=:id")
-    void updateSubCategory(String catName, String subcatName, int id);
+    @Query("SELECT * FROM T_SUBCATEGORY WHERE CAT_ID=:categoryID")
+    LiveData<List<SubCategory>> getSubCategoriesOf(int categoryID);
+
+    @Query("UPDATE T_SUBCATEGORY SET CAT_ID=:catID, SUBCAT_NAME=:subcatName WHERE SUBCAT_ID=:id")
+    void updateSubCategory(int catID, String subcatName, int id);
+
 }

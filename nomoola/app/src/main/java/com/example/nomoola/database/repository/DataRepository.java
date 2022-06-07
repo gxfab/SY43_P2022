@@ -66,9 +66,11 @@ public class DataRepository {
         SUBCATEGORY
      */
 
-
     public LiveData<List<SubCategory>> getAllSubCategories(){
         return mAllSubCategory;
+    }
+    public LiveData<List<SubCategory>> getSubCategoriesOf(int categoryID){
+        return this.mSubCategoryDAO.getSubCategoriesOf(categoryID);
     }
     public void insert(SubCategory subCategory) {
         NomoolaRoomDataBase.databaseWriteExecutor.execute(() -> {
@@ -76,11 +78,13 @@ public class DataRepository {
         });
     }
     public void delete(SubCategory subCategory){
-        mSubCategoryDAO.deleteSubCategory(subCategory);
-    }
-    public void update(String catName, String subcatName, int id){
         NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
-            mSubCategoryDAO.updateSubCategory(catName, subcatName, id);
+            mSubCategoryDAO.deleteSubCategory(subCategory);
+        });
+    }
+    public void update(int catID, String subcatName, int id){
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mSubCategoryDAO.updateSubCategory(catID, subcatName, id);
         });
     }
 
