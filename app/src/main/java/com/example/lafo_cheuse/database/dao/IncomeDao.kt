@@ -5,12 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.lafo_cheuse.models.Budget
 import com.example.lafo_cheuse.models.Category
+import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.models.Income
 
 @Dao
 interface IncomeDao {
     @Query("SELECT * FROM Income")
     fun getIncomes(): LiveData<List<Income>>?
+
+    @Query("SELECT * FROM Income WHERE frequency = :frequency")
+    fun getIncomesByFrequency(frequency: Frequency): LiveData<List<Income>>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIncome(income : Income): Long
@@ -22,5 +26,5 @@ interface IncomeDao {
     fun deleteIncome(bId: Long): Int
 
     @Query("DELETE FROM Income WHERE category_categoryId = :categoryID")
-    fun deleteIncomeByCategory(categoryId : Long) : Int
+    fun deleteIncomeByCategory(categoryID : Long) : Int
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.lafo_cheuse.database.LafoCheuseDatabase
 import com.example.lafo_cheuse.database.dao.IncomeDao
+import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.models.Income
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -36,6 +37,10 @@ class IncomeRepository(application: Application) {
 
     fun getIncomes() : LiveData<List<Income>>? {
         return allIncomes
+    }
+
+    fun getIncomesByFrequency(frequency: Frequency) : LiveData<List<Income>>? {
+        return incomeDao.getIncomesByFrequency(frequency)
     }
 
 
