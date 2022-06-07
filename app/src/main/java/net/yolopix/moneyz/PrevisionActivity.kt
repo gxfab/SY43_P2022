@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.slider.Slider
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
-import net.yolopix.moneyz.model.entities.Account
 import net.yolopix.moneyz.model.entities.Month
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -34,7 +33,7 @@ class PrevisionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_prevision)
 
         // Get account passed as extra message
-        accountUid  = intent.getStringExtra(EXTRA_MESSAGE)?.toInt()
+        accountUid = intent.getStringExtra(EXTRA_MESSAGE)?.toInt()
         if (accountUid == null) {
             finish()
         }
@@ -133,7 +132,9 @@ class PrevisionActivity : AppCompatActivity() {
     private suspend fun loadCategories() {
         val adapter =
             CategoryAdapter(
-                db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!), this
+                db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!),
+                this,
+                false
             )
         recyclerView.adapter = adapter
     }
@@ -182,7 +183,8 @@ class PrevisionActivity : AppCompatActivity() {
      * @return total amount of all previsions from the categories
      */
     private suspend fun calculateCategorizedAmount(): Float {
-        val categories = db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!)
+        val categories =
+            db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!)
         var categorizedAmount = 0f
 
         for (category in categories) {

@@ -37,8 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                tools:itemCount="6"
-                tools:listitem="@layout/item_category" />
+                tools:itemCount="2"
+                tools:listitem="@layout/item_category_prevision" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
@@ -49,6 +49,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:text="@string/add_expense"
+        android:visibility="invisible"
         app:icon="@drawable/ic_outline_add_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

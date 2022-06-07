@@ -17,10 +17,10 @@
             android:id="@+id/categoryName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/item_category_prevision_name"
             android:textColor="@color/material_on_background_emphasis_high_type"
-            android:textSize="17sp"
-            android:layout_weight="1"/>
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/categoryPrice"
@@ -33,13 +33,28 @@
             android:id="@+id/button_delete_category"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:visibility="gone"
             app:icon="@drawable/ic_baseline_delete_24"
             app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            android:visibility="gone"
-            android:paddingStart="8dp"/>
+            app:iconPadding="0dp" />
+
+        <ImageView
+            android:id="@+id/button_expand"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:backgroundTint="@android:color/transparent"
+            android:stateListAnimator="@null"
+            app:iconTint="@color/material_on_background_emphasis_high_type"
+            app:srcCompat="@drawable/ic_outline_keyboard_arrow_down_24" />
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_expenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"

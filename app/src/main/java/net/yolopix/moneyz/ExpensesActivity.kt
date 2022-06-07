@@ -2,6 +2,7 @@ package net.yolopix.moneyz
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +21,7 @@ class ExpensesActivity : AppCompatActivity() {
     private lateinit var currentMonth: Month
     private lateinit var db: AppDatabase
     private lateinit var expensesRecyclerView: RecyclerView
+    private var accountUid: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +31,12 @@ class ExpensesActivity : AppCompatActivity() {
         db = DatabaseFactory.getDB(applicationContext)
 
         // Fetch the account from the uid passed to the activity as extra
-        val accountUid: Int? = intent.getStringExtra(EXTRA_MESSAGE)?.toInt()
+        accountUid = intent.getStringExtra(EXTRA_MESSAGE)?.toInt()
         lifecycleScope.launch {
             if (accountUid == null) {
                 finish()
             } else {
-                loadAccount(accountUid)
+                loadAccount(accountUid!!)
             }
         }
 
@@ -55,9 +57,6 @@ class ExpensesActivity : AppCompatActivity() {
         // RecylerView
         expensesRecyclerView = findViewById(R.id.expenses_recy_view)
         expensesRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
-        lifecycleScope.launch {
-            loadExpenses()
-        }
     }
 
     /**
@@ -77,17 +76,19 @@ class ExpensesActivity : AppCompatActivity() {
 
         // Open the previsions activity if no prevision has ever been done
         if (monthsForCurrentAccount.isEmpty()) {
-            openPrevisions()
+            //openPrevisions()
             supportActionBar?.subtitle = getString(R.string.account_just_created_subtitle)
-            //finish()
         } else {
             currentMonth = monthsForCurrentAccount.last()
+            findViewById<View>(R.id.button_add_expense).visibility = View.VISIBLE
 
             val monthAsLocalDate: LocalDate =
                 LocalDate.of(currentMonth.yearNumber, currentMonth.monthNumber, currentMonth.payday)
             val monthFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
             val formattedMonth: String = monthAsLocalDate.format(monthFormat)
             supportActionBar?.subtitle = getString(R.string.expenses_subtitle_month, formattedMonth)
+
+            loadExpenses()
         }
     }
 
@@ -95,7 +96,13 @@ class ExpensesActivity : AppCompatActivity() {
      * Load all the expenses and their categories from the databse, display them in a recyclerview
      */
     suspend fun loadExpenses() {
-        //expensesRecyclerView.adapter = ExpensesAdapter(db.expenseDao().getAll()) //TODO get expenses from currentMonth only
+        expensesRecyclerView.adapter = CategoryAdapter(
+            db.categoryDao().getCategoriesForMonth(
+                currentMonth.monthNumber,
+                currentMonth.yearNumber,
+                account.uid
+            ), this, true
+        )
     }
 
     /**
@@ -106,5 +113,15 @@ class ExpensesActivity : AppCompatActivity() {
             putExtra(EXTRA_MESSAGE, account.uid.toString())
         }
         startActivity(intentPrevisionActivity)
+    }
+
+    /**
+     * When the user goes back to the already created activity, reload expenses
+     */
+    override fun onRestart() {
+        super.onRestart()
+        lifecycleScope.launch {
+            loadAccount(accountUid!!)
+        }
     }
 }
