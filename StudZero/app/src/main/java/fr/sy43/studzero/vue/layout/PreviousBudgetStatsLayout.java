@@ -82,81 +82,87 @@ public class PreviousBudgetStatsLayout extends LinearLayout {
             addView(categoryProgressBar);
         }
 
-        // TextView for R.string.SelectCategory
-        TextView selectCategoryTextView = new TextView(getContext());
-        params = generateDefaultLayoutParams();
-        params.width = LayoutParams.MATCH_PARENT;
-        params.height = LayoutParams.WRAP_CONTENT;
-        params.weight = 1f;
-        params.bottomMargin = convertDpToPx(getContext(), 10);
-        selectCategoryTextView.setPadding(convertDpToPx(getContext(), 10.0f), convertDpToPx(getContext(), 10.0f), 0, convertDpToPx(getContext(), 10.0f));
-        selectCategoryTextView.setLayoutParams(params);
-        selectCategoryTextView.setTextSize(convertSpToPx(getContext(), 8.0f));
-        selectCategoryTextView.setText(getResources().getString(R.string.SelectCategory));
-        selectCategoryTextView.setTextColor(getResources().getColor(R.color.white));
-        addView(selectCategoryTextView);
+        if(categories.size() > 0) {
+            // TextView for R.string.SelectCategory
+            TextView selectCategoryTextView = new TextView(getContext());
+            params = generateDefaultLayoutParams();
+            params.width = LayoutParams.MATCH_PARENT;
+            params.height = LayoutParams.WRAP_CONTENT;
+            params.weight = 1f;
+            params.bottomMargin = convertDpToPx(getContext(), 10);
+            selectCategoryTextView.setPadding(convertDpToPx(getContext(), 10.0f), convertDpToPx(getContext(), 10.0f), 0, convertDpToPx(getContext(), 10.0f));
+            selectCategoryTextView.setLayoutParams(params);
+            selectCategoryTextView.setTextSize(convertSpToPx(getContext(), 8.0f));
+            selectCategoryTextView.setText(getResources().getString(R.string.SelectCategory));
+            selectCategoryTextView.setTextColor(getResources().getColor(R.color.white));
+            addView(selectCategoryTextView);
 
-        // Add a spinner to select a category for the afterwards graph
-        Spinner spinner = new Spinner(getContext());
-        params = generateDefaultLayoutParams();
-        params.width = LayoutParams.MATCH_PARENT;
-        params.height = LayoutParams.WRAP_CONTENT;
-        params.bottomMargin = convertDpToPx(getContext(), 10);
-        spinner.setLayoutParams(params);
-        spinner.setPadding(convertDpToPx(getContext(), 10.0f), convertDpToPx(getContext(), 10.0f), 0, convertDpToPx(getContext(), 10.0f));
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.liste_deroulante_selected_item, categoryNames);
-        adapter.setDropDownViewResource(R.layout.liste_deroulante);
-        spinner.setAdapter(adapter);
-        spinner.setBackgroundColor(getResources().getColor(R.color.BG_Objet));
-        addView(spinner);
+            // Add a spinner to select a category for the afterwards graph
+            Spinner spinner = new Spinner(getContext());
+            params = generateDefaultLayoutParams();
+            params.width = LayoutParams.MATCH_PARENT;
+            params.height = LayoutParams.WRAP_CONTENT;
+            params.bottomMargin = convertDpToPx(getContext(), 10);
+            spinner.setLayoutParams(params);
+            spinner.setPadding(convertDpToPx(getContext(), 10.0f), convertDpToPx(getContext(), 10.0f), 0, convertDpToPx(getContext(), 10.0f));
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.liste_deroulante_selected_item, categoryNames);
+            adapter.setDropDownViewResource(R.layout.liste_deroulante);
+            spinner.setAdapter(adapter);
+            spinner.setBackgroundColor(getResources().getColor(R.color.BG_Objet));
+            addView(spinner);
 
-        // TextView for R.string.EvolutionPayments
-        TextView evolutionPayments = new TextView(getContext());
-        params = generateDefaultLayoutParams();
-        params.width = LayoutParams.MATCH_PARENT;
-        params.height = LayoutParams.WRAP_CONTENT;
-        params.weight = 1f;
-        params.bottomMargin = convertDpToPx(getContext(), 10);
-        evolutionPayments.setPadding(convertDpToPx(getContext(), 10.0f), convertDpToPx(getContext(), 10.0f), 0, convertDpToPx(getContext(), 10.0f));
-        evolutionPayments.setLayoutParams(params);
-        evolutionPayments.setTextSize(convertSpToPx(getContext(), 8.0f));
-        evolutionPayments.setText(getResources().getString(R.string.EvolutionPayments));
-        evolutionPayments.setTextColor(getResources().getColor(R.color.white));
-        evolutionPayments.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-        addView(evolutionPayments);
+            // TextView for R.string.EvolutionPayments
+            TextView evolutionPayments = new TextView(getContext());
+            params = generateDefaultLayoutParams();
+            params.width = LayoutParams.MATCH_PARENT;
+            params.height = LayoutParams.WRAP_CONTENT;
+            params.weight = 1f;
+            params.bottomMargin = convertDpToPx(getContext(), 10);
+            evolutionPayments.setPadding(convertDpToPx(getContext(), 10.0f), convertDpToPx(getContext(), 10.0f), 0, convertDpToPx(getContext(), 10.0f));
+            evolutionPayments.setLayoutParams(params);
+            evolutionPayments.setTextSize(convertSpToPx(getContext(), 8.0f));
+            evolutionPayments.setText(getResources().getString(R.string.EvolutionPayments));
+            evolutionPayments.setTextColor(getResources().getColor(R.color.white));
+            evolutionPayments.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+            addView(evolutionPayments);
 
-        // Add a category graph to the layout
-        CategoryGraph categoryGraph = new CategoryGraph(getContext(), db.getCategoryOfCategoryType(idBudget, categoryNames[0]));
-        categoryGraph.setBackgroundColor(getResources().getColor(R.color.BG_Objet));
-        params = generateDefaultLayoutParams();
-        params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
-        params.height = convertDpToPx(getContext(), 400);
-        params.bottomMargin = convertDpToPx(getContext(), 30);
-        categoryGraph.setLayoutParams(params);
-        addView(categoryGraph);
+            // Add a category graph to the layout
+            CategoryGraph categoryGraph = new CategoryGraph(getContext(), db.getCategoryOfCategoryType(idBudget, categoryNames[0]));
+            categoryGraph.setBackgroundColor(getResources().getColor(R.color.BG_Objet));
+            params = generateDefaultLayoutParams();
+            params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
+            params.height = convertDpToPx(getContext(), 400);
+            params.bottomMargin = convertDpToPx(getContext(), 30);
+            categoryGraph.setLayoutParams(params);
+            addView(categoryGraph);
 
-        // Add listener to spinner to update the graph depending on the selected category
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            /**
-             * Update the selected type of category and show the category of the selected category
-             * @param parent
-             * @param view
-             * @param position
-             * @param id
-             */
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                DatabaseHelper db = new DatabaseHelper(getContext());
-                categoryGraph.setNewCategory(db.getCategoryOfCategoryType(idBudget, categoryNames[position]));
-                db.getCurrentBudget();
-            }
-            /**
-             * If no category is selected : do nothing
-             * @param parent
-             */
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
+            // Add listener to spinner to update the graph depending on the selected category
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                /**
+                 * Update the selected type of category and show the category of the selected category
+                 *
+                 * @param parent
+                 * @param view
+                 * @param position
+                 * @param id
+                 */
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    DatabaseHelper db = new DatabaseHelper(getContext());
+                    categoryGraph.setNewCategory(db.getCategoryOfCategoryType(idBudget, categoryNames[position]));
+                    db.getCurrentBudget();
+                }
+
+                /**
+                 * If no category is selected : do nothing
+                 *
+                 * @param parent
+                 */
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
+        }
     }
 
     /**
