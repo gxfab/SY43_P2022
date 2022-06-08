@@ -18,7 +18,7 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
     abstract fun categoryDao(): CategoryDao?
     abstract fun expensesBudgetDao(): ExpensesBudgetDao?
     abstract fun incomesBudgetDao(): IncomesBudgetDao?
-    //abstract fun expenseDao(): ExpenseDao?
+    abstract fun expenseDao(): ExpenseDao?
     abstract fun incomeDao(): IncomeDao?
     //abstract fun optionDao(): OptionDao?
     //abstract fun optionFieldDao(): OptionFieldDao?
