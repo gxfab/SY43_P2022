@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +13,14 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lafo_cheuse.BudgetSetterActivity
 import com.example.lafo_cheuse.CategoryChooserActivity
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.models.Category
 import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.models.Income
-import com.example.lafo_cheuse.viewmodels.CategoryViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -36,7 +35,8 @@ class IncomeSetterAdapter(var context : Activity, var viewModel : IncomeViewMode
         val incomeNameWidget: EditText? = itemView.findViewById(R.id.valueName)
         val incomeCategoryButton: Button? = itemView.findViewById(R.id.categoryButton)
         val incomeDeleteButton: FloatingActionButton? = itemView.findViewById(R.id.deleteButton)
-        val addButton : ImageButton? = itemView.findViewById(R.id.addRegularIncomeExpense);
+        val incomeValidateButton: Button? = itemView.findViewById(R.id.validate_button)
+        val addButton : ImageButton? = itemView.findViewById(R.id.addRegularIncomeExpense)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -62,45 +62,73 @@ class IncomeSetterAdapter(var context : Activity, var viewModel : IncomeViewMode
             }
         } else {
             // Get the data model based on position
-            val income :Income = mIncomes[position]
+            val income: Income = mIncomes[position]
             // Set item views based on your views and data model
             holder.incomeNameWidget?.setText(income.name)
-            holder.incomeValueWidget?.setText("")
+
+            if (income.amount == 0.0) {
+                holder.incomeValueWidget?.setText("")
+            } else {
+                holder.incomeValueWidget?.setText(income.amount.toString())
+            }
+            holder.incomeValidateButton?.isEnabled = false
+
+
             holder.incomeCategoryButton?.text = income.category?.categoryEmoji
 
             holder.incomeCategoryButton?.setOnClickListener {
-                val bundle = bundleOf("moneyChangeId" to income.moneyChangeId,"type" to "income")
+                val bundle = bundleOf("moneyChangeId" to income.moneyChangeId, "type" to "income")
                 val intent = Intent(context, CategoryChooserActivity::class.java)
                 intent.putExtras(bundle)
                 context.startActivity(intent)
             }
 
+            holder.incomeValidateButton?.setOnClickListener {
+                income.amount = holder.incomeValueWidget?.text.toString().toDouble()
+                income.name = holder.incomeNameWidget?.text.toString()
+                viewModel.updateIncome(income)
+            }
+
+            holder.incomeValueWidget?.addTextChangedListener {
+                holder.incomeValidateButton?.isEnabled = true
+            }
+
+            holder.incomeNameWidget?.addTextChangedListener {
+                holder.incomeValidateButton?.isEnabled = true
+            }
+
             val deleteIncome = { dialog: DialogInterface, which: Int ->
                 viewModel.deleteIncome(income)
-                Toast.makeText(context,
-                    "Suppression réussie", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "Suppression réussie", Toast.LENGTH_SHORT
+                ).show()
             }
 
             val cancel = { dialog: DialogInterface, which: Int ->
-                Toast.makeText(context,
-                    "Annulation de la suppression", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    "Annulation de la suppression", Toast.LENGTH_LONG
+                ).show()
             }
 
             holder.incomeDeleteButton?.setOnClickListener {
-                val alertDialog : AlertDialog.Builder = AlertDialog.Builder(context)
+                val alertDialog: AlertDialog.Builder = AlertDialog.Builder(context)
 
                 with(alertDialog)
                 {
                     alertDialog.setTitle("Suppression définitive")
                     alertDialog.setMessage("Êtes-vous sûr de vouloir supprimer cet élément ?")
                     alertDialog.setCancelable(true)
-                    setPositiveButton("Oui", DialogInterface.OnClickListener(function = deleteIncome))
+                    setPositiveButton(
+                        "Oui",
+                        DialogInterface.OnClickListener(function = deleteIncome)
+                    )
                     setNeutralButton("Annuler", DialogInterface.OnClickListener(function = cancel))
                     show()
                 }
 
             }
-
 
 
         }
@@ -120,7 +148,5 @@ class IncomeSetterAdapter(var context : Activity, var viewModel : IncomeViewMode
 
     fun setDefCategory(defaultCategory : Category) {
         this.defaultCategory = defaultCategory
-        notifyDataSetChanged()
     }
-
 }
