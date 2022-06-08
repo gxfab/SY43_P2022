@@ -39,10 +39,6 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
 
-    private Accueil accueil;
-    private Depense depense;
-    private Statistique statistique;
-
     private FirebaseAuth mAuth;
 
     ArrayList<HashMap<String,Object>> items;
@@ -72,9 +68,6 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
         NavigationView navigationView=findViewById(R.id.naView);
         navigationView.setNavigationItemSelectedListener(this);
 
-        accueil = new Accueil();
-        depense = new Depense();
-        setFragment(accueil);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -100,18 +93,9 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.accueil:
-                        setFragment(accueil);
+                        Intent accueil_intent=new Intent(getApplicationContext(),Accueil.class);
+                        startActivity(accueil_intent);
                         bottomNavigationView.setItemBackgroundResource(R.color.accueil_color);
-                        return true;
-
-                    case R.id.depense:
-                        setFragment(depense);
-                        bottomNavigationView.setItemBackgroundResource(R.color.depense_color);
-                        return true;
-
-                    case R.id.statistique:
-                        setFragment(statistique);
-                        bottomNavigationView.setItemBackgroundResource(R.color.statistique_color);
                         return true;
 
 
@@ -169,12 +153,10 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                 break;
 
             case R.id.accueil:
-                fragment=new Accueil();
+                Intent accueil_intent=new Intent(getApplicationContext(),Accueil.class);
+                startActivity(accueil_intent);
                 break;
 
-            case R.id.depense:
-                fragment=new Depense();
-                break;
 
             case R.id.logout:
                 AlertDialog.Builder builder=new AlertDialog.Builder(Navigation.this);

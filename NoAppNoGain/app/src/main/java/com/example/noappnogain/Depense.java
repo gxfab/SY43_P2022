@@ -1,6 +1,5 @@
 package com.example.noappnogain;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.noappnogain.Model.Data;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,9 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.text.DateFormat;
-import java.util.Date;
 
 
 public class Depense extends Fragment {
@@ -96,128 +91,5 @@ public class Depense extends Fragment {
         return  myview;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        FirebaseRecyclerAdapter<Data, Depense.MyViewHolder> adapter= new FirebaseRecyclerAdapter<Data, Depense.MyViewHolder>
-                (Data.class, R.layout.depense, Depense.MyViewHolder.class, mExpenseDatabase) {
-
-            @NonNull
-            @Override
-            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Data model) {
-
-            }
-
-            protected void populateViewHolder(Depense.MyViewHolder myViewHolder, Data model, int position) {
-
-                myViewHolder.setType(model.getType());
-                myViewHolder.setDate(model.getDate());
-                myViewHolder.setAmount(model.getAmount());
-
-                myViewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        post_key=getRef(position).getKey();
-
-                        type=model.getType();
-                        note=model.getNote();
-                        amount=model.getAmount();
-
-                        updateDataItem();
-                    }
-                });
-            }
-        };
-        recyclerView.setAdapter(adapter);
-    }
-
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-
-        View mView;
-
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            mView=itemView;
-        }
-
-        private void setType(String type){
-            TextView mType=mView.findViewById(R.id.type_txt_expense);
-            mType.setText(type);
-        }
-
-        private void setDate(String date){
-            TextView mDate=mView.findViewById(R.id.date_txt_expense);
-            mDate.setText(date);
-        }
-        private void setAmount(int amount){
-            TextView mAmount=mView.findViewById(R.id.amount_txt_expense);
-            String stamount=String.valueOf(amount);
-            mAmount.setText("-"+stamount);
-        }
-    }
-
-    private void updateDataItem() {
-        AlertDialog.Builder mydialog = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = LayoutInflater.from(getActivity());
-        View myview = inflater.inflate(R.layout.update_depense, null);
-        mydialog.setView(myview);
-
-        edtType = myview.findViewById(R.id.categorie_edt);
-        edtNote = myview.findViewById(R.id.nom_edt);
-        edtAmount = myview.findViewById(R.id.montant_edt);
-
-
-        //Set data to edit text..
-        edtType.setText(type);
-        edtType.setSelection(type.length());
-
-        edtNote.setText(note);
-        edtNote.setSelection(note.length());
-
-        edtAmount.setText(String.valueOf(amount));
-        edtAmount.setSelection(String.valueOf(amount).length());
-
-        btnUpdate = myview.findViewById(R.id.btn_upd_Update);
-        btnDelete = myview.findViewById(R.id.btnuPD_Delete);
-
-        AlertDialog dialog = mydialog.create();
-
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                type = edtType.getText().toString().trim();
-                note = edtNote.getText().toString().trim();
-
-                String mdAmount = String.valueOf(amount);
-                mdAmount = edtAmount.getText().toString().trim();
-
-                int myAmount = Integer.parseInt(mdAmount);
-
-                String mDate = DateFormat.getDateInstance().format(new Date());
-
-                Data data = new Data(myAmount, type, note, post_key, mDate);
-
-                mExpenseDatabase.child(post_key).setValue(data);
-
-                dialog.dismiss();
-            }
-        });
-
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mExpenseDatabase.child(post_key).removeValue();
-
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
 }
