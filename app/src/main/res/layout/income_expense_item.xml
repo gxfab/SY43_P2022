@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/rectangle_container"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/emojiButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="@color/orange"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/emojiHolder"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/ie_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/sumName"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:showDividers="none">
+
+        <EditText
+            android:id="@+id/ie_value"
+            android:layout_width="127dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:hint="@string/sumValue"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/ie_date"
+            android:layout_width="112dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:hint="@string/ie_date"
+            android:inputType="date" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/deleteButton2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5sp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/red"
+            android:clickable="true"
+            android:contentDescription="@string/deleteForever"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            android:tint="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>
