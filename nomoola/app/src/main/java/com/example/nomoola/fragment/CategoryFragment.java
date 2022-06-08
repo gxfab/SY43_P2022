@@ -32,10 +32,11 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d("CREATION", "onCreateView from " + this.getClass().toString() + " started");
         super.onCreateView(inflater, container, savedInstanceState);
-        this.mCatViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
+
+        //this.mCatViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
 
         View view = inflater.inflate(R.layout.fragment_category, container, false);
-
+        /*
         this.categoryAdapter = new CategoryAdapter(new CategoryAdapter.CategoryDiff(), this.getParentFragmentManager());
         this.categoryRecyclerView = view.findViewById(R.id.category_recyclerView);
 
@@ -53,6 +54,9 @@ public class CategoryFragment extends Fragment {
         mCatViewModel.insert(new Category("School", 20));
 
         Log.d("CREATION", "onCreateView from " + this.getClass().toString() + " finished");
+
+         */
         return view;
+
     }
 }
