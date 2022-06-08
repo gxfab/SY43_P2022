@@ -3,15 +3,18 @@ package com.example.lafo_cheuse.database.dao
 import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.lafo_cheuse.models.Budget
-import com.example.lafo_cheuse.models.Category
-import com.example.lafo_cheuse.models.Frequency
-import com.example.lafo_cheuse.models.Income
+import com.example.lafo_cheuse.models.*
 
 @Dao
 interface IncomeDao {
     @Query("SELECT * FROM Income")
     fun getIncomes(): LiveData<List<Income>>?
+
+    @Query("SELECT * FROM Income WHERE moneyChangeId = :moneyChangeId")
+    fun getIncome(moneyChangeId : Long): LiveData<List<Income>>
+
+    @Query("SELECT * FROM Income")
+    suspend fun getStaticIncomes(): List<Income>
 
     @Query("SELECT * FROM Income WHERE frequency = :frequency")
     fun getIncomesByFrequency(frequency: Frequency): LiveData<List<Income>>?

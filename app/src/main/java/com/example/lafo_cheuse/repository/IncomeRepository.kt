@@ -39,6 +39,14 @@ class IncomeRepository(application: Application) {
         return allIncomes
     }
 
+    fun getIncome(moneyChangeId : Long): LiveData<List<Income>> {
+        return incomeDao.getIncome(moneyChangeId)
+    }
+
+    suspend fun getStaticIncomes() : List<Income> {
+        return incomeDao.getStaticIncomes()
+    }
+
     fun getIncomesByFrequency(frequency: Frequency) : LiveData<List<Income>>? {
         return incomeDao.getIncomesByFrequency(frequency)
     }
