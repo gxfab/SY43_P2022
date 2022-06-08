@@ -1,1 +1,24 @@
-[1.1.1] 
+1.1.1 (2022-05-13)
+
+Release Highlights
+- Coded with Kotlin
+
+Features
+- 
+
+***************************************************************************************
+
+2.1.1 (2022-06-08)
+
+Release Highlights
+- Java
+
+Features
+- Créer un compte (S'inscrire)
+- S'identifier
+- Réinitialiser le mot de passe
+- Modifier le mot de passe
+- Supprimer le compte
+- Bar navigation
+- Page depense
+- Page revenu
