@@ -31,6 +31,8 @@
     <string name="fixed_income">Fixed Income</string>
     <string name="add">Add</string>
     <string name="fixed_expenses">Fixed Expenses</string>
+    <string name="variable_expenses">Variable Expenses</string>
+    <string name="start">Start</string>
 
     <!-- for spinner -->
     <string-array name="Currencies">

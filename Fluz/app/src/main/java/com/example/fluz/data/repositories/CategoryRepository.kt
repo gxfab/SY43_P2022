@@ -11,6 +11,9 @@ import java.util.*
 
 class CategoryRepository(private val categoryDao: CategoryDao) {
     fun allCategories(): Flow<List<Category>> = categoryDao.getAll()
+
+    fun oneById(categoryId: Int): Flow<Category> = categoryDao.getOne(categoryId)
+
     fun allWithSubCategories(): Flow<List<CategoriesWithSubCategories>> =
         categoryDao.getAllWithSubCategories()
 

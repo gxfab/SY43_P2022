@@ -7,8 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.FixedIncome">
 
+    <Spinner
+        android:id="@+id/spinner_category_ve"
+        android:layout_width="193dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="208dp"
+        android:background="@drawable/regular_spinner_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/variable_expenses_rv" />
+
+    <TextView
+        android:id="@+id/txt_total_expenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/dm_sans"
+        android:text="Total Expenses = "
+        android:textColor="#DA6B6B"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_total_income" />
+
     <Button
-        android:id="@+id/btn_continue_fixed_income"
+        android:id="@+id/btn_continue_variable_expense"
         android:layout_width="302dp"
         android:layout_height="57dp"
         android:layout_marginBottom="16dp"
@@ -17,7 +41,7 @@
         android:insetTop="0dp"
         android:insetRight="0dp"
         android:insetBottom="0dp"
-        android:text="@string/continue_btn"
+        android:text="@string/start"
         android:textAlignment="viewStart"
         android:textSize="18sp"
         app:cornerRadius="50dp"
@@ -25,15 +49,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_category_fi"
+        app:layout_constraintTop_toBottomOf="@+id/error_txt_variable_expenses"
         app:layout_constraintVertical_bias="1.0"
         app:strokeColor="@color/fluz"
         app:strokeWidth="2dp" />
 
     <Button
-        android:id="@+id/btn_add_fixed_income"
-        android:layout_width="160dp"
-        android:layout_height="38dp"
+        android:id="@+id/btn_add_variable_expense"
+        android:layout_width="135dp"
+        android:layout_height="37dp"
         android:layout_marginTop="12dp"
         android:backgroundTint="@color/fluz"
         android:insetLeft="0dp"
@@ -45,9 +69,9 @@
         android:textSize="18sp"
         app:cornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_category_fi"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_category_ve"
         app:strokeColor="@color/fluz"
         app:strokeWidth="2dp" />
 
@@ -56,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Income that remains the same every month"
+        android:text="Expenses that are variable throuout the month"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,77 +96,86 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageButton
+            android:id="@+id/backArrowVariableExpenses"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:background="#F8F8F8"
+            android:backgroundTint="#00FFFFFF"
+            android:src="?attr/homeAsUpIndicator"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <TextView
-            android:id="@+id/txt_fixed_income"
+            android:id="@+id/txt_variable_expenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/dm_sans"
-            android:text="@string/fixed_income"
+            android:text="@string/variable_expenses"
             android:textColor="#FFFFFF"
             android:textSize="36dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/backArrowVariableExpenses"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fixed_income_rv"
+        android:id="@+id/variable_expenses_rv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="230dp"
+        android:layout_marginBottom="210dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_header"
-        app:layout_constraintVertical_bias="0.013" />
-
-    <EditText
-        android:id="@+id/editTextIncomeTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Income Tag"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fixed_income_rv" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_total_expenses"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="176dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Amount"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIncomeTag" />
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/spinner_category_ve"
+        app:layout_constraintTop_toBottomOf="@+id/variable_expenses_rv" />
 
     <TextView
-        android:id="@+id/error_txt_fixed_income"
+        android:id="@+id/error_txt_variable_expenses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:textColor="#EA2525"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAmount" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_variable_expense" />
 
-    <Spinner
-        android:id="@+id/spinner_category_fi"
-        android:layout_width="160dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/regular_spinner_style"
+    <TextView
+        android:id="@+id/txt_total_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/dm_sans"
+        android:text="Total Income = "
+        android:textColor="#050000"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextIncomeTag"
-        app:layout_constraintTop_toBottomOf="@+id/fixed_income_rv" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_header" />
 </androidx.constraintlayout.widget.ConstraintLayout>

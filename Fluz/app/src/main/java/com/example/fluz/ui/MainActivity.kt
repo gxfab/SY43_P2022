@@ -40,29 +40,26 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
         val categoryDao: CategoryDao = AppDatabase(this).CategoryDao()
         val transactionsDao = AppDatabase(this).TransactionDao()
 
-        /**
+
         runBlocking {
             launch {
-                // categoryDao.insert(Category(title = "Food"))
-                val categories = categoryDao.getAll()
-                for (category in categories.first()){
-                    println(category)
-                }
+                categoryDao.deleteAll()
 
-                val transactions = transactionsDao.getAll()
-                for (transaction in transactions.first()) {
-                    println(transaction)
-                }
-
-                transactionsDao.deleteAll()
+                categoryDao.insert(Category(id = 1, title = "Food"))
+                categoryDao.insert(Category(id = 2, title = "Housing"))
+                categoryDao.insert(Category(id = 3, title = "Transportation"))
+                categoryDao.insert(Category(id = 4, title = "Clothing"))
+                categoryDao.insert(Category(id = 5, title = "Savings"))
             }
         }
-        **/
+
 
     }
 

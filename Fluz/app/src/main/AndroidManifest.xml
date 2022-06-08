@@ -16,9 +16,6 @@
             android:name=".ui.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.fragments.UserInfo"
-            android:exported="false" />
-        <activity
             android:name=".ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"

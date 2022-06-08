@@ -104,7 +104,7 @@ class UserInfo : Fragment() {
             if (TextUtils.isEmpty(username) || TextUtils.isEmpty(currency) || TextUtils.isEmpty(startDate)) {
                 errorText.text = "Please fill all fields"
             } else {
-                registerViewModel.register(emailAddress, password, username, currency)
+                registerViewModel.register(emailAddress, password, username, currency, startDate.toInt())
             }
 
         }
