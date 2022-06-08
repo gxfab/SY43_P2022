@@ -1,10 +1,12 @@
 package fr.sy.lebudgetduzero
 
-import java.util.*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class IncomeItem (
-    val id:Int=0,
-    val name:String="Income",
-    val value:Float=0F,
-    val date:String="01/01/2022"
-)
+@Entity
+public class IncomeItem (
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val name: String = "Income",
+    val value: Float = 0F,
+    val date: String = "01/01/2022")

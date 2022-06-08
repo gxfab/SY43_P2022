@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.room.Room
+import fr.sy.lebudgetduzero.database.AppDatabase
 import fr.sy.lebudgetduzero.fragments.IncomeFragment
 
 /**
