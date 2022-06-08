@@ -53,8 +53,15 @@ public class Sidentifier extends AppCompatActivity {
         String checkbox=preferences.getString("remember","");
         if(checkbox.equals("true"))
         {
-            Intent intent=new Intent(Sidentifier.this,Navigation.class);
-            startActivity(intent);
+            try{
+                Intent intent=new Intent(Sidentifier.this,Navigation.class);
+                startActivity(intent);
+            }
+            catch (Exception e)
+            {
+                Toast.makeText(Sidentifier.this, "Erreur!!!", Toast.LENGTH_LONG).show();
+            }
+
         }
         else if(!checkbox.equals("false"))
         {
