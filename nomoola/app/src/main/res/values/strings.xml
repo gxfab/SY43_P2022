@@ -4,7 +4,7 @@
     <!-- Category page -->
 
     <string name="add_category_button">Add Category</string>
-    <string name="category_name">Name</string>
+    <string name="nomoola_name">Name</string>
     <string name="category_left_amount">Left</string>
     <string name="category_budget_amount">Budget</string>
     <string name="category_edit_button">Edit Pen</string>
@@ -18,6 +18,9 @@
     <string name="nomoola_subcategory_budget">Budget</string>
     <string name="nomoola_subcategory_newSubCat">New Subcategory</string>
     <string name="nomoola_category_newCat">New Category</string>
-
+    <string name="nomoola_inoutcome_addBille">Add Bill</string>
+    <string name="nomoola_filtre">Filtre Button</string>
+    <string name="nomoola_inoutcome_date">mm dd yyyy</string>
+    <string name="nomoola_nav_back">Navigation Back</string>
 
 </resources>

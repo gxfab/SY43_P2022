@@ -9,11 +9,12 @@ public class Converters {
 
     @TypeConverter
     public static LocalDate convertFromString(String value){
-        return LocalDate.parse(value);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/MMM/yyyy");
+        return LocalDate.parse(value, format);
     }
 
     @TypeConverter
     public static String convertFromDate(LocalDate value){
-        return value.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return value.format(DateTimeFormatter.ofPattern("d/MMM/yyyy"));
     }
 }

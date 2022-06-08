@@ -12,6 +12,8 @@ import com.example.nomoola.database.entity.Category;
 import com.example.nomoola.database.entity.InOutCome;
 import com.example.nomoola.database.entity.SubCategory;
 import com.example.nomoola.database.roomDataBase.NomoolaRoomDataBase;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class DataRepository {
@@ -62,6 +64,11 @@ public class DataRepository {
         });
     }
 
+    public LiveData<Category> getCategoryFrom(int catID){
+
+        return this.mCategoryDAO.getCategoryFrom(catID);
+    }
+
     /*
         SUBCATEGORY
      */
@@ -103,5 +110,19 @@ public class DataRepository {
     }
 
 
+    public LiveData<List<InOutCome>> getInOutComeOf(int subCategoryID) {
+        return this.mInOutComeDAO.getInOutComesOf(subCategoryID);
+    }
 
+    public void delete(InOutCome inOutCome) {
+        this.mInOutComeDAO.deleteInOutCome(inOutCome);
+    }
+
+    public void update(int catID, int subCatID, String name, LocalDate date, double amount, int id) {
+        this.mInOutComeDAO.updateInOutCome(catID, subCatID, name, date, amount, id);
+    }
+
+    public LiveData<Double> getPercentUsedOf(int subCategoryID){
+        return this.mInOutComeDAO.getPercentUsedOf(subCategoryID);
+    }
 }

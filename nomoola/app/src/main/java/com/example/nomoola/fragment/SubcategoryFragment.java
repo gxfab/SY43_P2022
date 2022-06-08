@@ -29,7 +29,7 @@ public class SubcategoryFragment extends Fragment {
     private SubcategoryAdapter subcategoryAdapter;
     private AppCompatButton addSubcatButton;
     private AppCompatImageButton navBackButton;
-    private TextView subcategory_titlename;
+    private TextView category_titlename;
     private Category category;
 
     public SubcategoryFragment(Category category){
@@ -44,14 +44,16 @@ public class SubcategoryFragment extends Fragment {
         Log.d("CREATION", "onCreateView from " + this.getClass().toString() + " started");
         super.onCreateView(inflater, container, savedInstanceState);
         this.mSubcategoryViewModel = new ViewModelProvider(this).get(SubcategoryViewModel.class);
-        this.subcategoryAdapter = new SubcategoryAdapter(new SubcategoryAdapter.SubcategoryDiff(), this.getParentFragmentManager());
+        this.subcategoryAdapter = new SubcategoryAdapter(new SubcategoryAdapter.SubcategoryDiff(),
+                this.getParentFragmentManager(),
+                this.mSubcategoryViewModel);
         View view = inflater.inflate(R.layout.fragment_subcategory, container, false);
 
         this.subcategoryRecyclerView = view.findViewById(R.id.subcategory_recyclerView);
         this.subcategoryRecyclerView.setAdapter(this.subcategoryAdapter);
 
-        this.subcategory_titlename = view.findViewById(R.id.subcategory_categoryTitle);
-        this.subcategory_titlename.setText(category.getM_CAT_NAME());
+        this.category_titlename = view.findViewById(R.id.category_categoryTitle);
+        this.category_titlename.setText(category.getM_CAT_NAME());
 
         this.addSubcatButton = view.findViewById(R.id.subcategory_addSubcategory_button);
         this.addSubcatButton.setOnClickListener(new View.OnClickListener() {

@@ -35,7 +35,7 @@
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:maxLength="13"
-                    android:text="@string/category_name"
+                    android:text="@string/nomoola_name"
                     android:textAlignment="textStart"
                     android:textColor="#616161" />
 
@@ -48,7 +48,7 @@
                     android:layout_weight="0"
                     android:background="@drawable/roundcorner"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/ic_edit_category" />
+                    app:srcCompat="@drawable/ic_edit" />
 
             </LinearLayout>
 

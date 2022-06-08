@@ -97,13 +97,13 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
         private void populateInOutCome(){
             InOutComeDAO dao = INSTANCE.inOutComeDAO();
 
-            InOutCome come = new InOutCome("week grocery at SuperU", "Food", "Groceries", 56.89, LocalDate.now());
+            InOutCome come = new InOutCome("week grocery at SuperU", 1, 1, 56.89, LocalDate.now());
             dao.insertInOutCome(come);
-            come = new InOutCome("BK with my friends", "Food", "Restaurants", 13.50, LocalDate.now());
+            come = new InOutCome("BK with my friends", 1, 2, 13.50, LocalDate.now());
             dao.insertInOutCome(come);
-            come = new InOutCome("motor reparation", "Car", "Reparations", 207.90, LocalDate.now());
+            come = new InOutCome("motor reparation", 2, 3, 207.90, LocalDate.now());
             dao.insertInOutCome(come);
-            come = new InOutCome("weekly fuel", "Car", "Gaz", 60.00, LocalDate.now());
+            come = new InOutCome("weekly fuel", 2, 4, 60.00, LocalDate.now());
             dao.insertInOutCome(come);
 
         }

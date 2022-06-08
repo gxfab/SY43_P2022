@@ -5,33 +5,40 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.time.LocalDate;
 
-@Entity(tableName = "T_INOUTCOME", primaryKeys = {"COME_NAME", "SUBCAT_NAME", "CAT_NAME"})
+@Entity(tableName = "T_INOUTCOME")
 public class InOutCome {
 
     /**
      * ATTRIBUTE
      */
 
+    @PrimaryKey(autoGenerate = true)
     @NonNull
-    @ColumnInfo(name = "COME_NAME")
-    private String m_COME_NAME;
+    @ColumnInfo(name = "INOUTCOME_ID")
+    private int m_INOUTCOME_ID;
 
     @NonNull
-    @ColumnInfo(name = "CAT_NAME")
-    private String m_CAT_NAME;
+    @ColumnInfo(name = "INOUTCOME_NAME")
+    private String m_INOUTCOME_NAME;
 
     @NonNull
-    @ColumnInfo(name = "SUBCAT_NAME")
-    private String m_SUBCAT_NAME;
-
-    @ColumnInfo(name = "COME_AMOUNT")
-    private double m_COME_AMOUNT;
+    @ColumnInfo(name = "CAT_ID")
+    private int m_CAT_ID;
 
     @NonNull
-    @ColumnInfo(name = "COME_DATE")
-    private LocalDate m_COME_DATE;
+    @ColumnInfo(name = "SUBCAT_ID")
+    private int m_SUBCAT_ID;
+
+    @ColumnInfo(name = "INOUTCOME_AMOUNT")
+    private double m_INOUTCOME_AMOUNT;
+
+    @NonNull
+    @ColumnInfo(name = "INOUTCOME_DATE")
+    private LocalDate m_INOUTCOME_DATE;
 
     /**
      * Constructor
@@ -41,13 +48,13 @@ public class InOutCome {
 
     }
 
-    public InOutCome(String inOutName, String catName, String subCatName, Double amount, LocalDate date){
+    public InOutCome(String inOutName, int catID, int subCatID, Double amount, LocalDate date){
         Log.d("CREATION", "Instantiation of Category = " + inOutName);
-        this.m_COME_NAME = inOutName;
-        this.m_CAT_NAME = catName;
-        this.m_SUBCAT_NAME = subCatName;
-        this.m_COME_AMOUNT = amount;
-        this.m_COME_DATE = date;
+        this.m_INOUTCOME_NAME = inOutName;
+        this.m_CAT_ID = catID;
+        this.m_SUBCAT_ID = subCatID;
+        this.m_INOUTCOME_AMOUNT = amount;
+        this.m_INOUTCOME_DATE = date;
     }
 
     /**
@@ -55,46 +62,53 @@ public class InOutCome {
      */
 
     @NonNull
-    public String getM_COME_NAME() {
-        return m_COME_NAME;
+    public String getM_INOUTCOME_NAME() {
+        return m_INOUTCOME_NAME;
     }
 
-    public void setM_COME_NAME(@NonNull String m_COME_NAME) {
-        this.m_COME_NAME = m_COME_NAME;
-    }
-
-    @NonNull
-    public String getM_CAT_NAME() {
-        return m_CAT_NAME;
-    }
-
-    public void setM_CAT_NAME(@NonNull String m_CAT_NAME) {
-        this.m_CAT_NAME = m_CAT_NAME;
+    public void setM_INOUTCOME_NAME(@NonNull String m_INOUTCOME_NAME) {
+        this.m_INOUTCOME_NAME = m_INOUTCOME_NAME;
     }
 
     @NonNull
-    public String getM_SUBCAT_NAME() {
-        return m_SUBCAT_NAME;
+    public int getM_INOUTCOME_ID() {
+        return m_INOUTCOME_ID;
     }
 
-    public void setM_SUBCAT_NAME(@NonNull String m_SUBCAT_NAME) {
-        this.m_SUBCAT_NAME = m_SUBCAT_NAME;
+    public void setM_INOUTCOME_ID(@NonNull int m_INOUTCOME_ID) {
+        this.m_INOUTCOME_ID = m_INOUTCOME_ID;
     }
 
-    public double getM_COME_AMOUNT() {
-        return m_COME_AMOUNT;
+    public int getM_CAT_ID() {
+        return m_CAT_ID;
     }
 
-    public void setM_COME_AMOUNT(double m_COME_AMOUNT) {
-        this.m_COME_AMOUNT = m_COME_AMOUNT;
+    public void setM_CAT_ID(int m_CAT_ID) {
+        this.m_CAT_ID = m_CAT_ID;
+    }
+
+    public int getM_SUBCAT_ID() {
+        return m_SUBCAT_ID;
+    }
+
+    public void setM_SUBCAT_ID(int m_SUBCAT_ID) {
+        this.m_SUBCAT_ID = m_SUBCAT_ID;
+    }
+
+    public double getM_INOUTCOME_AMOUNT() {
+        return m_INOUTCOME_AMOUNT;
+    }
+
+    public void setM_INOUTCOME_AMOUNT(double m_INOUTCOME_AMOUNT) {
+        this.m_INOUTCOME_AMOUNT = m_INOUTCOME_AMOUNT;
     }
 
     @NonNull
-    public LocalDate getM_COME_DATE() {
-        return m_COME_DATE;
+    public LocalDate getM_INOUTCOME_DATE() {
+        return m_INOUTCOME_DATE;
     }
 
-    public void setM_COME_DATE(@NonNull LocalDate m_COME_DATE) {
-        this.m_COME_DATE = m_COME_DATE;
+    public void setM_INOUTCOME_DATE(@NonNull LocalDate m_INOUTCOME_DATE) {
+        this.m_INOUTCOME_DATE = m_INOUTCOME_DATE;
     }
 }

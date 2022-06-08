@@ -1,7 +1,6 @@
 package com.example.nomoola.viewModel;
 
 import android.app.Application;
-import android.database.sqlite.SQLiteBlobTooBigException;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -12,8 +11,6 @@ import com.example.nomoola.database.entity.SubCategory;
 import com.example.nomoola.database.repository.DataRepository;
 
 import java.util.List;
-
-import io.reactivex.internal.util.ArrayListSupplier;
 
 public class SubcategoryViewModel extends AndroidViewModel {
 
@@ -44,5 +41,9 @@ public class SubcategoryViewModel extends AndroidViewModel {
 
     public void update(int catID, String subcatName, int id) {
         mRepository.update(catID, subcatName, id);
+    }
+
+    public LiveData<Double> getPercentUsedOf(SubCategory subCategory){
+        return this.mRepository.getPercentUsedOf(subCategory.getM_SUBCAT_ID());
     }
 }

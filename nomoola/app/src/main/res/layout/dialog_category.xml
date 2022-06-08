@@ -49,7 +49,7 @@
             android:id="@+id/textViewCategoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/category_name"
+            android:text="@string/nomoola_name"
             android:textColor="@color/nomoola_dark_title_dialog"
             android:textSize="12sp"/>
 
@@ -64,7 +64,7 @@
             android:labelFor="@id/editTextCategoryName"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:text="@string/category_name"
+            android:text="@string/nomoola_name"
             android:textColor="@color/nomoola_grey_editText_preview"
             tools:ignore="TextContrastCheck" />
 
@@ -114,7 +114,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:backgroundTint="@color/nomoola_green"
-            android:src="@drawable/ic_edit_category"
+            android:src="@drawable/ic_edit"
             android:contentDescription="@string/category_edit_button"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
