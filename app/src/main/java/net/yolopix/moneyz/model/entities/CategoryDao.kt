@@ -15,6 +15,7 @@ interface CategoryDao {
         accountUid: Int
     ): List<Category>
 
+
     @Insert
     suspend fun insertCategory(category: Category)
 

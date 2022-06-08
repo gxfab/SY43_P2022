@@ -85,7 +85,7 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
         val expenseDay = editTextExpenseDay.text.toString().toInt()
         val recurring = recurringCheckBox.isChecked
         val category = categorySpinner.selectedItem as Category
-
+        //if(expensePrice.toFloat() > db.categoryDao().getPredictedAmount())
         val newExpense = Expense(0, expenseDay, category.uid, expenseName, recurring, expensePrice)
 
         runBlocking {

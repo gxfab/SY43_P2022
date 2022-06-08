@@ -6,11 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import net.yolopix.moneyz.model.entities.Expense
+import java.text.DateFormat
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.Month
 import java.time.format.DateTimeFormatter
+import java.util.*
 
-class ExpensesAdapter(private val expenseList: List<Expense>) :
+class ExpensesAdapter(private val expenseList: List<Expense>, private val monthNumber: Int, private val yearNumber: Int) :
     RecyclerView.Adapter<ExpensesAdapter.ExpensesViewHolder>() {
 
     // Inner class for the view holder
@@ -34,9 +38,10 @@ class ExpensesAdapter(private val expenseList: List<Expense>) :
         holder.textViewExpenseName.text = expense.name
         holder.textViewAmount.text = moneyFormat.format(expense.amount)
 
+
         // Date format
         val expenseLocalDate: LocalDate =
-            LocalDate.of(2021, 1, expense.dayOfMonth)
+            LocalDate.of(yearNumber, monthNumber, expense.dayOfMonth)
         val expenseFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         holder.textViewDate.text = expenseLocalDate.format(expenseFormat)
     }
