@@ -6,61 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".BudgetSetterActivity">
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView2"
+    <TextView
+        android:id="@+id/regularIncomesTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/regularIncomeTitle"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/income_list_recycler_view" />
+
+    <TextView
+        android:id="@+id/regularExpensesTitle"
+        android:layout_width="0dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/regularExpensesTitle"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/income_list_recycler_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/income_list_recycler_view"
         android:layout_width="0dp"
         android:layout_height="265dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/regularExpensesTitle"
+        android:contentDescription="@string/expenses_incomes"
+        app:layout_constraintBottom_toTopOf="@+id/regularIncomesTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regularIncomesTitle">
-
-        <LinearLayout
-            android:id="@+id/regularIncomeLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/regularIncomeView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
-
-            <FrameLayout
-                android:layout_width="108dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-
-                <ImageButton
-                    android:id="@+id/addRegularIncome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    app:srcCompat="@drawable/ic_round_add_chart_24" />
-            </FrameLayout>
-        </LinearLayout>
-    </HorizontalScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/regularExpensesTitle"
+        tools:listitem="@layout/budget_setter_item"/>
 
     <HorizontalScrollView
-            android:id="@+id/horizontalScrollView"
-            android:layout_width="0dp"
-            android:layout_height="265dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/regularExpensesTitle">
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
+        android:layout_height="265dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regularIncomesTitle">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -71,7 +69,7 @@
                 android:id="@+id/regularExpenseView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
 
             <FrameLayout
                 android:layout_width="108dp"
@@ -91,33 +89,4 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/regularIncomesTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/regularIncomeTitle"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/regularExpensesTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/regularExpensesTitle"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
