@@ -43,8 +43,9 @@
     <string name="nameCategoryTitle">Nommez votre catégorie</string>
     <string name="setCategoryName">Indiquez le nom de la catégorie</string>
     <string name="setCategoryEmoji">Indquez un emoji pour votre catégorie</string>
-    <string name="chooseEmojiHint">Choisissez un emoji...</string>
-    <string name="chooseCategoryTitleHint">Donnez un titre...</string>
+    <string name="chooseEmojiHint">Choisissez un emoji…</string>
+    <string name="chooseCategoryTitleHint">Donnez un titre…</string>
     <string name="confirmButton">Valider</string>
     <string name="incomeList">Liste des revenus réguliers</string>
+    <string name="ok">OK</string>
 </resources>
