@@ -33,6 +33,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="sumName">Nom de la somme</string>
     <string name="sumValue">Somme</string>
+    <string name="ie_date">Date</string>
     <string name="deleteForever">Effacer définitivement</string>
     <string name="categoryButton">Choisir la catégorie</string>
     <string name="questionMarkEmoji">❔</string>

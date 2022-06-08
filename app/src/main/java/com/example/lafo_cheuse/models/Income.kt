@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import java.lang.Exception
 
+
 @Entity
 class Income(frequency: Frequency, category: Category, amount: Double) :
     MoneyChange(frequency, category) {

@@ -9,7 +9,6 @@ import androidx.room.PrimaryKey
 open class MoneyChange(
     @ColumnInfo(name = "frequency")
     var frequency: Frequency,
-
     category: Category
 ) {
 
