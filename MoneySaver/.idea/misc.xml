@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/33785/Documents/GitHub/SY43_P2022/MoneySaver/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/33785/Documents/GitHub/SY43_P2022/MoneySaver/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/33785/Documents/GitHub/SY43_P2022/MoneySaver/app/src/main/res/layout/item_vertical_depenses.xml" value="0.33" />
+        <entry key="..\:/Users/33785/Documents/GitHub/SY43_P2022/MoneySaver/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/titou/AndroidStudioProjects/MoneySaver/app/src/main/res/drawable-anydpi/ic_add.xml" value="0.3325" />
         <entry key="..\:/Users/titou/AndroidStudioProjects/MoneySaver/app/src/main/res/drawable-anydpi/ic_calendar.xml" value="0.3325" />
         <entry key="..\:/Users/titou/AndroidStudioProjects/MoneySaver/app/src/main/res/drawable-anydpi/ic_close.xml" value="0.3325" />

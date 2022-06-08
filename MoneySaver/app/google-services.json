@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "92108122964",
+    "firebase_url": "https://moneysaver-c73b8-default-rtdb.firebaseio.com",
+    "project_id": "moneysaver-c73b8",
+    "storage_bucket": "moneysaver-c73b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92108122964:android:160ec357e227fd2bc876c1",
+        "android_client_info": {
+          "package_name": "fr.hplovers.moneysaver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92108122964-kiimurd6g2go8v5p24c0ulvbc2s8f8io.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbOyTrNjgQa4sZCRI8CfyrUTbGe2pWjDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92108122964-kiimurd6g2go8v5p24c0ulvbc2s8f8io.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

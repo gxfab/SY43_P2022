@@ -10,10 +10,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //injection du fragment dans la partie qui change (fragment_container)
-        val trans = supportFragmentManager.beginTransaction()
-        trans.replace(R.id.fragment_container,HomeFragment())
-        trans.addToBackStack(null)
-        trans.commit()
+        // Charger notre MouvementFinancierRepo
+        val mouvRepo = MouvementFinancierRepo()
+
+        // Mise à jour des données
+        mouvRepo.updateData{
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container,HomeFragment(this))
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+
+
     }
 }

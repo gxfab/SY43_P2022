@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/descr_depense"
+        android:id="@+id/description"
         style="@style/SubtitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,13 +39,13 @@
         app:layout_constraintStart_toEndOf="@+id/cardView" />
 
     <TextView
-        android:id="@+id/montant_depense"
+        android:id="@+id/montant"
         style="@style/DefaultTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/depense_view_margin"
         android:text="@string/item_depense_value"
         app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/descr_depense" />
+        app:layout_constraintTop_toBottomOf="@+id/description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
