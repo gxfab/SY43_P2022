@@ -14,9 +14,23 @@
             <solid android:color="@color/orange_clicked"/>
         </shape>
     </item>
-    <item android:state_active="false">
+    <item android:state_enabled="false">
         <shape android:shape="rectangle"  >
             <corners android:radius="20dp" />
+            <stroke android:width="0dp" />
+            <solid android:color="@color/orange" />
+        </shape>
+    </item>
+    <item android:state_enabled="true">
+        <shape android:shape="rectangle"  >
+            <corners android:radius="20dp" />
+            <stroke android:width="0dp" />
+            <solid android:color="@color/orange" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle"  >
+            <corners android:radius="10dp" />
             <stroke android:width="0dp" />
             <solid android:color="@color/orange" />
         </shape>
