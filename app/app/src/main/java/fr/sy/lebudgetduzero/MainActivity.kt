@@ -52,7 +52,21 @@ class MainActivity : AppCompatActivity() {
      * @param [view] Actual view of the app.
      */
     fun setHomeView(view: View?){
+
         setContentView(R.layout.view_overview)
+
+        //Traitement base de données
+        val applicationScope = CoroutineScope(SupervisorJob())
+        applicationScope.launch {
+            val db=AppDatabase.getDatabase(applicationContext,applicationScope)
+
+            //Entrées du mois
+            val incomeMonth=db.incomeDao().getIncomeValue(1654034409)
+
+            val textViewIncome : TextView = findViewById(R.id.I_ValueMonth) as TextView
+            textViewIncome.text=incomeMonth.toString() + "€ en entrée ce mois."
+        }
+
 
         //Mise à jour de l'élément du taux restants dans le mois
         val textViewTaux : TextView = findViewById(R.id.B_DepenseTaux) as TextView

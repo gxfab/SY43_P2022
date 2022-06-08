@@ -134,5 +134,14 @@
                     app:srcCompat="@drawable/ic_action_name"
                     tools:ignore="MissingConstraints"
                     android:onClick="setEntreeView"/>
+
+                <TextView
+                    android:id="@+id/I_ValueMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@+id/showIncome"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/entreesTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

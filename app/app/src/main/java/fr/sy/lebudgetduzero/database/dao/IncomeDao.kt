@@ -15,6 +15,9 @@ interface IncomeDao {
     @Query("DELETE FROM IncomeItem")
     fun deleteAll()
 
-    @Query("SELECT * FROM IncomeItem")
+    @Query("SELECT * FROM IncomeItem ORDER BY date DESC")
     fun getAll(): List<IncomeItem>
+
+    @Query("SELECT SUM(value) FROM IncomeItem WHERE date> :timestampBegin")
+    fun getIncomeValue(timestampBegin: Int): Float
 }

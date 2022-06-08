@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.sy.lebudgetduzero.IncomeItem
 import fr.sy.lebudgetduzero.MainActivity
 import fr.sy.lebudgetduzero.R
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
 
 class IncomeAdapter (
     private val context: MainActivity,
@@ -37,8 +40,11 @@ class IncomeAdapter (
         //Recuperation info de la liste
         val currentIncome=incomeList[position]
 
+        //Conversion de la date
+        val date= SimpleDateFormat("dd-MM-yyyy").format(currentIncome.date.toLong() * 1000L)
+
         holder.incomeTitle.text=currentIncome.name
-        holder.incomeDate.text= currentIncome.date.toString()
+        holder.incomeDate.text= date
         holder.incomeValue.text=currentIncome.value.toString()
     }
 
