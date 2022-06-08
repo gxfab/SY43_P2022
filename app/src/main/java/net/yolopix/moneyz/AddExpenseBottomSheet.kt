@@ -19,6 +19,12 @@ import net.yolopix.moneyz.model.entities.Category
 import net.yolopix.moneyz.model.entities.Expense
 import net.yolopix.moneyz.model.entities.Month
 
+/**
+ * A bottom sheet dialog fragment containing widgets
+ * to add a new expense to a specific category in an account
+ * @param db The main database of the app
+ * @param month The month in which the expense will be added
+ */
 class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Month) :
     BottomSheetDialogFragment() {
 

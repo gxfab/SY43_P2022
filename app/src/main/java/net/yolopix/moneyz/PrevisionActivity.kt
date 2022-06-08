@@ -17,27 +17,37 @@ import net.yolopix.moneyz.model.entities.Month
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+/**
+ * This activity enables the user to make a new prevision for the current month.
+ * Informations such as the salary and the payday can be filled in here
+ * Each category can be independently budgeted
+ */
 class PrevisionActivity : AppCompatActivity() {
 
+    /** Database */
     private lateinit var db: AppDatabase
+
+    /** The database identifier of the loaded account, null if no account has been loaded yet */
+    private var accountUid: Int? = null
+
+    /** An object representing the time when the activity has been opened */
+    private lateinit var now: LocalDate
+
+    // Widgets
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressTextView: TextView
     private lateinit var salaryEditText: EditText
     private lateinit var salarySlider: Slider
-    private var accountUid: Int? = null
     private lateinit var doneFloatingActionButton: ExtendedFloatingActionButton
     private lateinit var salaryTextField: com.google.android.material.textfield.TextInputLayout
     private lateinit var paydayTextField: com.google.android.material.textfield.TextInputLayout
-
-    /** An object representing the time when the activity has been opened */
-    private lateinit var now: LocalDate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prevision)
 
         // Get account passed as extra message
-        accountUid = intent.getStringExtra(EXTRA_MESSAGE)?.toInt()
+        accountUid = intent.getIntExtra(EXTRA_MESSAGE, 0)
         if (accountUid == null) {
             finish()
         }
@@ -156,7 +166,7 @@ class PrevisionActivity : AppCompatActivity() {
     }
 
     /**
-     * Load min and max values for EditText
+     * Load and apply min and max values for EditText
      */
     private suspend fun loadLimits() {
         val categorizedAmount: Float = calculateCategorizedAmount()

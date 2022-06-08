@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         db = DatabaseFactory.getDB(applicationContext)
 
         // Show the account creation fragment when clicking on the new account button
-        val addAccountButton = findViewById<Button>(R.id.button_add_account)
+        val addAccountButton: Button = findViewById(R.id.button_add_account)
         addAccountButton.setOnClickListener {
             AddAccountBottomSheet(db).apply {
                 show(supportFragmentManager, tag)

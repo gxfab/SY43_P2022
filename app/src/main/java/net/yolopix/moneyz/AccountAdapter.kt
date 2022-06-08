@@ -9,11 +9,16 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import net.yolopix.moneyz.model.entities.Account
 
-
+/**
+ * Account adapter: this class manages display of accounts in a RecyclerView
+ * @param accountList The list of accounts to display
+ */
 class AccountAdapter(private val accountList: List<Account>) :
     RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() {
 
-    // Inner class for the view holder
+    /**
+     * A nested class for the view holder
+     */
     class AccountViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val accountNameTextView: TextView = itemView.findViewById(R.id.account_name)
         val cardContainer: CardView = itemView.findViewById(R.id.card_container)
@@ -31,7 +36,7 @@ class AccountAdapter(private val accountList: List<Account>) :
         // When the account item is clicked, open a specific account passed in extra
         viewHolder.cardContainer.setOnClickListener {
             val intent = Intent(it.context, ExpensesActivity::class.java).apply {
-                putExtra(EXTRA_MESSAGE, accountList[position].uid.toString())
+                putExtra(EXTRA_MESSAGE, accountList[position].uid)
             }
             it.context.startActivity(intent)
         }

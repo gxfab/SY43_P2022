@@ -10,6 +10,12 @@ import java.text.NumberFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+/**
+ * An adapter to manage display of expenses elements in a RecyclerView
+ * @param expenseList the list of expenses to display
+ * @param monthNumber the month to display on the date view
+ * @param yearNumber the year to display on the date view
+ */
 class ExpensesAdapter(
     private val expenseList: List<Expense>,
     private val monthNumber: Int,
@@ -17,7 +23,9 @@ class ExpensesAdapter(
 ) :
     RecyclerView.Adapter<ExpensesAdapter.ExpensesViewHolder>() {
 
-    // Inner class for the view holder
+    /**
+     * A nested class for the view holder
+     */
     class ExpensesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewExpenseName: TextView = itemView.findViewById(R.id.text_view_expense_name)
         val textViewDate: TextView = itemView.findViewById(R.id.text_view_date)

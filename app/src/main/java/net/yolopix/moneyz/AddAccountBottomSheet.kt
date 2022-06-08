@@ -13,6 +13,10 @@ import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Account
 
+/**
+ * A bottom sheet dialog fragment containing widgets to add a new account in the database
+ * @param db The main database of the app
+ */
 class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFragment() {
 
     override fun onCreateView(

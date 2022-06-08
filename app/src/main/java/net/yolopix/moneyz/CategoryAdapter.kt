@@ -30,6 +30,9 @@ class CategoryAdapter(
     ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
+    /**
+     * A nested class for the view holder
+     */
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryNameTextView: TextView = itemView.findViewById(R.id.categoryName)
         val categoryPriceTextView: TextView = itemView.findViewById(R.id.categoryPrice)

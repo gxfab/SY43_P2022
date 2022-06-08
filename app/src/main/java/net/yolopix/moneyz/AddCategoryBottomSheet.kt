@@ -14,6 +14,14 @@ import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Category
 import kotlin.properties.Delegates
 
+/**
+ * A bottom sheet dialog fragment containing widgets
+ * to add a new category and its prediction to an account
+ * @param db The main database of the app
+ * @param monthNumber The month in which the category will be added
+ * @param yearNumber The year of the month in which the category will be added
+ * @param accountUid: The identifier of the account in which the category will be added
+ */
 class AddCategoryBottomSheet(
     private val db: AppDatabase,
     private val monthNumber: Int,

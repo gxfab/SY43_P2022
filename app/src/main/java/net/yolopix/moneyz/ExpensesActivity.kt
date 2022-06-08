@@ -15,13 +15,26 @@ import net.yolopix.moneyz.model.entities.Month
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+/**
+ * This activity enables the user to view expenses sorted by category, for a selected account
+ * The account should be passed as extra value
+ */
 class ExpensesActivity : AppCompatActivity() {
 
+    /** The account object representing the current opened account */
     private lateinit var account: Account
+
+    /** The current month in which expenses are added */
     private lateinit var currentMonth: Month
+
+    /** Database */
     private lateinit var db: AppDatabase
-    private lateinit var expensesRecyclerView: RecyclerView
+
+    /** The database identifier of the loaded account, null if no account has been loaded yet */
     private var accountUid: Int? = null
+
+    // Widgets
+    private lateinit var expensesRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +44,7 @@ class ExpensesActivity : AppCompatActivity() {
         db = DatabaseFactory.getDB(applicationContext)
 
         // Fetch the account from the uid passed to the activity as extra
-        accountUid = intent.getStringExtra(EXTRA_MESSAGE)?.toInt()
+        accountUid = intent.getIntExtra(EXTRA_MESSAGE,0)
         lifecycleScope.launch {
             if (accountUid == null) {
                 finish()
@@ -118,7 +131,7 @@ class ExpensesActivity : AppCompatActivity() {
      */
     private fun openPrevisions() {
         val intentPrevisionActivity = Intent(this, PrevisionActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, account.uid.toString())
+            putExtra(EXTRA_MESSAGE, account.uid)
         }
         startActivity(intentPrevisionActivity)
     }
