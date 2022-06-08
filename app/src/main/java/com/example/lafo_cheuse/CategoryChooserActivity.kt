@@ -9,22 +9,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lafo_cheuse.material.CategoryAdapter
 import com.example.lafo_cheuse.models.Category
+import com.example.lafo_cheuse.models.Expense
 import com.example.lafo_cheuse.models.Income
 import com.example.lafo_cheuse.viewmodels.CategoryViewModel
+import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class CategoryChooserActivity : AppCompatActivity() {
-    val incomeViewModel : IncomeViewModel by viewModels()
+    private val incomeViewModel : IncomeViewModel by viewModels()
+    private val expenseViewModel : ExpenseViewModel by viewModels()
     var income : Income? = null
+    var expense : Expense? = null
+    var type : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_chooser)
         val b = intent.extras
         val moneyChangeId : Long
-        val type : String
 
         if (b != null){
             moneyChangeId = b.getLong("moneyChangeId")
@@ -32,6 +36,10 @@ class CategoryChooserActivity : AppCompatActivity() {
             if(type == "income") {
                 incomeViewModel.getIncome(moneyChangeId).observe(this) { list ->
                     income = list[0]
+                }
+            } else if(type == "expense") {
+                expenseViewModel.getExpense(moneyChangeId).observe(this) { list ->
+                    expense = list[0]
                 }
             }
         }
@@ -60,8 +68,13 @@ class CategoryChooserActivity : AppCompatActivity() {
     }
 
     fun chooseCategory(categoryChosen : Category) {
-        income?.category = categoryChosen
-        incomeViewModel.updateIncome(income!!)
+        if(type == "income") {
+            income?.category = categoryChosen
+            incomeViewModel.updateIncome(income!!)
+        } else if(type == "expense") {
+            expense?.category = categoryChosen
+            expenseViewModel.updateExpense(expense!!)
+        }
         this.finish()
     }
 }
