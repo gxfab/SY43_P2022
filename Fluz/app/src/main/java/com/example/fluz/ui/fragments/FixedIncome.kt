@@ -2,6 +2,7 @@ package com.example.fluz.ui.fragments
 
 import android.R
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
@@ -20,6 +21,7 @@ import com.example.fluz.data.repositories.CategoryRepository
 import com.example.fluz.data.repositories.TransactionRepository
 import com.example.fluz.data.repositories.UserRepository
 import com.example.fluz.databinding.FragmentFixedIncomeBinding
+import com.example.fluz.ui.HomeActivity
 import com.example.fluz.ui.adapters.FixedTransactionListAdapter
 import com.example.fluz.ui.viewmodels.*
 import java.util.*

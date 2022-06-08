@@ -33,12 +33,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val sharedPref = this.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
+        /*val sharedPref = this.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
         if (sharedPref.getLong("connectedUserId", -1) != -1L) {
             val intent = Intent(this, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-        }
+        }*/
 
 
 

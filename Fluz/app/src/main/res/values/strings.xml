@@ -34,6 +34,9 @@
     <string name="variable_expenses">Variable Expenses</string>
     <string name="start">Start</string>
 
+    <!-- HOME -->
+    <string name="spent_on">spent on</string>
+
     <!-- for spinner -->
     <string-array name="Currencies">
         <item>Euro</item>
