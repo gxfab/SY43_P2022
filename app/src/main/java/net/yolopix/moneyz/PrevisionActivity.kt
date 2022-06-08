@@ -1,11 +1,9 @@
 package net.yolopix.moneyz
 
-import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
@@ -30,7 +28,6 @@ class PrevisionActivity : AppCompatActivity() {
     /** An object representing the time when the activity has been opened */
     private lateinit var now: LocalDate
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prevision)
@@ -120,9 +117,8 @@ class PrevisionActivity : AppCompatActivity() {
     /**
      * Load categories, limits and budget bar
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     fun loadAll() {
-        lifecycleScope.launch() {
+        lifecycleScope.launch {
             loadCategories()
             loadBudgetBar()
             loadLimits()
@@ -133,15 +129,13 @@ class PrevisionActivity : AppCompatActivity() {
      * Load all categories from the current prevision from the database
      * and display the recyclerview containing these categories
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun loadCategories() {
         val adapter =
             CategoryAdapter(
                 db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!),
                 this,
                 false,
-                db,
-                1,1
+                db
             )
         recyclerView.adapter = adapter
     }
@@ -149,7 +143,6 @@ class PrevisionActivity : AppCompatActivity() {
     /**
      * Load min and max values for EditText
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun loadLimits() {
         val categorizedAmount: Float = calculateCategorizedAmount()
         salaryEditText.filters = arrayOf(NumberRangeInputFilter(categorizedAmount, Float.MAX_VALUE))
@@ -163,7 +156,6 @@ class PrevisionActivity : AppCompatActivity() {
      * Loads the data from the current prevision
      * and refresh the progress bar at the top of the screen
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun loadBudgetBar() {
 
         val categorizedAmount = calculateCategorizedAmount()
@@ -191,7 +183,6 @@ class PrevisionActivity : AppCompatActivity() {
      * Calculate the total amount of categorized money
      * @return total amount of all previsions from the categories
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun calculateCategorizedAmount(): Float {
         val categories =
             db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!)

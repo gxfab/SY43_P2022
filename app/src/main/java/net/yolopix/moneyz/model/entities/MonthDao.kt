@@ -6,9 +6,6 @@ import androidx.room.Query
 
 @Dao
 interface MonthDao {
-    @Query("SELECT * FROM Month")
-    suspend fun getAll(): List<Month>
-
     @Query("SELECT * FROM Month where accountUid == :accountUid ")
     suspend fun getMonthsForAccountUid(accountUid: Int): List<Month>
 

@@ -24,8 +24,8 @@ class CategoryAdapter(
     private val context: AppCompatActivity,
     private val expenseMode: Boolean,
     private val db: AppDatabase,
-    private val monthNumber: Int,
-    private val yearNumber: Int,
+    private val monthNumber: Int? = null,
+    private val yearNumber: Int? = null,
 
     ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
@@ -46,7 +46,7 @@ class CategoryAdapter(
             context.lifecycleScope.launch {
                 viewHolder.expensesRecyclerView.adapter = ExpensesAdapter(
                     db.expenseDao().getExpenseForCategory(categoryList[position].uid),
-                    monthNumber, yearNumber
+                    monthNumber!!, yearNumber!!
                 )
             }
             // Expand/collapse the expenses nested under the category
