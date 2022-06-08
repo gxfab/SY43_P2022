@@ -48,7 +48,8 @@
         android:textColor="@color/black"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:background="@drawable/custom_start_name_entry"/>
+        android:background="@drawable/custom_start_name_entry"
+        android:id="@+id/start_name_edit" />
 
     <Button
         android:layout_width="125dp"
@@ -62,6 +63,7 @@
         android:textColor="@color/white"
         android:textSize="15dp"
         android:background="@color/transparent"
-        app:backgroundTint="@null"/>
+        app:backgroundTint="@null"
+        android:id="@+id/start_next_button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

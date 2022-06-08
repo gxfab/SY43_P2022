@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZeroDay">
         <activity
-            android:name=".views.CycleSettingActivity"
+            android:name=".views.StartActivity"
             android:exported="false" />
         <activity
             android:name=".views.NameValidationActivity"
             android:exported="false" />
         <activity
-            android:name=".views.StartActivity"
+            android:name=".views.StartTotalIncomesActivity"
             android:exported="false" />
         <activity
             android:name=".views.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".views.StartTotalIncomesActivity"
+            android:name=".views.CycleSettingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

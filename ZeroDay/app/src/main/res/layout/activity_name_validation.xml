@@ -43,6 +43,7 @@
         app:tint="@color/white"
         android:backgroundTint="@color/transparent"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/custom_start_next_button"/>
+        android:src="@drawable/custom_start_next_button"
+        android:id="@+id/name_validation_button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,7 +27,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:text="Choose the type of cycle and it begins"
+        android:text="Choose the type of cycle and when it begins"
         android:id="@+id/cycle_setting_sub_title"/>
 
     <Spinner
@@ -38,6 +38,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/custom_cycle_setting_cycle_shape"
         android:layout_marginTop="40dp"
+        android:spinnerMode="dropdown"
         android:id="@+id/cycle_setting_cycle"/>
 
     <Spinner
@@ -48,6 +49,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/custom_cycle_setting_start_date_shape"
         android:layout_marginTop="20dp"
+        android:spinnerMode="dropdown"
         android:id="@+id/cycle_setting_start_date" />
 
     <Button

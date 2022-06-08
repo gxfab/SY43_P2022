@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_white">#D2D2D2</color>
     <color name="transparent">#00000000</color>
+    <color name="red">#FFFF0000</color>
 
     <color name="zero_title">#FF000000</color>
     <color name="zero_subtitle">#A65C5656</color>
