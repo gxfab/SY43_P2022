@@ -25,6 +25,10 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
         return repository.getCategory(categoryName,categoryEmoji)
     }
 
+    fun getDefaultCategory() : LiveData<List<Category>>? {
+        return getCategory("extras","❔")
+    }
+
     fun createCategory(category: Category) = viewModelScope.launch {
         repository.createCategory(category)
     }

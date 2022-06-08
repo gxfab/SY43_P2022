@@ -39,7 +39,7 @@ class CategoryRepository(application: Application) {
     }
 
     fun getCategory(categoryName : String, categoryEmoji : String) : LiveData<List<Category>>? {
-        return getCategory(categoryName,categoryEmoji)
+        return categoryDao?.getCategory(categoryName,categoryEmoji)
     }
 
 
