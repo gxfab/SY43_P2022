@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.17985611510791366" />
         <entry key="..\:/Users/David/SY43_P2022/app/src/main/res/layout/activity_budget_setter.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/David/SY43_P2022/app/src/main/res/layout/activity_category_chooser.xml" value="0.264" />
         <entry key="..\:/Users/David/SY43_P2022/app/src/main/res/layout/activity_main.xml" value="0.2" />
@@ -10,8 +11,6 @@
         <entry key="..\:/Users/David/SY43_P2022/app/src/main/res/layout/fragment_budget_setter.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/David/SY43_P2022/app/src/main/res/layout/fragment_set_incomes_expenses.xml" value="0.264" />
         <entry key="..\:/Users/David/SY43_P2022/app/src/main/res/layout/income_expense_item.xml" value="0.4" />
-        <entry key="../../../../layout/custom_preview.xml" value="0.17985611510791366" />
-        <entry key="..\:/Users/David/SY43_P2022/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/empty_small_divider.xml" value="0.3" />
         <entry key="app/src/main/res/drawable/ic_baseline_expense_income_24.xml" value="0.2975" />
         <entry key="app/src/main/res/drawable/ic_baseline_swap_horiz_24.xml" value="0.2825" />
@@ -30,7 +29,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.278125" />
         <entry key="app/src/main/res/layout/add_button.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/budget_setter_item.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/budget_setter_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.3536458333333333" />
         <entry key="app/src/main/res/layout/content_budget_setter.xml" value="0.3546875" />
         <entry key="app/src/main/res/layout/fragment_budget_setter.xml" value="0.3546875" />
