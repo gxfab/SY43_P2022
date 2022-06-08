@@ -38,4 +38,5 @@
     <string name="expenses_subtitle_month">Mois de %1$s</string>
     <string name="account_just_created_subtitle">Compte nouvellement créé</string>
     <string name="desc_expand">Réduire</string>
+    <string name="error_invalid_day_of_month">Le jour du mois n\'est pas valide</string>
 </resources>

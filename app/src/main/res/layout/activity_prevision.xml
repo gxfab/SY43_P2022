@@ -67,6 +67,7 @@
                             android:visibility="gone" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textfield_payday"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
                             android:hint="@string/payday">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/editetext_payday"
+                                android:id="@+id/edittext_payday"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"

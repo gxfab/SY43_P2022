@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.slider.Slider
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
@@ -24,6 +25,9 @@ class PrevisionActivity : AppCompatActivity() {
     private lateinit var salaryEditText: EditText
     private lateinit var salarySlider: Slider
     private var accountUid: Int? = null
+    private lateinit var doneFloatingActionButton: ExtendedFloatingActionButton
+    private lateinit var salaryTextField: com.google.android.material.textfield.TextInputLayout
+    private lateinit var paydayTextField: com.google.android.material.textfield.TextInputLayout
 
     /** An object representing the time when the activity has been opened */
     private lateinit var now: LocalDate
@@ -44,10 +48,9 @@ class PrevisionActivity : AppCompatActivity() {
         salaryEditText = findViewById(R.id.edittext_salary)
         salarySlider = findViewById(R.id.slider_salary)
         now = LocalDate.now()
-
-        // Restrict day of month input to proper values
-        val paydayEditText: EditText = findViewById(R.id.editetext_payday)
-        paydayEditText.filters = arrayOf(NumberRangeInputFilter(1, now.lengthOfMonth()))
+        doneFloatingActionButton = findViewById(R.id.button_done)
+        salaryTextField = findViewById(R.id.textfield_salary)
+        paydayTextField = findViewById(R.id.textfield_payday)
 
         // Set salary value
         lifecycleScope.launch {
@@ -62,16 +65,30 @@ class PrevisionActivity : AppCompatActivity() {
                 loadBudgetBar()
 
                 // Show an error if the salary value is less than the previsions
-                val salaryTextField: com.google.android.material.textfield.TextInputLayout =
-                    findViewById(R.id.textfield_salary)
-                val salaryValue = salaryEditText.text.toString().toFloatOrNull()
-                if (salaryValue == null)
-                    salaryTextField.error = getString(R.string.error_empty_text)
-                else if (calculateCategorizedAmount() > salaryValue)
-                    salaryTextField.error = getString(R.string.error_salary_greater_than_previsions)
-                else
-                    salaryTextField.error = null
+                val salaryValue = it.toString().toFloatOrNull()
+
+                salaryTextField.error = when {
+                    salaryValue == null -> getString(R.string.error_empty_text)
+                    salaryValue < calculateCategorizedAmount() -> getString(R.string.error_salary_greater_than_previsions)
+                    else -> null
+                }
+
+                checkFormErrors()
             }
+        }
+
+        // Restrict day of month input to proper values
+        val paydayEditText: EditText = findViewById(R.id.edittext_payday)
+        paydayEditText.filters = arrayOf(NumberRangeInputFilter(1, now.lengthOfMonth()))
+        paydayEditText.addTextChangedListener {
+            val paydayValue = it.toString().toIntOrNull()
+
+            paydayTextField.error = when (paydayValue) {
+                null -> getString(R.string.error_empty_text)
+                in 1..now.lengthOfMonth() -> null
+                else -> getString(R.string.error_invalid_day_of_month)
+            }
+            checkFormErrors()
         }
 
         // Open the bottom sheet to add a new category when clicking on the "add category" button
@@ -90,9 +107,7 @@ class PrevisionActivity : AppCompatActivity() {
         loadAll()
 
         // When the user has finished to make previsions
-        val doneButton: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton =
-            findViewById(R.id.button_done)
-        doneButton.setOnClickListener {
+        doneFloatingActionButton.setOnClickListener {
             val newMonth = Month(
                 now.monthValue,
                 now.year,
@@ -192,6 +207,15 @@ class PrevisionActivity : AppCompatActivity() {
             categorizedAmount += category.predictedAmount
         }
         return categorizedAmount
+    }
+
+    /**
+     * Checks if any of the TextEdits contains an error
+     * If so, disable the submit button
+     */
+    private fun checkFormErrors() {
+        doneFloatingActionButton.isEnabled =
+            salaryTextField.error == null && paydayTextField.error == null
     }
 
 }
