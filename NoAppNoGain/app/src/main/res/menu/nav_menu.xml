@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/profile"
+        android:title="Mon Profil"
+        android:icon="@drawable/ic_user">
+    </item>
+
+    <item android:id="@+id/accueil"
+        android:title="Accueil"
+        android:icon="@drawable/ic_dashboard">
+    </item>
+
+    <item android:id="@+id/depense"
+        android:title="Depense"
+        android:icon="@drawable/ic_wallet">
+    </item>
+
+    <item android:id="@+id/statistique"
+        android:title="Statistique"
+        android:icon="@drawable/ic_statistique">
+    </item>
+
+    <item android:id="@+id/logout"
+        android:title="Se déconnecter"
+        android:icon="@drawable/ic_logout">
+    </item>
+</menu>

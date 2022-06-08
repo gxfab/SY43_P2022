@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Accueil"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <include
+        android:id="@+id/activity_main_toolbar"
+        layout="@layout/activity_main_toolbar"/>
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/background"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/dollar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_dollar_white"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:text="Balance :"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="30dp"/>
+
+        <EditText
+            android:id="@+id/balance_set_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:layout_margin="5dp"
+            android:inputType="numberDecimal"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:background="@drawable/input"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_margin="8dp"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:background="@drawable/spinner"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Spinner
+                android:id="@+id/spinner_categorie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/white"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:background="@drawable/input"
+            android:inputType="numberDecimal"
+            android:hint="montant"
+            android:gravity="center"
+            android:layout_marginRight="8dp"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/expense_ft_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/input"
+        android:hint="nom"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/expense_ft_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="+ AJOUTER DEPENSE"
+        android:layout_margin="5dp"
+        app:backgroundTint="@color/brown"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:text="Historique"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:background="@drawable/historique"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_expense"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

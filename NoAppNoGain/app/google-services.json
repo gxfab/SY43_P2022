@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "426291978086",
+    "project_id": "noappnogain-19195",
+    "storage_bucket": "noappnogain-19195.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426291978086:android:61c398dae57baa1589f2a7",
+        "android_client_info": {
+          "package_name": "com.example.noappnogain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426291978086-fb3a2ltubsg0n19q0abgog4n2st1i6nj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLfiksR2x6yVoC3yxhCeUQpA5weblV3w8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426291978086-fb3a2ltubsg0n19q0abgog4n2st1i6nj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

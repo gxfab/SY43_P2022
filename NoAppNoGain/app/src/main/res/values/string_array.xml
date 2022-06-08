@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="categorie">
+        <item>Santé</item>
+        <item>Alimentation</item>
+        <item>Habillement</item>
+        <item>Animaux</item>
+        <item>Cadeaux offerts</item>
+        <item>Internet / TV / Téléphone</item>
+        <item>Sports / Loisirs / Culture</item>
+        <item>Education / Formation</item>
+        <item>Enfants</item>
+        <item>Impôts</item>
+        <item>Transport</item>
+    </string-array>
+
+    <string-array name="depense">
+        <item>Santé</item>
+        <item>Alimentation</item>
+        <item>Habillement</item>
+        <item>Animaux</item>
+        <item>Cadeaux offerts</item>
+        <item>Internet / TV / Téléphone</item>
+        <item>Sports / Loisirs / Culture</item>
+        <item>Education / Formation</item>
+        <item>Enfants</item>
+        <item>Impôts</item>
+        <item>Transport</item>
+    </string-array>
+
+    <string-array name="annee">
+        <item>2022</item>
+        <item>2021</item>
+        <item>2020</item>
+        <item>2019</item>
+        <item>2018</item>
+        <item>2017</item>
+    </string-array>
+
+    <string-array name="mois">
+        <item>Janvier</item>
+        <item>Fevrier</item>
+        <item>Mars</item>
+        <item>Avril</item>
+        <item>Mai</item>
+        <item>Juin</item>
+        <item>Juillet</item>
+        <item>Août</item>
+        <item>Septembre</item>
+        <item>Octobre</item>
+        <item>Novembre</item>
+        <item>Décembre</item>
+    </string-array>
+
+</resources>

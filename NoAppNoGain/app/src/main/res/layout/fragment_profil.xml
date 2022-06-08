@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Profil">
+
+    <include
+        android:id="@+id/profil_toolbar"
+        layout="@layout/profil_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="552dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="-10dp"/>
+
+            <ImageView
+                android:layout_width="225dp"
+                android:layout_height="219dp"
+                android:layout_marginTop="-110dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="40dp"
+                android:src="@drawable/ic_user" />
+
+            <TextView
+                android:id="@+id/email_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="User Email"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginTop="-20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColorHint="@android:color/black"
+                android:textColor="@android:color/black"
+                />
+
+            <Button
+                android:id="@+id/btn_changepass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/turquoise"
+                android:text="Changer le mot de passe"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                app:backgroundTint="@color/turquoise"/>
+
+            <Button
+                android:id="@+id/btn_deleteaccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/turquoise"
+                android:text="Supprimer le compte définitivement"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                app:backgroundTint="@color/turquoise" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

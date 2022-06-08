@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NoAppNoGain</string>
+    <string name="details">Zero Budget Money Manager</string>
+    <string name="annee">Année :</string>
+    <string name="mois">Mois :</string>
+    <string name="button_mensuel">Mensuel</string>
+    <string name="button_annuel">Annuel</string>
+    <string name="button_budget">Budget</string>
+    <string name="navigation_drawer_open" />
+    <string name="navigation_drawer_close" />
+
+</resources>
