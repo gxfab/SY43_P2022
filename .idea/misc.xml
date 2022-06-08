@@ -22,6 +22,8 @@
         <entry key="app/src/main/res/layout/activity_display_message.xml" value="0.278125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.278125" />
+        <entry key="app/src/main/res/layout/add_button.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/budget_setter_item.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.3536458333333333" />
         <entry key="app/src/main/res/layout/content_budget_setter.xml" value="0.3546875" />
         <entry key="app/src/main/res/layout/fragment_budget_setter.xml" value="0.3546875" />
