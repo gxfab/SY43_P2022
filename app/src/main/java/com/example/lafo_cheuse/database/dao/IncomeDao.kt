@@ -23,4 +23,5 @@ interface IncomeDao {
 
     @Query("DELETE FROM Income WHERE category_categoryId = :categoryID")
     fun deleteIncomeByCategory(categoryID : Long) : Int
+
 }
