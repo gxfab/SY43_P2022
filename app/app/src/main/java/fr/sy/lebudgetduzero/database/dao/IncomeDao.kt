@@ -12,6 +12,9 @@ interface IncomeDao {
     @Delete
     fun delete(item: IncomeItem)
 
+    @Query("DELETE FROM IncomeItem")
+    fun deleteAll()
+
     @Query("SELECT * FROM IncomeItem")
     fun getAll(): List<IncomeItem>
 }

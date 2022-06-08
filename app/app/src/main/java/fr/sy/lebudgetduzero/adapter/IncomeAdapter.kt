@@ -38,7 +38,7 @@ class IncomeAdapter (
         val currentIncome=incomeList[position]
 
         holder.incomeTitle.text=currentIncome.name
-        holder.incomeDate.text=currentIncome.date
+        holder.incomeDate.text= currentIncome.date.toString()
         holder.incomeValue.text=currentIncome.value.toString()
     }
 

@@ -5,8 +5,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.room.Room
+import fr.sy.lebudgetduzero.adapter.IncomeAdapter
 import fr.sy.lebudgetduzero.database.AppDatabase
 import fr.sy.lebudgetduzero.fragments.IncomeFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import java.sql.Date
+import java.text.SimpleDateFormat
 
 /**
  *
@@ -23,6 +29,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //Traitement base de données
+        val applicationScope = CoroutineScope(SupervisorJob())
+        applicationScope.launch {
+            val db=AppDatabase.getDatabase(applicationContext,applicationScope)
+
+            //Données de test
+            db.incomeDao().deleteAll()
+            db.incomeDao().insertAll(IncomeItem(name="Papa Maman",value=300F,date= 1654170437))
+            db.incomeDao().insertAll(IncomeItem(name="APL",value=75F,date=1654084037))
+            db.incomeDao().insertAll(IncomeItem(name="Remboursement tricount",value=25.69F,date=1654688837))
+
+        }
+
+        //Affichage de l'overview
         setHomeView(null)
     }
 
