@@ -10,6 +10,9 @@ open class MoneyChange(
     @ColumnInfo(name = "frequency")
     var frequency: Frequency,
 
+    @ColumnInfo(name = "moneyChangeName")
+    var name: String,
+
     category: Category
 ) {
 
