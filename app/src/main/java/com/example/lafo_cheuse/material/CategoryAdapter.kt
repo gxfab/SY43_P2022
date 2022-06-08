@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lafo_cheuse.CategoryChooserActivity
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.models.Category
 
@@ -44,7 +43,7 @@ class CategoryAdapter(var context : Activity) : RecyclerView.Adapter<CategoryAda
         holder.categoryEmojiButton.text = category.categoryEmoji
 
         holder.categoryEmojiButton.setOnClickListener {
-            chooseCategory(category)
+            (context as CategoryChooserActivity).chooseCategory(category)
         }
     }
 
@@ -58,12 +57,4 @@ class CategoryAdapter(var context : Activity) : RecyclerView.Adapter<CategoryAda
         notifyDataSetChanged()
     }
 
-    fun chooseCategory(categoryChosen : Category) {
-        val resultIntent = Intent()
-        resultIntent.putExtra("categoryId", categoryChosen.categoryId)
-        resultIntent.putExtra("categoryName", categoryChosen.categoryName)
-        resultIntent.putExtra("categoryEmoji",categoryChosen.categoryEmoji)
-        context.setResult(AppCompatActivity.RESULT_OK, resultIntent)
-        context.finish()
-    }
 }
