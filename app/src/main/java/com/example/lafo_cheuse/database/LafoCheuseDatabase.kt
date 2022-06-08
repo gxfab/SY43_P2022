@@ -34,7 +34,7 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
                 synchronized(LafoCheuseDatabase::class.java) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
-                            context.getApplicationContext(),
+                            context.applicationContext,
                             LafoCheuseDatabase::class.java, "LafoCheuseDatabase.db"
                         )
                             .addCallback(prepopulateDatabase())
@@ -50,6 +50,9 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     Executors.newSingleThreadExecutor().execute {
+                        INSTANCE!!.categoryDao()?.createCategory(
+                            Category("extras","❔")
+                        )
                         INSTANCE!!.categoryDao()?.createCategory(
                             Category("Courses","\uD83D\uDED2")
                         )
