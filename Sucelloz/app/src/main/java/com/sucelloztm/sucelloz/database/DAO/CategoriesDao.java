@@ -1,5 +1,6 @@
 package com.sucelloztm.sucelloz.database.DAO;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -35,7 +36,7 @@ public interface CategoriesDao {
     void deleteCategories(Categories... categories);
 
     @Query("SELECT * FROM categories")
-    List<Categories> getAllCategories();
+    LiveData<List<Categories>> getAllCategories();
 
     @Transaction
     @Query("SELECT * FROM categories")

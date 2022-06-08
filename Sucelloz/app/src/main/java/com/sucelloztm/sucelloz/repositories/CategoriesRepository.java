@@ -3,6 +3,9 @@ package com.sucelloztm.sucelloz.repositories;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+
 import com.sucelloztm.sucelloz.database.DAO.CategoriesDao;
 import com.sucelloztm.sucelloz.database.SucellozDatabase;
 import com.sucelloztm.sucelloz.models.Categories;
@@ -12,18 +15,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriesRepository {
-    private static CategoriesDao categoriesDao;
+    private CategoriesDao categoriesDao;
 
     public CategoriesRepository(Application application){
         SucellozDatabase database=SucellozDatabase.getInstance(application);
         this.categoriesDao=database.categoriesDao();
     }
 
-    public static List<Categories> getAllCategories(){
+    public LiveData<List<Categories>> getAllCategories(){
         return categoriesDao.getAllCategories();
     }
 
-    public static void insert(Categories category){
+    public void insert(Categories category){
         categoriesDao.insertCategory(category);
     }
 }

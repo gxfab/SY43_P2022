@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -22,13 +24,12 @@ import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 
 public class CategoriesFragment extends Fragment implements LifecycleOwner {
 
     private CategoriesFragmentBinding binding;
     private CategoriesViewModel categoriesViewModel;
-    private List<Categories> categoriesDataSet;
+    private List<Categories> currentCategoriesList;
 
 
     @Override
@@ -42,14 +43,27 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+
         binding = CategoriesFragmentBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
         categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
-        categoriesDataSet=categoriesViewModel.getAllCategories();
+        currentCategoriesList = new ArrayList<>();
+        CategoriesAdapter adapter=new CategoriesAdapter(currentCategoriesList);
+
+        final Observer<List<Categories>> categoriesDataSet= new Observer<List<Categories>>() {
+            @Override
+            public void onChanged(List<Categories> categoriesList) {
+                currentCategoriesList.clear();
+                currentCategoriesList.addAll(categoriesList);
+                adapter.notifyDataSetChanged();
+            }
+        };
+        categoriesViewModel.getAllCategories().observe(getViewLifecycleOwner(),categoriesDataSet);
         RecyclerView recyclerView = binding.outerRecyclerView;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        CategoriesAdapter adapter = new CategoriesAdapter(categoriesDataSet);
         recyclerView.setAdapter(adapter);
+
+
         return root;
     }
 
