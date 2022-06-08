@@ -27,11 +27,7 @@ class IncomeViewModel(application : Application) : AndroidViewModel(application)
         return repository.getIncome(moneyChangeId)
     }
 
-    suspend fun getStaticIncomes() : List<Income> {
-        return repository.getStaticIncomes()
-    }
-
-    fun getMonthlyIncome() : LiveData<List<Income>>? {
+    fun getMonthlyIncome() : LiveData<List<Income>> {
         return repository.getIncomesByFrequency(Frequency.OUNCE_A_MONTH)
     }
 
