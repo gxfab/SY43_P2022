@@ -6,16 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="171dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="52dp"
-        android:onClick="switchMode"
-        android:text="Switch"
-        android:textOff="wesh"
-        android:textOn="cool"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:text="ToggleButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

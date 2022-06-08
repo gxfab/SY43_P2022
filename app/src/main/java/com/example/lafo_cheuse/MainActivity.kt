@@ -1,83 +1,88 @@
 package com.example.lafo_cheuse
 
-import android.app.UiModeManager.MODE_NIGHT_YES
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-import androidx.room.Room
-import com.example.lafo_cheuse.database.LafoCheuseDatabase
-import com.example.lafo_cheuse.models.Category
-import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import com.example.lafo_cheuse.fragment.view.ChartFragment
+import com.example.lafo_cheuse.fragment.view.HomeFragment
+import com.example.lafo_cheuse.fragment.view.SetIncomesExpensesFragment
+import com.example.lafo_cheuse.fragment.view.SettingsFragment
+import com.example.lafo_cheuse.material.ViewPagerAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.*
 
 
-const val EXTRA_MESSAGE = "com.exemple.test.MESSAGE"
+const val EXTRA_MESSAGE = "com.example.test.MESSAGE"
 
 @DelicateCoroutinesApi
 class MainActivity : AppCompatActivity() {
+
+    var navigationView: BottomNavigationView? = null
+
+    var chartFragment: ChartFragment? = ChartFragment()
+    var homeFragment: HomeFragment? = HomeFragment()
+    var setIncomesExpensesFragment: SetIncomesExpensesFragment? = SetIncomesExpensesFragment()
+    var settingsFragment: SettingsFragment? = SettingsFragment()
+    var fragmentsList : ArrayList<Fragment>? = null
+    var fragmentsIdList : ArrayList<Int>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        //AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        GlobalScope.launch(Dispatchers.Main) {
+        fragmentsList = arrayListOf<Fragment>(homeFragment!!, chartFragment!!, setIncomesExpensesFragment!!, settingsFragment!!)
+        fragmentsIdList = arrayListOf<Int>(R.id.homeFragment, R.id.chartFragment, R.id.setIncomesExpensesFragment, R.id.settingsFragment)
 
-            val db = Room.databaseBuilder(
-                applicationContext,
-                LafoCheuseDatabase::class.java, "BDD Lafo-Cheuse"
-            ).build()
-            launch(Dispatchers.IO) {
-                val catDao = db.categoryDao()
-                catDao!!.createCategory(Category("Courses", "\uD83D\uDED2"))
-                catDao.createCategory(Category("Bourses", "\uD83D\uDCB0"))
+        navigationView = findViewById(R.id.bottom_navigation)
+
+        val adapter = ViewPagerAdapter(
+            fragmentsList!!,
+            supportFragmentManager,
+            lifecycle,
+        )
+
+        val pager = findViewById<ViewPager2>(R.id.pager)
+        pager.adapter = adapter
+
+        navigationView!!.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.homeFragment -> {
+                    pager.currentItem = 0
+                }
+                R.id.chartFragment -> {
+                    pager.currentItem = 1
+                }
+                R.id.setIncomesExpensesFragment->  {
+                    pager.currentItem = 2
+                }
+                R.id.settingsFragment -> {
+                    pager.currentItem = 3
+                }
             }
+            true
+        }
 
-
-            val chart = findViewById<PieChart>(R.id.piechart)
-
-            val entries = ArrayList<PieEntry>()
-
-            for (i in 0..3) {
-                entries.add(PieEntry((Math.random() * 70 + 30).toFloat(), "Quarter " + (i + 1)))
+        pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                navigationView!!.selectedItemId = fragmentsIdList!![position]
             }
-            val dataSet = PieDataSet(entries, "")
+        })
 
-            dataSet.colors = ColorTemplate.PASTEL_COLORS.toList()
-            dataSet.valueTextColor = Color.WHITE
-            dataSet.valueTextSize = 12f
+    }
 
-            val data = PieData(dataSet)
 
-            chart.data = data
-            val description = Description()
-            description.textColor = Color.RED
-            description.text = "Bootleg graph"
-            chart.description = description
-            chart.animateX(2000)
+
+    fun makeCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.container, fragment)
+            commit()
         }
-    }
-    fun sendMessage(view: View) {
-        val editText = findViewById<EditText>(R.id.editTextTextPersonName)
-        val message = editText.text.toString()
-        val intent = Intent(this, DisplayMessageActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, message)
-        }
-        startActivity(intent)
-    }
 
-    fun openSettings(view: View){
-        val intent = Intent(this, SettingsActivity::class.java)
-        startActivity(intent)
-    }
+
 
 }
