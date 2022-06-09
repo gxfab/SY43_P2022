@@ -31,6 +31,10 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
         return repository.getExpensesByFrequency(Frequency.OUNCE_A_MONTH)
     }
 
+    fun getOneTimeExpense() : LiveData<List<Expense>> {
+        return repository.getExpensesByFrequency(Frequency.OUNCE_A_DAY)
+    }
+
     fun insertExpense(expense : Expense) = viewModelScope.launch {
         repository.insertExpense(expense)
     }

@@ -31,6 +31,10 @@ class IncomeViewModel(application : Application) : AndroidViewModel(application)
         return repository.getIncomesByFrequency(Frequency.OUNCE_A_MONTH)
     }
 
+    fun getOneTimeIncome() : LiveData<List<Income>> {
+        return repository.getIncomesByFrequency(Frequency.OUNCE_A_DAY)
+    }
+
     fun insertIncome(income : Income) = viewModelScope.launch {
         repository.insertIncome(income)
     }
