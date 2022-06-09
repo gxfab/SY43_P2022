@@ -4,15 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import fr.sy.lebudgetduzero.IncomeItem
+import fr.sy.lebudgetduzero.item.IncomeItem
 import fr.sy.lebudgetduzero.database.dao.*
+import fr.sy.lebudgetduzero.item.SpentItem
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
-@Database(entities = [IncomeItem::class], version = 1, exportSchema = false)
+@Database(entities = [IncomeItem::class, SpentItem::class], version = 1, exportSchema = false)
 abstract class AppDatabase:RoomDatabase(){
     abstract fun incomeDao(): IncomeDao
+    abstract fun spentDao(): SpentDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

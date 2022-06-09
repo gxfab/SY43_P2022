@@ -4,15 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.room.Room
-import fr.sy.lebudgetduzero.adapter.IncomeAdapter
 import fr.sy.lebudgetduzero.database.AppDatabase
 import fr.sy.lebudgetduzero.fragments.IncomeFragment
+import fr.sy.lebudgetduzero.fragments.SpentFragment
+import fr.sy.lebudgetduzero.item.IncomeItem
+import fr.sy.lebudgetduzero.item.SpentItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import java.sql.Date
-import java.text.SimpleDateFormat
 
 /**
  *
@@ -40,6 +39,13 @@ class MainActivity : AppCompatActivity() {
             db.incomeDao().insertAll(IncomeItem(name="APL",value=75F,date=1654084037))
             db.incomeDao().insertAll(IncomeItem(name="Remboursement tricount",value=25.69F,date=1654688837))
 
+            db.spentDao().deleteAll()
+            db.spentDao().insertAll(SpentItem(name="Boulangerie",value=2.56F,date= 1654170437,id_type = 1))
+            db.spentDao().insertAll(SpentItem(name="Carrefour",value=25.6F,date= 1654170437,id_type = 1))
+            db.spentDao().insertAll(SpentItem(name="Essence",value=62.31F,date= 1654170437,id_type = 5))
+            db.spentDao().insertAll(SpentItem(name="Netflix",value=14.99F,date= 1654170437,id_type = 4))
+            db.spentDao().insertAll(SpentItem(name="Bar",value=9.95F,date= 1654170437,id_type = 3))
+
         }
 
         //Affichage de l'overview
@@ -62,9 +68,13 @@ class MainActivity : AppCompatActivity() {
 
             //Entrées du mois
             val incomeMonth=db.incomeDao().getIncomeValue(1654034409)
-
             val textViewIncome : TextView = findViewById(R.id.I_ValueMonth) as TextView
             textViewIncome.text=incomeMonth.toString() + "€ en entrée ce mois."
+
+            //Depenses du mois
+            val spentMonth=db.spentDao().getSpentValue(1654034409)
+            val textViewSpent: TextView = findViewById(R.id.S_ValueMonth) as TextView
+            textViewSpent.text=spentMonth.toString() + "€ dépensés ce mois."
         }
 
 
@@ -109,6 +119,12 @@ class MainActivity : AppCompatActivity() {
      */
     fun setDepenseView(view: View){
         setContentView(R.layout.view_depense)
+
+        //Injection du fragment dans la boite
+        val transaction=supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, SpentFragment(this))
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 }
