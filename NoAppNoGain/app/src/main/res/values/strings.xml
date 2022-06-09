@@ -8,5 +8,6 @@
     <string name="button_budget">Budget</string>
     <string name="navigation_drawer_open" />
     <string name="navigation_drawer_close" />
+    <string name="balance">Balance</string>
 
 </resources>

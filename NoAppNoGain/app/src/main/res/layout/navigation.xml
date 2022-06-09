@@ -4,12 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Navigation"
+    tools:context=".MainActivity"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include layout="@layout/appbar_layout"
+    <include layout="@layout/content_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

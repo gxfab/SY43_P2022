@@ -4,13 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Accueil"
     android:orientation="vertical"
     android:gravity="center_horizontal">
-
-    <include
-        android:id="@+id/activity_main_toolbar"
-        layout="@layout/activity_main_toolbar"/>
 
     <LinearLayout
         android:layout_margin="5dp"
@@ -43,12 +38,13 @@
             android:id="@+id/balance_set_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:ems="10"
             android:layout_margin="5dp"
-            android:inputType="numberDecimal"
+            android:background="@drawable/input"
+            android:ems="10"
             android:gravity="center"
-            android:textSize="30dp"
-            android:background="@drawable/input"/>
+            android:hint="@string/balance"
+            android:inputType="numberDecimal"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
@@ -78,36 +74,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:backgroundTint="@color/white"
+                android:entries="@array/categorie"
                 android:gravity="center"
+                android:paddingLeft="10dp"
                 android:spinnerMode="dropdown"
-                android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15dp"
                 android:textStyle="bold"
-                android:backgroundTint="@color/white"/>
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 
         <EditText
             android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:padding="10dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/input"
-            android:inputType="numberDecimal"
-            android:hint="montant"
             android:gravity="center"
-            android:layout_marginRight="8dp"/>
+            android:hint="montant"
+            android:inputType="numberDecimal"
+            android:padding="10dp" />
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/expense_ft_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@drawable/input"
-        android:hint="nom"
-        android:gravity="center"/>
+        <EditText
+            android:id="@+id/expense_ft_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:gravity="center"
+            android:hint="nom"
+            android:minHeight="48dp"
+            android:padding="10dp" />
 
     <Button
         android:id="@+id/expense_ft_btn"
@@ -139,9 +138,11 @@
             android:background="@drawable/historique"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_expense"
+            android:id="@+id/vertical_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </LinearLayout>
 

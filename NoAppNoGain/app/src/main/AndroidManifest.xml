@@ -23,11 +23,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Navigation" />
-        <activity android:name=".Profil" />
-        <activity android:name=".Reinitialiser" />
-        <activity android:name=".Sidentifier" />
-        <activity android:name=".Sinscrire" />
 
     </application>
 
