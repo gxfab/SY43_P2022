@@ -34,6 +34,7 @@
             android:name=".BudgetSetterActivity"
             android:label="@string/budgetTitle"
             android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
