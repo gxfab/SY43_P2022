@@ -22,6 +22,14 @@ interface ExpenseDao {
             "GROUP BY category_categoryId")
     fun getExpensesSumByCategory(frequency: Frequency) : LiveData<List<ExpenseSumContainer>>
 
+    @Query("SELECT category_name,category_emoji," +
+            "SUM(EXP.amount) AS totalAmount " +
+            "FROM Expense EXP " +
+            "WHERE EXP.frequency = :frequency " +
+            "AND EXP.category_categoryId = :categoryID " +
+            "GROUP BY category_categoryId")
+    fun getExpensesSumForCategory(frequency: Frequency, categoryID: Long) : LiveData<List<ExpenseSumContainer>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertExpense(expense: Expense): Long
 

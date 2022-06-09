@@ -52,5 +52,9 @@ class ExpenseRepository(application: Application) {
         return expenseDao.getExpensesSumByCategory(frequency)
     }
 
+    fun getExpensesSumForCategory(frequency: Frequency, categoryID: Long) : LiveData<List<ExpenseSumContainer>> {
+        return expenseDao.getExpensesSumForCategory(frequency,categoryID)
+    }
+
 
 }
