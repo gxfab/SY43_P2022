@@ -70,7 +70,7 @@ class ExpenseSetterAdapter(var context : Activity, var viewModel : ExpenseViewMo
             if (expense.amount == 0.0) {
                 holder.expenseNameWidget?.setText("")
             } else {
-                holder.expenseValueWidget?.setText(expense.amount.toString())
+                holder.expenseValueWidget?.setText(expense.amount.toString().substring(1))
             }
             holder.expenseValidateButton?.isEnabled = false
 
