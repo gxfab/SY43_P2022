@@ -43,7 +43,7 @@ class BudgetSetterActivity : AppCompatActivity() {
         incomeAdapter = IncomeSetterAdapter(this,incomeViewModel)
         recyclerViewIncome.adapter = incomeAdapter
 
-        incomeViewModel.getIncomes()?.observe(this) { list ->
+        incomeViewModel.getMonthlyIncome().observe(this) { list ->
             incomeAdapter!!.setIncomes(list)
         }
     }
@@ -56,7 +56,7 @@ class BudgetSetterActivity : AppCompatActivity() {
         expenseAdapter = ExpenseSetterAdapter(this,expenseViewModel)
         recyclerViewExpense.adapter = expenseAdapter
 
-        expenseViewModel.getExpenses()?.observe(this) { list ->
+        expenseViewModel.getMonthlyExpense().observe(this) { list ->
             expenseAdapter!!.setExpenses(list)
         }
     }
