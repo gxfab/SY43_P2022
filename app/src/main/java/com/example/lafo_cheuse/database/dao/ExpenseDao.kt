@@ -2,9 +2,7 @@ package com.example.lafo_cheuse.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.lafo_cheuse.models.Expense
-import com.example.lafo_cheuse.models.Frequency
-import com.example.lafo_cheuse.models.Income
+import com.example.lafo_cheuse.models.*
 
 @Dao
 interface ExpenseDao {
@@ -16,6 +14,13 @@ interface ExpenseDao {
 
     @Query("SELECT * FROM Expense WHERE frequency = :frequency")
     fun getExpensesByFrequency(frequency: Frequency) : LiveData<List<Expense>>
+
+    @Query("SELECT category_name,category_emoji," +
+            "SUM(EXP.amount) AS totalAmount " +
+            "FROM Expense EXP " +
+            "WHERE EXP.frequency = :frequency " +
+            "GROUP BY category_categoryId")
+    fun getExpensesSumByCategory(frequency: Frequency) : LiveData<List<ExpenseSumContainer>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertExpense(expense: Expense): Long
