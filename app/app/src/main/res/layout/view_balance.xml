@@ -11,7 +11,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@color/bleu_fonce"
             android:layout_weight="10"
             app:cardCornerRadius="8dp"
@@ -33,7 +33,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/bleu_clair"
             android:onClick="setDepenseView"
@@ -58,7 +58,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@color/vert"
             android:layout_weight="1"
             app:cardCornerRadius="8dp"
