@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.lafo_cheuse.models.Category
 import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.models.Expense
+import com.example.lafo_cheuse.models.ExpenseSumContainer
 import com.example.lafo_cheuse.repository.ExpenseRepository
 import kotlinx.coroutines.launch
 
@@ -49,5 +50,13 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
 
     fun deleteExpenseByCategory(category: Category) = viewModelScope.launch {
         repository.deleteExpenseByCategory(category.categoryId)
+    }
+
+    fun getMonthlyExpensesSumByCategory() : LiveData<List<ExpenseSumContainer>> {
+        return repository.getExpensesSumByCategory(Frequency.OUNCE_A_MONTH)
+    }
+
+    fun getOneTimeExpensesSumByCategory() : LiveData<List<ExpenseSumContainer>> {
+        return repository.getExpensesSumByCategory(Frequency.OUNCE_A_DAY)
     }
 }

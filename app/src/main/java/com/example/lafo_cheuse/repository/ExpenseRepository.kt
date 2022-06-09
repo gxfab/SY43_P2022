@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.example.lafo_cheuse.database.LafoCheuseDatabase
 import com.example.lafo_cheuse.database.dao.ExpenseDao
 import com.example.lafo_cheuse.models.Expense
+import com.example.lafo_cheuse.models.ExpenseSumContainer
 import com.example.lafo_cheuse.models.Frequency
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -45,6 +46,10 @@ class ExpenseRepository(application: Application) {
 
     fun getExpensesByFrequency(frequency: Frequency) : LiveData<List<Expense>> {
         return expenseDao.getExpensesByFrequency(frequency)
+    }
+
+    fun getExpensesSumByCategory(frequency: Frequency) : LiveData<List<ExpenseSumContainer>> {
+        return expenseDao.getExpensesSumByCategory(frequency)
     }
 
 
