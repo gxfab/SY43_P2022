@@ -1,10 +1,34 @@
 ChangeLog
 
-	Lafo_cheuse_V_alpha (22/03/2022)
+	Lafo_cheuse_V_alpha_0.1 (22/03/2022)
 
 		-Creation de la branche
 		-Push du ReadMe.md et du ChangLog.txt
 
+	Lafo_cheuse_V_alpha_0.2 (19/05/2022)
 
+	    - Création de la base de données
 
-	
+    Lafo_cheuse_V_alpha_0.3 (24/05/2022)
+
+        - Menu de navigation implémenté
+        - Possibilité de naviguer entre différents fragments à l'aide d'un menu
+
+    Lafo_cheuse_V_Alpha_0.4 (28/05/2022)
+
+        - Ajout de graphiques pour afficher le budget global
+        - Ajout de graphiques pour afficher des budgets de certaines catégories
+
+    Lafo_cheuse_V_Alpha_0.5 (02/06/2022)
+
+        - Possibilité de scroller entre les différentes parties du menu
+        - Début de la mise en place de budget
+
+    Lafo_cheuse_V_Alpha_0.6 (06/06/2022)
+
+        - Correction de bugs : Le lien entre les scroll et les menu est maintenant complétement réparé
+
+	Lafo_cheuse_V_beta_0.1 (09/06/2022)
+
+	    - La mise en place de budget et maintenant entièrement fonctionnelle
+	    - La mise en place de budget est lié à la base de données
