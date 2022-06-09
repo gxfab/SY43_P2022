@@ -19,11 +19,19 @@
         android:name="com.example.fluz.ui.fragments.FixedExpenses"
         android:label="fragment_fixed_expenses"
         tools:layout="@layout/fragment_fixed_expenses" >
-        <argument
-            android:name="total_income"
-            app:argType="integer" />
         <action
             android:id="@+id/action_fixedExpenses_to_fixedIncome"
             app:destination="@id/fixedIncome" />
+        <action
+            android:id="@+id/action_fixedExpenses_to_variableExpenses"
+            app:destination="@id/variableExpenses" />
+    </fragment>
+    <fragment
+        android:id="@+id/variableExpenses"
+        android:name="com.example.fluz.ui.fragments.VariableExpenses"
+        android:label="VariableExpenses" >
+        <action
+            android:id="@+id/action_variableExpenses_to_fixedExpenses"
+            app:destination="@id/fixedExpenses" />
     </fragment>
 </navigation>

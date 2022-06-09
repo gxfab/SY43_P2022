@@ -11,5 +11,6 @@ data class User(
     val email_address: String,
     val hash_password: String,
     val currency: String,
+    val budget_start_day: Int,
     val created_at: String
 )

@@ -33,12 +33,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        /*val sharedPref = this.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
+        val sharedPref = this.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
         if (sharedPref.getLong("connectedUserId", -1) != -1L) {
             val intent = Intent(this, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-        }*/
+        }
+
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
@@ -48,18 +49,13 @@ class MainActivity : AppCompatActivity() {
 
         runBlocking {
             launch {
-                categoryDao.insert(Category(title = "Food"))
-                val categories = categoryDao.getAll()
-                for (category in categories.first()){
-                    println(category)
-                }
+                categoryDao.deleteAll()
 
-                val transactions = transactionsDao.getAll()
-                for (transaction in transactions.first()) {
-                    println(transaction)
-                }
-
-                transactionsDao.deleteAll()
+                categoryDao.insert(Category(id = 1, title = "Food"))
+                categoryDao.insert(Category(id = 2, title = "Housing"))
+                categoryDao.insert(Category(id = 3, title = "Transportation"))
+                categoryDao.insert(Category(id = 4, title = "Clothing"))
+                categoryDao.insert(Category(id = 5, title = "Savings"))
             }
         }
 

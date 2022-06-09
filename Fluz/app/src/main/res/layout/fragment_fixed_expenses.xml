@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.FixedIncome">
 
+    <Spinner
+        android:id="@+id/spinner_category_fe"
+        android:layout_width="160dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/regular_spinner_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toEndOf="@+id/editTextExpenseTag"
+        app:layout_constraintTop_toBottomOf="@+id/fixed_expenses_rv" />
+
     <TextView
         android:id="@+id/txt_total_expenses"
         android:layout_width="wrap_content"
@@ -48,7 +60,7 @@
         android:id="@+id/btn_add_fixed_expense"
         android:layout_width="160dp"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/fluz"
         android:insetLeft="0dp"
         android:insetTop="0dp"
@@ -61,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_category"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_category_fe"
         app:strokeColor="@color/fluz"
         app:strokeWidth="2dp" />
 
@@ -154,32 +166,6 @@
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextExpenseTag" />
-
-    <TextView
-        android:id="@+id/txt_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="Category"
-        app:layout_constraintStart_toEndOf="@+id/editTextExpenseTag"
-        app:layout_constraintTop_toBottomOf="@+id/fixed_expenses_rv" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="58dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#FFFFFF"
-        android:scaleType="centerInside"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:src="@drawable/edit_pencil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.738"
-        app:layout_constraintStart_toEndOf="@+id/txt_category"
-        app:layout_constraintTop_toBottomOf="@+id/fixed_expenses_rv" />
 
     <TextView
         android:id="@+id/error_txt_fixed_expenses"

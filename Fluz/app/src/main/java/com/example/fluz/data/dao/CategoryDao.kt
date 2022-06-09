@@ -14,6 +14,9 @@ interface CategoryDao {
     @Query("SELECT * FROM Category")
     fun getAll(): Flow<List<Category>>
 
+    @Query("SELECT * FROM Category WHERE id = :categoryId")
+    fun getOne(categoryId: Int): Flow<Category>
+
     @Transaction
     @Query("SELECT * FROM Category")
     fun getAllWithSubCategories(): Flow<List<CategoriesWithSubCategories>>
@@ -29,5 +32,8 @@ interface CategoryDao {
     @Transaction
     @Query("SELECT * FROM Category WHERE id = :categoryId")
     fun getWithUsers(categoryId: Int): Flow<CategoriesWithUsers>
+
+    @Query("DELETE FROM Category")
+    suspend fun deleteAll()
 
 }

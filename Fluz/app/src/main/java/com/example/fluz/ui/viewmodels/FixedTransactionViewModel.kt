@@ -1,12 +1,10 @@
 package com.example.fluz.ui.viewmodels
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.fluz.data.entities.Transaction
 import com.example.fluz.data.relashionships.TransactionAndCategory
 import com.example.fluz.data.relashionships.UserWithTransactions
+import com.example.fluz.data.repositories.CategoryRepository
 import com.example.fluz.data.repositories.TransactionRepository
 import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.flow.first
@@ -14,12 +12,16 @@ import kotlinx.coroutines.launch
 
 class FixedTransactionViewModel(
     private val userRepository: UserRepository,
-    private val transactionRepository: TransactionRepository
+    private val transactionRepository: TransactionRepository,
+    private val categoryRepository: CategoryRepository
+
 ) : ViewModel() {
 
     val incomeWithCategory = MutableLiveData<MutableList<TransactionAndCategory>>()
     val expensesWithCategory = MutableLiveData<MutableList<TransactionAndCategory>>()
     var connectedUserId: Int = -1
+
+    val allCategories = categoryRepository.allCategories().asLiveData()
 
     fun getTransactionsWithCategory(type: String) = viewModelScope.launch {
         var userWithTransactions: UserWithTransactions = userRepository.oneWithTransactions(connectedUserId).first()
@@ -68,12 +70,13 @@ class FixedTransactionViewModel(
 
 class FixedTransactionViewModelFactory(
     private val userRepository: UserRepository,
-    private val transactionRepository: TransactionRepository
+    private val transactionRepository: TransactionRepository,
+    private val categoryRepository: CategoryRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(FixedTransactionViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return FixedTransactionViewModel(userRepository, transactionRepository) as T
+            return FixedTransactionViewModel(userRepository, transactionRepository, categoryRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

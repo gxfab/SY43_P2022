@@ -1,5 +1,6 @@
 package com.example.fluz.ui.fragments
 
+import android.R
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -9,16 +10,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fluz.data.AppDatabase
+import com.example.fluz.data.entities.Category
+import com.example.fluz.data.entities.User
+import com.example.fluz.data.repositories.CategoryRepository
 import com.example.fluz.data.repositories.TransactionRepository
 import com.example.fluz.data.repositories.UserRepository
 import com.example.fluz.databinding.FragmentFixedIncomeBinding
 import com.example.fluz.ui.HomeActivity
 import com.example.fluz.ui.adapters.FixedTransactionListAdapter
 import com.example.fluz.ui.viewmodels.*
+import java.util.*
 
 class FixedIncome : Fragment() {
 
@@ -27,9 +33,10 @@ class FixedIncome : Fragment() {
     private val database by lazy { AppDatabase(this.context!!) }
     private val userRepository by lazy { UserRepository(database.UserDao()) }
     private val transactionRepository by lazy { TransactionRepository(database.TransactionDao()) }
+    private val categoryRepository by lazy { CategoryRepository(database.CategoryDao()) }
 
     private val fixedTransactionViewModel: FixedTransactionViewModel by viewModels {
-        FixedTransactionViewModelFactory(userRepository, transactionRepository)
+        FixedTransactionViewModelFactory(userRepository, transactionRepository, categoryRepository)
     }
 
     override fun onCreateView(
@@ -53,12 +60,19 @@ class FixedIncome : Fragment() {
             transactions.let { adapter.submitList(it) }
         }
 
+        fixedTransactionViewModel.allCategories.observe(this) {categories ->
+            val spinnerCategories = binding.spinnerCategoryFi
+            val adapterSpinnerCategories =
+                ArrayAdapter<Category>(this.context!!, R.layout.simple_spinner_dropdown_item, categories)
+            spinnerCategories.adapter = adapterSpinnerCategories
+        }
+
         fixedTransactionViewModel.getTransactionsWithCategory("income")
 
         binding.btnAddFixedIncome.setOnClickListener {
             val tag = binding.editTextIncomeTag.text.toString()
             val amount = binding.editTextAmount.text.toString()
-            // val category = binding.txtCategory.text.toString()
+            val category: Category = binding.spinnerCategoryFi.selectedItem as Category
 
             val errorText = binding.errorTxtFixedIncome
 
@@ -71,7 +85,7 @@ class FixedIncome : Fragment() {
                     amount.toInt(),
                     tag,
                     "income",
-                    1,
+                    category.id,
                     connectedUserId.toInt()
                 )
 
@@ -85,17 +99,9 @@ class FixedIncome : Fragment() {
             if (fixedTransactionViewModel.incomeWithCategory.value!!.isEmpty()) {
                 errorText.text = "Add at least one income"
             } else {
-                var totalIncome: Int = 0;
-                for (transaction in fixedTransactionViewModel.incomeWithCategory.value!!) {
-                    totalIncome += transaction.transaction.amount
-                }
-
-                val action = FixedIncomeDirections.actionFixedIncomeToFixedExpenses(totalIncome)
-
-                findNavController().navigate(action)
+                findNavController().navigate(com.example.fluz.R.id.action_fixedIncome_to_fixedExpenses)
             }
         }
-
 
         return binding.root
     }

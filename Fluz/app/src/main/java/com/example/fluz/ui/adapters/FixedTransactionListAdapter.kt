@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fluz.data.AppDatabase
 import com.example.fluz.data.relashionships.TransactionAndCategory
+import com.example.fluz.data.repositories.CategoryRepository
 import com.example.fluz.data.repositories.TransactionRepository
 import com.example.fluz.data.repositories.UserRepository
 import com.example.fluz.databinding.CreateBudgetItemBinding
@@ -22,9 +23,10 @@ class FixedTransactionListAdapter(fragment: Fragment) :
     private val database by lazy { AppDatabase(fragment.requireContext()) }
     private val userRepository by lazy { UserRepository(database.UserDao()) }
     private val transactionRepository by lazy { TransactionRepository(database.TransactionDao()) }
+    private val categoryRepository by lazy { CategoryRepository(database.CategoryDao()) }
 
     private val fixedTransactionViewModel: FixedTransactionViewModel by fragment.viewModels {
-        FixedTransactionViewModelFactory(userRepository, transactionRepository)
+        FixedTransactionViewModelFactory(userRepository, transactionRepository, categoryRepository)
     }
 
 

@@ -18,7 +18,7 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
 
     val allUsers = repository.allUsers().asLiveData()
 
-    fun register(email_address: String, password: String, username: String, currency: String) =
+    fun register(email_address: String, password: String, username: String, currency: String, budget_start_day: Int) =
         viewModelScope.launch {
             val hashPassword = HashUtils.sha256(password)
             try {
@@ -29,6 +29,7 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
                         hash_password = hashPassword,
                         username = username,
                         currency = currency,
+                        budget_start_day = budget_start_day,
                         created_at = System.currentTimeMillis().toString()
                     )
                 )
