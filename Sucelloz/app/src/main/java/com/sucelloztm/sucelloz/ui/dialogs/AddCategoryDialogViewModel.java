@@ -13,10 +13,10 @@ public class AddCategoryDialogViewModel extends AndroidViewModel {
 
     public AddCategoryDialogViewModel(@NonNull Application application) {
         super(application);
-        categoriesRepository= new CategoriesRepository(application);
+        this.categoriesRepository= new CategoriesRepository(application);
     }
 
     public void insert(Categories category){
-        categoriesRepository.insert(category);
+        this.categoriesRepository.insert(category);
     }
 }

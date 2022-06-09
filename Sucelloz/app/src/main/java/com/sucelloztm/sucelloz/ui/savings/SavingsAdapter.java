@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.sucelloztm.sucelloz.R;
+import com.sucelloztm.sucelloz.models.Savings;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHolder> {
 
-    private final ArrayList<Savings> localDataSet;
+    private List<Savings> savingsList;
 
 
     /**
@@ -26,7 +28,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameTextView;
         private final TextView deadlineTextView;
-        private final TextView amountTextView;
+        private final TextView goalTextView;
         private final ProgressBar progressBar;
 
         public ViewHolder(View view) {
@@ -34,7 +36,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
             // Define click listener for the ViewHolder's View
             nameTextView = view.findViewById(R.id.savings_name_text_view);
             deadlineTextView = view.findViewById(R.id.savings_deadline_text_view);
-            amountTextView = view.findViewById(R.id.savings_amount_text_view);
+            goalTextView = view.findViewById(R.id.savings_goal_text_view);
             progressBar = view.findViewById(R.id.savings_progress_bar);
         }
 
@@ -46,8 +48,8 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
             return deadlineTextView;
         }
 
-        public TextView getAmountTextView() {
-            return amountTextView;
+        public TextView getGoalTextView() {
+            return goalTextView;
         }
 
         public ProgressBar getProgressBar() {
@@ -61,8 +63,8 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
      * @param dataSet String[] containing the data to populate views to be used
      *                by RecyclerView.
      */
-    public SavingsAdapter(ArrayList<Savings> dataSet) {
-        localDataSet = dataSet;
+    public SavingsAdapter(List<Savings> dataSet) {
+        this.savingsList = dataSet;
     }
 
     // Create new views (invoked by the layout manager)
@@ -79,14 +81,13 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        Savings savings = localDataSet.get(position);
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getNameTextView().setText(savings.getName());
-        viewHolder.getDeadlineTextView().setText(savings.getDeadline());
-        String amount = savings.getReachedAmount()+"/"+ savings.getInitialAmount()+"€";
-        viewHolder.getAmountTextView().setText(amount);
-        viewHolder.getProgressBar().setProgress((int)savings.getPercentage(),true);
+        viewHolder.getNameTextView().setText(savingsList.get(position).getName());
+        viewHolder.getDeadlineTextView().setText(savingsList.get(position).getDeadline());
+        String amount = savingsList.get(position).getReachedAmount()+"/"+ savingsList.get(position).getInitialAmount()+"€";
+        viewHolder.getGoalTextView().setText(amount);
+        viewHolder.getProgressBar().setProgress((int)savingsList.get(position).getPercentage(),true);
 
 
     }
@@ -94,7 +95,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.size();
+        return savingsList.size();
     }
 
 }

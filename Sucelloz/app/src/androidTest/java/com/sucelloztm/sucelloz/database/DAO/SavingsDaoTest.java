@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.runner.AndroidJUnitRunner;
 
 import com.sucelloztm.sucelloz.database.SucellozDatabase;
 import com.sucelloztm.sucelloz.models.Savings;
@@ -41,7 +40,7 @@ public class SavingsDaoTest {
     public void insertSaving() throws Exception {
         Savings saving = new Savings("test", 011222, 1000);
         savingsDao.insertSaving(saving);
-        List<Savings> savings = savingsDao.getSavings();
+        List<Savings> savings = savingsDao.getAllSavings();
         assertEquals(savings.get(0).getName(), saving.getName());
     }
 
@@ -50,7 +49,7 @@ public class SavingsDaoTest {
         Savings saving1 = new Savings("test1", 011222, 1000);
         Savings saving2 = new Savings("test2", 011222, 1000);
         savingsDao.insertSavings(saving1, saving2);
-        List<Savings> savings = savingsDao.getSavings();
+        List<Savings> savings = savingsDao.getAllSavings();
         assertEquals(savings.get(0).getName(), saving1.getName());
         assertEquals(savings.get(1).getName(), saving2.getName());
     }
@@ -62,7 +61,7 @@ public class SavingsDaoTest {
         saving.setId(insertId);
         saving.setName("testUpdate");
         savingsDao.updateSaving(saving);
-        List<Savings> savings = savingsDao.getSavings();
+        List<Savings> savings = savingsDao.getAllSavings();
         assertEquals(savings.get(0).getName(), saving.getName());
     }
 
@@ -76,7 +75,7 @@ public class SavingsDaoTest {
         saving2.setId(insertId.get(1));
         saving2.setName("testUpdate2");
         savingsDao.updateSavings(saving1, saving2);
-        List<Savings> savings = savingsDao.getSavings();
+        List<Savings> savings = savingsDao.getAllSavings();
         assertEquals(savings.get(0).getName(), saving1.getName());
         assertEquals(savings.get(1).getName(), saving2.getName());
     }
@@ -87,7 +86,7 @@ public class SavingsDaoTest {
         long insertId = savingsDao.insertSaving(saving);
         saving.setId(insertId);
         savingsDao.deleteSaving(saving);
-        List<Savings> savings = savingsDao.getSavings();
+        List<Savings> savings = savingsDao.getAllSavings();
         assertThat(savings.isEmpty(), is(true));
     }
 
@@ -99,7 +98,7 @@ public class SavingsDaoTest {
         saving1.setId(insertId.get(0));
         saving2.setId(insertId.get(1));
         savingsDao.deleteSavings(saving1, saving2);
-        List<Savings> savings = savingsDao.getSavings();
+        List<Savings> savings = savingsDao.getAllSavings();
         assertThat(savings.isEmpty(), is(true));
     }
 }

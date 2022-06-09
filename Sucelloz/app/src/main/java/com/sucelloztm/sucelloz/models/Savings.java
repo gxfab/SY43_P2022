@@ -17,20 +17,32 @@ public class Savings {
     private String name;
 
     @ColumnInfo(name = "date")
-    private int date;
+    private String deadline;
 
-    @ColumnInfo(name = "amount")
-    private int amount;
+    @ColumnInfo(name = "initial-amount")
+    private int initialAmount;
+
+    @ColumnInfo(name = "reached-amount")
+    private int reachedAmount;
+
+    @ColumnInfo(name = "percentage")
+    private float percentage;
 
     // CONSTRUCTOR
     public Savings() {
     }
 
-    public Savings(String name, int date, int amount) {
+    public Savings(String name, String deadline, int initialAmount) {
         this.name = name;
-        this.date = date;
-        this.amount = amount;
+        this.deadline = deadline;
+        this.initialAmount = initialAmount;
+        this.reachedAmount = 0;
+        this.percentage = ((float)reachedAmount/initialAmount)*100;
     }
+
+
+
+
 
     //GETTER
     public long getId() {
@@ -41,12 +53,20 @@ public class Savings {
         return name;
     }
 
-    public int getDate() {
-        return date;
+    public String getDeadline() {
+        return deadline;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getInitialAmount() {
+        return initialAmount;
+    }
+
+    public int getReachedAmount() {
+        return reachedAmount;
+    }
+
+    public float getPercentage() {
+        return percentage;
     }
 
     //SETTER
@@ -58,11 +78,19 @@ public class Savings {
         this.name = name;
     }
 
-    public void setDate(int date) {
-        this.date = date;
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setInitialAmount(int initialAmount) {
+        this.initialAmount = initialAmount;
+    }
+
+    public void setReachedAmount(int reachedAmount) {
+        this.reachedAmount = reachedAmount;
+    }
+
+    public void setPercentage(float percentage) {
+        this.percentage = percentage;
     }
 }

@@ -20,14 +20,14 @@ public class CategoriesViewModel extends AndroidViewModel {
 
     public CategoriesViewModel(Application application) {
         super(application);
-        categoriesRepository = new CategoriesRepository(application);
+        this.categoriesRepository = new CategoriesRepository(application);
     }
 
     public LiveData<List<Categories>> getAllCategories() {
-        if (currentCategories == null) {
-            currentCategories = categoriesRepository.getAllCategories();
+        if (this.currentCategories == null) {
+            this.currentCategories = categoriesRepository.getAllCategories();
         }
-        return currentCategories;
+        return this.currentCategories;
     }
 
 }
