@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".Bienvenue">
 
     <ImageView
         android:id="@+id/noappnogain_image"
