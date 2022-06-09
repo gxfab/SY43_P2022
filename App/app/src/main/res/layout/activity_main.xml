@@ -22,6 +22,29 @@
         app:srcCompat="@drawable/ic_menu_button"
         android:contentDescription="@string/return_to_the_homepage"/>
 
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:textSize="24dp"
+        android:layout_gravity="center"
+         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addbutton"
+        android:text="Add"
+        android:textSize="24dp"
+        android:layout_marginTop="500dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewbutton"
+        android:text="View"
+        android:textSize="24dp"
+        android:layout_marginTop="550dp"/>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -33,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Actual_budget"
+            android:text=""
             android:textColor="#9E9E9E" />
 
     </androidx.appcompat.widget.Toolbar>

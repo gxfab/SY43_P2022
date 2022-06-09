@@ -12,7 +12,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create Table User(ID INT primary key, NAME_USER TEXT)");
+        db.execSQL("create Table User(ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME_USER TEXT NOT NULL)");
     }
 
     @Override
@@ -20,10 +20,9 @@ public class DBHelper extends SQLiteOpenHelper{
         db.execSQL("drop Table if exists User");
     }
 
-    public Boolean addUser(int id, String name){
+    public Boolean addUser(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("ID", id);
         contentValues.put("NAME_USER", name);
         long result = db.insert("User", null, contentValues);
         if (result==-1){
@@ -33,10 +32,10 @@ public class DBHelper extends SQLiteOpenHelper{
         }
     }
 
-    public Boolean updateUser(int id, String name){
+    public Boolean updateUser(int id, String newName){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("NAME_USER", name);
+        contentValues.put("NAME_USER", newName);
         Cursor cursor = db.rawQuery("Select * from User where ID = ?", new String[] {Integer.toString(id)});
         if (cursor.getCount()>0){
             long result = db.update("User", contentValues, "ID=?", new String[] {Integer.toString(id)});
@@ -52,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     }
 
-    public Boolean deleteUser(int id, String name){
+    public Boolean deleteUser(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from User where ID = ?", new String[] {Integer.toString(id)});
         if (cursor.getCount()>0){
@@ -69,7 +68,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     }
 
-    public Cursor getUser(){
+    public Cursor getUsers(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from User", null);
         return cursor;
