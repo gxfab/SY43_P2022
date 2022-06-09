@@ -1,7 +1,7 @@
 package fr.sy.lebudgetduzero.database.dao
 
 import androidx.room.*
-import fr.sy.lebudgetduzero.IncomeItem
+import fr.sy.lebudgetduzero.item.IncomeItem
 
 
 @Dao

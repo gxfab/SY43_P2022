@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
-import fr.sy.lebudgetduzero.IncomeItem
 import fr.sy.lebudgetduzero.MainActivity
 import fr.sy.lebudgetduzero.R
 import fr.sy.lebudgetduzero.adapter.IncomeAdapter

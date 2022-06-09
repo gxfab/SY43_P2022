@@ -1,4 +1,4 @@
-package fr.sy.lebudgetduzero
+package fr.sy.lebudgetduzero.item
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
