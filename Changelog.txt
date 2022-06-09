@@ -22,3 +22,17 @@ Features
 - Bar navigation
 - Page depense
 - Page revenu
+
+***************************************************************************************
+
+2.1.1 (2022-06-09)
+
+Release Highlights
+- Kotlin
+
+Features
+- Partie connexion à la database qui marche sur l'autre projet : Reste à l'implémenter correctement dans le projet "NoAppNoGain"
+
+Bugs
+- This Activity already has an action bar supplied by the window decor. Do not request Window.FEATURE_SUPPORT_ACTION_BAR and set windowActionBar to false in your theme to use a Toolbar instead ???
+
