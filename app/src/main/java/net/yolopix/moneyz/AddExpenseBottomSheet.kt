@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
@@ -17,6 +18,7 @@ import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Category
 import net.yolopix.moneyz.model.entities.Expense
 import net.yolopix.moneyz.model.entities.Month
+import java.time.Duration
 import java.time.LocalDate
 
 /**
@@ -106,11 +108,30 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
         }
 
         // Date picker
+        val datePickerConstraints =
+            CalendarConstraints.Builder()
+                .setStart(monthAsLocalDate.toEpochDay() * 86400000) // Convert epoch day to millis
+                .setEnd(LocalDate.now().toEpochDay() * 86400000)
+                .build()
         val datePicker = MaterialDatePicker.Builder.datePicker()
             .setTitleText(R.string.expense_date)
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .setCalendarConstraints(datePickerConstraints)
             .build()
+        datePicker.addOnPositiveButtonClickListener {
+            editTextExpenseDay.setText(
+                LocalDate.ofEpochDay(
+                    Duration.ofMillis(it).toDays()
+                ).dayOfMonth.toString()
+            )
+        }
 
+        val calendarButton: Button = view.findViewById(R.id.button_calendar)
+        calendarButton.setOnClickListener {
+            datePicker.show(parentFragmentManager, "tag")
+        }
+
+        // Populate spinner with categories
         lifecycleScope.launch {
             categorySpinner.adapter = ArrayAdapter(
                 requireContext(),
@@ -122,6 +143,9 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
 
     }
 
+    /**
+     * Add an expense to the database using details from the form
+     */
     private fun addExpense() {
         // Fetch the account name in the EditText and add it to the database
         val expenseName = editTextExpenseName.text.toString()

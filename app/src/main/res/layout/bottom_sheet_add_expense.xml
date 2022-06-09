@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -47,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
+        android:gravity="start|center_vertical"
         android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -82,7 +84,20 @@
                 android:layout_marginStart="8dp"
                 android:ems="10"
                 android:inputType="date" />
+
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_calendar"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_outline_calendar_today_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/material_on_background_emphasis_high_type"
+            app:strokeColor="@color/material_on_background_emphasis_high_type"/>
+
     </LinearLayout>
 
     <Button
