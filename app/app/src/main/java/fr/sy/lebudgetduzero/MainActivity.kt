@@ -22,16 +22,20 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     //Data nécessaire en test
     private val tx : Int = 60
-    private val money : Float= 1566.85F
 
 
+    /**
+     * On create of the main activty to show overview
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //Traitement base de données
         val applicationScope = CoroutineScope(SupervisorJob())
         applicationScope.launch {
-            val db=AppDatabase.getDatabase(applicationContext,applicationScope)
+            val db=AppDatabase.getDatabase(applicationContext)
 
             //Données de test
             db.incomeDao().deleteAll()
@@ -64,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         //Traitement base de données
         val applicationScope = CoroutineScope(SupervisorJob())
         applicationScope.launch {
-            val db=AppDatabase.getDatabase(applicationContext,applicationScope)
+            val db=AppDatabase.getDatabase(applicationContext)
 
             //Entrées du mois
             val incomeMonth=db.incomeDao().getIncomeValue(1654034409)
@@ -75,16 +79,17 @@ class MainActivity : AppCompatActivity() {
             val spentMonth=db.spentDao().getSpentValue(1654034409)
             val textViewSpent: TextView = findViewById(R.id.S_ValueMonth) as TextView
             textViewSpent.text=spentMonth.toString() + "€ dépensés ce mois."
+
+            //Argent disponible
+            val money=db.incomeDao().getIncomeValue(0)-db.spentDao().getSpentValue(0)
+            val textViewArgent : TextView = findViewById(R.id.B_MoneyAvailable) as TextView
+            textViewArgent.text= money.toString() + "€ disponible"
         }
 
 
         //Mise à jour de l'élément du taux restants dans le mois
         val textViewTaux : TextView = findViewById(R.id.B_DepenseTaux) as TextView
         textViewTaux.text= "Vous avez dépensé " + this.tx + "% de votre budget mensuel"
-
-        //Mise à jour de l'argent restant
-        val textViewArgent : TextView = findViewById(R.id.B_MoneyAvailable) as TextView
-        textViewArgent.text= this.money.toString() + "€ disponible"
 
     }
 

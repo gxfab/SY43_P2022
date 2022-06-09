@@ -9,10 +9,16 @@ import fr.sy.lebudgetduzero.database.dao.*
 import fr.sy.lebudgetduzero.item.SpentItem
 import kotlinx.coroutines.CoroutineScope
 
+/**
+ * App database to manage local database
+ *
+ * @constructor Create empty App database
+ */
 @Database(entities = [IncomeItem::class, SpentItem::class], version = 1, exportSchema = false)
 abstract class AppDatabase:RoomDatabase(){
     abstract fun incomeDao(): IncomeDao
     abstract fun spentDao(): SpentDao
+
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -20,7 +26,13 @@ abstract class AppDatabase:RoomDatabase(){
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope): AppDatabase {
+        /**
+         * Function which permite to get the database to do some request
+         *
+         * @param context
+         * @return
+         */
+        fun getDatabase(context: Context): AppDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {

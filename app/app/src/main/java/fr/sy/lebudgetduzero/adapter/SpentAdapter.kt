@@ -10,20 +10,40 @@ import fr.sy.lebudgetduzero.R
 import fr.sy.lebudgetduzero.item.SpentItem
 import java.text.SimpleDateFormat
 
+/**
+ * Spent adapter
+ *
+ * @property context
+ * @property spentList List of spent to show
+ * @property layoutId
+ * @constructor Create the Spent adapter
+ */
 class SpentAdapter (
     private val context: MainActivity,
     private val spentList:List<SpentItem>,
     private val layoutId: Int
 ): RecyclerView.Adapter<SpentAdapter.ViewHolder>(){
 
-    //Boite pour ranger tous les composants à controler
+    /**
+     * Box to store attributes of a spent
+     *
+     * @constructor
+     *
+     * @param view
+     */
     class ViewHolder(view:View): RecyclerView.ViewHolder(view) {
-        //Nom de l'income
         val spentTitle = view.findViewById<TextView>(R.id.nameText)
         val spentDate = view.findViewById<TextView>(R.id.dateText)
         val spentValue = view.findViewById<TextView>(R.id.priceText)
     }
 
+    /**
+     * On create view holder
+     *
+     * @param parent
+     * @param viewType
+     * @return The view holder
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view= LayoutInflater
             .from(parent.context)
@@ -32,6 +52,12 @@ class SpentAdapter (
         return ViewHolder(view)
     }
 
+    /**
+     * On bind view holder
+     *
+     * @param holder
+     * @param position
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //Recuperation info de la liste
         val currentSpent=spentList[position]
@@ -44,6 +70,11 @@ class SpentAdapter (
         holder.spentValue.text=currentSpent.value.toString()
     }
 
+    /**
+     * Get the number of item
+     *
+     * @return integer of number of item
+     */
     override fun getItemCount(): Int {
         return spentList.size
     }

@@ -14,8 +14,22 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
+/**
+ * Spent fragment
+ *
+ * @property context
+ * @constructor Create the spent fragment
+ */
 class SpentFragment(private val context:MainActivity): Fragment() {
 
+    /**
+     * On create view
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,7 +40,7 @@ class SpentFragment(private val context:MainActivity): Fragment() {
         //Traitement base de données dans un autre thread
         val applicationScope = CoroutineScope(SupervisorJob())
         applicationScope.launch {
-            val db=AppDatabase.getDatabase(context,applicationScope)
+            val db=AppDatabase.getDatabase(context)
 
             val adapter= SpentAdapter(context, db.spentDao().getAll(), R.layout.item_activity)
             activity?.runOnUiThread{
