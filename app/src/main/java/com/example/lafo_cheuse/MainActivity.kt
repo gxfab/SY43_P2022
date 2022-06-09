@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     var fragmentsIdList : ArrayList<Int>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val wesh = 0;
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
