@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import fr.sy.lebudgetduzero.item.IncomeItem
 import fr.sy.lebudgetduzero.database.dao.*
 import fr.sy.lebudgetduzero.item.SpentItem
+import fr.sy.lebudgetduzero.item.TypeItem
 import kotlinx.coroutines.CoroutineScope
 
 /**
@@ -14,10 +15,11 @@ import kotlinx.coroutines.CoroutineScope
  *
  * @constructor Create empty App database
  */
-@Database(entities = [IncomeItem::class, SpentItem::class], version = 1, exportSchema = false)
+@Database(entities = [IncomeItem::class, SpentItem::class, TypeItem::class], version = 1, exportSchema = false)
 abstract class AppDatabase:RoomDatabase(){
     abstract fun incomeDao(): IncomeDao
     abstract fun spentDao(): SpentDao
+    abstract fun balanceDao(): BalanceDao
 
 
     companion object {

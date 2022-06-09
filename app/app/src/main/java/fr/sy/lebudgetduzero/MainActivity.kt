@@ -35,7 +35,13 @@ class MainActivity : AppCompatActivity() {
         //Traitement base de données
         val applicationScope = CoroutineScope(SupervisorJob())
         applicationScope.launch {
+
+            //Db first settings
             val db=AppDatabase.getDatabase(applicationContext)
+            try{
+                db.balanceDao().insertTypes()
+            }catch (e: Exception) {}
+
 
             //Données de test
             db.incomeDao().deleteAll()
@@ -46,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             db.spentDao().deleteAll()
             db.spentDao().insertAll(SpentItem(name="Boulangerie",value=2.56F,date= 1654170437,id_type = 1))
             db.spentDao().insertAll(SpentItem(name="Carrefour",value=25.6F,date= 1654170437,id_type = 1))
-            db.spentDao().insertAll(SpentItem(name="Essence",value=62.31F,date= 1654170437,id_type = 5))
+            db.spentDao().insertAll(SpentItem(name="Essence",value=62.31F,date= 1654170437,id_type = 3))
             db.spentDao().insertAll(SpentItem(name="Netflix",value=14.99F,date= 1654170437,id_type = 4))
             db.spentDao().insertAll(SpentItem(name="Bar",value=9.95F,date= 1654170437,id_type = 3))
 
