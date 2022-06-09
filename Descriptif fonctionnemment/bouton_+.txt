@@ -1,0 +1,27 @@
+bouton "+" (ajouter une dépense) :
+1er choix : type d'entrée (dépense, revenu, dette, savings)
+dépend de l'écran sur lequel on est (ex : si dépense, automatiquement dépense, idem autre)
+si écran général, bouton radio avec type
+
+(a) 2ème : catégorie 
+liste dropdown, apparait uniquement quand type d'entrée choisi / s'update quand modifié
+option nouvelle catégorie --> renvoie vers form catégorie
+n'apparait pas si dette (nouvelle dette = nouvelle catégorie de dette)
+
+(a) 3ème : caractéristiques
+amount (vérif +/-), label (facultatif)
+pas d'option de modification de la date (défaut: aujourd'hui)
+
+(b) option dette:
+Nom, montant total, nombre de mois
+
+Si écran catégories :
+bouton radio type 
+	- savings : label, max_amount (checkbox, -1 if unchecked), pourcentage (checkbox)
+	--> redirection vers page savings quand validé avec validation % / priorité
+	- dépense : 
+	nom
+	checkbox sous-catégorie (liste dropdown des catégories parentes si checked)
+	checkbox is_stable
+	- revenu : idem sans sous-catégorie
+	- dette : idem choix hors catégorie
