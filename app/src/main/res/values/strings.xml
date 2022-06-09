@@ -12,6 +12,8 @@
     <string name="settings_fragment">Settings Fragment</string>
     <string name="display_the_charts">display the charts</string>
     <string name="budgetNameHolder">Aucun budget à afficher</string>
+    <string name="budgetNameHolderComplete">Budget %1$s %2$s :</string>
+    <string name="no_data_found">Aucune dépense rentrée 😶</string>
     <string name="budgets">Budgets</string>
     <string name="home_french">Accueil</string>
     <string name="expenses_incomes">Dépenses</string>
