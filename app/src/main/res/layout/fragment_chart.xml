@@ -31,7 +31,8 @@
             android:src="@drawable/ic_gauge"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/silo_background_explication" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/categoryButton"
@@ -58,15 +59,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
+            android:id="@+id/switchGraph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="50dp"
             android:clickable="true"
+            android:contentDescription="@string/switchGraph"
             android:src="@drawable/ic_baseline_swap_horiz_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
