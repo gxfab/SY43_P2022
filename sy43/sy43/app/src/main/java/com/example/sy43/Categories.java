@@ -20,13 +20,13 @@ public class Categories extends AppCompatActivity {
     Spinner sp_categories, sp_subcategories;
     ArrayAdapter<String> arrayAdapter_categories, arrayAdapter_subcategories;
     ArrayList<String> arrayList_categories, arrayList_Communication, arrayList_Clothing, arrayList_Entertainment, arrayList_Finance, arrayList_Food, arrayList_Health, arrayList_Housing, arrayList_Transport;
-    CardView house_icon;
+    ImageView house_icon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        house_icon= findViewById(R.id.Housing);
+        house_icon= findViewById(R.id.home_icon);
         house_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

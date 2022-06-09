@@ -15,9 +15,9 @@ public class MyFragmentAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         if(position==1){
-            return new add_expense();
+            return new latest_expenses();
         }
-        return new latest_expenses();
+        return new add_expense();
     }
 
     @Override

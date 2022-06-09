@@ -1,5 +1,6 @@
 package com.example.sy43.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -10,10 +11,10 @@ import java.util.List;
 @Dao
 public interface ExpensesDao {
     @Query("SELECT * FROM Expenses")
-    List<Expenses> getAll();
+    LiveData<List<Expenses>> getAll();
 
     @Query("SELECT * FROM Expenses WHERE id IN (:expID)")
-    List<Expenses> loadAllByIDs(int[] expID);
+    LiveData<List<Expenses>> loadAllByIDs(int[] expID);
 
     @Query("SELECT * FROM Expenses WHERE e_name LIKE :name LIMIT 1")
     Expenses findByName(String name);
@@ -21,12 +22,12 @@ public interface ExpensesDao {
     @Query( "SELECT * FROM Expenses " +
             "INNER JOIN SubCategory on SubCategory.id = Expenses.e_subcategory " +
             "WHERE SubCategory.id = :category")
-    List<Expenses> findBySubCategory(int category);
+    LiveData<List<Expenses>> findBySubCategory(int category);
 
     @Query( "SELECT * FROM Expenses " +
             "INNER JOIN MonthlyRevenue on MonthlyRevenue.id = Expenses.e_monthlyrevenue " +
             "WHERE MonthlyRevenue.id = :month")
-    List<Expenses> findByMonth(int month);
+    LiveData<List<Expenses>> findByMonth(int month);
 
     @Insert
     void insertAll(Expenses... exp);

@@ -1,5 +1,6 @@
 package com.example.sy43.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -10,10 +11,10 @@ import java.util.List;
 @Dao
 public interface CategoryDao {
     @Query("SELECT * FROM Category")
-    List<Category> getAll();
+    LiveData<List<Category>> getAll();
 
     @Query("SELECT * FROM Category WHERE id IN (:catID)")
-    List<Category> loadAllByIDs(int[] catID);
+    LiveData<List<Category>> loadAllByIDs(int[] catID);
 
     @Query("SELECT * FROM Category WHERE c_name LIKE :name LIMIT 1")
     Category findByName(String name);
