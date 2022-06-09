@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 }else  {
                     Log.d("DB", "Data insertion failed");
                 }
-
-
-
             }
         });
 
