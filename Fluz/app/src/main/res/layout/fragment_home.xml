@@ -3,62 +3,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:sc="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.Home">
 
-    <com.sccomponents.gauges.library.ScArcGauge
+    <com.sccomponents.gauges.ScArcGauge
         android:id="@+id/gauge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:paddingLeft="50dp"
         android:paddingTop="10dp"
         android:paddingRight="50dp"
         android:paddingBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:sccAngleStart="135"
-        app:sccAngleSweep="270"
-        app:sccProgressColor="#ffff00ff"
-        app:sccProgressSize="10dp"
-        app:sccStrokeColor="#009688"
-        app:sccStrokeWidth="10dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_days_remaining"
+        sc:angleStart="135"
+        sc:angleSweep="270"
+        sc:progressColor="@color/fluz"
+        sc:progressSize="10dp"
+        sc:strokeColor="#009688"
+        sc:strokeSize="10dp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <TextView
+        android:id="@+id/txt_left_for_month"
         android:layout_width="wrap_content"
-        android:layout_height="258dp"
-        android:layout_marginTop="350dp"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Left for the month"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintTop_toTopOf="parent"
+        sc:layout_constraintEnd_toEndOf="parent"
+        sc:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_left_for_month_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="1230 €"
+        android:textColor="#4A5568"
+        android:textSize="38sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/txt_left_for_month" />
 
-        <TextView
-            android:id="@+id/txt_spent_total_budget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Amount"
-            android:textColor="#009688"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/txt_budget_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="March 25 - April 24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_left_for_month_amount" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/spent_on"
-            android:textColor="#009688"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/txt_days_remaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="6 days remaining"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_budget_date" />
 
-        <TextView
-            android:id="@+id/txt_total_budget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:text="5000"
-            android:textColor="#009688"
-            android:textSize="38sp" />
+    <TextView
+        android:id="@+id/txt_spent_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="500 €"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gauge" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="spent on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_spent_amount" />
+
+    <TextView
+        android:id="@+id/txt_total_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="1500 €"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

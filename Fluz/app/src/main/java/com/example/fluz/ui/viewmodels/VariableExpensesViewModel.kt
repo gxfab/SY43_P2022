@@ -40,14 +40,17 @@ class VariableExpensesViewModel(
         val currentUser = userRepository.oneUser(userId).first()
 
         val currentDate = Calendar.getInstance()
-        val currentMonth = SimpleDateFormat("MMM").format(currentDate.time)
+        if (currentUser.budget_start_day > currentDate.get(Calendar.DAY_OF_MONTH)) {
+            currentDate.add(Calendar.MONTH, -1)
+        }
 
-        val startDate: String = currentUser.budget_start_day.toString() +  " " + currentMonth + " " + SimpleDateFormat("YYYY").format(currentDate.time)
+        val budgetStartMonth = SimpleDateFormat("MMM").format(currentDate.time)
+
+        val startDate: String = currentUser.budget_start_day.toString() +  " " + budgetStartMonth + " " + SimpleDateFormat("YYYY").format(currentDate.time)
 
         currentDate.add(Calendar.MONTH, 1)
-        val nextMonth = SimpleDateFormat("MMM").format(currentDate.time)
 
-        val endDate: String = ((currentUser.budget_start_day) - 1).toString() +  " " + nextMonth + " " + SimpleDateFormat("YYYY").format(currentDate.time)
+        val endDate: String = currentUser.budget_start_day.toString() +  " " + SimpleDateFormat("MMM").format(currentDate.time) + " " + SimpleDateFormat("YYYY").format(currentDate.time)
 
 //        println("Start date : $startDate")
 //        println("End date : $endDate")
@@ -154,7 +157,6 @@ class VariableExpensesViewModel(
         }
 
         expenses.value = totalExpenses
-
     }
 
 }
