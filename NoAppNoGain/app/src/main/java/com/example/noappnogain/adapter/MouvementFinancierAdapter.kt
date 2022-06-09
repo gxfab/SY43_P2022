@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.MainActivity
-import com.example.noappnogain.MouvementFinancier
+import com.example.noappnogain.Model.MouvementFinancier
 import com.example.noappnogain.R
 
 class MouvementFinancierAdapter (
