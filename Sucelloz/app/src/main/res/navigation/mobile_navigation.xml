@@ -20,9 +20,8 @@
 
     <fragment
         android:id="@+id/navigation_spendings"
-        android:name="com.sucelloztm.sucelloz.ui.spendings.SpendingsFragment"
-        android:label="@string/spendings_name"
-        tools:layout="@layout/spendings_fragment" />
+        android:name="com.sucelloztm.sucelloz.ui.spendings.SpendingsTabsFragment"
+        android:label="@string/spendings_name" />
     <fragment
         android:id="@+id/navigation_savings"
         android:name="com.sucelloztm.sucelloz.ui.savings.SavingsFragment"

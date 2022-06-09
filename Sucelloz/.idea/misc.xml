@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.11875" />
         <entry key="app/src/main/res/layout/add_category_dialog_fragment.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/add_savings_dialog_fragment.xml" value="0.42993621826171874" />
         <entry key="app/src/main/res/layout/add_spending_dialog_fragment.xml" value="0.3518218994140625" />
         <entry key="app/src/main/res/layout/categories_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/categories_item.xml" value="0.2552083333333333" />
+        <entry key="app/src/main/res/layout/savings_fragment.xml" value="0.11875" />
         <entry key="app/src/main/res/layout/savings_item.xml" value="0.2868972778320313" />
+        <entry key="app/src/main/res/layout/spendings_item.xml" value="0.11875" />
+        <entry key="app/src/main/res/layout/spendings_tabs_fragment.xml" value="0.327108154296875" />
       </map>
     </option>
   </component>
