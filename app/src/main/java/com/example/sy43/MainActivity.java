@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Categorydb category2 = new Categorydb();
-        category2.setCatName("Ceci est un test slt");
+        category2.setCatName("aled");
 
         Futures.addCallback(
                 db.CategoryDAO().insert(category2),
