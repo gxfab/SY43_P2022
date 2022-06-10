@@ -42,6 +42,9 @@ public interface CategoriesDao {
     @Query("SELECT * FROM categories")
     List<CategoriesWithSubCategories> getCategoriesWithSubCategories();
 
+    @Query("SELECT * FROM categories WHERE name LIKE :categoryName")
+    Categories getCategoryByName(String categoryName);
+
 }
 
 

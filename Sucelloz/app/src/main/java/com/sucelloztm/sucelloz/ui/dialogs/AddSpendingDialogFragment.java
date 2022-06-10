@@ -26,7 +26,9 @@ public class AddSpendingDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.ok_spending, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
-                        //Put data in model
+                        String nameOfSpending;
+                        int amountOfSpending;
+                        char signOfSpending;
                     }
                 })
                 .setNegativeButton(R.string.cancel_spending, new DialogInterface.OnClickListener() {

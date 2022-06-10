@@ -1,11 +1,7 @@
 package com.sucelloztm.sucelloz.domain;
 
-import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
-import com.sucelloztm.sucelloz.repositories.MainRepository;
-
-import java.util.ArrayList;
+import com.sucelloztm.sucelloz.models.Categories;
 
 public class CategoriesDomain {
-
 
 }

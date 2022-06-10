@@ -16,9 +16,9 @@ public class SpendingsTabsFragmentAdapter extends FragmentStateAdapter {
     public SpendingsTabsFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
         spendingsFragmentList = new ArrayList<>();
-        SpendingsFragment spendingsFragment= new SpendingsFragment();
+        PositiveSpendingsFragment positiveSpendingsFragment = new PositiveSpendingsFragment();
         NegativeSpendingsFragment negativeSpendingsFragment = new NegativeSpendingsFragment();
-        this.spendingsFragmentList.add(spendingsFragment);
+        this.spendingsFragmentList.add(positiveSpendingsFragment);
         this.spendingsFragmentList.add(negativeSpendingsFragment);
     }
 

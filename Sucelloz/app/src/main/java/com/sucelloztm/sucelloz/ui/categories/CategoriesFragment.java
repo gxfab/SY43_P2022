@@ -5,22 +5,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sucelloztm.sucelloz.MainActivity;
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.CategoriesFragmentBinding;
 import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
+import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,8 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
     private CategoriesFragmentBinding binding;
     private CategoriesViewModel categoriesViewModel;
     private List<Categories> currentCategoriesList;
+    private RecyclerView recyclerView;
+
 
 
     @Override
@@ -59,9 +62,20 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
             }
         };
         categoriesViewModel.getAllCategories().observe(getViewLifecycleOwner(),categoriesDataSet);
-        RecyclerView recyclerView = binding.outerRecyclerView;
+        recyclerView = binding.outerRecyclerView;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.setAdapter(adapter);
+        ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                TextView currentCategoryTextView=(TextView) v.findViewById(R.id.text_view_categories);
+                String currentCategoryName = currentCategoryTextView.getText().toString();
+                Categories currentCategory = categoriesViewModel.getCategoryByName(currentCategoryName);
+                categoriesViewModel.setCurrentCategory(currentCategory);
+                NavHostFragment.findNavController(CategoriesFragment.this).navigate(R.id.action_navigation_categories_to_navigation_sub_categories);
+                //Log.d("CategoriesFragment",currentCategoryName);
+            }
+        });
 
 
         return root;

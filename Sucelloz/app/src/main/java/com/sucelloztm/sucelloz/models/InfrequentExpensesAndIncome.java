@@ -25,14 +25,14 @@ public class InfrequentExpensesAndIncome {
     private char sign;
 
     @ColumnInfo(name="date")
-    private int date;
+    private String date;
 
     @ColumnInfo(name="sub_categories_id")
     private long subCategoriesId;
 
     //CONSTRUCTOR
     public InfrequentExpensesAndIncome(){}
-    public InfrequentExpensesAndIncome(String name, int amount, char sign,int date, long subCategoriesId){
+    public InfrequentExpensesAndIncome(String name, int amount, char sign, String date, long subCategoriesId){
         this.name=name;
         this.amount=amount;
         this.sign=sign;
@@ -52,7 +52,7 @@ public class InfrequentExpensesAndIncome {
     public char getSign(){
         return sign;
     }
-    public int getDate(){
+    public String getDate(){
         return date;
     }
     public long getSubCategoriesId(){
@@ -71,7 +71,7 @@ public class InfrequentExpensesAndIncome {
     public void setSign(char sign){
         this.sign=sign;
     }
-    public void setDate(int date){
+    public void setDate(String date){
         this.date=date;
     }
     public void setSubCategoriesId(long subCategoriesId){

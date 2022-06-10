@@ -9,11 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sucelloztm.sucelloz.R;
+import com.sucelloztm.sucelloz.models.SubCategories;
+
+import java.util.List;
 
 
 public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdapter.ViewHolder> {
 
-    private final String[] localDataSet;
+    private List<SubCategories> subCategoriesList;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -34,14 +37,9 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
         }
     }
 
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
-    public SubCategoriesAdapter(String[] dataSet) {
-        localDataSet = dataSet;
+
+    public SubCategoriesAdapter(List<SubCategories> dataSet) {
+        this.subCategoriesList = dataSet;
     }
 
     // Create new views (invoked by the layout manager)
@@ -60,14 +58,14 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getTextView().setText(localDataSet[position]);
+        viewHolder.getTextView().setText(subCategoriesList.get(position).getName());
         
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+        return subCategoriesList.size();
     }
 
 }

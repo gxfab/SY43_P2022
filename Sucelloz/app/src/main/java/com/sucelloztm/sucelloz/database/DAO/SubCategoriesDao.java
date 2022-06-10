@@ -1,5 +1,6 @@
 package com.sucelloztm.sucelloz.database.DAO;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -9,6 +10,7 @@ import androidx.room.Transaction;
 import androidx.room.Query;
 import java.util.List;
 
+import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithStableExpensesAndIncome;
@@ -44,5 +46,6 @@ public interface SubCategoriesDao {
     @Query("SELECT * FROM sub_categories")
     List<SubCategoriesWithInfrequentExpensesAndIncome> getSubCategoriesWithInfrequentExpensesAndIncome();
 
-
+    @Query("SELECT * FROM sub_categories WHERE categories_id= :id")
+    LiveData<List<SubCategories>> getSubCategoriesWithCategoryId(long id);
 }

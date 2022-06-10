@@ -27,6 +27,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
 
 
+
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
@@ -35,7 +36,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
-        private final CardView cardView;
 
 
         public ViewHolder(View view) {
@@ -43,7 +43,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             // Define click listener for the ViewHolder's View
 
             textView = view.findViewById(R.id.text_view_categories);
-            cardView = view.findViewById(R.id.category_card_clickable);
         }
 
         public TextView getTextView() {
@@ -73,9 +72,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.getTextView().setText(categoriesList.get(position).getName());
-        //TODO:fix bug when clicking two categories at the same time
-        viewHolder.itemView.findViewById(R.id.category_card_clickable).setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_navigation_categories_to_navigation_sub_categories));
     }
 
     // Return the size of your dataset (invoked by the layout manager)

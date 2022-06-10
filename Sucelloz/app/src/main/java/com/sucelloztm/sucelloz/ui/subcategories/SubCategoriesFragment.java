@@ -7,28 +7,31 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.SubCategoriesFragmentBinding;
+import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSubCategoryDialogFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SubCategoriesFragment extends Fragment {
 
     private SubCategoriesFragmentBinding binding;
-    private String[] dataSet;
-    private static final int DATASET_COUNT = 60;
+    private SubCategoriesViewModel subCategoriesViewModel;
+    private List<SubCategories> currentSubCategoriesList;
+    private RecyclerView recyclerView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Initialize dataset, this data would usually come from a local content provider or
-        // remote server.
-        initDataset();
     }
 
 
@@ -38,11 +41,22 @@ public class SubCategoriesFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = SubCategoriesFragmentBinding.inflate(inflater,container,false);
-
         View root = binding.getRoot();
+        subCategoriesViewModel = new ViewModelProvider(this).get(SubCategoriesViewModel.class);
+        currentSubCategoriesList = new ArrayList<>();
+        SubCategoriesAdapter adapter = new SubCategoriesAdapter(currentSubCategoriesList);
+
+        final Observer<List<SubCategories>> subCategoriesDataSet = new Observer<List<SubCategories>>() {
+            @Override
+            public void onChanged(List<SubCategories> subCategories) {
+                currentSubCategoriesList.clear();
+                currentSubCategoriesList.addAll(subCategories);
+                adapter.notifyDataSetChanged();
+            }
+        };
+        subCategoriesViewModel.getSubCategories().observe(getViewLifecycleOwner(),subCategoriesDataSet);
         RecyclerView recyclerView = binding.innerRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        SubCategoriesAdapter adapter = new SubCategoriesAdapter(dataSet);
         recyclerView.setAdapter(adapter);
 
         return root;
@@ -72,15 +86,7 @@ public class SubCategoriesFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-//TODO : Put this method in the MVP Pattern
-
-    private void initDataset() {
-        dataSet = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            dataSet[i] = "This is element #" + i;
-        }
-    }
-    }
+}
 
 
 

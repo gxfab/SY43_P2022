@@ -30,4 +30,11 @@ public class CategoriesViewModel extends AndroidViewModel {
         return this.currentCategories;
     }
 
+    public Categories getCategoryByName(String categoryName){
+        return this.categoriesRepository.getCategoryByName(categoryName);
+    }
+
+    public void setCurrentCategory(Categories category){
+        CategoriesRepository.setCurrentCategory(category);
+    }
 }
