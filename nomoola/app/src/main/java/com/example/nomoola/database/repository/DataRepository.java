@@ -122,7 +122,25 @@ public class DataRepository {
         this.mInOutComeDAO.updateInOutCome(catID, subCatID, name, date, amount, id);
     }
 
-    public LiveData<Double> getPercentUsedOf(int subCategoryID){
+    public LiveData<Integer> getPercentUsedOf(int subCategoryID){
         return this.mInOutComeDAO.getPercentUsedOf(subCategoryID);
+    }
+
+    public LiveData<Double> getBudgetLeftOf(int categoryID){
+        return this.mInOutComeDAO.getBudgetLeftOf(categoryID);
+    }
+
+    public LiveData<Integer> getPercentUsedOfCategory(int categoryID){
+        return this.mInOutComeDAO.getPercentUsedOfCategory(categoryID);
+    }
+
+    public LiveData<List<Category>> getCategoriesOfType(Category.CategoryType type){
+        return this.mCategoryDAO.getCategoriesOfType(type);
+    }
+
+    public void update(Category category) {
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mCategoryDAO.updateCategory(category);
+        });
     }
 }

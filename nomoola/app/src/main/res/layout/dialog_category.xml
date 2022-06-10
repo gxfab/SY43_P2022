@@ -91,6 +91,22 @@
             android:textColor="@color/nomoola_grey_editText_preview"
             tools:ignore="TextContrastCheck" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/nomoola_type"
+            android:textColor="@color/nomoola_dark_title_dialog"
+            android:textSize="12sp" />
+
+        <Spinner
+            android:id="@+id/dialog_cat_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/nomoola_red"
+            android:minHeight="48dp"
+            android:spinnerMode="dropdown" />
+
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

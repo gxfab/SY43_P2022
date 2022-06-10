@@ -43,7 +43,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_weight="0"
-                    android:background="@drawable/roundcorner"
+                    android:background="@drawable/blue_button"
                     android:contentDescription="@string/category_edit_button"
                     android:padding="8dp"
                     android:scaleType="fitXY"

@@ -32,4 +32,7 @@ public interface CategoryDAO {
 
     @Query("SELECT * FROM T_CATEGORY WHERE CAT_ID=:catID")
     LiveData<Category> getCategoryFrom(int catID);
+
+    @Query("SELECT * FROM T_CATEGORY WHERE CAT_TYPE=:type")
+    LiveData<List<Category>> getCategoriesOfType(Category.CategoryType type);
 }

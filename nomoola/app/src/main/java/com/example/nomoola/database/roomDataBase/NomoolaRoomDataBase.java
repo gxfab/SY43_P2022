@@ -71,13 +71,15 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
         private void populateCategory(){
             CategoryDAO dao = INSTANCE.categoryDAO();
 
-            dao.insertCategory(new Category("Food", 150));
-            dao.insertCategory(new Category("Car", 250));
-            dao.insertCategory(new Category("Health", 50));
-            dao.insertCategory(new Category("Hobby", 50));
-            dao.insertCategory(new Category("Party", 100));
-            dao.insertCategory(new Category("Subscription", 35));
-            dao.insertCategory(new Category("School", 20));
+            dao.insertCategory(new Category("Food", 150, Category.CategoryType.OUTCOME, LocalDate.now()));
+            dao.insertCategory(new Category("Car", 250, Category.CategoryType.OUTCOME, LocalDate.now()));
+            dao.insertCategory(new Category("Subscription", 50, Category.CategoryType.OUTCOME, LocalDate.now()));
+
+            dao.insertCategory(new Category("Salary", 2000, Category.CategoryType.INCOME, LocalDate.now()));
+            dao.insertCategory(new Category("Invests", 500, Category.CategoryType.INCOME, LocalDate.now()));
+
+            dao.insertCategory(new Category("House", 250000, Category.CategoryType.PROJECT, LocalDate.now()));
+            dao.insertCategory(new Category("New Car", 10000, Category.CategoryType.PROJECT, LocalDate.now()));
         }
 
         private void populateSubCategory(){

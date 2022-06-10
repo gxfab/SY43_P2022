@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Nomoola</string>
 
     <!-- Category page -->
@@ -20,7 +20,21 @@
     <string name="nomoola_category_newCat">New Category</string>
     <string name="nomoola_inoutcome_addBille">Add Bill</string>
     <string name="nomoola_filtre">Filtre Button</string>
-    <string name="nomoola_inoutcome_date">mm dd yyyy</string>
+    <string name="nomoola_inoutcome_month">mm</string>
+    <string name="nomoola_inoutcome_day">dd</string>
+    <string name="nomoola_inoutcome_year">yyyy</string>
     <string name="nomoola_nav_back">Navigation Back</string>
+    <string name="nomoola_hi">Hi</string>
+    <string name="nomoola_percent_preview">100%</string>
+    <string name="nomoola_type" tools:ignore="ExtraTranslation">Type</string>
+    <string name="nomoola_income" >Income</string>
+    <string name="nomoola_outcome">Outcome</string>
+    <string name="nomoola_project">Project</string>
+
+    <string-array name="category_type">
+        <item>INCOME</item>
+        <item>OUTCOME</item>
+        <item>PROJECT</item>
+    </string-array>
 
 </resources>

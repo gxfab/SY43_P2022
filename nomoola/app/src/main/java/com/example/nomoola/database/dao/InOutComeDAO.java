@@ -44,5 +44,17 @@ public interface InOutComeDAO {
             "FROM T_INOUTCOME INNER JOIN T_CATEGORY" +
             " ON T_INOUTCOME.CAT_ID = T_CATEGORY.CAT_ID " +
             "WHERE T_INOUTCOME.SUBCAT_ID=:subCategoryID")
-    LiveData<Double> getPercentUsedOf(int subCategoryID);
+    LiveData<Integer> getPercentUsedOf(int subCategoryID);
+
+    @Query("SELECT CAT_BUDGET_AMOUNT-SUM(INOUTCOME_AMOUNT) " +
+            "FROM T_CATEGORY INNER JOIN T_INOUTCOME" +
+            " ON T_CATEGORY.CAT_ID = T_INOUTCOME.CAT_ID " +
+            "WHERE T_CATEGORY.CAT_ID=:categoryID")
+    LiveData<Double> getBudgetLeftOf(int categoryID);
+
+    @Query("SELECT (100*SUM(INOUTCOME_AMOUNT))/CAT_BUDGET_AMOUNT " +
+            "FROM T_INOUTCOME INNER JOIN T_CATEGORY" +
+            " ON T_INOUTCOME.CAT_ID = T_CATEGORY.CAT_ID " +
+            "WHERE T_INOUTCOME.CAT_ID=:categoryID")
+    LiveData<Integer> getPercentUsedOfCategory(int categoryID);
 }

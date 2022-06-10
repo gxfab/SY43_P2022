@@ -43,7 +43,7 @@ public class SubcategoryViewModel extends AndroidViewModel {
         mRepository.update(catID, subcatName, id);
     }
 
-    public LiveData<Double> getPercentUsedOf(SubCategory subCategory){
+    public LiveData<Integer> getPercentUsedOf(SubCategory subCategory){
         return this.mRepository.getPercentUsedOf(subCategory.getM_SUBCAT_ID());
     }
 }

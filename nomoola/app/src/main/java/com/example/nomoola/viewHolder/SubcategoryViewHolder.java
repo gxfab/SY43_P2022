@@ -70,10 +70,13 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
         this.subCategory = subcategory;
         this.subcatName.setText(this.subCategory.getM_SUBCAT_NAME());
 
-        this.subcategoryViewModel.getPercentUsedOf(this.subCategory).observe((LifecycleOwner) view.getContext(), new Observer<Double>() {
+        this.subcategoryViewModel.getPercentUsedOf(this.subCategory).observe((LifecycleOwner) view.getContext(), new Observer<Integer>() {
             @Override
-            public void onChanged(Double percentUsed) {
-                percentBudgetLeft.setProgress(percentUsed.intValue());
+            public void onChanged(Integer percentUsed) {
+                if(percentUsed == null){
+                    percentUsed = 0;
+                }
+                percentBudgetLeft.setProgress(percentUsed);
             }
         });
     }

@@ -38,4 +38,20 @@ public class CategoryViewModel extends AndroidViewModel {
     public void update(String name, double budgetAmount, int id) {
         mRepository.update(name, budgetAmount, id);
     }
+
+    public LiveData<Double> getBudgetLeftOf(Category category){
+        return this.mRepository.getBudgetLeftOf(category.getM_CAT_ID());
+    }
+
+    public LiveData<Integer> getPercentUsedOfCategory(Category category){
+        return this.mRepository.getPercentUsedOfCategory(category.getM_CAT_ID());
+    }
+
+    public LiveData<List<Category>> getCategoriesOfType(Category.CategoryType type){
+        return this.mRepository.getCategoriesOfType(type);
+    }
+
+    public void update(Category category) {
+        this.mRepository.update(category);
+    }
 }

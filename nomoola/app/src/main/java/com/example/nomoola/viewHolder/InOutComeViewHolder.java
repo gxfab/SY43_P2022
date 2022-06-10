@@ -37,8 +37,7 @@ public class InOutComeViewHolder extends RecyclerView.ViewHolder {
     public void bind(InOutCome inOutCome){
         this.inOutCome = inOutCome;
         this.nameView.setText(this.inOutCome.getM_INOUTCOME_NAME());
-        this.dateView.setText(Converters
-                .convertFromDate(this.inOutCome.getM_INOUTCOME_DATE()));
+        this.dateView.setText(this.inOutCome.getM_INOUTCOME_DATE().getMonth().toString());
         this.amountView.setText(this.inOutCome.getM_INOUTCOME_AMOUNT() + "€");
     }
 
