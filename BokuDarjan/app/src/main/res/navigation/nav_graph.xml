@@ -20,19 +20,11 @@
         android:name="com.example.bokudarjan.ExpensesFragment"
         android:label="fragment_expenses"
         tools:layout="@layout/fragment_expenses" />
-    <fragment
-        android:id="@+id/addExpenseFragment"
-        android:name="com.example.bokudarjan.AddExpenseFragment"
-        android:label="fragment_add_expense"
-        tools:layout="@layout/fragment_add_expense" />
+
     <fragment
         android:id="@+id/addCategoryFragment"
         android:name="com.example.bokudarjan.AddCategoryFragment"
         android:label="fragment_add_category"
         tools:layout="@layout/fragment_add_category" />
-    <fragment
-        android:id="@+id/addEnvelopeFragment"
-        android:name="com.example.bokudarjan.AddEnvelopeFragment"
-        android:label="fragment_add_envelope"
-        tools:layout="@layout/fragment_add_envelope" />
+
 </navigation>

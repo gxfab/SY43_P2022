@@ -1,27 +1,31 @@
 package com.example.bokudarjan
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.category.CategoryViewModel
 import com.example.bokudarjan.category.ListAdapterCategory
 import com.example.bokudarjan.envelope.EnvelopeViewModel
 import com.example.bokudarjan.envelope.ListAdapterEnvelope
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.envelope_category_card.view.*
 import kotlinx.android.synthetic.main.fragment_list_expense.view.*
 import kotlinx.android.synthetic.main.fragment_planification.view.*
+import java.util.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,21 +52,7 @@ class planificationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_planification, container, false)
-
-
-
-        //RecyclerView for envelope
-        /*val envelopeAdapter = ListAdapterEnvelope()
-        val envelopeRecyclerView : RecyclerView = view.recyclerViewEnvelope
-        envelopeRecyclerView.adapter = envelopeAdapter
-        envelopeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        // EnvelopeViewModel
-        envelopeViewModel = ViewModelProvider(this).get(EnvelopeViewModel::class.java)
-        envelopeViewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
-            envelopeAdapter.setData(user)
-        })*/
+        var view = inflater.inflate(R.layout.fragment_planification, container, false)
 
 
         //RecyclerView for category
@@ -74,9 +64,71 @@ class planificationFragment : Fragment() {
 
         // CategoryViewModel
         categoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
-        categoryViewModel.readAllData.observe(viewLifecycleOwner, Observer { category ->
+        /*categoryViewModel.readAllData.observe(viewLifecycleOwner, Observer { category ->
             categoryAdapter.setData(category)
+        })*/
+
+
+        var categoryList : MutableList<Category> = ArrayList<Category>()
+        var myWrapper: Any = object : Any() {
+            public var listValue : MutableList<Category> = ArrayList<Category>()
+        }
+
+        val list: MutableList<String> = ArrayList()
+        list.add("one")
+        /*
+        val a : Category = Category()
+        val b : Category = Category()
+
+        val categoryListTest : ArrayList<Category> = ArrayList(
+            Arrays.asList(a,b)
+        )
+        categoryList.addAll(categoryListTest)*/
+
+        Log.i("PlanificationFragment", "categoryList sizea" + (categoryList.size))
+
+
+        var observer : Observer<List<Category>> = Observer { category ->
+            val temp : List<Category> = ArrayList<Category>(category)
+
+            categoryList = ArrayList(category)
+            for (i : Int in 0..category.size-1) {
+                Log.i("PlanificationFragment", "category " + i + (categoryList[i].categoryName))
+                categoryList.add((category[i]))
+            }
+            Log.i("PlanificationFragment", "categoryList sizec" + (categoryList.size))
+        }
+        categoryViewModel.readAllData.observe(viewLifecycleOwner, observer)
+
+
+        Thread.sleep(1_000)
+
+        Log.i("PlanificationFragment", "category test")
+        Log.i("PlanificationFragment", "categoryList sizeb" + (categoryList.size))
+
+
+
+        for (i : Int in 0..categoryList.size-1) {
+            Log.i("PlanificationFragment", "categoryList" + i + (categoryList.get(i).categoryName
+                ?: String))
+        }
+
+
+
+
+        //RecyclerView for envelope
+        val envelopeAdapter = ListAdapterEnvelope()
+        val envelopeRecyclerView : RecyclerView = view.findViewById(R.id.recyclerViewEnvelope);
+        envelopeRecyclerView.adapter = envelopeAdapter
+        envelopeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // EnvelopeViewModel
+        envelopeViewModel = ViewModelProvider(this).get(EnvelopeViewModel::class.java)
+        envelopeViewModel.readAllData.observe(viewLifecycleOwner, Observer { envelope ->
+            envelopeAdapter.setData(envelope)
         })
+
+
 
         //Views
         val expandBtn = view.findViewById<FloatingActionButton>(R.id.expandButton);
