@@ -1,6 +1,7 @@
 package com.example.sy43.db.mainDB;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -23,7 +24,7 @@ import java.util.concurrent.Executors;
 
 public abstract class DB extends RoomDatabase{
 
-    private static DB INSTANCE;
+    private static volatile DB INSTANCE;
 
     public abstract CategoryDAO CategoryDAO();
     public abstract SubCategoryDAO SubCategoryDAO();
@@ -31,12 +32,17 @@ public abstract class DB extends RoomDatabase{
 
     public static DB getAppDatabase(Context context){
         if (INSTANCE==null){
-            INSTANCE =
-                    Room.databaseBuilder(context.getApplicationContext(), DB.class, "Database")
-                            // allow queries on the main thread.
-                            // Don't do this on a real app! See PersistenceBasicSample for an example.
-                            //.allowMainThreadQueries()
-                            .build();
+            synchronized (DB.class) {
+                if (INSTANCE == null) {
+                    Log.d("Test", "getAppDatabase: ");
+                    INSTANCE =
+                            Room.databaseBuilder(context.getApplicationContext(), DB.class, "Database")
+                                    // allow queries on the main thread.
+                                    // Don't do this on a real app! See PersistenceBasicSample for an example.
+                                    //.allowMainThreadQueries()
+                                    .build();
+                }
+            }
         }
         return INSTANCE;
     }
