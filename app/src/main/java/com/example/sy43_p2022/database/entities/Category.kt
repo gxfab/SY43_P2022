@@ -6,24 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "category")
-
-class Category {
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "id")
-    var id : Int = 0
-
-    @ColumnInfo(name = "name")
-    var name : String? = null
-
-    @ColumnInfo(name = "totalObjective")
-    var totalObjective : Int = 0
-
-    @ColumnInfo(name = "totalSpending")
-    var totalSpending : Int = 0
-
-    constructor(name: String) {
-        this.name = name
-    }
-
+class Category(@ColumnInfo(name = "name") var name : String) {
+    @PrimaryKey(autoGenerate = true) var id: Int = 0
+    @ColumnInfo(name = "amount") var amount: Int = 0
 }

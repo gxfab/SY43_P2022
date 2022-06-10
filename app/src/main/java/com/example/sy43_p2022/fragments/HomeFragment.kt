@@ -11,7 +11,7 @@ import com.example.sy43_p2022.R
 
 class HomeFragment: Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val button = inflater?.inflate(R.layout.fragment_home, container, false)
+        val button = inflater.inflate(R.layout.fragment_home, container, false)
 
         // Construct "spending" Home Fragment button
         val spendingBtn = button.findViewById<Button>(R.id.home_fragment_button_spendings)

@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.sy43_p2022.database.entity.Category
+import com.example.sy43_p2022.database.entities.Category
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
+import com.example.sy43_p2022.database.entities.SubCategory
 
-class TextEditAdapter(private val layoutId: Int, private val category: Category)
+class TextEditAdapter(private val layoutId: Int, private val category: SubCategory)
     : RecyclerView.Adapter<TextEditAdapter.TextEditViewHolder>() {
 
     inner class TextEditViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -22,11 +23,13 @@ class TextEditAdapter(private val layoutId: Int, private val category: Category)
     }
 
     override fun onBindViewHolder(holder: TextEditViewHolder, position: Int) {
+        /*
         category.getSubCategory(position).let {
             holder.category = it
             holder.title.text = it.getName()
         }
+         */
     }
 
-    override fun getItemCount(): Int = category.getAllSubCategories().size
+    override fun getItemCount(): Int = 13 // category.getAllSubCategories().size
 }
