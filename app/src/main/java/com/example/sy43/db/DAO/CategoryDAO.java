@@ -1,8 +1,11 @@
 package com.example.sy43.db.DAO;
 
 import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Dao;
+import androidx.room.Update;
 
 import com.example.sy43.db.entity.Categorydb;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -12,7 +15,14 @@ import java.util.List;
 
 
 @Dao
-public interface CategoryDAO{
+public
+interface CategoryDAO{
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public ListenableFuture<Void> insert(Categorydb... categories);
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    public ListenableFuture<Void> update(Categorydb... categories);
+
 
     @Query("SELECT * FROM Categorydb")
     public ListenableFuture<List<Categorydb>> findAll();
