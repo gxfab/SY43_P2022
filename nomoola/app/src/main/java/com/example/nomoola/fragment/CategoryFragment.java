@@ -53,8 +53,6 @@ public class CategoryFragment extends Fragment {
             }
         });
 
-
-
         mCatViewModel.getCategoriesOfType(Category.CategoryType.INCOME).observe(getViewLifecycleOwner(), categories -> {
             categoryIncomeAdapter.submitList(categories);
         });
@@ -68,6 +66,9 @@ public class CategoryFragment extends Fragment {
         });
 
         Log.d("CREATION", "onCreateView from " + this.getClass().toString() + " finished");
+
+
         return view;
+
     }
 }

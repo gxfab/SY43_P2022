@@ -1,5 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Nomoola</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="homepage">homePage</string>
+    <string name="historypage">historypage</string>
+    <string name="profilepage">profilepage</string>
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="profile">Profile</string>
 
     <!-- Category page -->
 
@@ -26,7 +34,7 @@
     <string name="nomoola_nav_back">Navigation Back</string>
     <string name="nomoola_hi">Hi</string>
     <string name="nomoola_percent_preview">100%</string>
-    <string name="nomoola_type" tools:ignore="ExtraTranslation">Type</string>
+    <string name="nomoola_type">Type</string>
     <string name="nomoola_income" >Income</string>
     <string name="nomoola_outcome">Outcome</string>
     <string name="nomoola_project">Project</string>
