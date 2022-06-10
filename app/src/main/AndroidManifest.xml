@@ -13,10 +13,14 @@
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         <activity
             android:name=".ObjectiveDetailsActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CategoryDetailsActivity"
-            android:exported="false" />
+            android:exported="true" />
+        <activity
+            android:name=".CreateActivity"
+            android:exported="true" />
+
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.

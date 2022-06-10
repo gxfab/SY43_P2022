@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -62,9 +63,11 @@ public class CategoryActivity extends AppCompatActivity {
         Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(CategoryActivity.this, "Added", Toast.LENGTH_LONG).show();
-                categoryViewModel.addNewCategory(new Category("Test1234", 10, 20));
+            public void onClick(View v) {
+                //Toast.makeText(CategoryActivity.this, "Added", Toast.LENGTH_LONG).show();
+                //categoryViewModel.addNewCategory(new Category("Test1234", 10, 20));
+                Intent intent = new Intent(v.getContext(), CreateActivity.class);
+                v.getContext().startActivity(intent);
             }
         });
     }
