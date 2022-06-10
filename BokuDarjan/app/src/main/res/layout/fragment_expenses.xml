@@ -1,32 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ExpensesFragment">
 
-    <ScrollView
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/expandButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add"
+        android:translationZ="20dp"
+        app:backgroundTint="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/footer2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="45dp"
+        android:src="@drawable/ic_hardrectangle"
+        android:translationZ="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/catText"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:background="#80005E32"
+        android:gravity="center"
+        android:text="Choisissez une catégorie pour ajouter une dépense"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/catScroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewExpense"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/catText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/expense_card">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <HorizontalScrollView
+        android:id="@+id/catScroll"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#80005E32"
+        android:fadeScrollbars="false"
+        android:scrollbarSize="0dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/footer2"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
-            android:id="@+id/linLay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:id="@+id/categorylay"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"></LinearLayout>
+    </HorizontalScrollView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewExpense"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:itemCount="5"
-                tools:listitem="@layout/expense_card" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-        </LinearLayout>
-    </ScrollView>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

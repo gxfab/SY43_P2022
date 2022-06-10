@@ -1,11 +1,13 @@
 package com.example.bokudarjan
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.expense.ExpenseViewModel
 import com.example.bokudarjan.expense.ListAdapterExpense
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_expenses.view.*
 import kotlinx.android.synthetic.main.fragment_list_expense.view.*
 
@@ -38,15 +41,8 @@ class ExpensesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_expenses, container, false)
-        var lay = view.findViewById<LinearLayout>(R.id.linLay)
 
-        val txt1 = TextView(view.context)
-        txt1.textSize = 20f
-        txt1.text = "  Jour 30"
 
-        val txt2 = TextView(view.context)
-        txt2.textSize = 20f
-        txt2.text = "  Jour 29"
 
         val tv = Space(view.context)
         val layoutParams = LinearLayout.LayoutParams(
@@ -64,6 +60,7 @@ class ExpensesFragment : Fragment() {
         val recyclerView : RecyclerView = view.recyclerViewExpense
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        //TODO: Add day directly on expenses
 
         // ExpenseViewModel
         expenseViewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
@@ -71,9 +68,33 @@ class ExpensesFragment : Fragment() {
             adapter.setData(expense)
         })
 
+        var lay = view.findViewById<LinearLayout>(R.id.categorylay)
+
+        for(i in 0..5){
+            val view = inflater.inflate(R.layout.expense_category, container, false)
+            view.setOnClickListener {
+                var dialog = AddExpenseDialog();
+                dialog.show(childFragmentManager,"")
+            }
+            lay.addView(view)
+        }
+
+        val expandBtn2 = view.findViewById<FloatingActionButton>(R.id.expandButton2);
+        val catScroll = view.findViewById<HorizontalScrollView>(R.id.catScroll);
+        val catText = view.findViewById<TextView>(R.id.catText);
+
+        expandBtn2.setOnClickListener {
+            if(catScroll.visibility == View.GONE){
+                catScroll.visibility = View.VISIBLE;
+                catText.visibility = View.VISIBLE;
+            }else{
+                catScroll.visibility = View.GONE
+                catText.visibility = View.GONE;
+            }
+        }
+
 
         //To test, not final
-        lay.addView(txt1)
         /*lay.addView(inflater.inflate(R.layout.expense_card, container, false));
         lay.addView(inflater.inflate(R.layout.expense_card, container, false));
         lay.addView(inflater.inflate(R.layout.expense_card, container, false));

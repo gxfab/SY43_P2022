@@ -20,7 +20,7 @@ import com.example.bokudarjan.expense.ExpenseViewModel
 import com.google.android.material.switchmaterial.SwitchMaterial
 import kotlinx.android.synthetic.main.fragment_side_bar.*
 
-class AddExpenseDialog() : DialogFragment() {
+class AddCategoryDialog() : DialogFragment() {
 
     private lateinit var expenseViewModel: ExpenseViewModel
 

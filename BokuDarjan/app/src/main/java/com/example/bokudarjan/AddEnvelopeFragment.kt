@@ -14,6 +14,7 @@ import com.example.bokudarjan.envelope.EnvelopeViewModel
 import com.example.bokudarjan.expense.Expense
 import kotlinx.android.synthetic.main.fragment_add_envelope.*
 import kotlinx.android.synthetic.main.fragment_add_expense.*
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,9 +41,6 @@ class AddEnvelopeFragment : Fragment() {
 
         envelopeViewModel = ViewModelProvider(this)[EnvelopeViewModel::class.java]
 
-        view.findViewById<Button>(R.id.addEnvelopeButton).setOnClickListener(){
-            insertDataToDatabase()
-        }
 
         return view
     }
@@ -57,7 +55,7 @@ class AddEnvelopeFragment : Fragment() {
             Log.i("AddEnvelopeFragment", " Amount2 : " + amount)
         }
         Log.i("AddEnvelopeFragment", " Amount2.4 : " + amount)
-        val date : String = datePickerEnvelope.toString()
+        val date : String = Calendar.getInstance().toString()
         Log.i("AddEnvelopeFragment", " Amount2.5 : " + amount)
         val envelope = Envelope("category",name, amount, date)
 

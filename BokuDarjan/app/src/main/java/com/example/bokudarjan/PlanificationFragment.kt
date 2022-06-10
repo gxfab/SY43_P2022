@@ -96,12 +96,8 @@ class planificationFragment : Fragment() {
         val rotRev = AnimationUtils.loadAnimation(view.context, R.anim.rot_45_rev);
 
         btn2.setOnClickListener {
-            var dialog = AddExpenseDialog();
-            dialog.show(childFragmentManager,"Quoi ?");
-            dialog.setFragmentResultListener("dialog") { _, bd ->
-                Toast.makeText(view.context, bd.getString("string"), Toast.LENGTH_SHORT).show()
-            };
-
+            var dialog = AddEnvelopeDialog();
+            dialog.show(childFragmentManager,"")
         }
 
 
