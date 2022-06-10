@@ -11,31 +11,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:text="@string/regularIncomeTitle"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/expense_list_recycler_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/income_list_recycler_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/income_list_recycler_view" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_list_recycler_view" />
 
     <TextView
         android:id="@+id/regularExpensesTitle"
         android:layout_width="0dp"
         android:layout_height="22dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:text="@string/regularExpensesTitle"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/income_list_recycler_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/expense_list_recycler_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/expense_list_recycler_view"
+        android:id="@+id/income_list_recycler_view"
         android:layout_width="0dp"
         android:layout_height="265dp"
         android:layout_marginStart="10dp"
@@ -49,7 +43,7 @@
         tools:listitem="@layout/budget_setter_item" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/income_list_recycler_view"
+        android:id="@+id/expense_list_recycler_view"
         android:layout_width="0dp"
         android:layout_height="265dp"
         android:layout_marginStart="10dp"
@@ -63,5 +57,31 @@
         tools:listitem="@layout/budget_setter_item">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/total_regular_expenses"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/budget_total_empty"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/regularExpensesTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/regularExpensesTitle" />
+
+    <TextView
+        android:id="@+id/total_regular_incomes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/budget_total_empty"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/regularIncomesTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/regularIncomesTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
