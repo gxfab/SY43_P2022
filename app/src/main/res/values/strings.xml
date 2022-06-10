@@ -53,4 +53,7 @@
     <string name="switchGraph">Changer de graphique</string>
     <string name="budgetType">Revenus</string>
     <string name="silo_background_explication">Fond de la jauge en forme de silo</string>
+    <string name="budget_total_full">Total : %1$.2f €</string>
+    <string name="budget_total_empty">Total : —,— € </string>
+
 </resources>
