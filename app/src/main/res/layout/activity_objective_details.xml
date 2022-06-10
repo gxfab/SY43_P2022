@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:text="Supprimer l'objectif seléctionné"
         tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="638dp" />
+        tools:layout_editor_absoluteY="638dp"
+        />
 
     <Button
         android:id="@+id/button3"
@@ -21,7 +22,8 @@
         android:background="@color/teal_200"
         android:text="Confirmer"
         tools:layout_editor_absoluteX="-41dp"
-        tools:layout_editor_absoluteY="201dp" />
+        tools:layout_editor_absoluteY="201dp"
+        />
 
     <TextView
         android:id="@+id/textView5"
