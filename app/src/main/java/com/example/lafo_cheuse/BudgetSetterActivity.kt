@@ -1,8 +1,6 @@
 package com.example.lafo_cheuse
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,11 +13,11 @@ import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 
 
 class BudgetSetterActivity : AppCompatActivity() {
-    private var incomeAdapter : IncomeSetterAdapter? = null
-    private var expenseAdapter : ExpenseSetterAdapter? = null
-    private val incomeViewModel : IncomeViewModel by viewModels()
-    private val expenseViewModel : ExpenseViewModel by viewModels()
-    private val categoryViewModel : CategoryViewModel by viewModels()
+    private var incomeAdapter: IncomeSetterAdapter? = null
+    private var expenseAdapter: ExpenseSetterAdapter? = null
+    private val incomeViewModel: IncomeViewModel by viewModels()
+    private val expenseViewModel: ExpenseViewModel by viewModels()
+    private val categoryViewModel: CategoryViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +34,12 @@ class BudgetSetterActivity : AppCompatActivity() {
     }
 
     private fun initializeRecyclerViewIncome() {
-        val recyclerViewIncome : RecyclerView = findViewById(R.id.income_list_recycler_view)
-        recyclerViewIncome.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+        val recyclerViewIncome: RecyclerView = findViewById(R.id.income_list_recycler_view)
+        recyclerViewIncome.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewIncome.setHasFixedSize(true)
 
-        incomeAdapter = IncomeSetterAdapter(this,incomeViewModel)
+        incomeAdapter = IncomeSetterAdapter(this, incomeViewModel)
         recyclerViewIncome.adapter = incomeAdapter
 
         incomeViewModel.getMonthlyIncome().observe(this) { list ->
@@ -49,11 +48,12 @@ class BudgetSetterActivity : AppCompatActivity() {
     }
 
     private fun initializeRecyclerViewExpense() {
-        val recyclerViewExpense : RecyclerView = findViewById(R.id.expense_list_recycler_view)
-        recyclerViewExpense.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+        val recyclerViewExpense: RecyclerView = findViewById(R.id.expense_list_recycler_view)
+        recyclerViewExpense.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewExpense.setHasFixedSize(true)
 
-        expenseAdapter = ExpenseSetterAdapter(this,expenseViewModel)
+        expenseAdapter = ExpenseSetterAdapter(this, expenseViewModel, incomeViewModel)
         recyclerViewExpense.adapter = expenseAdapter
 
         expenseViewModel.getMonthlyExpense().observe(this) { list ->
