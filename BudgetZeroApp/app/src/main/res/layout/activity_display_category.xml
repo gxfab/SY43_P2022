@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".DisplayExpense" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="370dp">
+
+
+        <!--android:layout_alignBottom="@id/editTextCatBudget"
+            android:layout_alignParentLeft="true"-->
+
+            <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
+
+        <!--android:layout_alignParentLeft="true"-->
+            <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+
+        <!--android:layout_alignLeft="@+id/textViewCatName"
+            android:layout_alignBottom="@+id/editTextCatBudget"-->
+
+
+        <!--android:layout_alignLeft="@id/editTextCatName"-->
+
+        <TextView
+            android:id="@+id/textViewCatName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/exp_cat_name" />
+
+        <EditText
+            android:id="@+id/editTextCatName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBottom="@+id/textViewCatName"
+            android:layout_marginLeft="140dp"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/textViewCatBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewCatName"
+            android:layout_alignTop="@+id/textViewCatName"
+            android:layout_marginTop="40dp"
+            android:text="@string/exp_cat_budget" />
+
+        <EditText
+            android:id="@+id/editTextCatBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextCatName"
+            android:layout_alignBottom="@+id/textViewCatBudget"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/textViewCatSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewCatBudget"
+            android:layout_alignTop="@+id/textViewCatBudget"
+            android:layout_marginTop="40dp"
+            android:text="@string/exp_cat_sub" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextCatBudget"
+            android:layout_alignBottom="@+id/textViewCatSub"
+            android:layout_marginBottom="-15dp" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:onClick="run"
+            android:text="@string/save" />
+        <!--android:layout_alignLeft="@+id/editTextCatBudget"-->
+
+
+    </RelativeLayout>
+</ScrollView>

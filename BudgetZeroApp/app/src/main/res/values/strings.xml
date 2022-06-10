@@ -6,4 +6,12 @@
     <string name="debt_type">Debt</string>
     <string name="sav_type">Savings</string>
     <string name="submit">Submit</string>
+
+    <string name="exp_cat_name">Category name</string>
+    <string name="exp_cat_budget">Budget</string>
+    <string name="exp_cat_sub">Subcategory</string>
+
+    <string name="save">Save</string>
+
+
 </resources>
