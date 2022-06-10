@@ -64,9 +64,10 @@ class planificationFragment : Fragment() {
 
         // CategoryViewModel
         categoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
-        /*categoryViewModel.readAllData.observe(viewLifecycleOwner, Observer { category ->
+        categoryViewModel.readAllData.observe(viewLifecycleOwner, Observer { category ->
+            Log.d("[DAO]", "Category data :$category")
             categoryAdapter.setData(category)
-        })*/
+        })
 
 
         var categoryList : MutableList<Category> = ArrayList<Category>()
@@ -88,7 +89,7 @@ class planificationFragment : Fragment() {
         Log.i("PlanificationFragment", "categoryList sizea" + (categoryList.size))
 
 
-        var observer : Observer<List<Category>> = Observer { category ->
+        /**var observer : Observer<List<Category>> = Observer { category ->
             val temp : List<Category> = ArrayList<Category>(category)
 
             categoryList = ArrayList(category)
@@ -98,25 +99,10 @@ class planificationFragment : Fragment() {
             }
             Log.i("PlanificationFragment", "categoryList sizec" + (categoryList.size))
         }
-        categoryViewModel.readAllData.observe(viewLifecycleOwner, observer)
-
-
-        Thread.sleep(1_000)
-
-        Log.i("PlanificationFragment", "category test")
-        Log.i("PlanificationFragment", "categoryList sizeb" + (categoryList.size))
-
-
-
-        for (i : Int in 0..categoryList.size-1) {
-            Log.i("PlanificationFragment", "categoryList" + i + (categoryList.get(i).categoryName
-                ?: String))
-        }
-
-
-
+        categoryViewModel.readAllData.observe(viewLifecycleOwner, observer)**/
 
         //RecyclerView for envelope
+        /**
         val envelopeAdapter = ListAdapterEnvelope()
         val envelopeRecyclerView : RecyclerView = view.findViewById(R.id.recyclerViewEnvelope);
         envelopeRecyclerView.adapter = envelopeAdapter
@@ -126,7 +112,7 @@ class planificationFragment : Fragment() {
         envelopeViewModel = ViewModelProvider(this).get(EnvelopeViewModel::class.java)
         envelopeViewModel.readAllData.observe(viewLifecycleOwner, Observer { envelope ->
             envelopeAdapter.setData(envelope)
-        })
+        })**/
 
 
 
@@ -137,7 +123,7 @@ class planificationFragment : Fragment() {
         val lbl1 = view.findViewById<TextView>(R.id.lbl1);
         val lbl2 = view.findViewById<TextView>(R.id.lbl2);
         val darken = view.findViewById<ImageView>(R.id.darken);
-        val scroll = view.findViewById<ScrollView>(R.id.categoryScroll);
+        val scroll = view.findViewById<RecyclerView>(R.id.recyclerViewCategory);
 
         //Animations
         val animIn = AnimationUtils.loadAnimation(view.context, R.anim.in_up);
@@ -186,8 +172,8 @@ class planificationFragment : Fragment() {
             }
         }
 
-        var catLayout = view.findViewById<LinearLayout>(R.id.catLayout);
-        var colors = arrayOf("#FFFF00","#FF00FF","#FF0000","#C0C0C0","#808000","#800080","#00FFFF","#008080","#0000FF","#000080")
+        //var catLayout = view.findViewById<LinearLayout>(R.id.catLayout);
+        //var colors = arrayOf("#FFFF00","#FF00FF","#FF0000","#C0C0C0","#808000","#800080","#00FFFF","#008080","#0000FF","#000080")
         //TODO:Save all the child in an array for access later on
         //Here, get number of categories with names and color
         /*for(i in 0..9){

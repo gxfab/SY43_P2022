@@ -10,22 +10,6 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCategory"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:itemCount="5"
-        tools:listitem="@layout/envelope_category_card" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewEnvelope"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:itemCount="5"
-        tools:listitem="@layout/envelope_card" />
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/expandButton"
         android:layout_width="wrap_content"
@@ -134,26 +118,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:id="@+id/categoryScroll"
-        android:layout_width="0dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCategory"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:translationZ="-10dp"
         app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:id="@+id/catLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/envelope_category_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
