@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 
 import com.example.sy43.CategoryDetailsActivity;
 import com.example.sy43.CreateActivity;
+import com.example.sy43.ObjectiveDetailsActivity;
 import com.example.sy43.R;
 import com.example.sy43.models.Category;
 
@@ -59,7 +60,8 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), CategoryDetailsActivity.class);
+                    Class detailsPage = category.isObjective ? ObjectiveDetailsActivity.class : CategoryDetailsActivity.class;
+                    Intent intent = new Intent(v.getContext(), detailsPage);
                     v.getContext().startActivity(intent);
                 }
             });
