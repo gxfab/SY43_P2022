@@ -35,6 +35,7 @@ class HomeFragment() : Fragment() {
     private var indexSelectedGraph : Int = 0
 
     var chartView : PieChart? = null
+    var totalDisplayer : TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +52,10 @@ class HomeFragment() : Fragment() {
         val chartButton : FloatingActionButton = view.findViewById(R.id.floatingActionButton)
         val switchButton : FloatingActionButton = view.findViewById(R.id.switchGraphHome)
         val typeDisplayed : TextView = view.findViewById(R.id.budetTypeDisplayer)
+        totalDisplayer = view.findViewById(R.id.total_displayer)
+
         typeDisplayed.text = listGraphNames[indexSelectedGraph]
+
         chartButton.setOnClickListener {
             displayChart()
         }
@@ -86,11 +90,25 @@ class HomeFragment() : Fragment() {
                     incomes = mIncomes
                     createGraph(convertIncomesInList(incomes!!))
                 }
+                incomeViewModel.getIncomeSum().observe(viewLifecycleOwner) { sum ->
+                    totalDisplayer?.text = if(sum == null) {
+                        resources.getString(R.string.budget_total_full,0.0)
+                    } else {
+                        resources.getString(R.string.budget_total_full, sum)
+                    }
+                }
             }
             "Dépenses prévues"-> {
                 expenseViewModel.getMonthlyExpensesSumByCategory().observe(viewLifecycleOwner) { mExpenses ->
                     budgetedExpenses = mExpenses
                     createGraph(convertExpensesInList(budgetedExpenses!!))
+                }
+                expenseViewModel.getMonthlyExpensesSum().observe(viewLifecycleOwner) { sum ->
+                    totalDisplayer?.text = if(sum == null) {
+                        resources.getString(R.string.budget_total_full,0.0)
+                    } else {
+                        resources.getString(R.string.budget_total_full, -sum)
+                    }
                 }
              }
             "Dépenses effectives" -> {
@@ -98,6 +116,14 @@ class HomeFragment() : Fragment() {
                     oneTimeExpenses = mExpenses
                     createGraph(convertExpensesInList(oneTimeExpenses!!))
                 }
+                expenseViewModel.getOneTimeExpensesSum().observe(viewLifecycleOwner) { sum ->
+                    totalDisplayer?.text = if(sum == null) {
+                        resources.getString(R.string.budget_total_full,0.0)
+                    } else {
+                        resources.getString(R.string.budget_total_full,-sum)
+                    }
+                }
+
             }
         }
 
