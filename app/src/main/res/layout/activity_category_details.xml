@@ -4,40 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CategoryDetailsActivity">
-    <LinearLayout  android:layout_width="match_parent"
+    tools:context=".CategoryDetailsActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="97dp">
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:text="La sous-catégorie selectionnée"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="455dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginHorizontal="24dp"
+        android:progress="0"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="416dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Une sous-catégorie :"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="375dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Je veux supprimer :"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="277dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
         android:layout_marginVertical="12dp"
-        android:layout_margin="12dp">
-        <TextView  android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Faire une dépense/recette"/>
-        <EditText
-            android:id="@+id/editTextNumberDecimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="0dp"
-            android:text="Dépenses"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.0" />
-        <Button
-            android:layout_height="50dp"
-            android:layout_width="fill_parent"
-            android:text="Confirmer"
-            android:background="@color/teal_200"
-            />
+        android:orientation="vertical">
+
     </LinearLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/teal_200"
+        android:text="Confirmer"
+        tools:layout_editor_absoluteX="-41dp"
+        tools:layout_editor_absoluteY="201dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Veuillez insérer le montant de la dépense pour la catégorie selectionnée :"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="89dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="La catégorie selectionnée"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="311dp" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="-12dp"
+        tools:layout_editor_absoluteY="142dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

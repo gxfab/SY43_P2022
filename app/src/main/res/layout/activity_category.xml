@@ -20,66 +20,99 @@
             android:text="Recettes" />-->
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"  >
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Mon Compte"
-                    tools:layout_editor_absoluteX="165dp"
-                    tools:layout_editor_absoluteY="16dp" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Mon Compte"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="16dp" />
 
-                <TextView  android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="24dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Nouvelle catégorie :"
+            android:textSize="24dp"
 
-                    android:text="Catégories"/>
-                <ListView
-                    android:id="@+id/categoryListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:dividerHeight="0dp"
-                    android:layout_marginBottom="50dp"
-                    tools:context="abhiandroid.com.listexample.MainActivity" >
-                </ListView>
+            android:textStyle="bold" />
 
-                <TextView  android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="24dp"
-                    android:text="Objectifs"/>
-                <ListView
-                    android:id="@+id/objectiveListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:dividerHeight="0dp"
-                    android:layout_marginBottom="50dp"
-                    tools:context="abhiandroid.com.listexample.MainActivity" >
-                </ListView>
-            </LinearLayout>
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Nom :" />
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="bottom"
-        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Si c'est une sous-catégorie veuillez choisir la catégorie qui la contient :" />
+
+        <ProgressBar
+            android:id="@+id/progressBar5"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="34dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nouvel objectif :"
+            tools:textSize="24dp"
+            tools:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="156dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Nom :" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Montant :" />
+
+        <EditText
+            android:id="@+id/editTextNumber2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date :" />
+
+        <EditText
+            android:id="@+id/editTextDate2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
 
         <Button
-            android:id="@+id/add"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/teal_200"
-            android:text="+" />
-    </RelativeLayout>
+            android:text="Confirmer" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
