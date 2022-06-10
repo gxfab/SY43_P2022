@@ -30,6 +30,12 @@ interface ExpenseDao {
             "GROUP BY category_categoryId")
     fun getExpensesSumForCategory(frequency: Frequency, categoryID: Long) : LiveData<List<ExpenseSumContainer>>
 
+    @Query("SELECT SUM(amount) FROM Expense WHERE frequency = :frequency")
+    fun getExpensesSum(frequency: Frequency) : LiveData<Double>
+
+    @Query("SELECT SUM(amount) FROM Expense WHERE frequency = :frequency")
+    suspend fun getExpensesSumSynchronous(frequency: Frequency) : Double
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertExpense(expense: Expense): Long
 

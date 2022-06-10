@@ -19,6 +19,12 @@ interface IncomeDao {
     @Query("SELECT * FROM Income WHERE frequency = :frequency")
     fun getIncomesByFrequency(frequency: Frequency) : LiveData<List<Income>>
 
+    @Query("SELECT SUM(amount) FROM Income")
+    fun getIncomesSum() : LiveData<Double>
+
+    @Query("SELECT SUM(amount) FROM Income")
+    suspend fun getIncomesSumSynchronous() : Double
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIncome(income : Income): Long
 

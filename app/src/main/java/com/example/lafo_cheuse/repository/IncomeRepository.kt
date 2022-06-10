@@ -8,14 +8,17 @@ import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.models.Income
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.suspendCoroutine
 
 class IncomeRepository(application: Application) {
     private var incomeDao : IncomeDao
+    private var incomesSum : LiveData<Double>
     private var allIncomes : LiveData<List<Income>>?
 
     init {
         val database : LafoCheuseDatabase? = LafoCheuseDatabase.getInstance(application)
         incomeDao = database?.incomeDao()!!
+        incomesSum = incomeDao.getIncomesSum()
         allIncomes = incomeDao.getIncomes()
     }
 
@@ -37,6 +40,14 @@ class IncomeRepository(application: Application) {
 
     fun getIncomes() : LiveData<List<Income>>? {
         return allIncomes
+    }
+
+    fun getIncomesSum() : LiveData<Double> {
+        return incomesSum
+    }
+
+    suspend fun getIncomesSumSync() : Double {
+        return incomeDao.getIncomesSumSynchronous()
     }
 
     fun getIncome(moneyChangeId : Long): LiveData<List<Income>> {

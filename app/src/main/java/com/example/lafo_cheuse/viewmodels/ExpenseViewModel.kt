@@ -67,4 +67,16 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
     fun getOneTimeExpensesSumForCategory(category: Category) : LiveData<List<ExpenseSumContainer>> {
         return repository.getExpensesSumForCategory(Frequency.OUNCE_A_DAY, category.categoryId)
     }
+
+    fun getOneTimeExpensesSum() : LiveData<Double> {
+        return repository.getExpensesSumByFrequency(Frequency.OUNCE_A_DAY)
+    }
+
+    fun getMonthlyExpensesSum() : LiveData<Double> {
+        return repository.getExpensesSumByFrequency(Frequency.OUNCE_A_MONTH)
+    }
+
+    suspend fun getMonthlyExpensesSumSync() : Double {
+        return repository.getExpensesSumByFrequencySync(Frequency.OUNCE_A_MONTH)
+    }
 }

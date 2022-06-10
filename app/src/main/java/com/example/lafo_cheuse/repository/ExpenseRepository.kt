@@ -56,5 +56,13 @@ class ExpenseRepository(application: Application) {
         return expenseDao.getExpensesSumForCategory(frequency,categoryID)
     }
 
+    fun getExpensesSumByFrequency(frequency: Frequency) : LiveData<Double> {
+        return expenseDao.getExpensesSum(frequency)
+    }
+
+    suspend fun getExpensesSumByFrequencySync(frequency: Frequency) : Double {
+        return expenseDao.getExpensesSumSynchronous(frequency)
+    }
+
 
 }

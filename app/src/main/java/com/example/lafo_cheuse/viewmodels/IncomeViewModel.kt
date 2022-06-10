@@ -13,14 +13,24 @@ import kotlinx.coroutines.launch
 class IncomeViewModel(application : Application) : AndroidViewModel(application) {
     private var repository : IncomeRepository
     var allIncomes : LiveData<List<Income>>?
+    var incomesSum : LiveData<Double>
 
     init {
         repository = IncomeRepository(application)
         allIncomes = repository.getIncomes()
+        incomesSum = repository.getIncomesSum()
     }
 
     fun getIncomes() : LiveData<List<Income>>? {
         return allIncomes
+    }
+
+    fun getIncomeSum() : LiveData<Double> {
+        return incomesSum
+    }
+
+    suspend fun getIncomeSumSync() : Double {
+        return repository.getIncomesSumSync()
     }
 
     fun getIncome(moneyChangeId : Long): LiveData<List<Income>> {
