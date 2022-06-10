@@ -13,11 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoAppNoGain"
         tools:targetApi="31" >
-        <activity
-            android:name=".Navigation"
-            android:exported="false"
-            android:label="@string/title_activity_navigation"
-            android:theme="@style/Theme.NoAppNoGain.NoActionBar" />
         <activity android:name=".Sinscrire" />
         <activity android:name=".Sidentifier" />
         <activity android:name=".Reinitialiser" />
