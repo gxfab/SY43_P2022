@@ -1,6 +1,5 @@
 package com.example.bokudarjan
 
-import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
@@ -11,12 +10,18 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.core.view.isVisible
-import androidx.core.view.marginBottom
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.findFragment
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.bokudarjan.category.CategoryViewModel
+import com.example.bokudarjan.category.ListAdapterCategory
+import com.example.bokudarjan.envelope.EnvelopeViewModel
+import com.example.bokudarjan.envelope.ListAdapterEnvelope
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.example.bokudarjan.AddExpenseDialog
+import kotlinx.android.synthetic.main.fragment_list_expense.view.*
+import kotlinx.android.synthetic.main.fragment_planification.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,17 +34,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class planificationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var envelopeViewModel: EnvelopeViewModel
+    private lateinit var categoryViewModel: CategoryViewModel
 
     fun showToast() {
         Toast.makeText(context,"Ca marche !", Toast.LENGTH_SHORT).show()
@@ -52,6 +49,34 @@ class planificationFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_planification, container, false)
+
+
+
+        //RecyclerView for envelope
+        /*val envelopeAdapter = ListAdapterEnvelope()
+        val envelopeRecyclerView : RecyclerView = view.recyclerViewEnvelope
+        envelopeRecyclerView.adapter = envelopeAdapter
+        envelopeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // EnvelopeViewModel
+        envelopeViewModel = ViewModelProvider(this).get(EnvelopeViewModel::class.java)
+        envelopeViewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
+            envelopeAdapter.setData(user)
+        })*/
+
+
+        //RecyclerView for category
+        val categoryAdapter = ListAdapterCategory()
+        val categoryRecyclerView : RecyclerView = view.recyclerViewCategory
+        categoryRecyclerView.adapter = categoryAdapter
+        categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
+        // CategoryViewModel
+        categoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
+        categoryViewModel.readAllData.observe(viewLifecycleOwner, Observer { category ->
+            categoryAdapter.setData(category)
+        })
 
         //Views
         val expandBtn = view.findViewById<FloatingActionButton>(R.id.expandButton);
@@ -117,8 +142,8 @@ class planificationFragment : Fragment() {
         var colors = arrayOf("#FFFF00","#FF00FF","#FF0000","#C0C0C0","#808000","#800080","#00FFFF","#008080","#0000FF","#000080")
         //TODO:Save all the child in an array for access later on
         //Here, get number of categories with names and color
-        for(i in 0..9){
-            val child: View = layoutInflater.inflate(R.layout.fragment_category, null)
+        /*for(i in 0..9){
+            val child: View = layoutInflater.inflate(R.layout.envelope_category_card, null)
             catLayout.addView(child);
             child.findViewById<TextView>(R.id.headerText).setText("Catégorie N°" + i)//change text
             var fgCol = Color.parseColor(colors[i])//replace with db color
@@ -128,28 +153,9 @@ class planificationFragment : Fragment() {
             //change categories view with data from db
 
 
-        }
+        }*/
 
         return view;
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment planificationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            planificationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

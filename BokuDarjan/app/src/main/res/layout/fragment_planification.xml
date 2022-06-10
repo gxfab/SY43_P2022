@@ -9,6 +9,20 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/envelope_card" />
+
+    <!--<androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewEnvelope"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/envelope_card" />-->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/expandButton"
         android:layout_width="wrap_content"

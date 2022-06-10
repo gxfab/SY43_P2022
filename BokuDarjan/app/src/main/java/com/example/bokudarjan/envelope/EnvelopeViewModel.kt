@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class EnvelopeViewModel(application: Application): AndroidViewModel(application) {
 
-    private val readAllData: LiveData<List<Envelope>>
+    val readAllData: LiveData<List<Envelope>>
     private val repository: EnvelopeRepository
 
 

@@ -6,7 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.expense.ExpenseViewModel
+import com.example.bokudarjan.expense.ListAdapterExpense
+import kotlinx.android.synthetic.main.fragment_list_expense.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,15 +32,23 @@ class ListExpenseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         Log.i("ListExpenseFragment", "Entering fragment")
+         Log.i("ListExpenseFragment", "Entering fragment view")
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_expense, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_list_expense, container, false)
 
-    //ExpenseViewModel
-    //expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
-    /*expenseViewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
-        adapter.setData(user)
-    })*/
+        //RecyclerView
+        val adapter = ListAdapterExpense()
+        val recyclerView : RecyclerView = view.recyclerView
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // ExpenseViewModel
+        expenseViewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
+        expenseViewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
+            adapter.setData(user)
+        })
+
+        return view
+    }
 
 }
