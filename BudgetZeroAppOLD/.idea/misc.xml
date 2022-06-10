@@ -5,17 +5,12 @@
       <map>
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2665" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/drawable/ic_home.xml" value="0.2315" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2665" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/drawable/icon.xml" value="0.2565" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/activity_budget.xml" value="0.2" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/activity_cash_flow.xml" value="0.264" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/activity_savings.xml" value="0.264" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/fragment_budget.xml" value="0.25769927536231885" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/fragment_cash_flow.xml" value="0.25769927536231885" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/fragment_home.xml" value="0.25769927536231885" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/fragment_savings.xml" value="0.25769927536231885" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/toolbar.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/menu/menu.xml" value="0.4" />
       </map>

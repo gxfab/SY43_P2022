@@ -16,7 +16,7 @@
     </style>
 
     <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_menu</item>
+        <item name="android:src">@drawable/ic_baseline_menu_24</item>
         <item name="android:background">?android:attr/actionBarItemBackground</item>
         <item name="android:contentDescription">"Lala"</item>
     </style>

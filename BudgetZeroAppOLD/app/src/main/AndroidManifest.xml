@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BudgetZeroApp">
         <activity
+            android:name=".Budget"
+            android:exported="false" />
+        <activity
+            android:name=".CashFlow"
+            android:exported="false" />
+        <activity
+            android:name=".Savings"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
