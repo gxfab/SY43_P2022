@@ -1,5 +1,6 @@
 package fr.sy.lebudgetduzero
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -41,21 +42,6 @@ class MainActivity : AppCompatActivity() {
             try{
                 db.balanceDao().insertTypes()
             }catch (e: Exception) {}
-
-
-            //Données de test
-            db.incomeDao().deleteAll()
-            db.incomeDao().insertAll(IncomeItem(name="Papa Maman",value=300F,date= 1654170437))
-            db.incomeDao().insertAll(IncomeItem(name="APL",value=75F,date=1654084037))
-            db.incomeDao().insertAll(IncomeItem(name="Remboursement tricount",value=25.69F,date=1654688837))
-
-            db.spentDao().deleteAll()
-            db.spentDao().insertAll(SpentItem(name="Boulangerie",value=2.56F,date= 1654170437,id_type = 1))
-            db.spentDao().insertAll(SpentItem(name="Carrefour",value=25.6F,date= 1654170437,id_type = 1))
-            db.spentDao().insertAll(SpentItem(name="Essence",value=62.31F,date= 1654170437,id_type = 3))
-            db.spentDao().insertAll(SpentItem(name="Netflix",value=14.99F,date= 1654170437,id_type = 4))
-            db.spentDao().insertAll(SpentItem(name="Bar",value=9.95F,date= 1654170437,id_type = 3))
-
         }
 
         //Affichage de l'overview
@@ -136,6 +122,11 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.fragment_container, SpentFragment(this))
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    fun loadAddActivity(view: View){
+        val intent= Intent(this, AddActivity::class.java)
+        startActivity(intent)
     }
 
 }

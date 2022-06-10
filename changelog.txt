@@ -1,3 +1,4 @@
 0-[0_0.0.0]: création
 1-[0_1.0.0]: Mise en place de l'interface d'accueil et des interraction entre les différentes vues de visualisation
 2-[0_2.0.0]: Mise en place de la base de données des entrées d'argent
+3-[0_3.0.0]: Possibilité d'ajouter une dépense ou une entrée d'argent
