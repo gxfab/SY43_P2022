@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SelectExpenseType">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_message"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:textSize="20sp"/>
+    <RadioGroup
+        android:id="@+id/group_radio_type"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="-7dp"
+        tools:layout_editor_absoluteY="119dp">
+
+        <!-- In RadioGroup create the 1 Radio Button-->
+        <!-- like this we will add some more Radio Button-->
+
+        <RadioButton
+            android:id="@+id/type_exp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/exp_type"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/type_inc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inc_type"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/type_debt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/debt_type"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/type_sav"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sav_type"
+            android:textSize="20sp" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="200dp"
+        android:text="@string/submit"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

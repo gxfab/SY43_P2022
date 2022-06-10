@@ -32,7 +32,7 @@ public class DisplayExpense extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_expense);
-        date = (TextView) findViewById(R.id.editTextName);
+        //date = (TextView) findViewById(R.id.editTextName);
         phone = (TextView) findViewById(R.id.editTextPhone);
         email = (TextView) findViewById(R.id.editTextStreet);
         street = (TextView) findViewById(R.id.editTextEmail);
@@ -93,9 +93,9 @@ public class DisplayExpense extends Activity {
         if(extras !=null) {
             int Value = extras.getInt("id");
             if(Value>0){
-                getMenuInflater().inflate(R.menu.display_contact, menu);
+                //getMenuInflater().inflate(R.menu.display_contact, menu);
             } else{
-                getMenuInflater().inflate(R.menu.main_menu, menu);
+                //getMenuInflater().inflate(R.menu.main_menu, menu);
             }
         }
         return true;
@@ -131,8 +131,8 @@ public class DisplayExpense extends Activity {
             case R.id.Delete_Contact:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.deleteContact)
-                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                builder.setMessage(R.string.app_name)
+                        .setPositiveButton(R.string.app_name, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 mydb.deleteContact(id_To_Update);
                                 Toast.makeText(getApplicationContext(), "Deleted Successfully",
@@ -141,7 +141,7 @@ public class DisplayExpense extends Activity {
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.app_name, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // User cancelled the dialog
                             }

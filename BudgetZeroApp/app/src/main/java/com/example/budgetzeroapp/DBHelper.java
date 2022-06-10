@@ -55,6 +55,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SAV_CAT_COL_PERCENTAGE = "percentage";
     public static final String SAV_CAT_COL_PRIORITY_ORDER = "priority_order";
 
+    public static final int TYPE_EXP = 1;
+    public static final int TYPE_INC = 2;
+    public static final int TYPE_DEBT = 3;
+    public static final int TYPE_SAV = 4;
+
+
+
     public DBHelper(Context context) {
         super(context, DATABASE_NAME , null, 1);
     }
@@ -143,15 +150,15 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(EXP_COL_DAY_NB, dayNB);
         contentValues.put(EXP_COL_LABEL, label);
         switch(type){
-            case 1 : contentValues.put(EXP_COL_ID_EXP, catID);
+            case TYPE_EXP: contentValues.put(EXP_COL_ID_EXP, catID);
                 break;
-            case 2 : contentValues.put(EXP_COL_ID_INC, catID);
+            case TYPE_INC: contentValues.put(EXP_COL_ID_INC, catID);
                 break;
-            case 3 : contentValues.put(EXP_COL_ID_DEBT, catID);
+            case TYPE_DEBT: contentValues.put(EXP_COL_ID_DEBT, catID);
                 break;
-            case 4 : contentValues.put(EXP_COL_ID_SAV, catID);
+            case TYPE_SAV: contentValues.put(EXP_COL_ID_SAV, catID);
                 break;
-            default: type = 1;
+            default: type = TYPE_EXP;
                 contentValues.put(EXP_COL_ID_EXP, catID);
         }
         contentValues.put(EXP_COL_TYPE, type);
