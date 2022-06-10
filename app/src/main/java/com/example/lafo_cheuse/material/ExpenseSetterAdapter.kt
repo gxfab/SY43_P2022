@@ -167,13 +167,8 @@ class ExpenseSetterAdapter(
                     setNeutralButton("Annuler", DialogInterface.OnClickListener(function = cancel))
                     show()
                 }
-
             }
-
-
         }
-
-
     }
 
     override fun getItemCount(): Int {
