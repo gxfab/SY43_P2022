@@ -61,7 +61,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public int dateToInt(Date d){return parseInt(new SimpleDateFormat("yyyyMMdd", Locale.FRANCE).format(d)); }
 
+    public String intDateToString(int date){
+        return date%100+"/"+(date/100)%100+"/"+(date/10000);
+    }
+
     public int dateToMonthInt(Date d){return parseInt(new SimpleDateFormat("yyyyMM", Locale.FRANCE).format(d)); }
+
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
