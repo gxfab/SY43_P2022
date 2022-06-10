@@ -13,8 +13,10 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lafo_cheuse.CategoryChooserActivity
 import com.example.lafo_cheuse.R
@@ -24,8 +26,14 @@ import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class ExpenseSetterAdapter(var context : Activity, var viewModel : ExpenseViewModel) : RecyclerView.Adapter<ExpenseSetterAdapter.ViewHolder>() {
+class ExpenseSetterAdapter(
+    var context : Activity,
+    private val expensesViewModel : ExpenseViewModel,
+    private val incomesViewModel : IncomeViewModel
+    ) : RecyclerView.Adapter<ExpenseSetterAdapter.ViewHolder>() {
 
     private var defaultCategory : Category? = null
     private var mExpenses: List<Expense> = ArrayList<Expense>()
@@ -59,7 +67,7 @@ class ExpenseSetterAdapter(var context : Activity, var viewModel : ExpenseViewMo
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (position == mExpenses.size) {
             holder.addButton?.setOnClickListener {
-                viewModel.insertExpense(Expense(Frequency.OUNCE_A_MONTH,"",defaultCategory!!,0.0))
+                expensesViewModel.insertExpense(Expense(Frequency.OUNCE_A_MONTH,"",defaultCategory!!,0.0))
             }
         } else {
             // Get the data model based on position
@@ -68,7 +76,7 @@ class ExpenseSetterAdapter(var context : Activity, var viewModel : ExpenseViewMo
             holder.expenseNameWidget?.setText(expense.name)
 
             if (expense.amount == 0.0) {
-                holder.expenseNameWidget?.setText("")
+                holder.expenseValueWidget?.setText("")
             } else {
                 holder.expenseValueWidget?.setText(expense.amount.toString().substring(1))
             }
@@ -85,9 +93,40 @@ class ExpenseSetterAdapter(var context : Activity, var viewModel : ExpenseViewMo
             }
 
             holder.expenseValidateButton?.setOnClickListener {
-                expense.amount = - holder.expenseValueWidget?.text.toString().toDouble()
-                expense.name = holder.expenseNameWidget?.text.toString()
-                viewModel.updateExpense(expense)
+                (context as AppCompatActivity).lifecycleScope.launch(Dispatchers.Main) {
+                    launch(Dispatchers.IO) {
+                        val incomeSum: Double = incomesViewModel.getIncomeSumSync()
+                        val partialExpenseSum: Double = expensesViewModel.getMonthlyExpensesSumSync()
+                        val expenseSum : Double = partialExpenseSum - expense.amount
+                        val expenseNewValue : Double = if(holder.expenseValueWidget?.text.toString() == "") {
+                            0.0
+                        } else {
+                            -holder.expenseValueWidget?.text.toString().toDouble()
+                        }
+                        val newExpenseSum = expenseSum + expenseNewValue
+
+                        launch(Dispatchers.Main) {
+                            if (incomeSum + newExpenseSum >= 0.0 && holder.expenseNameWidget?.text.toString() != "") {
+                                expense.amount = expenseNewValue
+                                expense.name = holder.expenseNameWidget?.text.toString()
+                                expensesViewModel.updateExpense(expense)
+                            } else {
+                                var toasterText = ""
+                                if (holder.expenseNameWidget?.text.toString() == "") {
+                                    toasterText = "❌ Donnez un nom"
+                                } else if (incomeSum + newExpenseSum < 0.0) {
+                                    toasterText = "❌ Vous allez dépasser votre budget"
+                                }
+
+                                Toast.makeText(
+                                    context,
+                                    toasterText, Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                }
+                //(context as BudgetSetterActivity).updateExpenseHolder(expense,holder)
             }
 
             holder.expenseValueWidget?.addTextChangedListener {
@@ -99,7 +138,7 @@ class ExpenseSetterAdapter(var context : Activity, var viewModel : ExpenseViewMo
             }
 
             val deleteExpense = { dialog: DialogInterface, which: Int ->
-                viewModel.deleteExpense(expense)
+                expensesViewModel.deleteExpense(expense)
                 Toast.makeText(
                     context,
                     "Suppression réussie", Toast.LENGTH_SHORT
