@@ -1,6 +1,7 @@
 package com.example.sy43.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
+import com.example.sy43.CategoryDetailsActivity;
+import com.example.sy43.CreateActivity;
 import com.example.sy43.R;
 import com.example.sy43.models.Category;
 
@@ -50,9 +54,19 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
 
             name.setText(category.getCatName());
             price.setText("$" + category.CurrentValue() + "/$" + category.getMaxValue() );
+
+            CardView card = v.findViewById(R.id.categoryCard);
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), CategoryDetailsActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
 
-        return v;    }
+        return v;
+    }
 
 
 }

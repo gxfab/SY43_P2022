@@ -12,6 +12,7 @@
         app:cardCornerRadius="1dp"
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="false"
+        android:id="@+id/categoryCard"
         app:cardUseCompatPadding="true">
 
         <!--

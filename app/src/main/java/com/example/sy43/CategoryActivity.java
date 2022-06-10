@@ -68,6 +68,7 @@ public class CategoryActivity extends AppCompatActivity {
                 //categoryViewModel.addNewCategory(new Category("Test1234", 10, 20));
                 Intent intent = new Intent(v.getContext(), CreateActivity.class);
                 v.getContext().startActivity(intent);
+
             }
         });
     }
