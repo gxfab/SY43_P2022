@@ -1,6 +1,7 @@
 package com.example.lafo_cheuse
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,12 +24,25 @@ class BudgetSetterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_budget_setter)
 
+        val budgetIncomeSum : TextView = findViewById(R.id.total_regular_incomes)
+        val budgetExpenseSum : TextView = findViewById(R.id.total_regular_expenses)
+
+
+
         initializeRecyclerViewIncome()
         initializeRecyclerViewExpense()
 
         categoryViewModel.getDefaultCategory()?.observe(this) { list ->
             incomeAdapter!!.setDefCategory(list[0])
             expenseAdapter!!.setDefCategory(list[0])
+        }
+
+        incomeViewModel.getIncomeSum().observe(this) { sumIncome ->
+            budgetIncomeSum.text = resources.getString(R.string.budget_total_full,sumIncome)
+        }
+
+        expenseViewModel.getMonthlyExpensesSum().observe(this) { sumExpenses ->
+            budgetExpenseSum.text = resources.getString(R.string.budget_total_full,-sumExpenses)
         }
 
     }
