@@ -56,4 +56,24 @@
     <string name="budget_total_full">Total : %1$.2f €</string>
     <string name="budget_total_empty">Total : —,— € </string>
 
+    <string name="optionGithub">Projet github disponible à ce <a href='https://github.com/gxfab/SY43_P2022/commits/lafo_cheuse'>lien</a></string>
+    <string name="optionIcon">Icone de l\'application : <a href='https://www.flaticon.com/free-icons/wheat\' title='wheat icons'>Wheat icons created by Freepik - Flaticon</a></string>
+    <string name="optionCC">Tous droits réservés GOBLOT David VIALA Alexandre</string>
+    <string name="optionTitleReferences">Références</string>
+    <string name="option_button_delete">Supprimer</string>
+    <string name="option_text_delete">Supprimer la base de test</string>
+    <string name="option_button_populate">Peupler</string>
+    <string name="option_text_populate">Peupler la base de test</string>
+    <string name="option_title_demonstration">Base de démonstration</string>
+    <string name="option_text_reset_time">Quand souhaitez-vous remettre à zéro le compteur ?</string>
+    <string name="option_title_budget">Budget</string>
+    <string name="option_checkbox_alertMe">M\'alerter quand j\'arrive en dessous d\'une certaine somme dépensée</string>
+    <string name="option_checkbox_nextResource">Rappel de la prochaine source de revenu</string>
+    <string name="option_notfications_display">Affichage des notifications</string>
+    <string name="option_dark">Sombre</string>
+    <string name="option_light">Clair</string>
+    <string name="option_title_theme">Thème</string>
+    <string name="option_spinner_day">Choisir le jour de réinitialisation</string>
+    <string name="option_amount_notification">Somme…</string>
+
 </resources>
