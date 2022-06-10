@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.sy43.db.DAO.CategoryDAO;
 import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.db.mainDB.DB;
+import com.example.sy43.db.mainDB.DBexec;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DB db = DB.getAppDatabase(this.getApplicationContext());
+        DBexec databaseExecutor = DBexec.getExecutor();
 
 //        final ArrayList<Categorydb> brandList = new ArrayList<Categorydb>();
 //        brandList.addAll(db.CategoryDAO().findAll());
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Categorydb category2 = new Categorydb();
-        category2.setCatName("aled");
+        category2.setCatName("debug");
 
         Futures.addCallback(
                 db.CategoryDAO().insert(category2),
@@ -53,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         // handle failure
                     }
                 },
-                // causes the callbacks to be executed on the main (UI) thread
-                getApplicationContext().getMainExecutor()
+                databaseExecutor
         );
 
 
@@ -74,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         // handle failure
                     }
                 },
-                // causes the callbacks to be executed on the main (UI) thread
-                getApplicationContext().getMainExecutor()
+                databaseExecutor
         );
 
 
