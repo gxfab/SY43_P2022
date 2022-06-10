@@ -8,13 +8,13 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.NumberPicker
-import android.widget.Switch
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.*
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.bokudarjan.category.Category
+import com.example.bokudarjan.category.CategoryViewModel
 import com.example.bokudarjan.envelope.Envelope
 import com.example.bokudarjan.envelope.EnvelopeViewModel
 import com.example.bokudarjan.expense.Expense
@@ -24,9 +24,11 @@ import kotlinx.android.synthetic.main.fragment_add_envelope.*
 import kotlinx.android.synthetic.main.fragment_side_bar.*
 import java.util.*
 
-class AddEnvelopeDialog() : DialogFragment() {
+class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
+
 
     private lateinit var envelopeViewModel: EnvelopeViewModel
+    private var list: List<Category> = list
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
@@ -46,6 +48,8 @@ class AddEnvelopeDialog() : DialogFragment() {
                     })
             // Create the AlertDialog object and return it
 
+
+
             val out = builder.create()
             out;
         } ?: throw IllegalStateException("Activity cannot be null")
@@ -58,19 +62,22 @@ class AddEnvelopeDialog() : DialogFragment() {
     }
 
     private fun insertDataToDatabase(){
+
+
+
+
+
         val name  : String = this.dialog!!.findViewById<EditText>(R.id.addEnvelopeName).text.toString()
         val addEnvelopeAmount = this.dialog!!.findViewById<EditText>(R.id.addEnvelopeAmount);
+        val cat = this.dialog!!.findViewById<EditText>(R.id.addEnvelopeCategory);
         var amount : Float = 0f
 
-        Log.i("AddEnvelopeFragment", " Amountempty : " +  addEnvelopeAmount.text.toString().isEmpty())
+
         if (! addEnvelopeAmount.text.toString().isEmpty()){
             amount = addEnvelopeAmount.text.toString().toFloat()
-            Log.i("AddEnvelopeFragment", " Amount2 : " + amount)
         }
-        Log.i("AddEnvelopeFragment", " Amount2.4 : " + amount)
         val date : String = Calendar.getInstance().toString()
-        Log.i("AddEnvelopeFragment", " Amount2.5 : " + amount)
-        val envelope = Envelope("category",name, amount, date)
+        val envelope = Envelope(cat.text.toString(),name, amount, date)
 
 
         Log.i("AddEnvelopeFragment", " Amount3 : " + envelope.amount)
@@ -78,10 +85,14 @@ class AddEnvelopeDialog() : DialogFragment() {
 
         //If the input is ok, we add the envelope to the database
         if(isInputValid(envelope)){
-            Log.i("AddEnvelopeFragment", " Amount3 : " + envelope.amount)
-            envelopeViewModel.addEnvelope(envelope)
-            Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT).show()
-            Log.i("AddEnvelopeFragment", "Envelope successfully added")
+
+                for(elem in list){
+                    if (elem.categoryName == cat.text.toString()){
+                        envelopeViewModel.addEnvelope(envelope)
+                        Toast.makeText(requireContext(), "Ajout réussi", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
         }else{
             Toast.makeText(requireContext(), "Error while adding envelope to database", Toast.LENGTH_SHORT).show()
         }

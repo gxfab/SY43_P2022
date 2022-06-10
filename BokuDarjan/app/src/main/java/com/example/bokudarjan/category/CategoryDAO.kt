@@ -14,4 +14,7 @@ interface CategoryDAO {
 
     @Query("SELECT * FROM category_table ORDER BY categoryName")
     fun readAllData(): LiveData<List<Category>>;
+
+    @Query("SELECT * FROM category_table WHERE categoryName = :name")
+    fun getCategory(name: String): LiveData<List<Category>>
 }

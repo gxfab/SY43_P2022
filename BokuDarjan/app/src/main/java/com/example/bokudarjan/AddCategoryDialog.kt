@@ -1,40 +1,37 @@
 package com.example.bokudarjan
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.EditText
-import android.widget.NumberPicker
-import android.widget.Switch
-import android.widget.Toast
-import androidx.appcompat.widget.SwitchCompat
+import android.widget.*
 import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
-import com.example.bokudarjan.expense.Expense
-import com.example.bokudarjan.expense.ExpenseViewModel
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.example.bokudarjan.category.Category
+import com.example.bokudarjan.category.CategoryViewModel
+import kotlinx.android.synthetic.main.fragment_add_category.*
 import kotlinx.android.synthetic.main.fragment_side_bar.*
+import vadiole.colorpicker.ColorModel
+import vadiole.colorpicker.ColorPickerDialog
 
 class AddCategoryDialog() : DialogFragment() {
 
-    private lateinit var expenseViewModel: ExpenseViewModel
+    private lateinit var categoryViewModel: CategoryViewModel;
+    var catColor : String = "#F44336"
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
 
             val builder = AlertDialog.Builder(it)
-            expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
-            builder.setView(R.layout.fragment_add_expense)
-            builder.setMessage("Ajouter une dépense")
+            categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
+            builder.setView(R.layout.fragment_add_category)
+            builder.setMessage("Ajouter une catégorie")
                 .setPositiveButton("Ok",
                     DialogInterface.OnClickListener { dialog, id ->
-                        insertDataToDatabase();
+                        insertDataToDatabase()
                     })
                 .setNegativeButton("Annuler",
                     DialogInterface.OnClickListener { dialog, id ->
@@ -49,53 +46,45 @@ class AddCategoryDialog() : DialogFragment() {
 
     override fun onStart() {
         val res = super.onStart()
-        val addExpenseDay = this.dialog!!.findViewById<NumberPicker>(R.id.addExpenseDay);
-        addExpenseDay.minValue = 1;
-        addExpenseDay.maxValue = 31;
-        (dialog as AlertDialog)!!.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4CAF50"))
-        (dialog as AlertDialog)!!.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("red"))
+        (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4CAF50"))
+        (dialog as AlertDialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("red"))
+        var image = dialog!!.findViewById<ImageView>(R.id.colorView)
+        image.setOnClickListener {
+
+            val colorpicker: ColorPickerDialog = ColorPickerDialog.Builder()
+                .setInitialColor(Color.parseColor("#F44336"))
+                .setColorModel(ColorModel.HSV)
+                .setColorModelSwitchEnabled(false)
+                .onColorSelected {  color ->
+                    catColor = String.format("#%06X", 0xFFFFFF and color)
+                    Log.d("[COLOR]",catColor)
+                    image.setColorFilter(color)
+                }
+                .create()
+            colorpicker.show(childFragmentManager, "color_picker")
+
+        }
     }
 
-
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    private fun insertDataToDatabase() {
-
-
-        val addExpenseName = this.dialog!!.findViewById<EditText>(R.id.addExpenseName);
-        val addExpenseAmount = this.dialog!!.findViewById<EditText>(R.id.addExpenseAmount);
-        val addExpenseDay = this.dialog!!.findViewById<NumberPicker>(R.id.addExpenseDay);
-        val toggleExpenseIncome = this.dialog!!.findViewById<Switch>(R.id.toggleExpenseIncome);
-
-        val name: String = addExpenseName?.text.toString()
-        Log.d("[EXPENSE]", name)
-
-        var amount: Float = 0F
-        if (addExpenseAmount?.text.toString().isNotEmpty()) {
-            amount = addExpenseAmount?.text.toString().toFloat()
-        }
-        val date = addExpenseDay?.value
-        val moneyIncoming: Boolean? = toggleExpenseIncome?.isChecked
-
-        val expense = Expense("category", name, amount, date.toString(), moneyIncoming!!)
+    private fun insertDataToDatabase(){
+        val categoryName  : String = this.dialog!!.findViewById<EditText>(R.id.addCategoryName).text.toString()
+        val category = Category(categoryName, catColor )
 
 
-        //If the input is ok, we add the expense to the database
-        if (isInputValid(expense)) {
-            expenseViewModel.addExpense(expense)
+        //If the input is ok, we add the category to the database
+        if(isInputValid(category)){
+            categoryViewModel.addCategory(category)
             Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT).show()
-            Log.i("AddExpenseFragment", "Expense successfully added")
-        } else {
-            Toast.makeText(
-                requireContext(),
-                "Error while adding expense to database",
-                Toast.LENGTH_SHORT
-            ).show()
+            Log.i("AddCategoryFragment", "Category successfully added")
+        }else{
+            Toast.makeText(requireContext(), "Error while adding category to database", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun isInputValid(expense : Expense) : Boolean{
-
-        return expense.name.isNotEmpty() && expense.categoryName.isNotEmpty() && expense.amount != 0f
+    private fun isInputValid(category : Category) : Boolean{
+        return !category.categoryName.isEmpty()
     }
+
+
 
 }

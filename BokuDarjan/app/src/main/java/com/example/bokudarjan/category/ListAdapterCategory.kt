@@ -8,10 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.R
 import com.example.bokudarjan.envelope.EnvelopeViewModel
@@ -34,16 +31,29 @@ class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolde
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = categoryList[position]
         holder.itemView.nameCategory.text = currentItem.categoryName
+        holder.itemView.header.setColorFilter(Color.parseColor(currentItem.color))
+        holder.itemView.expensesLayout.background.setTint(Color.parseColor( "#80" + currentItem.color.substring(1)))
         val context = holder.itemView.nameCategory.context;
+        holder.itemView.expensesLayout.removeAllViews()
 
-        envelopeViewModel.readAllData.observeForever {
+
+        envelopeViewModel.readAllData.observeForever{
+            var i = 0
+            var total = 0f
+            holder.itemView.expensesLayout.removeAllViews()
             for(item in it){
-                var txt = TextView(context);
-                txt.text = item.name + " : " + item.amount
-                txt.setTextSize(TypedValue.COMPLEX_UNIT_SP,16f)
-                txt.setTextColor(Color.parseColor("#FFFFFF"))
-                holder.itemView.expensesLayout.addView(txt)
+                Log.d("[DAO]",i.toString())
+                if(currentItem.categoryName == item.categoryName){
+                    var txt = TextView(context);
+                    txt.text = item.name + " : " + String.format("%.2f",item.amount) + "€"
+                    total += item.amount.toFloat()
+                    txt.setTextSize(TypedValue.COMPLEX_UNIT_SP,16f)
+                    txt.setTextColor(Color.parseColor("#FFFFFF"))
+                    holder.itemView.expensesLayout.addView(txt, i)
+                    i++
+                }
             }
+            holder.itemView.nameCategory.text = currentItem.categoryName + " : " + String.format("%.2f",total) + "€"
         }
     }
 

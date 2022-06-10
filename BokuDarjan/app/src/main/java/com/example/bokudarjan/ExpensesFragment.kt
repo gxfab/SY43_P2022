@@ -19,7 +19,6 @@ import com.example.bokudarjan.expense.ExpenseViewModel
 import com.example.bokudarjan.expense.ListAdapterExpense
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_expenses.view.*
-import kotlinx.android.synthetic.main.fragment_list_expense.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

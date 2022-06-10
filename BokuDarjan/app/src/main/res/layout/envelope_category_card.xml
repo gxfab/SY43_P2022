@@ -37,9 +37,9 @@
         android:id="@+id/expensesLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/ic_rectangle"
-        android:backgroundTint="#80FF0000"
+        android:backgroundTint="#80F44336"
         android:orientation="vertical"
         android:paddingStart="10dp"
         android:paddingLeft="10dp"
@@ -50,16 +50,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/header"
         app:layout_constraintStart_toStartOf="@+id/header"
-        app:layout_constraintTop_toTopOf="@+id/header"/>
+        app:layout_constraintTop_toTopOf="@+id/header" />
 
     <ImageView
         android:id="@+id/header"
         android:layout_width="0dp"
         android:layout_height="38dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_rectangle"
-        android:tint="#FF1100"
+        android:tint="#F44336"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,5 +1,6 @@
 package com.example.bokudarjan.expense
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,11 +22,12 @@ class ListAdapterExpense: RecyclerView.Adapter<ListAdapterExpense.MyViewHolder>(
         return expenseList.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = expenseList[position]
         holder.itemView.nameExpense.text = currentItem.name
         holder.itemView.nameCategoryExpense.text = currentItem.categoryName
-        holder.itemView.amoutExpense.text = currentItem.amount.toString()
+        holder.itemView.amoutExpense.text =  String.format("%.2f", currentItem.amount) + "€"
 
 
 
