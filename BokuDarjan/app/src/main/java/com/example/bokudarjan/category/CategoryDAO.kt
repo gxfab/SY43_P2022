@@ -12,8 +12,6 @@ interface CategoryDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addCategory(Category: Category);
 
-    @Query("SELECT * FROM expense_table ORDER BY categoryName")
+    @Query("SELECT * FROM category_table ORDER BY categoryName")
     fun readAllData(): LiveData<List<Category>>;
-
-
 }

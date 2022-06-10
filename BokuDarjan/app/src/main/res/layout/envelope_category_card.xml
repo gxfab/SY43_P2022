@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Category">
+    tools:context="category.Category">
+
 
     <ImageView
         android:id="@+id/edit"
@@ -50,6 +51,9 @@
         app:layout_constraintEnd_toEndOf="@+id/header"
         app:layout_constraintStart_toStartOf="@+id/header"
         app:layout_constraintTop_toTopOf="@+id/header">
+
+
+
 
         <TextView
             android:id="@+id/textView9"

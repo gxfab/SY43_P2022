@@ -1,12 +1,15 @@
 package com.example.bokudarjan.envelope
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.R
-import com.example.bokudarjan.expense.ListAdapterExpense
 import kotlinx.android.synthetic.main.envelope_card.view.*
+
 
 class ListAdapterEnvelope : RecyclerView.Adapter<ListAdapterEnvelope.MyViewHolder>() {
 
@@ -23,6 +26,7 @@ class ListAdapterEnvelope : RecyclerView.Adapter<ListAdapterEnvelope.MyViewHolde
         val currentItem = envelopeList[position]
         holder.itemView.nameEnvelope.text = currentItem.name
         holder.itemView.amountEnvelope.text = currentItem.amount.toString()
+
     }
 
 
