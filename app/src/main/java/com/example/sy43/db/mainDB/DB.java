@@ -34,7 +34,6 @@ public abstract class DB extends RoomDatabase{
         if (INSTANCE==null){
             synchronized (DB.class) {
                 if (INSTANCE == null) {
-                    Log.d("Test", "getAppDatabase: ");
                     INSTANCE =
                             Room.databaseBuilder(context.getApplicationContext(), DB.class, "Database")
                                     // allow queries on the main thread.
