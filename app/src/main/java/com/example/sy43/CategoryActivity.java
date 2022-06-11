@@ -29,18 +29,35 @@ import java.util.stream.Collectors;
 
 public class CategoryActivity extends AppCompatActivity {
     private CategoryViewModel categoryViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Test", "created");
         super.onCreate(savedInstanceState);
         this.setTitle("Category page");
         setContentView(R.layout.activity_category);
+        Button add = (Button) findViewById(R.id.add);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(CategoryActivity.this, "Added", Toast.LENGTH_LONG).show();
+                //categoryViewModel.addNewCategory(new Category("Test1234", 10, 20));
+                Intent intent = new Intent(v.getContext(), CreateActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         categoryViewModel.init();
+
         categoryViewModel.getCategories().observe(this, new Observer<List<Categorydb>>() {
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {
-                 // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
+                Log.d("Changed", "Change occured.");
+                // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
                 CategoryAdapter catArrayAdapter = new CategoryAdapter(
                         CategoryActivity.this,
                         R.layout.category_list_item,
@@ -67,15 +84,6 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
 
-        Button add = (Button) findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(CategoryActivity.this, "Added", Toast.LENGTH_LONG).show();
-                //categoryViewModel.addNewCategory(new Category("Test1234", 10, 20));
-                Intent intent = new Intent(v.getContext(), CreateActivity.class);
-                v.getContext().startActivity(intent);
-            }
-        });
+
     }
 }

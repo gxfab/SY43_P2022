@@ -1,6 +1,7 @@
 package com.example.sy43.viewmodels;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,6 +25,8 @@ public class CategoryViewModel extends ViewModel {
         if (categories != null) {
             return;
         }
+
+        Log.d("Test2", "ok");
         catRepo = CategoryRepository.getInstance();
         categories = catRepo.getCategories();
         objectives = catRepo.getObjectives();
