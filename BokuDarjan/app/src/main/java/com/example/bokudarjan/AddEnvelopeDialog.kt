@@ -37,7 +37,7 @@ class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             envelopeViewModel = ViewModelProvider(this)[EnvelopeViewModel::class.java]
             builder.setView(R.layout.fragment_add_envelope)
-            builder.setMessage("Plannifier une dépense")
+            builder.setMessage("Plannifier une envelope")
                 .setPositiveButton("Ok",
                     DialogInterface.OnClickListener { dialog, id ->
                         insertDataToDatabase()
