@@ -16,7 +16,7 @@ import com.example.bokudarjan.envelope.EnvelopeDAO
 import kotlin.jvm.Volatile;
 
 //Build a singleton of the Database
-@Database(version = 1, entities = [Expense::class, Category::class, Envelope::class], exportSchema = false)
+@Database(version = 2, entities = [Expense::class, Category::class, Envelope::class], exportSchema = false)
 abstract class BokudarjanDatabase : RoomDatabase() {
 
     abstract fun expenseDao(): ExpenseDAO
