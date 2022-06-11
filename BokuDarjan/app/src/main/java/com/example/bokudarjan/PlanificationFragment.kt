@@ -66,7 +66,7 @@ class planificationFragment : Fragment() {
             expenseViewModel.sumOfNegativeExpenses.observe(viewLifecycleOwner, Observer { sumOfNegativeExpenses ->
                 envelopeViewModel.sumOfEnvelopes.observe(viewLifecycleOwner, Observer { sumOfEnvelopes ->
                     if(sumOfPositiveExpenses != null && sumOfNegativeExpenses != null && sumOfEnvelopes != null)
-                       view.budget.sumAmount.text = (sumOfPositiveExpenses - sumOfNegativeExpenses + sumOfEnvelopes + null).toString()
+                       view.budget.sumAmount.text = (sumOfPositiveExpenses - sumOfNegativeExpenses + sumOfEnvelopes).toString()
                 })
             })
         })
