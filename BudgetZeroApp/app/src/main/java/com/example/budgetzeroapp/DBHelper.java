@@ -12,18 +12,21 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
+
+@SuppressWarnings({"UnusedDeclaration"})
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "BudgetZero.db";
 
     public static final String EXP_TABLE_NAME = "expense";
     public static final String EXP_COL_ID = "id";
-    public static final String EXP_COL_DATE = "date";
+    public static final String EXP_COL_YEAR = "year";
+    public static final String EXP_COL_MONTH = "month";
+    public static final String EXP_COL_DAY = "day";
     public static final String EXP_COL_AMOUNT = "amount";
     public static final String EXP_COL_LABEL = "label";
     public static final String EXP_COL_TYPE = "type";
     public static final String EXP_COL_IS_STABLE = "is_stable";
-    public static final String EXP_COL_DAY_NB = "day_nb";
     public static final String EXP_COL_ID_EXP = "id_expense";
     public static final String EXP_COL_ID_DEBT = "id_debt";
     public static final String EXP_COL_ID_SAV = "id_SAV";
@@ -52,6 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SAV_CAT_COL_ID = "id";
     public static final String SAV_CAT_COL_NAME = "name";
     public static final String SAV_CAT_COL_MAX_AMOUNT = "max_amount";
+    public static final String SAV_CAT_COL_CURRENT_AMOUNT = "current_amount";
     public static final String SAV_CAT_COL_PERCENTAGE = "percentage";
     public static final String SAV_CAT_COL_PRIORITY_ORDER = "priority_order";
 
@@ -59,14 +63,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final int TYPE_INC = 2;
     public static final int TYPE_DEBT = 3;
     public static final int TYPE_SAV = 4;
-
-
+    public static final int DEFAULT_SAV_ID = 1;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME , null, 1);
     }
 
-    public int dateToInt(Date d){return parseInt(new SimpleDateFormat("yyyyMMdd", Locale.FRANCE).format(d)); }
 
     public String intDateToString(int date){
         return date%100+"/"+(date/100)%100+"/"+(date/10000);
@@ -74,18 +76,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public int dateToMonthInt(Date d){return parseInt(new SimpleDateFormat("yyyyMM", Locale.FRANCE).format(d)); }
 
-
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
                 "create table "+EXP_TABLE_NAME+
                         "("+EXP_COL_ID+" integer primary key autoincrement, " +
-                        EXP_COL_DATE+" integer default "+dateToInt(new Date())+", " +
+                        EXP_COL_DAY+" integer default "+DateManager.dateToDay(new Date())+", " +
+                        EXP_COL_MONTH+" integer default "+DateManager.dateToMonth(new Date())+", " +
+                        EXP_COL_YEAR+" integer default "+DateManager.dateToYear(new Date())+", " +
                         EXP_COL_AMOUNT+" real not null, " +
                         EXP_COL_LABEL+" text, "+
                         EXP_COL_IS_STABLE+" integer default 0, "+
-                        EXP_COL_DAY_NB+" integer default 1, "+
                         EXP_COL_TYPE+" integer not null default 1, "+
                         EXP_COL_ID_EXP+" integer default null, "+
                         EXP_COL_ID_DEBT+" integer default null, "+
@@ -126,7 +127,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table "+SAV_CAT_TABLE_NAME+
                         "("+SAV_CAT_COL_ID+" integer primary key autoincrement, " +
                         SAV_CAT_COL_NAME+" text not null, " +
-                        SAV_CAT_COL_MAX_AMOUNT+" real default null, " +
+                        SAV_CAT_COL_MAX_AMOUNT+" real default -1, " +
+                        SAV_CAT_COL_CURRENT_AMOUNT+" real default 0, " +
                         SAV_CAT_COL_PERCENTAGE+" integer default null, "+
                         SAV_CAT_COL_PRIORITY_ORDER+" integer"+
                         ")"
@@ -143,11 +145,12 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public ContentValues expenseCV(int date,float amount, String label, int type, int catID, boolean isStable, int dayNB){
+    public ContentValues expenseCV(Date date,float amount, String label, int type, int catID, boolean isStable){
         ContentValues contentValues = new ContentValues();
         contentValues.put(EXP_COL_AMOUNT, amount);
-        contentValues.put(EXP_COL_DATE, date);
-        contentValues.put(EXP_COL_DAY_NB, dayNB);
+        contentValues.put(EXP_COL_DAY, DateManager.dateToDay(date));
+        contentValues.put(EXP_COL_MONTH, DateManager.dateToMonth(date));
+        contentValues.put(EXP_COL_YEAR, DateManager.dateToYear(date));
         contentValues.put(EXP_COL_LABEL, label);
         switch(type){
             case TYPE_EXP: contentValues.put(EXP_COL_ID_EXP, catID);
@@ -203,6 +206,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(DEBT_COL_END_MONTH, endMonth);
         return contentValues;
     }
+
     public void insertDebtCat(String name, float monthAmount, float totalAmount, int startMonth, int endMonth){
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(DEBT_TABLE_NAME, null, debtCV(name, monthAmount, totalAmount, startMonth, endMonth));
@@ -223,9 +227,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(EXP_CAT_TABLE_NAME, null, expenseCatCV(name, budget, isSub, idParent));
     }
 
-    public void insertExpense(int date,float amount, String label, int type, int catID, boolean isStable, int dayNB){
+    public void insertExpense(Date date,float amount, String label, int type, int catID, boolean isStable){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(EXP_TABLE_NAME, null, expenseCV(date, amount, label, type, catID, isStable, dayNB));
+        db.insert(EXP_TABLE_NAME, null, expenseCV(date, amount, label, type, catID, isStable));
     }
 
     public void updateDebtCat(int id, String name, float monthAmount, float totalAmount, int startMonth, int endMonth) {
@@ -252,10 +256,18 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(EXP_CAT_TABLE_NAME,contVal,  "id = ? ", new String[] { Integer.toString(id) } );
     }
 
-    public void updateExpense(int id, int date,float amount, String label, int type, int catID, boolean isStable, int dayNB){
+    public void updateExpense(int id, Date date,float amount, String label, int type, int catID, boolean isStable, int dayNB){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contVal = expenseCV(date, amount, label, type, catID, isStable, dayNB);
+        ContentValues contVal = expenseCV(date, amount, label, type, catID, isStable);
         db.update(EXP_TABLE_NAME,contVal,  "id = ? ", new String[] { Integer.toString(id) } );
+    }
+
+    public void updateSavingsCurrentAmount(int id, float amount){
+        ContentValues contVal = new ContentValues();
+        contVal.put(SAV_CAT_COL_CURRENT_AMOUNT, amount);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(SAV_CAT_TABLE_NAME,contVal,  "id = ? ", new String[] { Integer.toString(id) } );
+
     }
 
     public Integer deleteById (Integer id, String table) {
@@ -266,6 +278,47 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getData(String request) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery( request, null );
+    }
+
+    public Cursor getSavingsFromPriority(int priority){
+        Cursor saving = getData(
+                "select * from "+SAV_CAT_TABLE_NAME+
+                        " where "+SAV_CAT_COL_PRIORITY_ORDER+"="+priority);
+        saving.moveToFirst();
+        return saving;
+    }
+
+    public Cursor getAllSavingsCat(){
+        Cursor saving = getData("select * from "+SAV_CAT_TABLE_NAME);
+        saving.moveToFirst();
+        return saving;
+    }
+
+    public Cursor getAllExpenses(){
+        Cursor saving = getData("select * from "+EXP_TABLE_NAME+
+                "order by "+EXP_COL_YEAR+" desc, " +
+                EXP_COL_MONTH+" desc, "+
+                EXP_COL_DAY+" desc");
+        saving.moveToFirst();
+        return saving;
+    }
+
+    public Cursor getDateExpenses(int year, int month, int day){
+        Cursor saving = getData("select * from "+EXP_TABLE_NAME+
+                " where "+EXP_COL_DAY+" = "+day+
+                "and "+EXP_COL_MONTH+" = "+month+
+                "and "+EXP_COL_YEAR+" = "+year);
+        saving.moveToFirst();
+        return saving;
+    }
+
+    public Cursor getEndMonthExpenses(int year, int month, int day){
+        Cursor saving = getData("select * from "+EXP_TABLE_NAME+
+                " where "+EXP_COL_DAY+" <= "+day+
+                "and "+EXP_COL_MONTH+" = "+month+
+                "and "+EXP_COL_YEAR+" = "+year);
+        saving.moveToFirst();
+        return saving;
     }
 
     public int numberOfRows(){
