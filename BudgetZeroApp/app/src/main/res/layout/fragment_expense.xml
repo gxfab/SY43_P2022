@@ -15,11 +15,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="82dp"
+            android:layout_marginTop="5dp"
             android:ems="10"
-            android:inputType="text" >
-        </EditText>
+            android:inputType="text"></EditText>
 
         <EditText
             android:id="@+id/editTextEmail"
