@@ -75,5 +75,6 @@
     <string name="option_title_theme">Thème</string>
     <string name="option_spinner_day">Choisir le jour de réinitialisation</string>
     <string name="option_amount_notification">Somme…</string>
+    <string name="option_system_theme">Thème du système</string>
 
 </resources>
