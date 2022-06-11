@@ -20,4 +20,9 @@
     <string name="exitButton">Exit Cross</string>
     <string name="month_nav">May</string>
     <string name="nomoola_delete_category">Delete Category</string>
+
+    <!-- Profile page -->
+    <string name="profile_edit_name">Edit Name</string>
+    <string name="applyButton">Apply Button</string>
+
 </resources>

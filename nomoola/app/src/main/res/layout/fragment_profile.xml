@@ -49,5 +49,16 @@
         android:clickable="true"
         />
 
+    <Button
+        android:id="@+id/editName"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="@+id/profileName"
+        app:layout_constraintStart_toEndOf="@+id/profileName"
+        app:layout_constraintTop_toTopOf="@+id/profileName" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

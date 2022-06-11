@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/drawable-anydpi/ic_add_category.xml" value="0.3675" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/drawable/cutsom_textview_background.xml" value="0.3675" />
+        <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/drawable/edit_name_background.xml" value="0.313" />
+        <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/drawable/edit_text_background.xml" value="0.131" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/drawable/ic_baseline_history.xml" value="0.3575" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/drawable/ic_baseline_home.xml" value="0.3575" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/drawable/ic_baseline_person_outline.xml" value="0.3575" />
@@ -13,12 +15,13 @@
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/activity_history.xml" value="0.32592592592592595" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/activity_profile.xml" value="0.32592592592592595" />
-        <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/dialog_category.xml" value="0.16712962962962963" />
+        <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/dialog_category.xml" value="0.1" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/fragment_category.xml" value="0.291213768115942" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/fragment_categoty_tiles.xml" value="0.32592592592592595" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/fragment_history_page.xml" value="0.3087719298245614" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/fragment_home_page.xml" value="0.33" />
-        <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/fragment_profile.xml" value="0.32592592592592595" />
+        <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/fragment_name_dialog.xml" value="0.5" />
+        <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/fragment_profile_page.xml" value="0.3087719298245614" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/layout/item_category.xml" value="0.16712962962962963" />
         <entry key="..\:/UTBM/INFO_2/SY43/Projet/nomoola/app/src/main/res/menu/bottom_menu.xml" value="0.3087719298245614" />
