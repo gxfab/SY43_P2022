@@ -44,8 +44,7 @@
         app:cardCornerRadius="15dp"
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="5dp"
-        >
+        android:layout_marginBottom="5dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

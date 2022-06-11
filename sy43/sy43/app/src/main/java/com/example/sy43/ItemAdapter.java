@@ -10,10 +10,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.invoke.LambdaConversionException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +22,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private List<DataModel> mList;
     private List<String> list = new ArrayList<>();
     private List<Drawable> imglist = new ArrayList<>();
+    private List<CardView> btnList = new ArrayList<>();
     public ItemAdapter(List<DataModel> mList){
         this.mList  = mList;
 
@@ -50,7 +51,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         holder.category_imageview.setImageDrawable(model.getImageResource());
 
-        NestedAdapter adapter = new NestedAdapter(list,imglist);
+        NestedAdapter adapter = new NestedAdapter(list,imglist, btnList);
         holder.nestedRecyclerView.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
         holder.nestedRecyclerView.setHasFixedSize(true);
         holder.nestedRecyclerView.setAdapter(adapter);
@@ -60,6 +61,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 model.setExpandable(!model.isExpandable());
                 list = model.getNestedList();
                 imglist= model.getNestedimgList();
+                btnList= model.getBtnList();
                 notifyItemChanged(holder.getAdapterPosition());
             }
         });

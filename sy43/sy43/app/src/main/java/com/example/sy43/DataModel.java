@@ -2,22 +2,26 @@ package com.example.sy43;
 
 import android.graphics.drawable.Drawable;
 
+import androidx.cardview.widget.CardView;
+
 import java.util.List;
 
 public class DataModel {
 
     private List<String> nestedList;
     private List<Drawable> nestedimgList;
+    private List<CardView> btnList;
     private String itemText;
     private Drawable imageResource;
     private boolean isExpandable;
 
-    public DataModel(List<String> nestedList, List<Drawable> nestedimgList, String itemText, Drawable imageResource) {
+    public DataModel(List<String> nestedList, List<Drawable> nestedimgList, List<CardView> btnList, String itemText, Drawable imageResource) {
         this.nestedList = nestedList;
         this.nestedimgList = nestedimgList;
         this.itemText = itemText;
         this.imageResource = imageResource;
         this.isExpandable = false;
+        this.btnList = btnList;
     }
 
     public List<Drawable> getNestedimgList() {
@@ -46,5 +50,9 @@ public class DataModel {
 
     public boolean isExpandable() {
         return isExpandable;
+    }
+
+    public List<CardView> getBtnList() {
+        return btnList;
     }
 }

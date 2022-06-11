@@ -78,6 +78,10 @@ public class define_categories extends AppCompatActivity {
         clothingimg.add(ContextCompat.getDrawable(this,R.drawable.clothes));
         clothingimg.add(ContextCompat.getDrawable(this,R.drawable.footwear));
 
+        List<CardView> clothingbtns = new ArrayList<>();
+        clothingbtns.add( new CardView(this));
+        clothingbtns.add(new CardView(this));
+        clothingbtns.add(new CardView(this));
 
         List<String> communication = new ArrayList<>();
         communication.add("Internet");
@@ -88,6 +92,11 @@ public class define_categories extends AppCompatActivity {
         communicationimg.add(ContextCompat.getDrawable(this, R.drawable.internet));
         communicationimg.add(ContextCompat.getDrawable(this, R.drawable.phone));
         communicationimg.add(ContextCompat.getDrawable(this, R.drawable.tv));
+
+        List<CardView> communicationbtns = new ArrayList<>();
+        communicationbtns.add( new CardView(this));
+        communicationbtns.add(new CardView(this));
+        communicationbtns.add(new CardView(this));
 
 
         List<String> entertainment = new ArrayList<>();
@@ -114,6 +123,18 @@ public class define_categories extends AppCompatActivity {
         entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.sports));
         entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.vacation));
 
+        List<CardView> entertainmentbtns = new ArrayList<>();
+        entertainmentbtns.add( new CardView(this));
+        entertainmentbtns.add( new CardView(this));
+        entertainmentbtns.add( new CardView(this));
+        entertainmentbtns.add( new CardView(this));
+        entertainmentbtns.add( new CardView(this));
+        entertainmentbtns.add( new CardView(this));
+        entertainmentbtns.add( new CardView(this));
+        entertainmentbtns.add( new CardView(this));
+        entertainmentbtns.add( new CardView(this));
+        entertainmentbtns.add( new CardView(this));
+
         List<String> finance = new ArrayList<>();
         finance.add("Banking Fees");
         finance.add("Loan");
@@ -124,6 +145,11 @@ public class define_categories extends AppCompatActivity {
         financeimg.add(ContextCompat.getDrawable(this,R.drawable.loan));
         financeimg.add(ContextCompat.getDrawable(this,R.drawable.salarytax));
 
+        List<CardView> financebtns = new ArrayList<>();
+        financebtns.add(new CardView(this));
+        financebtns.add(new CardView(this));
+        financebtns.add(new CardView(this));
+
         List<String> food = new ArrayList<>();
         food.add("Canteen");
         food.add("Groceries");
@@ -133,6 +159,11 @@ public class define_categories extends AppCompatActivity {
         foodimg.add(ContextCompat.getDrawable(this,R.drawable.canteen));
         foodimg.add(ContextCompat.getDrawable(this,R.drawable.groceries));
         foodimg.add(ContextCompat.getDrawable(this,R.drawable.restaurant));
+
+        List<CardView> foodbtns = new ArrayList<>();
+        foodbtns.add( new CardView(this));
+        foodbtns.add(new CardView(this));
+        foodbtns.add(new CardView(this));
 
         List<String> health = new ArrayList<>();
         health.add("Barber");
@@ -147,6 +178,13 @@ public class define_categories extends AppCompatActivity {
         healthimg.add(ContextCompat.getDrawable(this,R.drawable.doctor));
         healthimg.add(ContextCompat.getDrawable(this,R.drawable.life_insurance));
         healthimg.add(ContextCompat.getDrawable(this,R.drawable.pharmacy));
+
+        List<CardView> healthbtns = new ArrayList<>();
+        healthbtns.add(new CardView(this));
+        healthbtns.add(new CardView(this));
+        healthbtns.add(new CardView(this));
+        healthbtns.add(new CardView(this));
+        healthbtns.add(new CardView(this));
 
         List<String> housing = new ArrayList<>();
         housing.add("Cleaning");
@@ -168,6 +206,16 @@ public class define_categories extends AppCompatActivity {
         housingimg.add(ContextCompat.getDrawable(this, R.drawable.taxes));
         housingimg.add(ContextCompat.getDrawable(this, R.drawable.utilities));
 
+        List<CardView> housingbtns = new ArrayList<>();
+        housingbtns.add(new CardView(this));
+        housingbtns.add(new CardView(this));
+        housingbtns.add(new CardView(this));
+        housingbtns.add(new CardView(this));
+        housingbtns.add(new CardView(this));
+        housingbtns.add(new CardView(this));
+        housingbtns.add(new CardView(this));
+        housingbtns.add(new CardView(this));
+
         List<String> transport = new ArrayList<>();
         transport.add("Automobile Insurance");
         transport.add("Automobile Fees");
@@ -184,17 +232,27 @@ public class define_categories extends AppCompatActivity {
         transportimg.add(ContextCompat.getDrawable(this,R.drawable.tolls));
         transportimg.add(ContextCompat.getDrawable(this,R.drawable.transportation));
 
-        mList.add(new DataModel(clothing, clothingimg, "Clothing", ContextCompat.getDrawable(this,R.drawable.clothing)));
-        mList.add(new DataModel(communication, communicationimg, "Communication", ContextCompat.getDrawable(this,R.drawable.phone)));
-        mList.add(new DataModel(entertainment, entertainmentimg, "Entertainment", ContextCompat.getDrawable(this,R.drawable.entertainment)));
-        mList.add(new DataModel(finance, financeimg, "Finance",ContextCompat.getDrawable(this,R.drawable.finance)));
-        mList.add(new DataModel(food, foodimg, "Food",ContextCompat.getDrawable(this,R.drawable.food)));
-        mList.add(new DataModel(health, healthimg, "Health", ContextCompat.getDrawable(this,R.drawable.health)));
-        mList.add(new DataModel(housing, housingimg, "Housing", ContextCompat.getDrawable(this,R.drawable.house)));
-        mList.add(new DataModel(transport, transportimg, "Transport", ContextCompat.getDrawable(this,R.drawable.transport)));
+        List<CardView> transportbtns = new ArrayList<>();
+        transportbtns.add(new CardView(this));
+        transportbtns.add(new CardView(this));
+        transportbtns.add(new CardView(this));
+        transportbtns.add(new CardView(this));
+        transportbtns.add(new CardView(this));
+        transportbtns.add(new CardView(this));
+
+        mList.add(new DataModel(clothing, clothingimg, clothingbtns,"Clothing", ContextCompat.getDrawable(this,R.drawable.clothing)));
+        mList.add(new DataModel(communication, communicationimg, communicationbtns,"Communication", ContextCompat.getDrawable(this,R.drawable.phone)));
+        mList.add(new DataModel(entertainment, entertainmentimg, entertainmentbtns,"Entertainment", ContextCompat.getDrawable(this,R.drawable.entertainment)));
+        mList.add(new DataModel(finance, financeimg, financebtns,"Finance",ContextCompat.getDrawable(this,R.drawable.finance)));
+        mList.add(new DataModel(food, foodimg, foodbtns,"Food",ContextCompat.getDrawable(this,R.drawable.food)));
+        mList.add(new DataModel(health, healthimg, healthbtns,"Health", ContextCompat.getDrawable(this,R.drawable.health)));
+        mList.add(new DataModel(housing, housingimg, housingbtns,"Housing", ContextCompat.getDrawable(this,R.drawable.house)));
+        mList.add(new DataModel(transport, transportimg, transportbtns,"Transport", ContextCompat.getDrawable(this,R.drawable.transport)));
 
         adapter = new ItemAdapter(mList);
         recyclerView.setAdapter(adapter);
+
+
     }
     private void toHome(){
         continue_home = findViewById(R.id.continue_to_home_btn);
