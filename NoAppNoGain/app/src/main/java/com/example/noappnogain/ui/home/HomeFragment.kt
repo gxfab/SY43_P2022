@@ -30,6 +30,10 @@ class HomeFragment : Fragment() {
     private lateinit var dataArrayList: ArrayList<Data>
     private lateinit var recyclerView: RecyclerView
 
+    var totalsumexpense : Long = 0
+    var totalsumincome : Long = 0
+    var balance : Long = 0
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -42,7 +46,7 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val balance: TextView = binding.balanceSetResult
+        var balanceSetResult: TextView = binding.balanceSetResult
         val recyclerView: RecyclerView = binding.verticalRecyclerView
         incomeArrayList = arrayListOf<Data>()
         expenseArrayList = arrayListOf<Data>()
@@ -65,6 +69,9 @@ class HomeFragment : Fragment() {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Data::class.java)
+                        if (data != null) {
+                            totalsumexpense += data.getAmount().toInt()
+                        }
                         expenseArrayList.add(data!!)
                     }
 
@@ -83,7 +90,10 @@ class HomeFragment : Fragment() {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Data::class.java)
-                        incomeArrayList.add(data!!)
+                        if (data != null) {
+                            totalsumincome += data.getAmount().toInt()
+                        }
+                        incomeArrayList.add(data!! )
                     }
 
                     recyclerView.adapter = HomeAdapter(incomeArrayList)
@@ -94,6 +104,10 @@ class HomeFragment : Fragment() {
                 TODO("Not yet implemented")
             }
         })
+
+        balance = totalsumincome - totalsumexpense
+        balanceSetResult.setText(balance.toString())
+
         return root
     }
 
@@ -104,3 +118,4 @@ class HomeFragment : Fragment() {
 
 
 }
+

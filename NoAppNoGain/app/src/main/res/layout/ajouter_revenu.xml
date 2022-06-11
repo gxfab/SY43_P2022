@@ -46,7 +46,9 @@
                         android:id="@+id/categorie_edt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:entries="@array/categorie"
+                        android:spinnerMode="dropdown"/>
 
                 </RelativeLayout>
             </LinearLayout>
