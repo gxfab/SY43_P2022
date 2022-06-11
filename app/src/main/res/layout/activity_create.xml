@@ -46,7 +46,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/txtCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -64,7 +64,12 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="34dp" />
-
+        <Button
+            android:id="@+id/btnCatConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_200"
+            android:text="Confirmer" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,7 +112,7 @@
             android:inputType="date" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/btnObjConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/teal_200"

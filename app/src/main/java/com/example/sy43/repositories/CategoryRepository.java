@@ -21,16 +21,22 @@ import java.util.concurrent.Future;
 public class CategoryRepository {
     private static CategoryRepository instance;
     private ArrayList<Categorydb> dataSet = new ArrayList<>();
+    private DB db;
+    private DBexec databaseExecutor;
 
     public static CategoryRepository getInstance() {
         if (instance == null) instance = new CategoryRepository();
         return instance;
     }
 
+    CategoryRepository() {
+        db = DB.getAppDatabase(MainActivity.getAppContext());
+        databaseExecutor = DBexec.getExecutor();
+    }
+
+
     // For now we fake the query
     public MutableLiveData<List<Categorydb>> getCategories() {
-        DB db = DB.getAppDatabase(MainActivity.getAppContext());
-        DBexec databaseExecutor = DBexec.getExecutor();
         MutableLiveData<List<Categorydb>> data = new MutableLiveData<>();
 
         Futures.addCallback(
@@ -40,6 +46,7 @@ public class CategoryRepository {
                         Log.d("Test", String.valueOf(result.get(0)));
                         data.postValue(result);
                     }
+
                     public void onFailure(@NonNull Throwable thrown) {
                         Log.d("Test", String.valueOf(thrown));
                     }
@@ -51,8 +58,6 @@ public class CategoryRepository {
     }
 
     public MutableLiveData<List<Categorydb>> getObjectives() {
-        DB db = DB.getAppDatabase(MainActivity.getAppContext());
-        DBexec databaseExecutor = DBexec.getExecutor();
         MutableLiveData<List<Categorydb>> data = new MutableLiveData<>();
 
         Futures.addCallback(
@@ -61,6 +66,7 @@ public class CategoryRepository {
                     public void onSuccess(List<Categorydb> result) {
                         data.postValue(result);
                     }
+
                     public void onFailure(@NonNull Throwable thrown) {
                     }
                 },
@@ -71,8 +77,20 @@ public class CategoryRepository {
     }
 
 
-    public void addCategory(String name) {
-        //this.dataSet.add(new Categorydb(name, 10, 20));
+    public void createCategory(Categorydb cat) {
+        Log.d("Test4", MainActivity.getAppContext().toString());
+        Futures.addCallback(
+                db.CategoryDAO().insert(cat),
+                new FutureCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void stp) {
+                    }
+
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                databaseExecutor
+        );
     }
 
     public void setCategories() {

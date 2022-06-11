@@ -2,6 +2,7 @@ package com.example.sy43;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -52,7 +53,6 @@ public class CategoryActivity extends AppCompatActivity {
         super.onResume();
         categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         categoryViewModel.init();
-
         categoryViewModel.getCategories().observe(this, new Observer<List<Categorydb>>() {
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {

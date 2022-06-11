@@ -33,12 +33,15 @@ public class CategoryViewModel extends ViewModel {
 
     }
 
-    public void addNewCategory(final Categorydb category) {
+    public void createCategory(final Categorydb category) {
+        this.catRepo.createCategory(category);
+        this.categories.postValue(this.categories.getValue());
         // TODO: une fois la DAO fini, faire une requête vers l'api au lieu d'ajouter en dur
+        /*
         List<Categorydb> currentCategories = this.categories.getValue();
         currentCategories.add(category);
         categories.postValue(currentCategories);
-
+        */
     }
     public LiveData<List<Categorydb>> getCategories() {
         return categories;
