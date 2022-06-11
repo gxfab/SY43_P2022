@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Database;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,19 +30,16 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
+    private static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DB db = DB.getAppDatabase(this.getApplicationContext());
+        MainActivity.context = getApplicationContext();
+        DB db = DB.getAppDatabase(getAppContext());
         DBexec databaseExecutor = DBexec.getExecutor();
 
-//        final ArrayList<Categorydb> brandList = new ArrayList<Categorydb>();
-//        brandList.addAll(db.CategoryDAO().findAll());
-
-
-
         Categorydb category2 = new Categorydb();
-        category2.setCatName("debug");
+        category2.setCatName("test2");
 
         Futures.addCallback(
                 db.CategoryDAO().insert(category2),
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     public void onFailure(@NonNull Throwable thrown) {
-                        // handle failure
+                        Log.d("Test", String.valueOf(thrown));
                     }
                 },
                 databaseExecutor
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     public void onFailure(@NonNull Throwable thrown) {
-                        // handle failure
+                        Log.d("Test", "Test2");
                     }
                 },
                 databaseExecutor
@@ -87,5 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         });
+    }
+
+    public static Context getAppContext() {
+        return MainActivity.context;
     }
 }

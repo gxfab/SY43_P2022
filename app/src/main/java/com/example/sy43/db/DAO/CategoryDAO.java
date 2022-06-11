@@ -36,6 +36,12 @@ interface CategoryDAO{
     @Query("SELECT MaxValue FROM Categorydb")
     public ListenableFuture<List<Float>> findMaxValue();
 
+    @Query("SELECT * FROM Categorydb WHERE isObjective = 1")
+    public ListenableFuture<List<Categorydb>> findByObjective();
+
+    @Query("SELECT * FROM Categorydb WHERE isObjective = 0")
+    public ListenableFuture<List<Categorydb>> findByCategory();
+
     @Delete
     public ListenableFuture<Integer>
     deleteCategory(List<Categorydb> category);
