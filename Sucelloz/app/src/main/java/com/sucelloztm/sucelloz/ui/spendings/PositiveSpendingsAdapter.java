@@ -1,5 +1,6 @@
 package com.sucelloztm.sucelloz.ui.spendings;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sucelloztm.sucelloz.R;
-import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
-import com.sucelloztm.sucelloz.models.SubCategories;
-import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
-import com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpendingsAdapter.ViewHolder> {
@@ -33,6 +29,7 @@ public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpend
             dateTextView=view.findViewById(R.id.spendings_date_text_view);
             subCategoryTextView=view.findViewById(R.id.spendings_subcategory_text_view);
             amountTextView=view.findViewById(R.id.spendings_amount_text_view);
+            amountTextView.setTextColor(Color.parseColor("#99CC00"));
         }
 
         public TextView getNameTextView() {
@@ -58,7 +55,7 @@ public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpend
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.spendings_item, viewGroup, false);
+                .inflate(R.layout.negative_spendings_item, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -66,7 +63,7 @@ public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpend
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         viewHolder.getNameTextView().setText(positiveSpendingsList.get(position).getName());
-        String amount = positiveSpendingsList.get(position).getAmount() + "€";
+        String amount = "+" + positiveSpendingsList.get(position).getAmount() + "€";
         viewHolder.getAmountTextView().setText(amount);
         viewHolder.getDateTextView().setText(positiveSpendingsList.get(position).getDate());
         viewHolder.getSubCategoryTextView().setText(positiveSpendingsList.get(position).getSubCategory());

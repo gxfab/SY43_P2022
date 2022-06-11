@@ -10,6 +10,8 @@
         <entry key="app/src/main/res/layout/add_sub_category_dialog_fragment.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/categories_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/categories_item.xml" value="0.2552083333333333" />
+        <entry key="app/src/main/res/layout/negative_spendings_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/negative_spendings_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/positive_spendings_fragment.xml" value="0.1234375" />
         <entry key="app/src/main/res/layout/savings_fragment.xml" value="0.11875" />
         <entry key="app/src/main/res/layout/savings_item.xml" value="0.2868972778320313" />
