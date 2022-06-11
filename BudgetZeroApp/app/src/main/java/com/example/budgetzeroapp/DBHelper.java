@@ -280,6 +280,32 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.rawQuery( request, null );
     }
 
+    public Cursor getExpenseCatFromID(int id){
+        Cursor exp = getData(
+                "select * from "+EXP_CAT_TABLE_NAME+
+                        " where "+EXP_CAT_COL_ID+"="+id);
+        exp.moveToFirst();
+        return exp;
+    }
+
+    public String getExpCatName(int id){
+        Cursor exp = getData(
+                "select "+EXP_CAT_COL_NAME+" from "+EXP_CAT_TABLE_NAME+
+                        " where "+EXP_CAT_COL_ID+"="+id);
+        exp.moveToFirst();
+        if(!exp.isAfterLast()) return exp.getString(exp.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
+        return "";
+    }
+
+    public String getExpCat(int id){
+        Cursor exp = getData(
+                "select "+EXP_CAT_COL_NAME+" from "+EXP_CAT_TABLE_NAME+
+                        " where "+EXP_CAT_COL_ID+"="+id);
+        exp.moveToFirst();
+        if(!exp.isAfterLast()) return exp.getString(exp.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
+        return "";
+    }
+
     public Cursor getSavingsFromPriority(int priority){
         Cursor saving = getData(
                 "select * from "+SAV_CAT_TABLE_NAME+

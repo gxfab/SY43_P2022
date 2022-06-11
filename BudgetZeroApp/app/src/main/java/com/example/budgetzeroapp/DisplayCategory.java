@@ -29,7 +29,7 @@ public class DisplayCategory extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_expense);
+ /**       setContentView(R.layout.activity_display_expense);
         date = (TextView) findViewById(R.id.editTextName);
         phone = (TextView) findViewById(R.id.editTextPhone);
         email = (TextView) findViewById(R.id.editTextStreet);
@@ -105,21 +105,6 @@ public class DisplayCategory extends Activity{
             case R.id.Edit_Contact:
                 Button b = (Button)findViewById(R.id.button1);
                 b.setVisibility(View.VISIBLE);
-                name.setEnabled(true);
-                name.setFocusableInTouchMode(true);
-                name.setClickable(true);
-
-                phone.setEnabled(true);
-                phone.setFocusableInTouchMode(true);
-                phone.setClickable(true);
-
-                email.setEnabled(true);
-                email.setFocusableInTouchMode(true);
-                email.setClickable(true);
-
-                street.setEnabled(true);
-                street.setFocusableInTouchMode(true);
-                street.setClickable(true);
 
                 place.setEnabled(true);
                 place.setFocusableInTouchMode(true);
@@ -184,6 +169,6 @@ public class DisplayCategory extends Activity{
                 startActivity(intent);
             }
         }
-    }
+**/    }
 
 }
