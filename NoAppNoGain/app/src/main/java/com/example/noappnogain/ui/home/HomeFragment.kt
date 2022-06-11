@@ -30,9 +30,9 @@ class HomeFragment : Fragment() {
     private lateinit var dataArrayList: ArrayList<Data>
     private lateinit var recyclerView: RecyclerView
 
-    var totalsumexpense : Long = 0
-    var totalsumincome : Long = 0
-    var balance : Long = 0
+    var totalsumexpense : Int = 0
+    var totalsumincome : Int = 0
+    var balance : Int = 0
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
-                            totalsumexpense += data.getAmount().toInt()
+                            totalsumexpense += data.getAmountData().toInt()
                         }
                         expenseArrayList.add(data!!)
                     }
@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
-                            totalsumincome += data.getAmount().toInt()
+                            totalsumincome += data.getAmountData().toInt()
                         }
                         incomeArrayList.add(data!! )
                     }

@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.text.DateFormat
 import java.util.*
+
 
 class DepenseFragment : Fragment() {
 
@@ -93,10 +95,21 @@ class DepenseFragment : Fragment() {
         val dialog = mydialog.create()
         dialog.setCancelable(false)
         val edtAmount = myviewm.findViewById<EditText>(R.id.montant_edt)
-        val edtType = myviewm.findViewById<Spinner>(R.id.categorie_edt)
+        val edtCat = myviewm.findViewById<Spinner>(R.id.categorie_edt)
+
+        edtCat.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                val item = parent.getItemAtPosition(pos)
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
+
+
+        val edtType: String = edtCat.selectedItem.toString()
         val edtNote = myviewm.findViewById<EditText>(R.id.nom_edt)
         val btnSave = myviewm.findViewById<Button>(R.id.btnSave)
         val btnCancel = myviewm.findViewById<Button>(R.id.btnCancel)
+
         btnSave.setOnClickListener(View.OnClickListener {
             val type = edtType.toString().trim { it <= ' ' }
             val amount = edtAmount.text.toString().trim { it <= ' ' }
