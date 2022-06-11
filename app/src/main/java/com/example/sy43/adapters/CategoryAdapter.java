@@ -17,17 +17,18 @@ import com.example.sy43.CategoryDetailsActivity;
 import com.example.sy43.CreateActivity;
 import com.example.sy43.ObjectiveDetailsActivity;
 import com.example.sy43.R;
+import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.models.Category;
 
 import org.w3c.dom.Text;
 
 import java.util.List;
 //https://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
-public class CategoryAdapter extends ArrayAdapter<Category> {
+public class CategoryAdapter extends ArrayAdapter<Categorydb> {
     private int resourceLayout;
     private Context mContext;
 
-    public CategoryAdapter(@NonNull Context context, int resource, List<Category> categories) {
+    public CategoryAdapter(@NonNull Context context, int resource, List<Categorydb> categories) {
         super(context, resource, categories);
         this.resourceLayout = resource;
         this.mContext = context;
@@ -44,7 +45,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
             v = vi.inflate(resourceLayout, null);
         }
 
-        Category category = getItem(position);
+        Categorydb category = getItem(position);
 
         if (category != null) {
             TextView price = v.findViewById(R.id.tvCurrentPrice);

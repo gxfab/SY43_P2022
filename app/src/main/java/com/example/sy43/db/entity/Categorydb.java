@@ -21,6 +21,9 @@ public class Categorydb {
     @ColumnInfo( name = "CurrentValue")
     private float CurrentValue;
 
+    @ColumnInfo( name = "isObjective")
+    private boolean isObjective;
+
     public int getCatID(){
         return CatID;
     }
@@ -37,6 +40,10 @@ public class Categorydb {
         return CurrentValue;
     }
 
+    public boolean getIsObjective() {
+        return isObjective;
+    }
+
     public void setCatID(int CatID){
         this.CatID=CatID;
     }
@@ -51,5 +58,9 @@ public class Categorydb {
 
     public void setCurrentValue(float CurrentValue){
         this.CurrentValue=CurrentValue;
+    }
+
+    public void setObjective(boolean objective) {
+        isObjective = objective;
     }
 }

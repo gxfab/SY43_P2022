@@ -34,16 +34,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DB db = DB.getAppDatabase(this.getApplicationContext());
+        MainActivity.context = getApplicationContext();
+        DB db = DB.getAppDatabase(getAppContext());
         DBexec databaseExecutor = DBexec.getExecutor();
 
-//        final ArrayList<Categorydb> brandList = new ArrayList<Categorydb>();
-//        brandList.addAll(db.CategoryDAO().findAll());
-
-
-
         Categorydb category2 = new Categorydb();
-        category2.setCatName("debug");
+        category2.setCatName("test2");
 
         Futures.addCallback(
                 db.CategoryDAO().insert(category2),
@@ -54,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     public void onFailure(@NonNull Throwable thrown) {
-                        // handle failure
+                        Log.d("Test", String.valueOf(thrown));
                     }
                 },
                 databaseExecutor
@@ -74,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     public void onFailure(@NonNull Throwable thrown) {
-                        // handle failure
+                        Log.d("Test", "Test2");
                     }
                 },
                 databaseExecutor
@@ -89,5 +85,25 @@ public class MainActivity extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         });
+
+        final Button buttonSummary = findViewById(R.id.summary);
+        buttonSummary.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), LastChangesActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
+
+        final Button buttonPreview = findViewById(R.id.preview);
+        buttonPreview.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MonthlyReportActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
+    }
+
+    public static Context getAppContext() {
+        return MainActivity.context;
     }
 }
