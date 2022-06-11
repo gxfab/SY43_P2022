@@ -10,10 +10,10 @@ import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 
 import java.util.List;
 
-public class InfrequentExepensesAndIncomeRepository {
+public class InfrequentExpensesAndIncomeRepository {
     private InfrequentExpensesAndIncomeDao infrequentExpensesAndIncomeDao;
 
-    public InfrequentExepensesAndIncomeRepository(Application application){
+    public InfrequentExpensesAndIncomeRepository(Application application){
         SucellozDatabase database = SucellozDatabase.getInstance(application);
         this.infrequentExpensesAndIncomeDao = database.infrequentExpensesAndIncomeDao();
     }
@@ -33,6 +33,7 @@ public class InfrequentExepensesAndIncomeRepository {
     public void insert(InfrequentExpensesAndIncome spending){
         infrequentExpensesAndIncomeDao.insertInfrequentExpenseAndIncome(spending);
     }
+
 
 
 }

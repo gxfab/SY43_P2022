@@ -49,6 +49,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/spendings_subcategory_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/spendings_sub_category_text_view"
+        app:layout_constraintStart_toEndOf="@+id/spendings_date_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/spendings_name_text_view" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
@@ -24,7 +23,7 @@ public class SubCategoriesViewModel extends AndroidViewModel {
 
     public LiveData<List<SubCategories>> getSubCategories(){
         if (this.currentSubCategories == null){
-            this.currentSubCategories = subCategoriesRepository.getSubcategoriesFromCurrentCategoryId();
+            this.currentSubCategories = subCategoriesRepository.getSubCategoriesFromCurrentCategoryId();
         }
         return this.currentSubCategories;
     }

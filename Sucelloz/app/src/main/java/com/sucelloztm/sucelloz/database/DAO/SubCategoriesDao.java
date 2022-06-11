@@ -10,7 +10,6 @@ import androidx.room.Transaction;
 import androidx.room.Query;
 import java.util.List;
 
-import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithStableExpensesAndIncome;
@@ -38,6 +37,9 @@ public interface SubCategoriesDao {
     @Query("SELECT * FROM sub_categories")
     List<SubCategories> getSubCategories();
 
+    @Query("SELECT name FROM sub_categories")
+    List<String> getSubCategoriesNames();
+
     @Transaction
     @Query("SELECT * FROM sub_categories")
     List<SubCategoriesWithStableExpensesAndIncome> getSubCategoriesWithStableExpensesAndIncome();
@@ -48,4 +50,10 @@ public interface SubCategoriesDao {
 
     @Query("SELECT * FROM sub_categories WHERE categories_id= :id")
     LiveData<List<SubCategories>> getSubCategoriesWithCategoryId(long id);
+
+    @Query("SELECT * FROM sub_categories WHERE name=:nameOfSubCategory")
+    SubCategories getSubCategoryWithName(String nameOfSubCategory);
+
+    @Query("Select name FROM sub_categories WHERE id=:idOfSubCategory")
+    String getSubcategoryNameWithId(long idOfSubCategory);
 }

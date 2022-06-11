@@ -45,7 +45,7 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
     // Create new views (invoked by the layout manager)
     @NonNull
     @Override
-    public SubCategoriesAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.sub_categories_item, viewGroup, false);

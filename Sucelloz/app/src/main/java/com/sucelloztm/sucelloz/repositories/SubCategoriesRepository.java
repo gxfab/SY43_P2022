@@ -18,11 +18,23 @@ public class SubCategoriesRepository {
         this.subCategoriesDao=database.subCategoriesDao();
     }
 
-    public LiveData<List<SubCategories>> getSubcategoriesFromCurrentCategoryId(){
+    public LiveData<List<SubCategories>> getSubCategoriesFromCurrentCategoryId(){
         return subCategoriesDao.getSubCategoriesWithCategoryId(CategoriesRepository.getCurrentCategory().getId());
+    }
+
+    public List<String> getSubCategoriesNames(){
+        return subCategoriesDao.getSubCategoriesNames();
+    }
+
+    public SubCategories getSubCategoryWithName(String nameOfSubCategory){
+        return subCategoriesDao.getSubCategoryWithName(nameOfSubCategory);
     }
 
     public void insert(SubCategories subCategory){
         subCategoriesDao.insertSubCategory(subCategory);
+    }
+
+    public String getSubCategoryNameWithId(long idOfSubCategory){
+        return subCategoriesDao.getSubcategoryNameWithId(idOfSubCategory);
     }
 }

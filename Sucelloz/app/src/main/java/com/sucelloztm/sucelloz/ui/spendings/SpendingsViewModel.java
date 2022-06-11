@@ -7,12 +7,15 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
-import com.sucelloztm.sucelloz.repositories.InfrequentExepensesAndIncomeRepository;
+import com.sucelloztm.sucelloz.models.SubCategories;
+import com.sucelloztm.sucelloz.repositories.InfrequentExpensesAndIncomeRepository;
+import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 import java.util.List;
 
 public class SpendingsViewModel extends AndroidViewModel {
-    private InfrequentExepensesAndIncomeRepository spendingsRepository;
+    private InfrequentExpensesAndIncomeRepository spendingsRepository;
+    private SubCategoriesRepository subCategoriesRepository;
 
     private LiveData<List<InfrequentExpensesAndIncome>> currentPositiveSpendings;
 
@@ -20,7 +23,8 @@ public class SpendingsViewModel extends AndroidViewModel {
 
     public SpendingsViewModel(@NonNull Application application) {
         super(application);
-        this.spendingsRepository = new InfrequentExepensesAndIncomeRepository(application);
+        this.spendingsRepository = new InfrequentExpensesAndIncomeRepository(application);
+        this.subCategoriesRepository = new SubCategoriesRepository(application);
     }
 
     public LiveData<List<InfrequentExpensesAndIncome>> getAllPositiveSpendings(){
@@ -35,5 +39,13 @@ public class SpendingsViewModel extends AndroidViewModel {
             this.currentNegativeSpendings = spendingsRepository.getAllNegativeInfrequent();
         }
         return  this.currentNegativeSpendings;
+    }
+
+    public SubCategories getSubCategoryByName(String nameOfSubCategory){
+        return this.subCategoriesRepository.getSubCategoryWithName(nameOfSubCategory);
+    }
+
+    public String getSubCategoryNameWithId(long idOfSubCategory){
+        return subCategoriesRepository.getSubCategoryNameWithId(idOfSubCategory);
     }
 }

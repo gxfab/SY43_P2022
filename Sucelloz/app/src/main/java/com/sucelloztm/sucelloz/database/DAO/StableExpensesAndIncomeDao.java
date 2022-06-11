@@ -5,13 +5,10 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.sucelloztm.sucelloz.models.Categories;
-import com.sucelloztm.sucelloz.models.CategoriesWithSubCategories;
+
 import com.sucelloztm.sucelloz.models.StableExpensesAndIncome;
-import com.sucelloztm.sucelloz.models.SubCategories;
 
 import java.util.List;
 

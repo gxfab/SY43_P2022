@@ -39,4 +39,5 @@
     <string name="savings_deadline_text_view">Until : 01/01/00</string>
     <string name="savings_amount_text_view">XXX/XXX€</string>
     <string name="check_box_spending">Positive ?</string>
+    <string name="spendings_sub_category_text_view">SubCategory</string>
 </resources>
