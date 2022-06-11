@@ -12,12 +12,14 @@ import java.util.List;
 public class SpendingsTabsFragmentAdapter extends FragmentStateAdapter {
 
     private List<Fragment> spendingsFragmentList;
+    private PositiveSpendingsFragment positiveSpendingsFragment;
+    private NegativeSpendingsFragment negativeSpendingsFragment;
 
     public SpendingsTabsFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
         spendingsFragmentList = new ArrayList<>();
-        PositiveSpendingsFragment positiveSpendingsFragment = new PositiveSpendingsFragment();
-        NegativeSpendingsFragment negativeSpendingsFragment = new NegativeSpendingsFragment();
+        positiveSpendingsFragment = new PositiveSpendingsFragment();
+        negativeSpendingsFragment = new NegativeSpendingsFragment();
         this.spendingsFragmentList.add(positiveSpendingsFragment);
         this.spendingsFragmentList.add(negativeSpendingsFragment);
     }
@@ -31,5 +33,13 @@ public class SpendingsTabsFragmentAdapter extends FragmentStateAdapter {
     @Override
     public int getItemCount() {
         return 2;
+    }
+
+    public PositiveSpendingsFragment getPositiveSpendingsFragment() {
+        return positiveSpendingsFragment;
+    }
+
+    public NegativeSpendingsFragment getNegativeSpendingsFragment() {
+        return negativeSpendingsFragment;
     }
 }

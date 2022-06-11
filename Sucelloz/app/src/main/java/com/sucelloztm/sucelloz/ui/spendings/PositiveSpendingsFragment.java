@@ -63,6 +63,7 @@ public class PositiveSpendingsFragment extends Fragment {
         recyclerView = binding.spendingsRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
         return root;
     }
 
@@ -83,4 +84,5 @@ public class PositiveSpendingsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+    
 }

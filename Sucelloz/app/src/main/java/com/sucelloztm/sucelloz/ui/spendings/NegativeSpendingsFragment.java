@@ -80,4 +80,5 @@ public class NegativeSpendingsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

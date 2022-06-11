@@ -13,6 +13,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.sucelloztm.sucelloz.databinding.NegativeSpendingsFragmentBinding;
+import com.sucelloztm.sucelloz.databinding.PositiveSpendingsFragmentBinding;
 import com.sucelloztm.sucelloz.databinding.SpendingsTabsFragmentBinding;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSpendingDialogFragment;
 
@@ -22,7 +24,6 @@ import java.util.List;
 public class SpendingsTabsFragment extends Fragment {
     private ViewPager2 viewPager;
     private SpendingsTabsFragmentBinding binding;
-
     private FragmentStateAdapter pagerAdapter;
 
     @Override
@@ -47,6 +48,8 @@ public class SpendingsTabsFragment extends Fragment {
         new TabLayoutMediator(tabLayout,viewPager,(tab, position) -> tab.setText(spendingsNames.get(position))).attach();
         return root;
     }
+
+
 
     @Override
     public void onDestroyView() {

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/modify_menu_item"
         android:icon="@drawable/baseline_change_circle_grey_500_24dp"
-        android:title="@string/modify_menu_item_name" />
+        android:title="@string/modify_menu_item_name"
+
+        />
     <item
         android:id="@+id/delete_menu_item"
         android:icon="@drawable/baseline_delete_forever_grey_500_24dp"
-        android:title="@string/delete_menu_item_name" />
+        android:title="@string/delete_menu_item_name"
+         />
 </menu>
