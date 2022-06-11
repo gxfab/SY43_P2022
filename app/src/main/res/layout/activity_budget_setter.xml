@@ -1,87 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BudgetSetterActivity">
 
-    <TextView
-        android:id="@+id/regularIncomesTitle"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/regularIncomeTitle"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/income_list_recycler_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expense_list_recycler_view" />
+        tools:context=".BudgetSetterActivity">
 
-    <TextView
-        android:id="@+id/regularExpensesTitle"
-        android:layout_width="0dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="10dp"
-        android:text="@string/regularExpensesTitle"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/expense_list_recycler_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/regularIncomesTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/regularIncomeTitle"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/income_list_recycler_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/expense_list_recycler_view" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/income_list_recycler_view"
-        android:layout_width="0dp"
-        android:layout_height="265dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:contentDescription="@string/expenses_incomes"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regularIncomesTitle"
-        tools:listitem="@layout/budget_setter_item" />
+        <TextView
+            android:id="@+id/regularExpensesTitle"
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/regularExpensesTitle"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/expense_list_recycler_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/expense_list_recycler_view"
-        android:layout_width="0dp"
-        android:layout_height="265dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:contentDescription="@string/expenses_incomes"
-        app:layout_constraintBottom_toTopOf="@+id/regularIncomesTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regularExpensesTitle"
-        tools:listitem="@layout/budget_setter_item">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/income_list_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="265dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/expenses_incomes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/regularIncomesTitle"
+            tools:listitem="@layout/budget_setter_item" />
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/expense_list_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="265dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/expenses_incomes"
+            app:layout_constraintBottom_toTopOf="@+id/regularIncomesTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/regularExpensesTitle"
+            tools:listitem="@layout/budget_setter_item">
 
-    <TextView
-        android:id="@+id/total_regular_expenses"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/budget_total_empty"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/regularExpensesTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/regularExpensesTitle" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/total_regular_incomes"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/budget_total_empty"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/regularIncomesTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/regularIncomesTitle" />
+        <TextView
+            android:id="@+id/total_regular_expenses"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/budget_total_empty"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/regularExpensesTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/regularExpensesTitle" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/total_regular_incomes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/budget_total_empty"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/regularIncomesTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/regularIncomesTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+
