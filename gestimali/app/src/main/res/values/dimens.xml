@@ -4,6 +4,11 @@
     <dimen name="home_page_btn_width">350dp</dimen>
     <dimen name="home_page_btn_height">80dp</dimen>
     <dimen name="home_page_btn_radius">45dp</dimen>
+    <dimen name="circle_btn_width">68dp</dimen>
+    <dimen name="circle_btn_height">78dp</dimen>
+    <dimen name="circle_btn_radius">90dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="money_flow_height">80dp</dimen>
 
 </resources>

@@ -26,5 +26,16 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <!-- money flow style -->
+    <style name="moneyFlowTextStyle" parent="TitleStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <!-- money flow style -->
+    <style name="monthStyle" parent="TitleStyle">
+        <item name="android:textSize">28sp</item>
+    </style>
+
 
 </resources>

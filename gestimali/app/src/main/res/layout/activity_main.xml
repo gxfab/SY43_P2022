@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/homeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:translationZ="1dp"
@@ -32,12 +32,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:translationZ="10dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/homePageButton1"
         app:layout_constraintStart_toStartOf="@+id/homePageButton1"
         app:layout_constraintTop_toTopOf="@+id/homePageButton1"
         app:srcCompat="@drawable/ic_calendar" />
 
+    <ImageView
+        android:id="@+id/wishIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homePageButton2"
+        app:layout_constraintStart_toStartOf="@+id/homePageButton2"
+        app:layout_constraintTop_toTopOf="@+id/homePageButton2"
+        app:srcCompat="@drawable/ic_wish" />
+
+    <ImageView
+        android:id="@+id/historyIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homePageButton3"
+        app:layout_constraintStart_toStartOf="@+id/homePageButton3"
+        app:layout_constraintTop_toTopOf="@+id/homePageButton3"
+        app:srcCompat="@drawable/ic_history" />
+
+    <ImageView
+        android:id="@+id/chartIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homePageButton4"
+        app:layout_constraintStart_toStartOf="@+id/homePageButton4"
+        app:layout_constraintTop_toTopOf="@+id/homePageButton4"
+        app:srcCompat="@drawable/ic_chart" />
+
+    <ImageView
+        android:id="@+id/optionIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homePageButton5"
+        app:layout_constraintStart_toStartOf="@id/homePageButton5"
+        app:layout_constraintEnd_toEndOf="@id/homePageButton5"
+        app:layout_constraintTop_toTopOf="@+id/homePageButton5"
+        app:srcCompat="@drawable/ic_option" />
 
     <Button
         android:id="@+id/homePageButton1"
@@ -45,6 +88,7 @@
         android:layout_width="@dimen/home_page_btn_width"
         android:layout_height="@dimen/home_page_btn_height"
         android:backgroundTint="@color/purple_700"
+        android:onClick="seeMonthOverview"
         android:text="@string/home_page_btn1"
         app:cornerRadius="@dimen/home_page_btn_radius"
         app:layout_constraintBottom_toTopOf="@id/homePageButton2"
@@ -86,11 +130,22 @@
         android:layout_height="@dimen/home_page_btn_height"
         android:backgroundTint="@color/purple_700"
         android:text="@string/home_page_btn4"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/homePageButton5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homePageButton3"
         app:cornerRadius="@dimen/home_page_btn_radius"/>
+
+    <Button
+        android:id="@+id/homePageButton5"
+        android:layout_width="@dimen/circle_btn_width"
+        android:layout_height="@dimen/circle_btn_height"
+        android:backgroundTint="@color/purple_700"
+        app:cornerRadius="@dimen/circle_btn_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homePageButton4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

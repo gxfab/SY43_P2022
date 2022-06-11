@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">gestimali</string>
+    <string name="app_name">GestImali</string>
 
     <!-- Home page -->
     <string name="home_page_btn1">Month Overview</string>
@@ -12,4 +12,20 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
+    <!-- Month -->
+    <string name="mon1">January</string>
+    <string name="mon2">February</string>
+    <string name="mon3">March</string>
+    <string name="mon4">April</string>
+    <string name="mon5">May</string>
+    <string name="mon6">June</string>
+    <string name="mon7">July</string>
+    <string name="mon8">August</string>
+    <string name="mon9">September</string>
+    <string name="mon10">October</string>
+    <string name="mon11">November</string>
+    <string name="mon12">December</string>
+
+
 </resources>
