@@ -95,7 +95,10 @@ class ExpenseSetterAdapter(
             holder.expenseValidateButton?.setOnClickListener {
                 (context as AppCompatActivity).lifecycleScope.launch(Dispatchers.Main) {
                     launch(Dispatchers.IO) {
-                        val incomeSum: Double = incomesViewModel.getIncomeSumSync()
+                        var incomeSum: Double? = incomesViewModel.getIncomeSumSync()
+                        if(incomeSum == null) {
+                            incomeSum = 0.0
+                        }
                         val partialExpenseSum: Double = expensesViewModel.getMonthlyExpensesSumSync()
                         val expenseSum : Double = partialExpenseSum - expense.amount
                         val expenseNewValue : Double = if(holder.expenseValueWidget?.text.toString() == "") {

@@ -38,11 +38,19 @@ class BudgetSetterActivity : AppCompatActivity() {
         }
 
         incomeViewModel.getIncomeSum().observe(this) { sumIncome ->
-            budgetIncomeSum.text = resources.getString(R.string.budget_total_full,sumIncome)
+            budgetIncomeSum.text = if(sumIncome == null) {
+                resources.getString(R.string.budget_total_empty)
+            } else {
+                resources.getString(R.string.budget_total_full,sumIncome)
+            }
         }
 
         expenseViewModel.getMonthlyExpensesSum().observe(this) { sumExpenses ->
-            budgetExpenseSum.text = resources.getString(R.string.budget_total_full,-sumExpenses)
+            budgetExpenseSum.text = if(sumExpenses == null) {
+                resources.getString(R.string.budget_total_empty)
+            } else {
+                resources.getString(R.string.budget_total_full,-sumExpenses)
+            }
         }
 
     }
