@@ -1,5 +1,6 @@
 package com.example.sy43.db.mainDB;
 
+import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
@@ -31,6 +32,7 @@ public abstract class DB extends RoomDatabase{
     public abstract TransactionDAO TransactionDAO();
 
     public static DB getAppDatabase(Context context){
+        
         if (INSTANCE==null){
             synchronized (DB.class) {
                 if (INSTANCE == null) {

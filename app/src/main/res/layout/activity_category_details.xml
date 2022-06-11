@@ -15,67 +15,76 @@
         tools:layout_editor_absoluteX="30dp"
         tools:layout_editor_absoluteY="30dp">
 
-        <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Veuillez insérer le montant de la dépense pour la catégorie selectionnée :"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="29dp"
-            android:layout_gravity="center_horizontal"
-        />
-        <EditText
-            android:id="@+id/editTextNumberDecimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            tools:layout_editor_absoluteX="-12dp"
-            tools:layout_editor_absoluteY="42dp" />
-
-
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginHorizontal="24dp"
-        android:progress="0"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="416dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Une sous-catégorie :"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="375dp" />
-        <Button
-            android:id="@+id/button2"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="La sous-catégorie selectionnée"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="455dp" />
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Je veux supprimer :"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="277dp" />
+            android:layout_margin="24dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Veuillez insérer le montant de la dépense pour la catégorie selectionnée :"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="29dp" />
+
+            <EditText
+                android:id="@+id/editTextNumberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                tools:layout_editor_absoluteX="-12dp"
+                tools:layout_editor_absoluteY="42dp" />
+
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginHorizontal="24dp"
+            android:progress="0"
+            tools:layout_editor_absoluteX="118dp"
+            tools:layout_editor_absoluteY="416dp" />
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Une sous-catégorie :" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="La sous-catégorie selectionnée"
+
+                />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Je veux supprimer :"
+                 />
 
 
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="La catégorie selectionnée"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="311dp" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="La catégorie selectionnée"
+                 />
+        </RelativeLayout>
 
         <Button
             android:layout_width="fill_parent"

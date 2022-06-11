@@ -28,6 +28,10 @@ public class CategoryViewModel extends ViewModel {
         List<Category> currentCategories = this.categories.getValue();
         currentCategories.add(category);
         categories.postValue(currentCategories);
+
+
+
+
     }
     public LiveData<List<Category>> getCategories() {
         return categories;

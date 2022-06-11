@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/categoryCard"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:cardCornerRadius="1dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <!--
+        In the above cardview widget
+        cardelevation property will give elevation to your card view
+        card corner radius will provide radius to your card view
+        card background color will give background color to your card view
+        card max elevation will give the cardview maximum elevation
+        card prevent corner overlap will add padding to CardView on v20 and before to prevent intersections between the Card content and rounded corners.
+        card use compact padding will add padding in API v21+ as well to have the same measurements with previous versions.
+        below are the two widgets imageview and text view we are displaying inside our card view.
+        -->
+
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Sub Category name"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCurrentPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Current price"
+            android:textSize="20sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginHorizontal="24dp"
+            android:progress="0" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_launcher_foreground" />
+
+
+</RelativeLayout>
