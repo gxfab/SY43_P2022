@@ -38,7 +38,7 @@ public class CategoryRepository {
                 new FutureCallback<List<Categorydb>>() {
                     public void onSuccess(List<Categorydb> result) {
                         Log.d("Test", String.valueOf(result.get(0)));
-                        data.setValue(result);
+                        data.postValue(result);
                     }
                     public void onFailure(@NonNull Throwable thrown) {
                         Log.d("Test", String.valueOf(thrown));
