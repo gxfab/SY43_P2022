@@ -3,6 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_balance_annuel.xml" value="0.18617021276595744" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/ajouter_projet.xml" value="0.18617021276595744" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/balance_recycler_view.xml" value="0.18617021276595744" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/categorie_recycler_view.xml" value="0.18617021276595744" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/depense_recycler_view.xml" value="0.18617021276595744" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_budget.xml" value="0.1339918946301925" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_depense.xml" value="0.1339918946301925" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_home.xml" value="0.1339918946301925" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_profil.xml" value="0.1339918946301925" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_projet.xml" value="0.2462962962962963" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_revenu.xml" value="0.1339918946301925" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/modifier_projet.xml" value="0.2462962962962963" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/modifier_revenu.xml" value="0.2462962962962963" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/projet_recycler_view.xml" value="0.18617021276595744" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/revenu_recycler_view.xml" value="0.2462962962962963" />
         <entry key="..\:/Users/Ahda/Downloads/SY43/NoAppNoGain/app/src/main/res/drawable/background.xml" value="0.1" />
         <entry key="..\:/Users/Ahda/Downloads/SY43/NoAppNoGain/app/src/main/res/drawable/ic_close.xml" value="0.142" />
         <entry key="..\:/Users/Ahda/Downloads/SY43/NoAppNoGain/app/src/main/res/drawable/ic_dashboard.xml" value="0.142" />

@@ -1,11 +1,12 @@
 package com.example.noappnogain.ui.home
 
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.adapter.HomeAdapter
@@ -46,8 +47,9 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        var balanceSetResult: TextView = binding.balanceSetResult
+        val balanceSetResult: TextView = binding.balanceSetResult
         val recyclerView: RecyclerView = binding.verticalRecyclerView
+
         incomeArrayList = arrayListOf<Data>()
         expenseArrayList = arrayListOf<Data>()
 

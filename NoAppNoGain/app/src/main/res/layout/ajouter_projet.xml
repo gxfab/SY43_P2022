@@ -85,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/white"
-                        android:inputType="numberDecimal"
+                        android:inputType="number"
                         android:textColor="@color/black" />
 
                 </RelativeLayout>
@@ -124,7 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/white"
-                        android:inputType="date"
+                        android:hint="YYYY-MM-DD"
                         android:textColor="@color/black" />
 
                 </RelativeLayout>

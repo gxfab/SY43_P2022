@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginRight="10dp"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:gravity="center"
             android:background="@drawable/input"/>
 

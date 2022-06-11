@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginRight="10dp"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:gravity="center"
             android:background="@drawable/input"/>
 
@@ -112,7 +112,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_id_budget"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
 </LinearLayout>

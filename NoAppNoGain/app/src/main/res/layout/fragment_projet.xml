@@ -2,15 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.projet.ProjetFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="581dp"
-        android:layout_marginTop="20dp" />
-
+        android:id="@+id/verticalRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="622dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <Button
         android:id="@+id/btn_ajouter"

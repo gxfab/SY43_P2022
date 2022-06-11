@@ -6,12 +6,11 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.noappnogain.Adapter.CategoryAdapter
+import com.example.noappnogain.Model.Category
 import com.example.noappnogain.R
 import com.example.noappnogain.adapter.ExpenseAdapter
 import com.example.noappnogain.databinding.FragmentDepenseBinding
@@ -21,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.text.DateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DepenseFragment : Fragment() {
@@ -29,9 +29,11 @@ class DepenseFragment : Fragment() {
     private var mExpenseDatabase: DatabaseReference? = null
     private var mUser: FirebaseUser? = null
     private var _binding: FragmentDepenseBinding? = null
+    private var mCategoryDatabase: DatabaseReference? = null
 
 
     private lateinit var expenseArrayList: ArrayList<Data>
+    private lateinit var catArrayList: ArrayList<Category>
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -46,8 +48,9 @@ class DepenseFragment : Fragment() {
         _binding = FragmentDepenseBinding.inflate(inflater, container, false)
         val root: View = binding.root
         expenseArrayList = arrayListOf<Data>()
+        catArrayList = arrayListOf<Category>()
+
         val recyclerView: RecyclerView = binding.recyclerIdExpense
-        val catRecyclerView: RecyclerView = binding.recyclerIdCategorie
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth?.currentUser
 
@@ -55,6 +58,27 @@ class DepenseFragment : Fragment() {
 
         btnAjouter.setOnClickListener(View.OnClickListener {
             expenseDataInsert()
+        })
+
+        val catRecyclerView: RecyclerView = binding.recyclerIdCategorie
+        mCategoryDatabase = FirebaseDatabase.getInstance().reference.child("Category")
+
+        mCategoryDatabase?.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if (snapshot.exists()) {
+                    for (userSnapshot in snapshot.children) {
+                        val category = userSnapshot.getValue(Category::class.java)
+                        catArrayList.add(category!!)
+                    }
+
+                    catRecyclerView.adapter = CategoryAdapter(catArrayList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
         })
 
 
@@ -97,13 +121,13 @@ class DepenseFragment : Fragment() {
         val edtAmount = myviewm.findViewById<EditText>(R.id.montant_edt)
         val edtCat = myviewm.findViewById<Spinner>(R.id.categorie_edt)
 
+
         edtCat.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
                 val item = parent.getItemAtPosition(pos)
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         })
-
 
         val edtType: String = edtCat.selectedItem.toString()
         val edtNote = myviewm.findViewById<EditText>(R.id.nom_edt)

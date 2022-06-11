@@ -33,12 +33,10 @@
 
         <activity android:name=".Reinitialiser"
             android:exported="true"
-            android:label="Changer le mot de passe"
             android:theme="@style/Theme.NoAppNoGain" />
 
         <activity android:name=".Sidentifier"
             android:exported="true"
-            android:label="Changer le mot de passe"
             android:theme="@style/Theme.NoAppNoGain" />
 
         <activity android:name=".Sinscrire"
