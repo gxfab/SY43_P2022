@@ -19,8 +19,8 @@ public class CategoryViewModel extends AndroidViewModel {
     public CategoryViewModel(@NonNull Application application) {
         super(application);
         Log.d("CREATION", "Instantiation of CategoryViewModel");
-        mRepository = new DataRepository(application);
-        mAllCategories = mRepository.getAllCategories();
+        this.mRepository = new DataRepository(application);
+        this.mAllCategories = mRepository.getAllCategories();
     }
 
     public LiveData<List<Category>> getAllCategories(){
@@ -37,5 +37,21 @@ public class CategoryViewModel extends AndroidViewModel {
 
     public void update(String name, double budgetAmount, int id) {
         mRepository.update(name, budgetAmount, id);
+    }
+
+    public LiveData<Double> getBudgetLeftOf(Category category){
+        return this.mRepository.getBudgetLeftOf(category.getM_CAT_ID());
+    }
+
+    public LiveData<Integer> getPercentUsedOfCategory(Category category){
+        return this.mRepository.getPercentUsedOfCategory(category.getM_CAT_ID());
+    }
+
+    public LiveData<List<Category>> getCategoriesOfType(Category.CategoryType type){
+        return this.mRepository.getCategoriesOfType(type);
+    }
+
+    public void update(Category category) {
+        this.mRepository.update(category);
     }
 }

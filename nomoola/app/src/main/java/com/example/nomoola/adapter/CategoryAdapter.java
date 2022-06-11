@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,16 +18,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nomoola.R;
 import com.example.nomoola.database.entity.Category;
 import com.example.nomoola.viewHolder.CategoryViewHolder;
+import com.example.nomoola.viewModel.CategoryViewModel;
 
 import java.util.ArrayList;
 
 public class CategoryAdapter extends ListAdapter<Category, CategoryViewHolder> {
 
     private FragmentManager fragmentManager;
+    private CategoryViewModel categoryViewModel;
 
-    public CategoryAdapter(@NonNull DiffUtil.ItemCallback<Category> diffCallback, FragmentManager fragmentManager) {
+    public CategoryAdapter(@NonNull DiffUtil.ItemCallback<Category> diffCallback, FragmentManager fragmentManager, CategoryViewModel categoryViewModel) {
         super(diffCallback);
         this.fragmentManager = fragmentManager;
+        this.categoryViewModel = categoryViewModel;
     }
 
     @NonNull
@@ -35,7 +39,7 @@ public class CategoryAdapter extends ListAdapter<Category, CategoryViewHolder> {
         Log.d("CREATION", "onCreateViewHolder from " + this.getClass().toString() + " started");
 
         Log.d("CREATION", "onCreateViewHolder from " + this.getClass().toString() + " finished");
-        return CategoryViewHolder.create(parent, this.fragmentManager);
+        return CategoryViewHolder.create(parent, this.fragmentManager, this.categoryViewModel);
     }
 
     @Override

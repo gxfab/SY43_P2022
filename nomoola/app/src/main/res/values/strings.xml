@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Nomoola</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -12,7 +12,7 @@
     <!-- Category page -->
 
     <string name="add_category_button">Add Category</string>
-    <string name="category_name">Name</string>
+    <string name="nomoola_name">Name</string>
     <string name="category_left_amount">Left</string>
     <string name="category_budget_amount">Budget</string>
     <string name="category_edit_button">Edit Pen</string>
@@ -20,9 +20,34 @@
     <string name="exitButton">Exit Cross</string>
     <string name="month_nav">May</string>
     <string name="nomoola_delete_category">Delete Category</string>
+    <string name="nomoola_add_subcategory">Add Subcategory</string>
+    <string name="nomoola_category">Category</string>
+    <string name="nomoola_subcategory">Subcategory</string>
+    <string name="nomoola_subcategory_budget">Budget</string>
+    <string name="nomoola_subcategory_newSubCat">New Subcategory</string>
+    <string name="nomoola_category_newCat">New Category</string>
+    <string name="nomoola_inoutcome_addBille">Add Bill</string>
+    <string name="nomoola_filtre">Filtre Button</string>
+    <string name="nomoola_inoutcome_month">mm</string>
+    <string name="nomoola_inoutcome_day">dd</string>
+    <string name="nomoola_inoutcome_year">yyyy</string>
+    <string name="nomoola_nav_back">Navigation Back</string>
+    <string name="nomoola_hi">Hi</string>
+    <string name="nomoola_percent_preview">100%</string>
+    <string name="nomoola_type" tools:ignore="ExtraTranslation">Type</string>
+    <string name="nomoola_income" >Income</string>
+    <string name="nomoola_outcome">Outcome</string>
+    <string name="nomoola_project">Project</string>
+
+    <string-array name="category_type">
+        <item>INCOME</item>
+        <item>OUTCOME</item>
+        <item>PROJECT</item>
+    </string-array>
 
     <!-- Profile page -->
     <string name="profile_edit_name">Edit Name</string>
     <string name="applyButton">Apply Button</string>
+
 
 </resources>

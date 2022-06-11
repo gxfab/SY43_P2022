@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:minWidth="300dp"
-    android:minHeight="600dp"
+    android:minHeight="300dp"
     android:background="@color/nomoola_light_grey_dialog_background">
 
     <LinearLayout
@@ -17,17 +17,17 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/textViewCategoryTitle"
+            android:id="@+id/dialog_subcat_SubCategoryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/nomoola_category_newCat"
+            android:text="@string/nomoola_subcategory_newSubCat"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:gravity="start"/>
 
         <ImageButton
-            android:id="@+id/exitButton"
+            android:id="@+id/dialog_subcat_exitButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="0"
@@ -46,7 +46,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/textViewCategoryName"
+            android:id="@+id/dialog_subcat_NameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nomoola_name"
@@ -54,7 +54,7 @@
             android:textSize="12sp"/>
 
         <EditText
-            android:id="@+id/editTextCategoryName"
+            android:id="@+id/dialog_subcat_editTextSubCategoryName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="6dp"
@@ -68,45 +68,6 @@
             android:textColor="@color/nomoola_grey_editText_preview"
             tools:ignore="TextContrastCheck" />
 
-        <TextView
-            android:id="@+id/textViewCategoryBudget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/nomoola_dark_title_dialog"
-            android:textSize="12sp"
-            android:layout_marginTop="6dp"
-            android:text="@string/category_budget_amount" />
-
-        <EditText
-            android:id="@+id/editTextCatBudgetAmount"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="6dp"
-            android:autofillHints="00.0€"
-            android:background="@drawable/edit_text_background"
-            android:inputType="numberDecimal"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="@string/budget_preview"
-            android:textColor="@color/nomoola_grey_editText_preview"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/nomoola_type"
-            android:textColor="@color/nomoola_dark_title_dialog"
-            android:textSize="12sp" />
-
-        <Spinner
-            android:id="@+id/dialog_cat_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/nomoola_red"
-            android:minHeight="48dp"
-            android:spinnerMode="dropdown" />
-
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -114,7 +75,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/deleteCategoryButton"
+            android:id="@+id/dialog_subcat_deleteSubCategoryButton"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/nomoola_red"
@@ -124,7 +85,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/confirmEditButton"
+            android:id="@+id/dialog_subcat_confirmEditButton"
             android:layout_width="120dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"

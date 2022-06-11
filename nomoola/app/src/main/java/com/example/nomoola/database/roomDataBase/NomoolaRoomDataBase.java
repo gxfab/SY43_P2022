@@ -71,36 +71,41 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
         private void populateCategory(){
             CategoryDAO dao = INSTANCE.categoryDAO();
 
-            Category cat = new Category("Food", 150);
-            dao.insertCategory(cat);
-            cat = new Category("Car", 250);
-            dao.insertCategory(cat);
+            dao.insertCategory(new Category("Food", 150, Category.CategoryType.OUTCOME, LocalDate.now()));
+            dao.insertCategory(new Category("Car", 250, Category.CategoryType.OUTCOME, LocalDate.now()));
+            dao.insertCategory(new Category("Subscription", 50, Category.CategoryType.OUTCOME, LocalDate.now()));
+
+            dao.insertCategory(new Category("Salary", 2000, Category.CategoryType.INCOME, LocalDate.now()));
+            dao.insertCategory(new Category("Invests", 500, Category.CategoryType.INCOME, LocalDate.now()));
+
+            dao.insertCategory(new Category("House", 250000, Category.CategoryType.PROJECT, LocalDate.now()));
+            dao.insertCategory(new Category("New Car", 10000, Category.CategoryType.PROJECT, LocalDate.now()));
         }
 
         private void populateSubCategory(){
             SubCategoryDAO dao = INSTANCE.subCategoryDAO();
 
-            SubCategory undCat = new SubCategory("Food", "Groceries");
+            SubCategory undCat = new SubCategory(1, "Groceries");
             dao.insertSubCategory(undCat);
-            undCat = new SubCategory("Food", "Restaurants");
+            undCat = new SubCategory(1, "Restaurants");
             dao.insertSubCategory(undCat);
 
-            undCat = new SubCategory("Car", "Reparations");
+            undCat = new SubCategory(2, "Reparations");
             dao.insertSubCategory(undCat);
-            undCat = new SubCategory("Car", "Gaz");
+            undCat = new SubCategory(2, "Gaz");
             dao.insertSubCategory(undCat);
         }
 
         private void populateInOutCome(){
             InOutComeDAO dao = INSTANCE.inOutComeDAO();
 
-            InOutCome come = new InOutCome("week grocery at SuperU", "Food", "Groceries", 56.89, LocalDate.now());
+            InOutCome come = new InOutCome("week grocery at SuperU", 1, 1, 56.89, LocalDate.now());
             dao.insertInOutCome(come);
-            come = new InOutCome("BK with my friends", "Food", "Restaurants", 13.50, LocalDate.now());
+            come = new InOutCome("BK with my friends", 1, 2, 13.50, LocalDate.now());
             dao.insertInOutCome(come);
-            come = new InOutCome("motor reparation", "Car", "Reparations", 207.90, LocalDate.now());
+            come = new InOutCome("motor reparation", 2, 3, 207.90, LocalDate.now());
             dao.insertInOutCome(come);
-            come = new InOutCome("weekly fuel", "Car", "Gaz", 60.00, LocalDate.now());
+            come = new InOutCome("weekly fuel", 2, 4, 60.00, LocalDate.now());
             dao.insertInOutCome(come);
 
         }

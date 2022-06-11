@@ -12,6 +12,8 @@ import com.example.nomoola.database.entity.Category;
 import com.example.nomoola.database.entity.InOutCome;
 import com.example.nomoola.database.entity.SubCategory;
 import com.example.nomoola.database.roomDataBase.NomoolaRoomDataBase;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class DataRepository {
@@ -39,6 +41,10 @@ public class DataRepository {
         mAllInOutCome = mInOutComeDAO.getALlInOutComes();
     }
 
+    /*
+        CATEGORY
+     */
+
     public LiveData<List<Category>> getAllCategories() {
         return mAllCategory;
     }
@@ -58,17 +64,41 @@ public class DataRepository {
         });
     }
 
+    public LiveData<Category> getCategoryFrom(int catID){
 
+        return this.mCategoryDAO.getCategoryFrom(catID);
+    }
 
+    /*
+        SUBCATEGORY
+     */
 
     public LiveData<List<SubCategory>> getAllSubCategories(){
         return mAllSubCategory;
+    }
+    public LiveData<List<SubCategory>> getSubCategoriesOf(int categoryID){
+        return this.mSubCategoryDAO.getSubCategoriesOf(categoryID);
     }
     public void insert(SubCategory subCategory) {
         NomoolaRoomDataBase.databaseWriteExecutor.execute(() -> {
             mSubCategoryDAO.insertSubCategory(subCategory);
         });
     }
+    public void delete(SubCategory subCategory){
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mSubCategoryDAO.deleteSubCategory(subCategory);
+        });
+    }
+    public void update(int catID, String subcatName, int id){
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mSubCategoryDAO.updateSubCategory(catID, subcatName, id);
+        });
+    }
+
+
+    /*
+        INOUTCOME
+     */
 
     public LiveData<List<InOutCome>> getmAllInOutCome(){
         return mAllInOutCome;
@@ -80,5 +110,37 @@ public class DataRepository {
     }
 
 
+    public LiveData<List<InOutCome>> getInOutComeOf(int subCategoryID) {
+        return this.mInOutComeDAO.getInOutComesOf(subCategoryID);
+    }
 
+    public void delete(InOutCome inOutCome) {
+        this.mInOutComeDAO.deleteInOutCome(inOutCome);
+    }
+
+    public void update(int catID, int subCatID, String name, LocalDate date, double amount, int id) {
+        this.mInOutComeDAO.updateInOutCome(catID, subCatID, name, date, amount, id);
+    }
+
+    public LiveData<Integer> getPercentUsedOf(int subCategoryID){
+        return this.mInOutComeDAO.getPercentUsedOf(subCategoryID);
+    }
+
+    public LiveData<Double> getBudgetLeftOf(int categoryID){
+        return this.mInOutComeDAO.getBudgetLeftOf(categoryID);
+    }
+
+    public LiveData<Integer> getPercentUsedOfCategory(int categoryID){
+        return this.mInOutComeDAO.getPercentUsedOfCategory(categoryID);
+    }
+
+    public LiveData<List<Category>> getCategoriesOfType(Category.CategoryType type){
+        return this.mCategoryDAO.getCategoriesOfType(type);
+    }
+
+    public void update(Category category) {
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mCategoryDAO.updateCategory(category);
+        });
+    }
 }
