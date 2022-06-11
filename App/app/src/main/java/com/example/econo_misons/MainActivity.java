@@ -2,6 +2,8 @@ package com.example.econo_misons;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,12 +11,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.econo_misons.database.DBViewModel;
+import com.example.econo_misons.database.MoneyDB;
+import com.example.econo_misons.database.User;
+import com.example.econo_misons.database.ViewModelFactory;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText username;
     Button add, view;
-    DBHelper DB;
+    private DBViewModel dbViewModel;
 
 
     @Override
@@ -26,26 +36,31 @@ public class MainActivity extends AppCompatActivity {
         add = findViewById(R.id.addbutton);
         view = findViewById(R.id.viewbutton);
 
-        DB = new DBHelper(this);
+        configureViewModel();
+
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String usernameTXT = username.getText().toString();
 
-                Boolean checkinsertdata = DB.addUser(usernameTXT);
+                newUser(usernameTXT);
+
+               /* Boolean checkinsertdata = DB.addUser(usernameTXT);
                 if (checkinsertdata){
                     Log.d("DB", "Data inserted");
                 }else  {
                     Log.d("DB", "Data insertion failed");
-                }
+                }*/
             }
         });
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor res = DB.getUsers();
+                getAllUsers();
+                /*Cursor res = DB.getUsers();
                 if (res.getCount()==0){
                     Log.d("DB", "No data to display");
                     return;
@@ -61,9 +76,30 @@ public class MainActivity extends AppCompatActivity {
                 builder.setCancelable(true);
                 builder.setTitle("Users List");
                 builder.setMessage(buffer.toString());
-                builder.show();
+                builder.show();*/
             }
+
+
         });
 
     }
+
+    private void configureViewModel(){
+        this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
+    }
+
+    private void getAllUsers() {
+        this.dbViewModel.getAllUsers().observe(this, this::showUserList);
+
+    }
+
+    private void newUser(String username) {
+        dbViewModel.newUser(new User(username));
+    }
+
+    private void showUserList(List<User> users){
+        Toast toast = Toast.makeText(getApplicationContext(), users.toString(), Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
 }

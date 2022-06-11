@@ -38,6 +38,13 @@ public class DBHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop Table if exists User");
+        db.execSQL("drop Table if exists Budget");
+        db.execSQL("drop Table if exists Budget_User");
+        db.execSQL("drop Table if exists Category");
+        db.execSQL("drop Table if exists PrevBudget");
+        db.execSQL("drop Table if exists Envelope");
+        db.execSQL("drop Table if exists transact");
+
     }
 
     //User Table methods
