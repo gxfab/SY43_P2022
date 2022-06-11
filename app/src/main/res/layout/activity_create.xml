@@ -78,7 +78,7 @@
             tools:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/objName"
             android:layout_width="156dp"
             android:layout_height="wrap_content"
             android:ems="10"
