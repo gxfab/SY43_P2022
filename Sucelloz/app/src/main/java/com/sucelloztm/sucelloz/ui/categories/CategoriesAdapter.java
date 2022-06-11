@@ -28,6 +28,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
 
 
+
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).

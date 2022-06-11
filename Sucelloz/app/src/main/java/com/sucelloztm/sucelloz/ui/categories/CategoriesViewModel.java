@@ -37,4 +37,12 @@ public class CategoriesViewModel extends AndroidViewModel {
     public void setCurrentCategory(Categories category){
         CategoriesRepository.setCurrentCategory(category);
     }
+
+    public void deleteCategory(Categories category){
+        this.categoriesRepository.deleteCategory(category);
+    }
+
+    public void updateCategory(Categories category){
+        this.categoriesRepository.updateCategory(category);
+    }
 }

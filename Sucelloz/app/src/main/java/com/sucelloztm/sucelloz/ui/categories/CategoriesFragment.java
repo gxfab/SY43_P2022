@@ -1,13 +1,24 @@
 package com.sucelloztm.sucelloz.ui.categories;
 
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
@@ -19,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.CategoriesFragmentBinding;
+import com.sucelloztm.sucelloz.menus.ContextMenuRecyclerView;
 import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
 import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
@@ -32,6 +44,7 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
     private CategoriesViewModel categoriesViewModel;
     private List<Categories> currentCategoriesList;
     private RecyclerView recyclerView;
+    private int itemIndex;
 
 
 
@@ -65,6 +78,7 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         recyclerView = binding.outerRecyclerView;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.setAdapter(adapter);
+        registerForContextMenu(recyclerView);
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
@@ -76,10 +90,18 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
                 //Log.d("CategoriesFragment",currentCategoryName);
             }
         });
-
+        ItemClickSupport.addTo(recyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
+                itemIndex = position;
+                return false;
+            }
+        });
 
         return root;
     }
+
+
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
@@ -106,6 +128,50 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         binding = null;
     }
 
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = getActivity().getMenuInflater();
+        menuInflater.inflate(R.menu.categories_context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.modify_menu_item:
+                dialogForModifyCategory(getActivity(),currentCategoriesList.get(itemIndex).getId()).show();
+                return true;
+            case R.id.delete_menu_item:
+                categoriesViewModel.deleteCategory(currentCategoriesList.get(itemIndex));
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    public Dialog dialogForModifyCategory(Activity activity, long idOfCategory){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        final EditText nameEditText = new EditText(activity);
+
+        builder.setTitle("Change name of category").setMessage("New name").setView(nameEditText);
+        builder.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                 final String nameOfCategory = nameEditText.getText().toString();
+                 final Categories categoryToModify = new Categories(nameOfCategory,false);
+                 categoryToModify.setId(idOfCategory);
+                 categoriesViewModel.updateCategory(categoryToModify);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        return builder.create();
+    }
 
 
 }

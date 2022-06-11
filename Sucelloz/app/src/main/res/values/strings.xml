@@ -40,4 +40,6 @@
     <string name="savings_amount_text_view">XXX/XXX€</string>
     <string name="check_box_spending">Positive ?</string>
     <string name="spendings_sub_category_text_view">SubCategory</string>
+    <string name="modify_menu_item_name">Modify</string>
+    <string name="delete_menu_item_name">Delete</string>
 </resources>

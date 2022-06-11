@@ -45,6 +45,14 @@ public class CategoriesRepository {
         CategoriesRepository.currentCategory = currentCategory;
     }
 
+    public void deleteCategory(Categories category){
+        this.categoriesDao.deleteCategory(category);
+    }
+
+    public void updateCategory(Categories category){
+        this.categoriesDao.updateCategory(category);
+    }
+
 }
 
 
