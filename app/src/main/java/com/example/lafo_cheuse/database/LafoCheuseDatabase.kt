@@ -20,8 +20,8 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
     abstract fun incomesBudgetDao(): IncomesBudgetDao?
     abstract fun expenseDao(): ExpenseDao?
     abstract fun incomeDao(): IncomeDao?
-    //abstract fun optionDao(): OptionDao?
-    //abstract fun optionFieldDao(): OptionFieldDao?
+    abstract fun optionDao(): OptionDao?
+    abstract fun optionFieldDao(): OptionFieldDao?
 
     companion object {
         // --- SINGLETON ---
@@ -58,6 +58,39 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
                         )
                         INSTANCE!!.categoryDao()?.createCategory(
                             Category("Bourses","\uD83D\uDCB0")
+                        )
+                        val optionTheme = Option("option_theme",OptionType.RADIOBUTTON)
+                        val optionNotifications = Option("option_notifications",OptionType.CHECKBOX)
+                        val optionNotificationsSum = Option("option_notification_sum",OptionType.TEXT_EDIT)
+                        val optionBudget = Option("option_budget",OptionType.SPINNER)
+
+                        INSTANCE!!.optionDao()?.insertOption(optionTheme)
+                        INSTANCE!!.optionDao()?.insertOption(optionNotifications)
+                        INSTANCE!!.optionDao()?.insertOption(optionNotificationsSum)
+                        INSTANCE!!.optionDao()?.insertOption(optionBudget)
+
+                        INSTANCE!!.optionFieldDao()?.insertOptionField(
+                            OptionField("light_theme",optionTheme,false)
+                        )
+                        INSTANCE!!.optionFieldDao()?.insertOptionField(
+                            OptionField("dark_theme",optionTheme,false)
+                        )
+                        INSTANCE!!.optionFieldDao()?.insertOptionField(
+                            OptionField("system_theme",optionTheme,false)
+                        )
+
+                        INSTANCE!!.optionFieldDao()?.insertOptionField(
+                            OptionField("next_income_alert",optionNotifications,false)
+                        )
+                        INSTANCE!!.optionFieldDao()?.insertOptionField(
+                            OptionField("below_sum_alert",optionNotifications,false)
+                        )
+                        INSTANCE!!.optionFieldDao()?.insertOptionField(
+                            OptionField("sum_alert",optionNotificationsSum,false)
+                        )
+
+                        INSTANCE!!.optionFieldDao()?.insertOptionField(
+                            OptionField(1.toString(),optionBudget,false)
                         )
                     }
                 }
