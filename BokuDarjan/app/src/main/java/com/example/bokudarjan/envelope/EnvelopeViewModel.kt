@@ -15,12 +15,14 @@ class EnvelopeViewModel(application: Application): AndroidViewModel(application)
 
     val readAllData: LiveData<List<Envelope>>
     private val repository: EnvelopeRepository
+    val sumOfEnvelopes : LiveData<Int>
 
 
     init {
         val envelopeDao = BokudarjanDatabase.getDatabase(application).envelopeDao()
         repository = EnvelopeRepository(envelopeDao)
         readAllData = repository.readAllData
+        sumOfEnvelopes = repository.sumOfEnvelopes
     }
 
     fun addEnvelope(envelope: Envelope){

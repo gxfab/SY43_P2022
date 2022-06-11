@@ -19,7 +19,7 @@
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/green"
         android:ems="10"
-        android:hint="Nom de la dépense"
+        android:hint="Nom de l'envelope"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"

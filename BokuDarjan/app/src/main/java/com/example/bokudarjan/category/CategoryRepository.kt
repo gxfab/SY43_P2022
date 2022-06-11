@@ -8,7 +8,7 @@ import com.example.bokudarjan.expense.ExpenseDAO
 class CategoryRepository(private val categoryDAO: CategoryDAO) {
 
     val readAllData: LiveData<List<Category>> = categoryDAO.readAllData()
-    val sumOFExpenseAndEnvelope: LiveData<Int> = categoryDAO.getSumOFExpenseAndEnvelope()
+
 
     suspend fun addUser(category: Category) {
         categoryDAO.addCategory(category)

@@ -20,7 +20,9 @@ import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.category.CategoryViewModel
 import com.example.bokudarjan.category.ListAdapterCategory
 import com.example.bokudarjan.envelope.EnvelopeViewModel
+import com.example.bokudarjan.expense.ExpenseViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.envelope_card.view.*
 import kotlinx.android.synthetic.main.envelope_category_card.view.*
 import kotlinx.android.synthetic.main.fragment_planification.view.*
 import java.util.*
@@ -39,11 +41,15 @@ private const val ARG_PARAM2 = "param2"
 class planificationFragment : Fragment() {
 
     private lateinit var categoryViewModel: CategoryViewModel
+    private lateinit var expenseViewModel: ExpenseViewModel
+    private lateinit var envelopeViewModel: EnvelopeViewModel
     var list: List<Category> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         categoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
+        expenseViewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
+        envelopeViewModel = ViewModelProvider(this).get(EnvelopeViewModel::class.java)
     }
 
 
@@ -55,6 +61,16 @@ class planificationFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_planification, container, false)
 
+        // Observer to get the sum
+        expenseViewModel.sumOfPositiveExpenses.observe(viewLifecycleOwner, Observer { sumOfPositiveExpenses ->
+            expenseViewModel.sumOfNegativeExpenses.observe(viewLifecycleOwner, Observer { sumOfNegativeExpenses ->
+                envelopeViewModel.sumOfEnvelopes.observe(viewLifecycleOwner, Observer { sumOfEnvelopes ->
+                    if(sumOfPositiveExpenses != null && sumOfNegativeExpenses != null && sumOfEnvelopes != null)
+                       view.budget.sumAmount.text = (sumOfPositiveExpenses - sumOfNegativeExpenses + sumOfEnvelopes + null).toString()
+                })
+            })
+        })
+
 
         //RecyclerView for category
         val categoryAdapter = ListAdapterCategory()
@@ -63,9 +79,7 @@ class planificationFragment : Fragment() {
         categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
-        // CategoryViewModel
-
-
+        // Observer for list of category
         categoryViewModel.readAllData.observe(viewLifecycleOwner, Observer { category ->
             Log.d("[DAO]", "Category data :$category")
             this.list = category;

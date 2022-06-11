@@ -15,8 +15,7 @@ interface CategoryDAO {
     @Query("SELECT * FROM category_table ORDER BY categoryName")
     fun readAllData(): LiveData<List<Category>>;
 
-    @Query("SELECT (envelope_table.amount+expense_table.amount) FROM expense_table INNER JOIN envelope_table ORDER BY categoryName")
-    fun getSumOFExpenseAndEnvelope(): LiveData<Int>;
+
 
     @Query("SELECT * FROM category_table WHERE categoryName = :name")
     fun getCategory(name: String): LiveData<List<Category>>

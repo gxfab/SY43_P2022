@@ -15,12 +15,15 @@ ExpenseViewModel(application: Application): AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Expense>>
     private val repository: ExpenseRepository
-
+    val sumOfPositiveExpenses: LiveData<Int>
+    val sumOfNegativeExpenses: LiveData<Int>
 
      init {
         val expenseDao = BokudarjanDatabase.getDatabase(application).expenseDao()
         repository = ExpenseRepository(expenseDao)
         readAllData = repository.readAllData
+         sumOfPositiveExpenses = repository.sumOfPositiveExpenses
+         sumOfNegativeExpenses = repository.sumOfNegativeExpense
     }
 
     fun addExpense(expense: Expense){

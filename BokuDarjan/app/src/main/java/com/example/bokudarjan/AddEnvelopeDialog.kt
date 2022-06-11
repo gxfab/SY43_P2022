@@ -63,10 +63,6 @@ class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
 
     private fun insertDataToDatabase(){
 
-
-
-
-
         val name  : String = this.dialog!!.findViewById<EditText>(R.id.addEnvelopeName).text.toString()
         val addEnvelopeAmount = this.dialog!!.findViewById<EditText>(R.id.addEnvelopeAmount);
         val cat = this.dialog!!.findViewById<EditText>(R.id.addEnvelopeCategory);
@@ -80,7 +76,7 @@ class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
         val envelope = Envelope(cat.text.toString(),name, amount, date)
 
 
-        Log.i("AddEnvelopeFragment", " Amount3 : " + envelope.amount)
+        Log.i("AddEnvelopeFragment", " Amount3 : " + envelope.amount + " | Envelope name : " + envelope.name)
 
 
         //If the input is ok, we add the envelope to the database

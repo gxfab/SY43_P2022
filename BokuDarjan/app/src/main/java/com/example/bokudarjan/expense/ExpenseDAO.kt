@@ -14,5 +14,9 @@ interface ExpenseDAO {
     @Query("SELECT * FROM expense_table ORDER BY name")
     fun readAllData(): LiveData<List<Expense>>;
 
+    @Query("SELECT SUM(amount) FROM expense_table WHERE moneyIncoming" )
+    fun getSumOfPositiveExpenses(): LiveData<Int>;
 
+    @Query("SELECT SUM(amount) FROM expense_table WHERE NOT moneyIncoming")
+    fun getSumOfNegativeExpenses(): LiveData<Int>;
 }
