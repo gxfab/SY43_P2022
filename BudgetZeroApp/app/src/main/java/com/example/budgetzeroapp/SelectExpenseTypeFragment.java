@@ -7,19 +7,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
-import android.app.Activity;
-
 import androidx.fragment.app.Fragment;
 
 
 public class SelectExpenseTypeFragment extends Fragment {
 
+    private MainActivity activity;
     private RadioGroup radioGroup;
     Button submit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-
+        activity = (MainActivity) getActivity();
         View view = inflater.inflate(R.layout.fragment_select_expense_type, parent, false);
 
         submit = view.findViewById(R.id.submit);
@@ -33,7 +32,8 @@ public class SelectExpenseTypeFragment extends Fragment {
             else if(selectedId == R.id.type_debt) type = DBHelper.TYPE_DEBT;
             else type = DBHelper.TYPE_SAV;
 
-            //Léo: ouvrir ici page DisplayExpense en passant la variable "type"
+            if(isAdded())
+                activity.replaceFragment(new ExpenseFragment(type));
         });
 
         return view;
