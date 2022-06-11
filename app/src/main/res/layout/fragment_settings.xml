@@ -33,20 +33,27 @@
                 android:background="?android:attr/listDivider" />
 
             <RadioGroup
+                android:id="@+id/option_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RadioButton
+                    android:id="@+id/option_light_theme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:buttonTint="@color/checkbox_color_selector"
                     android:text="@string/option_light"/>
                 <RadioButton
+                    android:id="@+id/option_dark_theme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/checkbox_color_selector"
                     android:textSize="16sp"
                     android:text="@string/option_dark"/>
+                <RadioButton
+                    android:id="@+id/option_system_theme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/option_system_theme"/>
             </RadioGroup>
         </LinearLayout>
 
@@ -70,17 +77,17 @@
                 android:background="?android:attr/listDivider" />
 
             <CheckBox
+                android:id="@+id/option_next_income_notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:buttonTint="@color/checkbox_color_selector"
                 android:text="@string/option_checkbox_nextResource"/>
 
             <CheckBox
+                android:id="@+id/option_below_sum_notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:buttonTint="@color/checkbox_color_selector"
                 android:text="@string/option_checkbox_alertMe"/>
 
 
@@ -90,7 +97,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:hint="@string/option_amount_notification"
-                android:backgroundTint="@color/edit_text_selector"
                 android:inputType="numberDecimal"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
