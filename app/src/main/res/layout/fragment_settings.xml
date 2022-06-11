@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
     tools:context="fragment.view.SettingsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_margin="20dp"
         android:divider="@drawable/empty_small_divider">
 
         <LinearLayout
@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/option_title_theme"
+                android:textColor="@color/orange"
                 android:textSize="24sp"/>
 
             <View
@@ -37,10 +38,14 @@
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:buttonTint="@color/checkbox_color_selector"
                     android:text="@string/option_light"/>
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/checkbox_color_selector"
+                    android:textSize="16sp"
                     android:text="@string/option_dark"/>
             </RadioGroup>
         </LinearLayout>
@@ -55,6 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/option_notfications_display"
+                android:textColor="@color/orange"
                 android:textSize="24sp"/>
 
             <View
@@ -66,11 +72,15 @@
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:buttonTint="@color/checkbox_color_selector"
                 android:text="@string/option_checkbox_nextResource"/>
 
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:buttonTint="@color/checkbox_color_selector"
                 android:text="@string/option_checkbox_alertMe"/>
 
 
@@ -80,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:hint="@string/option_amount_notification"
+                android:backgroundTint="@color/edit_text_selector"
                 android:inputType="numberDecimal"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
@@ -97,6 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/option_title_budget"
+                android:textColor="@color/orange"
                 android:textSize="24sp"/>
 
             <View
@@ -109,12 +121,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:textSize="16sp"
                 android:text="@string/option_text_reset_time"/>
 
             <Spinner
                 android:id="@+id/option_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:spinnerMode="dialog"
                 android:contentDescription="@string/option_spinner_day" />
@@ -131,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/option_title_demonstration"
+                android:textColor="@color/orange"
                 android:textSize="24sp"/>
 
             <View
@@ -139,55 +154,57 @@
                 android:layout_height="1dp"
                 android:background="?android:attr/listDivider" />
 
-            <LinearLayout
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp">
+                android:columnCount="2">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:textSize="16sp"
                     android:text="@string/option_text_populate"
+                    android:layout_gravity="start|center_vertical|fill_horizontal"
                     android:layout_marginEnd="25dp"/>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/yellow"
+                    android:layout_gravity="center_vertical|fill_horizontal"
                     android:text="@string/option_button_populate" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:layout_gravity="start|center_vertical|fill_horizontal"
                     android:text="@string/option_text_delete"
                     android:layout_marginEnd="10dp"/>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:backgroundTint="@color/red"
+                    android:enabled="false"
+                    android:layout_gravity="center_vertical|fill_horizontal"
                     android:text="@string/option_button_delete" />
+            </GridLayout>
 
-            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="60dp">
+            android:layout_marginBottom="80dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/optionTitleReferences"
+                android:textColor="@color/orange"
                 android:textSize="24sp"/>
 
             <View
