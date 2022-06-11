@@ -34,7 +34,7 @@ public class CategoryRepository {
         MutableLiveData<List<Categorydb>> data = new MutableLiveData<>();
 
         Futures.addCallback(
-                db.CategoryDAO().findAll(),
+                db.CategoryDAO().findCategories(),
                 new FutureCallback<List<Categorydb>>() {
                     public void onSuccess(List<Categorydb> result) {
                         Log.d("Test", String.valueOf(result.get(0)));
@@ -49,6 +49,27 @@ public class CategoryRepository {
         );
         return data;
     }
+
+    public MutableLiveData<List<Categorydb>> getObjectives() {
+        DB db = DB.getAppDatabase(MainActivity.getAppContext());
+        DBexec databaseExecutor = DBexec.getExecutor();
+        MutableLiveData<List<Categorydb>> data = new MutableLiveData<>();
+
+        Futures.addCallback(
+                db.CategoryDAO().findObjectives(),
+                new FutureCallback<List<Categorydb>>() {
+                    public void onSuccess(List<Categorydb> result) {
+                        data.postValue(result);
+                    }
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                //MainActivity.getAppContext().getMainExecutor()
+                databaseExecutor
+        );
+        return data;
+    }
+
 
     public void addCategory(String name) {
         //this.dataSet.add(new Categorydb(name, 10, 20));

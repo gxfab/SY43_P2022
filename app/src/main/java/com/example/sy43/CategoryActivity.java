@@ -41,7 +41,6 @@ public class CategoryActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {
                  // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
-
                 CategoryAdapter catArrayAdapter = new CategoryAdapter(
                         CategoryActivity.this,
                         R.layout.category_list_item,
@@ -51,6 +50,23 @@ public class CategoryActivity extends AppCompatActivity {
 
             }
         });
+
+        categoryViewModel.getObjectives().observe(this, new Observer<List<Categorydb>>() {
+            @Override
+            public void onChanged(List<Categorydb> receivedObjectives) {
+                // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
+
+                CategoryAdapter objArrayAdapter = new CategoryAdapter(
+                        CategoryActivity.this,
+                        R.layout.category_list_item,
+                        receivedObjectives);
+                ListView objLv = (ListView) findViewById(R.id.objectiveListView);
+                objLv.setAdapter(objArrayAdapter);
+
+
+            }
+        });
+
         Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 
 public class CategoryViewModel extends ViewModel {
     private MutableLiveData<List<Categorydb>> categories;
+    private MutableLiveData<List<Categorydb>> objectives;
+
     public CategoryRepository catRepo;
 
     public void init() {
@@ -24,6 +26,7 @@ public class CategoryViewModel extends ViewModel {
         }
         catRepo = CategoryRepository.getInstance();
         categories = catRepo.getCategories();
+        objectives = catRepo.getObjectives();
 
     }
 
@@ -33,12 +36,11 @@ public class CategoryViewModel extends ViewModel {
         currentCategories.add(category);
         categories.postValue(currentCategories);
 
-
-
-
     }
-
     public LiveData<List<Categorydb>> getCategories() {
         return categories;
+    }
+    public LiveData<List<Categorydb>> getObjectives() {
+        return objectives;
     }
 }

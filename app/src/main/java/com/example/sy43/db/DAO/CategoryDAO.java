@@ -37,10 +37,10 @@ interface CategoryDAO{
     public ListenableFuture<List<Float>> findMaxValue();
 
     @Query("SELECT * FROM Categorydb WHERE isObjective = 1")
-    public ListenableFuture<List<Categorydb>> findByObjective();
+    public ListenableFuture<List<Categorydb>> findObjectives();
 
     @Query("SELECT * FROM Categorydb WHERE isObjective = 0")
-    public ListenableFuture<List<Categorydb>> findByCategory();
+    public ListenableFuture<List<Categorydb>> findCategories();
 
     @Delete
     public ListenableFuture<Integer>

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         DBexec databaseExecutor = DBexec.getExecutor();
 
         Categorydb category2 = new Categorydb();
-        category2.setCatName("test2");
+        category2.setCatName("Food");
 
         Futures.addCallback(
                 db.CategoryDAO().insert(category2),
@@ -55,10 +55,6 @@ public class MainActivity extends AppCompatActivity {
                 },
                 databaseExecutor
         );
-
-
-
-
 
         Futures.addCallback(
                 db.CategoryDAO().findAll(),
