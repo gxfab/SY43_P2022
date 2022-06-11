@@ -1,27 +1,17 @@
 package com.example.bokudarjan
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.*
-import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.*
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bokudarjan.category.Category
-import com.example.bokudarjan.category.CategoryViewModel
 import com.example.bokudarjan.envelope.Envelope
 import com.example.bokudarjan.envelope.EnvelopeViewModel
-import com.example.bokudarjan.expense.Expense
-import com.example.bokudarjan.expense.ExpenseViewModel
-import com.google.android.material.switchmaterial.SwitchMaterial
-import kotlinx.android.synthetic.main.fragment_add_envelope.*
-import kotlinx.android.synthetic.main.fragment_side_bar.*
 import java.util.*
 
 class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
@@ -36,7 +26,7 @@ class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
 
             val builder = AlertDialog.Builder(it)
             envelopeViewModel = ViewModelProvider(this)[EnvelopeViewModel::class.java]
-            builder.setView(R.layout.fragment_add_envelope)
+            builder.setView(R.layout.dialog_add_envelope)
             builder.setMessage("Plannifier une dépense")
                 .setPositiveButton("Ok",
                     DialogInterface.OnClickListener { dialog, id ->

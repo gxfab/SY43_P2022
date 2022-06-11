@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.category.CategoryViewModel
 import com.example.bokudarjan.category.ListAdapterCategory2
+import com.example.bokudarjan.envelope.EnvelopeViewModel
 import com.example.bokudarjan.expense.ExpenseViewModel
 import com.example.bokudarjan.expense.ListAdapterExpense
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -34,6 +35,7 @@ class ExpensesFragment : Fragment() {
 
     private lateinit var expenseViewModel: ExpenseViewModel
     private lateinit var categoryViewModel: CategoryViewModel
+    private lateinit var envelopeViewModel: EnvelopeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,8 +71,12 @@ class ExpensesFragment : Fragment() {
         catRecycler.adapter = adapter2
         catRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
+
+
         // ExpenseViewModel
         expenseViewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
+        envelopeViewModel = ViewModelProvider(this).get(EnvelopeViewModel::class.java)
+
         expenseViewModel.readAllData.observe(viewLifecycleOwner, Observer { expense ->
             adapter.setData(expense)
         })
@@ -79,6 +85,27 @@ class ExpensesFragment : Fragment() {
         categoryViewModel.readAllData.observe(viewLifecycleOwner, Observer{ cat ->
             adapter2.setData(cat)
         })
+
+        var expenses:Float = 0f
+        var envelopes:Float = 0f
+
+        expenseViewModel.sumOfNegativeExpenses.observe(viewLifecycleOwner, Observer{
+            if(it == null){
+                expenses = 0f;
+            }else{
+                expenses = it;
+            }
+            view.sumEnveloppes.text = String.format("%.2f",expenses) + "€ de dépenses sur " + String.format("%.2f",envelopes) +"€ de prévues";
+        })
+
+       envelopeViewModel.sumOfEnvelopes.observe(viewLifecycleOwner, Observer{
+           if(it == null){
+               envelopes = 0f;
+           }else{
+               envelopes = it;
+           }
+           view.sumEnveloppes.text = String.format("%.2f",expenses) + "€ de dépenses sur " + String.format("%.2f",envelopes) +"€ de prévues";
+       })
 
 
 

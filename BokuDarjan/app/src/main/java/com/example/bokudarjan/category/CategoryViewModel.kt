@@ -26,6 +26,16 @@ class CategoryViewModel(application: Application): AndroidViewModel(application)
         repository = CategoryRepository(categoryDao)
         readAllData = repository.readAllData
 
+
+
+        repository.getCategory("Bénéfices").observeForever( Observer{
+            if(it.isEmpty()){
+                viewModelScope.launch(Dispatchers.IO) {
+                    repository.addUser(Category("Bénéfices","#4CAF50"))
+                }
+            }
+        })
+
     }
 
     fun addCategory(category: Category){

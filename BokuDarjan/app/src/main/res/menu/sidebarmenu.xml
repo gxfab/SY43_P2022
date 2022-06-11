@@ -2,12 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@drawable/ic_calendar"
-        android:title="Mois archivés" />
-    <item
-        android:icon="@drawable/ic_setting"
+        android:icon="@drawable/ic_chart"
         android:iconTint="#FFFFFF"
-        android:title="Paramètres" />
+        android:title="Graphiques et Stats" />
     <item
         android:icon="@drawable/ic_baseline_info_24"
         android:title="À Propos" />

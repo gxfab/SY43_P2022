@@ -8,7 +8,7 @@
     <item
         android:id="@+id/expensesFragment"
         android:icon="@drawable/ic_card"
-        android:title="Dépenses" />
+        android:title="Opérations" />
     <item
         android:id="@+id/savingsFragment"
         android:icon="@drawable/ic_dollar"

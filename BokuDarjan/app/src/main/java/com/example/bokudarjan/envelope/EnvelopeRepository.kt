@@ -7,7 +7,7 @@ import com.example.bokudarjan.expense.ExpenseDAO
 class EnvelopeRepository(private val envelopeDAO: EnvelopeDAO) {
 
     val readAllData: LiveData<List<Envelope>> = envelopeDAO.readAllData()
-    val sumOfEnvelopes: LiveData<Int> = envelopeDAO.getSumOfEnvelopes()
+    val sumOfEnvelopes: LiveData<Float> = envelopeDAO.getSumOfEnvelopes()
 
     suspend fun addUser(envelope: Envelope) {
         envelopeDAO.addEnvelope(envelope)

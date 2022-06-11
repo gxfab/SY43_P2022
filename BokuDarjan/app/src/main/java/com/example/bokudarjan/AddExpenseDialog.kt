@@ -7,19 +7,14 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Switch
 import android.widget.Toast
-import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
-import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.expense.Expense
 import com.example.bokudarjan.expense.ExpenseViewModel
-import com.google.android.material.switchmaterial.SwitchMaterial
-import kotlinx.android.synthetic.main.fragment_side_bar.*
 
 class AddExpenseDialog(cat:String) : DialogFragment() {
 
@@ -32,7 +27,7 @@ class AddExpenseDialog(cat:String) : DialogFragment() {
 
             val builder = AlertDialog.Builder(it)
             expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
-            builder.setView(R.layout.fragment_add_expense)
+            builder.setView(R.layout.dialog_add_expense)
             builder.setMessage("Ajouter une dépense à $category")
                 .setPositiveButton("Ok",
                     DialogInterface.OnClickListener { dialog, id ->

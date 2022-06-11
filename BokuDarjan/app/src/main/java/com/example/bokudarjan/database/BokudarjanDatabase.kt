@@ -12,16 +12,19 @@ import com.example.bokudarjan.category.CategoryDAO
 import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.envelope.Envelope
 import com.example.bokudarjan.envelope.EnvelopeDAO
+import com.example.bokudarjan.saving.Saving
+import com.example.bokudarjan.saving.SavingDAO
 
 import kotlin.jvm.Volatile;
 
 //Build a singleton of the Database
-@Database(version = 2, entities = [Expense::class, Category::class, Envelope::class], exportSchema = false)
+@Database(version = 3, entities = [Expense::class, Category::class, Envelope::class, Saving::class], exportSchema = false)
 abstract class BokudarjanDatabase : RoomDatabase() {
 
     abstract fun expenseDao(): ExpenseDAO
     abstract fun categoryDao() : CategoryDAO
     abstract fun envelopeDao() : EnvelopeDAO
+    abstract fun savingDao() : SavingDAO
 
     companion object {
         @Volatile

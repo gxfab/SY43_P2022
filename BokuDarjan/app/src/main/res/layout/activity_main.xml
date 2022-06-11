@@ -31,23 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:backgroundTint="#00FFFFFF"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_more"
-            tools:ignore="SpeakableTextPresentCheck"
-            tools:layout_editor_absoluteX="364dp"
-            tools:layout_editor_absoluteY="6dp" />
-
-
-    </androidx.appcompat.widget.Toolbar>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/toolbarTextView"

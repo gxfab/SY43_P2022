@@ -34,42 +34,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/budget"
+    <TextView
+        android:id="@+id/sumAmount"
         android:layout_width="0dp"
-        android:layout_height="34dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:gravity="center|start"
-        android:translationZ="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:text="XXXX€ de dépenses au total ce mois ci"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:translationZ="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/footer"
         app:layout_constraintEnd_toStartOf="@+id/expandButton"
-        app:layout_constraintStart_toStartOf="@+id/footer"
-        app:layout_constraintTop_toTopOf="@+id/footer" >
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:layout_weight="1"
-            android:text="Encore " />
-
-        <TextView
-            android:id="@+id/sumAmount"
-            android:layout_width="wrap_content"
-            android:textColor="#FFFFFF"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:textColor="#FFFFFF"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="€ à budgetiser" />
-    </LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/footer" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addExpenseBtn"

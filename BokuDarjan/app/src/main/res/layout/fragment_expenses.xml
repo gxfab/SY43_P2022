@@ -8,6 +8,22 @@
     tools:context=".ExpensesFragment">
 
 
+    <TextView
+        android:id="@+id/sumEnveloppes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:text="XXXXXX€ de dépenses sur XXXXXX€ de prévues"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:translationZ="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/footer2"
+        app:layout_constraintEnd_toStartOf="@+id/expandButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/darken2" />
+
     <ImageView
         android:id="@+id/darken2"
         android:layout_width="0dp"
@@ -40,9 +56,7 @@
         android:src="@drawable/ic_hardrectangle"
         android:translationZ="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/catText"
@@ -74,7 +88,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/catRecycler"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="8dp"
         android:translationZ="2dp"
         android:visibility="invisible"

@@ -15,7 +15,7 @@ class EnvelopeViewModel(application: Application): AndroidViewModel(application)
 
     val readAllData: LiveData<List<Envelope>>
     private val repository: EnvelopeRepository
-    val sumOfEnvelopes : LiveData<Int>
+    val sumOfEnvelopes : LiveData<Float>
 
 
     init {

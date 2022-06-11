@@ -5,6 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bokudarjan.category.ListAdapterCategory
+import com.example.bokudarjan.envelope.EnvelopeViewModel
+import com.example.bokudarjan.saving.ListAdapterSaving
+import com.example.bokudarjan.saving.Saving
+import com.example.bokudarjan.saving.SavingViewModel
+import kotlinx.android.synthetic.main.fragment_savings.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +29,7 @@ class SavingsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var savingViewModel : SavingViewModel;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +37,8 @@ class SavingsFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        savingViewModel = ViewModelProvider(this).get(SavingViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -34,7 +46,24 @@ class SavingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_savings, container, false)
+        var view =  inflater.inflate(R.layout.fragment_savings, container, false)
+
+        var test = listOf<Saving>(Saving("Acheter une voiture", 1000f), Saving("Maison", 100f));
+
+        var savingAdapter = ListAdapterSaving()
+        view.recylclerSavings.adapter = savingAdapter;
+        view.recylclerSavings.layoutManager = LinearLayoutManager(requireContext())
+
+        savingViewModel.readAllData.observe(viewLifecycleOwner, Observer { saving ->
+            savingAdapter.setData(saving)
+        })
+
+        view.expandButton3.setOnClickListener {
+            var dialog = AddSavingDialog()
+            dialog.show(childFragmentManager, "")
+        }
+
+        return view;
     }
 
     companion object {

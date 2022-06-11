@@ -40,10 +40,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="XXXX€"
+        android:text="XXXXXX€ de prévu"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/catSumExp"
+        app:layout_constraintEnd_toEndOf="@+id/back"
+        app:layout_constraintStart_toStartOf="@+id/back" />
+
+    <TextView
+        android:id="@+id/catSumExp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="XXXXXX€ de réalisé"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/back"
         app:layout_constraintEnd_toEndOf="@+id/back"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/back" />
 </androidx.constraintlayout.widget.ConstraintLayout>

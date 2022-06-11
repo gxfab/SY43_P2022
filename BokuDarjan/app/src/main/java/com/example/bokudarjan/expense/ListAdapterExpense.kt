@@ -10,7 +10,6 @@ import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.R
 import com.example.bokudarjan.category.CategoryViewModel
-import com.example.bokudarjan.envelope.EnvelopeViewModel
 import kotlinx.android.synthetic.main.expense_card.view.*
 
 class ListAdapterExpense: RecyclerView.Adapter<ListAdapterExpense.MyViewHolder>() {
@@ -32,9 +31,9 @@ class ListAdapterExpense: RecyclerView.Adapter<ListAdapterExpense.MyViewHolder>(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = expenseList[position]
-        holder.itemView.nameExpense.text = currentItem.name
-        holder.itemView.nameCategoryExpense.text = currentItem.categoryName
-        holder.itemView.amoutExpense.text =  String.format("%.2f", currentItem.amount) + "€"
+        holder.itemView.savingName.text = currentItem.name
+        holder.itemView.nameCategoryExpense.text = currentItem.categoryName + ", le " + currentItem.date + " du mois"
+        holder.itemView.savingAmount.text =  String.format("%.2f", currentItem.amount) + "€"
         categoryViewModel.getCategory(currentItem.categoryName).observeForever{
             holder.itemView.categoryCircle.setColorFilter(Color.parseColor(it[0].color));
         }

@@ -62,12 +62,9 @@ class planificationFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_planification, container, false)
 
         // Observer to get the sum
+
         expenseViewModel.sumOfPositiveExpenses.observe(viewLifecycleOwner, Observer { sumOfPositiveExpenses ->
             expenseViewModel.sumOfNegativeExpenses.observe(viewLifecycleOwner, Observer { sumOfNegativeExpenses ->
-                envelopeViewModel.sumOfEnvelopes.observe(viewLifecycleOwner, Observer { sumOfEnvelopes ->
-                    if(sumOfPositiveExpenses != null && sumOfNegativeExpenses != null && sumOfEnvelopes != null)
-                       view.budget.sumAmount.text = (sumOfPositiveExpenses - sumOfNegativeExpenses + sumOfEnvelopes).toString()
-                })
             })
         })
 
@@ -84,6 +81,14 @@ class planificationFragment : Fragment() {
             Log.d("[DAO]", "Category data :$category")
             this.list = category;
             categoryAdapter.setData(category)
+        })
+
+        envelopeViewModel.sumOfEnvelopes.observe(viewLifecycleOwner, Observer { sumOfEnvelopes ->
+            if(sumOfEnvelopes == null){
+                view.sumAmount.text =  "Aucune dépenses ce mois ci"
+            }else{
+                view.sumAmount.text =  String.format("%.2f",sumOfEnvelopes) + "€ de dépenses prévues ce mois ci"
+            }
         })
 
 

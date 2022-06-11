@@ -11,8 +11,6 @@ import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
 import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.category.CategoryViewModel
-import kotlinx.android.synthetic.main.fragment_add_category.*
-import kotlinx.android.synthetic.main.fragment_side_bar.*
 import vadiole.colorpicker.ColorModel
 import vadiole.colorpicker.ColorPickerDialog
 
@@ -27,7 +25,7 @@ class AddCategoryDialog() : DialogFragment() {
 
             val builder = AlertDialog.Builder(it)
             categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
-            builder.setView(R.layout.fragment_add_category)
+            builder.setView(R.layout.dialog_add_category)
             builder.setMessage("Ajouter une catégorie")
                 .setPositiveButton("Ok",
                     DialogInterface.OnClickListener { dialog, id ->
