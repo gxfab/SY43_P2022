@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import fr.sy.lebudgetduzero.database.AppDatabase
 import fr.sy.lebudgetduzero.fragments.IncomeFragment
 import fr.sy.lebudgetduzero.fragments.SpentFragment
@@ -65,17 +66,20 @@ class MainActivity : AppCompatActivity() {
             //Entrées du mois
             val incomeMonth=db.incomeDao().getIncomeValue(1654034409)
             val textViewIncome : TextView = findViewById(R.id.I_ValueMonth) as TextView
-            textViewIncome.text=incomeMonth.toString() + "€ en entrée ce mois."
 
             //Depenses du mois
             val spentMonth=db.spentDao().getSpentValue(1654034409)
             val textViewSpent: TextView = findViewById(R.id.S_ValueMonth) as TextView
-            textViewSpent.text=spentMonth.toString() + "€ dépensés ce mois."
 
             //Argent disponible
             val money=db.incomeDao().getIncomeValue(0)-db.spentDao().getSpentValue(0)
             val textViewArgent : TextView = findViewById(R.id.B_MoneyAvailable) as TextView
-            textViewArgent.text= money.toString() + "€ disponible"
+
+            this@MainActivity.runOnUiThread{
+                textViewIncome.text=incomeMonth.toString() + "€ en entrée ce mois."
+                textViewSpent.text=spentMonth.toString() + "€ dépensés ce mois."
+                textViewArgent.text= money.toString() + "€ disponible"
+            }
         }
 
 
