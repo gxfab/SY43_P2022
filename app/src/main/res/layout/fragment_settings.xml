@@ -82,7 +82,8 @@
                 android:hint="@string/option_amount_notification"
                 android:inputType="numberDecimal"
                 android:minWidth="48dp"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:autofillHints="number"/>
 
         </LinearLayout>
 
@@ -111,9 +112,11 @@
                 android:text="@string/option_text_reset_time"/>
 
             <Spinner
+                android:id="@+id/option_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:spinnerMode="dialog"
                 android:contentDescription="@string/option_spinner_day" />
 
         </LinearLayout>
