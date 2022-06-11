@@ -14,6 +14,9 @@ import fr.sy.lebudgetduzero.item.SpentItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 /**
  *
@@ -24,6 +27,10 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     //Data nécessaire en test
     private val tx : Int = 60
+    private val startMonthTimestamp:Int
+        get() = ( (SimpleDateFormat("dd-MM-yyyy").parse("01-"+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM-yyyy")) ) ).time/1000).toInt()
+    private val currentTimestamp:Int
+        get() = ( (SimpleDateFormat("dd-MM-yyyy").parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) ) ).time/1000).toInt()
 
 
     /**
@@ -64,11 +71,11 @@ class MainActivity : AppCompatActivity() {
             val db=AppDatabase.getDatabase(applicationContext)
 
             //Entrées du mois
-            val incomeMonth=db.incomeDao().getIncomeValue(1654034409)
+            val incomeMonth=db.incomeDao().getIncomeValue(startMonthTimestamp)
             val textViewIncome : TextView = findViewById(R.id.I_ValueMonth) as TextView
 
             //Depenses du mois
-            val spentMonth=db.spentDao().getSpentValue(1654034409)
+            val spentMonth=db.spentDao().getSpentValue(startMonthTimestamp)
             val textViewSpent: TextView = findViewById(R.id.S_ValueMonth) as TextView
 
             //Argent disponible

@@ -12,6 +12,7 @@ import fr.sy.lebudgetduzero.item.SpentItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,7 @@ class AddActivity : AppCompatActivity() {
     fun addTransaction(view: View){
         val editName=findViewById<EditText>(R.id.editNameItem).text.toString()
         val editValue=findViewById<EditText>(R.id.editValue).text.toString().toFloat()
-        //val editDate= Integer.parseInt(findViewById<EditText>(R.id.editDate).toString())
+        val editDate= (SimpleDateFormat("dd-MM-yyyy").parse(findViewById<EditText>(R.id.editDate).text.toString()).time/1000).toInt()
         val editType=Integer.parseInt(findViewById<EditText>(R.id.editType).text.toString())
 
         val isDepense=findViewById<RadioButton>(R.id.isDepense).isChecked
@@ -34,9 +35,9 @@ class AddActivity : AppCompatActivity() {
             val db = AppDatabase.getDatabase(applicationContext)
 
             if(isDepense){
-                db.spentDao().insertAll(SpentItem(name=editName,value=editValue,id_type=editType,date=1654847942))
+                db.spentDao().insertAll(SpentItem(name=editName,value=editValue,id_type=editType,date=editDate))
             }else{
-                db.incomeDao().insertAll(IncomeItem(name=editName,value=editValue,date=1654847942))
+                db.incomeDao().insertAll(IncomeItem(name=editName,value=editValue,date=editDate))
             }
 
             //Redirection
