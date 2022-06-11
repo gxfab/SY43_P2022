@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_profil"
+            android:title="Mon Profil"
+            android:icon="@drawable/ic_user_black">
+        </item>
+
+        <item android:id="@+id/nav_home"
+            android:title="Accueil"
+            android:icon="@drawable/ic_dashboard">
+        </item>
+
+        <item android:id="@+id/nav_statistique"
+            android:title="Statistique"
+            android:icon="@drawable/ic_stats"
+            ></item>
+
+        <item android:id="@+id/nav_depense"
+            android:title="Depense"
+            android:icon="@drawable/ic_wallet"
+            ></item>
+
+        <item android:id="@+id/nav_revenu"
+            android:title="Revenu"
+            android:icon="@drawable/ic_revenu">
+        </item>
+
+        <item android:id="@+id/nav_budget"
+            android:title="Budget"
+            android:icon="@drawable/ic_budget">
+        </item>
+
+        <item android:id="@+id/nav_projet"
+            android:title="Projet"
+            android:icon="@drawable/ic_projet">
+        </item>
+
+        <item android:id="@+id/nav_logout"
+            android:title="Se déconnecter"
+            android:icon="@drawable/ic_logout">
+        </item>
+    </group>
+</menu>

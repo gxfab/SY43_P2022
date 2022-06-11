@@ -1,28 +1,13 @@
 package com.example.noappnogain
 
-import androidx.appcompat.app.AppCompatActivity
-import android.view.animation.Animation
-import android.os.Bundle
-import android.view.WindowManager
-import com.example.noappnogain.R
-import android.content.Intent
-import com.example.noappnogain.Sidentifier
-import com.example.noappnogain.Bienvenue
 import android.app.ProgressDialog
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
+import android.content.Intent
+import android.os.Bundle
 import android.text.TextUtils
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.FirebaseDatabase
-import android.content.SharedPreferences
 import android.view.View
 import android.widget.*
-import com.example.noappnogain.MainActivity
-import com.example.noappnogain.Sinscrire
-import com.example.noappnogain.Reinitialiser
-import java.lang.Exception
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class Sidentifier : AppCompatActivity() {
     private lateinit var mEmail: EditText
@@ -39,6 +24,7 @@ class Sidentifier : AppCompatActivity() {
     }
 
     private fun loginDetails() {
+
         mEmail = findViewById(R.id.email_login)
         mPass = findViewById(R.id.password_login)
         val btnLogin = findViewById<Button>(R.id.btn_login)
@@ -88,8 +74,8 @@ class Sidentifier : AppCompatActivity() {
             startActivity(intent)
         }
         btnLogin.setOnClickListener(View.OnClickListener {
-            val email = mEmail.getText().toString().trim { it <= ' ' }
-            val pass = mPass.getText().toString().trim { it <= ' ' }
+            val email = mEmail.text.toString().trim { it <= ' ' }
+            val pass = mPass.text.toString().trim { it <= ' ' }
             if (TextUtils.isEmpty(email)) {
                 mEmail.setError("E-mail obligatoire..", null)
                 return@OnClickListener
@@ -98,14 +84,14 @@ class Sidentifier : AppCompatActivity() {
                 mPass.setError("Mot de passe obligatoire..", null)
                 return@OnClickListener
             }
-            mDialog!!.setMessage("Se connecter..")
-            mDialog!!.show()
-            mAuth!!.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
+            mDialog.setMessage("Se connecter..")
+            mDialog.show()
+            mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    mDialog!!.dismiss()
+                    mDialog.dismiss()
                     checkEmailVerification()
                 } else {
-                    mDialog!!.dismiss()
+                    mDialog.dismiss()
                     Toast.makeText(
                         applicationContext,
                         "Échec de la connexion..",
@@ -125,7 +111,7 @@ class Sidentifier : AppCompatActivity() {
             startActivity(Intent(this@Sidentifier, MainActivity::class.java))
         } else {
             Toast.makeText(this, "Veuillez vérifier votre e-mail..", Toast.LENGTH_LONG).show()
-            mAuth!!.signOut()
+            mAuth.signOut()
         }
     }
 }

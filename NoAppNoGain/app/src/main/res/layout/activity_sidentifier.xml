@@ -88,9 +88,7 @@
             android:background="@color/turquoise"
             android:text="S'identifier"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/black"
-            app:backgroundTint="@color/turquoise" />
+            android:textColor="@android:color/white" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

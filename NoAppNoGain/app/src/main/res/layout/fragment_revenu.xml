@@ -4,13 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Depense"
+    tools:context=".ui.revenu.RevenuFragment"
     android:orientation="vertical"
     android:gravity="center_horizontal">
-
-    <include
-        android:id="@+id/revenu_toolbar"
-        layout="@layout/revenu_toolbar"/>
 
     <LinearLayout
         android:layout_margin="5dp"
@@ -21,9 +17,8 @@
 
         <LinearLayout
             android:layout_margin="5dp"
-            android:layout_width="200dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="3dp"
             android:background="@drawable/spinner"
             android:orientation="horizontal"
             android:gravity="center">
@@ -38,7 +33,7 @@
 
             <Spinner
                 android:id="@+id/spinner_annee"
-                android:layout_width="130dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center_horizontal"
@@ -53,7 +48,7 @@
 
         <LinearLayout
             android:layout_margin="5dp"
-            android:layout_width="200dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"
             android:background="@drawable/spinner"
@@ -70,7 +65,7 @@
 
             <Spinner
                 android:id="@+id/spinner_mois"
-                android:layout_width="130dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center_horizontal"
@@ -86,9 +81,32 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_id_income"
+        android:id="@+id/recycler_id_categorie"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="40dp" />
+
+    <LinearLayout
+        android:layout_width="411dp"
+        android:layout_height="553dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/background"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_id_income"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_ajouter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+ AJOUTER REVENU"/>
 
 
 </LinearLayout>

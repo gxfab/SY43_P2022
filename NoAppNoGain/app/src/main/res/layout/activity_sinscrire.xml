@@ -79,10 +79,7 @@
                 android:layout_margin="10dp"
                 android:text="S'incrire"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black"
-                android:background="@color/turquoise"
-                app:backgroundTint="@color/turquoise"/>
+                android:textColor="@android:color/white"/>
 
             <TextView
                 android:id="@+id/signin_here"

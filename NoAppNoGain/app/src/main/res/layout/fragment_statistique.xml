@@ -4,13 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Statistique"
+    tools:context=".ui.statistique.StatistiqueFragment"
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
-    <include
-        android:id="@+id/statistique_toolbar"
-        layout="@layout/statistique_toolbar"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -5,11 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".Profil">
-
-    <include
-        android:id="@+id/profil_toolbar"
-        layout="@layout/profil_toolbar"/>
+    tools:context=".ui.profil.ProfilFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -55,24 +51,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@color/turquoise"
                 android:text="Changer le mot de passe"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black"
-                app:backgroundTint="@color/turquoise"/>
+                android:textColor="@android:color/white"/>
 
             <Button
                 android:id="@+id/btn_deleteaccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@color/turquoise"
                 android:text="Supprimer le compte définitivement"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black"
-                app:backgroundTint="@color/turquoise" />
+                android:textColor="@android:color/white" />
 
 
         </LinearLayout>

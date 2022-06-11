@@ -13,21 +13,58 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoAppNoGain"
         tools:targetApi="31" >
-        <activity android:name=".Sinscrire" />
-        <activity android:name=".Sidentifier" />
-        <activity android:name=".Reinitialiser" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.NoAppNoGain.NoActionBar" />
+
         <activity
             android:name=".Bienvenue"
-            android:exported="true" >
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.NoAppNoGain" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+
+        <activity android:name=".Reinitialiser"
+            android:exported="true"
+            android:label="Changer le mot de passe"
+            android:theme="@style/Theme.NoAppNoGain" />
+
+        <activity android:name=".Sidentifier"
+            android:exported="true"
+            android:label="Changer le mot de passe"
+            android:theme="@style/Theme.NoAppNoGain" />
+
+        <activity android:name=".Sinscrire"
+            android:exported="true"
+            android:theme="@style/Theme.NoAppNoGain" />
+
+        <activity android:name=".Changer"
+            android:exported="true"
+            android:label="Changer le mot de passe"
+            android:theme="@style/Theme.NoAppNoGain" />
+
+        <activity android:name=".BalanceMensuel"
+            android:exported="true"
+            android:label="Balance Mensuel"
+            android:theme="@style/Theme.NoAppNoGain" />
+
+        <activity android:name=".BalanceAnnuel"
+            android:exported="true"
+            android:label="Balance Annuel"
+            android:theme="@style/Theme.NoAppNoGain"/>
+
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

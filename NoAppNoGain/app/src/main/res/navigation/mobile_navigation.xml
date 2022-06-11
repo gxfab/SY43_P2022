@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_profil"
+        android:name="com.example.noappnogain.ui.profil.ProfilFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_profil" >
+        <action
+            android:id="@+id/action_nav_profil_to_action_changer"
+            app:destination="@id/action_changer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.noappnogain.ui.home.HomeFragment"
+        android:label="Accueil"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_statistique"
+        android:name="com.example.noappnogain.ui.statistique.StatistiqueFragment"
+        android:label="Statistique"
+        tools:layout="@layout/fragment_statistique" >
+        <action
+            android:id="@+id/action_nav_statistique_to_action_balance_annuel"
+            app:destination="@id/action_balance_annuel" />
+        <action
+            android:id="@+id/action_nav_statistique_to_action_balance_mensuel"
+            app:destination="@id/action_balance_mensuel" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_depense"
+        android:name="com.example.noappnogain.ui.depense.DepenseFragment"
+        android:label="Depense"
+        tools:layout="@layout/fragment_depense" />
+
+    <fragment
+        android:id="@+id/nav_revenu"
+        android:name="com.example.noappnogain.ui.revenu.RevenuFragment"
+        android:label="Revenu"
+        tools:layout="@layout/fragment_revenu" />
+
+    <fragment
+        android:id="@+id/nav_budget"
+        android:name="com.example.noappnogain.ui.budget.BudgetFragment"
+        android:label="Budget"
+        tools:layout="@layout/fragment_budget" />
+
+    <fragment
+        android:id="@+id/nav_projet"
+        android:name="com.example.noappnogain.ui.projet.ProjetFragment"
+        android:label="Projet"
+        tools:layout="@layout/fragment_projet" />
+
+    <activity
+        android:id="@+id/action_balance_annuel"
+        android:name="com.example.noappnogain.BalanceAnnuel"
+        android:label="Balance Annuel"
+        tools:layout="@layout/activity_balance_annuel"/>
+
+    <activity
+        android:id="@+id/action_balance_mensuel"
+        android:name="com.example.noappnogain.BalanceMensuel"
+        android:label="Balance Mensuel"
+        tools:layout="@layout/activity_balance_mensuel"/>
+
+    <activity
+        android:id="@+id/action_changer"
+        android:name="com.example.noappnogain.Changer"
+        android:label="Changer mot de passe"
+        tools:layout="@layout/activity_changer_mdp"/>
+
+
+
+
+
+
+
+</navigation>
