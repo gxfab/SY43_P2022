@@ -29,7 +29,6 @@ class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolde
     }
 
 
-
     fun setData(category: List<Category>){
         this.categoryList = category
         notifyDataSetChanged()

@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 class CategoryViewModel(application: Application): AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Category>>
+    val sumOFExpenseAndEnvelope: LiveData<Int>
     private val repository: CategoryRepository
 
 
@@ -21,6 +22,7 @@ class CategoryViewModel(application: Application): AndroidViewModel(application)
         val categoryDao = BokudarjanDatabase.getDatabase(application).categoryDao()
         repository = CategoryRepository(categoryDao)
         readAllData = repository.readAllData
+        sumOFExpenseAndEnvelope = repository.sumOFExpenseAndEnvelope
     }
 
     fun addCategory(category: Category){

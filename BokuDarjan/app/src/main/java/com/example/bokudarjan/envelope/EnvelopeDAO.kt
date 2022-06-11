@@ -12,7 +12,7 @@ interface EnvelopeDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addEnvelope(Envelope: Envelope);
 
-    @Query("SELECT * FROM expense_table ORDER BY name")
+    @Query("SELECT * FROM envelope_table ORDER BY name")
     fun readAllData(): LiveData<List<Envelope>>;
 
 
