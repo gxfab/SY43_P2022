@@ -63,10 +63,12 @@ class planificationFragment : Fragment() {
 
         // Observer to get the sum
 
+
+        /*
         expenseViewModel.sumOfPositiveExpenses.observe(viewLifecycleOwner, Observer { sumOfPositiveExpenses ->
             expenseViewModel.sumOfNegativeExpenses.observe(viewLifecycleOwner, Observer { sumOfNegativeExpenses ->
             })
-        })
+        })*/
 
 
         //RecyclerView for category
