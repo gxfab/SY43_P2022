@@ -1,6 +1,7 @@
 package com.sucelloztm.sucelloz.ui.spendings;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,11 @@ public class PositiveSpendingsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public PieChart createPieChart(Activity activity)
+    {
+
     }
 
     @Nullable
