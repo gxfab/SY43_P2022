@@ -7,14 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
-import android.widget.LinearLayout
-import android.widget.Space
-import android.widget.TextView
+import android.view.animation.AnimationUtils
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bokudarjan.category.CategoryViewModel
+import com.example.bokudarjan.category.ListAdapterCategory2
 import com.example.bokudarjan.expense.ExpenseViewModel
 import com.example.bokudarjan.expense.ListAdapterExpense
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -33,6 +33,7 @@ private const val ARG_PARAM2 = "param2"
 class ExpensesFragment : Fragment() {
 
     private lateinit var expenseViewModel: ExpenseViewModel
+    private lateinit var categoryViewModel: CategoryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,36 +62,59 @@ class ExpensesFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         //TODO: Add day directly on expenses
 
+
+        //RecyclerView2
+        val adapter2 = ListAdapterCategory2()
+        val catRecycler : RecyclerView = view.catRecycler;
+        catRecycler.adapter = adapter2
+        catRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
         // ExpenseViewModel
         expenseViewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
         expenseViewModel.readAllData.observe(viewLifecycleOwner, Observer { expense ->
             adapter.setData(expense)
         })
 
-        var lay = view.findViewById<LinearLayout>(R.id.categorylay)
+        categoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
+        categoryViewModel.readAllData.observe(viewLifecycleOwner, Observer{ cat ->
+            adapter2.setData(cat)
+        })
 
-        for(i in 0..5){
-            val view = inflater.inflate(R.layout.expense_category, container, false)
-            view.setOnClickListener {
-                var dialog = AddExpenseDialog();
-                dialog.show(childFragmentManager,"")
-            }
-            lay.addView(view)
-        }
+
 
         val expandBtn2 = view.findViewById<FloatingActionButton>(R.id.expandButton2);
-        val catScroll = view.findViewById<HorizontalScrollView>(R.id.catScroll);
-        val catText = view.findViewById<TextView>(R.id.catText);
+        val catR = view.findViewById<RecyclerView>(R.id.catRecycler);
+        val darken2 = view.findViewById<ImageView>(R.id.darken2);
+        val catText = view.findViewById<TextView>(R.id.catTextExpense);
+
+        val fadeIn = AnimationUtils.loadAnimation(view.context, R.anim.fade_in);
+        val fadeOut = AnimationUtils.loadAnimation(view.context, R.anim.fade_out);
+        val rot = AnimationUtils.loadAnimation(view.context, R.anim.rot_45);
+
 
         expandBtn2.setOnClickListener {
-            if(catScroll.visibility == View.GONE){
-                catScroll.visibility = View.VISIBLE;
-                catText.visibility = View.VISIBLE;
-            }else{
-                catScroll.visibility = View.GONE
-                catText.visibility = View.GONE;
-            }
+
+           if (catR.visibility == View.VISIBLE){
+               expandBtn2.startAnimation(rot)
+               expandBtn2.rotation = 0F;
+               catR.startAnimation(fadeOut)
+               catR.visibility = View.INVISIBLE
+               darken2.startAnimation(fadeOut)
+               darken2.visibility = View.INVISIBLE
+               catText.startAnimation(fadeOut)
+               catText.visibility = View.INVISIBLE
+           }else{
+               expandBtn2.startAnimation(rot)
+               expandBtn2.rotation = 45F;
+               catR.startAnimation(fadeIn)
+               catR.visibility = View.VISIBLE
+               darken2.startAnimation(fadeIn)
+               darken2.visibility = View.VISIBLE
+               catText.startAnimation(fadeIn)
+               catText.visibility = View.VISIBLE
+           }
         }
+
 
 
         //To test, not final

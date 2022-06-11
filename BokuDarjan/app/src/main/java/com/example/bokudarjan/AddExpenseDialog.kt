@@ -15,14 +15,16 @@ import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
+import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.expense.Expense
 import com.example.bokudarjan.expense.ExpenseViewModel
 import com.google.android.material.switchmaterial.SwitchMaterial
 import kotlinx.android.synthetic.main.fragment_side_bar.*
 
-class AddExpenseDialog() : DialogFragment() {
+class AddExpenseDialog(cat:String) : DialogFragment() {
 
     private lateinit var expenseViewModel: ExpenseViewModel
+    var category : String = cat
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
@@ -31,7 +33,7 @@ class AddExpenseDialog() : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
             builder.setView(R.layout.fragment_add_expense)
-            builder.setMessage("Ajouter une dépense")
+            builder.setMessage("Ajouter une dépense à $category")
                 .setPositiveButton("Ok",
                     DialogInterface.OnClickListener { dialog, id ->
                         insertDataToDatabase();
@@ -76,7 +78,7 @@ class AddExpenseDialog() : DialogFragment() {
         val date = addExpenseDay?.value
         val moneyIncoming: Boolean? = toggleExpenseIncome?.isChecked
 
-        val expense = Expense("category", name, amount, date.toString(), moneyIncoming!!)
+        val expense = Expense(category, name, amount, date.toString(), moneyIncoming!!)
 
 
         //If the input is ok, we add the expense to the database
