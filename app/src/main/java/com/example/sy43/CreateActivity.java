@@ -11,9 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -98,8 +101,9 @@ public class CreateActivity extends AppCompatActivity {
                             parentCat = _cat;
                         }
                     }
-                    cat.setMaxValue(50);
-                    cat.setCurrentValue(5);
+                    TextView montant = (TextView) findViewById(R.id.editMontant);
+                    cat.setMaxValue(Float.parseFloat(montant.getText().toString()));
+                    cat.setCurrentValue(0);
                     cat.setCategory(parentCat.getCatID());
                     subCategoryViewModel.createSubCategory(cat);
                 }
@@ -126,8 +130,28 @@ public class CreateActivity extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         });
+
+        Switch subSwitch = (Switch) findViewById(R.id.switchIsSubCat);
+        visibilitySubcategoryFields(View.INVISIBLE);
+        subSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    visibilitySubcategoryFields(View.VISIBLE);
+                } else {
+                    visibilitySubcategoryFields(View.INVISIBLE);
+                }
+            }
+        });
     }
 
+    public void visibilitySubcategoryFields(int visibility) {
+        EditText editText = (EditText) findViewById(R.id.editMontant);
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerChooseCategory);
+        editText.setVisibility(visibility);
+        spinner.setVisibility(visibility);
+
+
+    }
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);

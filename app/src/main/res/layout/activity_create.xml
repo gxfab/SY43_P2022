@@ -49,8 +49,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Category name"
             android:inputType="textPersonName"
-            android:text="Nom :" />
+         />
 
         <TextView
             android:id="@+id/textView8"
@@ -58,6 +59,21 @@
             android:layout_height="wrap_content"
             android:text="Si c'est une sous-catégorie veuillez choisir la catégorie qui la contient :" />
 
+        <Switch
+            android:id="@+id/switchIsSubCat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sub Category" />
+
+        <EditText
+            android:id="@+id/editMontant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Amount of money"
+
+            android:inputType="textPersonName"
+              />
 
         <Spinner
             android:id="@+id/spinnerChooseCategory"
@@ -84,7 +100,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Nom :" />
+            android:hint="Objective name"/>
 
         <TextView
             android:id="@+id/textView10"
@@ -97,6 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Amount of money"
             android:inputType="number" />
 
         <Button
@@ -109,26 +126,6 @@
             android:onClick="setDate"
             android:background="@drawable/button"
             android:text="Set Date" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp"
-            android:text="Press the button to set the Data"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button1"
-            android:layout_marginTop="12dp"
-            android:layout_toLeftOf="@+id/button1"
-            android:text="Date is :"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/textView3"
