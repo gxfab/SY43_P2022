@@ -2,4 +2,6 @@
     <string name="app_name">Econo-misons</string>
     <string name="return_to_the_homepage">Return to the homepage</string>
     <string name="Actual_budget" />
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

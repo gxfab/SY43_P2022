@@ -1,19 +1,21 @@
 package com.example.econo_misons;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.econo_misons.database.DBViewModel;
-import com.example.econo_misons.database.models.Budget;
-import com.example.econo_misons.database.models.User;
 import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -22,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
     EditText username;
     Button add, view;
     private DBViewModel dbViewModel;
-
-    User mainUser;
 
 
     @Override
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         view = findViewById(R.id.viewbutton);
 
         configureViewModel();
-
 
 
 
@@ -56,6 +55,29 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        //  Bottom Bar controller
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        // Set Home selected
+        bottomNavigationView.setSelectedItemId(R.id.MainMenu);
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.ChangeBudget:
+                        startActivity(new Intent(getApplicationContext(),ChangerBudget.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.MainMenu:
+                        return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     private void configureViewModel(){
@@ -71,16 +93,6 @@ public class MainActivity extends AppCompatActivity {
         dbViewModel.newUser(new User(username));
     }
 
-    private void getUser(int id){
-        this.dbViewModel.getUser(id).observe(this, this::updateMainUser);
-    }
-
-    private void updateMainUser(List<User> user){
-        Toast toast = Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT);
-        toast.show();
-        Log.d("DBM", "updateMainUser: " + user.get(0));
-        this.mainUser = user.get(0);
-    }
     private void showUserList(List<User> users){
         Toast toast = Toast.makeText(getApplicationContext(), users.toString(), Toast.LENGTH_SHORT);
         toast.show();
