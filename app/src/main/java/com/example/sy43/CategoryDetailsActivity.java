@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 
 import com.example.sy43.adapters.CategoryAdapter;
 import com.example.sy43.db.entity.Categorydb;
+import com.example.sy43.db.entity.SubCategory;
 import com.example.sy43.viewmodels.CategoryViewModel;
+import com.example.sy43.viewmodels.SubCategoryViewModel;
 
 import java.util.List;
 
@@ -45,6 +48,13 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             }
         });
 
-
+        SubCategoryViewModel subCategoryViewModel = new ViewModelProvider(this).get(SubCategoryViewModel.class);
+        subCategoryViewModel.init();
+        subCategoryViewModel.getSubCategoriesByCatId(categoryId).observe(this, new Observer<List<SubCategory>>() {
+            @Override
+            public void onChanged(List<SubCategory> subCategories) {
+                Log.d("Test4", String.valueOf(subCategories.size()));
+            }
+        });
     }
 }
