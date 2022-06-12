@@ -1,12 +1,10 @@
-package com.example.econo_misons.database;
+package com.example.econo_misons.database.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-
-import java.util.Date;
 
 @Entity(tableName = "Transaction", foreignKeys = {@ForeignKey(entity = Budget.class,
         parentColumns = "ID",

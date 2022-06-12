@@ -4,6 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.econo_misons.database.models.User;
+import com.example.econo_misons.database.repositories.DataRepository;
+
 import java.util.List;
 import java.util.concurrent.Executor;
 

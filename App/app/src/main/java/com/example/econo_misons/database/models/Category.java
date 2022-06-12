@@ -1,17 +1,17 @@
-package com.example.econo_misons.database;
+package com.example.econo_misons.database.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Budget")
-public class Budget {
+@Entity(tableName = "Category")
+public class Category {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "ID")
     public int id;
 
-    @ColumnInfo(name = "NAME_BUD")
-    public String budgetName;
+    @ColumnInfo(name = "NAME_CAT")
+    public String categoryName;
 }

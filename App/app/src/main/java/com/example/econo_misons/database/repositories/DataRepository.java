@@ -1,6 +1,9 @@
-package com.example.econo_misons.database;
+package com.example.econo_misons.database.repositories;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.econo_misons.database.dao.DAO;
+import com.example.econo_misons.database.models.User;
 
 import java.util.List;
 

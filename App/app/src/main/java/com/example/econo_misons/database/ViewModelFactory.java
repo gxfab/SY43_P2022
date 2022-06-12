@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.econo_misons.database.repositories.DataRepository;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.Executor;

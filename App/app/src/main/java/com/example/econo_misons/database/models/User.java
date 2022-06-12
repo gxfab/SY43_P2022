@@ -1,4 +1,4 @@
-package com.example.econo_misons.database;
+package com.example.econo_misons.database.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
