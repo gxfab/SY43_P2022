@@ -48,7 +48,24 @@ public class TransactionRepository {
                     public void onFailure(@NonNull Throwable thrown) {
                     }
                 },
-                //MainActivity.getAppContext().getMainExecutor()
+                databaseExecutor
+        );
+        return data;
+    }
+
+    public MutableLiveData<List<Transaction>> getTransactions() {
+        MutableLiveData<List<Transaction>> data = new MutableLiveData<>();
+
+        Futures.addCallback(
+                db.TransactionDAO().findTrans(),
+                new FutureCallback<List<Transaction>>() {
+                    public void onSuccess(List<Transaction> result) {
+                        data.postValue(result);
+                    }
+
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
                 databaseExecutor
         );
         return data;

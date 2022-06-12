@@ -20,13 +20,19 @@ import java.util.stream.Collectors;
 
 public class TransactionViewModel extends ViewModel {
     public TransactionRepository transactionRepo;
+    private MutableLiveData<List<Transaction>> trans;
 
     public void init() {
         transactionRepo = TransactionRepository.getInstance();
+        trans = transactionRepo.getTransactions();
     }
 
     public LiveData<List<Transaction>> getTransactionsFromCat(int catId){
         return transactionRepo.getTransactionsFromCat(catId);
+    }
+
+    public LiveData<List<Transaction>> getTransactions(){
+        return trans;
     }
 
 }

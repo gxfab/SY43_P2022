@@ -44,9 +44,11 @@ public class CategoryViewModel extends ViewModel {
     public LiveData<Categorydb> getCategoryById(int id){
         return this.catRepo.getCategoryById(id);
     }
+
     public LiveData<List<Categorydb>> getCategories() {
         return categories;
     }
+
     public LiveData<List<Categorydb>> getObjectives() {
         return objectives;
     }

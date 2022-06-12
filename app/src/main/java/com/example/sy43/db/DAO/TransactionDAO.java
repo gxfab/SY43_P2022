@@ -13,6 +13,9 @@ import androidx.room.Dao;
 @Dao
 public interface TransactionDAO{
 
+    @Query("SELECT * FROM `transaction` ")
+    public ListenableFuture<List<com.example.sy43.db.entity.Transaction>> findTrans();
+
     @Query("SELECT * FROM `transaction` WHERE TransactionID LIKE :transactionID")
     public ListenableFuture<List<com.example.sy43.db.entity.Transaction>> findByID(int transactionID);
 
