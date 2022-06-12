@@ -22,6 +22,17 @@
         <item>Cat4</item>
     </string-array>
 
+    <string name="inc_cat_name">Category name</string>
+
+    <string name="debt_name">Debt name</string>
+    <string name="debt_month">Due month</string>
+    <string name="debt_amount">Total amount</string>
+
+    <string name="save_cat_name">Category name</string>
+    <string name="save_cat_goal">Goal amount</string>
+    <string name="save_cat_perc">Percentage allocated</string>
+    <string name="save_cat_prio">Priority order</string>
+
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>

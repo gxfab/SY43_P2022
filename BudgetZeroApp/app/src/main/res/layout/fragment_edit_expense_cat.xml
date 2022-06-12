@@ -45,7 +45,7 @@
             android:layout_alignBottom="@+id/textViewCatBudget"
             android:layout_marginBottom="-10dp"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="number|numberDecimal" />
 
         <TextView
             android:id="@+id/textViewCatSub"
@@ -81,15 +81,34 @@
             android:layout_alignStart="@+id/checkBoxCatSub"
             android:layout_alignBottom="@+id/textViewCatParent" />
 
-        <Button
-            android:id="@+id/button1"
+        <ImageView
+            android:id="@+id/imageDummy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textViewCatParent"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="-80dp"
+            android:layout_alignBottom="@+id/textViewCatParent"
+            android:layout_marginBottom="-80dp" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignStart="@id/imageDummy"
+            android:layout_marginStart="25dp"
             android:onClick="run"
             android:text="@string/save"
+            tools:ignore="UsingOnClickInXml" />
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignEnd="@id/imageDummy"
+            android:layout_marginEnd="25dp"
+            android:onClick="run"
+            android:text="@string/cancel"
             tools:ignore="UsingOnClickInXml" />
 
 

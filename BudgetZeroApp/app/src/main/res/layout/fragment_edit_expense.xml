@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".EditExpenseFragment" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="370dp">
+        <TextView
+            android:id="@+id/textViewExpName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/exp_name" />
+
+        <EditText
+            android:id="@+id/editTextExpName"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+
+            android:layout_alignBottom="@+id/textViewExpName"
+            android:layout_marginStart="180dp"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/textViewExpDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewExpName"
+            android:layout_alignTop="@+id/textViewExpName"
+            android:layout_marginTop="40dp"
+            android:text="@string/exp_date" />
+
+        <EditText
+            android:id="@+id/editTextExpDate"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/editTextExpName"
+            android:layout_alignBottom="@+id/textViewExpDate"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="date" />
+
+        <TextView
+            android:id="@+id/textViewExpAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewExpDate"
+            android:layout_alignTop="@+id/textViewExpDate"
+            android:layout_marginTop="40dp"
+            android:text="@string/exp_amount" />
+
+        <EditText
+            android:id="@+id/editTextExpAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/editTextExpDate"
+            android:layout_alignBottom="@+id/textViewExpAmount"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="numberDecimal|number" />
+
+        <TextView
+            android:id="@+id/textViewExpStable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewExpAmount"
+            android:layout_alignTop="@+id/textViewExpAmount"
+            android:layout_marginTop="40dp"
+            android:text="@string/exp_stable" />
+
+        <CheckBox
+            android:id="@+id/checkBoxExpStable"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_alignStart="@+id/editTextExpAmount"
+            android:layout_alignBottom="@+id/textViewExpStable"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="-12dp" />
+
+        <ImageView
+            android:id="@+id/imageDummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/textViewExpStable"
+            android:layout_marginBottom="-80dp" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignStart="@id/imageDummy"
+            android:layout_marginStart="25dp"
+            android:onClick="run"
+            android:text="@string/save"
+            tools:ignore="UsingOnClickInXml" />
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignEnd="@id/imageDummy"
+            android:layout_marginEnd="25dp"
+            android:onClick="run"
+            android:text="@string/cancel"
+            tools:ignore="UsingOnClickInXml" />
+
+
+    </RelativeLayout>
+</ScrollView>
