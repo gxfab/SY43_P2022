@@ -1,17 +1,21 @@
 package com.example.econo_misons;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.econo_misons.database.DBViewModel;
-import com.example.econo_misons.database.models.User;
 import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -49,6 +53,29 @@ public class MainActivity extends AppCompatActivity {
                 getAllUsers();
             }
 
+        });
+
+        //  Bottom Bar controller
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        // Set Home selected
+        bottomNavigationView.setSelectedItemId(R.id.MainMenu);
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.ChangeBudget:
+                        startActivity(new Intent(getApplicationContext(),ChangerBudget.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.MainMenu:
+                        return true;
+                }
+                return false;
+            }
         });
 
     }

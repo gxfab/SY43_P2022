@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/BudgetPrev"
+        android:title="Budget previsionnel"
+        />
+    <item
+        android:id="@+id/MainMenu"
+        android:title="Menu"
+        android:icon="@drawable/ic_menu_button"
+        />
+    <item
+        android:id="@+id/ChangeBudget"
+        android:title="Changer de budget"
+        />
+
+</menu>

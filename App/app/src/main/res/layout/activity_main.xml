@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom" />
-
-    <ImageButton
-        android:id="@+id/home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        app:layout_anchor="@+id/bottomAppBar"
-        app:layout_anchorGravity="center"
-        app:srcCompat="@drawable/ic_menu_button"
-        android:contentDescription="@string/return_to_the_homepage"/>
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Username"
-        android:textSize="24dp"
-        android:layout_gravity="center"
-         />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/addbutton"
-        android:text="Add"
-        android:textSize="24dp"
-        android:layout_marginTop="500dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/viewbutton"
-        android:text="View"
-        android:textSize="24dp"
-        android:layout_marginTop="550dp"/>
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginTop="30dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/Actual_budget"
             android:textColor="#9E9E9E" />
 
     </androidx.appcompat.widget.Toolbar>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="160dp"
+        android:hint="Username"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/addbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <Button
+        android:id="@+id/viewbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addbutton" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_menu"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
