@@ -68,12 +68,64 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
         return repository.getExpensesSumForCategory(Frequency.OUNCE_A_DAY, category.categoryId)
     }
 
+    fun getOneTimeExpenseAndMonth(
+        year : Int,
+        month : Int
+    ) : LiveData<List<Expense>> {
+        return repository.getExpenseByFrequencyAndMonth(Frequency.OUNCE_A_DAY,year,month)
+    }
+
+    fun getOneTimeExpensesSumByCategoryAndMonth(
+        year: Int,
+        month: Int
+    ) : LiveData<List<ExpenseSumContainer>> {
+        return repository.getExpensesSumByCategoryAndMonth(Frequency.OUNCE_A_DAY,year,month)
+    }
+
+    fun getOneTimeExpensesSumForCategoryAndMonth(
+        categoryID: Long,
+        year: Int,
+        month: Int
+    ) : LiveData<List<ExpenseSumContainer>> {
+        return repository.getExpensesSumForCategoryAndMonth(Frequency.OUNCE_A_DAY,categoryID,year,month)
+    }
+
+    fun getMonthlyExpenseAndMonth(
+        year : Int,
+        month : Int
+    ) : LiveData<List<Expense>> {
+        return repository.getExpenseByFrequencyAndMonth(Frequency.OUNCE_A_MONTH,year,month)
+    }
+
+    fun getMonthlyExpensesSumByCategoryAndMonth(
+        year: Int,
+        month: Int
+    ) : LiveData<List<ExpenseSumContainer>> {
+        return repository.getExpensesSumByCategoryAndMonth(Frequency.OUNCE_A_MONTH,year,month)
+    }
+
+    fun getMonthlyExpensesSumForCategoryAndMonth(
+        categoryID: Long,
+        year: Int,
+        month: Int
+    ) : LiveData<List<ExpenseSumContainer>> {
+        return repository.getExpensesSumForCategoryAndMonth(Frequency.OUNCE_A_MONTH,categoryID,year,month)
+    }
+
     fun getOneTimeExpensesSum() : LiveData<Double> {
         return repository.getExpensesSumByFrequency(Frequency.OUNCE_A_DAY)
     }
 
     fun getMonthlyExpensesSum() : LiveData<Double> {
         return repository.getExpensesSumByFrequency(Frequency.OUNCE_A_MONTH)
+    }
+
+    fun getOneTimeExpensesSumByDate(year : Int, month : Int) : Double {
+        return repository.getExpensesSumByDate(Frequency.OUNCE_A_DAY,year,month)
+    }
+
+    fun getMonthlyExpensesSumByDate(year : Int, month : Int) : Double {
+        return repository.getExpensesSumByDate(Frequency.OUNCE_A_MONTH,year,month)
     }
 
     suspend fun getMonthlyExpensesSumSync() : Double {

@@ -48,8 +48,37 @@ class ExpenseRepository(application: Application) {
         return expenseDao.getExpensesByFrequency(frequency)
     }
 
+    fun getExpenseByFrequencyAndMonth(
+        frequency: Frequency = Frequency.OUNCE_A_DAY,
+        year : Int,
+        month : Int
+    ) : LiveData<List<Expense>> {
+        return expenseDao.getExpenseByFrequencyAndMonth(frequency,year,month)
+    }
+
+    fun getExpensesSumByCategoryAndMonth(
+        frequency: Frequency,
+        year: Int,
+        month: Int
+    ) : LiveData<List<ExpenseSumContainer>> {
+        return expenseDao.getExpensesSumByCategoryAndMonth(frequency,year,month)
+    }
+
+    fun getExpensesSumForCategoryAndMonth(
+        frequency: Frequency,
+        categoryID: Long,
+        year: Int,
+        month: Int
+    ) : LiveData<List<ExpenseSumContainer>> {
+        return expenseDao.getExpensesSumForCategoryAndMonth(frequency,categoryID,year,month)
+    }
+
     fun getExpensesSumByCategory(frequency: Frequency) : LiveData<List<ExpenseSumContainer>> {
         return expenseDao.getExpensesSumByCategory(frequency)
+    }
+
+    fun getExpensesSumByDate(frequency: Frequency,year : Int, month : Int) : Double {
+        return expenseDao.getExpensesSumByDate(frequency,year,month)
     }
 
     fun getExpensesSumForCategory(frequency: Frequency, categoryID: Long) : LiveData<List<ExpenseSumContainer>> {
@@ -62,6 +91,10 @@ class ExpenseRepository(application: Application) {
 
     suspend fun getExpensesSumByFrequencySync(frequency: Frequency) : Double {
         return expenseDao.getExpensesSumSynchronous(frequency)
+    }
+
+    suspend fun getExpensesSumSynchronousByDate(frequency: Frequency,year : Int, month : Int) : Double {
+        return expenseDao.getExpensesSumSynchronousByDate(frequency,year,month)
     }
 
 
