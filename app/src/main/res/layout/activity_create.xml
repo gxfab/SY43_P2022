@@ -67,7 +67,7 @@
             android:id="@+id/btnCatConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/teal_200"
+            android:background="@drawable/button"
             android:text="Confirmer" />
         <TextView
             android:layout_width="match_parent"
@@ -105,6 +105,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
             android:onClick="setDate"
+            android:background="@drawable/button"
             android:text="Set Date" />
 
         <TextView
@@ -141,7 +142,8 @@
             android:id="@+id/btnObjConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/teal_200"
+            android:background="@drawable/button"
+            android:radius="49dp"
             android:text="Confirmer" />
 
     </LinearLayout>

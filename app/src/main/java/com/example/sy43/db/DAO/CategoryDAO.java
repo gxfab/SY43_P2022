@@ -23,7 +23,6 @@ interface CategoryDAO{
     @Update(onConflict = OnConflictStrategy.REPLACE)
     public ListenableFuture<Void> update(Categorydb... categories);
 
-
     @Query("SELECT * FROM Categorydb")
     public ListenableFuture<List<Categorydb>> findAll();
 

@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-
+                android:background="@drawable/button"
                 android:text="Category" />
 
             <Button
@@ -49,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@drawable/button"
                 android:text="Summary" />
 
             <androidx.cardview.widget.CardView
@@ -61,6 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@drawable/button"
                     android:text="Preview" />
 
             </androidx.cardview.widget.CardView>
