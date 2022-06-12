@@ -22,4 +22,9 @@ public class Budget_User {
     @NonNull
     @ColumnInfo(name = "USER_ID")
     public int userID;
+
+    public Budget_User(int budgetID, int userID){
+        this.budgetID = budgetID;
+        this.userID = userID;
+    }
 }

@@ -6,7 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.econo_misons.database.dao.DAO;
+import com.example.econo_misons.database.dao.budgetDAO;
+import com.example.econo_misons.database.dao.userDAO;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Budget_User;
 import com.example.econo_misons.database.models.Category;
@@ -20,7 +21,9 @@ public abstract class MoneyDB extends RoomDatabase {
 
     private static volatile MoneyDB INSTANCE;
 
-    public abstract DAO dao();
+    public abstract userDAO userdao();
+
+    public abstract budgetDAO budgetdao();
 
     public static MoneyDB getInstance(Context context) {
 

@@ -14,4 +14,6 @@ public class Budget {
 
     @ColumnInfo(name = "NAME_BUD")
     public String budgetName;
+
+    public Budget(String budgetName){ this.budgetName = budgetName;}
 }

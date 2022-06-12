@@ -7,18 +7,22 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.econo_misons.database.models.Budget;
+import com.example.econo_misons.database.models.Budget_User;
 import com.example.econo_misons.database.models.User;
 
 import java.util.List;
 
 @Dao
-public interface DAO {
+public interface budgetDAO {
     @Insert
-    void newUser(User user);
+    long addBudget(Budget budget);
     @Update
-    void updateUser(User user);
+    void updateBudget(User user);
     @Delete
-    void deleteUser(User user);
-    @Query("SELECT * FROM User")
+    void deleteBudget(User user);
+    @Query("SELECT * FROM Budget")
     LiveData<List<User>> getAllUsers();
+    @Insert
+    void linkBudgetUser(Budget_User budUse);
 }

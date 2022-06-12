@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.econo_misons.database.DBViewModel;
+import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.User;
 import com.example.econo_misons.database.ViewModelFactory;
 
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     EditText username;
     Button add, view;
     private DBViewModel dbViewModel;
+
+    User mainUser;
 
 
     @Override
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         view = findViewById(R.id.viewbutton);
 
         configureViewModel();
+
 
 
 
@@ -66,6 +71,16 @@ public class MainActivity extends AppCompatActivity {
         dbViewModel.newUser(new User(username));
     }
 
+    private void getUser(int id){
+        this.dbViewModel.getUser(id).observe(this, this::updateMainUser);
+    }
+
+    private void updateMainUser(List<User> user){
+        Toast toast = Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT);
+        toast.show();
+        Log.d("DBM", "updateMainUser: " + user.get(0));
+        this.mainUser = user.get(0);
+    }
     private void showUserList(List<User> users){
         Toast toast = Toast.makeText(getApplicationContext(), users.toString(), Toast.LENGTH_SHORT);
         toast.show();
