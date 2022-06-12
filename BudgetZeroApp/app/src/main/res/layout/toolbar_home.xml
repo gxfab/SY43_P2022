@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/colorPrimary"
     android:elevation="4dp"
-    android:id="@+id/toolbar"
-    app:title=" " />
+    android:id="@+id/toolbar_home"
+    app:title="Home"
+    app:titleTextColor="@color/white"/>
 
