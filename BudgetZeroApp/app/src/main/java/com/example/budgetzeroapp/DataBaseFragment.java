@@ -48,12 +48,12 @@ public abstract class DataBaseFragment extends Fragment {
     public void redirect(Fragment f) {activity.replaceFragment(f); }
 
     // Cursor must contain 2 columns : "name" and "id"
-    public ListView clickableListNameID(Cursor rows) {
+    /*public ListView clickableListNameID(Cursor rows) {
         //TODO
     }
 
     public Spinner clickableSpinnerNameID(Cursor rows) {
         //TODO
-    }
+    }*/
 
 }
