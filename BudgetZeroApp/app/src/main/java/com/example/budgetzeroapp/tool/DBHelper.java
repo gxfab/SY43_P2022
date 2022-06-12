@@ -71,13 +71,6 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME , null, 1);
     }
 
-
-    public String intDateToString(int date){
-        return date%100+"/"+(date/100)%100+"/"+(date/10000);
-    }
-
-    public int dateToMonthInt(Date d){return parseInt(new SimpleDateFormat("yyyyMM", Locale.FRANCE).format(d)); }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
@@ -290,6 +283,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getData(String request) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery( request, null );
+    }
+
+    public Cursor getExpenseFromID(int id){
+        Cursor exp = getData(
+                "select * from "+EXP_TABLE_NAME+
+                        " where "+EXP_COL_ID+"="+id);
+        exp.moveToFirst();
+        return exp;
     }
 
     public Cursor getExpenseCatFromID(int id){
