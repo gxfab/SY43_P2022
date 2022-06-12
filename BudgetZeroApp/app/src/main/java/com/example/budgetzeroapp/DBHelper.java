@@ -61,6 +61,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final int TYPE_INC = 2;
     public static final int TYPE_DEBT = 3;
     public static final int TYPE_SAV = 4;
+
+    public static final int TYPE_CASH_FLOW = 5;
+
     public static final int DEFAULT_SAV_ID = 1;
 
 
