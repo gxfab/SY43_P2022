@@ -16,27 +16,40 @@ import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 
 //Activer les trucs en com ici?
-public class EditExpenseCatFragment extends Fragment /*implements AdapterView.OnItemSelectedListener*/ {
-
-    private DBHelper database;
-    private MainActivity activity;
-
-    private int id;
+public class EditExpenseCatFragment extends EditDataBaseFragment /*implements AdapterView.OnItemSelectedListener*/ {
 
     private EditText name, budget;
     private CheckBox sub;
     private Spinner parentCat;
     private Button submit;
 
+    public EditExpenseCatFragment(){ super(); }
+    public EditExpenseCatFragment(int id){ super(id); }
 
-    public EditExpenseCatFragment(){}
-
-    public EditExpenseCatFragment(int id){
-        activity = (MainActivity) getActivity();
-        database = new DBHelper(activity.getApplicationContext());
-        this.id = id;
+    @Override
+    public View initView(LayoutInflater inflater, ViewGroup parent) {
+        return null;
     }
 
+    @Override
+    public void initDefaultValues() {
+
+    }
+
+    @Override
+    public void changeDefaultValues() {
+
+    }
+
+    @Override
+    public void setDefaultValues() {
+
+    }
+
+    @Override
+    public void setButtons() {
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {

@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String EXP_COL_MONTH = "month";
     public static final String EXP_COL_DAY = "day";
     public static final String EXP_COL_AMOUNT = "amount";
-    public static final String EXP_COL_LABEL = "label";
+    public static final String EXP_COL_LABEL = "name";
     public static final String EXP_COL_TYPE = "type";
     public static final String EXP_COL_IS_STABLE = "is_stable";
     public static final String EXP_COL_ID_EXP = "id_expense";
@@ -46,10 +46,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DEBT_TABLE_NAME = "debt";
     public static final String DEBT_COL_ID = "id";
     public static final String DEBT_COL_NAME = "name";
-    public static final String DEBT_COL_MONTH_AMOUNT = "month_amount";
+    public static final String DEBT_COL_MONTH_LEFT = "month_left";
     public static final String DEBT_COL_TOTAL_AMOUNT = "total_amount";
-    public static final String DEBT_COL_START_MONTH = "start_month";
-    public static final String DEBT_COL_END_MONTH = "end_month";
 
     public static final String SAV_CAT_TABLE_NAME = "SAV_cat";
     public static final String SAV_CAT_COL_ID = "id";
@@ -64,6 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final int TYPE_DEBT = 3;
     public static final int TYPE_SAV = 4;
     public static final int DEFAULT_SAV_ID = 1;
+
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME , null, 1);
@@ -117,10 +116,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table "+DEBT_TABLE_NAME+
                         "("+DEBT_COL_ID+" integer primary key autoincrement, " +
                         DEBT_COL_NAME+" text not null, " +
-                        DEBT_COL_MONTH_AMOUNT+" real not null, " +
-                        DEBT_COL_TOTAL_AMOUNT+" real not null, "+
-                        DEBT_COL_START_MONTH+" integer default "+dateToMonthInt(new Date())+","+
-                        DEBT_COL_END_MONTH+" integer not null "+
+                        DEBT_COL_MONTH_LEFT+" int not null, " +
+                        DEBT_COL_TOTAL_AMOUNT+" real not null "+
                         ")"
         );
         db.execSQL(
@@ -197,19 +194,17 @@ public class DBHelper extends SQLiteOpenHelper {
         return contentValues;
     }
 
-    public ContentValues debtCV(String name, float monthAmount, float totalAmount, int startMonth, int endMonth){
+    public ContentValues debtCV(String name, int leftMonths, float totalAmount){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DEBT_COL_NAME, name);
-        contentValues.put(DEBT_COL_MONTH_AMOUNT, monthAmount);
+        contentValues.put(DEBT_COL_MONTH_LEFT, leftMonths);
         contentValues.put(DEBT_COL_TOTAL_AMOUNT, totalAmount);
-        contentValues.put(DEBT_COL_START_MONTH, startMonth);
-        contentValues.put(DEBT_COL_END_MONTH, endMonth);
         return contentValues;
     }
 
-    public void insertDebtCat(String name, float monthAmount, float totalAmount, int startMonth, int endMonth){
+    public void insertDebtCat(String name, int leftMonths, float totalAmount){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(DEBT_TABLE_NAME, null, debtCV(name, monthAmount, totalAmount, startMonth, endMonth));
+        db.insert(DEBT_TABLE_NAME, null, debtCV(name, leftMonths, totalAmount));
     }
 
     public void insertIncomeCat(String name){
@@ -232,9 +227,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(EXP_TABLE_NAME, null, expenseCV(date, amount, label, type, catID, isStable));
     }
 
-    public void updateDebtCat(int id, String name, float monthAmount, float totalAmount, int startMonth, int endMonth) {
+    public void updateDebtCat(int id, String name, int leftMonths, float totalAmount) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contVal = debtCV(name, monthAmount, totalAmount, startMonth, endMonth);
+        ContentValues contVal = debtCV(name, leftMonths, totalAmount);
         db.update(DEBT_TABLE_NAME, contVal, "id = ? ", new String[]{Integer.toString(id)});
     }
 
@@ -270,9 +265,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public Integer deleteById (Integer id, String table) {
+    public boolean decrementDebtMonthLeft(int idCat){
+        Cursor c = getData("select "+DEBT_COL_MONTH_LEFT+
+                " from "+DEBT_TABLE_NAME+" where id = "+idCat);
+        c.moveToFirst();
+        int monthLeft= c.getInt(c.getColumnIndexOrThrow(DBHelper.DEBT_COL_MONTH_LEFT));
+        if(monthLeft == 0) return false;
+        monthLeft--;
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(table,"id = ? ", new String[] { Integer.toString(id) });
+        ContentValues contVal = new ContentValues();
+        contVal.put(DEBT_COL_MONTH_LEFT, monthLeft);
+        db.update(SAV_CAT_TABLE_NAME,contVal,  "id = ? ", new String[] { Integer.toString(idCat) } );
+        return true;
+    }
+
+    public void deleteById (Integer id, String table) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(table,"id = ? ", new String[] { Integer.toString(id) });
     }
 
     public Cursor getData(String request) {
@@ -294,6 +303,14 @@ public class DBHelper extends SQLiteOpenHelper {
                         " where "+EXP_CAT_COL_ID+"="+id);
         exp.moveToFirst();
         if(!exp.isAfterLast()) return exp.getString(exp.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
+        return "";
+    }
+
+    public String getNameFromID(int id, String table){
+        Cursor row = getData(
+                "select name from "+table+ " where id="+id);
+        row.moveToFirst();
+        if(!row.isAfterLast()) return row.getString(row.getColumnIndexOrThrow("name"));
         return "";
     }
 

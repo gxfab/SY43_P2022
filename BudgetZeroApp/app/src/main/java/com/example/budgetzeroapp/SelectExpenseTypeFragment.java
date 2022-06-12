@@ -32,8 +32,7 @@ public class SelectExpenseTypeFragment extends Fragment {
             else if(selectedId == R.id.type_debt) type = DBHelper.TYPE_DEBT;
             else type = DBHelper.TYPE_SAV;
 
-            if(isAdded())
-                activity.replaceFragment(new ExpenseFragment(type));
+            activity.replaceFragment(new EditExpenseFragment(type));
         });
 
         return view;

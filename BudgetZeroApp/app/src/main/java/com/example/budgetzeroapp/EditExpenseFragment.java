@@ -11,9 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Date;
 
-public class ExpenseFragment extends Fragment {
-
-    private MainActivity activity;
+public class EditExpenseFragment extends EditDataBaseFragment {
 
     private Button save, cancel;
     private int type, idCat;
@@ -22,11 +20,33 @@ public class ExpenseFragment extends Fragment {
     private boolean isStable;
     private String label;
 
-    private DBHelper database;
 
-    public ExpenseFragment(int type){
-        this.type = type;
-        database = new DBHelper(getActivity().getApplicationContext());
+    public EditExpenseFragment(){ super(); }
+    public EditExpenseFragment(int id){ super(id); }
+
+    @Override
+    public View initView(LayoutInflater inflater, ViewGroup parent) {
+        return null;
+    }
+
+    @Override
+    public void initDefaultValues() {
+
+    }
+
+    @Override
+    public void changeDefaultValues() {
+
+    }
+
+    @Override
+    public void setDefaultValues() {
+
+    }
+
+    @Override
+    public void setButtons() {
+
     }
 
     @Override

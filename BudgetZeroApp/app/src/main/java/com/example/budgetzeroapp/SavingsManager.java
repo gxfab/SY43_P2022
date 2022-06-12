@@ -82,7 +82,11 @@ public class SavingsManager {
                 else if(type==DBHelper.TYPE_DEBT) cat = DBHelper.DEBT_TABLE_NAME;
                 else cat = DBHelper.SAV_CAT_TABLE_NAME;
                 idCat = expenses.getInt(expenses.getColumnIndexOrThrow(cat));
-                database.insertExpense(date, amount, label, type, idCat, true);
+                if(type!=DBHelper.TYPE_DEBT) database.insertExpense(date, amount, label, type, idCat, true);
+                else {
+                    if(database.decrementDebtMonthLeft(idCat))
+                        database.insertExpense(date, amount, label, type, idCat, true);
+                }
             }
             expenses.moveToNext();
         }

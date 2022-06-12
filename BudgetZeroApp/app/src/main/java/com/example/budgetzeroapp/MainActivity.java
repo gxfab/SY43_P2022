@@ -30,10 +30,9 @@ public class MainActivity extends OptionsMenu {
         replaceFragment(new HomeFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-
             switch(item.getItemId()){
                 case R.id.Home:
-                    replaceFragment(new HomeFragment());
+                    replaceFragment(new SelectExpenseTypeFragment());
                     break;
                 case R.id.Budget:
                     replaceFragment(new BudgetFragment());
@@ -45,7 +44,6 @@ public class MainActivity extends OptionsMenu {
                     replaceFragment(new SavingsFragment());
                     break;
             }
-
             return true;
         });
 
