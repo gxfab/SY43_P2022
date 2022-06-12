@@ -11,11 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
+            android:name=".CreateIncomeExpenseActivity"
+            android:exported="false"
+            android:label="@string/newIncomeExpenseTitle"
+            android:launchMode="singleTop"
+            android:parentActivityName=".BudgetSetterActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lafo_cheuse.BudgetSetterActivity" />
+        </activity>
+        <activity
             android:name=".CreateCategoryActivity"
             android:exported="false"
             android:label="@string/nameCategoryTitle"
             android:launchMode="singleTop"
-            android:parentActivityName=".CategoryChooserActivity" >
+            android:parentActivityName=".CategoryChooserActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lafo_cheuse.CategoryChooserActivity" />
@@ -34,8 +44,8 @@
             android:name=".BudgetSetterActivity"
             android:label="@string/budgetTitle"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lafo_cheuse.MainActivity" />
