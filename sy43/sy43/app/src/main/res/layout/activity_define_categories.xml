@@ -43,7 +43,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </ScrollView>
     <androidx.cardview.widget.CardView
-        android:id="@+id/continue_to_home_btn"
+        android:id="@+id/continue_to_incomes_btn"
         android:layout_width="200dp"
         android:layout_height="75dp"
         android:layout_marginBottom="30dp"

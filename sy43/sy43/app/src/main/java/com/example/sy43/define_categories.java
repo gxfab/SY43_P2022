@@ -25,7 +25,7 @@ import com.example.sy43.database.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class define_categories extends AppCompatActivity {
+public class Define_categories extends AppCompatActivity {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -51,11 +51,10 @@ public class define_categories extends AppCompatActivity {
             public void onChanged(List<SubCategory> subCategories) {
                 // triggered everytime data in our LiveData changes
                 //update the recyclerview
-                Toast.makeText(define_categories.this, "...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Define_categories.this, "...", Toast.LENGTH_SHORT).show();
             }
         });
-
-        toHome();
+        toIncome();
 
         apply_btn = findViewById(R.id.apply_subcategory);
         expected_expense = findViewById(R.id.expected_expense);
@@ -83,6 +82,11 @@ public class define_categories extends AppCompatActivity {
         clothingbtns.add(new CardView(this));
         clothingbtns.add(new CardView(this));
 
+        List<EditText> clothinget = new ArrayList<>();
+        clothinget.add(new EditText(this));
+        clothinget.add(new EditText(this));
+        clothinget.add(new EditText(this));
+
         List<String> communication = new ArrayList<>();
         communication.add("Internet");
         communication.add("Phone");
@@ -97,6 +101,11 @@ public class define_categories extends AppCompatActivity {
         communicationbtns.add( new CardView(this));
         communicationbtns.add(new CardView(this));
         communicationbtns.add(new CardView(this));
+
+        List<EditText> communicationet = new ArrayList<>();
+        communicationet.add(new EditText(this));
+        communicationet.add(new EditText(this));
+        communicationet.add(new EditText(this));
 
 
         List<String> entertainment = new ArrayList<>();
@@ -135,6 +144,19 @@ public class define_categories extends AppCompatActivity {
         entertainmentbtns.add( new CardView(this));
         entertainmentbtns.add( new CardView(this));
 
+        List<EditText> entertainmentet = new ArrayList<>();
+        entertainmentet.add(new EditText(this));
+        entertainmentet.add(new EditText(this));
+        entertainmentet.add(new EditText(this));
+        entertainmentet.add(new EditText(this));
+        entertainmentet.add(new EditText(this));
+        entertainmentet.add(new EditText(this));
+        entertainmentet.add(new EditText(this));
+        entertainmentet.add(new EditText(this));
+        entertainmentet.add(new EditText(this));
+        entertainmentet.add(new EditText(this));
+
+
         List<String> finance = new ArrayList<>();
         finance.add("Banking Fees");
         finance.add("Loan");
@@ -150,6 +172,12 @@ public class define_categories extends AppCompatActivity {
         financebtns.add(new CardView(this));
         financebtns.add(new CardView(this));
 
+        List<EditText> financeet = new ArrayList<>();
+        financeet.add(new EditText(this));
+        financeet.add(new EditText(this));
+        financeet.add(new EditText(this));
+
+
         List<String> food = new ArrayList<>();
         food.add("Canteen");
         food.add("Groceries");
@@ -164,6 +192,11 @@ public class define_categories extends AppCompatActivity {
         foodbtns.add( new CardView(this));
         foodbtns.add(new CardView(this));
         foodbtns.add(new CardView(this));
+
+        List<EditText> foodet =  new ArrayList<>();
+        foodet.add(new EditText(this));
+        foodet.add(new EditText(this));
+        foodet.add(new EditText(this));
 
         List<String> health = new ArrayList<>();
         health.add("Barber");
@@ -185,6 +218,13 @@ public class define_categories extends AppCompatActivity {
         healthbtns.add(new CardView(this));
         healthbtns.add(new CardView(this));
         healthbtns.add(new CardView(this));
+
+        List<EditText> healthet = new ArrayList<>();
+        healthet.add(new EditText(this));
+        healthet.add(new EditText(this));
+        healthet.add(new EditText(this));
+        healthet.add(new EditText(this));
+        healthet.add(new EditText(this));
 
         List<String> housing = new ArrayList<>();
         housing.add("Cleaning");
@@ -216,6 +256,17 @@ public class define_categories extends AppCompatActivity {
         housingbtns.add(new CardView(this));
         housingbtns.add(new CardView(this));
 
+        List<EditText> housinget = new ArrayList<>();
+        housinget.add(new EditText(this));
+        housinget.add(new EditText(this));
+        housinget.add(new EditText(this));
+        housinget.add(new EditText(this));
+        housinget.add(new EditText(this));
+        housinget.add(new EditText(this));
+        housinget.add(new EditText(this));
+        housinget.add(new EditText(this));
+
+
         List<String> transport = new ArrayList<>();
         transport.add("Automobile Insurance");
         transport.add("Automobile Fees");
@@ -240,26 +291,35 @@ public class define_categories extends AppCompatActivity {
         transportbtns.add(new CardView(this));
         transportbtns.add(new CardView(this));
 
-        mList.add(new DataModel(clothing, clothingimg, clothingbtns,"Clothing", ContextCompat.getDrawable(this,R.drawable.clothing)));
-        mList.add(new DataModel(communication, communicationimg, communicationbtns,"Communication", ContextCompat.getDrawable(this,R.drawable.phone)));
-        mList.add(new DataModel(entertainment, entertainmentimg, entertainmentbtns,"Entertainment", ContextCompat.getDrawable(this,R.drawable.entertainment)));
-        mList.add(new DataModel(finance, financeimg, financebtns,"Finance",ContextCompat.getDrawable(this,R.drawable.finance)));
-        mList.add(new DataModel(food, foodimg, foodbtns,"Food",ContextCompat.getDrawable(this,R.drawable.food)));
-        mList.add(new DataModel(health, healthimg, healthbtns,"Health", ContextCompat.getDrawable(this,R.drawable.health)));
-        mList.add(new DataModel(housing, housingimg, housingbtns,"Housing", ContextCompat.getDrawable(this,R.drawable.house)));
-        mList.add(new DataModel(transport, transportimg, transportbtns,"Transport", ContextCompat.getDrawable(this,R.drawable.transport)));
+        List<EditText> transportet = new ArrayList<>();
+        transportet.add(new EditText(this));
+        transportet.add(new EditText(this));
+        transportet.add(new EditText(this));
+        transportet.add(new EditText(this));
+        transportet.add(new EditText(this));
+        transportet.add(new EditText(this));
+
+
+        mList.add(new DataModel(clothing, clothingimg, clothingbtns,clothinget,"Clothing", ContextCompat.getDrawable(this,R.drawable.clothing)));
+        mList.add(new DataModel(communication, communicationimg, communicationbtns,communicationet,"Communication", ContextCompat.getDrawable(this,R.drawable.phone)));
+        mList.add(new DataModel(entertainment, entertainmentimg, entertainmentbtns,entertainmentet,"Entertainment", ContextCompat.getDrawable(this,R.drawable.entertainment)));
+        mList.add(new DataModel(finance, financeimg, financebtns,financeet,"Finance",ContextCompat.getDrawable(this,R.drawable.finance)));
+        mList.add(new DataModel(food, foodimg, foodbtns,foodet,"Food",ContextCompat.getDrawable(this,R.drawable.food)));
+        mList.add(new DataModel(health, healthimg, healthbtns,healthet,"Health", ContextCompat.getDrawable(this,R.drawable.health)));
+        mList.add(new DataModel(housing, housingimg, housingbtns,housinget,"Housing", ContextCompat.getDrawable(this,R.drawable.house)));
+        mList.add(new DataModel(transport, transportimg, transportbtns,transportet,"Transport", ContextCompat.getDrawable(this,R.drawable.transport)));
 
         adapter = new ItemAdapter(mList);
         recyclerView.setAdapter(adapter);
 
 
     }
-    private void toHome(){
-        continue_home = findViewById(R.id.continue_to_home_btn);
+    private void toIncome(){
+        continue_home = findViewById(R.id.continue_to_incomes_btn);
         continue_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(define_categories.this, Home.class));
+                startActivity(new Intent(Define_categories.this, Define_incomes.class));
             }
         });
     }
@@ -274,7 +334,7 @@ public class define_categories extends AppCompatActivity {
         String firstTime = sharedPreferences.getString("First Time Install","");
 
         if(firstTime.equals("Yes")){
-            Intent intent = new Intent(define_categories.this, define_categories.class);
+            Intent intent = new Intent(Define_categories.this, Define_categories.class);
             startActivity(intent);
         }
         else {

@@ -8,11 +8,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class AddExpenseAdapter extends RecyclerView.Adapter<AddExpenseAdapter.ExpenseViewHolder> {
 
-    private List<String> dates, expense_name, expense_amount;
+    private List<String> expense_name, expense_amount,dates;
 
     public AddExpenseAdapter(List<String> dates, List<String> expense_name, List<String> expense_amount){
         this.dates=dates;

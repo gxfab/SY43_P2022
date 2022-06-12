@@ -1,10 +1,8 @@
 package com.example.sy43;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +20,7 @@ public class Welcome_Page extends AppCompatActivity {
         String firstTime = sharedPreferences.getString("First Time Install","");
 
         if(firstTime.equals("Yes")){
-            Intent intent = new Intent(Welcome_Page.this, define_categories.class);
+            Intent intent = new Intent(Welcome_Page.this, Define_categories.class);
             startActivity(intent);
         }
         else {
@@ -39,7 +37,7 @@ public class Welcome_Page extends AppCompatActivity {
         get_started.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Welcome_Page.this, define_categories.class));
+                startActivity(new Intent(Welcome_Page.this, Define_categories.class));
             }
         });
     }

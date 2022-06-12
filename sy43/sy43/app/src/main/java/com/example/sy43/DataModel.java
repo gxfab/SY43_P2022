@@ -1,6 +1,7 @@
 package com.example.sy43;
 
 import android.graphics.drawable.Drawable;
+import android.widget.EditText;
 
 import androidx.cardview.widget.CardView;
 
@@ -11,17 +12,19 @@ public class DataModel {
     private List<String> nestedList;
     private List<Drawable> nestedimgList;
     private List<CardView> btnList;
+    private List<EditText> etList;
     private String itemText;
     private Drawable imageResource;
     private boolean isExpandable;
 
-    public DataModel(List<String> nestedList, List<Drawable> nestedimgList, List<CardView> btnList, String itemText, Drawable imageResource) {
+    public DataModel(List<String> nestedList, List<Drawable> nestedimgList, List<CardView> btnList, List<EditText> etList,String itemText, Drawable imageResource) {
         this.nestedList = nestedList;
         this.nestedimgList = nestedimgList;
         this.itemText = itemText;
         this.imageResource = imageResource;
         this.isExpandable = false;
         this.btnList = btnList;
+        this.etList = etList;
     }
 
     public List<Drawable> getNestedimgList() {
@@ -54,5 +57,9 @@ public class DataModel {
 
     public List<CardView> getBtnList() {
         return btnList;
+    }
+
+    public List<EditText> getEtList() {
+        return etList;
     }
 }

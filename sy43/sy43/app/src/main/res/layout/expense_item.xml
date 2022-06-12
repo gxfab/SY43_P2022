@@ -5,7 +5,8 @@
     android:layout_height="70dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
-    app:cardElevation="15dp">
+    app:cardElevation="15dp"
+    android:id="@+id/latest_expense_card">
 
     <TextView
         android:id="@+id/latest_expense_date"

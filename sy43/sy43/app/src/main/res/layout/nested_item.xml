@@ -9,6 +9,7 @@
     android:backgroundTint="#ff95cc"
     app:cardCornerRadius="20dp">
 
+
     <ImageView
         android:id="@+id/subcategory_imageview"
         android:layout_width="100dp"

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -22,8 +23,11 @@ import org.eazegraph.lib.models.PieModel;
 public class Home extends AppCompatActivity {
 
     private TabLayout tabLayout;
+    private TextView total_income;
     private ViewPager2 viewPager2;
     private MyFragmentAdapter adapter;
+    private Define_incomes define_incomes;
+
     PieChart pieChart;
 
     //TODO lezm e3mel nafes l chi michen popups l subcategories
@@ -37,6 +41,14 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        total_income = findViewById(R.id.total_income_amount);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            String amount = extras.getString("total_income_value");
+            total_income.setText(amount);
+        }
 
         toCategories();
         addToPieChart(40,25,15,20);

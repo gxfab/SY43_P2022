@@ -27,13 +27,6 @@ public class Categories extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
 
         house_icon= findViewById(R.id.home_icon);
-        house_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                housing housingFragment = new housing();
-                housingFragment.show(getSupportFragmentManager(), "Housing Sub Categories");
-            }
-        });
 
         toHome();
 
