@@ -9,7 +9,7 @@ import androidx.room.Update;
 
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Budget_User;
-import com.example.econo_misons.database.models.User;
+import com.example.econo_misons.database.models.Transaction;
 
 import java.util.List;
 
@@ -18,11 +18,17 @@ public interface budgetDAO {
     @Insert
     long addBudget(Budget budget);
     @Update
-    void updateBudget(User user);
+    void updateBudget(Budget budget);
     @Delete
-    void deleteBudget(User user);
+    void deleteBudget(Budget budget);
     @Query("SELECT * FROM Budget")
-    LiveData<List<User>> getAllUsers();
+    LiveData<List<Budget>> getAllBudgets();
+    @Query("SELECT ID,NAME_BUD FROM Budget INNER JOIN Budget_User ON ID = BUD_ID WHERE USER_ID = :userID")
+    LiveData<List<Budget>> getUserBudgets(int userID);
+    @Query("SELECT * FROM Budget WHERE ID = :budgetID")
+    LiveData<List<Budget>> getBudgetByID(int budgetID);
+    @Query("SELECT SUM(AM_TRANS) FROM Budget INNER JOIN `Transaction` WHERE Budget.ID = :budgetID")
+    LiveData<Float> getBudgetSum(int budgetID);
     @Insert
     void linkBudgetUser(Budget_User budUse);
 }

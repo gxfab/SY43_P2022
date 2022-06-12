@@ -45,4 +45,15 @@ public class Transaction {
 
     @ColumnInfo(name = "DATE_TRANS")
     public String date;
+
+    public Transaction(int budgetID, int userID, int categoryID, String transactionName, String date, float Amount, Boolean expense){
+        this.budgetID = budgetID;
+        this.userID = userID;
+        this.categoryID = categoryID;
+        this.transactionName = transactionName;
+        this.date = date;
+        this.amountTransaction = Amount;
+        this.expense = expense;
+
+    }
 }

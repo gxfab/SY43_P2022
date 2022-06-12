@@ -21,8 +21,6 @@ public class DBViewModel extends ViewModel {
             -Add a recurrent column to transaction ?
       TODO: Add the methods (on split DAOs and Repositories):
             -addCategory(Budget budget, String name)
-            -addBudget(User user, String name)
-            -getBudgetList(User user)
             -getCatList(User user, Budget bud, String Prev_Date) return Cat list with name and sum
             -getCatExp(Category cat)
             -addExp(User user, Budget bud, Category cat, String name, float amount, bool exp, String date)
@@ -61,4 +59,13 @@ public class DBViewModel extends ViewModel {
     public void addBudget(Budget budget, User user){ executor.execute(() -> budgetDataSource.addBudget(budget, user));}
 
     public LiveData<List<User>> getUser(int id){ return userDataSource.getUser(id);}
+
+    public LiveData<List<Budget>> getAllBudgets(){ return budgetDataSource.getAllBudgets();}
+
+    public LiveData<List<Budget>> getUserBudgets(int userID){ return budgetDataSource.getUserBudgets(userID);}
+
+    public void addUserToBudget(Budget budget, User user){
+        executor.execute(() -> budgetDataSource.addUserToBudget(budget, user));
+    }
+
 }
