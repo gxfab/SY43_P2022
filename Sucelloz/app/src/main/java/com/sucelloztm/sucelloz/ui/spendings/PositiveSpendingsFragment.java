@@ -27,6 +27,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.sucelloztm.sucelloz.databinding.PositiveSpendingsFragmentBinding;
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
+import com.sucelloztm.sucelloz.ui.charts.PieChartGenerator;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSpendingDialogFragment;
 
 
@@ -45,46 +46,10 @@ public class PositiveSpendingsFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    public PieChart createPieChart()
-    {
-
-        Context context = getContext();
-        PieChart pieChart = new PieChart(context);
-        pieChart.getDescription().setEnabled(false);
-
-        Typeface tf = Typeface.create((Typeface) null,Typeface.NORMAL);
-
-        pieChart.setCenterTextTypeface(tf);
-        pieChart.setCenterText(generateCenterText());
-        pieChart.setCenterTextSize(10f);
-        pieChart.setCenterTextTypeface(tf);
-
-        // radius of the center hole in percent of maximum radius
-        pieChart.setHoleRadius(45f);
-        pieChart.setTransparentCircleRadius(50f);
-
-        Legend l = pieChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setDrawInside(false);
-
-        pieChart.setData(spendingsViewModel.generatePieData(tf));
-
-        FrameLayout parent = binding.frameLayoutPositiveSpendings;
-        parent.addView(pieChart);
-
-        return pieChart;
-
-    }
 
 
-    private SpannableString generateCenterText() {
-        SpannableString s = new SpannableString("Revenues\nQuarters 2015");
-        s.setSpan(new RelativeSizeSpan(2f), 0, 8, 0);
-        s.setSpan(new ForegroundColorSpan(Color.GRAY), 8, s.length(), 0);
-        return s;
-    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -94,7 +59,9 @@ public class PositiveSpendingsFragment extends Fragment {
         currentPositiveSpendingsList = new ArrayList<>();
         PositiveSpendingsAdapter adapter = new PositiveSpendingsAdapter(currentPositiveSpendingsList);
 
-        PieChart pieChart = createPieChart();
+        PieChartGenerator pieGen = new PieChartGenerator();
+
+        PieChart pieChart = pieGen.createPieChart(getContext(), binding.frameLayoutPositiveSpendings);
         pieChart.invalidate();
 
         final Observer<List<InfrequentExpensesAndIncome>> positiveSpendingsDataSet = new Observer<List<InfrequentExpensesAndIncome>>() {

@@ -56,25 +56,5 @@ public class SpendingsViewModel extends AndroidViewModel {
         return subCategoriesRepository.getSubCategoryNameWithId(idOfSubCategory);
     }
 
-    public PieData generatePieData(Typeface tf) {
 
-        int count = 4;
-
-        ArrayList<PieEntry> entries1 = new ArrayList<>();
-
-        for(int i = 0; i < count; i++) {
-            entries1.add(new PieEntry((float) ((Math.random() * 60) + 40), "Quarter " + (i+1)));
-        }
-
-        PieDataSet ds1 = new PieDataSet(entries1, "Quarterly Revenues 2015");
-        ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        ds1.setSliceSpace(2f);
-        ds1.setValueTextColor(Color.WHITE);
-        ds1.setValueTextSize(12f);
-
-        PieData d = new PieData(ds1);
-        d.setValueTypeface(tf);
-
-        return d;
-    }
 }
