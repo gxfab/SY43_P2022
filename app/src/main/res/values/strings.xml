@@ -25,6 +25,7 @@
     <string name="categoryTitle">Choisissez une catégorie</string>
     <string name="newCategoryTitle">Nommez votre catégorie</string>
     <string name="title_activity_budget_setter">BudgetSetterActivity</string>
+    <string name="newIncomeExpenseTitle">Créez votre dépense/revenu</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
