@@ -34,7 +34,9 @@
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:hint="Amount"
-        android:layout_marginStart="140dp"/>
+        android:layout_marginStart="140dp"
+        android:inputType="number"
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/apply_subcategory"

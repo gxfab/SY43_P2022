@@ -38,13 +38,11 @@ public class Define_incomes extends AppCompatActivity {
                     if (!et[i].getText().toString().matches("")){
                         income_sum  += parseInt(et[i].getText().toString());
                     }
-                    i++;
                 }
                 total_income= Integer.toString(income_sum) + "$";
                 Intent intent = new Intent(Define_incomes.this, Home.class);
                 intent.putExtra("total_income_value", total_income);
                 startActivity(intent);
-
             }
         });
     }

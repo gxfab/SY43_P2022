@@ -1,16 +1,13 @@
 package com.example.sy43.database;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 @Database(entities = {Category.class,SubCategory.class, ExtraDebts.class,MonthlyRevenue.class,Expenses.class,Projects.class,Bills.class,Income.class}, version = 1)
-public abstract class   AppDatabase extends RoomDatabase {
+public abstract class AppDatabase extends RoomDatabase {
 
     public abstract CategoryDao categoryDao();
     public abstract SubCategoryDao subCategoryDao();
@@ -27,12 +24,12 @@ public abstract class   AppDatabase extends RoomDatabase {
 
     public static synchronized AppDatabase getInstance(Context context){
         if (instance == null){
-            instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "Padnom")
-                    .allowMainThreadQueries()
-                    .build();
+            instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "Padnom").allowMainThreadQueries().build();
         }
         return instance;
     }
+
+
     //AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "Padnom").build();
 
     //CategoryDao categoryDao = db.categoryDao();

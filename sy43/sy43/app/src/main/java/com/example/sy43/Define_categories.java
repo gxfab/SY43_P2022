@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sy43.database.SubCategory;
-import com.example.sy43.database.ViewModel;
+//import com.example.sy43.database.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class Define_categories extends AppCompatActivity {
     TextView subcategory_name;
     ImageView subcategory_image;
 
-    private ViewModel viewModel;
+//    private ViewModel viewModel;
     private RecyclerView recyclerView;
     private List<DataModel> mList;
     private ItemAdapter adapter;
@@ -45,15 +45,15 @@ public class Define_categories extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_define_categories);
 
-        viewModel =  new ViewModelProvider(this).get(ViewModel.class);
-        viewModel.getAllSubCategories().observe(this, new Observer<List<SubCategory>>() {
-            @Override
-            public void onChanged(List<SubCategory> subCategories) {
-                // triggered everytime data in our LiveData changes
-                //update the recyclerview
-                Toast.makeText(Define_categories.this, "...", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        viewModel =  new ViewModelProvider(this).get(ViewModel.class);
+//        viewModel.getAllSubCategories().observe(this, new Observer<List<SubCategory>>() {
+//            @Override
+//            public void onChanged(List<SubCategory> subCategories) {
+//                // triggered everytime data in our LiveData changes
+//                //update the recyclerview
+//                Toast.makeText(Define_categories.this, "...", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         toIncome();
 
         apply_btn = findViewById(R.id.apply_subcategory);

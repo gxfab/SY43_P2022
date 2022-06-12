@@ -1,6 +1,5 @@
 package com.example.sy43.database;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -11,10 +10,10 @@ import java.util.List;
 @Dao
 public interface ExtraDebtsDao {
     @Query("SELECT * FROM ExtraDebts")
-    LiveData<List<ExtraDebts>> getAll();
+    List<ExtraDebts> getAll();
 
     @Query("SELECT * FROM ExtraDebts WHERE id IN (:debtID)")
-    LiveData<List<ExtraDebts>> loadAllByIDs(int[] debtID);
+    List<ExtraDebts> loadAllByIDs(int[] debtID);
 
     @Query("SELECT * FROM ExtraDebts WHERE name LIKE :name LIMIT 1")
     ExtraDebts findByName(String name);

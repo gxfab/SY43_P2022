@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private List<DataModel> mList;
+    static List<DataModel> mList;
     private List<String> list = new ArrayList<>();
     private List<Drawable> imglist = new ArrayList<>();
     private List<CardView> btnList = new ArrayList<>();
@@ -53,7 +53,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         holder.category_imageview.setImageDrawable(model.getImageResource());
 
-        NestedAdapter adapter = new NestedAdapter(list,imglist, btnList, etList);
+        NestedAdapter adapter = new NestedAdapter(list,imglist, btnList, etList, position);
         holder.nestedRecyclerView.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
         holder.nestedRecyclerView.setHasFixedSize(true);
         holder.nestedRecyclerView.setAdapter(adapter);
