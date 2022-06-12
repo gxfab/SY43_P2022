@@ -6,5 +6,6 @@
     android:background="?attr/colorPrimary"
     android:elevation="4dp"
     android:id="@+id/toolbar"
-    app:title=" " />
+    app:title="Home"
+    app:titleTextColor="@color/white"/>
 
