@@ -6,8 +6,15 @@ import java.lang.Exception
 
 
 @Entity
-class Income(frequency: Frequency,name : String, category: Category, amount: Double) :
-    MoneyChange(frequency,name, category) {
+class Income(frequency: Frequency,
+             name : String,
+             category: Category,
+             amount: Double,
+             dateYear: Int? = null,
+             dateMonth: Int? = null,
+             dateDay: Int? = null
+) :
+    MoneyChange(frequency,name, category,dateYear,dateMonth,dateDay) {
     @ColumnInfo(name = "amount")
     var amount: Double = 0.0
         set(value){

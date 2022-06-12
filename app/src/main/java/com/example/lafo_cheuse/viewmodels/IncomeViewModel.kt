@@ -29,8 +29,16 @@ class IncomeViewModel(application : Application) : AndroidViewModel(application)
         return incomesSum
     }
 
+    fun getIncomeSumByDate(year: Int, month: Int) : LiveData<Double> {
+        return repository.getIncomesSumByDate(year,month)
+    }
+
     suspend fun getIncomeSumSync() : Double {
         return repository.getIncomesSumSync()
+    }
+
+    suspend fun getIncomesSumSyncByDate(year: Int, month: Int) : Double {
+        return repository.getIncomesSumSyncByDate(year, month)
     }
 
     fun getIncome(moneyChangeId : Long): LiveData<List<Income>> {
@@ -43,6 +51,20 @@ class IncomeViewModel(application : Application) : AndroidViewModel(application)
 
     fun getOneTimeIncome() : LiveData<List<Income>> {
         return repository.getIncomesByFrequency(Frequency.OUNCE_A_DAY)
+    }
+
+    fun getMonthlyIncomesByMonth(
+        year : Int,
+        month : Int
+    ) : LiveData<List<Income>> {
+        return repository.getIncomesByFrequencyAndMonth(Frequency.OUNCE_A_MONTH,year, month)
+    }
+
+    fun getOneTimeIncomesByMonth(
+        year : Int,
+        month : Int
+    ) : LiveData<List<Income>> {
+        return repository.getIncomesByFrequencyAndMonth(Frequency.OUNCE_A_DAY,year, month)
     }
 
     fun insertIncome(income : Income) = viewModelScope.launch {

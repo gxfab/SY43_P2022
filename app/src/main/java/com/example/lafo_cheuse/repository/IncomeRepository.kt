@@ -46,8 +46,16 @@ class IncomeRepository(application: Application) {
         return incomesSum
     }
 
+    fun getIncomesSumByDate(year: Int, month: Int) : LiveData<Double> {
+        return incomeDao.getIncomesSumByDate(year,month)
+    }
+
     suspend fun getIncomesSumSync() : Double {
         return incomeDao.getIncomesSumSynchronous()
+    }
+
+    suspend fun getIncomesSumSyncByDate(year: Int, month: Int) : Double {
+        return incomeDao.getIncomesSumSynchronousByDate(year, month)
     }
 
     fun getIncome(moneyChangeId : Long): LiveData<List<Income>> {
@@ -57,6 +65,14 @@ class IncomeRepository(application: Application) {
 
     fun getIncomesByFrequency(frequency: Frequency) : LiveData<List<Income>> {
         return incomeDao.getIncomesByFrequency(frequency)
+    }
+
+    fun getIncomesByFrequencyAndMonth(
+        frequency: Frequency = Frequency.OUNCE_A_DAY,
+        year : Int,
+        month : Int
+    ) : LiveData<List<Income>> {
+        return incomeDao.getIncomesByFrequencyAndMonth(frequency,year, month)
     }
 
 
