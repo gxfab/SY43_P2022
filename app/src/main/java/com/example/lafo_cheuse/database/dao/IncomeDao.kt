@@ -7,11 +7,18 @@ import com.example.lafo_cheuse.models.Budget
 import com.example.lafo_cheuse.models.Category
 import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.models.Income
+import java.time.Month
 
 @Dao
 interface IncomeDao {
     @Query("SELECT * FROM Income")
-    fun getIncomes(): LiveData<List<Income>>?
+    fun getIncomes(): LiveData<List<Income>>
+
+    @Query("SELECT * FROM Income " +
+            "WHERE (date_year is null OR date_year = :year) " +
+            "AND (date_month is null OR date_month = :month) " +
+            "ORDER BY date_year DESC,date_month DESC,date_day DESC")
+    fun getIncomesForMonth(year: Int,month: Int): LiveData<List<Income>>
 
     @Query("SELECT * FROM Income WHERE moneyChangeId = :moneyChangeId")
     fun getIncome(moneyChangeId : Long): LiveData<List<Income>>

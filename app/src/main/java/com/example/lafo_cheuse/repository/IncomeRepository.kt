@@ -42,6 +42,10 @@ class IncomeRepository(application: Application) {
         return allIncomes
     }
 
+    fun getIncomesForMonth(year: Int,month: Int): LiveData<List<Income>> {
+        return incomeDao.getIncomesForMonth(year,month)
+    }
+
     fun getIncomesSum() : LiveData<Double> {
         return incomesSum
     }

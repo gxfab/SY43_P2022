@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.lafo_cheuse.database.LafoCheuseDatabase
 import com.example.lafo_cheuse.database.dao.ExpenseDao
+import com.example.lafo_cheuse.models.Category
 import com.example.lafo_cheuse.models.Expense
 import com.example.lafo_cheuse.models.ExpenseSumContainer
 import com.example.lafo_cheuse.models.Frequency
@@ -66,18 +67,18 @@ class ExpenseRepository(application: Application) {
 
     fun getExpensesSumForCategoryAndMonth(
         frequency: Frequency,
-        categoryID: Long,
+        category: Category,
         year: Int,
         month: Int
     ) : LiveData<List<ExpenseSumContainer>> {
-        return expenseDao.getExpensesSumForCategoryAndMonth(frequency,categoryID,year,month)
+        return expenseDao.getExpensesSumForCategoryAndMonth(frequency,category.categoryId,year,month)
     }
 
     fun getExpensesSumByCategory(frequency: Frequency) : LiveData<List<ExpenseSumContainer>> {
         return expenseDao.getExpensesSumByCategory(frequency)
     }
 
-    fun getExpensesSumByDate(frequency: Frequency,year : Int, month : Int) : Double {
+    fun getExpensesSumByDate(frequency: Frequency,year : Int, month : Int) : LiveData<Double> {
         return expenseDao.getExpensesSumByDate(frequency,year,month)
     }
 

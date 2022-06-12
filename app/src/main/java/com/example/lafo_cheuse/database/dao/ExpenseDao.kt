@@ -55,7 +55,7 @@ interface ExpenseDao {
 
     @Query("SELECT SUM(amount) FROM Expense WHERE frequency = :frequency " +
             "AND (date_year is null OR date_year = :year) AND (date_month is null OR date_month = :month)")
-    fun getExpensesSumByDate(frequency: Frequency,year : Int, month : Int) : Double
+    fun getExpensesSumByDate(frequency: Frequency,year : Int, month : Int) : LiveData<Double>
 
     @Query("SELECT SUM(amount) FROM Expense WHERE frequency = :frequency")
     suspend fun getExpensesSumSynchronous(frequency: Frequency) : Double
