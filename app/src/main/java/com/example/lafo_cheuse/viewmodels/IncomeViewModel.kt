@@ -25,6 +25,10 @@ class IncomeViewModel(application : Application) : AndroidViewModel(application)
         return allIncomes
     }
 
+    fun getIncomesForMonth(year: Int,month: Int): LiveData<List<Income>> {
+        return repository.getIncomesForMonth(year,month)
+    }
+
     fun getIncomeSum() : LiveData<Double> {
         return incomesSum
     }

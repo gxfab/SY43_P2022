@@ -16,7 +16,18 @@ import com.example.lafo_cheuse.models.Option
 import com.example.lafo_cheuse.models.OptionField
 import com.example.lafo_cheuse.viewmodels.OptionViewModel
 
-
+/**
+ * Fragment where the options and references are displayed.
+ * We store this options in our database to retrieve them on launch.
+ * It is not completely functional.
+ *
+ * @property optionViewModel - An instance of [OptionViewModel]
+ * @property optionTheme - [Option] where the current theme of graphical theme (dark, light, system) is stored
+ * @property optionNotification - [Option] where the current notifications chosen are stored
+ * @property optionNotificationSum - [Option] where the current sum of one of the notification is stored
+ * @property optionBudget - [Option] where the day to start the new budget is stored
+ *
+ */
 class SettingsFragment : Fragment() {
     val optionViewModel : OptionViewModel by viewModels()
     var optionTheme : Option? = null
@@ -24,6 +35,15 @@ class SettingsFragment : Fragment() {
     var optionNotificationSum : Option? = null
     var optionBudget : Option? = null
 
+    /**
+     * Initialization of the view. We will link our widgets to the database using this function.
+     * Then, widgets are initialized in other functions.
+     *
+     * @param inflater - [LayoutInflater] which contained our layout file
+     * @param container
+     * @param savedInstanceState
+     * @return a [View] : the fragment view
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,6 +85,13 @@ class SettingsFragment : Fragment() {
         return view
     }
 
+    /**
+     * Function to setup the spinner button.
+     * This spinner allows the user to choose a date to start a new budget each month
+     *
+     * @param spinner - a [Spinner] which contains integer from 1 to 31
+     * @param option - an [Option] to link with the [spinner]. Here it is the [optionBudget]
+     */
     private fun setupSpinner(spinner : Spinner, option : Option) {
         val day_list : Array<Int> = (1..31).toList().toTypedArray()
         val adapter : ArrayAdapter<Int> = ArrayAdapter(requireContext(),
@@ -82,12 +109,14 @@ class SettingsFragment : Fragment() {
             spinner.onItemSelectedListener = spinnerListener
         }
 
-
-
-
-
     }
 
+    /**
+     * Initialization of radio group which manage the theme of our application
+     *
+     * @param radioGroup - a [RadioGroup] with the possibilities light, dark or system
+     * @param option - The [Option] the [radioGroup] will be linked with. Here it is the [optionTheme]
+     */
     private fun setupThemeSetter(radioGroup : RadioGroup, option : Option) {
         var lightField : OptionField? = null
         var darkField : OptionField? = null
@@ -157,6 +186,13 @@ class SettingsFragment : Fragment() {
         }
     }
 
+    /**
+     * Initialization of the notification setter.
+     *
+     * @param optionNextIncomeNotification - [CheckBox] which contains the next income notification
+     * @param optionBelowSumNotification - [CheckBox] which contains the below a certain sum notification
+     * @param optionNotification - an [Option] which the 2 checkboxes will be linked with. Here it is the [optionNotification]
+     */
     private fun setupNotificationSetter(
         optionNextIncomeNotification : CheckBox,
         optionBelowSumNotification : CheckBox,
@@ -192,12 +228,31 @@ class SettingsFragment : Fragment() {
         }
     }
 
+    /**
+     * Function to change application theme.
+     *
+     * @param mode - must be [AppCompatDelegate.MODE_NIGHT_NO], [AppCompatDelegate.MODE_NIGHT_YES] or [AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM]
+     */
     private fun changeApplicationTheme(mode : Int) {
         AppCompatDelegate.setDefaultNightMode(mode)
         (activity as AppCompatActivity).delegate.localNightMode = mode
     }
 
+    /**
+     * A listener for the [optionBudget] field linked to the spinner.
+     *
+     * @property optionViewModel - An instance of [OptionViewModel]
+     * @property field - an [OptionField] which contains the current selected item in the spinner
+     */
     private class SpinnerAdapter(val optionViewModel: OptionViewModel, val field: OptionField) : AdapterView.OnItemSelectedListener {
+        /**
+         * Callback action when the user select an item int the spinner
+         *
+         * @param parent - the parent view (the spinner)
+         * @param view
+         * @param pos - the position of the item selected in [parent]
+         * @param id - the id of the selected item
+         */
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
             val selected = parent?.getItemAtPosition(pos)
             field.fieldValue = selected.toString()

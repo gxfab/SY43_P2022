@@ -19,10 +19,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+
 /**
- * A simple [Fragment] subclass.
- * Use the [SetIncomesExpensesFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment where the one time expenses are dispalyed and where we can modify them.
+ * We can also add a regular income/expense by clicking on the Calendar button.
+ *
  */
 class SetIncomesExpensesFragment : Fragment() {
 

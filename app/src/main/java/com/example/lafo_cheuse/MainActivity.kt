@@ -16,6 +16,7 @@ import com.example.lafo_cheuse.material.ViewPagerAdapter
 import com.example.lafo_cheuse.viewmodels.OptionViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.*
+import kotlin.collections.ArrayList
 
 
 const val EXTRA_MESSAGE = "com.example.test.MESSAGE"
@@ -109,8 +110,6 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
-
 
     fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {

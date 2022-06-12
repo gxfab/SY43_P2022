@@ -10,13 +10,28 @@ import com.example.lafo_cheuse.database.dao.*
 import com.example.lafo_cheuse.models.*
 import java.util.concurrent.Executors
 
+/**
+ * A Room database which will contain all the useful data of this application.
+ *
+ * It has a companion object which is a singleton object to avoid duplicating it
+ *
+ * @property categoryDao - DAO of the [Category] entity
+ * @property expensesBudgetDao - DAO of the [ExpensesBudget] entity
+ * @property incomesBudgetDao - DAO of the [IncomesBudget] entity
+ * @property expenseDao - DAO of the [Expense] entity
+ * @property incomeDao - DAO of the [Income] entity
+ * @property optionDao - DAO of the [Option] entity
+ * @property optionFieldDao - DAO of the [OptionField] entity
+ */
 @Database(entities = [Budget::class, Category::class, Income::class, Expense::class, Option::class, OptionField::class, ExpensesBudget::class, IncomesBudget::class ], version = 1, exportSchema = false)
 abstract class LafoCheuseDatabase : RoomDatabase(){
 
     // --- DAO ---
     //abstract fun budgetDao(): BudgetDao?
     abstract fun categoryDao(): CategoryDao?
+    @Deprecated("It is no longer useful")
     abstract fun expensesBudgetDao(): ExpensesBudgetDao?
+    @Deprecated("It is no longer useful")
     abstract fun incomesBudgetDao(): IncomesBudgetDao?
     abstract fun expenseDao(): ExpenseDao?
     abstract fun incomeDao(): IncomeDao?
@@ -29,6 +44,12 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
         private var INSTANCE: LafoCheuseDatabase? = null
 
         // --- INSTANCE ---
+        /**
+         * function to get the database instance
+         *
+         * @param context - [Context] context of the application
+         * @return an instance of [LafoCheuseDatabase]
+         */
         fun getInstance(context: Context): LafoCheuseDatabase? {
             if (INSTANCE == null) {
                 synchronized(LafoCheuseDatabase::class.java) {
@@ -45,6 +66,15 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
             return INSTANCE
         }
 
+        /**
+         * A function to prepopulate the database. When the user download the application, these values will be automatically created.
+         *
+         * We create some elements :
+         * - The default categories, which avoid the user to type all his categories
+         * - The option that we just want to modify and not create inside the functioning of the application
+         *
+         * @return
+         */
         private fun prepopulateDatabase(): Callback {
             return object : Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {

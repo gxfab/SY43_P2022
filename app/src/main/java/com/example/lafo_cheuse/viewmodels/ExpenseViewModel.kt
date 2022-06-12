@@ -83,11 +83,11 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
     }
 
     fun getOneTimeExpensesSumForCategoryAndMonth(
-        categoryID: Long,
+        category: Category,
         year: Int,
         month: Int
     ) : LiveData<List<ExpenseSumContainer>> {
-        return repository.getExpensesSumForCategoryAndMonth(Frequency.OUNCE_A_DAY,categoryID,year,month)
+        return repository.getExpensesSumForCategoryAndMonth(Frequency.OUNCE_A_DAY,category,year,month)
     }
 
     fun getMonthlyExpenseAndMonth(
@@ -105,11 +105,11 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
     }
 
     fun getMonthlyExpensesSumForCategoryAndMonth(
-        categoryID: Long,
+        category: Category,
         year: Int,
         month: Int
     ) : LiveData<List<ExpenseSumContainer>> {
-        return repository.getExpensesSumForCategoryAndMonth(Frequency.OUNCE_A_MONTH,categoryID,year,month)
+        return repository.getExpensesSumForCategoryAndMonth(Frequency.OUNCE_A_MONTH,category,year,month)
     }
 
     fun getOneTimeExpensesSum() : LiveData<Double> {
@@ -120,11 +120,11 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
         return repository.getExpensesSumByFrequency(Frequency.OUNCE_A_MONTH)
     }
 
-    fun getOneTimeExpensesSumByDate(year : Int, month : Int) : Double {
+    fun getOneTimeExpensesSumByDate(year : Int, month : Int) : LiveData<Double> {
         return repository.getExpensesSumByDate(Frequency.OUNCE_A_DAY,year,month)
     }
 
-    fun getMonthlyExpensesSumByDate(year : Int, month : Int) : Double {
+    fun getMonthlyExpensesSumByDate(year : Int, month : Int) : LiveData<Double> {
         return repository.getExpensesSumByDate(Frequency.OUNCE_A_MONTH,year,month)
     }
 
