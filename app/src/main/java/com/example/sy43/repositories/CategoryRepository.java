@@ -34,8 +34,24 @@ public class CategoryRepository {
         databaseExecutor = DBexec.getExecutor();
     }
 
+    public MutableLiveData<Categorydb> getCategoryById(int id) {
+        MutableLiveData<Categorydb> data = new MutableLiveData<>();
 
-    // For now we fake the query
+        Futures.addCallback(
+                db.CategoryDAO().findByID(id),
+                new FutureCallback<Categorydb>() {
+                    public void onSuccess(Categorydb result) {
+                        data.postValue(result);
+                    }
+
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                //MainActivity.getAppContext().getMainExecutor()
+                databaseExecutor
+        );
+        return data;
+    }
     public MutableLiveData<List<Categorydb>> getCategories() {
         MutableLiveData<List<Categorydb>> data = new MutableLiveData<>();
 

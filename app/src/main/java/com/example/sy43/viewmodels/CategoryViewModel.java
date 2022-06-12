@@ -42,6 +42,9 @@ public class CategoryViewModel extends ViewModel {
         categories.postValue(currentCategories);
         */
     }
+    public LiveData<Categorydb> getCategoryById(int id){
+        return this.catRepo.getCategoryById(id);
+    }
     public LiveData<List<Categorydb>> getCategories() {
         return categories;
     }

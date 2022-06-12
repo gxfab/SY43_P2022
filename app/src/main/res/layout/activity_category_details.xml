@@ -4,96 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CategoryDetailsActivity"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="97dp">
+    tools:context=".CategoryDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="30dp">
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Veuillez insérer le montant de la dépense pour la catégorie selectionnée :"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="29dp" />
-
-            <EditText
-                android:id="@+id/editTextNumberDecimal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                tools:layout_editor_absoluteX="-12dp"
-                tools:layout_editor_absoluteY="42dp" />
-
-        </RelativeLayout>
-
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_gravity="center"
+            android:text="Details"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+        <include
+            layout="@layout/category_list_item"
+            android:id="@+id/categoryCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginHorizontal="24dp"
-            android:progress="0"
-            tools:layout_editor_absoluteX="118dp"
-            tools:layout_editor_absoluteY="416dp" />
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_weight="1"
+            android:layout_marginLeft="2sp"
+            android:layout_marginRight="2sp"
+        />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Une sous-catégorie :" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="La sous-catégorie selectionnée"
-
-                />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Je veux supprimer :"
-                 />
-
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="La catégorie selectionnée"
-                 />
-        </RelativeLayout>
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:background="@color/teal_200"
-            android:text="Confirmer"
-            tools:layout_editor_absoluteX="-41dp"
-            tools:layout_editor_absoluteY="201dp" />
-
+            android:layout_gravity="center"
+            android:text="Sub categories"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+        <ListView
+            android:id="@+id/categoryListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="0dp"
+            android:layout_marginBottom="50dp"
+             >
+        </ListView>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

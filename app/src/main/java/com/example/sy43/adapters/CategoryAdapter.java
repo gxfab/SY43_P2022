@@ -2,6 +2,7 @@ package com.example.sy43.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,10 +62,10 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
-                    Class detailsPage = category.isObjective ? ObjectiveDetailsActivity.class : CategoryDetailsActivity.class;
+                    Class detailsPage = category.getIsObjective() ? ObjectiveDetailsActivity.class : CategoryDetailsActivity.class;
                     Intent intent = new Intent(v.getContext(), detailsPage);
-                    v.getContext().startActivity(intent); */
+                    intent.putExtra("categoryId", category.getCatID());
+                    v.getContext().startActivity(intent);
                 }
             });
         }
