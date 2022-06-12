@@ -3,7 +3,10 @@ package com.sucelloztm.sucelloz.ui.charts;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -12,18 +15,25 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.sucelloztm.sucelloz.models.Savings;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BarChartGenerator {
+    private List<Savings> savingsArrayList;
 
-    BarChart barChart;
+    public BarChartGenerator(List<Savings> savingsArrayList) {
+        this.savingsArrayList = savingsArrayList;
+    }
+
+    private BarChart barChart;
 
     public BarChart getBarChart() {
         return barChart;
     }
 
-    public BarChart createBarChart(Context context, FrameLayout parent) {
+    public void createBarChart(Context context, FrameLayout parent) {
 
         barChart = new BarChart(context);
 
@@ -38,11 +48,12 @@ public class BarChartGenerator {
         barChart.setData(generateBarData());
 
         Legend l = barChart.getLegend();
-        l.setTypeface(tf);
+        l.setEnabled(false);
 
         YAxis leftAxis = barChart.getAxisLeft();
         leftAxis.setTypeface(tf);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+        leftAxis.setAxisMaximum(100f);
 
         barChart.getAxisRight().setEnabled(false);
 
@@ -51,53 +62,45 @@ public class BarChartGenerator {
 
 
         parent.addView(barChart);
-        return barChart;
-
+        barChart.invalidate();
     }
 
     private BarData generateBarData() {
 
-        ArrayList<BarEntry> entries1 = new ArrayList<>();
-        ArrayList<BarEntry> entries2 = new ArrayList<>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
 
-        int count = 12;
+        List<Float> entriesList = generateBarEntry();
 
-        for (int index = 0; index < count; index++) {
-            entries1.add(new BarEntry(0, getRandom(25, 25)));
-
-            // stacked
-            entries2.add(new BarEntry(0, new float[]{getRandom(13, 12), getRandom(13, 12)}));
+        for(int i = 0; i<entriesList.size();i++){
+            entries.add(new BarEntry(i,entriesList.get(i)));
+            Log.d("BarDataSetDebug",String.valueOf(entriesList.get(i)));
         }
 
-        BarDataSet set1 = new BarDataSet(entries1, "Bar 1");
-        set1.setColor(Color.rgb(60, 220, 78));
-        set1.setValueTextColor(Color.rgb(60, 220, 78));
-        set1.setValueTextSize(10f);
-        set1.setAxisDependency(YAxis.AxisDependency.LEFT);
+        BarDataSet set = new BarDataSet(entries,"Savings");
+        set.setColor(Color.rgb(0, 150, 255));
+        set.setValueTextColor(Color.rgb(0,0,0));
+        set.setValueTextSize(10f);
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-        BarDataSet set2 = new BarDataSet(entries2, "");
-        set2.setStackLabels(new String[]{"Stack 1", "Stack 2"});
-        set2.setColors(Color.rgb(61, 165, 255), Color.rgb(23, 197, 255));
-        set2.setValueTextColor(Color.rgb(61, 165, 255));
-        set2.setValueTextSize(10f);
-        set2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-        float groupSpace = 0.06f;
-        float barSpace = 0.02f; // x2 dataset
         float barWidth = 0.45f; // x2 dataset
-        // (0.45 + 0.02) * 2 + 0.06 = 1.00 -> interval per "group"
 
-        BarData d = new BarData(set1, set2);
+        BarData d = new BarData(set);
         d.setBarWidth(barWidth);
 
-        // make this BarData object grouped
-        d.groupBars(0, groupSpace, barSpace); // start at x = 0
 
         return d;
 
     }
 
-    protected float getRandom(float range, float start) {
-        return (float) (Math.random() * range) + start;
+    private List<Float> generateBarEntry(){
+        List<Float> percentageArrayList = new ArrayList<>();
+        for (Savings savings:
+             this.savingsArrayList) {
+            percentageArrayList.add(savings.getPercentage());
+
+        }
+        return percentageArrayList;
     }
+
 }

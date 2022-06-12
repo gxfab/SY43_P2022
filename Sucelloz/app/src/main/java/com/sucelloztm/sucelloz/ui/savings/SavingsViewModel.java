@@ -26,4 +26,6 @@ public class SavingsViewModel extends AndroidViewModel {
         }
         return this.currentSavings;
     }
+
+
 }

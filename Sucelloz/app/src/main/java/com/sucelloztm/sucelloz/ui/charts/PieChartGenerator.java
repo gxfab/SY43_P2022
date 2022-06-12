@@ -45,6 +45,7 @@ public class PieChartGenerator {
         pieChart.setTransparentCircleRadius(50f);
 
         Legend l = pieChart.getLegend();
+        l.setEnabled(false);
 
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
