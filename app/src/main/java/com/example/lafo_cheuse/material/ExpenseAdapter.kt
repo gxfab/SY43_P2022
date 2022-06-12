@@ -18,7 +18,6 @@ class ExpenseAdapter (var context : Activity) : RecyclerView.Adapter<ExpenseAdap
         val ie_name: EditText = itemView.findViewById(R.id.ie_name)
         val categoryEmojiButton: Button = itemView.findViewById<Button>(R.id.emojiButton)
         val ie_value: EditText = itemView.findViewById(R.id.ie_value)
-        val ie_date: EditText = itemView.findViewById(R.id.ie_date)
         val deleteButton: Button = itemView.findViewById<Button>(R.id.deleteButton2)
     }
 
