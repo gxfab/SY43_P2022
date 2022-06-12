@@ -107,14 +107,19 @@ public class CategoryRepository {
         );
     }
 
-    public void setCategories() {
-        /*dataSet.add(new Categorydb("Groceries", 10, 100,1));
-        dataSet.add(new Categorydb("Work", 10, 100));
-        dataSet.add(new Categorydb("School", 10, 100));
-        dataSet.add(new Categorydb("QSDQDSQ", 120, 140));
-        dataSet.add(new Categorydb("Buy a car", 0, 10000, true));
-        dataSet.add(new Categorydb("Buy a cqdqdqar", 0, 10000, true));*/
+    public void deleteCategory(int id){
+        Futures.addCallback(
+                db.CategoryDAO().delByID(id),
+                new FutureCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void stp) {
+                    }
 
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                databaseExecutor
+        );
     }
 
 }

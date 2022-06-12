@@ -42,6 +42,9 @@ interface CategoryDAO{
     @Query("SELECT * FROM Categorydb WHERE isObjective = 0")
     public ListenableFuture<List<Categorydb>> findCategories();
 
+    @Query("DELETE FROM categorydb WHERE CatID = :id")
+    public ListenableFuture<Void> delByID(int id);
+
     @Delete
     public ListenableFuture<Integer>
     deleteCategory(List<Categorydb> category);

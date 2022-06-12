@@ -1,13 +1,14 @@
 package com.example.sy43;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -16,8 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sy43.db.entity.Categorydb;
+import com.example.sy43.db.mainDB.DB;
+import com.example.sy43.db.mainDB.DBexec;
+import com.example.sy43.repositories.CategoryRepository;
 import com.example.sy43.viewmodels.CategoryViewModel;
 import com.example.sy43.viewmodels.TransactionViewModel;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
 
 public class ObjectiveDetailsActivity extends AppCompatActivity {
 
@@ -47,6 +53,7 @@ public class ObjectiveDetailsActivity extends AppCompatActivity {
                 price.setText("$" + receivedCategory.CurrentValue() + "/$" + receivedCategory.getMaxValue());
             }
         });
+
         final Button buttonPreview = findViewById(R.id.btnAddTransaction);
         buttonPreview.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -55,7 +62,19 @@ public class ObjectiveDetailsActivity extends AppCompatActivity {
                 int duration = Toast.LENGTH_LONG;
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-                
+            }
+        });
+
+        final Button del = findViewById(R.id.obj_delete);
+        del.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                categoryViewModel.delCategories(categoryId);
+                CharSequence text = "obj deleted";
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(MainActivity.getAppContext(), text, duration);
+                toast.show();
+                Intent intent = new Intent(v.getContext(), CategoryActivity.class);
+                v.getContext().startActivity(intent);
             }
         });
     }
