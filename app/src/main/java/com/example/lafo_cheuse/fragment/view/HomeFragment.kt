@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.lafo_cheuse.MainActivity
 import com.example.lafo_cheuse.R
+import com.example.lafo_cheuse.material.DatabaseDate
 import com.example.lafo_cheuse.models.ExpenseSumContainer
 import com.example.lafo_cheuse.models.Income
 import com.example.lafo_cheuse.viewmodels.CategoryViewModel
@@ -22,13 +23,16 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.DelicateCoroutinesApi
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment() : Fragment() {
     private val incomeViewModel : IncomeViewModel by viewModels()
     private val expenseViewModel : ExpenseViewModel by viewModels()
+    private val categoryViewModel : CategoryViewModel by viewModels()
 
     private var incomes : List<Income>? = null
-    private var budgetedExpenses : List<ExpenseSumContainer>? = null
+    private var budgetedExpenses : ArrayList<ExpenseSumContainer>? = null
     private var oneTimeExpenses : List<ExpenseSumContainer>? = null
 
     private val listGraphNames : List<String> = listOf("Revenus","Dépenses prévues","Dépenses effectives")
@@ -84,13 +88,14 @@ class HomeFragment() : Fragment() {
     }
 
     private fun watchBudget() {
+        val today : DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
         when(listGraphNames[indexSelectedGraph]) {
             "Revenus"-> {
-                incomeViewModel.getIncomes()?.observe(viewLifecycleOwner) { mIncomes ->
+                incomeViewModel.getIncomesForMonth(today.year,today.month).observe(viewLifecycleOwner) { mIncomes ->
                     incomes = mIncomes
                     createGraph(convertIncomesInList(incomes!!))
                 }
-                incomeViewModel.getIncomeSum().observe(viewLifecycleOwner) { sum ->
+                incomeViewModel.getIncomeSumByDate(today.year,today.month).observe(viewLifecycleOwner) { sum ->
                     totalDisplayer?.text = if(sum == null) {
                         resources.getString(R.string.budget_total_full,0.0)
                     } else {
@@ -100,8 +105,18 @@ class HomeFragment() : Fragment() {
             }
             "Dépenses prévues"-> {
                 expenseViewModel.getMonthlyExpensesSumByCategory().observe(viewLifecycleOwner) { mExpenses ->
-                    budgetedExpenses = mExpenses
-                    createGraph(convertExpensesInList(budgetedExpenses!!))
+                    budgetedExpenses = mExpenses as ArrayList<ExpenseSumContainer>?
+                    expenseViewModel.getMonthlyExpensesSumByDate(today.year,today.month).observe(viewLifecycleOwner) { expenseSum ->
+                        incomeViewModel.getIncomeSumByDate(today.year,today.month).observe(viewLifecycleOwner) { incomeSum ->
+                            if(expenseSum + incomeSum != 0.0) {
+                                val nonAllocatedSum = ExpenseSumContainer("Non alloué","❌",-(expenseSum + incomeSum))
+                                budgetedExpenses?.add(nonAllocatedSum)
+                            }
+                            createGraph(convertExpensesInList(budgetedExpenses!!))
+                        }
+
+                    }
+
                 }
                 expenseViewModel.getMonthlyExpensesSum().observe(viewLifecycleOwner) { sum ->
                     totalDisplayer?.text = if(sum == null) {
@@ -112,11 +127,11 @@ class HomeFragment() : Fragment() {
                 }
              }
             "Dépenses effectives" -> {
-                expenseViewModel.getOneTimeExpensesSumByCategory().observe(viewLifecycleOwner) { mExpenses ->
+                expenseViewModel.getOneTimeExpensesSumByCategoryAndMonth(today.year,today.month).observe(viewLifecycleOwner) { mExpenses ->
                     oneTimeExpenses = mExpenses
                     createGraph(convertExpensesInList(oneTimeExpenses!!))
                 }
-                expenseViewModel.getOneTimeExpensesSum().observe(viewLifecycleOwner) { sum ->
+                expenseViewModel.getOneTimeExpensesSumByDate(today.year,today.month).observe(viewLifecycleOwner) { sum ->
                     totalDisplayer?.text = if(sum == null) {
                         resources.getString(R.string.budget_total_full,0.0)
                     } else {
@@ -173,6 +188,11 @@ class HomeFragment() : Fragment() {
     private fun configureChartAppearance() {
         chartView?.setTouchEnabled(false)
         chartView!!.description.isEnabled = false
+    }
+
+    private fun convertDateInDatabaseDate(calendar: Calendar) : DatabaseDate {
+        return DatabaseDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(
+            Calendar.DAY_OF_MONTH))
     }
 
 }
