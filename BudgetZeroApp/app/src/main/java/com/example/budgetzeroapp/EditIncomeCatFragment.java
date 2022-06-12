@@ -44,7 +44,7 @@ public class EditIncomeCatFragment extends EditDataBaseFragment{
     public void setButtons() {
         save.setOnClickListener(v -> {
             String n = name.getText().toString(), mess;
-            if(n!= "") {
+            if(!n.equals("")) {
                 if(id ==0) database.insertIncomeCat(n);
                 else database.updateIncomeCat(id, n);
                 activity.replaceFragment(new HomeFragment());
