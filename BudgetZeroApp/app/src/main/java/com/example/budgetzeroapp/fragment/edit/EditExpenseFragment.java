@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.budgetzeroapp.HomeFragment;
+import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.DBHelper;
