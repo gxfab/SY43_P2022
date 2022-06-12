@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sy43.adapters.CategoryAdapter;
+import com.example.sy43.adapters.SubCategoryAdapter;
 import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.db.entity.SubCategory;
 import com.example.sy43.viewmodels.CategoryViewModel;
@@ -53,7 +54,12 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         subCategoryViewModel.getSubCategoriesByCatId(categoryId).observe(this, new Observer<List<SubCategory>>() {
             @Override
             public void onChanged(List<SubCategory> subCategories) {
-                Log.d("Test4", String.valueOf(subCategories.size()));
+                SubCategoryAdapter objArrayAdapter = new SubCategoryAdapter(
+                        CategoryDetailsActivity.this,
+                        R.layout.category_list_item,
+                        subCategories);
+                ListView objLv = (ListView) findViewById(R.id.objectiveListView);
+                objLv.setAdapter(objArrayAdapter);
             }
         });
     }

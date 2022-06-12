@@ -49,4 +49,20 @@ public class SubCategoryRepository {
         );
         return data;
     }
+
+    public void createSubCategory(SubCategory subCategory) {
+        Futures.addCallback(
+                db.SubCategoryDAO().insert(subCategory),
+                new FutureCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void stp) {
+                    }
+
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                databaseExecutor
+        );
+    }
+
 }
