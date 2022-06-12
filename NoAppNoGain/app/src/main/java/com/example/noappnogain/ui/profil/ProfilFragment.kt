@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
 import com.example.noappnogain.Changer
 import com.example.noappnogain.Sidentifier
@@ -56,11 +58,28 @@ class ProfilFragment : Fragment() {
         mUserInfoDatabase?.addListenerForSingleValueEvent(valueEventListener)
 
         val changepass = binding.btnChangepass
+        val logout = binding.btnLogout
         val deleteaccount = binding.btnDeleteaccount
 
         changepass.setOnClickListener(View.OnClickListener {
             val intent = Intent(activity, Changer::class.java)
             startActivity(intent)
+        })
+
+        logout.setOnClickListener(View.OnClickListener {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Se déconnecter")
+            builder.setMessage("Voulez-vous vraiment vous déconnecter?")
+            builder.setPositiveButton(
+                "OUI"
+            ) { dialog, which ->
+                startActivity(Intent(activity, Sidentifier::class.java))
+            }
+            builder.setNegativeButton(
+                "NO"
+            ) { dialog, which -> dialog.dismiss() }
+            builder.show()
+
         })
 
         deleteaccount.setOnClickListener {

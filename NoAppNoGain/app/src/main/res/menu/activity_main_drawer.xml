@@ -40,9 +40,5 @@
             android:icon="@drawable/ic_projet">
         </item>
 
-        <item android:id="@+id/nav_logout"
-            android:title="Se déconnecter"
-            android:icon="@drawable/ic_logout">
-        </item>
     </group>
 </menu>

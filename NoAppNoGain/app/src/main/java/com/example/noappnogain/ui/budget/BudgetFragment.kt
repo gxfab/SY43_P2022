@@ -75,6 +75,7 @@ class BudgetFragment : Fragment() {
 
         mBudgetDatabase?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                budgetRest = 0
                 budgetArrayList = arrayListOf()
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
@@ -84,6 +85,7 @@ class BudgetFragment : Fragment() {
                         }
                         budgetArrayList.add(data!!)
                     }
+                    budgetRest = budgetPlan - budgetRest
                     if(budgetRest < 0) {
                         budgetRestSetResult!!.setTextColor(Color.parseColor("#ff0000"));
                     }
@@ -99,7 +101,6 @@ class BudgetFragment : Fragment() {
         mMouvementDatabase?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 budgetPlan = 0
-                budgetRest = 0
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Data::class.java)
