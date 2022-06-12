@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.Month
 
 @Entity
 open class MoneyChange(
@@ -13,7 +14,16 @@ open class MoneyChange(
     @ColumnInfo(name = "moneyChangeName")
     var name: String,
 
-    category: Category
+    category: Category,
+
+    @ColumnInfo(name= "date_year")
+    var dateYear: Int? = null,
+
+    @ColumnInfo(name= "date_month")
+    var dateMonth: Int? = null,
+
+    @ColumnInfo(name= "date_day")
+    var dateDay: Int? = null
 ) {
 
     @PrimaryKey(autoGenerate = true)
