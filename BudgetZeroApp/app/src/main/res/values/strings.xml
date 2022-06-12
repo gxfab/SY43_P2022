@@ -25,7 +25,7 @@
     <string name="inc_cat_name">Category name</string>
 
     <string name="debt_name">Debt name</string>
-    <string name="debt_month">Due month</string>
+    <string name="debt_month">Months left </string>
     <string name="debt_amount">Total amount</string>
 
     <string name="save_cat_name">Category name</string>

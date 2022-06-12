@@ -24,8 +24,8 @@ public class EditIncomeCatFragment extends EditDataBaseFragment{
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_income_cat, parent, false);
-        save = view.findViewById(R.id.saveButton);
-        name = view.findViewById(R.id.editTextIncCatName);
+        save = view.findViewById(R.id.buttonSave);
+        name = view.findViewById(R.id.editTextIncName);
         return view;
     }
 
@@ -58,6 +58,9 @@ public class EditIncomeCatFragment extends EditDataBaseFragment{
                 else mess+=" updated";
                 message(mess);
             }else message("No category name");
+        });
+        cancel.setOnClickListener(v -> {
+            //Cancel
         });
     }
 }
