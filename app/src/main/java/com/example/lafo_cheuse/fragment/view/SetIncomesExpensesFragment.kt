@@ -1,17 +1,24 @@
 package com.example.lafo_cheuse.fragment.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lafo_cheuse.BudgetSetterActivity
 import com.example.lafo_cheuse.CreateIncomeExpenseActivity
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.material.ExpenseAdapter
+import com.example.lafo_cheuse.material.ExpenseSetterAdapter
+import com.example.lafo_cheuse.material.IncomeSetterAdapter
+import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
+import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +33,9 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class SetIncomesExpensesFragment : Fragment() {
+    private var expenseAdapter: ExpenseSetterAdapter? = null
+    private val incomeViewModel: IncomeViewModel by viewModels()
+    private val expenseViewModel: ExpenseViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +45,12 @@ class SetIncomesExpensesFragment : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_set_incomes_expenses, container, false)
         val  budgetDisplayButton : FloatingActionButton = view.findViewById(R.id.budgetSetterFragment)
         val incomeExpenseSetterButton : FloatingActionButton = view.findViewById(R.id.incomeExpenseSetterFragment)
+        val recyclerView : RecyclerView = view.findViewById<RecyclerView>(R.id.ie_recycler)
 
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        expenseAdapter = ExpenseSetterAdapter(context as Activity, expenseViewModel, incomeViewModel)
+        recyclerView.adapter = expenseAdapter
 
         budgetDisplayButton.setOnClickListener {
             val intent = Intent(activity, BudgetSetterActivity::class.java)
@@ -47,7 +62,6 @@ class SetIncomesExpensesFragment : Fragment() {
             startActivity(intent)
         }
 
-        val recyclerView : RecyclerView = view.findViewById<RecyclerView>(R.id.ie_recycler)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
 
@@ -55,4 +69,5 @@ class SetIncomesExpensesFragment : Fragment() {
         recyclerView.adapter = adapter
         return view
     }
+
 }
