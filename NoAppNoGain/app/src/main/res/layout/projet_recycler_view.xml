@@ -28,11 +28,20 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/montant_projet"
+            android:id="@+id/totalMontant_projet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Montant"
+            android:text="Montant total"
+            android:textSize="15dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/actualMontant_projet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Montant actuel"
             android:textSize="15dp"
             android:textAlignment="center" />
 

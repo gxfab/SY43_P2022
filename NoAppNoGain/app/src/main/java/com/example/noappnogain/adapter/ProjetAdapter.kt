@@ -1,15 +1,17 @@
-package com.example.noappnogain.Adapter
+package com.example.noappnogain.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.noappnogain.model.Projet
 import com.example.noappnogain.R
-import com.example.noappnogain.model.Data
+import java.text.SimpleDateFormat
+import java.util.*
 
-class ProjetAdapter(private val dataList: ArrayList<Data>) :
+class ProjetAdapter(private val projetList: ArrayList<Projet>) :
     RecyclerView.Adapter<ProjetAdapter.MyViewHolder>() {
 
 
@@ -25,24 +27,45 @@ class ProjetAdapter(private val dataList: ArrayList<Data>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        val currentitem = dataList[position]
+        val currentitem = projetList[position]
 
-        holder.dateLimite.text = currentitem.note
-        holder.type.text = currentitem.type
-        holder.amount.text = currentitem.amount.toString()
+        val SDFormat: SimpleDateFormat = SimpleDateFormat("d/M/yyyy")
+        val mDate = SDFormat.format(Date())
+        val todayDate = SDFormat.parse(mDate)
+        val projetDate = SDFormat.parse(currentitem.date)
+
+        val compare = todayDate.compareTo(projetDate)
+        when{
+            compare < 0 -> {
+                holder.datePicker.setTextColor(Color.parseColor("#0dff00"));
+            }
+            compare < 0 -> {
+                holder.datePicker.setTextColor(Color.parseColor("#ff0000"));
+            }
+            else -> {
+                holder.datePicker.setTextColor(Color.parseColor("#ff0000"));
+            }
+
+        }
+
+        holder.datePicker.text = currentitem.date
+        holder.name.text = currentitem.name
+        holder.totalAmount.text = currentitem.totalAmount.toString()
+        holder.actualAmount.text = currentitem.actualAmount.toString()
 
     }
 
     override fun getItemCount(): Int {
-        return dataList.size
+        return projetList.size
     }
 
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val type: TextView = itemView.findViewById(R.id.nom_projet)
-        val amount: TextView = itemView.findViewById(R.id.montant_projet)
-        val dateLimite: TextView = itemView.findViewById(R.id.date_limite_projet)
+        val name: TextView = itemView.findViewById(R.id.nom_projet)
+        val totalAmount: TextView = itemView.findViewById(R.id.totalMontant_projet)
+        val actualAmount: TextView = itemView.findViewById(R.id.actualMontant_projet)
+        val datePicker: TextView = itemView.findViewById(R.id.date_limite_projet)
 
         init {
             itemView.setOnClickListener {

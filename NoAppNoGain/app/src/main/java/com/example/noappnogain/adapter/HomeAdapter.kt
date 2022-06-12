@@ -1,14 +1,17 @@
 package com.example.noappnogain.adapter
 
+
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.R
 import com.example.noappnogain.model.Data
 
-class HomeAdapter(private val dataList: ArrayList<Data>) :
+
+class HomeAdapter(private var dataList: ArrayList<Data>) :
     RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
 
@@ -28,7 +31,14 @@ class HomeAdapter(private val dataList: ArrayList<Data>) :
 
         holder.date.text = currentitem.date
         holder.type.text = currentitem.type
+        if(currentitem.amount > 0) {
+            holder.amount.setTextColor(Color.parseColor("#0dff00"));
+        }
         holder.amount.text = currentitem.amount.toString()
+
+        holder.itemView.setOnClickListener {
+
+        }
 
     }
 
@@ -43,6 +53,8 @@ class HomeAdapter(private val dataList: ArrayList<Data>) :
         val date: TextView = itemView.findViewById(R.id.date_txt_home)
         val type: TextView = itemView.findViewById(R.id.type_txt_home)
         val amount: TextView = itemView.findViewById(R.id.amount_txt_home)
+
+
 
     }
 

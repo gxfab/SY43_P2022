@@ -2,20 +2,7 @@
 <resources>
 
     <string-array name="categorie">
-        <item>Santé</item>
-        <item>Alimentation</item>
-        <item>Habillement</item>
-        <item>Animaux</item>
-        <item>Cadeaux offerts</item>
-        <item>Internet / TV / Téléphone</item>
-        <item>Sports / Loisirs / Culture</item>
-        <item>Education / Formation</item>
-        <item>Enfants</item>
-        <item>Impôts</item>
-        <item>Transport</item>
-    </string-array>
-
-    <string-array name="depense">
+        <item>---</item>
         <item>Santé</item>
         <item>Alimentation</item>
         <item>Habillement</item>
@@ -30,6 +17,7 @@
     </string-array>
 
     <string-array name="annee">
+        <item>---</item>
         <item>2022</item>
         <item>2021</item>
         <item>2020</item>
@@ -39,6 +27,7 @@
     </string-array>
 
     <string-array name="mois">
+        <item>---</item>
         <item>Janvier</item>
         <item>Fevrier</item>
         <item>Mars</item>

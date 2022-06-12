@@ -1,13 +1,12 @@
-package com.example.noappnogain.Adapter
+package com.example.noappnogain.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.noappnogain.Model.Category
+import com.example.noappnogain.model.Category
 import com.example.noappnogain.R
-import com.example.noappnogain.model.Data
 
 class CategoryAdapter(private val categoryList: ArrayList<Category>) :
     RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {

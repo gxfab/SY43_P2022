@@ -31,7 +31,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NOM :"
+                        android:text="CATEGORIE :"
                         android:textColor="@color/black" />
 
                 </RelativeLayout>
@@ -42,12 +42,13 @@
                     android:layout_margin="10dp"
                     android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/nom_edt"
+                    <Spinner
+                        android:id="@+id/categorie_edt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/white"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:entries="@array/categorie"
+                        android:spinnerMode="dropdown"/>
 
                 </RelativeLayout>
             </LinearLayout>
@@ -69,7 +70,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MONTANT TOTAL : "
+                        android:text="MONTANT: "
                         android:textColor="@color/black" />
 
                 </RelativeLayout>
@@ -85,36 +86,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/white"
-                        android:inputType="number"
+                        android:inputType="numberSigned"
                         android:textColor="@color/black" />
 
                 </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/input"
-                android:layout_margin="4dp">
-
-                <TextView
-                    android:padding="10dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DATE LIMITE : "
-                    android:textAlignment="center"
-                    android:textColor="@color/black" />
-
-                <DatePicker
-                    android:layout_gravity="center_horizontal"
-                    android:id="@+id/date_limite_edt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:calendarViewShown="false"
-                    android:datePickerMode="spinner" />
-
             </LinearLayout>
 
             <LinearLayout

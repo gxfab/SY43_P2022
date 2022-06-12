@@ -123,8 +123,8 @@
                         android:id="@+id/montant_edt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
                         android:background="@drawable/white"
+                        android:inputType="numberSigned"
                         android:textColor="@color/black" />
 
                 </RelativeLayout>

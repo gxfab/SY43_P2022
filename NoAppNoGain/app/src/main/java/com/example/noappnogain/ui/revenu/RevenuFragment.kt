@@ -6,33 +6,28 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.noappnogain.Adapter.CategoryAdapter
-import com.example.noappnogain.Model.Category
+import com.example.noappnogain.model.Category
 import com.example.noappnogain.R
-import com.example.noappnogain.adapter.IncomeAdapter
+import com.example.noappnogain.adapter.HomeAdapter
 import com.example.noappnogain.databinding.FragmentRevenuBinding
 import com.example.noappnogain.model.Data
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class RevenuFragment : Fragment() {
 
     private var _binding: FragmentRevenuBinding? = null
     private var mAuth: FirebaseAuth? = null
-    private var mIncomeDatabase: DatabaseReference? = null
+    private var mMouvementDatabase: DatabaseReference? = null
     private var mUser: FirebaseUser? = null
-    private var mCategoryDatabase: DatabaseReference? = null
 
-    private lateinit var incomeArrayList: ArrayList<Data>
+    private lateinit var mouvementArrayList: ArrayList<Data>
     private lateinit var catArrayList: ArrayList<Category>
 
     // This property is only valid between onCreateView and
@@ -47,71 +42,51 @@ class RevenuFragment : Fragment() {
 
         _binding = FragmentRevenuBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        incomeArrayList = arrayListOf<Data>()
         catArrayList = arrayListOf<Category>()
-
+        mouvementArrayList = arrayListOf<Data>()
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth?.currentUser
+        val recyclerView: RecyclerView = binding.recyclerIdIncome
+
 
         val btnAjouter: Button = binding.btnAjouter
 
         btnAjouter.setOnClickListener(View.OnClickListener {
-            incomeDataInsert()
+            dataInsert()
         })
-
-        val catRecyclerView: RecyclerView = binding.recyclerIdCategorie
-        mCategoryDatabase = FirebaseDatabase.getInstance().reference.child("Category")
-
-        mCategoryDatabase?.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                if (snapshot.exists()) {
-                    for (userSnapshot in snapshot.children) {
-                        val category = userSnapshot.getValue(Category::class.java)
-                        catArrayList.add(category!!)
-                    }
-
-                    catRecyclerView.adapter = CategoryAdapter(catArrayList)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-
-        val recyclerView: RecyclerView = binding.recyclerIdIncome
 
         if (mAuth!!.currentUser != null) {
             val uid = mUser!!.uid
-            mIncomeDatabase =
-                FirebaseDatabase.getInstance().reference.child("IncomeData").child(uid)
+            mMouvementDatabase =
+                FirebaseDatabase.getInstance().reference.child("MouvementData").child(uid)
 
         }
 
-
-        mIncomeDatabase?.addValueEventListener(object : ValueEventListener {
+        mMouvementDatabase?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
+                mouvementArrayList = arrayListOf<Data>()
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
-                        val data = userSnapshot.getValue(Data::class.java)
-                        incomeArrayList.add(data!!)
+                        val data: Data? = userSnapshot.getValue(Data::class.java)
+                        if (data != null) {
+                            if (data.amount > 0) {
+                                mouvementArrayList.add(data!!)
+                            }
+                        }
                     }
-
-                    recyclerView.adapter = IncomeAdapter(incomeArrayList)
+                    recyclerView.adapter = HomeAdapter(mouvementArrayList)
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
+
 
         return root
     }
 
-    fun incomeDataInsert() {
+    fun dataInsert() {
         val mydialog = AlertDialog.Builder(activity)
         val inflater = LayoutInflater.from(activity)
         val myviewm: View = inflater.inflate(R.layout.ajouter_revenu, null)
@@ -120,15 +95,27 @@ class RevenuFragment : Fragment() {
         dialog.setCancelable(false)
         val edtAmount = myviewm.findViewById<EditText>(R.id.montant_edt)
         val edtCat = myviewm.findViewById<Spinner>(R.id.categorie_edt)
-
+        ArrayAdapter.createFromResource(
+            activity!!,
+            R.array.categorie,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            edtCat.adapter = adapter
+        }
+        var edtType: String? = null
         edtCat.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-                val item = parent.getItemAtPosition(pos)
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                edtType = edtCat.selectedItem.toString()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         })
 
-        val edtType: String = edtCat.selectedItem.toString()
         val edtNote = myviewm.findViewById<EditText>(R.id.nom_edt)
         val btnSave = myviewm.findViewById<Button>(R.id.btnSave)
         val btnCancel = myviewm.findViewById<Button>(R.id.btnCancel)
@@ -146,11 +133,12 @@ class RevenuFragment : Fragment() {
                 return@OnClickListener
             }
             if (mAuth?.currentUser != null) {
-                val id: String? = mIncomeDatabase?.push()?.key
-                val mDate = DateFormat.getDateInstance().format(Date())
+                val id: String? = mMouvementDatabase?.push()?.key
+                val sdFormat: SimpleDateFormat = SimpleDateFormat("d/M/yyyy")
+                val mDate = sdFormat.format(Date())
                 val data = Data(ouramountinte, type, note, id, mDate)
                 if (id != null) {
-                    mIncomeDatabase?.child(id)?.setValue(data)
+                    mMouvementDatabase?.child(id)?.setValue(data)
                 }
             }
             dialog.dismiss()

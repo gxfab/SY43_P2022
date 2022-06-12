@@ -7,17 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.noappnogain.Adapter.ProjetAdapter
+import com.example.noappnogain.adapter.ProjetAdapter
+import com.example.noappnogain.model.Projet
 import com.example.noappnogain.R
 import com.example.noappnogain.databinding.FragmentProjetBinding
-import com.example.noappnogain.model.Data
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ProjetFragment : Fragment() {
@@ -27,7 +28,7 @@ class ProjetFragment : Fragment() {
     private var mUser: FirebaseUser? = null
     private var _binding: FragmentProjetBinding? = null
 
-    private lateinit var projetArrayList: ArrayList<Data>
+    private lateinit var projetArrayList: ArrayList<Projet>
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -48,11 +49,10 @@ class ProjetFragment : Fragment() {
 
         val btnAjouter: Button = binding.btnAjouter
 
-        btnAjouter.setOnClickListener(View.OnClickListener {
+        btnAjouter.setOnClickListener {
             projetDataInsert()
-        })
-
-        projetArrayList = arrayListOf<Data>()
+        }
+        projetArrayList = arrayListOf()
 
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth?.currentUser
@@ -67,16 +67,12 @@ class ProjetFragment : Fragment() {
 
         mProjetDatabase?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
+                projetArrayList = arrayListOf()
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
-                        val data = userSnapshot.getValue(Data::class.java)
-                        if (data != null) {
-
-                        }
+                        val data = userSnapshot.getValue(Projet::class.java)
                         projetArrayList.add(data!!)
                     }
-
                     recyclerView.adapter = ProjetAdapter(projetArrayList)
                 }
             }
@@ -90,7 +86,7 @@ class ProjetFragment : Fragment() {
         return root
     }
 
-    fun projetDataInsert() {
+    private fun projetDataInsert() {
 
         val mydialog = AlertDialog.Builder(activity)
         val inflater = LayoutInflater.from(activity)
@@ -99,32 +95,36 @@ class ProjetFragment : Fragment() {
         val dialog = mydialog.create()
         dialog.setCancelable(false)
         val edtAmount = myviewm.findViewById<EditText>(R.id.montant_edt)
-        val edtDateLimite = myviewm.findViewById<EditText>(R.id.date_limite_edt)
-        val edtNote = myviewm.findViewById<EditText>(R.id.nom_edt)
+        val edtDateLimite = myviewm.findViewById<DatePicker>(R.id.date_limite_edt)
+        val edtNom = myviewm.findViewById<EditText>(R.id.nom_edt)
         val btnSave = myviewm.findViewById<Button>(R.id.btnSave)
         val btnCancel = myviewm.findViewById<Button>(R.id.btnCancel)
+        Calendar.getInstance()
 
         btnSave.setOnClickListener(View.OnClickListener {
-            val note = edtDateLimite.text.toString().trim { it <= ' ' }
+            val totalAmount = 0
+            val isFinished = false
+            val day = edtDateLimite.dayOfMonth.toString()
+            val month = edtDateLimite.month.toString()
+            val year = edtDateLimite.year.toString()
+            val date = day.plus("/").plus(month).plus("/").plus(year)
             val amount = edtAmount.text.toString().trim { it <= ' ' }
-            val type = edtNote.text.toString().trim { it <= ' ' }
+            val name = edtNom.text.toString().trim { it <= ' ' }
             if (TextUtils.isEmpty(amount)) {
                 edtAmount.error
                 return@OnClickListener
             }
-            val ouramountinte = amount.toInt()
-            if (TextUtils.isEmpty(type)) {
-                edtNote.error
-                return@OnClickListener
-            }
-            if (TextUtils.isEmpty(note)) {
-                edtNote.error
+            val actualAmount = amount.toInt()
+            if (TextUtils.isEmpty(name)) {
+                edtNom.error
                 return@OnClickListener
             }
             if (mAuth?.currentUser != null) {
+
                 val id: String? = mProjetDatabase?.push()?.key
-                val mDate = DateFormat.getDateInstance().format(Date())
-                val data = Data(ouramountinte, type, note, id, mDate)
+                val sdFormat = SimpleDateFormat("dd/MM/yyyy")
+                sdFormat.format(Date())
+                val data = Projet(actualAmount, totalAmount, isFinished, name, id, date)
                 if (id != null) {
                     mProjetDatabase?.child(id)?.setValue(data)
                 }
