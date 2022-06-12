@@ -62,7 +62,6 @@ public class CreateActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {
                 final List<String> list = new ArrayList<String>();
-                list.add("");
                 for (Categorydb cat: receivedCategories) {
                     list.add(cat.getCatName());
                 }
@@ -75,18 +74,17 @@ public class CreateActivity extends AppCompatActivity {
         });
 
 
+        Switch subSwitch = (Switch) findViewById(R.id.switchIsSubCat);
 
         Button cat = (Button) findViewById(R.id.btnCatConfirm);
         cat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isCategory = spinnerChooseCategory.getSelectedItemPosition() == 0;
+                boolean isCategory = !subSwitch.isChecked();
                 if (isCategory) {
                     Categorydb cat = new Categorydb();
                     TextView name = (TextView) findViewById(R.id.txtCategory);
                     cat.setCatName(name.getText().toString());
-                    cat.setMaxValue(50);
-                    cat.setCurrentValue(5);
                     cat.setObjective(false);
                     categoryViewModel.createCategory(cat);
                 } else {
@@ -131,8 +129,7 @@ public class CreateActivity extends AppCompatActivity {
             }
         });
 
-        Switch subSwitch = (Switch) findViewById(R.id.switchIsSubCat);
-        visibilitySubcategoryFields(View.INVISIBLE);
+         visibilitySubcategoryFields(View.INVISIBLE);
         subSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {

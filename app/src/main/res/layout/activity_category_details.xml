@@ -80,17 +80,20 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextNumberDecimal2"
+                    android:id="@+id/editMontant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:hint="Amount of money"
                     android:inputType="numberDecimal"
                     tools:layout_editor_absoluteX="-12dp"
                     tools:layout_editor_absoluteY="142dp" />
 
                 <Spinner
-                    android:id="@+id/planets_spinner"
+                    android:id="@+id/spinnerChooseSubCategory"
                     android:layout_width="match_parent"
+                    android:spinnerMode="dialog"
+                    android:ellipsize="marquee"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 

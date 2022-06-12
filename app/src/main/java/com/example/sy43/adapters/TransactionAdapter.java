@@ -47,12 +47,9 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
         Transaction trans = getItem(position);
 
         if (trans != null) {
-            /*TextView price = v.findViewById(R.id.tvCurrentPrice);
-            TextView name = v.findViewById(R.id.tvName);
-            ProgressBar progressBar = v.findViewById(R.id.progressBar);
-            progressBar.setMax((int) category.getMaxValue());
-            progressBar.setProgress((int) category.CurrentValue(), true);
-            name.setText(category.getCatName());*/
+            /* TODO
+            TextView price = v.findViewById(R.id.tvCurrentPrice);
+            TextView name = v.findViewById(R.id.tvName);*/
         }
 
         return v;

@@ -30,9 +30,11 @@ public class TransactionViewModel extends ViewModel {
     public LiveData<List<Transaction>> getTransactionsFromCat(int catId){
         return transactionRepo.getTransactionsFromCat(catId);
     }
-
     public LiveData<List<Transaction>> getTransactions(){
         return trans;
     }
 
+    public void createTransaction(final Transaction transaction) {
+        this.transactionRepo.createTransaction(transaction);
+    }
 }

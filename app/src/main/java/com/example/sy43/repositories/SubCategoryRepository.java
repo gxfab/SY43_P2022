@@ -31,6 +31,7 @@ public class SubCategoryRepository {
         databaseExecutor = DBexec.getExecutor();
     }
 
+
     public MutableLiveData<List<SubCategory>> getSubCategoriesByCatId(int id) {
         MutableLiveData<List<SubCategory>> data = new MutableLiveData<>();
 
