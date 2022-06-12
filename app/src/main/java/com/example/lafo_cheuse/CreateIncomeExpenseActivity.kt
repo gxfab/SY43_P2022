@@ -31,7 +31,7 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         }
 
         confirmButton.setOnClickListener{
-            val intent = Intent(this, BudgetSetterFragment::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
