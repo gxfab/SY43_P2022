@@ -1,35 +1,21 @@
 package com.example.budgetzeroapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
-import android.view.Window;
 import android.widget.LinearLayout;
 
 import com.example.budgetzeroapp.databinding.ActivityMainBinding;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
+import com.example.budgetzeroapp.fragment.BudgetFragment;
+import com.example.budgetzeroapp.fragment.CashFlowFragment;
+import com.example.budgetzeroapp.fragment.SavingsFragment;
+import com.example.budgetzeroapp.tool.OptionsMenu;
 
 
 public class MainActivity extends OptionsMenu {
@@ -85,7 +71,7 @@ public class MainActivity extends OptionsMenu {
 
     }
 
-    protected void replaceFragment(Fragment frag){
+    public void replaceFragment(Fragment frag){
         FragmentManager fragManager = getSupportFragmentManager();
         FragmentTransaction fragTransaction = fragManager.beginTransaction();
         fragTransaction.replace(R.id.frame_layout,frag);

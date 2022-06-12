@@ -4,7 +4,7 @@
     android:id="@+id/scrollView1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".EditExpenseFragment" >
+    tools:context=".fragment.edit.EditExpenseFragment" >
 
     <RelativeLayout
         android:layout_width="match_parent"

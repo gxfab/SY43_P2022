@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp;
+package com.example.budgetzeroapp.tool.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.tool.item.ListItem;
+import com.example.budgetzeroapp.tool.item.ProgressBarItem;
 
 import java.util.List;
 
@@ -34,7 +38,7 @@ public class ProgressBarAdapter extends ArrayAdapter<ProgressBarItem> {
 
             if (p != null) {
                 TextView tt1 = (TextView) v.findViewById(R.id.ListItemName);
-                if (tt1 != null) tt1.setText(p.name);
+                if (tt1 != null) tt1.setText(p.getName());
             }
             return v;
         }
