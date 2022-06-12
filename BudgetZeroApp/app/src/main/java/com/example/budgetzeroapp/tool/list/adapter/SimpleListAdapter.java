@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp.tool.adapter;
+package com.example.budgetzeroapp.tool.list.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.tool.item.ListItem;
+import com.example.budgetzeroapp.tool.list.item.ListItem;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class SimpleListAdapter extends ArrayAdapter<ListItem> {
         ListItem p = getItem(position);
 
         if (p != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.ListItemName);
+            TextView tt1 = (TextView) v.findViewById(R.id.list_view_name);
             if (tt1 != null) tt1.setText(p.getName());
         }
         return v;

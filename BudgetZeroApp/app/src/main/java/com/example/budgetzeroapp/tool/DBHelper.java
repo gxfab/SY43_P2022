@@ -1,9 +1,8 @@
 package com.example.budgetzeroapp.tool;
-import static java.lang.Integer.parseInt;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -57,6 +56,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SAV_CAT_COL_PERCENTAGE = "percentage";
     public static final String SAV_CAT_COL_PRIORITY_ORDER = "priority_order";
 
+    public static final String REQ_SUM = "sum";
+
     public static final int TYPE_EXP = 1;
     public static final int TYPE_INC = 2;
     public static final int TYPE_DEBT = 3;
@@ -73,6 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(
                 "create table "+EXP_TABLE_NAME+
                         "("+EXP_COL_ID+" integer primary key autoincrement, " +
@@ -285,12 +287,59 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.rawQuery( request, null );
     }
 
+    public void test(){
+        //SQLiteDatabase db = this.getReadableDatabase();
+
+    }
+    public boolean exists(Context context, String dbName) {
+        File dbFile = context.getDatabasePath(dbName);
+        return dbFile.exists();
+    }
+
     public Cursor getExpenseFromID(int id){
         Cursor exp = getData(
                 "select * from "+EXP_TABLE_NAME+
                         " where "+EXP_COL_ID+"="+id);
         exp.moveToFirst();
         return exp;
+    }
+
+    public float getSumExp(){
+        Cursor res = getData("select sum("+EXP_COL_AMOUNT+") as "+REQ_SUM+
+                " from "+EXP_TABLE_NAME+
+                " where "+EXP_COL_TYPE+"<>"+TYPE_INC);
+        res.moveToFirst();
+        return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
+    }
+
+    public float getSumSav(){
+        Cursor res = getData("select sum("+EXP_COL_AMOUNT+") as "+REQ_SUM+
+                " from "+EXP_TABLE_NAME+
+                " where "+EXP_COL_TYPE+"="+TYPE_SAV);
+        res.moveToFirst();
+        return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
+    }
+
+    public float getSumDebt(){
+        Cursor res = getData("select sum("+EXP_COL_AMOUNT+") as "+REQ_SUM+
+                " from "+EXP_TABLE_NAME+
+                " where "+EXP_COL_TYPE+"="+TYPE_DEBT);
+        res.moveToFirst();
+        return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
+    }
+    public float getSumCatExp(int idCat){
+        Cursor res = getData("select sum("+EXP_COL_AMOUNT+") as "+REQ_SUM+
+                " from "+EXP_TABLE_NAME+
+                " where "+EXP_COL_TYPE+"="+TYPE_EXP+
+                " and ("+EXP_CAT_COL_ID+"="+idCat+
+                " or "+EXP_CAT_COL_ID_PARENT+"="+idCat+")");
+        res.moveToFirst();
+        return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
+    }
+
+    public Cursor getMainExpCat(){
+        return getData("select * from "+EXP_CAT_TABLE_NAME+
+                " where "+EXP_CAT_COL_IS_SUB+" = 0");
     }
 
     public Cursor getExpenseCatFromID(int id){

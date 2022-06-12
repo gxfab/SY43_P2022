@@ -15,7 +15,7 @@ import com.example.budgetzeroapp.R;
  * Use the {@link SavingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SavingsFragment extends Fragment {
+public class SavingsFragment extends DataBaseFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

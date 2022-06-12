@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.budgetzeroapp.HomeFragment;
+import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 
