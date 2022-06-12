@@ -1,6 +1,8 @@
 package com.example.sy43.db.DAO;
 
 import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 
@@ -12,6 +14,8 @@ import androidx.room.Dao;
 
 @Dao
 public interface SubCategoryDAO{
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public ListenableFuture<Void> insert(SubCategory... subCategory);
 
     @Query("SELECT * FROM SubCategory WHERE SubCatID LIKE :SubCatID")
     public ListenableFuture<List<SubCategory>> findByID(int SubCatID);

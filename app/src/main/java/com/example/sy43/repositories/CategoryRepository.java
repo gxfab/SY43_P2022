@@ -60,6 +60,7 @@ public class CategoryRepository {
                 new FutureCallback<List<Categorydb>>() {
                     public void onSuccess(List<Categorydb> result) {
                         data.postValue(result);
+                        
                     }
 
                     public void onFailure(@NonNull Throwable thrown) {
