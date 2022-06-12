@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sy43.CategoryActivity;
 import com.example.sy43.CategoryDetailsActivity;

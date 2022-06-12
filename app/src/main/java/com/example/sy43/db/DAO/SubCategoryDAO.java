@@ -29,6 +29,9 @@ public interface SubCategoryDAO{
     @Query("SELECT * FROM SubCategory WHERE Category LIKE :category")
     public ListenableFuture<List<SubCategory>> findByCategoryID(int category);
 
+    @Query("DELETE FROM subcategory WHERE SubCatID = :id")
+    public ListenableFuture<Void> delSubByID(int id);
+
     @Delete
     void deleteSubCategory(SubCategory Subcategory);
 }

@@ -66,4 +66,19 @@ public class SubCategoryRepository {
         );
     }
 
+    public void deleteSubCategory(int id){
+        Futures.addCallback(
+                db.SubCategoryDAO().delSubByID(id),
+                new FutureCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void stp) {
+                    }
+
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                databaseExecutor
+        );
+    }
+
 }

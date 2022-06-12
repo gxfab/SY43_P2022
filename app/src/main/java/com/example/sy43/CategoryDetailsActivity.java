@@ -69,7 +69,8 @@ public class CategoryDetailsActivity extends AppCompatActivity {
                 SubCategoryAdapter objArrayAdapter = new SubCategoryAdapter(
                         CategoryDetailsActivity.this,
                         R.layout.category_list_item,
-                        subCategories);
+                        subCategories,
+                        subCategoryViewModel);
                 ListView objLv = (ListView) findViewById(R.id.objectiveListView);
                 objLv.setAdapter(objArrayAdapter);
 
