@@ -23,6 +23,10 @@ public class PieChartGenerator {
 
     private PieChart pieChart;
 
+    public PieChart getPieChart() {
+        return pieChart;
+    }
+
     public PieChart createPieChart(Context context, FrameLayout parent)
     {
 
