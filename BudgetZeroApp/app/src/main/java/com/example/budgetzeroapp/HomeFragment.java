@@ -24,18 +24,16 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private PieChart pieChart;
-
     public HomeFragment() {
         // Required empty public constructor
     }
 
     public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-
-        return fragment;
+        return new HomeFragment();
     }
 
     @Override
@@ -46,13 +44,12 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);;
+        super.onViewCreated(view, savedInstanceState);
 
         /**Seekbar - Not allowing the user to move the cursor**/
         SeekBar seekbar = view.findViewById(R.id.seekbar_shopping);

@@ -53,6 +53,11 @@
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_budget.xml" value="0.16875" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/menu/activity_select_expense_type.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/menu/display_expense.xml" value="0.27291666666666664" />
+        <entry key="app/src/main/res/drawable/ic_default.xml" value="0.3305" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/progress_bar_cat.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/layout/progress_bar_health.xml" value="0.19114583333333332" />
+        <entry key="app/src/main/res/layout/progress_bar_leisure.xml" value="0.19114583333333332" />
       </map>
     </option>
   </component>

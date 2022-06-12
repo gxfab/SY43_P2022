@@ -11,8 +11,8 @@ import java.util.List;
 
 public class SimpleListAdapter extends ArrayAdapter<ListItem> {
 
-    private int resourceLayout;
-    private Context mContext;
+    protected int resourceLayout;
+    protected Context mContext;
 
     public SimpleListAdapter(Context context, int resource, List<ListItem> items) {
         super(context, resource, items);

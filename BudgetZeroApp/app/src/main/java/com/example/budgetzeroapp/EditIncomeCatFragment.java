@@ -10,7 +10,7 @@ import android.widget.Toast;
 // nom de la catégorie, bouton save
 public class EditIncomeCatFragment extends EditDataBaseFragment{
 
-    private Button save;
+    private Button save, cancel;
     private String defaultName;
     private EditText name;
 
@@ -54,7 +54,6 @@ public class EditIncomeCatFragment extends EditDataBaseFragment{
                 else mess+=" updated";
                 message(mess);
             }else message("No category name");
-
         });
     }
 }

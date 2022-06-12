@@ -44,7 +44,8 @@ public abstract class DataBaseFragment extends Fragment {
 
     public void redirect(Fragment f) {activity.replaceFragment(f); }
 
-    // Cursor must contain 2 columns : "name" and "id"
+
+    //ListView list = <ViewExpenseFragment>
     public <F extends DataBaseFragment> ListView clickableListNameID(
             View view, int listViewID, int layout, List<ListItem> items, Class<F> cls) {
 
@@ -67,11 +68,11 @@ public abstract class DataBaseFragment extends Fragment {
     }
 
     public <F extends DataBaseFragment> Spinner clickableSpinnerNameID(
-            View view, int listViewID, int layout, List<ListItem> items, Class<F> cls) {
+            View view, int spinnerID, int layout, List<ListItem> items, Class<F> cls) {
 
         SimpleListAdapter arrayAdapter=new SimpleListAdapter(context,layout, items);
         Spinner obj;
-        obj = (Spinner) view.findViewById(listViewID);
+        obj = (Spinner) view.findViewById(spinnerID);
         obj.setAdapter(arrayAdapter);
         obj.setOnItemClickListener((parent, v, position, id) -> {
             ListItem item = (ListItem)obj.getItemAtPosition(position);
