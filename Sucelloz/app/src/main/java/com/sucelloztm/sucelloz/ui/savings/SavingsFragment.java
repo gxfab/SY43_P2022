@@ -14,8 +14,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.mikephil.charting.charts.BarChart;
 import com.sucelloztm.sucelloz.databinding.SavingsFragmentBinding;
 import com.sucelloztm.sucelloz.models.Savings;
+import com.sucelloztm.sucelloz.ui.charts.BarChartGenerator;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSavingsDialogFragment;
 
 import java.util.ArrayList;
@@ -44,6 +46,12 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
         savingsViewModel = new ViewModelProvider(this).get(SavingsViewModel.class);
         currentSavingsList = new ArrayList<>();
         SavingsAdapter adapter = new SavingsAdapter(currentSavingsList);
+
+        BarChartGenerator barGen = new BarChartGenerator();
+
+        BarChart barChart = barGen.createBarChart(getContext(),binding.frameLayoutSavings);
+        barChart.invalidate();
+
         final Observer<List<Savings>> savingsDataSet = new Observer<List<Savings>>() {
             @Override
             public void onChanged(List<Savings> savingsList) {
