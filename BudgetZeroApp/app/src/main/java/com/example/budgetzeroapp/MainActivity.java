@@ -85,7 +85,7 @@ public class MainActivity extends OptionsMenu {
 
     }
 
-    private void replaceFragment(Fragment frag){
+    protected void replaceFragment(Fragment frag){
         FragmentManager fragManager = getSupportFragmentManager();
         FragmentTransaction fragTransaction = fragManager.beginTransaction();
         fragTransaction.replace(R.id.frame_layout,frag);
