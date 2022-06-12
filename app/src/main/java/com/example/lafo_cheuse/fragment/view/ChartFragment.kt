@@ -25,15 +25,21 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 import kotlin.collections.ArrayList
 
-
+/**
+ * The fragment where the remaining expenses to do are displayed by category
+ *
+ * @property chartView - a [BarChart] where the informations will be displayed
+ * @property expenseViewModel - an instance of [ExpenseViewModel]
+ * @property categoryViewModel - an instance of [CategoryViewModel]
+ * @property listCategories - a list of all the different categories. One use the [selectedCategory] index to go through it.
+ * @property selectedCategory - an index to go through [listCategories]
+ *
+ */
 class ChartFragment : Fragment() {
     var chartView : BarChart? = null
 
     private val expenseViewModel : ExpenseViewModel by viewModels()
     private val categoryViewModel : CategoryViewModel by viewModels()
-
-    private var budgetedExpenses : List<ExpenseSumContainer>? = null
-    private var oneTimeExpenses : List<ExpenseSumContainer>? = null
 
     private var listCategories : List<Category>? = null
     private var selectedCategory : Int = 0
@@ -54,6 +60,12 @@ class ChartFragment : Fragment() {
 
     }
 
+    /**
+     * A method which will create a bar chart and display it on the fragment
+     *
+     * @param entries - An [ArrayList] of [BarEntry] with the data to put on the graph
+     * @param maximumValue - A [Float] which stand for the maximum of the gauge (the ceiling of expenses)
+     */
     private fun createGraph(entries : ArrayList<BarEntry>, maximumValue : Float) {
         configureChartAppearance(maximumValue)
 
@@ -83,6 +95,11 @@ class ChartFragment : Fragment() {
         chartView!!.animateX(2000)
     }
 
+    /**
+     * Method to configure the chart appearance. We use a specific renderer in this method.
+     *
+     * @param chartMaximum - a [Float] which set the maximum value of the gauge
+     */
     private fun configureChartAppearance(chartMaximum : Float) {
         chartView?.setTouchEnabled(false)
         chartView!!.renderer = RoundedBarChart(chartView,chartView!!.animator,chartView!!.viewPortHandler, 50)
@@ -107,6 +124,11 @@ class ChartFragment : Fragment() {
         chartView!!.axisRight.isEnabled = false
     }
 
+    /**
+     * Method to initialize the categories and put hem in the [listCategories] list. Then, we display them in budgetName constance.
+     *
+     * @param view - The inflater of the [ChartFragment] instance
+     */
     private fun initCategories(view : View) {
         categoryViewModel.getCategories()?.observe(viewLifecycleOwner) { mCategories ->
             listCategories = mCategories
@@ -135,10 +157,20 @@ class ChartFragment : Fragment() {
         }
     }
 
+    /**
+     * small method which increment the [selectedCategory] property
+     *
+     * @param list - a list of [Category] to choose which one to display
+     */
     private fun incrementSelectedCategory(list : List<Category>) {
         selectedCategory = (selectedCategory + 1) % list.size
     }
 
+    /**
+     * A method to watch the budget and create the required graph.
+     *
+     * @param category - a [Category] to display the expenses of
+     */
     private fun watchBudget(category: Category) {
         val today : DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
         expenseViewModel.getMonthlyExpensesSumForCategory(category).observe(viewLifecycleOwner) { maximumExpense ->
@@ -150,6 +182,12 @@ class ChartFragment : Fragment() {
         }
     }
 
+    /**
+     * Method to convert an [ExpenseSumContainer] into a list of [BarEntry]
+     *
+     * @param currentExpense - the [ExpenseSumContainer] to convert
+     * @return an [ArrayList] of [BarEntry] with only one variable : the amount of [currentExpense]
+     */
     private fun convertExpensesInList(currentExpense : ExpenseSumContainer) : ArrayList<BarEntry> {
         val entries = ArrayList<BarEntry>()
         val y : Float = - currentExpense.totalAmount.toFloat()
@@ -157,6 +195,12 @@ class ChartFragment : Fragment() {
         return entries
     }
 
+    /**
+     * Small function to convert a calendar date to DatabaseDate object
+     *
+     * @param calendar - a Calendar object from java.utils which one wants to convert
+     * @return a DatabaseDate object with all the [calendar] data
+     */
     private fun convertDateInDatabaseDate(calendar: Calendar) : DatabaseDate {
         return DatabaseDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH))
     }
