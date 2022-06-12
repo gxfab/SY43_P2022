@@ -1,7 +1,10 @@
 package com.example.sy43;
 
+import static java.lang.Float.parseFloat;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,8 +45,12 @@ public class CreateActivity  extends AppCompatActivity {
                 Categorydb cat = new Categorydb();
                 TextView name = (TextView) findViewById(R.id.objName);
                 cat.setCatName(name.getText().toString());
-                cat.setMaxValue(50);
-                cat.setCurrentValue(5);
+
+                TextView value = (TextView) findViewById(R.id.objValue);
+                Log.d("Test", String.valueOf(value.getText()));
+                cat.setMaxValue(parseFloat(value.getText().toString()));
+
+                cat.setCurrentValue(0);
                 cat.setObjective(true);
                 categoryViewModel.createCategory(cat);
                 Intent intent = new Intent(v.getContext(), CategoryActivity.class);

@@ -56,7 +56,6 @@ public class CategoryActivity extends AppCompatActivity {
         categoryViewModel.getCategories().observe(this, new Observer<List<Categorydb>>() {
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {
-                Log.d("Changed", "Change occured.");
                 // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
                 CategoryAdapter catArrayAdapter = new CategoryAdapter(
                         CategoryActivity.this,

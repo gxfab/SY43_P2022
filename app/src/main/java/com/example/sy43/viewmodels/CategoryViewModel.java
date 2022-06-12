@@ -26,7 +26,6 @@ public class CategoryViewModel extends ViewModel {
             return;
         }
 
-        Log.d("Test2", "ok");
         catRepo = CategoryRepository.getInstance();
         categories = catRepo.getCategories();
         objectives = catRepo.getObjectives();

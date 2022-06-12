@@ -43,7 +43,6 @@ public class CategoryRepository {
                 db.CategoryDAO().findCategories(),
                 new FutureCallback<List<Categorydb>>() {
                     public void onSuccess(List<Categorydb> result) {
-                        Log.d("Test", String.valueOf(result.get(0)));
                         data.postValue(result);
                     }
 
@@ -78,7 +77,6 @@ public class CategoryRepository {
 
 
     public void createCategory(Categorydb cat) {
-        Log.d("Test4", MainActivity.getAppContext().toString());
         Futures.addCallback(
                 db.CategoryDAO().insert(cat),
                 new FutureCallback<Void>() {
