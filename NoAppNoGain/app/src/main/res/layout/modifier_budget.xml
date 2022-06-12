@@ -105,10 +105,10 @@
                     android:layout_height="wrap_content">
 
                     <Button
-                        android:id="@+id/btnCancel"
+                        android:id="@+id/btnuPD_Delete"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Annuler"
+                        android:text="Supprimer"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@color/black" />
 
@@ -123,10 +123,10 @@
                     android:layout_height="wrap_content">
 
                     <Button
-                        android:id="@+id/btnSave"
+                        android:id="@+id/btn_upd_Update"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Sauvegarder"
+                        android:text="Modifier"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@color/black" />
 

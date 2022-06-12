@@ -36,10 +36,6 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
         }
         holder.amount.text = currentitem.amount.toString()
 
-        holder.itemView.setOnClickListener {
-
-        }
-
     }
 
     override fun getItemCount(): Int {
@@ -53,6 +49,13 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
         val date: TextView = itemView.findViewById(R.id.date_txt_home)
         val type: TextView = itemView.findViewById(R.id.type_txt_home)
         val amount: TextView = itemView.findViewById(R.id.amount_txt_home)
+
+        init {
+            itemView.setOnClickListener {v: View ->
+                val position: Int = position
+                Toast.makeText(itemView.context, "Vous avez cliqué sur l'élément # ${position + 1}", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
 

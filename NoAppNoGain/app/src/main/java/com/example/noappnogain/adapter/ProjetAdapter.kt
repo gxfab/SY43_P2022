@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.model.Projet
 import com.example.noappnogain.R
@@ -68,12 +69,9 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
         val datePicker: TextView = itemView.findViewById(R.id.date_limite_projet)
 
         init {
-            itemView.setOnClickListener {
-
-                var position: Int = adapterPosition
-                val context = itemView.context
-
-                // Modifier_projet.xml
+            itemView.setOnClickListener {v: View ->
+                val position: Int = adapterPosition
+                Toast.makeText(itemView.context, "Vous avez cliqué sur l'élément # ${position + 1}", Toast.LENGTH_SHORT).show()
             }
         }
 

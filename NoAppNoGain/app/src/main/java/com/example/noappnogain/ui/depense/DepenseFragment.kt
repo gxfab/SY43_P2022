@@ -51,82 +51,27 @@ class DepenseFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth?.currentUser
 
-        val spinnerAnnee: Spinner = binding.spinnerAnnee
-        ArrayAdapter.createFromResource(
-            activity!!,
-            R.array.annee,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinnerAnnee.adapter = adapter
+        if (mAuth!!.currentUser != null) {
+            val uid = mUser!!.uid
+            mMouvementDatabase =
+                FirebaseDatabase.getInstance().reference.child("MouvementData").child(uid)
         }
-        var annee: String? = null
-        spinnerAnnee.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                annee = spinnerAnnee.selectedItem.toString()
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
 
-        val spinnerMois: Spinner = binding.spinnerMois
-        ArrayAdapter.createFromResource(
-            activity!!,
-            R.array.mois,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinnerMois.adapter = adapter
-            spinnerMois.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-                    val item = parent.getItemAtPosition(pos)
-                }
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            })
-        }
-        var mois: String? = null
-        spinnerMois.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                mois = spinnerMois.selectedItem.toString()
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
-
+        var categorie: String? = null
         val spinnerCat: Spinner = binding.spinnerCategorie
         ArrayAdapter.createFromResource(
             activity!!,
-            R.array.categorie,
+            R.array.categorie_depense,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerCat.adapter = adapter
-            spinnerCat.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-                    val item = parent.getItemAtPosition(pos)
-                }
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            })
         }
-        var categorie: String? = null
-        spinnerCat.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                categorie = spinnerCat.selectedItem.toString()
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        categorie = spinnerCat.selectedItem.toString()
+
+        val btnFiltre: Button = binding.btnFiltre
+        btnFiltre.setOnClickListener(View.OnClickListener {
+
         })
 
         val btnAjouter: Button = binding.btnAjouter
@@ -134,12 +79,6 @@ class DepenseFragment : Fragment() {
             dataInsert()
 
         })
-
-        if (mAuth!!.currentUser != null) {
-            val uid = mUser!!.uid
-            mMouvementDatabase =
-                FirebaseDatabase.getInstance().reference.child("MouvementData").child(uid)
-        }
 
         mMouvementDatabase?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -149,13 +88,7 @@ class DepenseFragment : Fragment() {
                         val data: Data? = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
                             if (data.amount < 0) {
-                                if(categorie !== "---"){
-                                    if(data.type == categorie){
-                                        mouvementArrayList.add(data!!)
-                                    }else{
-                                        mouvementArrayList.add(data!!)
-                                    }
-                                }
+                                mouvementArrayList.add(data!!)
                             }
                         }
                     }
@@ -168,9 +101,10 @@ class DepenseFragment : Fragment() {
             }
         })
 
+
+
         return root
     }
-
 
     fun dataInsert() {
         val mydialog = AlertDialog.Builder(activity)
@@ -183,7 +117,7 @@ class DepenseFragment : Fragment() {
         val edtCat = myviewm.findViewById<Spinner>(R.id.categorie_edt)
         ArrayAdapter.createFromResource(
             activity!!,
-            R.array.categorie,
+            R.array.categorie_depense,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -210,7 +144,7 @@ class DepenseFragment : Fragment() {
             val type = edtType.toString().trim { it <= ' ' }
             val amount = edtAmount.text.toString().trim { it <= ' ' }
             val note = edtNote.text.toString().trim { it <= ' ' }
-            if (TextUtils.isEmpty(amount)) {
+            if (TextUtils.isEmpty(amount) || amount.toInt() > 0) {
                 edtAmount.error
                 return@OnClickListener
             }
@@ -227,7 +161,6 @@ class DepenseFragment : Fragment() {
                 if (id != null) {
                     mMouvementDatabase?.child(id)?.setValue(data)
                 }
-
             }
             dialog.dismiss()
         })

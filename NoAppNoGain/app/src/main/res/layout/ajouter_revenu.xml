@@ -47,7 +47,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:entries="@array/categorie"
+                        android:entries="@array/categorie_revenu"
                         android:spinnerMode="dropdown"/>
 
                 </RelativeLayout>

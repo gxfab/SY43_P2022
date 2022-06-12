@@ -68,7 +68,6 @@ class HomeFragment : Fragment() {
                         val data = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
                             balance += data.amount.toInt()
-
                         }
                         // vérifier la balance
                         if(balance > 0) {

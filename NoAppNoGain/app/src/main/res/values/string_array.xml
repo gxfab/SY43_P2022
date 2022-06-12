@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="categorie">
+    <string-array name="categorie_depense">
         <item>---</item>
-        <item>Santé</item>
         <item>Alimentation</item>
-        <item>Habillement</item>
         <item>Animaux</item>
         <item>Cadeaux offerts</item>
-        <item>Internet / TV / Téléphone</item>
-        <item>Sports / Loisirs / Culture</item>
-        <item>Education / Formation</item>
+        <item>Education</item>
         <item>Enfants</item>
+        <item>Epargne</item>
+        <item>Habillement</item>
         <item>Impôts</item>
+        <item>Intérêts dette</item>
+        <item>Inventissement</item>
+        <item>Loisirs</item>
+        <item>Ménage</item>
+        <item>Santé</item>
         <item>Transport</item>
+        <item>Logement</item>
+    </string-array>
+
+    <string-array name="categorie_revenu">
+        <item>---</item>
+        <item>Aides sociales</item>
+        <item>Allocations sociales</item>
+        <item>Dividendes</item>
+        <item>Honoraires</item>
+        <item>Intérêt</item>
+        <item>Loyer</item>
+        <item>Salaire</item>
+
+
+
+
+
     </string-array>
 
     <string-array name="annee">

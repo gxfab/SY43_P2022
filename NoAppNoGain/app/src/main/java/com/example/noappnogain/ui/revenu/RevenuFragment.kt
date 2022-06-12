@@ -48,6 +48,17 @@ class RevenuFragment : Fragment() {
         mUser = mAuth?.currentUser
         val recyclerView: RecyclerView = binding.recyclerIdIncome
 
+        var categorie: String? = null
+        val spinnerCat: Spinner = binding.spinnerCategorie
+        ArrayAdapter.createFromResource(
+            activity!!,
+            R.array.categorie_depense,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerCat.adapter = adapter
+        }
+        categorie = spinnerCat.selectedItem.toString()
 
         val btnAjouter: Button = binding.btnAjouter
 
@@ -97,7 +108,7 @@ class RevenuFragment : Fragment() {
         val edtCat = myviewm.findViewById<Spinner>(R.id.categorie_edt)
         ArrayAdapter.createFromResource(
             activity!!,
-            R.array.categorie,
+            R.array.categorie_revenu,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -123,7 +134,7 @@ class RevenuFragment : Fragment() {
             val type = edtType.toString().trim { it <= ' ' }
             val amount = edtAmount.text.toString().trim { it <= ' ' }
             val note = edtNote.text.toString().trim { it <= ' ' }
-            if (TextUtils.isEmpty(amount)) {
+            if (TextUtils.isEmpty(amount) || amount.toInt() < 0) {
                 edtAmount.error
                 return@OnClickListener
             }
