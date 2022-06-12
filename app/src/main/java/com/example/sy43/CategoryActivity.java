@@ -60,7 +60,8 @@ public class CategoryActivity extends AppCompatActivity {
                 CategoryAdapter catArrayAdapter = new CategoryAdapter(
                         CategoryActivity.this,
                         R.layout.category_list_item,
-                        receivedCategories);
+                        receivedCategories,
+                        categoryViewModel);
                 ListView catLv = (ListView) findViewById(R.id.categoryListView);
                 catLv.setAdapter(catArrayAdapter);
 
@@ -75,7 +76,8 @@ public class CategoryActivity extends AppCompatActivity {
                 CategoryAdapter objArrayAdapter = new CategoryAdapter(
                         CategoryActivity.this,
                         R.layout.category_list_item,
-                        receivedObjectives);
+                        receivedObjectives,
+                        categoryViewModel);
                 ListView objLv = (ListView) findViewById(R.id.objectiveListView);
                 objLv.setAdapter(objArrayAdapter);
             }

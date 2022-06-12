@@ -1,6 +1,6 @@
 package com.example.sy43;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -17,13 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sy43.db.entity.Categorydb;
-import com.example.sy43.db.mainDB.DB;
-import com.example.sy43.db.mainDB.DBexec;
-import com.example.sy43.repositories.CategoryRepository;
 import com.example.sy43.viewmodels.CategoryViewModel;
 import com.example.sy43.viewmodels.TransactionViewModel;
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
 
 public class ObjectiveDetailsActivity extends AppCompatActivity {
 
