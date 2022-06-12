@@ -24,10 +24,13 @@ import com.example.sy43.adapters.CategoryAdapter;
 import com.example.sy43.adapters.SubCategoryAdapter;
 import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.db.entity.SubCategory;
+import com.example.sy43.db.entity.Transaction;
 import com.example.sy43.viewmodels.CategoryViewModel;
 import com.example.sy43.viewmodels.SubCategoryViewModel;
+import com.example.sy43.viewmodels.TransactionViewModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CategoryDetailsActivity extends AppCompatActivity {
@@ -62,6 +65,8 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         Button btnAddTransaction = (Button) findViewById(R.id.btnAddTransaction);
         SubCategoryViewModel subCategoryViewModel = new ViewModelProvider(this).get(SubCategoryViewModel.class);
         subCategoryViewModel.init();
+        TransactionViewModel transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
+        transactionViewModel.init();
         subCategoryViewModel.getSubCategoriesByCatId(categoryId).observe(this, new Observer<List<SubCategory>>() {
             @Override
             public void onChanged(List<SubCategory> subCategories) {
@@ -76,8 +81,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
 
                 // Pour la liste déroulante
                 final List<String> list = new ArrayList<String>();
-                list.add("");
-                for (SubCategory cat: subCategories) {
+                for (SubCategory cat : subCategories) {
                     list.add(cat.getSubCatName());
                 }
                 ArrayAdapter<String> adp1 = new ArrayAdapter<String>(context,
@@ -85,22 +89,32 @@ public class CategoryDetailsActivity extends AppCompatActivity {
                         list);
                 adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerCategories.setAdapter(adp1);
-             }
-        });
 
-        btnAddTransaction.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+                // On click
+                btnAddTransaction.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        float montant = Float.parseFloat(editTontant.getText().toString());
+                        //Log.d("Test8", String.valueOf(categoryId));
+                        SubCategory selectedSubCategory = null;
+                        for (SubCategory _subCat : subCategories) {
+                            if (_subCat.getSubCatName() == spinnerCategories.getSelectedItem().toString()) {
+                                selectedSubCategory = _subCat;
+                            }
+                        }
 
-                /*
-                float montant = Float.parseFloat(editTontant.getText().toString());
-                List<SubCategory> categories =  subCategoryViewModel.getCategories().getValue();
-                Categorydb parentCat = null;
-                for (Categorydb _cat : categories) {
-                    if (_cat.getCatName() == spinnerChooseCategory.getSelectedItem().toString()) {
-                        parentCat = _cat;
+                        Transaction transaction = new Transaction();
+                        transaction.setSubCategory(selectedSubCategory.getSubCatID());
+                        transaction.setCategory(selectedSubCategory.getCategory());
+                        transaction.setValue(montant);
+                        transaction.setDate(System.currentTimeMillis());
+                        transactionViewModel.createTransaction(transaction);
                     }
-                } */
+
+                });
             }
         });
+
+
     }
 }

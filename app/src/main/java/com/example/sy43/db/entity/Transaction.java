@@ -7,10 +7,13 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 @Entity(tableName = "transaction",
-indices = {@Index(value = {"TransactionID"})},
-foreignKeys = {@ForeignKey(entity = Categorydb.class, parentColumns = "CatID", childColumns = "Category", onDelete = ForeignKey.CASCADE),
-@ForeignKey(entity = SubCategory.class, parentColumns = "SubCatID", childColumns = "SubCategory")})
+        indices = {@Index(value = {"TransactionID"})},
+        foreignKeys = {@ForeignKey(entity = Categorydb.class, parentColumns = "CatID", childColumns = "Category", onDelete = ForeignKey.CASCADE),
+                @ForeignKey(entity = SubCategory.class, parentColumns = "SubCatID", childColumns = "SubCategory")})
 public class Transaction {
     @PrimaryKey(autoGenerate = true)
     private int TransactionID;
@@ -28,53 +31,53 @@ public class Transaction {
     private int SubCategory;
 
     @ColumnInfo(name = "Date")
-    private int Date;
+    private long date;
 
-    public int getTransactionID(){
+    public int getTransactionID() {
         return TransactionID;
     }
 
-    public float getValue(){
+    public float getValue() {
         return Value;
     }
 
-    public String getName(){
+    public String getName() {
         return Name;
     }
 
-    public int getCategory(){
+    public int getCategory() {
         return Category;
     }
 
-    public int getSubCategory(){
+    public int getSubCategory() {
         return SubCategory;
     }
 
-    public int getDate(){
-        return Date;
+    public long getDate() {
+        return date;
     }
 
-    public void setTransactionID(int TransactionID){
-        this.TransactionID=TransactionID;
+    public void setTransactionID(int TransactionID) {
+        this.TransactionID = TransactionID;
     }
 
-    public void setValue(float Value){
+    public void setValue(float Value) {
         this.Value = Value;
     }
 
-    public void setName(String Name){
-        this.Name=Name;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public void setCategory(int Category){
-        this.Category=Category;
+    public void setCategory(int Category) {
+        this.Category = Category;
     }
 
-    public void setSubCategory(int SubCategory){
-        this.SubCategory=SubCategory;
+    public void setSubCategory(int SubCategory) {
+        this.SubCategory = SubCategory;
     }
 
-    public void setDate(int Date){
-        this.Date=Date;
+    public void setDate(long date) {
+        this.date = date;
     }
 }

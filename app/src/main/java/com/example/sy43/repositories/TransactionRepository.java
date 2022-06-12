@@ -54,5 +54,18 @@ public class TransactionRepository {
         return data;
     }
 
+    public void createTransaction(Transaction trans) {
+        Futures.addCallback(
+                db.TransactionDAO().insert(trans),
+                new FutureCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void stp) {
+                    }
 
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                databaseExecutor
+        );
+    }
 }
