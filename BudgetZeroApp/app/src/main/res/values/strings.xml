@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Budget Zero App</string>
+    <string name="type_message">What do you want to add ?</string>
+    <string name="exp_type">Expense</string>
+    <string name="inc_type">Income</string>
+    <string name="debt_type">Debt</string>
+    <string name="sav_type">Savings</string>
+
+    <string name="exp_cat_name">Category name</string>
+    <string name="exp_cat_budget">Budget</string>
+    <string name="exp_cat_sub">Subcategory</string>
+    <string name="exp_cat_parent">Parent category</string>
+    <string-array name="exp_cat_parents">
+        <item>Cat1</item>
+        <item>Cat2</item>
+        <item>Cat3</item>
+        <item>Cat4</item>
+    </string-array>
+
+    <string name="save">Save</string>
+    <string name="submit">Submit</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
 </resources>
