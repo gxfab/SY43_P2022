@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.lafo_cheuse.R
+import com.example.lafo_cheuse.material.DatabaseDate
 import com.example.lafo_cheuse.material.RoundedBarChart
 import com.example.lafo_cheuse.models.Category
 import com.example.lafo_cheuse.models.ExpenseSumContainer
@@ -21,6 +22,8 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ChartFragment : Fragment() {
@@ -46,7 +49,7 @@ class ChartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        chartView = view.findViewById<BarChart>(R.id.categoryButton)
+        chartView = view.findViewById(R.id.categoryButton)
         configureChartAppearance(100f)
 
     }
@@ -137,8 +140,9 @@ class ChartFragment : Fragment() {
     }
 
     private fun watchBudget(category: Category) {
+        val today : DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
         expenseViewModel.getMonthlyExpensesSumForCategory(category).observe(viewLifecycleOwner) { maximumExpense ->
-            expenseViewModel.getOneTimeExpensesSumForCategory(category).observe(viewLifecycleOwner) { currentValue ->
+            expenseViewModel.getOneTimeExpensesSumForCategoryAndMonth(category,today.year,today.month).observe(viewLifecycleOwner) { currentValue ->
                 if(!(currentValue.isEmpty() || maximumExpense.isEmpty())) {
                     createGraph(convertExpensesInList(currentValue[0]),maximumExpense[0].totalAmount.toFloat())
                 }
@@ -151,5 +155,9 @@ class ChartFragment : Fragment() {
         val y : Float = - currentExpense.totalAmount.toFloat()
         entries.add(BarEntry(0.0f, y))
         return entries
+    }
+
+    private fun convertDateInDatabaseDate(calendar: Calendar) : DatabaseDate {
+        return DatabaseDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH))
     }
 }
