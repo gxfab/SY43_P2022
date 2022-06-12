@@ -78,8 +78,6 @@ public class CategoryActivity extends AppCompatActivity {
                         receivedObjectives);
                 ListView objLv = (ListView) findViewById(R.id.objectiveListView);
                 objLv.setAdapter(objArrayAdapter);
-
-
             }
         });
 

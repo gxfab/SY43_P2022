@@ -23,7 +23,7 @@ public interface SubCategoryDAO{
     public ListenableFuture<List<Float>> findMaxValues();
 
     @Query("SELECT * FROM SubCategory WHERE Category LIKE :category")
-    public ListenableFuture<List<SubCategory>> findByCategorie(int category);
+    public ListenableFuture<List<SubCategory>> findByCategoryID(int category);
 
     @Delete
     void deleteSubCategory(SubCategory Subcategory);

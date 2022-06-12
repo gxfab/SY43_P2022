@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TransactionViewModel extends ViewModel {
-    private MutableLiveData<List<Categorydb>> categories;
-    private MutableLiveData<List<Categorydb>> objectives;
     public TransactionRepository transactionRepo;
 
     public void init() {

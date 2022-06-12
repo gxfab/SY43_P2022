@@ -12,38 +12,97 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Details"
-            android:textSize="24dp"
-            android:textStyle="bold" />
-        <include
-            layout="@layout/category_list_item"
-            android:id="@+id/categoryCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="2sp"
-            android:layout_marginRight="2sp"
-        />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Sub categories"
-            android:textSize="24dp"
-            android:textStyle="bold" />
-        <ListView
-            android:id="@+id/categoryListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:dividerHeight="0dp"
-            android:layout_marginBottom="50dp"
-             >
-        </ListView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+
+
+            <include
+                android:id="@+id/categoryCard"
+                layout="@layout/category_list_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Sub Categories"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/objectiveListView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:dividerHeight="0dp"
+                tools:context="abhiandroid.com.listexample.MainActivity"></ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Expense"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextNumberDecimal2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="numberDecimal"
+                    tools:layout_editor_absoluteX="-12dp"
+                    tools:layout_editor_absoluteY="142dp" />
+
+                <Spinner
+                    android:id="@+id/planets_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnAddTransaction"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="@color/teal_200"
+                android:text="Confirmer"
+                tools:layout_editor_absoluteX="-41dp"
+                tools:layout_editor_absoluteY="201dp" />
+
+        </LinearLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
