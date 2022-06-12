@@ -28,7 +28,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -98,18 +98,45 @@
             android:ems="10"
             android:inputType="number" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date :" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:onClick="setDate"
+            android:text="Set Date" />
 
-        <EditText
-            android:id="@+id/editTextDate2"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:text="Press the button to set the Data"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button1"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@+id/button1"
+            android:text="Date is :"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/button1"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="12dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:id="@+id/btnObjConfirm"
@@ -119,5 +146,7 @@
             android:text="Confirmer" />
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
