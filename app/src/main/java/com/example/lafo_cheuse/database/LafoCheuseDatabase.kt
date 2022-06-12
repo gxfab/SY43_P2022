@@ -59,6 +59,13 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
                         INSTANCE!!.categoryDao()?.createCategory(
                             Category("Bourses","\uD83D\uDCB0")
                         )
+                        INSTANCE!!.expenseDao()?.insertExpense(
+                            Expense(Frequency.OUNCE_A_WEEK,
+                                "test",
+                                Category("Bourses","\uD83D\uDCB0"),
+                                5.0,
+                                )
+                            )
                         val optionTheme = Option("option_theme",OptionType.RADIOBUTTON)
                         val optionNotifications = Option("option_notifications",OptionType.CHECKBOX)
                         val optionNotificationsSum = Option("option_notification_sum",OptionType.TEXT_EDIT)
