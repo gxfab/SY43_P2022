@@ -22,4 +22,8 @@ public class SubCategoryViewModel extends ViewModel {
     public void createSubCategory(final SubCategory subCategory) {
         this.subCatRepo.createSubCategory(subCategory);
     }
+
+    public void delSubCategories(int id) {
+        this.subCatRepo.deleteSubCategory(id);
+    }
 }
