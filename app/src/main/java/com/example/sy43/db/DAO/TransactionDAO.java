@@ -20,10 +20,10 @@ public interface TransactionDAO{
     public ListenableFuture<List<Float>> findValues();
 
     @Query("SELECT * FROM `transaction` WHERE Category LIKE :category")
-    public ListenableFuture<List<com.example.sy43.db.entity.Transaction>> findByCategorie(int category);
+    public ListenableFuture<List<com.example.sy43.db.entity.Transaction>> findByCategory(int category);
 
     @Query("SELECT * FROM `transaction` WHERE SubCategory LIKE :subcategory")
-    public ListenableFuture<List<com.example.sy43.db.entity.Transaction>> findBySubCategorie(int subcategory);
+    public ListenableFuture<List<com.example.sy43.db.entity.Transaction>> findBySubCategory(int subcategory);
 
     @Delete
     void deleteTransaction(com.example.sy43.db.entity.Transaction transaction);

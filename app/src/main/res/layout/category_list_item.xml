@@ -6,14 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity"
     >
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/categoryCard"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         app:cardCornerRadius="1dp"
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="false"
-        android:id="@+id/categoryCard"
         app:cardUseCompatPadding="true">
+
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"

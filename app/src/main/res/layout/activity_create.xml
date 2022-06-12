@@ -42,7 +42,6 @@
             android:layout_gravity="center"
             android:text="Nouvelle catégorie :"
             android:textSize="24dp"
-
             android:textStyle="bold" />
 
         <EditText
