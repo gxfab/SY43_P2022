@@ -9,6 +9,7 @@ import com.example.bokudarjan.envelope.Envelope
 import com.example.bokudarjan.envelope.EnvelopeRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.Month
 
 
 class EnvelopeViewModel(application: Application): AndroidViewModel(application) {
@@ -29,6 +30,10 @@ class EnvelopeViewModel(application: Application): AndroidViewModel(application)
         viewModelScope.launch(Dispatchers.IO) {
             repository.addUser(envelope)
         }
+    }
+
+    fun getMonthData(month: Int): LiveData<List<Envelope>> {
+        return repository.getMonthData(month);
     }
 
 }

@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 class Expense {
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0
+    var month : Int = 0
     var categoryName : String = ""
     var name : String = ""
     var amount : Float = 0F
@@ -23,6 +24,7 @@ class Expense {
         name : String,
         amount: Float,
         date: String,
+        month: Int,
         moneyIncoming: Boolean
     ) {
         this.categoryName = categoryName
@@ -30,6 +32,7 @@ class Expense {
         this.amount = amount
         this.date = date
         this.moneyIncoming = moneyIncoming
+        this.month = month
     }
 
 }

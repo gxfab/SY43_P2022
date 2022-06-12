@@ -32,4 +32,8 @@ ExpenseViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun getMonthData(month: Int): LiveData<List<Expense>> {
+        return repository.getMonthData(month)
+    }
+
 }

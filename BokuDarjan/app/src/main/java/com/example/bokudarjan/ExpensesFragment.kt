@@ -1,5 +1,6 @@
 package com.example.bokudarjan
 
+import android.content.Context
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
@@ -68,8 +69,12 @@ class ExpensesFragment : Fragment() {
         //RecyclerView2
         val adapter2 = ListAdapterCategory2()
         val catRecycler : RecyclerView = view.catRecycler;
+        catRecycler.tag = 1;
         catRecycler.adapter = adapter2
         catRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        var pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val month = pref.getInt("month", -1)
 
 
 
@@ -77,7 +82,7 @@ class ExpensesFragment : Fragment() {
         expenseViewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
         envelopeViewModel = ViewModelProvider(this).get(EnvelopeViewModel::class.java)
 
-        expenseViewModel.readAllData.observe(viewLifecycleOwner, Observer { expense ->
+        expenseViewModel.getMonthData(month).observe(viewLifecycleOwner, Observer { expense ->
             adapter.setData(expense)
         })
 

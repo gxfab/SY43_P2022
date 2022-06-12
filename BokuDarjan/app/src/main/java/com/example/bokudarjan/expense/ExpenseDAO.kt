@@ -14,6 +14,9 @@ interface ExpenseDAO {
     @Query("SELECT * FROM expense_table ORDER BY date DESC")
     fun readAllData(): LiveData<List<Expense>>;
 
+    @Query("SELECT * FROM expense_table WHERE month = :month ORDER BY date DESC")
+    fun getMonthData(month: Int): LiveData<List<Expense>>;
+
     @Query("SELECT SUM(amount) FROM expense_table WHERE categoryName='Bénéfices'" )
     fun getSumOfPositiveExpenses(): LiveData<Float>;
 

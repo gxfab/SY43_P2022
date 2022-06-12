@@ -1,6 +1,7 @@
 package com.example.bokudarjan
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -74,6 +75,7 @@ class planificationFragment : Fragment() {
         //RecyclerView for category
         val categoryAdapter = ListAdapterCategory()
         val categoryRecyclerView : RecyclerView = view.recyclerViewCategory
+        categoryRecyclerView.tag = 1;
         categoryRecyclerView.adapter = categoryAdapter
         categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 

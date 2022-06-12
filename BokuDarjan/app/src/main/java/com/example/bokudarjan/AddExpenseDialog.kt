@@ -3,6 +3,7 @@ package com.example.bokudarjan
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
@@ -63,6 +64,9 @@ class AddExpenseDialog(cat:String) : DialogFragment() {
         val addExpenseDay = this.dialog!!.findViewById<NumberPicker>(R.id.addExpenseDay);
         val toggleExpenseIncome = this.dialog!!.findViewById<Switch>(R.id.toggleExpenseIncome);
 
+        val pref = requireContext().getSharedPreferences("pref" , Context.MODE_PRIVATE)
+        val month = pref.getInt("month", -1)
+
         val name: String = addExpenseName?.text.toString()
         Log.d("[EXPENSE]", name)
 
@@ -73,7 +77,7 @@ class AddExpenseDialog(cat:String) : DialogFragment() {
         val date = addExpenseDay?.value
         val moneyIncoming: Boolean? = toggleExpenseIncome?.isChecked
 
-        val expense = Expense(category, name, amount, date.toString(), moneyIncoming!!)
+        val expense = Expense(category, name, amount, date.toString(),month, moneyIncoming!!)
 
 
         //If the input is ok, we add the expense to the database

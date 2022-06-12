@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import com.example.bokudarjan.bmonth.BMonth
+import com.example.bokudarjan.bmonth.BMonthDAO
 
 import com.example.bokudarjan.expense.ExpenseDAO;
 import com.example.bokudarjan.expense.Expense;
@@ -18,13 +20,14 @@ import com.example.bokudarjan.saving.SavingDAO
 import kotlin.jvm.Volatile;
 
 //Build a singleton of the Database
-@Database(version = 3, entities = [Expense::class, Category::class, Envelope::class, Saving::class], exportSchema = false)
+@Database(version = 3, entities = [Expense::class, Category::class, Envelope::class, Saving::class, BMonth::class], exportSchema = false)
 abstract class BokudarjanDatabase : RoomDatabase() {
 
     abstract fun expenseDao(): ExpenseDAO
     abstract fun categoryDao() : CategoryDAO
     abstract fun envelopeDao() : EnvelopeDAO
     abstract fun savingDao() : SavingDAO
+    abstract fun BMonthDAO() : BMonthDAO
 
     companion object {
         @Volatile

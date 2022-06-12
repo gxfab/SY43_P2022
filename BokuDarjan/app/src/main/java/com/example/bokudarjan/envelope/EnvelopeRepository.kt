@@ -13,4 +13,8 @@ class EnvelopeRepository(private val envelopeDAO: EnvelopeDAO) {
         envelopeDAO.addEnvelope(envelope)
     }
 
+    fun getMonthData(month: Int):LiveData<List<Envelope>>{
+        return envelopeDAO.getMonthData(month)
+    }
+
 }

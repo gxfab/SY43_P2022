@@ -2,6 +2,7 @@ package com.example.bokudarjan
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
@@ -53,6 +54,9 @@ class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
 
     private fun insertDataToDatabase(){
 
+        val pref = requireContext().getSharedPreferences("pref" , Context.MODE_PRIVATE)
+        val month = pref.getInt("month", -1)
+
         val name  : String = this.dialog!!.findViewById<EditText>(R.id.addEnvelopeName).text.toString()
         val addEnvelopeAmount = this.dialog!!.findViewById<EditText>(R.id.addEnvelopeAmount);
         val cat = this.dialog!!.findViewById<EditText>(R.id.addEnvelopeCategory);
@@ -63,7 +67,7 @@ class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
             amount = addEnvelopeAmount.text.toString().toFloat()
         }
         val date : String = Calendar.getInstance().toString()
-        val envelope = Envelope(cat.text.toString(),name, amount, date)
+        val envelope = Envelope(cat.text.toString(),name, amount, date, month)
 
 
         Log.i("AddEnvelopeFragment", " Amount3 : " + envelope.amount + " | Envelope name : " + envelope.name)

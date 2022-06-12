@@ -1,6 +1,7 @@
 package com.example.bokudarjan.category
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.util.TypedValue
@@ -37,8 +38,13 @@ class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolde
         val context = holder.itemView.nameCategory.context;
         holder.itemView.expensesLayout.removeAllViews()
 
+        var pref = holder.itemView.context.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val month = pref.getInt("month", -1)
 
-        envelopeViewModel.readAllData.observeForever{
+
+
+
+        envelopeViewModel.getMonthData(month).observeForever{
             var i = 0
             var total = 0f
             holder.itemView.expensesLayout.removeAllViews()

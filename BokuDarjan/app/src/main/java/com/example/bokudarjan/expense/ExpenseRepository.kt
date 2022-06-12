@@ -15,4 +15,8 @@ class ExpenseRepository(private val expenseDao: ExpenseDAO) {
         expenseDao.addExpense(expense)
     }
 
+    fun getMonthData(month: Int): LiveData<List<Expense>> {
+        return expenseDao.getMonthData(month)
+    }
+
 }
