@@ -1,63 +1,34 @@
 {
   "project_info": {
-    "project_number": "1004832220549",
-    "firebase_url": "https://hplovers-sy43-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "hplovers-sy43",
-    "storage_bucket": "hplovers-sy43.appspot.com"
+    "project_number": "92108122964",
+    "firebase_url": "https://moneysaver-c73b8-default-rtdb.firebaseio.com",
+    "project_id": "moneysaver-c73b8",
+    "storage_bucket": "moneysaver-c73b8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1004832220549:android:1181d86408fcdfd7af50ec",
-        "android_client_info": {
-          "package_name": "com.example.myapplication"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1004832220549-htf1r87bpk3ujg6sia148acmjhvfceai.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCU5D_Zr1kr5QhjkatTHBYeaTclGMChkKw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1004832220549-htf1r87bpk3ujg6sia148acmjhvfceai.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1004832220549:android:a6dd643d16e5cde9af50ec",
+        "mobilesdk_app_id": "1:92108122964:android:aa39ca5968d8d22ec876c1",
         "android_client_info": {
           "package_name": "com.example.noappnogain"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1004832220549-htf1r87bpk3ujg6sia148acmjhvfceai.apps.googleusercontent.com",
+          "client_id": "92108122964-kiimurd6g2go8v5p24c0ulvbc2s8f8io.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCU5D_Zr1kr5QhjkatTHBYeaTclGMChkKw"
+          "current_key": "AIzaSyAbOyTrNjgQa4sZCRI8CfyrUTbGe2pWjDs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1004832220549-htf1r87bpk3ujg6sia148acmjhvfceai.apps.googleusercontent.com",
+              "client_id": "92108122964-kiimurd6g2go8v5p24c0ulvbc2s8f8io.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -66,27 +37,27 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1004832220549:android:c2174fa62ad9055baf50ec",
+        "mobilesdk_app_id": "1:92108122964:android:160ec357e227fd2bc876c1",
         "android_client_info": {
           "package_name": "fr.hplovers.moneysaver"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1004832220549-htf1r87bpk3ujg6sia148acmjhvfceai.apps.googleusercontent.com",
+          "client_id": "92108122964-kiimurd6g2go8v5p24c0ulvbc2s8f8io.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCU5D_Zr1kr5QhjkatTHBYeaTclGMChkKw"
+          "current_key": "AIzaSyAbOyTrNjgQa4sZCRI8CfyrUTbGe2pWjDs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1004832220549-htf1r87bpk3ujg6sia148acmjhvfceai.apps.googleusercontent.com",
+              "client_id": "92108122964-kiimurd6g2go8v5p24c0ulvbc2s8f8io.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
