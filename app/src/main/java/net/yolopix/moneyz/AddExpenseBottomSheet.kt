@@ -83,7 +83,7 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
         // Error checking
         editTextExpenseName.addTextChangedListener {
             nameTextInputLayout.error =
-                if (it.isNullOrEmpty()) getString(R.string.error_empty_name) else null
+                if (it.isNullOrBlank()) getString(R.string.error_empty_name) else null
             checkFormErrors()
         }
 
@@ -106,6 +106,8 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
             }
             checkFormErrors()
         }
+        editTextExpenseDay.filters =
+            arrayOf(NumberMaxInputFilter(monthAsLocalDate.lengthOfMonth()))
 
         // Date picker
         val datePickerConstraints =

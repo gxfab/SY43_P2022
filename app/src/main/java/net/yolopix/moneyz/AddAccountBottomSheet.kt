@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Button
 import android.widget.EditText
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
@@ -28,14 +31,16 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
     }
 
     private lateinit var editTextAccountName: EditText
+    private lateinit var accountNameTextField: TextInputLayout
+    private lateinit var buttonAdd: Button
 
     // When the bottom sheet is created
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val buttonAdd =
-            view.findViewById<com.google.android.material.button.MaterialButton>(R.id.button_add)
+        buttonAdd = view.findViewById(R.id.button_add)
         editTextAccountName = view.findViewById(R.id.edit_text_account_name)
+        accountNameTextField = view.findViewById(R.id.text_field_account_name)
 
         // Add click listener to the add button
         buttonAdd.setOnClickListener {
@@ -45,9 +50,18 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
         // When the done button is pressed on the soft keyboard
         editTextAccountName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                addAccount()
+                checkFormErrors()
+                println(buttonAdd.isEnabled)
+                if (buttonAdd.isEnabled)
+                    addAccount()
             }
             true
+        }
+
+        editTextAccountName.addTextChangedListener {
+            accountNameTextField.error =
+                if (it.isNullOrBlank()) getString(R.string.error_empty_name) else null
+            checkFormErrors()
         }
     }
 
@@ -61,6 +75,11 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
             (activity as MainActivity).loadAccounts()
         }
         dismiss()
+    }
+
+    private fun checkFormErrors() {
+        buttonAdd.isEnabled = accountNameTextField.error == null
+                && editTextAccountName.text.isNotBlank()
     }
 
 }

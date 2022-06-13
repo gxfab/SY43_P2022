@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
+import android.widget.Button
 import android.widget.EditText
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
@@ -26,10 +28,14 @@ class AddCategoryBottomSheet(
     private val db: AppDatabase,
     private val monthNumber: Int,
     private val yearNumber: Int,
-    private val accountUid: Int
+    private val accountUid: Int,
+    private var incomeAmount: Float? = Float.MAX_VALUE
 ) : BottomSheetDialogFragment() {
+    private lateinit var buttonAddCategoryName: Button
     private lateinit var editTextCategoryName: EditText
     private lateinit var editTextCategoryprice: EditText
+    private lateinit var categoryNameTextField: TextInputLayout
+    private lateinit var categoryPriceTextField: TextInputLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,23 +49,37 @@ class AddCategoryBottomSheet(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        val buttonAddCategoryName =
+        buttonAddCategoryName =
             view.findViewById<com.google.android.material.button.MaterialButton>(R.id.button_add_category_bottom_sheet)
         editTextCategoryName = view.findViewById(R.id.edit_text_category_name)
         editTextCategoryprice = view.findViewById(R.id.edit_text_category_price)
+        categoryNameTextField = view.findViewById(R.id.text_field_category_name)
+        categoryPriceTextField = view.findViewById(R.id.text_field_category_price)
+
+        // Do not limit category max amount if the income value is not valid
+        //if (incomeAmount == null) incomeAmount = Float.MAX_VALUE
 
         // Add click listener to the add button
         buttonAddCategoryName.setOnClickListener {
             addCategory()
         }
 
-        // When the done button is pressed on the soft keyboard
-        editTextCategoryName.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                addCategory()
+        // Check input contents when typing
+        editTextCategoryName.addTextChangedListener {
+            categoryNameTextField.error =
+                if (it.isNullOrBlank()) getString(R.string.error_empty_name) else null
+            checkFormErrors()
+        }
+
+        editTextCategoryprice.addTextChangedListener {
+            categoryPriceTextField.error = when {
+                it.toString().isBlank() -> getString(R.string.error_empty_text)
+                it.toString().toFloatOrNull() == null -> getString(R.string.error_invalid_amount)
+                it.toString().toFloat() == 0f -> getString(R.string.error_amount_zero)
+                it.toString().toFloat() > incomeAmount!! -> getString(R.string.error_prevision_greater_than_salary)
+                else -> null
             }
-            true
+            checkFormErrors()
         }
     }
 
@@ -84,5 +104,12 @@ class AddCategoryBottomSheet(
             parent.loadAll()
         }
         dismiss()
+    }
+
+    private fun checkFormErrors() {
+        buttonAddCategoryName.isEnabled = categoryNameTextField.error == null
+                && categoryPriceTextField.error == null
+                && editTextCategoryName.text.isNotBlank()
+                && editTextCategoryprice.text.isNotBlank()
     }
 }

@@ -16,7 +16,7 @@
     <string name="category_price_bottom_sheet">Montant alloué</string>
     <string name="item_category_prevision_name">Nourriture</string>
     <string name="item_category_prevision_advice">+4,5€ le mois dernier</string>
-    <string name="expense_date">Jour du mois de la dépense</string>
+    <string name="expense_date">Jour du mois</string>
     <string name="add_account">Ajouter un compte</string>
     <string name="expense_placeholder">Nom de la dépense</string>
     <string name="money_placeholder">0€</string>
@@ -34,6 +34,7 @@
     <string name="prevision_subtitle_month">"Pour le mois de %1$s"</string>
     <string name="money_format">%1$s€</string>
     <string name="error_salary_greater_than_previsions">Le salaire doit être supérieur aux budget prévisionnel</string>
+    <string name="error_prevision_greater_than_salary">La prévision doit être inférieure au salaire</string>
     <string name="error_empty_text">Vous devez entrer une valeur</string>
     <string name="error_empty_name">Le nom ne peut pas être vide</string>
     <string name="expenses_subtitle_month">Mois de %1$s</string>
@@ -41,4 +42,5 @@
     <string name="desc_expand">Réduire</string>
     <string name="error_invalid_day_of_month">Le jour du mois n\'est pas valide</string>
     <string name="error_amount_zero">Le montant doit être supérieur à 0</string>
+    <string name="error_invalid_amount">Le montant est invalide</string>
 </resources>

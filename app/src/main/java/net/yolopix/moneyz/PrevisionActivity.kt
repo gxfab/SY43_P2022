@@ -89,7 +89,7 @@ class PrevisionActivity : AppCompatActivity() {
 
         // Restrict day of month input to proper values
         val paydayEditText: EditText = findViewById(R.id.edittext_payday)
-        paydayEditText.filters = arrayOf(NumberRangeInputFilter(1, now.lengthOfMonth()))
+        paydayEditText.filters = arrayOf(NumberMaxInputFilter(now.lengthOfMonth()))
         paydayEditText.addTextChangedListener {
             val paydayValue = it.toString().toIntOrNull()
 
@@ -104,7 +104,13 @@ class PrevisionActivity : AppCompatActivity() {
         // Open the bottom sheet to add a new category when clicking on the "add category" button
         val addCategoryButton = findViewById<Button>(R.id.button_add_category)
         addCategoryButton.setOnClickListener {
-            AddCategoryBottomSheet(db, now.monthValue, now.year, accountUid!!).apply {
+            AddCategoryBottomSheet(
+                db,
+                now.monthValue,
+                now.year,
+                accountUid!!,
+                salaryEditText.text.toString().toFloatOrNull()
+            ).apply {
                 show(supportFragmentManager, tag)
             }
 
@@ -170,7 +176,6 @@ class PrevisionActivity : AppCompatActivity() {
      */
     private suspend fun loadLimits() {
         val categorizedAmount: Float = calculateCategorizedAmount()
-        salaryEditText.filters = arrayOf(NumberRangeInputFilter(categorizedAmount, Float.MAX_VALUE))
 
         if (salaryEditText.text.toString().toFloat() < categorizedAmount) {
             salaryEditText.setText(categorizedAmount.toString())
