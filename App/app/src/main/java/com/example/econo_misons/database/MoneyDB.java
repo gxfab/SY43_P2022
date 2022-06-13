@@ -2,9 +2,11 @@ package com.example.econo_misons.database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.econo_misons.database.dao.budgetDAO;
 import com.example.econo_misons.database.dao.userDAO;
@@ -15,6 +17,8 @@ import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.Transaction;
 import com.example.econo_misons.database.models.User;
+
+import java.util.concurrent.Executors;
 
 @Database(entities = {User.class, Budget.class, Budget_User.class, Category.class, Envelope.class, PrevisionalBudget.class, Transaction.class}, version = 1)
 public abstract class MoneyDB extends RoomDatabase {
@@ -36,7 +40,7 @@ public abstract class MoneyDB extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
 
                                     MoneyDB.class, "MyDatabase.db")
-
+                            .addCallback(prepopulateDatabase())
                             .build();
 
                 }
@@ -47,5 +51,17 @@ public abstract class MoneyDB extends RoomDatabase {
 
         return INSTANCE;
 
+    }
+
+    private static Callback prepopulateDatabase() {
+        return new Callback() {
+            @Override
+            public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                super.onCreate(db);
+                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.userdao().newUser(new User("Suiram")));
+                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.budgetdao().addBudget(new Budget("Budget perso")));
+                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.budgetdao().linkBudgetUser(new Budget_User(1,1)));
+            }
+        };
     }
 }
