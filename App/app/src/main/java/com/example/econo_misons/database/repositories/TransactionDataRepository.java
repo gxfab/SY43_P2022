@@ -1,14 +1,11 @@
 package com.example.econo_misons.database.repositories;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 
 import com.example.econo_misons.database.dao.transactionDAO;
-import com.example.econo_misons.database.dao.userDAO;
+import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.Transaction;
-import com.example.econo_misons.database.models.User;
 
 import java.util.List;
 
@@ -33,5 +30,6 @@ public class TransactionDataRepository {
 
     public LiveData<List<Transaction>> getUserTransactions(int userID) {return this.transdao.getUserTransactions(userID);}
 
+    public LiveData<List<Envelope>> getCurrentBudgetEnvelope(PrevisionalBudget prevBud) {return this.transdao.getCurrentBudgetEnvelope(prevBud.budgetID, prevBud.yearMonth);}
 
 }

@@ -5,9 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.example.econo_misons.database.dao.categoryDAO;
-import com.example.econo_misons.database.dao.userDAO;
 import com.example.econo_misons.database.models.Category;
-import com.example.econo_misons.database.models.User;
 
 import java.util.List;
 

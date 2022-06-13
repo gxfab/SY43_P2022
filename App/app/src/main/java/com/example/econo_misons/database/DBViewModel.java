@@ -22,17 +22,7 @@ import java.util.concurrent.Executor;
 public class DBViewModel extends ViewModel {
 
     /*TODO: Rework a bit the database:
-            -Link Budget and previsional budget ?
-            -Add a color to category ?
-            -Add a prev column to Transaction ?
             -Add a recurrent column to transaction ?
-      TODO: Add the methods (on split DAOs and Repositories):
-            -addCategory(Budget budget, String name)
-            -getCatList(User user, Budget bud, String Prev_Date) return Cat list with name and sum
-            -getCatExp(Category cat)
-            -addExp(User user, Budget bud, Category cat, String name, float amount, bool exp, String date)
-            -editExp(Transaction exp)
-            -deleteExp(Transaction exp)
     */
 
     private final UserDataRepository userDataSource;
@@ -81,6 +71,10 @@ public class DBViewModel extends ViewModel {
 
     public LiveData<List<Budget>> getUserBudgets(int userID){ return budgetDataSource.getUserBudgets(userID);}
 
+    public LiveData<List<Budget>> getBudgetByID(int budID){ return budgetDataSource.getBudgetByID(budID);}
+
+    public LiveData<Float> getBudgetSum(int budID){ return budgetDataSource.getBudgetSum(budID);}
+
     public void addUserToBudget(Budget budget, User user){
         executor.execute(() -> budgetDataSource.addUserToBudget(budget, user));
     }
@@ -109,6 +103,8 @@ public class DBViewModel extends ViewModel {
 
     public LiveData<List<PrevisionalBudget>> getUserPrevBudgets(int userID) {return prevBudgetDataSource.getUserPrevBudgets(userID);}
 
+    public LiveData<Float> getCurrentBudgetSum(PrevisionalBudget prevBud) {return prevBudgetDataSource.getCurrentBudgetSum(prevBud);}
+
     //ENVELOPE
 
     public void addEnvelope(Envelope env) {executor.execute(() -> prevBudgetDataSource.addEnvelope(env));}
@@ -121,6 +117,7 @@ public class DBViewModel extends ViewModel {
 
     public LiveData<List<Envelope>> getPrevBudgetEnvelopes(PrevisionalBudget prevBud) {return prevBudgetDataSource.getPrevBudgetEnvelopes(prevBud);}
 
+    public LiveData<List<Envelope>> getCurrentBudgetEnvelope(PrevisionalBudget prevBud) {return transactionDataRepository.getCurrentBudgetEnvelope(prevBud);}
     //TRANSACTION
 
     public void addTransaction(Transaction trans) {executor.execute(() -> transactionDataRepository.addTransaction(trans));}

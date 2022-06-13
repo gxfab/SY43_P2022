@@ -7,12 +7,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.econo_misons.database.models.Budget;
-import com.example.econo_misons.database.models.Budget_User;
-import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
-import com.example.econo_misons.database.models.Transaction;
 
 import java.util.List;
 
@@ -31,6 +27,9 @@ public interface prevBudgetDAO {
     LiveData<List<PrevisionalBudget>> getUserPrevBudgets(int userID);
     @Query("SELECT * FROM PrevisionalBudget WHERE BUD_ID = :budgetID")
     LiveData<List<PrevisionalBudget>> getPrevBudgetsByBudget(int budgetID);
+    @Query("SELECT SUM(AM_TRANS) FROM `Transaction` WHERE BUD_ID = :budgetID AND PREV_DATE = :prevDate")
+    LiveData<Float> getCurrentBudgetSum(int budgetID, String prevDate);
+
 
     @Insert
     void addEnvelope(Envelope env);

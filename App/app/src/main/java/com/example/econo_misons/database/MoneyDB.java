@@ -78,7 +78,7 @@ public abstract class MoneyDB extends RoomDatabase {
                     INSTANCE.prevdao().addEnvelope(new Envelope(1,"2022-06",1,100));
                     INSTANCE.prevdao().addEnvelope(new Envelope(1,"2022-06",2,50));
                     INSTANCE.transdao().addTransaction(new Transaction(1,"2022-06",1,1,"Fromagerie","2022-06-12",30,true));
-                    INSTANCE.transdao().addTransaction(new Transaction(1,"2022-06",1,1,"Jeux de sociétés","2022-06-5",15,true));
+                    INSTANCE.transdao().addTransaction(new Transaction(1,"2022-06",1,2,"Jeux de sociétés","2022-06-5",15,true));
 
                 });
 

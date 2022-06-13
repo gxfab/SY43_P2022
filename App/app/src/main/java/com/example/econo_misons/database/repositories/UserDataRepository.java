@@ -1,7 +1,5 @@
 package com.example.econo_misons.database.repositories;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 
 import com.example.econo_misons.database.dao.userDAO;
@@ -24,9 +22,6 @@ public class UserDataRepository {
     public void deleteUser(User user) {  this.userDao.deleteUser(user);}
 
     public LiveData<List<User>> getUser(int id) {
-        Log.d("DB", "id: " + id);
-        LiveData<List<User>> user = this.userDao.getUser(id);
-        Log.d("DB", "getUser: " + user.getValue());
-        return user;
+        return this.userDao.getUser(id);
     }
 }

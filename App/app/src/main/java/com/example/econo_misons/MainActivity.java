@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.Envelope;
+import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.Transaction;
 import com.example.econo_misons.database.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -86,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getAllUsers() {
-        this.dbViewModel.getAllTransactions().observe(this, this::showUserList);
+        PrevisionalBudget prevBud = new PrevisionalBudget(1,"2022-06");
+        this.dbViewModel.getCurrentBudgetEnvelope(prevBud).observe(this, this::showUserList);
 
     }
 
@@ -94,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
         dbViewModel.newUser(new User(username));
     }
 
-    private void showUserList(List<Transaction> users){
-        Toast toast = Toast.makeText(getApplicationContext(), users.toString(), Toast.LENGTH_LONG);
+    private void showUserList(List<Envelope> list){
+        Toast toast = Toast.makeText(getApplicationContext(), list.toString(), Toast.LENGTH_LONG);
         toast.show();
     }
 

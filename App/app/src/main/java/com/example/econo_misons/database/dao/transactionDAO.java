@@ -7,8 +7,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.Transaction;
-import com.example.econo_misons.database.models.User;
 
 import java.util.List;
 
@@ -30,4 +30,8 @@ public interface transactionDAO {
     LiveData<List<Transaction>> getBudgetPrevTransactions(int budID, String prevDate);
     @Query("SELECT * FROM `Transaction` WHERE `Transaction`.USER_ID = :userID")
     LiveData<List<Transaction>> getUserTransactions(int userID);
+    @Query("Select BUD_ID,PREV_DATE,CAT_ID,SUM(AM_TRANS) AS ENV_SUM FROM `Transaction`" +
+            "WHERE BUD_ID = :BudgetID AND PREV_DATE = :prevDate " +
+            "GROUP BY CAT_ID")
+    LiveData<List<Envelope>> getCurrentBudgetEnvelope(int BudgetID, String prevDate);
 }

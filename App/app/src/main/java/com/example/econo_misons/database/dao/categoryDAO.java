@@ -7,10 +7,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.econo_misons.database.models.Budget;
-import com.example.econo_misons.database.models.Budget_User;
 import com.example.econo_misons.database.models.Category;
-import com.example.econo_misons.database.models.Transaction;
+
 
 import java.util.List;
 

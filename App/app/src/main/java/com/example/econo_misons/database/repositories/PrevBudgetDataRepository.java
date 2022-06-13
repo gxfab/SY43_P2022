@@ -4,13 +4,9 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.econo_misons.database.dao.categoryDAO;
 import com.example.econo_misons.database.dao.prevBudgetDAO;
-import com.example.econo_misons.database.dao.userDAO;
-import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
-import com.example.econo_misons.database.models.User;
 
 import java.util.List;
 
@@ -34,6 +30,10 @@ public class PrevBudgetDataRepository {
 
     public LiveData<List<PrevisionalBudget>> getUserPrevBudgets(int userID) {
         return this.prevDAO.getUserPrevBudgets(userID);
+    }
+
+    public LiveData<Float> getCurrentBudgetSum(PrevisionalBudget prevBud){
+        return this.prevDAO.getCurrentBudgetSum(prevBud.budgetID, prevBud.yearMonth);
     }
 
     //ENVELOPES
