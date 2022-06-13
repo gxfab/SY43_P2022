@@ -20,6 +20,7 @@ import com.example.lafo_cheuse.material.ExpenseAdapter
 import com.example.lafo_cheuse.material.ExpenseSetterAdapter
 import com.example.lafo_cheuse.material.IncomeAdapter
 import com.example.lafo_cheuse.material.IncomeSetterAdapter
+import com.example.lafo_cheuse.models.Income
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -77,7 +78,12 @@ class SetIncomesExpensesFragment : Fragment() {
     }
     private fun initializeRecyclerViewIncome(recyclerView: RecyclerView) {
         recyclerView?.layoutManager = LinearLayoutManager(activity)
-        incomeAdapter = IncomeAdapter(context as Activity)
+        incomeAdapter = IncomeAdapter(context as Activity, object : IncomeAdapter.deleteButtonClickListener {
+                override fun onDeleteButtonClick(position: Int) {
+                    deleteIncomeItem(position)
+                }
+            }
+        )
         recyclerView?.adapter = incomeAdapter
         recyclerView?.setHasFixedSize(true)
 
@@ -88,12 +94,30 @@ class SetIncomesExpensesFragment : Fragment() {
 
     private fun initializeRecyclerViewExpense(recyclerView: RecyclerView) {
         recyclerView?.layoutManager = LinearLayoutManager(activity)
-        expenseAdapter = ExpenseAdapter(context as Activity)
+        expenseAdapter = ExpenseAdapter(context as Activity, object : ExpenseAdapter.deleteButtonClickListener {
+            override fun onDeleteButtonClick(position: Int) {
+                deleteExpenseItem(position)
+            }
+        })
         recyclerView?.adapter = expenseAdapter
         recyclerView?.setHasFixedSize(true)
 
         expenseViewModel.getOneTimeExpense().observe(viewLifecycleOwner) { list ->
             expenseAdapter!!.setExpenses(list)
+        }
+    }
+
+    private fun deleteIncomeItem(position: Int) {
+        val item = incomeAdapter?.getItemAt(position)
+        if (item != null) {
+            incomeViewModel.deleteIncome(item)
+        }
+    }
+
+    private fun deleteExpenseItem(position: Int) {
+        val item = expenseAdapter?.getItemAt(position)
+        if (item != null) {
+            expenseViewModel.deleteExpense(item)
         }
     }
 }
