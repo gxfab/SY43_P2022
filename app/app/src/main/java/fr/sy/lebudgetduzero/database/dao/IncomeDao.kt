@@ -46,5 +46,16 @@ interface IncomeDao {
      * @return Float of the amount in euro
      */
     @Query("SELECT SUM(value) FROM IncomeItem WHERE date> :timestampBegin")
-    fun getIncomeValue(timestampBegin: Int): Float
+    fun getIncomeValue(timestampBegin: Int):Int
+
+
+    /**
+     * Get amount of all incomes done between two time/date
+     *
+     * @param timestampBegin Int as unix timestamp as the time limit. We'll count income which appears only after this date
+     * @param timestampEnd Int as unix timestamp as the time limit. We'll count income which appears only before this date
+     * @return Float of the amount in euro
+     */
+    @Query("SELECT SUM(value) FROM IncomeItem WHERE date> :timestampBegin AND date< :timestampEnd")
+    fun getIncomeValueBtw(timestampBegin: Int, timestampEnd: Int): Float
 }
