@@ -9,7 +9,6 @@ import androidx.sqlite.db.SupportSQLiteCompat
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.sy43_p2022.database.dao.*
 import com.example.sy43_p2022.database.entities.*
-import com.example.sy43_p2022.fragments.PopulateDataBase
 
 @Database(entities = [(Category::class), (SubCategory::class)], version = 1)
 abstract class PiggyBankDatabase : RoomDatabase(){
@@ -25,18 +24,10 @@ abstract class PiggyBankDatabase : RoomDatabase(){
                 INSTANCE = Room.databaseBuilder(
                     context.applicationContext,
                     PiggyBankDatabase::class.java,
-                    "DATA.db" // modify this line to force regenerate the db on launch
+                    "PiggyBank.db" // modify this line to force regenerate the db on launch
                 )
                     .fallbackToDestructiveMigration()
-                    /*.addCallback(object : RoomDatabase.Callback(){
-                        override fun onCreate(db: SupportSQLiteDatabase){
-                            super.onCreate(db)
-                            val populate = PopulateDataBase()
-                            populate.generate()
-                        }
-                    })*/
                     .build()
-
             }
 
             return INSTANCE!!

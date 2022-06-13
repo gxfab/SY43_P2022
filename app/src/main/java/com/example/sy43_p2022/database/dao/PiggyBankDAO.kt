@@ -11,7 +11,7 @@ import com.example.sy43_p2022.database.entities.SubCategory
 @Dao
 interface PiggyBankDAO {
     @Insert
-    suspend fun insertCategory(name: Category)
+    suspend fun insertCategory(vararg name: Category)
 
     @Insert
     suspend fun insertSubCategory(vararg name: SubCategory)

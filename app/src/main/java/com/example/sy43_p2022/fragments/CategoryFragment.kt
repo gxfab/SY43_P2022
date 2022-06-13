@@ -32,6 +32,7 @@ open class CategoryFragment(
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(layout, container, false)
+
         db = PiggyBankDatabase.getDatabase(view.context)
 
         // Go back button (left arrow at the top of the screen)

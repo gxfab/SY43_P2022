@@ -22,8 +22,7 @@
     <string name="editing_goals_amount">Ex: $10</string>
     <string name="editing_goals_editing">Tap to edit</string>
     <string name="editing_goals_validate">Validate</string>
-
-
+    
     <!-- Spendings Page -->
     <string name="spending_page_subcategory">Subcategory</string>
     <string name="spending_page_amount">$0</string>

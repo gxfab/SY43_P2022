@@ -15,12 +15,11 @@ import androidx.room.PrimaryKey
     )
 ])
 data class SubCategory(
-    @PrimaryKey
-    val subid:String,
+    @PrimaryKey(autoGenerate = true)
+    val subid:Int = 0,
     val name :String,
     val amount : Int = 0,
     @ColumnInfo(index = true)
-    val categoryId: String
-
+    val categoryId: Int
 
 )
