@@ -3,7 +3,9 @@ package com.example.sy43.database;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -11,6 +13,9 @@ import java.util.List;
 public interface SubCategoryDao {
     @Query("SELECT * FROM SubCategory")
     List<SubCategory> getAll();
+
+    @Query("SELECT * FROM SubCategory ORDER BY s_name")
+    List<SubCategory> getAllOrderedByName();
 
     @Query("SELECT * FROM SubCategory WHERE id IN (:subcatID)")
     List<SubCategory> loadAllByIDs(int[] subcatID);
@@ -25,6 +30,9 @@ public interface SubCategoryDao {
 
     @Insert
     void insertAll(SubCategory... subcat);
+
+    @Update (onConflict = OnConflictStrategy.REPLACE)
+    int updateAll(SubCategory... subcat);
 
     @Delete
     void delete(SubCategory subcat);
