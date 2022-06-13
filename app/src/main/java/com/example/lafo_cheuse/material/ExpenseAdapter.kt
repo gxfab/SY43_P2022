@@ -15,9 +15,9 @@ import com.example.lafo_cheuse.models.Expense
 class ExpenseAdapter (var context : Activity) : RecyclerView.Adapter<ExpenseAdapter.ViewHolder>() {
     private var mExpense: List<Expense> = ArrayList<Expense>()
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ie_name: EditText = itemView.findViewById(R.id.ie_name)
+        val ieName: EditText = itemView.findViewById(R.id.ie_name)
         val categoryEmojiButton: Button = itemView.findViewById<Button>(R.id.emojiButton)
-        val ie_value: EditText = itemView.findViewById(R.id.ie_value)
+        val ieValue: EditText = itemView.findViewById(R.id.ie_value)
         val deleteButton: Button = itemView.findViewById<Button>(R.id.deleteButton2)
     }
 
@@ -30,9 +30,9 @@ class ExpenseAdapter (var context : Activity) : RecyclerView.Adapter<ExpenseAdap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val expense: Expense = mExpense[position]
-        holder.ie_name.setText(expense.category?.categoryName)
+        holder.ieName.setText(expense.category?.categoryName)
         holder.categoryEmojiButton.text = expense.category?.categoryEmoji
-        holder.ie_value.setText(expense.amount.toString())
+        holder.ieValue.setText(expense.amount.toString())
 
         holder.categoryEmojiButton.setOnClickListener {
              //chooseCategory(category)
@@ -41,6 +41,11 @@ class ExpenseAdapter (var context : Activity) : RecyclerView.Adapter<ExpenseAdap
 
     override fun getItemCount(): Int {
         return mExpense.size
+    }
+
+    fun setExpenses(mExpenses: List<Expense>) {
+        this.mExpense = mExpenses
+        notifyDataSetChanged()
     }
 
 }
