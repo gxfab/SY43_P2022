@@ -1,14 +1,13 @@
 package com.example.noappnogain.ui.home
 
 
-import android.R
 import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import android.widget.AdapterView.OnItemClickListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.adapter.HomeAdapter
@@ -17,6 +16,9 @@ import com.example.noappnogain.model.Data
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -32,6 +34,12 @@ class HomeFragment : Fragment() {
 
     var balance : Int = 0
 
+    var spinnerCat: Spinner? = null
+    var edtAmount: EditText? = null
+    var edtNote: EditText? = null
+    var error = false
+    var edtType: String? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -46,9 +54,9 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         val balanceSetResult: TextView = binding.balanceSetResult
         val recyclerView: RecyclerView = binding.verticalRecyclerView
-
+        edtAmount = binding.montantEdt
+        edtNote = binding.nomEdt
         mouvementArrayList = arrayListOf<Data>()
-
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth?.currentUser
 
@@ -58,6 +66,29 @@ class HomeFragment : Fragment() {
                 FirebaseDatabase.getInstance().reference.child("MouvementData").child(uid)
 
         }
+
+        spinnerCat = binding.categorieEdt
+        ArrayAdapter.createFromResource(
+            activity!!,
+            com.example.noappnogain.R.array.categorie_depense,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerCat!!.adapter = adapter
+        }
+
+        spinnerCat?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                edtType = spinnerCat?.selectedItem.toString()
+                println("posCat : $position")
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
 
         mMouvementDatabase?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -79,10 +110,7 @@ class HomeFragment : Fragment() {
                         balanceSetResult.setText(balance.toString())
                         mouvementArrayList.add(data!!)
                     }
-
                     recyclerView.adapter = HomeAdapter(mouvementArrayList)
-
-
                 }
             }
 
@@ -91,8 +119,46 @@ class HomeFragment : Fragment() {
             }
         })
 
+        val btnAjouter: Button = binding.btnAjouter
+        btnAjouter.setOnClickListener(View.OnClickListener {
+            dataInsert()
+            edtNote!!.text.clear()
+            edtAmount!!.text.clear()
+
+        })
+
 
         return root
+    }
+
+    fun dataInsert() {
+
+        val type = edtType.toString().trim { it <= ' ' }
+        val amount = edtAmount?.text.toString().trim { it <= ' ' }
+        val note = edtNote?.text.toString().trim { it <= ' ' }
+        if (TextUtils.isEmpty(amount) || amount.toInt() > 0) {
+            error = true
+            Toast.makeText(activity, "Veuillez mettre votre montant en négatif..", Toast.LENGTH_SHORT).show()
+        }
+        val ouramountinte = amount.toInt()
+        if (TextUtils.isEmpty(note)) {
+            error = true
+            Toast.makeText(activity, "Le champ ne doit pas être vide..", Toast.LENGTH_SHORT).show()
+        }
+        if (mAuth?.currentUser != null && !error && type != "null") {
+            val id: String? = mMouvementDatabase?.push()?.key
+            val SDFormat: SimpleDateFormat = SimpleDateFormat("d/M/yyyy")
+            val mDate = SDFormat.format(Date())
+            val data = Data(ouramountinte, type, note, id, mDate)
+            if (id != null) {
+                mMouvementDatabase?.child(id)?.setValue(data)
+                Toast.makeText(activity, "Enregistrement réussi..", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(activity, "Echec de l'enregistrement..", Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            Toast.makeText(activity, "Echec de l'enregistrement..", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {

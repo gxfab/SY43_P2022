@@ -100,7 +100,6 @@ class DepenseFragment : Fragment() {
         btnAjouter.setOnClickListener(View.OnClickListener {
             dataInsert()
             updateRecylerView()
-
         })
 
         updateRecylerView()

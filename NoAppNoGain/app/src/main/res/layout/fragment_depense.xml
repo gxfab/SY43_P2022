@@ -118,9 +118,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="FILTRE"/>
+
     <LinearLayout
         android:layout_width="411dp"
-        android:layout_height="553dp"
+        android:layout_height="500dp"
         android:layout_margin="5dp"
         android:background="@drawable/background"
         android:gravity="center"
@@ -130,7 +131,7 @@
             android:id="@+id/recycler_id_expense"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
 

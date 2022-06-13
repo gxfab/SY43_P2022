@@ -12,7 +12,7 @@
         android:layout_margin="5dp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="3dp"
+        android:layout_marginEnd="3dp"
         android:background="@drawable/background"
         android:orientation="horizontal"
         android:gravity="center">
@@ -51,10 +51,105 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="190dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/spinner"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Spinner
+                    android:id="@+id/categorie_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center"
+                    android:entries="@array/categorie_depense"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/input"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/montant_edt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="montant"
+                    android:inputType="numberSigned"
+                    android:backgroundTint="@color/white"
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/input"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/nom_edt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:hint="nom"
+                android:backgroundTint="@color/white"
+                />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_ajouter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ AJOUTER DEPENSE"
+            android:backgroundTint="@color/brown"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/background"
         android:gravity="center"
         android:orientation="vertical">
