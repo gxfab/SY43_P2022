@@ -32,7 +32,7 @@ open class CategoryFragment(
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(layout, container, false)
-        db = PiggyBankDatabase.getDatabase(view.context, CoroutineScope(SupervisorJob()))
+        db = PiggyBankDatabase.getDatabase(view.context)
 
         // Go back button (left arrow at the top of the screen)
         view.findViewById<ImageView>(R.id.fragment_return)
@@ -46,15 +46,15 @@ open class CategoryFragment(
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
             loadSubCategories(view)
         }
-    }
+    }*/
 
-    private suspend fun loadSubCategories(view: View) {
+    /*private suspend fun loadSubCategories(view: View) {
         val parentCategory: Category = db.categoryDAO().getCategoryByName(mainCategoryName)
         val subCategories: List<SubCategory> = db.subcategoryDAO().getSubCategoriesFromParentId(parentCategory.id)
 
@@ -64,5 +64,5 @@ open class CategoryFragment(
             subCategories,
             ButtonAdapter.OnClickListener(verticalRecyclerView, layoutVerticalColor)
         )
-    }
+    }*/
 }

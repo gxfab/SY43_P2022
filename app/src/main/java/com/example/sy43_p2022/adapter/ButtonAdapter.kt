@@ -33,7 +33,7 @@ class ButtonAdapter(private val layoutId: Int, private val subCategories: List<S
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ButtonViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
-        db = PiggyBankDatabase.getDatabase(view.context, CoroutineScope(SupervisorJob()));
+        db = PiggyBankDatabase.getDatabase(view.context);
 
         return ButtonViewHolder(view)
     }
