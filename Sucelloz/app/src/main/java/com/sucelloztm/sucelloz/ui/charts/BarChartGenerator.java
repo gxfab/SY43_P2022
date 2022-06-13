@@ -62,7 +62,6 @@ public class BarChartGenerator {
 
 
         parent.addView(barChart);
-        barChart.invalidate();
     }
 
     private BarData generateBarData() {
@@ -73,7 +72,6 @@ public class BarChartGenerator {
 
         for(int i = 0; i<entriesList.size();i++){
             entries.add(new BarEntry(i,entriesList.get(i)));
-            Log.d("BarDataSetDebug",String.valueOf(entriesList.get(i)));
         }
 
         BarDataSet set = new BarDataSet(entries,"Savings");

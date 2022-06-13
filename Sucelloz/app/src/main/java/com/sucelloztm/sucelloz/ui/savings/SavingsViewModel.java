@@ -27,5 +27,16 @@ public class SavingsViewModel extends AndroidViewModel {
         return this.currentSavings;
     }
 
+    public void deleteSaving(Savings saving){
+        this.savingsRepository.deleteSaving(saving);
+    }
+
+    public Savings getSavingById(long idOfSaving){
+        return this.savingsRepository.getSavingById(idOfSaving);
+    }
+
+    public void updateSaving(Savings saving){
+        this.savingsRepository.updateSaving(saving);
+    }
 
 }

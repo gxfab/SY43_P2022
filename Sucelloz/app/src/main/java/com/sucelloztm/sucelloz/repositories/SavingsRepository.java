@@ -23,4 +23,16 @@ public class SavingsRepository {
     }
 
     public void insert(Savings saving) { savingsDao.insertSaving(saving); }
+
+    public void deleteSaving(Savings saving){
+        this.savingsDao.deleteSaving(saving);
+    }
+
+    public Savings getSavingById(long idOfSaving){
+        return this.savingsDao.getSavingById(idOfSaving);
+    }
+
+    public void updateSaving(Savings saving){
+        this.savingsDao.updateSaving(saving);
+    }
 }

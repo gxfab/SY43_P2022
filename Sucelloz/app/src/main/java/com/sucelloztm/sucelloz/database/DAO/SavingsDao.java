@@ -34,4 +34,7 @@ public interface SavingsDao {
 
     @Query("SELECT * FROM savings")
     LiveData<List<Savings>> getAllSavings();
+
+    @Query("SELECT * FROM savings WHERE savings_id=:idOfSaving")
+    Savings getSavingById(long idOfSaving);
 }

@@ -3,7 +3,6 @@
     android:id="@+id/category_card_clickable"
     android:clickable="true"
     android:focusable="true"
-    android:onClick="onClick"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="96dp"
