@@ -140,4 +140,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun loadBudgetActivity(view: View){
+        val intent= Intent(this, BudgetActivity::class.java)
+        startActivity(intent)
+    }
+
 }

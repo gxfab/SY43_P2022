@@ -47,4 +47,15 @@ interface SpentDao {
      */
     @Query("SELECT SUM(value) FROM SpentItem WHERE date> :timestampBegin")
     fun getSpentValue(timestampBegin: Int): Float
+
+    /**
+     * Get amount of all spend done between two time/date
+     *
+     * @param timestampBegin Int as unix timestamp as the time limit. We'll count spent which appears only after this date
+     * @param timestampEnd Int as unix timestamp as the time limit. We'll count spent which appears only before this date
+     * @param idType Id of the type of spent we want to take
+     * @return Float of the amount in euro
+     */
+    @Query("SELECT SUM(value) FROM SpentItem WHERE date> :timestampBegin AND date< :timestampEnd AND id_type=:idType")
+    fun getSpentValueBtwByType(timestampBegin: Int, timestampEnd: Int, idType: Int): Float
 }
