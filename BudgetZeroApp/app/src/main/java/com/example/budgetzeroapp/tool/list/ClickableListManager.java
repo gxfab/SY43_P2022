@@ -1,6 +1,5 @@
 package com.example.budgetzeroapp.tool.list;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -8,7 +7,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
-import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.list.adapter.ProgressBarAdapter;
 import com.example.budgetzeroapp.tool.list.adapter.SimpleListAdapter;
 import com.example.budgetzeroapp.tool.list.item.ListItem;
@@ -35,15 +33,14 @@ public class ClickableListManager {
 
 
 
-    public static ListView clickableList(View view, int listViewID,int layout, Context context,
+    public static ListView clickableList(View view, int listViewID,int layout,
                                   List<ListItem> items, DataBaseFragment frag){
-        return clickableList((ListView) view.findViewById(listViewID), new SimpleListAdapter(context,layout, items), frag);
+        return clickableList((ListView) view.findViewById(listViewID), new SimpleListAdapter(layout, items), frag);
     }
 
     public static ListView clickableList(
-            ListView list, int layout, Context context,
-            List<ListItem> items, DataBaseFragment frag) {
-        return clickableList(list, new SimpleListAdapter(context,layout, items), frag);
+            ListView list, int layout, List<ListItem> items, DataBaseFragment frag) {
+        return clickableList(list, new SimpleListAdapter(layout, items), frag);
     }
 
     public static ListView clickableList(ListView list, ArrayAdapter<ListItem> adapter, DataBaseFragment frag){
@@ -56,8 +53,8 @@ public class ClickableListManager {
         return list;
     }
 
-    public static ListView clickableListPB(ListView list, Context context, List<ProgressBarItem> items){
-        list.setAdapter(new ProgressBarAdapter(context, items));
+    public static ListView clickableListPB(ListView list, List<ProgressBarItem> items){
+        list.setAdapter(new ProgressBarAdapter(items));
         list.setOnItemClickListener((parent, v, position, id) -> {
             ProgressBarItem item = (ProgressBarItem) list.getItemAtPosition(position);
             DataBaseFragment frag = item.getFragment();
@@ -67,15 +64,15 @@ public class ClickableListManager {
         return list;
     }
 
-    public static Spinner clickableSpinner(View view, int SpinnerID,int layout, Context context,
+    public static Spinner clickableSpinner(View view, int SpinnerID,int layout,
                                   List<ListItem> items, DataBaseFragment frag){
-        return clickableSpinner((Spinner) view.findViewById(SpinnerID), new SimpleListAdapter(context,layout, items), frag);
+        return clickableSpinner((Spinner) view.findViewById(SpinnerID), new SimpleListAdapter(layout, items), frag);
     }
 
     public static Spinner clickableSpinner(
-            Spinner list, int layout, Context context,
+            Spinner list, int layout,
             List<ListItem> items, DataBaseFragment frag) {
-        return clickableSpinner(list, new SimpleListAdapter(context,layout, items), frag);
+        return clickableSpinner(list, new SimpleListAdapter(layout, items), frag);
     }
 
     public static Spinner clickableSpinner(Spinner list, ArrayAdapter<ListItem> adapter, DataBaseFragment frag){

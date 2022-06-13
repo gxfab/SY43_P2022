@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.content.res.AppCompatResources;
 
+import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.list.item.ProgressBarItem;
 
@@ -18,11 +19,9 @@ import java.util.List;
 public class ProgressBarAdapter extends ArrayAdapter<ProgressBarItem> {
 
         protected int resourceLayout;
-        protected Context mContext;
-        public ProgressBarAdapter(Context context, List<ProgressBarItem> items) {
-            super(context, R.layout.progress_bar_cat, items);
+        public ProgressBarAdapter(List<ProgressBarItem> items) {
+            super(AppContext.getContext(), R.layout.progress_bar_cat, items);
             resourceLayout = R.layout.progress_bar_cat;
-            this.mContext = context;
         }
 
         @Override
@@ -32,7 +31,7 @@ public class ProgressBarAdapter extends ArrayAdapter<ProgressBarItem> {
 
             if (v == null) {
                 LayoutInflater vi;
-                vi = LayoutInflater.from(mContext);
+                vi = LayoutInflater.from(AppContext.getContext());
                 v = vi.inflate(resourceLayout, null);
             }
             ProgressBarItem p = getItem(position);
@@ -46,7 +45,7 @@ public class ProgressBarAdapter extends ArrayAdapter<ProgressBarItem> {
                 }
                 SeekBar seekbar = v.findViewById(R.id.seekbar);
                 if (seekbar != null) {
-                    seekbar.setThumb(AppCompatResources.getDrawable(mContext, p.getDrawable()));
+                    seekbar.setThumb(AppCompatResources.getDrawable(AppContext.getContext(), p.getDrawable()));
                     seekbar.setProgress((int) p.getPercent());
                     seekbar.setEnabled(false);
                 }

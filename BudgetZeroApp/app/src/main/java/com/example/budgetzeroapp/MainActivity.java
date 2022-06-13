@@ -23,15 +23,15 @@ import com.example.budgetzeroapp.tool.OptionsMenu;
 public class MainActivity extends OptionsMenu {
     private Toolbar toolbar;
     private ActivityMainBinding binding;
-    private static Context context;
+    private static MainActivity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
-        context = getApplicationContext();
 
         /**Menu**/
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -73,10 +73,6 @@ public class MainActivity extends OptionsMenu {
 
     }
 
-    public static Context getContext() {
-        return context;
-    }
-
     public void replaceFragment(Fragment frag){
         FragmentManager fragManager = getSupportFragmentManager();
         FragmentTransaction fragTransaction = fragManager.beginTransaction();
@@ -84,5 +80,7 @@ public class MainActivity extends OptionsMenu {
         fragTransaction.commit();
     }
 
-
+    public static MainActivity getActivity() {
+        return activity;
+    }
 }

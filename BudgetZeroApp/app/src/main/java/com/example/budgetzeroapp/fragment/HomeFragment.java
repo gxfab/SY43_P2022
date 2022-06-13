@@ -1,24 +1,21 @@
 package com.example.budgetzeroapp.fragment;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.list.ClickableListManager;
 import com.example.budgetzeroapp.tool.list.item.ProgressBarItem;
 
@@ -62,33 +59,30 @@ public class HomeFragment extends DataBaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //List<ProgressBarItem> items = initPBList();
-        //list = ClickableListManager.clickableListPB(list,context, items);
+        List<ProgressBarItem> items = initPBList();
+        list = ClickableListManager.clickableListPB(list, items);
         setupPieChart();
-        //loadPieChartData(items);
-
+        loadPieChartData(items);
 
     }
 
     public List<ProgressBarItem> initPBList(){
-        //if(database.exists(context, DBHelper.DATABASE_NAME)){
-                //redirect(new SavingsFragment());
 
         Cursor rows = database.getMainExpCat();
         List<ProgressBarItem> list = new ArrayList<>();
-         rows.moveToFirst();
         int id, percent;
         float amount, total;
         total = database.getSumExp();
         String name;
-        while(!rows.isAfterLast()){
-            id = rows.getInt(rows.getColumnIndexOrThrow("id"));
-            name = rows.getString(rows.getColumnIndexOrThrow("name"));
-            amount = database.getSumCatExp(id);
-            percent = (int)(100*amount/total);
-            list.add(new ProgressBarItem(id, name, amount, percent));
-            rows.moveToNext();
-        }
+        rows.moveToFirst();
+            while (!rows.isAfterLast()) {
+                id = rows.getInt(rows.getColumnIndexOrThrow("id"));
+                name = rows.getString(rows.getColumnIndexOrThrow("name"));
+                amount = database.getSumCatExp(id);
+                percent = (int) (100 * amount / total);
+                list.add(new ProgressBarItem(id, name, amount, percent));
+                rows.moveToNext();
+            }
         amount = database.getSumSav();
         list.add(new ProgressBarItem(-1, "Savings", amount, (int)(100*amount/total)));
         amount = database.getSumDebt();

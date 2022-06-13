@@ -7,9 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.database.Cursor;
 
-import com.example.budgetzeroapp.HomeFragment;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.view.ViewIncomeCatFragment;
 import com.example.budgetzeroapp.tool.DBHelper;
 
 // Champs à éditer : name (string), month_left(int) et total_amount (float)

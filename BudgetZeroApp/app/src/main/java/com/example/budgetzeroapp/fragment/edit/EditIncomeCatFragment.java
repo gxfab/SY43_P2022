@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.R;
@@ -51,7 +52,7 @@ public class EditIncomeCatFragment extends EditDataBaseFragment{
             if(!n.equals("")) {
                 if(id ==0) database.insertIncomeCat(n);
                 else database.updateIncomeCat(id, n);
-                activity.replaceFragment(new HomeFragment());
+                MainActivity.getActivity().replaceFragment(new HomeFragment());
                 redirect(new ViewIncomeCatFragment(id));
                 mess = "Income category '"+n;
                 if(id == 0) mess+=" added";

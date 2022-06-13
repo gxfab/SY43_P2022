@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.tool.DBHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +29,7 @@ public class SavingsFragment extends DataBaseFragment {
     private String mParam2;
 
     public SavingsFragment() {
-        // Required empty public constructor
+        super();
     }
 
     /**

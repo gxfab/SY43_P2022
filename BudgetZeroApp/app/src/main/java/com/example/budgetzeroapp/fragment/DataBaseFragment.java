@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.list.item.ListItem;
 import com.example.budgetzeroapp.MainActivity;
@@ -20,18 +21,12 @@ import java.util.List;
 
 public class DataBaseFragment extends Fragment {
     protected DBHelper database;
-    protected MainActivity activity;
-    protected Context context;
     protected int id;
 
     public DataBaseFragment() { this(0);}
 
     public DataBaseFragment(int id) {
-        activity = (MainActivity) getActivity();
-        if (isAdded()) {
-            context = activity.getApplicationContext();
-            database = new DBHelper(context);
-        }
+        database = new DBHelper(AppContext.getContext());
         this.id = id;
     }
 
@@ -39,8 +34,8 @@ public class DataBaseFragment extends Fragment {
 
     public void message(String message) {
         if (isAdded())
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(AppContext.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    public void redirect(Fragment f) {activity.replaceFragment(f); }
+    public void redirect(Fragment f) {MainActivity.getActivity().replaceFragment(f); }
 }
