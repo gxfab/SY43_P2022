@@ -43,14 +43,15 @@ class SetIncomesExpensesFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_set_incomes_expenses, container, false)
-        val  budgetDisplayButton : FloatingActionButton = view.findViewById(R.id.budgetSetterFragment)
+        val budgetDisplayButton : FloatingActionButton = view.findViewById(R.id.budgetSetterFragment)
         val incomeExpenseSetterButton : FloatingActionButton = view.findViewById(R.id.incomeExpenseSetterFragment)
         val recyclerView : RecyclerView = view.findViewById<RecyclerView>(R.id.ie_recycler)
 
-        recyclerView.setHasFixedSize(true)
+
         recyclerView.layoutManager = LinearLayoutManager(activity)
         expenseAdapter = ExpenseAdapter(context as Activity)
         recyclerView.adapter = expenseAdapter
+        recyclerView.setHasFixedSize(true)
 
         expenseViewModel.getOneTimeExpense().observe(viewLifecycleOwner) { list ->
             expenseAdapter!!.setExpenses(list)
@@ -65,12 +66,6 @@ class SetIncomesExpensesFragment : Fragment() {
             val intent = Intent(activity, CreateIncomeExpenseActivity::class.java)
             startActivity(intent)
         }
-
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.setHasFixedSize(true)
-
-        val adapter = activity?.let { ExpenseAdapter(it) }
-        recyclerView.adapter = adapter
         return view
     }
 
