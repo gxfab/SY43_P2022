@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NoAppNoGain</string>
     <string name="details">Zero Budget Money Manager</string>
@@ -27,5 +28,61 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_test">test</string>
+
+    <string-array name="categorie_depense">
+        <item>---</item>
+        <item>Alimentation</item>
+        <item>Animaux</item>
+        <item>Cadeaux offerts</item>
+        <item>Education</item>
+        <item>Enfants</item>
+        <item>Epargne</item>
+        <item>Habillement</item>
+        <item>Impôts</item>
+        <item>Intérêts dette</item>
+        <item>Inventissement</item>
+        <item>Loisirs</item>
+        <item>Ménage</item>
+        <item>Santé</item>
+        <item>Transport</item>
+        <item>Logement</item>
+    </string-array>
+
+    <string-array name="categorie_revenu">
+        <item>---</item>
+        <item>Aides sociales</item>
+        <item>Allocations sociales</item>
+        <item>Dividendes</item>
+        <item>Honoraires</item>
+        <item>Intérêt</item>
+        <item>Loyer</item>
+        <item>Salaire</item>
+    </string-array>
+
+    <string-array name="annee">
+        <item>---</item>
+        <item>2022</item>
+        <item>2021</item>
+        <item>2020</item>
+        <item>2019</item>
+        <item>2018</item>
+        <item>2017</item>
+    </string-array>
+
+    <string-array name="mois">
+        <item>---</item>
+        <item>Janvier</item>
+        <item>Fevrier</item>
+        <item>Mars</item>
+        <item>Avril</item>
+        <item>Mai</item>
+        <item>Juin</item>
+        <item>Juillet</item>
+        <item>Août</item>
+        <item>Septembre</item>
+        <item>Octobre</item>
+        <item>Novembre</item>
+        <item>Décembre</item>
+    </string-array>
 
 </resources>

@@ -59,7 +59,6 @@ class HomeFragment : Fragment() {
         mouvementArrayList = arrayListOf<Data>()
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth?.currentUser
-
         if (mAuth!!.currentUser != null) {
             val uid = mUser!!.uid
             mMouvementDatabase =
@@ -76,19 +75,6 @@ class HomeFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerCat!!.adapter = adapter
         }
-
-        spinnerCat?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                edtType = spinnerCat?.selectedItem.toString()
-                println("posCat : $position")
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
 
         mMouvementDatabase?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -132,6 +118,19 @@ class HomeFragment : Fragment() {
     }
 
     fun dataInsert() {
+
+        spinnerCat?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                edtType = spinnerCat?.selectedItem.toString()
+                println("posCat : $position")
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
 
         val type = edtType.toString().trim { it <= ' ' }
         val amount = edtAmount?.text.toString().trim { it <= ' ' }

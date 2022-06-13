@@ -42,13 +42,13 @@
                     android:layout_margin="10dp"
                     android:layout_height="wrap_content">
 
-                    <Spinner
+                    <TextView
                         android:id="@+id/categorie_edt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:entries="@array/categorie_depense"
-                        android:spinnerMode="dropdown"/>
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/black" />
 
                 </RelativeLayout>
             </LinearLayout>
