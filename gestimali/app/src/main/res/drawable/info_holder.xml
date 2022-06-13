@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@color/light_blue" />
-    <size android:height="@dimen/money_flow_height" android:width="250dp"/>
+    <size android:height="@dimen/money_flow_height" android:width="200dp"/>
     <corners android:radius="10dp"/>
 </shape>

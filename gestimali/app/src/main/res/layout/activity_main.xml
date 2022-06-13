@@ -116,12 +116,11 @@
         android:layout_height="@dimen/home_page_btn_height"
         android:backgroundTint="@color/purple_700"
         android:text="@string/home_page_btn3"
+        app:cornerRadius="@dimen/home_page_btn_radius"
         app:layout_constraintBottom_toTopOf="@id/homePageButton4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homePageButton2"
-        app:cornerRadius="@dimen/home_page_btn_radius"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/homePageButton2" />
 
     <Button
         android:id="@+id/homePageButton4"

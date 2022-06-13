@@ -27,5 +27,26 @@
     <string name="mon11">November</string>
     <string name="mon12">December</string>
 
+    <!-- Money flow-->
+    <string name="category_name">Category Name</string>
+    <string name="category_1">Income</string>
+    <string name="category_2">Expense</string>
+    <string name="category_3">Saving/Wish</string>
+    <string name="category_4">Enveloppe</string>
+    <string name="category_5">Result</string>
+
+    <string name="date">Date</string>
+    <string name="tag">Tags</string>
+    <string name="amount">200</string>
+
+
+
+
+
+
+
+
+
+
 
 </resources>

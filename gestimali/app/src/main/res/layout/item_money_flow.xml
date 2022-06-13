@@ -21,7 +21,86 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/moneyHolder"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/info_holder"/>
+        app:srcCompat="@drawable/info_holder">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/name_flow"
+        style="@style/moneyFlowTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/category_name"
+        android:translationZ="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontal_separator"
+        app:layout_constraintEnd_toStartOf="@+id/moneyHolder"
+        app:layout_constraintStart_toStartOf="@+id/infoHolder"
+        />
+
+    <TextView
+        android:id="@+id/money_flow_date"
+        style="@style/moneyFlowDescStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        app:layout_constraintBottom_toBottomOf="@+id/infoHolder"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_separator"
+        app:layout_constraintTop_toBottomOf="@+id/name_flow" />
+
+    <TextView
+        android:id="@+id/money_flow_tags"
+        style="@style/moneyFlowDescStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tag"
+        app:layout_constraintBottom_toBottomOf="@+id/infoHolder"
+        app:layout_constraintStart_toEndOf="@+id/vertical_separator"
+        app:layout_constraintTop_toBottomOf="@+id/name_flow" />
+
+    <TextView
+        android:id="@+id/real_amount"
+        style="@style/moneyFlowAmountStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amount"
+        app:layout_constraintBottom_toTopOf="@+id/horizontal_separator"
+        app:layout_constraintEnd_toEndOf="@id/moneyHolder"
+        app:layout_constraintStart_toStartOf="@+id/moneyHolder"
+        app:layout_constraintTop_toTopOf="@+id/moneyHolder" />
+
+    <TextView
+        android:id="@+id/plan_amount"
+        style="@style/moneyFlowAmountStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amount"
+        app:layout_constraintBottom_toBottomOf="@+id/moneyHolder"
+        app:layout_constraintEnd_toEndOf="@id/moneyHolder"
+        app:layout_constraintStart_toStartOf="@+id/moneyHolder"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_separator" />
+
+    <View
+        android:id="@+id/horizontal_separator"
+        android:layout_width="330dp"
+        android:layout_height="3dp"
+        app:layout_constraintStart_toStartOf="@id/infoHolder"
+        app:layout_constraintEnd_toEndOf="@id/moneyHolder"
+        app:layout_constraintBottom_toBottomOf="@+id/infoHolder"
+        app:layout_constraintTop_toTopOf="@+id/infoHolder"
+        android:visibility="invisible"/>
+
+    <View
+        android:id="@+id/vertical_separator"
+        android:layout_width="15dp"
+        android:layout_height="@dimen/money_flow_height"
+        app:layout_constraintLeft_toLeftOf="@id/infoHolder"
+        app:layout_constraintRight_toRightOf="@id/infoHolder"
+        app:layout_constraintTop_toTopOf="@id/infoHolder"
+        android:visibility="invisible"/>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,12 +27,22 @@
     </style>
 
     <!-- money flow style -->
-    <style name="moneyFlowTextStyle" parent="TitleStyle">
+    <style name="moneyFlowTextStyle">
         <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/spartan_bold</item>
         <item name="android:textSize">17sp</item>
     </style>
 
-    <!-- money flow style -->
+    <style name="moneyFlowDescStyle" parent="TitleStyle">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="moneyFlowAmountStyle" parent="TitleStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="monthStyle" parent="TitleStyle">
         <item name="android:textSize">28sp</item>
     </style>
