@@ -57,6 +57,7 @@ public class ClickableListManager {
         list.setAdapter(new ProgressBarAdapter(items));
         list.setOnItemClickListener((parent, v, position, id) -> {
             ProgressBarItem item = (ProgressBarItem) list.getItemAtPosition(position);
+            item.redirect();
             DataBaseFragment frag = item.getFragment();
             frag.setId(item.getId());
             frag.redirect(frag);

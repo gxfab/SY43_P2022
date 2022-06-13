@@ -6,10 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.budgetzeroapp.fragment.BudgetFragment;
 import com.example.budgetzeroapp.fragment.cashflow.CashFlowFragment;
@@ -17,6 +19,7 @@ import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.fragment.savings.SavingsFragment;
 import com.example.budgetzeroapp.tool.OptionsMenu;
 import com.example.budgetzeroapp.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends OptionsMenu {
@@ -35,41 +38,30 @@ public class MainActivity extends OptionsMenu {
         /**Menu**/
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-
-            switch(item.getItemId()){
-                case R.id.Home:
-                    replaceFragment(new HomeFragment());
-                    View childLayout = inflater.inflate(R.layout.toolbar_home, (ViewGroup)findViewById(R.id.toolbar_home));
-                    LinearLayout appbar = (LinearLayout) findViewById(R.id.appBarLayout);
-                    appbar.removeAllViewsInLayout();
-                    appbar.addView(childLayout);
-                    break;
-                case R.id.Budget:
-                    replaceFragment(new BudgetFragment());
-                    View childLayout2 = inflater.inflate(R.layout.toolbar_budget, (ViewGroup)findViewById(R.id.toolbar_budget));
-                    LinearLayout appbar2 = (LinearLayout) findViewById(R.id.appBarLayout);
-                    appbar2.removeAllViewsInLayout();
-                    appbar2.addView(childLayout2);
-                    break;
-                case R.id.CashFlow:
-                    replaceFragment(new CashFlowFragment());
-                    View childLayout3 = inflater.inflate(R.layout.toolbar_cashflow, (ViewGroup)findViewById(R.id.toolbar_cashflow));
-                    LinearLayout appbar3 = (LinearLayout) findViewById(R.id.appBarLayout);
-                    appbar3.removeAllViewsInLayout();
-                    appbar3.addView(childLayout3);
-                    break;
-                case R.id.Savings:
-                    replaceFragment(new SavingsFragment());
-                    View childLayout4 = inflater.inflate(R.layout.toolbar_savings, (ViewGroup)findViewById(R.id.toolbar_savings));
-                    LinearLayout appbar4 = (LinearLayout) findViewById(R.id.appBarLayout);
-                    appbar4.removeAllViewsInLayout();
-                    appbar4.addView(childLayout4);
-                    break;
+            View childLayout;
+            int id = item.getItemId();
+            if(id == R.id.Home){
+                replaceFragment(new HomeFragment());
+                childLayout = inflater.inflate(R.layout.toolbar_home, (ViewGroup)findViewById(R.id.toolbar_home));
+            }else if(id == R.id.Budget){
+                replaceFragment(new BudgetFragment());
+                childLayout = inflater.inflate(R.layout.toolbar_budget, (ViewGroup)findViewById(R.id.toolbar_budget));
+            }else if(id == R.id.CashFlow){
+                replaceFragment(new CashFlowFragment());
+                childLayout = inflater.inflate(R.layout.toolbar_cashflow, (ViewGroup)findViewById(R.id.toolbar_cashflow));
+            }else{
+                replaceFragment(new SavingsFragment());
+                childLayout = inflater.inflate(R.layout.toolbar_savings, (ViewGroup)findViewById(R.id.toolbar_savings));
             }
-
-            return true;
+            LinearLayout appbar = (LinearLayout) findViewById(R.id.appBarLayout);
+            appbar.removeAllViewsInLayout();
+            appbar.addView(childLayout);return true;
         });
 
+    }
+
+    public void bottomNavigationRedirect(int id){
+        binding.bottomNavigationView.setSelectedItemId(id);
     }
 
     public void replaceFragment(Fragment frag){

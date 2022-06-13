@@ -40,4 +40,6 @@
     <string name="edit">Edit</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="toolbar_default">Home</string>
+    <string name="toolbar_default2">Home 2</string>
 </resources>

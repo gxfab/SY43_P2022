@@ -21,7 +21,7 @@ import com.example.budgetzeroapp.R;
 
 import java.util.ArrayList;
 
-public class BudgetFragment extends Fragment implements BudgetRecyclerViewAdapter.ItemClickListener {
+public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerViewAdapter.ItemClickListener {
     private BudgetRecyclerViewAdapter adapter;
 
     public BudgetFragment() {
@@ -49,56 +49,14 @@ public class BudgetFragment extends Fragment implements BudgetRecyclerViewAdapte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /**Category click listeners**/
-        view.findViewById(R.id.category_shopping).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog shoppingDialogue = new Dialog(view.getContext(), android.R.style.Theme_Black_NoTitleBar);
-                shoppingDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
-                shoppingDialogue.setContentView(R.layout.dialogue);
-                shoppingDialogue.setCancelable(true);
-                shoppingDialogue.show();
-            }
+        view.findViewById(R.id.category_shopping).setOnClickListener(view1 -> {
+            final Dialog shoppingDialogue = new Dialog(view1.getContext(), android.R.style.Theme_Black_NoTitleBar);
+            shoppingDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+            shoppingDialogue.setContentView(R.layout.dialogue);
+            shoppingDialogue.setCancelable(true);
+            shoppingDialogue.show();
         });
-        view.findViewById(R.id.category_vehicle).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog vehicleDialogue = new Dialog(view.getContext(), android.R.style.Theme_Black_NoTitleBar);
-                vehicleDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
-                vehicleDialogue.setContentView(R.layout.dialogue);
-                vehicleDialogue.setCancelable(true);
-                vehicleDialogue.show();
-            }
-        });
-        view.findViewById(R.id.category_leisure).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog leisureDialogue = new Dialog(view.getContext(), android.R.style.Theme_Black_NoTitleBar);
-                leisureDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
-                leisureDialogue.setContentView(R.layout.dialogue);
-                leisureDialogue.setCancelable(true);
-                leisureDialogue.show();
-            }
-        });
-        view.findViewById(R.id.category_health).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog healthDialogue = new Dialog(view.getContext(), android.R.style.Theme_Black_NoTitleBar);
-                healthDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
-                healthDialogue.setContentView(R.layout.dialogue);
-                healthDialogue.setCancelable(true);
-                healthDialogue.show();
-            }
-        });
-        view.findViewById(R.id.category_miscellaneous).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog miscellaneousDialogue = new Dialog(view.getContext(), android.R.style.Theme_Black_NoTitleBar);
-                miscellaneousDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
-                miscellaneousDialogue.setContentView(R.layout.dialogue);
-                miscellaneousDialogue.setCancelable(true);
-                miscellaneousDialogue.show();
-            }
-        });
+
 
         /**Sorting RecyclerView Initialization**/
         // data to populate the RecyclerView with

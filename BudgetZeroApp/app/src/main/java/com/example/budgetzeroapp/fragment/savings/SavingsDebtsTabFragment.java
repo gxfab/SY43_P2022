@@ -26,8 +26,7 @@ public class SavingsDebtsTabFragment extends Fragment implements BudgetRecyclerV
     }
 
     public static SavingsDebtsTabFragment newInstance(String param1, String param2) {
-        SavingsDebtsTabFragment fragment = new SavingsDebtsTabFragment();
-        return fragment;
+        return new SavingsDebtsTabFragment();
     }
 
     @Override

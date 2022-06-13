@@ -17,15 +17,22 @@ import com.google.android.material.tabs.TabLayout;
 
 
 public class SavingsFragment extends DataBaseFragment {
-    TabLayout tablayout;
-    ViewPager viewPager;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private boolean defaultTab;
+
     public SavingsFragment() {
         super();
+        defaultTab = true;
+    }
+
+    public SavingsFragment(boolean tab){
+        super();
+        defaultTab = tab;
     }
 
     public static SavingsFragment newInstance(String param1, String param2) {
-        SavingsFragment fragment = new SavingsFragment();
-        return fragment;
+        return new SavingsFragment();
     }
 
     @Override
@@ -43,17 +50,18 @@ public class SavingsFragment extends DataBaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        addFragment(view);
-    }
-
-    private void addFragment(View view)
-    {
-        tablayout = view.findViewById(R.id.tab_layout);
+        tabLayout = view.findViewById(R.id.tab_layout);
         viewPager = view.findViewById(R.id.viewPager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new SavingstTabFragment(), "Savings");
         adapter.addFragment(new SavingsDebtsTabFragment(), "Debts");
         viewPager.setAdapter(adapter);
-        tablayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+        if(!defaultTab) selectPage(2);
+    }
+
+    public void selectPage(int pageIndex){
+        tabLayout.setScrollPosition(pageIndex,0f,true);
+        viewPager.setCurrentItem(pageIndex);
     }
 }
