@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Envelope", primaryKeys ={"PREV_DATE", "BUD_ID", "CAT_ID"}, foreignKeys = {
@@ -32,4 +33,27 @@ public class Envelope {
 
     @ColumnInfo(name = "ENV_SUM")
     public float sumEnv;
+
+    public Envelope(int budgetID, String dateEnv, int categoryID, float sumEnv){
+        this.budgetID = budgetID;
+        this.dateEnv = dateEnv;
+        this.categoryID = categoryID;
+        this.sumEnv = sumEnv;
+    }
+
+    @Ignore
+    public Envelope(PrevisionalBudget prevBud, int categoryID, float sumEnv){
+        this.budgetID = prevBud.budgetID;
+        this.dateEnv = prevBud.yearMonth;
+        this.categoryID = categoryID;
+        this.sumEnv = sumEnv;
+    }
+
+    @Ignore
+    public Envelope(PrevisionalBudget prevBud, int categoryID){
+        this.budgetID = prevBud.budgetID;
+        this.dateEnv = prevBud.yearMonth;
+        this.categoryID = categoryID;
+        this.sumEnv = 0;
+    }
 }

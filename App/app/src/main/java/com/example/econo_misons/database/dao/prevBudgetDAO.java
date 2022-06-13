@@ -10,6 +10,7 @@ import androidx.room.Update;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Budget_User;
 import com.example.econo_misons.database.models.Category;
+import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.Transaction;
 
@@ -30,5 +31,16 @@ public interface prevBudgetDAO {
     LiveData<List<PrevisionalBudget>> getUserPrevBudgets(int userID);
     @Query("SELECT * FROM PrevisionalBudget WHERE BUD_ID = :budgetID")
     LiveData<List<PrevisionalBudget>> getPrevBudgetsByBudget(int budgetID);
+
+    @Insert
+    void addEnvelope(Envelope env);
+    @Update
+    void updateEnvelope(Envelope env);
+    @Delete
+    void deleteEnvelope(Envelope env);
+    @Query("SELECT * FROM ENVELOPE")
+    LiveData<List<Envelope>> getALlEnvelopes();
+    @Query("SELECT * FROM ENVELOPE WHERE BUD_ID = :bugdetID AND PREV_DATE = :prevDate")
+    LiveData<List<Envelope>> getPrevBudgetEnvelopes(int bugdetID, String prevDate);
 
 }

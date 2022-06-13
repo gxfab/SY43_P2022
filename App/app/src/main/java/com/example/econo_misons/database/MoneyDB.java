@@ -70,10 +70,12 @@ public abstract class MoneyDB extends RoomDatabase {
                     INSTANCE.budgetdao().addBudget(new Budget("Budget perso"));
                     INSTANCE.budgetdao().linkBudgetUser(new Budget_User(1,1));
                     INSTANCE.prevdao().addPrevBudget(new PrevisionalBudget(1,"2022-06"));
-                });
-                Executors.newSingleThreadExecutor().execute(() -> {
                     INSTANCE.catdao().addCategory(new Category("Courses"));
-                    INSTANCE.catdao().addCategory(new Category("Loisirs"));                });
+                    INSTANCE.catdao().addCategory(new Category("Loisirs"));
+                    INSTANCE.prevdao().addEnvelope(new Envelope(1,"2022-06",1,100));
+                    INSTANCE.prevdao().addEnvelope(new Envelope(1,"2022-06",2,50));
+                });
+
             }
         };
     }

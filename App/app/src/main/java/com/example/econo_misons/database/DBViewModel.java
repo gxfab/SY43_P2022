@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Category;
+import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.User;
 import com.example.econo_misons.database.repositories.BudgetDataRepository;
@@ -104,4 +105,15 @@ public class DBViewModel extends ViewModel {
 
     public LiveData<List<PrevisionalBudget>> getUserPrevBudgets(int userID) {return prevBudgetDataSource.getUserPrevBudgets(userID);}
 
+    //ENVELOPE
+
+    public void addEnvelope(Envelope env) {executor.execute(() -> prevBudgetDataSource.addEnvelope(env));}
+
+    public void updateEnvelope(Envelope env) {executor.execute(() -> prevBudgetDataSource.updateEnvelope(env));}
+
+    public void deleteEnvelope(Envelope env) {executor.execute(() -> prevBudgetDataSource.deleteEnvelope(env));}
+
+    public LiveData<List<Envelope>> getALlEnvelopes() {return prevBudgetDataSource.getALlEnvelopes();}
+
+    public LiveData<List<Envelope>> getPrevBudgetEnvelopes(PrevisionalBudget prevBud) {return prevBudgetDataSource.getPrevBudgetEnvelopes(prevBud);}
 }
