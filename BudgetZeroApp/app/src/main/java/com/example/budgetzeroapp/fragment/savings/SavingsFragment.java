@@ -1,38 +1,35 @@
-package com.example.budgetzeroapp.fragment;
+package com.example.budgetzeroapp.fragment.savings;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.budgetzeroapp.CashFlowEvolutionFragment;
-import com.example.budgetzeroapp.CashFlowGeneralFragment;
-import com.example.budgetzeroapp.CashFlowStableFragment;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.ViewPagerAdapter;
+import com.example.budgetzeroapp.fragment.DataBaseFragment;
+import com.example.budgetzeroapp.tool.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-public class CashFlowFragment extends Fragment  {
+
+public class SavingsFragment extends DataBaseFragment {
     TabLayout tablayout;
     ViewPager viewPager;
-    public CashFlowFragment() {
-        // Required empty public constructor
+    public SavingsFragment() {
+        super();
     }
 
-    public static CashFlowFragment newInstance(String param1, String param2) {
-        CashFlowFragment fragment = new CashFlowFragment();
+    public static SavingsFragment newInstance(String param1, String param2) {
+        SavingsFragment fragment = new SavingsFragment();
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
@@ -40,7 +37,7 @@ public class CashFlowFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cash_flow, container, false);
+        return inflater.inflate(R.layout.fragment_savings, container, false);
     }
 
     @Override
@@ -54,11 +51,9 @@ public class CashFlowFragment extends Fragment  {
         tablayout = view.findViewById(R.id.tab_layout);
         viewPager = view.findViewById(R.id.viewPager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new CashFlowGeneralFragment(), "General");
-        adapter.addFragment(new CashFlowStableFragment(), "Stable");
-        adapter.addFragment(new CashFlowEvolutionFragment(), "Evolution");
+        adapter.addFragment(new SavingstTabFragment(), "Savings");
+        adapter.addFragment(new SavingsDebtsTabFragment(), "Debts");
         viewPager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewPager);
     }
-
 }

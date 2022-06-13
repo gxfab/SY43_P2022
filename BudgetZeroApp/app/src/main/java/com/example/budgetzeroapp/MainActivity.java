@@ -5,19 +5,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.example.budgetzeroapp.databinding.ActivityMainBinding;
 import com.example.budgetzeroapp.fragment.BudgetFragment;
-import com.example.budgetzeroapp.fragment.CashFlowFragment;
+import com.example.budgetzeroapp.fragment.cashflow.CashFlowFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
-import com.example.budgetzeroapp.fragment.SavingsFragment;
+import com.example.budgetzeroapp.fragment.savings.SavingsFragment;
 import com.example.budgetzeroapp.tool.OptionsMenu;
+import com.example.budgetzeroapp.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends OptionsMenu {

@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp.tool.list;
+package com.example.budgetzeroapp.tool;
 
 import android.database.Cursor;
 import android.view.View;
@@ -7,10 +7,10 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
-import com.example.budgetzeroapp.tool.list.adapter.ProgressBarAdapter;
-import com.example.budgetzeroapp.tool.list.adapter.SimpleListAdapter;
-import com.example.budgetzeroapp.tool.list.item.ListItem;
-import com.example.budgetzeroapp.tool.list.item.ProgressBarItem;
+import com.example.budgetzeroapp.tool.adapter.ProgressBarAdapter;
+import com.example.budgetzeroapp.tool.adapter.SimpleListAdapter;
+import com.example.budgetzeroapp.tool.item.ListItem;
+import com.example.budgetzeroapp.tool.item.ProgressBarItem;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp;
+package com.example.budgetzeroapp.fragment.savings;
 
 import android.os.Bundle;
 
@@ -14,16 +14,19 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
+
 import java.util.ArrayList;
 
-public class SavingsDebtsTabFragment extends Fragment implements BudgetRecyclerViewAdapter.ItemClickListener {
+public class SavingstTabFragment extends Fragment implements BudgetRecyclerViewAdapter.ItemClickListener {
     private BudgetRecyclerViewAdapter adapter;
-    public SavingsDebtsTabFragment() {
+    public SavingstTabFragment() {
         // Required empty public constructor
     }
 
-    public static SavingsDebtsTabFragment newInstance(String param1, String param2) {
-        SavingsDebtsTabFragment fragment = new SavingsDebtsTabFragment();
+    public static SavingstTabFragment newInstance(String param1, String param2) {
+        SavingstTabFragment fragment = new SavingstTabFragment();
         return fragment;
     }
 
@@ -36,7 +39,7 @@ public class SavingsDebtsTabFragment extends Fragment implements BudgetRecyclerV
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_savings_debts_tab, container, false);
+        return inflater.inflate(R.layout.fragment_savingst_tab, container, false);
     }
 
     @Override
@@ -50,7 +53,7 @@ public class SavingsDebtsTabFragment extends Fragment implements BudgetRecyclerV
         // data to populate the RecyclerView with
         ArrayList<String> sortingItems = new ArrayList<>();
         sortingItems.add("Name");
-        sortingItems.add("%Paid");
+        sortingItems.add("%Saved");
         sortingItems.add("Amount");
 
         // set up the RecyclerView

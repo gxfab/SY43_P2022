@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp;
+package com.example.budgetzeroapp.tool.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.budgetzeroapp.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class BudgetRecyclerViewAdapter extends RecyclerView.Adapter<BudgetRecyclerViewAdapter.ViewHolder> {
 

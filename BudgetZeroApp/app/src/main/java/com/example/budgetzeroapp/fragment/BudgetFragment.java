@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.budgetzeroapp.BudgetRecyclerViewAdapter;
+import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
 import com.example.budgetzeroapp.R;
 
 import java.util.ArrayList;

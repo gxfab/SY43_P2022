@@ -1,6 +1,5 @@
-package com.example.budgetzeroapp.tool.list.adapter;
+package com.example.budgetzeroapp.tool.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.tool.list.item.ListItem;
+import com.example.budgetzeroapp.tool.item.ListItem;
 
 import java.util.List;
 

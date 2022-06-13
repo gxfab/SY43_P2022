@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp;
+package com.example.budgetzeroapp.fragment.cashflow;
 
 import android.os.Bundle;
 
@@ -11,19 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SeekBar;
 import android.widget.Toast;
+
+import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
 
 import java.util.ArrayList;
 
-public class SavingstTabFragment extends Fragment implements BudgetRecyclerViewAdapter.ItemClickListener {
+public class CashFlowGeneralFragment extends Fragment implements BudgetRecyclerViewAdapter.ItemClickListener{
     private BudgetRecyclerViewAdapter adapter;
-    public SavingstTabFragment() {
+
+    public CashFlowGeneralFragment() {
         // Required empty public constructor
     }
 
-    public static SavingstTabFragment newInstance(String param1, String param2) {
-        SavingstTabFragment fragment = new SavingstTabFragment();
+    public static CashFlowGeneralFragment newInstance(String param1, String param2) {
+        CashFlowGeneralFragment fragment = new CashFlowGeneralFragment();
         return fragment;
     }
 
@@ -36,22 +39,19 @@ public class SavingstTabFragment extends Fragment implements BudgetRecyclerViewA
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_savingst_tab, container, false);
+        return inflater.inflate(R.layout.fragment_cash_flow_general, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /**Seekbar - Not allowing the user to move the cursor**/
-        SeekBar seekbar = view.findViewById(R.id.seekbar_default);
-        seekbar.setEnabled(false);
 
         /**Sorting RecyclerView Initialization**/
         // data to populate the RecyclerView with
         ArrayList<String> sortingItems = new ArrayList<>();
-        sortingItems.add("Name");
-        sortingItems.add("%Saved");
-        sortingItems.add("Amount");
+        sortingItems.add("Category");
+        sortingItems.add("Spent");
+        sortingItems.add("Budget");
 
         // set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.budget_sorting);

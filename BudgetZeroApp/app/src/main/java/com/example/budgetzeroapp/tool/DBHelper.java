@@ -130,6 +130,12 @@ public class DBHelper extends SQLiteOpenHelper {
              "foreign key(" + EXP_COL_ID_SAV + ") references " + SAV_CAT_TABLE_NAME + "(id)" +
              ");"
          );
+        insertExpenseCat("Shopping", 0, false, 0);
+        insertExpenseCat("Vehicle", 0, false, 0);
+        insertExpenseCat("Leisure", 0, false, 0);
+        insertExpenseCat("Health", 0, false, 0);
+        insertExpenseCat("Miscellaneous", 0, false, 0);
+
     }
 
     @Override

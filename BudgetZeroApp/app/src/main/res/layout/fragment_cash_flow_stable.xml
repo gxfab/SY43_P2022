@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/light_gray"
-    tools:context=".CashFlowStableFragment">
+    tools:context=".fragment.cashflow.CashFlowStableFragment">
 
     <ScrollView
         android:layout_width="match_parent"

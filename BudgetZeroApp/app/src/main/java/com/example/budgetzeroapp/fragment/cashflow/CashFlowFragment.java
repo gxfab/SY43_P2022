@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp.fragment;
+package com.example.budgetzeroapp.fragment.cashflow;
 
 import android.os.Bundle;
 
@@ -12,26 +12,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.SavingsDebtsTabFragment;
-import com.example.budgetzeroapp.SavingstTabFragment;
-import com.example.budgetzeroapp.ViewPagerAdapter;
+import com.example.budgetzeroapp.tool.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-
-public class SavingsFragment extends DataBaseFragment {
+public class CashFlowFragment extends Fragment  {
     TabLayout tablayout;
     ViewPager viewPager;
-    public SavingsFragment() {
-        super();
+    public CashFlowFragment() {
+        // Required empty public constructor
     }
 
-    public static SavingsFragment newInstance(String param1, String param2) {
-        SavingsFragment fragment = new SavingsFragment();
+    public static CashFlowFragment newInstance(String param1, String param2) {
+        CashFlowFragment fragment = new CashFlowFragment();
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
     }
 
@@ -39,7 +37,7 @@ public class SavingsFragment extends DataBaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_savings, container, false);
+        return inflater.inflate(R.layout.fragment_cash_flow, container, false);
     }
 
     @Override
@@ -53,9 +51,11 @@ public class SavingsFragment extends DataBaseFragment {
         tablayout = view.findViewById(R.id.tab_layout);
         viewPager = view.findViewById(R.id.viewPager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new SavingstTabFragment(), "Savings");
-        adapter.addFragment(new SavingsDebtsTabFragment(), "Debts");
+        adapter.addFragment(new CashFlowGeneralFragment(), "General");
+        adapter.addFragment(new CashFlowStableFragment(), "Stable");
+        adapter.addFragment(new CashFlowEvolutionFragment(), "Evolution");
         viewPager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewPager);
     }
+
 }

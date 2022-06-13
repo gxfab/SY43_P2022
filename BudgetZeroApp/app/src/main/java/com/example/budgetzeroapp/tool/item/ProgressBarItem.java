@@ -1,8 +1,8 @@
-package com.example.budgetzeroapp.tool.list.item;
+package com.example.budgetzeroapp.tool.item;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
-import com.example.budgetzeroapp.fragment.SavingsFragment;
+import com.example.budgetzeroapp.fragment.savings.SavingsFragment;
 import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
 
 public class ProgressBarItem extends ListItem{
@@ -15,7 +15,7 @@ public class ProgressBarItem extends ListItem{
         this.percentage = percentage;
         this.total = total;
         if(id == -1) frag = new SavingsFragment();
-        else if(id==0){}
+        else if(id==0)frag = new SavingsFragment();
         else frag = new ViewExpenseCatFragment(1);
     }
 

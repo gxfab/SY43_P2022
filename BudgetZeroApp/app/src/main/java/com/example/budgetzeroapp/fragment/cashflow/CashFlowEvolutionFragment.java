@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp;
+package com.example.budgetzeroapp.fragment.cashflow;
 
 import android.os.Bundle;
 
@@ -10,14 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.budgetzeroapp.R;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CashFlowEvolutionFragment extends Fragment {

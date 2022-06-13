@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp;
+package com.example.budgetzeroapp.fragment.cashflow;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.budgetzeroapp.R;
 
 public class CashFlowStableFragment extends Fragment {
 

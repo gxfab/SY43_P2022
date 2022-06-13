@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp.tool.list.item;
+package com.example.budgetzeroapp.tool.item;
 
 import android.database.Cursor;
 
@@ -9,6 +9,7 @@ public class ListItem {
     protected int id;
     protected String name;
     protected DataBaseFragment frag;
+
     public ListItem(int id, String name) {
         this.id = id;
         this.name = name;

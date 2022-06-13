@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.tool.list.ClickableListManager;
-import com.example.budgetzeroapp.tool.list.item.ProgressBarItem;
+import com.example.budgetzeroapp.tool.ClickableListManager;
+import com.example.budgetzeroapp.tool.item.ProgressBarItem;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
