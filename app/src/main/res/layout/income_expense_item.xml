@@ -21,6 +21,7 @@
             android:layout_margin="5sp"
             android:layout_marginStart="16dp"
             android:backgroundTint="@color/orange"
+            android:focusable="false"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="@string/emojiHolder"
@@ -33,7 +34,9 @@
             android:layout_marginStart="56dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
+            android:duplicateParentState="false"
             android:ems="10"
+            android:focusable="false"
             android:hint="@string/sumName"
             android:inputType="textPersonName" />
     </LinearLayout>
@@ -51,6 +54,8 @@
             android:layout_margin="5sp"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
+            android:editable="false"
+            android:focusable="false"
             android:hint="@string/sumValue"
             android:inputType="numberDecimal" />
 
@@ -61,6 +66,8 @@
             android:layout_margin="5sp"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
+            android:editable="false"
+            android:focusable="false"
             android:hint="@string/ie_date"
             android:inputType="date" />
 
