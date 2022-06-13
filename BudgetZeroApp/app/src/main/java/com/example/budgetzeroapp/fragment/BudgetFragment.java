@@ -1,36 +1,39 @@
 package com.example.budgetzeroapp.fragment;
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ListView;
 
+import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.tool.item.CategoryItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerViewAdapter.ItemClickListener {
+
     private BudgetRecyclerViewAdapter adapter;
+    private ListView list;
+    private List<CategoryItem> items;
 
     public BudgetFragment() {
         // Required empty public constructor
     }
 
     public static BudgetFragment newInstance(String param1, String param2) {
-        BudgetFragment fragment = new BudgetFragment();
-        return fragment;
+        return new BudgetFragment();
     }
 
     @Override
@@ -42,22 +45,16 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_budget, container, false);
+         View view = inflater.inflate(R.layout.fragment_budget, container, false);
+        list = view.findViewById(R.id.list_view_cat);
+        items = ClickableListManager.initCategoryList(database, false);
+        list = ClickableListManager.clickableCategoryList(list, items);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /**Category click listeners**/
-        view.findViewById(R.id.category_shopping).setOnClickListener(view1 -> {
-            final Dialog shoppingDialogue = new Dialog(view1.getContext(), android.R.style.Theme_Black_NoTitleBar);
-            shoppingDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
-            shoppingDialogue.setContentView(R.layout.dialogue);
-            shoppingDialogue.setCancelable(true);
-            shoppingDialogue.show();
-        });
-
-
         /**Sorting RecyclerView Initialization**/
         // data to populate the RecyclerView with
         ArrayList<String> sortingItems = new ArrayList<>();
@@ -78,7 +75,14 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
 
     @Override
     public void onItemClick(View view, int position) {
-        // USE THIS LISTENER TO DETERMINE WHICH SORTING TO APPLY
-        Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+
+        switch(position){
+            case 1 : Collections.sort(items, (categoryItem, t1) -> categoryItem.getId() - t1.getId());
+                break;
+            case 2 : Collections.sort(items, (categoryItem, t1) -> (int) (t1.getTotal() - categoryItem.getTotal()));
+                break;
+            case 3 : Collections.sort(items, (categoryItem, t1) -> (int) (categoryItem.getBudget()-t1.getBudget()));
+                break;
+        }
     }
 }

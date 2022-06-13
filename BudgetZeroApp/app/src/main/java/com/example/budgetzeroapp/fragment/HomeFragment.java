@@ -17,7 +17,7 @@ import java.util.List;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.ClickableListManager;
-import com.example.budgetzeroapp.tool.item.ProgressBarItem;
+import com.example.budgetzeroapp.tool.item.CategoryItem;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -59,36 +59,12 @@ public class HomeFragment extends DataBaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<ProgressBarItem> items = initPBList();
+        List<CategoryItem> items = ClickableListManager.initCategoryList(database, true);
         list = ClickableListManager.clickableListPB(list, items);
         setupPieChart();
         loadPieChartData(items);
-
     }
 
-    public List<ProgressBarItem> initPBList(){
-
-        Cursor rows = database.getMainExpCat();
-        List<ProgressBarItem> list = new ArrayList<>();
-        int id, percent;
-        float amount, total;
-        total = database.getSumExp();
-        String name;
-        rows.moveToFirst();
-            while (!rows.isAfterLast()) {
-                id = rows.getInt(rows.getColumnIndexOrThrow("id"));
-                name = rows.getString(rows.getColumnIndexOrThrow("name"));
-                amount = database.getSumCatExp(id);
-                percent = (int) (100 * amount / total);
-                list.add(new ProgressBarItem(id, name, amount, percent));
-                rows.moveToNext();
-            }
-        amount = database.getSumSav();
-        list.add(new ProgressBarItem(-1, "Savings", amount, (int)(100*amount/total)));
-        amount = database.getSumDebt();
-        list.add(new ProgressBarItem(0, "Debts", amount, (int)(100*amount/total)));
-        return list;
-    }
 
     private void setupPieChart(){
         pieChart.setDrawHoleEnabled(true);
@@ -102,10 +78,10 @@ public class HomeFragment extends DataBaseFragment {
         l.setEnabled(false);
     }
 
-    private void loadPieChartData(List<ProgressBarItem> list) {
+    private void loadPieChartData(List<CategoryItem> list) {
         ArrayList<PieEntry> entries = new ArrayList<>();
 
-        for(ProgressBarItem i : list)
+        for(CategoryItem i : list)
             entries.add(new PieEntry(i.getPercent()/100, i.getName()));
 
         ArrayList<Integer> colors = new ArrayList<>();

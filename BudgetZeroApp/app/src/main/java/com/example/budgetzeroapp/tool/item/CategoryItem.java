@@ -8,16 +8,16 @@ import com.example.budgetzeroapp.fragment.savings.SavingsFragment;
 import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
 import com.google.android.material.tabs.TabLayout;
 
-public class ProgressBarItem extends ListItem{
+public class CategoryItem extends ListItem{
 
-    private float total, percentage;
+    private float budget, total, percentage;
     private DataBaseFragment frag;
 
-    public ProgressBarItem(int id, String name, float total,float percentage){
+    public CategoryItem(int id, String name, float total, float pOrB){
         super(id, name);
-        this.percentage = percentage;
+        percentage = pOrB;
+        budget = pOrB;
         this.total = total;
-
     }
 
     public int getDrawable(){
@@ -43,6 +43,7 @@ public class ProgressBarItem extends ListItem{
 
     public float getTotal(){ return total; }
     public float getPercent(){ return percentage; }
+    public float getBudget(){ return budget; }
 
     public DataBaseFragment getFragment(){
         if(id == 0) return new SavingsFragment(false);

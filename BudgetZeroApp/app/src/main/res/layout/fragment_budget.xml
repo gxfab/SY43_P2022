@@ -20,12 +20,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="Sort by: "
+                android:text="@string/sort"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="15dp"/>
             <include
                 layout="@layout/sorting_budget"/>
             <TextView
+                android:id="@+id/month"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
@@ -33,16 +34,19 @@
                 android:text="Juin 2022"
                 android:textSize="15sp"
                 android:textStyle="bold" />
-            <include
-                layout="@layout/category_shopping"/>
-            <include
-                layout="@layout/category_vehicle"/>
-            <include
-                layout="@layout/category_leisure"/>
-            <include
-                layout="@layout/category_health"/>
-            <include
-                layout="@layout/category_miscellaneous"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="50">
+                <ListView
+                    android:id="@+id/list_view_cat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@color/light_gray">
+
+                </ListView>
+            </ScrollView>
         </LinearLayout>
     </ScrollView>
 

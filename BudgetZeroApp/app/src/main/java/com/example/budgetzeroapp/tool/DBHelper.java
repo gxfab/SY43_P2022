@@ -81,7 +81,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table " + EXP_CAT_TABLE_NAME +
                         "(" + EXP_CAT_COL_ID + " integer primary key autoincrement, " +
                         EXP_CAT_COL_NAME + " text, " +
-                        EXP_CAT_COL_BUDGET + " real, " +
+                        EXP_CAT_COL_BUDGET + " real default 0, " +
                         EXP_CAT_COL_IS_SUB + " integer default 0, " +
                         EXP_CAT_COL_ID_PARENT + " integer default null, " +
                         "foreign key(" + EXP_CAT_COL_ID_PARENT + ") references " + EXP_CAT_TABLE_NAME + "(" + EXP_CAT_COL_ID + ")" +
@@ -130,6 +130,10 @@ public class DBHelper extends SQLiteOpenHelper {
              "foreign key(" + EXP_COL_ID_SAV + ") references " + SAV_CAT_TABLE_NAME + "(id)" +
              ");"
          );
+        db.execSQL(
+                "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+")"+
+                        " values ('Shopping'),('Vehicle'),('Leisure'),('Health'),('Miscellaneous');"
+        );
         /**insertExpenseCat("Shopping", 0, false, 0);
         insertExpenseCat("Vehicle", 0, false, 0);
         insertExpenseCat("Leisure", 0, false, 0);
@@ -348,8 +352,8 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor res = getData("select sum(" + EXP_COL_AMOUNT + ") as " + REQ_SUM +
                 " from " + EXP_TABLE_NAME +
                 " where " + EXP_COL_TYPE + "=" + TYPE_EXP +
-                " and (" + EXP_CAT_COL_ID + "=" + idCat +
-                " or " + EXP_CAT_COL_ID_PARENT + "=" + idCat + ")");
+                " and " + EXP_CAT_COL_ID + "=" + idCat);
+
         res.moveToFirst();
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
     }

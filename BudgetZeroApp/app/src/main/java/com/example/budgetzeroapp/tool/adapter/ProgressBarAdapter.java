@@ -11,14 +11,14 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.tool.item.ProgressBarItem;
+import com.example.budgetzeroapp.tool.item.CategoryItem;
 
 import java.util.List;
 
-public class ProgressBarAdapter extends ArrayAdapter<ProgressBarItem> {
+public class ProgressBarAdapter extends ArrayAdapter<CategoryItem> {
 
         protected int resourceLayout;
-        public ProgressBarAdapter(List<ProgressBarItem> items) {
+        public ProgressBarAdapter(List<CategoryItem> items) {
             super(AppContext.getContext(), R.layout.progress_bar_cat, items);
             resourceLayout = R.layout.progress_bar_cat;
         }
@@ -33,7 +33,7 @@ public class ProgressBarAdapter extends ArrayAdapter<ProgressBarItem> {
                 vi = LayoutInflater.from(AppContext.getContext());
                 v = vi.inflate(resourceLayout, null);
             }
-            ProgressBarItem p = getItem(position);
+            CategoryItem p = getItem(position);
             if (p != null) {
                 TextView catName = (TextView) v.findViewById(R.id.category_name);
                 if (catName != null) catName.setText(p.getName());
