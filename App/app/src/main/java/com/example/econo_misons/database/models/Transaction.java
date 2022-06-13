@@ -47,10 +47,14 @@ public class Transaction {
     @ColumnInfo(name = "DATE_TRANS")
     public String date;
 
+<<<<<<< Updated upstream
     @ColumnInfo(name = "PREV_DATE")
     public String prevDate;
 
     public Transaction(int budgetID, String prevDate, int userID, int categoryID, String transactionName, String date, float amountTransaction, Boolean expense){
+=======
+    public Transaction(int budgetID, int userID, int categoryID, String transactionName, String date, float amountTransaction, Boolean expense){
+>>>>>>> Stashed changes
         this.budgetID = budgetID;
         this.userID = userID;
         this.categoryID = categoryID;

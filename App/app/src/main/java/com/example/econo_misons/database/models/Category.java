@@ -16,6 +16,7 @@ public class Category {
     @ColumnInfo(name = "NAME_CAT")
     public String categoryName;
 
+<<<<<<< Updated upstream
     @ColumnInfo(name = "COLOR_CAT")
     public String color;
 
@@ -35,5 +36,10 @@ public class Category {
                 ", categoryName='" + categoryName + '\'' +
                 ", color='" + color + '\'' +
                 '}';
+=======
+    public Category(){}
+    public Category(String Name){
+        this.categoryName = Name;
+>>>>>>> Stashed changes
     }
 }
