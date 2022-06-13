@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.R
 import com.example.noappnogain.adapter.BudgetAdapter
-import com.example.noappnogain.adapter.HomeAdapter
 import com.example.noappnogain.databinding.FragmentBudgetBinding
 import com.example.noappnogain.model.Budget
 import com.example.noappnogain.model.Data

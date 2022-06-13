@@ -30,6 +30,46 @@ class Sidentifier : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btn_login)
         val mforget_password = findViewById<TextView>(R.id.forgot_password)
         val mSignUpHere = findViewById<TextView>(R.id.signup_reg)
+        val firebaseUser = FirebaseAuth.getInstance().currentUser
+        if(firebaseUser != null) {
+            remember = findViewById(R.id.checkBox2)
+            val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
+            val checkbox = preferences.getString("remember", "")
+            if (checkbox == "true") {
+                try {
+                    val intent = Intent(this@Sidentifier, MainActivity::class.java)
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(this@Sidentifier, "Erreur!!!", Toast.LENGTH_LONG).show()
+                }
+            } else if (checkbox != "false") {
+            }
+            remember.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (buttonView.isChecked) {
+                    val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
+                    val editor = preferences.edit()
+                    editor.putString("remember", "true")
+                    editor.apply()
+                    Toast.makeText(
+                        this@Sidentifier,
+                        "Laissez-moi en session ouverte cochée..",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else if (!buttonView.isChecked) {
+                    val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
+                    val editor = preferences.edit()
+                    editor.putString("remember", "false")
+                    editor.apply()
+                    Toast.makeText(
+                        this@Sidentifier,
+                        "Laissez-moi en session ouverte cochée..",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        }
+
+
         mSignUpHere.setOnClickListener {
             val intent = Intent(this@Sidentifier, Sinscrire::class.java)
             startActivity(intent)

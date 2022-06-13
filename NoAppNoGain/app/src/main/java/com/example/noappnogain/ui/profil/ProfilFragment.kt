@@ -73,6 +73,7 @@ class ProfilFragment : Fragment() {
             builder.setPositiveButton(
                 "OUI"
             ) { dialog, which ->
+                mAuth.signOut()
                 startActivity(Intent(activity, Sidentifier::class.java))
             }
             builder.setNegativeButton(

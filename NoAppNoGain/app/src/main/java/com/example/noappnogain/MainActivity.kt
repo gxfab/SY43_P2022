@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {}
         }
+
         mUserInfoDatabase.addListenerForSingleValueEvent(valueEventListener)
 
     }
