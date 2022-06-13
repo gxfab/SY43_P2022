@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.econo_misons.database.repositories.BudgetDataRepository;
 import com.example.econo_misons.database.repositories.CategoryDataRepository;
 import com.example.econo_misons.database.repositories.PrevBudgetDataRepository;
+import com.example.econo_misons.database.repositories.TransactionDataRepository;
 import com.example.econo_misons.database.repositories.UserDataRepository;
 
 import org.jetbrains.annotations.NotNull;
@@ -24,6 +25,8 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     private final CategoryDataRepository categoryDataSource;
 
     private final PrevBudgetDataRepository prevBudgetDataRepository;
+
+    private final TransactionDataRepository transactionDataRepository;
 
     private final Executor executor;
 
@@ -52,6 +55,8 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
 
         this.prevBudgetDataRepository = new PrevBudgetDataRepository(database.prevdao());
 
+        this.transactionDataRepository = new TransactionDataRepository(database.transdao());
+
         this.executor = Executors.newSingleThreadExecutor();
 
     }
@@ -62,7 +67,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
 
         if (modelClass.isAssignableFrom(DBViewModel.class)) {
 
-            return (T) new DBViewModel(userDataSource, budgetDataSource, categoryDataSource, prevBudgetDataRepository, executor);
+            return (T) new DBViewModel(userDataSource, budgetDataSource, categoryDataSource, prevBudgetDataRepository, transactionDataRepository, executor);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class");

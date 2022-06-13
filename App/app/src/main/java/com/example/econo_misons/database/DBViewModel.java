@@ -8,10 +8,12 @@ import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
+import com.example.econo_misons.database.models.Transaction;
 import com.example.econo_misons.database.models.User;
 import com.example.econo_misons.database.repositories.BudgetDataRepository;
 import com.example.econo_misons.database.repositories.CategoryDataRepository;
 import com.example.econo_misons.database.repositories.PrevBudgetDataRepository;
+import com.example.econo_misons.database.repositories.TransactionDataRepository;
 import com.example.econo_misons.database.repositories.UserDataRepository;
 
 import java.util.List;
@@ -37,17 +39,19 @@ public class DBViewModel extends ViewModel {
     private final BudgetDataRepository budgetDataSource;
     private final CategoryDataRepository categoryDataSource;
     private final PrevBudgetDataRepository prevBudgetDataSource;
+    private final TransactionDataRepository transactionDataRepository;
 
     private final Executor executor;
 
     @Nullable
     private LiveData<User> currentUser;
 
-    public  DBViewModel(UserDataRepository userDataSource, BudgetDataRepository budgetDataSource, CategoryDataRepository categoryDataSource, PrevBudgetDataRepository prevBudgetDataSource, Executor executor){
+    public  DBViewModel(UserDataRepository userDataSource, BudgetDataRepository budgetDataSource, CategoryDataRepository categoryDataSource, PrevBudgetDataRepository prevBudgetDataSource, TransactionDataRepository transactionDataRepository, Executor executor){
         this.userDataSource = userDataSource;
         this.budgetDataSource = budgetDataSource;
         this.categoryDataSource = categoryDataSource;
         this.prevBudgetDataSource = prevBudgetDataSource;
+        this.transactionDataRepository = transactionDataRepository;
         this.executor = executor;
     }
 
@@ -116,4 +120,20 @@ public class DBViewModel extends ViewModel {
     public LiveData<List<Envelope>> getALlEnvelopes() {return prevBudgetDataSource.getALlEnvelopes();}
 
     public LiveData<List<Envelope>> getPrevBudgetEnvelopes(PrevisionalBudget prevBud) {return prevBudgetDataSource.getPrevBudgetEnvelopes(prevBud);}
+
+    //TRANSACTION
+
+    public void addTransaction(Transaction trans) {executor.execute(() -> transactionDataRepository.addTransaction(trans));}
+
+    public void updateTransaction(Transaction trans) {executor.execute(() -> transactionDataRepository.updateTransaction(trans));}
+
+    public void deleteTransaction(Transaction trans) {executor.execute(() -> transactionDataRepository.deleteTransaction(trans));}
+
+    public LiveData<List<Transaction>> getAllTransactions() {return transactionDataRepository.getAllTransactions();}
+
+    public LiveData<List<Transaction>> getBudgetTransactions(int budID) {return transactionDataRepository.getBudgetTransactions(budID);}
+
+    public LiveData<List<Transaction>> getBudgetPrevTransactions(PrevisionalBudget prevBud) {return transactionDataRepository.getBudgetPrevTransactions(prevBud);}
+
+    public LiveData<List<Transaction>> getUserTransactions(int userID) {return transactionDataRepository.getUserTransactions(userID);}
 }

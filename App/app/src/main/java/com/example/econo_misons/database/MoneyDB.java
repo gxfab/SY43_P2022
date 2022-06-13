@@ -11,6 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.econo_misons.database.dao.budgetDAO;
 import com.example.econo_misons.database.dao.categoryDAO;
 import com.example.econo_misons.database.dao.prevBudgetDAO;
+import com.example.econo_misons.database.dao.transactionDAO;
 import com.example.econo_misons.database.dao.userDAO;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Budget_User;
@@ -35,6 +36,8 @@ public abstract class MoneyDB extends RoomDatabase {
     public abstract categoryDAO catdao();
 
     public abstract prevBudgetDAO prevdao();
+
+    public abstract transactionDAO transdao();
 
     public static MoneyDB getInstance(Context context) {
 
@@ -74,6 +77,9 @@ public abstract class MoneyDB extends RoomDatabase {
                     INSTANCE.catdao().addCategory(new Category("Loisirs"));
                     INSTANCE.prevdao().addEnvelope(new Envelope(1,"2022-06",1,100));
                     INSTANCE.prevdao().addEnvelope(new Envelope(1,"2022-06",2,50));
+                    INSTANCE.transdao().addTransaction(new Transaction(1,"2022-06",1,1,"Fromagerie","2022-06-12",30,true));
+                    INSTANCE.transdao().addTransaction(new Transaction(1,"2022-06",1,1,"Jeux de sociétés","2022-06-5",15,true));
+
                 });
 
             }
