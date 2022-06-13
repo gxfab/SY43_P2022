@@ -6,10 +6,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Transaction", foreignKeys = {@ForeignKey(entity = Budget.class,
-        parentColumns = "ID",
-        childColumns = "BUD_ID",
-        onDelete = ForeignKey.CASCADE),
+@Entity(tableName = "Transaction", foreignKeys ={
         @ForeignKey(entity = User.class,
                 parentColumns = "ID",
                 childColumns = "USER_ID",
@@ -17,6 +14,10 @@ import androidx.room.PrimaryKey;
         @ForeignKey(entity = Category.class,
                 parentColumns = "ID",
                 childColumns = "CAT_ID",
+                onDelete = ForeignKey.CASCADE),
+        @ForeignKey(entity = PrevisionalBudget.class,
+                parentColumns = {"YEAR_MONTH","BUD_ID"},
+                childColumns = {"PREV_DATE","BUD_ID"},
                 onDelete = ForeignKey.CASCADE)
 })
 public class Transaction {
@@ -46,7 +47,10 @@ public class Transaction {
     @ColumnInfo(name = "DATE_TRANS")
     public String date;
 
-    public Transaction(int budgetID, int userID, int categoryID, String transactionName, String date, float amountTransaction, Boolean expense){
+    @ColumnInfo(name = "PREV_DATE")
+    public String prevDate;
+
+    public Transaction(int budgetID, String prevDate, int userID, int categoryID, String transactionName, String date, float amountTransaction, Boolean expense){
         this.budgetID = budgetID;
         this.userID = userID;
         this.categoryID = categoryID;
@@ -54,6 +58,7 @@ public class Transaction {
         this.date = date;
         this.amountTransaction = amountTransaction;
         this.expense = expense;
+        this.prevDate = prevDate;
 
     }
 }

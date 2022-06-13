@@ -21,6 +21,4 @@ public class PrevisionalBudget {
     @ColumnInfo(name = "BUD_ID")
     public int budgetID;
 
-    @ColumnInfo(name = "NAME_BUD")
-    public String budgetName;
 }
