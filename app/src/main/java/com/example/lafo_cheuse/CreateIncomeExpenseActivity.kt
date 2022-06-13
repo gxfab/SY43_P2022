@@ -29,7 +29,7 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_income_expense)
 
-        var categoryChooserButton : Button = findViewById<Button>(R.id.emojiButton)
+        val categoryChooserButton : Button = findViewById<Button>(R.id.emojiButton)
         val confirmButton: Button = findViewById(R.id.buttonConfirmCreation4)
         val toggleButton : ToggleButton = findViewById(R.id.toggleButton2)
         val ie_name : TextView = findViewById(R.id.ie_name)
@@ -43,8 +43,10 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         toggleButton.setOnClickListener {
             if(toggleButton.isChecked) {
                 confirmButton.setBackgroundColor(Color.parseColor("#F91A1A"))
+                toggleButton.setTextColor(Color.parseColor("#F91A1A"))
             } else {
                 confirmButton.setBackgroundColor(Color.parseColor("#32F91A"))
+                toggleButton.setTextColor(Color.parseColor("#32F91A"))
             }
         }
 

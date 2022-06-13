@@ -2,10 +2,12 @@ package com.example.lafo_cheuse.fragment.view
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ToggleButton
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,6 +18,7 @@ import com.example.lafo_cheuse.CreateIncomeExpenseActivity
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.material.ExpenseAdapter
 import com.example.lafo_cheuse.material.ExpenseSetterAdapter
+import com.example.lafo_cheuse.material.IncomeAdapter
 import com.example.lafo_cheuse.material.IncomeSetterAdapter
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
@@ -34,6 +37,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class SetIncomesExpensesFragment : Fragment() {
     private var expenseAdapter: ExpenseAdapter? = null
+    private var incomeAdapter: IncomeAdapter? = null
     private val incomeViewModel: IncomeViewModel by viewModels()
     private val expenseViewModel: ExpenseViewModel by viewModels()
 
@@ -46,15 +50,18 @@ class SetIncomesExpensesFragment : Fragment() {
         val budgetDisplayButton : FloatingActionButton = view.findViewById(R.id.budgetSetterFragment)
         val incomeExpenseSetterButton : FloatingActionButton = view.findViewById(R.id.incomeExpenseSetterFragment)
         val recyclerView : RecyclerView = view.findViewById<RecyclerView>(R.id.ie_recycler)
+        val toggleButton: ToggleButton = view.findViewById(R.id.toggleButton3)
 
+        initializeRecyclerViewIncome(recyclerView)
 
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        expenseAdapter = ExpenseAdapter(context as Activity)
-        recyclerView.adapter = expenseAdapter
-        recyclerView.setHasFixedSize(true)
-
-        expenseViewModel.getOneTimeExpense().observe(viewLifecycleOwner) { list ->
-            expenseAdapter!!.setExpenses(list)
+        toggleButton.setOnClickListener{
+            if(toggleButton.isChecked) {
+                toggleButton.setTextColor(Color.parseColor("#F91A1A"))
+                initializeRecyclerViewExpense(recyclerView)
+            } else {
+                toggleButton.setTextColor(Color.parseColor("#32F91A"))
+                initializeRecyclerViewIncome(recyclerView)
+            }
         }
 
         budgetDisplayButton.setOnClickListener {
@@ -68,5 +75,25 @@ class SetIncomesExpensesFragment : Fragment() {
         }
         return view
     }
+    private fun initializeRecyclerViewIncome(recyclerView: RecyclerView) {
+        recyclerView?.layoutManager = LinearLayoutManager(activity)
+        incomeAdapter = IncomeAdapter(context as Activity)
+        recyclerView?.adapter = incomeAdapter
+        recyclerView?.setHasFixedSize(true)
 
+        incomeViewModel.getOneTimeIncome().observe(viewLifecycleOwner) { list ->
+            incomeAdapter!!.setIncomes(list)
+        }
+    }
+
+    private fun initializeRecyclerViewExpense(recyclerView: RecyclerView) {
+        recyclerView?.layoutManager = LinearLayoutManager(activity)
+        expenseAdapter = ExpenseAdapter(context as Activity)
+        recyclerView?.adapter = expenseAdapter
+        recyclerView?.setHasFixedSize(true)
+
+        expenseViewModel.getOneTimeExpense().observe(viewLifecycleOwner) { list ->
+            expenseAdapter!!.setExpenses(list)
+        }
+    }
 }

@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textColor="#32F91A"
         android:textOff="Revenue"
         android:textOn="Dépense" />
 
