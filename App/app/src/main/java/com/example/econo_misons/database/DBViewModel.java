@@ -2,6 +2,7 @@ package com.example.econo_misons.database;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.econo_misons.database.models.Budget;
@@ -35,6 +36,8 @@ public class DBViewModel extends ViewModel {
 
     @Nullable
     private LiveData<User> currentUser;
+    private LiveData<Budget> currentBudget;
+    private LiveData<PrevisionalBudget> currentPrevisionalBudget;
 
     public  DBViewModel(UserDataRepository userDataSource, BudgetDataRepository budgetDataSource, CategoryDataRepository categoryDataSource, PrevBudgetDataRepository prevBudgetDataSource, TransactionDataRepository transactionDataRepository, Executor executor){
         this.userDataSource = userDataSource;
@@ -63,6 +66,10 @@ public class DBViewModel extends ViewModel {
 
     public LiveData<List<User>> getUser(int id){ return userDataSource.getUser(id);}
 
+    public void setCurrentUser(int userID){ this.userDataSource.getUser(userID);}
+
+    public LiveData<User> getCurrentUser() {return this.currentUser;}
+
     //BUDGET
 
     public void addBudget(Budget budget, User user){ executor.execute(() -> budgetDataSource.addBudget(budget, user));}
@@ -78,6 +85,10 @@ public class DBViewModel extends ViewModel {
     public void addUserToBudget(Budget budget, User user){
         executor.execute(() -> budgetDataSource.addUserToBudget(budget, user));
     }
+
+    public void setCurrentBudget(int budID){ this.budgetDataSource.getBudgetByID(budID);}
+
+    public LiveData<Budget> getCurrentBudget() {return this.currentBudget;}
 
     //CATEGORY
 
@@ -104,6 +115,14 @@ public class DBViewModel extends ViewModel {
     public LiveData<List<PrevisionalBudget>> getUserPrevBudgets(int userID) {return prevBudgetDataSource.getUserPrevBudgets(userID);}
 
     public LiveData<Float> getCurrentBudgetSum(PrevisionalBudget prevBud) {return prevBudgetDataSource.getCurrentBudgetSum(prevBud);}
+
+    public void setCurrentPrevBudget(PrevisionalBudget preBud){
+        MutableLiveData<PrevisionalBudget> temp = new MutableLiveData<PrevisionalBudget>();
+        temp.setValue(preBud);
+        this.currentPrevisionalBudget = temp;
+        }
+
+    public LiveData<PrevisionalBudget> getCurrentPrevBudget() {return this.currentPrevisionalBudget;}
 
     //ENVELOPE
 
