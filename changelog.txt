@@ -1,0 +1,13 @@
+--- AgeDor ChangeLog ---
+
+
+AgeDor alpha 1.0 (29/03/22)
+	- Création du projet
+	- Création du ReadMe et Changelog
+
+AgeDor alpha 1.1 (03/05/22)
+	- Ajout de la base de données
+
+AgeDor alpha 1.2 (31/05/22)
+	- Finalisation de la base de données
+	- Première version de la GUI
