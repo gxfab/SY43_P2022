@@ -33,7 +33,7 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class SetIncomesExpensesFragment : Fragment() {
-    private var expenseAdapter: ExpenseSetterAdapter? = null
+    private var expenseAdapter: ExpenseAdapter? = null
     private val incomeViewModel: IncomeViewModel by viewModels()
     private val expenseViewModel: ExpenseViewModel by viewModels()
 
@@ -49,8 +49,12 @@ class SetIncomesExpensesFragment : Fragment() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        expenseAdapter = ExpenseSetterAdapter(context as Activity, expenseViewModel, incomeViewModel)
+        expenseAdapter = ExpenseAdapter(context as Activity)
         recyclerView.adapter = expenseAdapter
+
+        expenseViewModel.getOneTimeExpense().observe(viewLifecycleOwner) { list ->
+            expenseAdapter!!.setExpenses(list)
+        }
 
         budgetDisplayButton.setOnClickListener {
             val intent = Intent(activity, BudgetSetterActivity::class.java)
