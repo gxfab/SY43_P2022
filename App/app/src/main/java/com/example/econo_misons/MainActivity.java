@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.Transaction;
 import com.example.econo_misons.database.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getAllUsers() {
-        this.dbViewModel.getAllUsers().observe(this, this::showUserList);
+        this.dbViewModel.getAllTransactions().observe(this, this::showUserList);
 
     }
 
@@ -93,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
         dbViewModel.newUser(new User(username));
     }
 
-    private void showUserList(List<User> users){
-        Toast toast = Toast.makeText(getApplicationContext(), users.toString(), Toast.LENGTH_SHORT);
+    private void showUserList(List<Transaction> users){
+        Toast toast = Toast.makeText(getApplicationContext(), users.toString(), Toast.LENGTH_LONG);
         toast.show();
     }
 

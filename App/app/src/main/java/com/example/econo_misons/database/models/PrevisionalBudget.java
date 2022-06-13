@@ -28,4 +28,11 @@ public class PrevisionalBudget {
         this.yearMonth = yearMonth;
     }
 
+    @Override
+    public String toString() {
+        return "PrevisionalBudget{" +
+                "yearMonth='" + yearMonth + '\'' +
+                ", budgetID=" + budgetID +
+                '}';
+    }
 }

@@ -61,4 +61,19 @@ public class Transaction {
         this.prevDate = prevDate;
 
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", budgetID=" + budgetID +
+                ", transactionName='" + transactionName + '\'' +
+                ", userID=" + userID +
+                ", categoryID=" + categoryID +
+                ", amountTransaction=" + amountTransaction +
+                ", expense=" + expense +
+                ", date='" + date + '\'' +
+                ", prevDate='" + prevDate + '\'' +
+                '}';
+    }
 }

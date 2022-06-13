@@ -27,4 +27,12 @@ public class Budget_User {
         this.budgetID = budgetID;
         this.userID = userID;
     }
+
+    @Override
+    public String toString() {
+        return "Budget_User{" +
+                "budgetID=" + budgetID +
+                ", userID=" + userID +
+                '}';
+    }
 }

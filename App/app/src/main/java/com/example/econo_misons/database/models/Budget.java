@@ -16,4 +16,12 @@ public class Budget {
     public String budgetName;
 
     public Budget(String budgetName){ this.budgetName = budgetName;}
+
+    @Override
+    public String toString() {
+        return "Budget{" +
+                "id=" + id +
+                ", budgetName='" + budgetName + '\'' +
+                '}';
+    }
 }

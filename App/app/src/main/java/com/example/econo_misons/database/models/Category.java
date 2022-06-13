@@ -27,4 +27,13 @@ public class Category {
         this.categoryName = categoryName;
         this.color = color;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", categoryName='" + categoryName + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }
