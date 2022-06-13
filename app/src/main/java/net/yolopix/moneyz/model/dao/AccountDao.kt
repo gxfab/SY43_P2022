@@ -1,8 +1,9 @@
-package net.yolopix.moneyz.model.entities
+package net.yolopix.moneyz.model.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import net.yolopix.moneyz.model.entities.Account
 
 @Dao
 interface AccountDao {

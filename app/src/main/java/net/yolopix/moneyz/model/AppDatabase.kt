@@ -2,6 +2,7 @@ package net.yolopix.moneyz.model
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import net.yolopix.moneyz.model.dao.*
 import net.yolopix.moneyz.model.entities.*
 
 /**

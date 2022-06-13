@@ -29,7 +29,7 @@ class AddCategoryBottomSheet(
     private val monthNumber: Int,
     private val yearNumber: Int,
     private val accountUid: Int,
-    private var incomeAmount: Float? = Float.MAX_VALUE
+    private var incomeAmount: Float? = Float.MAX_VALUE // Do not limit category max amount if the income value is not valid
 ) : BottomSheetDialogFragment() {
     private lateinit var buttonAddCategoryName: Button
     private lateinit var editTextCategoryName: EditText
@@ -56,9 +56,6 @@ class AddCategoryBottomSheet(
         categoryNameTextField = view.findViewById(R.id.text_field_category_name)
         categoryPriceTextField = view.findViewById(R.id.text_field_category_price)
 
-        // Do not limit category max amount if the income value is not valid
-        //if (incomeAmount == null) incomeAmount = Float.MAX_VALUE
-
         // Add click listener to the add button
         buttonAddCategoryName.setOnClickListener {
             addCategory()
@@ -76,7 +73,8 @@ class AddCategoryBottomSheet(
                 it.toString().isBlank() -> getString(R.string.error_empty_text)
                 it.toString().toFloatOrNull() == null -> getString(R.string.error_invalid_amount)
                 it.toString().toFloat() == 0f -> getString(R.string.error_amount_zero)
-                it.toString().toFloat() > incomeAmount!! -> getString(R.string.error_prevision_greater_than_salary)
+                it.toString()
+                    .toFloat() > incomeAmount!! -> getString(R.string.error_prevision_greater_than_salary)
                 else -> null
             }
             checkFormErrors()
