@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.econo_misons.database.dao.budgetDAO;
+import com.example.econo_misons.database.dao.categoryDAO;
 import com.example.econo_misons.database.dao.userDAO;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Budget_User;
@@ -18,6 +19,7 @@ import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.Transaction;
 import com.example.econo_misons.database.models.User;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 @Database(entities = {User.class, Budget.class, Budget_User.class, Category.class, Envelope.class, PrevisionalBudget.class, Transaction.class}, version = 1)
@@ -28,6 +30,8 @@ public abstract class MoneyDB extends RoomDatabase {
     public abstract userDAO userdao();
 
     public abstract budgetDAO budgetdao();
+
+    public abstract categoryDAO catdao();
 
     public static MoneyDB getInstance(Context context) {
 
@@ -59,8 +63,13 @@ public abstract class MoneyDB extends RoomDatabase {
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
                 Executors.newSingleThreadExecutor().execute(() -> INSTANCE.userdao().newUser(new User("Suiram")));
-                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.budgetdao().addBudget(new Budget("Budget perso")));
-                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.budgetdao().linkBudgetUser(new Budget_User(1,1)));
+                Executors.newSingleThreadExecutor().execute(() -> {
+                    INSTANCE.budgetdao().addBudget(new Budget("Budget perso"));
+                    INSTANCE.budgetdao().linkBudgetUser(new Budget_User(1,1));
+                });
+                Executors.newSingleThreadExecutor().execute(() -> {
+                    INSTANCE.catdao().addCategory(new Category("Courses"));
+                    INSTANCE.catdao().addCategory(new Category("Loisirs"));                });
             }
         };
     }
