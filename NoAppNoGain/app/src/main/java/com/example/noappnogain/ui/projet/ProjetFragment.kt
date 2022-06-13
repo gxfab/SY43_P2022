@@ -94,7 +94,8 @@ class ProjetFragment : Fragment() {
         mydialog.setView(myviewm)
         val dialog = mydialog.create()
         dialog.setCancelable(false)
-        val edtAmount = myviewm.findViewById<EditText>(R.id.montant_edt)
+        val edtAmountActual = myviewm.findViewById<EditText>(R.id.montantActuel_edt)
+        val edtAmountTotal = myviewm.findViewById<EditText>(R.id.montantTotal_edt)
         val edtDateLimite = myviewm.findViewById<DatePicker>(R.id.date_limite_edt)
         val edtNom = myviewm.findViewById<EditText>(R.id.nom_edt)
         val btnSave = myviewm.findViewById<Button>(R.id.btnSave)
@@ -102,19 +103,26 @@ class ProjetFragment : Fragment() {
         Calendar.getInstance()
 
         btnSave.setOnClickListener(View.OnClickListener {
-            val totalAmount = 0
+
             val isFinished = false
             val day = edtDateLimite.dayOfMonth.toString()
-            val month = edtDateLimite.month.toString()
+            val emonth = edtDateLimite.month.toString()
+            val month = emonth.toInt() + 1
             val year = edtDateLimite.year.toString()
             val date = day.plus("/").plus(month).plus("/").plus(year)
-            val amount = edtAmount.text.toString().trim { it <= ' ' }
+            val actualAmount = edtAmountActual.text.toString().trim { it <= ' ' }
+            val totalAmount = edtAmountTotal.text.toString().trim { it <= ' ' }
+            val myTotalAmount = totalAmount.toInt()
             val name = edtNom.text.toString().trim { it <= ' ' }
-            if (TextUtils.isEmpty(amount)) {
-                edtAmount.error
+            if (TextUtils.isEmpty(actualAmount)) {
+                edtAmountActual.error
                 return@OnClickListener
             }
-            val actualAmount = amount.toInt()
+            val myActualAmount = actualAmount.toInt()
+            if (TextUtils.isEmpty(totalAmount)) {
+                edtAmountTotal.error
+                return@OnClickListener
+            }
             if (TextUtils.isEmpty(name)) {
                 edtNom.error
                 return@OnClickListener
@@ -124,7 +132,7 @@ class ProjetFragment : Fragment() {
                 val id: String? = mProjetDatabase?.push()?.key
                 val sdFormat = SimpleDateFormat("dd/MM/yyyy")
                 sdFormat.format(Date())
-                val data = Projet(actualAmount, totalAmount, isFinished, name, id, date)
+                val data = Projet(myActualAmount, myTotalAmount, isFinished, name, id, date)
                 if (id != null) {
                     mProjetDatabase?.child(id)?.setValue(data)
                 }

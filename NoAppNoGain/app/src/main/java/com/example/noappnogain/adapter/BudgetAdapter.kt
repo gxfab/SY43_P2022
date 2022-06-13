@@ -8,6 +8,11 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.R
 import com.example.noappnogain.model.Budget
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import java.util.ArrayList
 
 class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
     RecyclerView.Adapter<BudgetAdapter.MyViewHolder>() {
@@ -29,6 +34,49 @@ class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
         holder.type.text = currentitem.category
         holder.amount.text = currentitem.montant.toString()
 
+        holder.itemView.setOnClickListener { view ->
+            var mAuth: FirebaseAuth? = null
+            var mUser: FirebaseUser? = null
+            var mBudgetDatabase: DatabaseReference? = null
+            mAuth = FirebaseAuth.getInstance()
+            mUser = mAuth?.currentUser
+
+            if (mAuth!!.currentUser != null) {
+                val uid = mUser!!.uid
+                mBudgetDatabase =
+                    FirebaseDatabase.getInstance().reference.child("BudgetData").child(uid)
+            }
+
+            val mydialog = AlertDialog.Builder(view.context)
+            val inflater = LayoutInflater.from(view.context)
+            val myviewm: View = inflater.inflate(R.layout.modifier_budget, null)
+            mydialog.setView(myviewm)
+            val edtAmount = myviewm.findViewById<EditText>(R.id.montant_edt)
+            val edtCat = myviewm.findViewById<TextView>(R.id.categorie_edt)
+
+            val type = budgetList[position].category
+            val post_key = budgetList[position].id
+            val amount = budgetList[position].montant
+            edtCat.setText(type)
+            edtAmount.setText(amount)
+
+            val btnUpdate = myviewm.findViewById<Button>(R.id.btn_upd_Update)
+            val btnDelete = myviewm.findViewById<Button>(R.id.btnuPD_Delete)
+            val dialog = mydialog.create()
+            btnUpdate.setOnClickListener(View.OnClickListener {
+                val amount = edtAmount.text.toString().trim { it <= ' ' }
+                val myAmount = amount.toInt()
+                val data = Budget(myAmount, type, post_key)
+                mBudgetDatabase?.child(post_key.toString())?.setValue(data)
+                dialog.dismiss()
+            })
+            btnDelete.setOnClickListener(View.OnClickListener {
+                mBudgetDatabase?.child(post_key.toString())?.removeValue()
+                dialog.dismiss()
+            })
+            dialog.show()
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -39,25 +87,6 @@ class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
 
         val type: TextView = itemView.findViewById(R.id.type_txt_budget)
         val amount: TextView = itemView.findViewById(R.id.amount_txt_budget)
-
-        init {
-            itemView.setOnClickListener {v: View ->
-                val position: Int = adapterPosition
-                Toast.makeText(itemView.context, "Vous avez cliqué sur l'élément # ${position + 1}", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-
-        fun setType(type: String) {
-            val mType = itemView.findViewById<TextView>(R.id.type_txt_budget)
-            mType.text = type
-        }
-
-        fun setAmount(amount: Int) {
-            val mAmount: TextView = itemView.findViewById<TextView>(R.id.amount_txt_expense)
-            val stamount = amount.toString()
-            mAmount.text = "-$stamount"
-        }
 
     }
 

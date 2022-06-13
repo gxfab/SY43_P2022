@@ -5,7 +5,7 @@ class Budget {
     var category: String? = null
     var id: String? = null
 
-    constructor(montant: Int, category: String?, id: String) {
+    constructor(montant: Int, category: String?, id: String?) {
         this.montant = montant
         this.category = category
         this.id = id

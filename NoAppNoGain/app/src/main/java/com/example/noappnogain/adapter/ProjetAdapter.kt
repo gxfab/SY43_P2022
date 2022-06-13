@@ -1,14 +1,20 @@
 package com.example.noappnogain.adapter
 
+import android.app.AlertDialog
 import android.graphics.Color
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.model.Projet
 import com.example.noappnogain.R
+import com.example.noappnogain.model.Data
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -49,10 +55,94 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
 
         }
 
+        if(currentitem.totalAmount < currentitem.actualAmount){
+            holder.totalAmount.setTextColor(Color.parseColor("#ff0000"));
+        }else{
+            holder.actualAmount.setTextColor(Color.parseColor("#0dff00"));
+        }
+
         holder.datePicker.text = currentitem.date
         holder.name.text = currentitem.name
         holder.totalAmount.text = currentitem.totalAmount.toString()
         holder.actualAmount.text = currentitem.actualAmount.toString()
+
+        holder.itemView.setOnClickListener { view ->
+            var mAuth: FirebaseAuth? = null
+            var mUser: FirebaseUser? = null
+            var mProjetDatabase: DatabaseReference? = null
+            mAuth = FirebaseAuth.getInstance()
+            mUser = mAuth?.currentUser
+
+            if (mAuth!!.currentUser != null) {
+                val uid = mUser!!.uid
+                mProjetDatabase =
+                    FirebaseDatabase.getInstance().reference.child("ProjetData").child(uid)
+            }
+
+            val mydialog = AlertDialog.Builder(view.context)
+            val inflater = LayoutInflater.from(view.context)
+            val myviewm: View = inflater.inflate(R.layout.modifier_projet, null)
+            mydialog.setView(myviewm)
+            val edtAmountActual = myviewm.findViewById<EditText>(R.id.montantActuel_edt)
+            val edtAmountTotal = myviewm.findViewById<EditText>(R.id.montantTotal_edt)
+            val edtName= myviewm.findViewById<EditText>(R.id.nom_edt)
+            val edtDateLimite = myviewm.findViewById<DatePicker>(R.id.date_limite_edt)
+
+            val post_key = projetList[position].id
+            val name = projetList[position].name
+            val amountActual = projetList[position].actualAmount
+            val amountTotal = projetList[position].totalAmount
+
+            edtAmountActual.setText(amountActual.toString())
+            edtAmountTotal.setText(amountTotal.toString())
+            edtName.setText(name)
+
+            val btnUpdate = myviewm.findViewById<Button>(R.id.btn_upd_Update)
+            val btnDelete = myviewm.findViewById<Button>(R.id.btnuPD_Delete)
+            val dialog = mydialog.create()
+            btnUpdate.setOnClickListener {
+
+                var error = false
+                val isFinished = false
+                val actualAmount = edtAmountActual.text.toString().trim { it <= ' ' }
+                if (TextUtils.isEmpty(actualAmount)) {
+                    edtAmountActual.error
+                    error = true
+                }
+                val myActualAmount = actualAmount.toInt()
+                val totalAmount = edtAmountTotal.text.toString().trim { it <= ' ' }
+                if (TextUtils.isEmpty(totalAmount)) {
+                    edtAmountActual.error
+                    error = true
+                }
+                val myTotalAmount = totalAmount.toInt()
+                val day = edtDateLimite.dayOfMonth.toString()
+                val emonth = edtDateLimite.month.toString()
+                val month = emonth.toInt() + 1
+                val year = edtDateLimite.year.toString()
+                val date = day.plus("/").plus(month).plus("/").plus(year)
+                val myName = edtName.text.toString()
+                if (TextUtils.isEmpty(name)) {
+                    error = true
+                }
+                if (mAuth?.currentUser != null && !error) {
+                    val data = Projet(myActualAmount, myTotalAmount, isFinished, myName, post_key, date)
+                    mProjetDatabase?.child(post_key.toString())?.setValue(data)
+                    Toast.makeText(view.context, "Enregistrement réussi...", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }else{
+                    Toast.makeText(view.context, "Les champs ne peuvent pas être vides...", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            btnDelete.setOnClickListener {
+                mProjetDatabase?.child(post_key.toString())?.removeValue()
+                dialog.dismiss()
+            }
+            dialog.show()
+        }
+
+
 
     }
 
@@ -68,12 +158,6 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
         val actualAmount: TextView = itemView.findViewById(R.id.actualMontant_projet)
         val datePicker: TextView = itemView.findViewById(R.id.date_limite_projet)
 
-        init {
-            itemView.setOnClickListener {v: View ->
-                val position: Int = adapterPosition
-                Toast.makeText(itemView.context, "Vous avez cliqué sur l'élément # ${position + 1}", Toast.LENGTH_SHORT).show()
-            }
-        }
 
     }
 

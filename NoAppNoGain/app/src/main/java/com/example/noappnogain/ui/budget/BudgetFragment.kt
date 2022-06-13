@@ -177,55 +177,6 @@ class BudgetFragment : Fragment() {
         dialog.show()
     }
 
-    fun budgetUpdate() {
-        val mydialog = AlertDialog.Builder(activity)
-        val inflater = LayoutInflater.from(activity)
-        val myviewm: View = inflater.inflate(R.layout.modifier_budget, null)
-        mydialog.setView(myviewm)
-        val edtAmount = myviewm.findViewById<EditText>(R.id.montant_edt)
-        val edtCat = myviewm.findViewById<Spinner>(R.id.categorie_edt)
-        // spinner
-        ArrayAdapter.createFromResource(
-            activity!!,
-            R.array.categorie_depense,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            edtCat.adapter = adapter
-        }
-        var edtType: String? = null
-        edtCat.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                edtType = edtCat.selectedItem.toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-        val btnUpdate = myviewm.findViewById<Button>(R.id.btn_upd_Update)
-        val btnDelete = myviewm.findViewById<Button>(R.id.btnuPD_Delete)
-        val dialog = mydialog.create()
-        btnUpdate.setOnClickListener(View.OnClickListener {
-            val type = edtType.toString().trim { it <= ' ' }
-            val amount = edtAmount.text.toString().trim { it <= ' ' }
-            val myAmount = amount.toInt()
-            //val data = Budget(myAmount, type, post_key)
-            //mBudgetDatabase?.child(post_key)?.setValue(data)
-            dialog.dismiss()
-        })
-        btnDelete.setOnClickListener(View.OnClickListener {
-            //mBudgetDatabase.child(post_key).removeValue()
-            dialog.dismiss()
-        })
-        dialog.show()
-    }
-
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
