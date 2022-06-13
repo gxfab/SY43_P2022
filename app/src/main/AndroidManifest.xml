@@ -51,14 +51,6 @@
                 android:value="com.example.lafo_cheuse.MainActivity" />
         </activity>
         <activity
-            android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:exported="false"
-                android:value="com.example.lafo_cheuse.MainActivity" />
-        </activity>
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
