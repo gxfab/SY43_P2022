@@ -1,4 +1,51 @@
 package com.example.lafo_cheuse.material
 
-class IncomeAdapter {
+import android.app.Activity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.recyclerview.widget.RecyclerView
+import com.example.lafo_cheuse.R
+import com.example.lafo_cheuse.models.Income
+import java.util.ArrayList
+
+class IncomeAdapter (var context : Activity) : RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
+    private var mIncome: List<Income> = ArrayList<Income>()
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val ieName: EditText = itemView.findViewById(R.id.ie_name)
+        val categoryEmojiButton: Button = itemView.findViewById(R.id.emojiButton)
+        val ieValue: EditText = itemView.findViewById(R.id.ie_value)
+        val ieDate: EditText = itemView.findViewById(R.id.ie_date)
+        //val deleteButton: Button = itemView.findViewById<Button>(R.id.deleteButton2)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val context = parent.context
+        val inflater = LayoutInflater.from(context)
+        val incomeIncomeItemView = inflater.inflate(R.layout.income_expense_item, parent, false)
+        return ViewHolder(incomeIncomeItemView)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val Income: Income = mIncome[position]
+        holder.ieName.setText(Income.name)
+        holder.categoryEmojiButton.text = Income.category?.categoryEmoji
+        holder.ieValue.setText(Income.amount.toString())
+        holder.ieDate.setText(Income.dateDay.toString()+"/"+Income.dateMonth.toString()+"/"+Income.dateYear.toString())
+        holder.categoryEmojiButton.setOnClickListener {
+            //chooseCategory(category)
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return mIncome.size
+    }
+
+    fun setIncomes(mIncomes: List<Income>) {
+        this.mIncome = mIncomes
+        notifyDataSetChanged()
+    }
+
 }
