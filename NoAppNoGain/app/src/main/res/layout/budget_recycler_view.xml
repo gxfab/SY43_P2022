@@ -25,12 +25,12 @@
 
             <TextView
                 android:id="@+id/type_txt_budget"
-                android:layout_width="180dp"
+                android:layout_width="171dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingLeft="10dp"
                 android:text="Nom"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/amount_txt_budget"
@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:text="200"
                 android:textStyle="bold"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
         </LinearLayout>
 

@@ -15,6 +15,12 @@ import com.example.noappnogain.adapter.BudgetAdapter
 import com.example.noappnogain.databinding.FragmentBudgetBinding
 import com.example.noappnogain.model.Budget
 import com.example.noappnogain.model.Data
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -36,8 +42,15 @@ class BudgetFragment : Fragment() {
     var budgetPlanSetResult : TextView? = null
     var budgetRestSetResult : TextView? = null
 
+    private var spinnerAnnee : Spinner? = null
+    private var spinnerMois : Spinner? = null
+
     var budgetPlan : Int = 0
     var budgetRest : Int = 0
+    var annee = "0"
+    var mois =  "0"
+    var posAnnee = 0
+    var posMois = 0
 
     private lateinit var budgetArrayList: ArrayList<Budget>
     // This property is only valid between onCreateView and
@@ -72,7 +85,26 @@ class BudgetFragment : Fragment() {
                 FirebaseDatabase.getInstance().reference.child("MouvementData").child(uid)
         }
 
-        mBudgetDatabase?.addValueEventListener(object : ValueEventListener {
+        spinnerAnnee = binding.spinnerAnnee
+        ArrayAdapter.createFromResource(
+            activity!!,
+            R.array.annee,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerAnnee!!.adapter = adapter
+        }
+        spinnerMois = binding.spinnerMois
+        ArrayAdapter.createFromResource(
+            activity!!,
+            R.array.mois,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerMois!!.adapter = adapter
+        }
+
+        val valueEventListenerBudget : ValueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 budgetRest = 0
                 budgetArrayList = arrayListOf()
@@ -95,9 +127,11 @@ class BudgetFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-        })
+        }
 
-        mMouvementDatabase?.addValueEventListener(object : ValueEventListener {
+        mBudgetDatabase?.addListenerForSingleValueEvent(valueEventListenerBudget)
+
+        val valueEventListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 budgetPlan = 0
                 if (snapshot.exists()) {
@@ -116,6 +150,13 @@ class BudgetFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
+        }
+
+        mMouvementDatabase?.addListenerForSingleValueEvent(valueEventListener)
+
+        val btnFiltre: Button = binding.btnFiltre
+        btnFiltre.setOnClickListener(View.OnClickListener {
+            filtreData()
         })
 
         return root
@@ -167,7 +208,7 @@ class BudgetFragment : Fragment() {
                 if (id != null) {
                     mBudgetDatabase?.child(id)?.setValue(data)
                 }
-
+                filtreData()
             }
             dialog.dismiss()
         })
@@ -175,6 +216,137 @@ class BudgetFragment : Fragment() {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    fun filtreData(){
+
+        spinnerAnnee?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                annee = spinnerAnnee!!.selectedItem.toString().trim { it <= ' ' }
+                posAnnee = position
+                println("posAnnee" + position)
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                annee = "0"
+            }
+        })
+
+        spinnerMois?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                mois = position.toString()
+                posMois = position
+                println("posMois" + position)
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                mois = "0"
+            }
+        })
+
+
+        var tous : Boolean = false
+        var month : Boolean = false
+        var year : Boolean = false
+
+        if(posAnnee == 0 && posMois == 0){
+            tous = true
+            year = true
+            month = true
+        }
+        if(posAnnee > 0 && posMois == 0){
+            tous = true
+            year = false
+            month = true
+        }
+        if(posAnnee == 0 && posMois > 0){
+            tous = true
+            year = true
+            month = false
+        }
+        if(posAnnee > 0 && posMois > 0){
+            tous = false
+            year = false
+            month = false
+        }
+
+        val valueEventListenerBudget : ValueEventListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                budgetRest = 0
+                budgetArrayList = arrayListOf()
+                if (snapshot.exists()) {
+                    for (userSnapshot in snapshot.children) {
+                        val data = userSnapshot.getValue(Budget::class.java)
+                        if (data != null) {
+                            budgetRest += data.montant.toInt()
+                        }
+                        budgetArrayList.add(data!!)
+                    }
+                    budgetRest = budgetPlan - budgetRest
+                    if(budgetRest < 0) {
+                        budgetRestSetResult!!.setTextColor(Color.parseColor("#ff0000"));
+                    }
+                    budgetRestSetResult!!.setText(budgetRest.toString())
+
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        mBudgetDatabase?.addListenerForSingleValueEvent(valueEventListenerBudget)
+
+
+        val valueEventListener: ValueEventListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                budgetPlan = 0
+                if (snapshot.exists()) {
+                    for (userSnapshot in snapshot.children) {
+                        val data = userSnapshot.getValue(Data::class.java)
+                        if (data != null) {
+                            if (data.amount < 0) {
+                                var mDate = ""
+                                if(!year && !month){
+                                    mDate = "/".plus(mois).plus("/").plus(annee)
+                                    println("mDate" + mDate)
+                                }
+                                if(!tous){
+                                    if(!year){
+                                        if(!month){
+                                            if(data.date!!.endsWith(mDate)){
+                                                budgetPlan += data.amount.toInt()
+                                            }
+                                        }
+                                    }else{
+                                        if(data.date!!.endsWith(annee)){
+                                            budgetPlan += data.amount.toInt()
+                                        }
+                                    }
+                                }else{
+                                    budgetPlan += data.amount.toInt()
+                                }
+                            }
+                        }
+                    }
+                    budgetPlanSetResult!!.setText(budgetPlan.toString())
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        mMouvementDatabase?.addListenerForSingleValueEvent(valueEventListener)
+
     }
 
 

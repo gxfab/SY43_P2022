@@ -81,15 +81,21 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_filtre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FILTRE"/>
+
     <LinearLayout
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center">
 
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"
             android:background="@drawable/planifie"
@@ -101,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="Budget planifié : "
+                android:textSize="20dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
 
@@ -109,13 +116,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textSize="20dp"
                 android:inputType="number"
                 android:gravity="center"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"
             android:background="@drawable/reelle"
@@ -127,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="Budget restant : "
+                android:textSize="20dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
 
@@ -135,6 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textSize="20dp"
                 android:inputType="number"
                 android:gravity="center"/>
 
@@ -146,7 +156,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_id_budget"
         android:layout_width="wrap_content"
-        android:layout_height="570dp"
+        android:layout_height="514dp"
         android:layout_gravity="center_horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

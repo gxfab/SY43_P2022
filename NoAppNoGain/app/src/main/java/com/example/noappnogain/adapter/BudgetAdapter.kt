@@ -58,7 +58,7 @@ class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
             val post_key = budgetList[position].id
             val amount = budgetList[position].montant
             edtCat.setText(type)
-            edtAmount.setText(amount)
+            edtAmount.setText(amount.toString())
 
             val btnUpdate = myviewm.findViewById<Button>(R.id.btn_upd_Update)
             val btnDelete = myviewm.findViewById<Button>(R.id.btnuPD_Delete)
