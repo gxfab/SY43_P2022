@@ -4,32 +4,31 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/white"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="20dp"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    >
+    android:layout_marginRight="10dp">
     <TextView
-        android:id="@+id/category_name"
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Name"
         android:textSize="15sp"
         android:textStyle="bold" />
     <TextView
-        android:id="@+id/amount"
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Expense"
         android:textSize="12sp"
         android:textStyle="normal"/>
 
     <SeekBar
-        android:id="@+id/seekbar"
+        android:id="@+id/seekbar_default"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="5dp"
         android:minHeight="5dp"
-        android:progress="0"
+        android:progress="25"
         android:progressDrawable="@drawable/seekbar_drawable"
         android:splitTrack="false"
         android:thumb="@drawable/ic_default_thumb" />

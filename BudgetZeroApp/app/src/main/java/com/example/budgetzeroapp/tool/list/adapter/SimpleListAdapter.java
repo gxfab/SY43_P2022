@@ -40,3 +40,5 @@ public class SimpleListAdapter extends ArrayAdapter<ListItem> {
         return v;
     }
 }
+
+

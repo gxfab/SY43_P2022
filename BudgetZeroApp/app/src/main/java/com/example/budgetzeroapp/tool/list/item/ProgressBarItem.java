@@ -25,7 +25,7 @@ public class ProgressBarItem extends ListItem{
         else if(name.equals("Leisure")) return R.drawable.ic_leisure;
         else if(name.equals("Vehicle")) return R.drawable.ic_car;
         else if(name.equals("Miscellaneous")) return R.drawable.ic_coffee;
-        else return R.drawable.seekbar_thumb;
+        else return R.drawable.ic_default_thumb;
     }
 
     public float getTotal(){ return total; }

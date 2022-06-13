@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_gray"
-    tools:context=".fragment.BudgetFragment">
+    tools:context=".CashFlowGeneralFragment">
 
 
     <ScrollView
@@ -25,24 +25,16 @@
                 android:layout_marginLeft="15dp"/>
             <include
                 layout="@layout/sorting_budget"/>
-            <TextView
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Juin 2022"
-                android:textSize="15sp"
-                android:textStyle="bold" />
             <include
-                layout="@layout/category_shopping"/>
+                layout="@layout/template_expense"/>
             <include
-                layout="@layout/category_vehicle"/>
+                layout="@layout/template_expense"/>
             <include
-                layout="@layout/category_leisure"/>
+                layout="@layout/template_expense"/>
             <include
-                layout="@layout/category_health"/>
+                layout="@layout/template_expense"/>
             <include
-                layout="@layout/category_miscellaneous"/>
+                layout="@layout/template_expense"/>
         </LinearLayout>
     </ScrollView>
 
