@@ -31,6 +31,7 @@
         <entry key="app/src/main/res/layout/activity_budget_setter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_category_chooser.xml" value="0.3546875" />
         <entry key="app/src/main/res/layout/activity_create_category.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_create_income_expense.xml" value="0.3546875" />
         <entry key="app/src/main/res/layout/activity_display_message.xml" value="0.278125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.278125" />
@@ -46,6 +47,7 @@
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.3546875" />
         <entry key="app/src/main/res/layout/fragment_set_incomes_expenses.xml" value="0.35487232933819696" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.35487232933819696" />
+        <entry key="app/src/main/res/layout/income_expense_item.xml" value="0.171875" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.3536458333333333" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/lafo-cheuse_icon.xml" value="0.3005" />
