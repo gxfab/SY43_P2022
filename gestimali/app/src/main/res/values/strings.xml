@@ -39,6 +39,21 @@
     <string name="tag">Tags</string>
     <string name="amount">200</string>
 
+    <string name="add_income_title">Add Income</string>
+    <string name="add_income_name">Name</string>
+
+    <string name="add_income_value">Income Value</string>
+    <string name="monthly_fixed">Monthly Fixed</string>
+
+    <string name="add_fixed_expense_title">Add fixed expense</string>
+    <string name="add_expense_value">Expense Value</string>
+
+    <string name="add_envelope_title">Add envelope</string>
+    <string name="add_envelope_amount">Envelope Amount</string>
+
+    <string name="add_wish_title">Add wish</string>
+    <string name="add_wish_amount">Amount needed</string>
+
 
 
 

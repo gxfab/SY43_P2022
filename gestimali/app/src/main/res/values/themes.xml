@@ -47,5 +47,10 @@
         <item name="android:textSize">28sp</item>
     </style>
 
+    <style name="add_title" parent="TitleStyle">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 
 </resources>
