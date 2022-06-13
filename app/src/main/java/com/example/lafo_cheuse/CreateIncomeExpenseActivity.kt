@@ -11,13 +11,14 @@ import android.widget.ToggleButton
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.example.lafo_cheuse.fragment.view.BudgetSetterFragment
+import com.example.lafo_cheuse.material.DatabaseDate
 import com.example.lafo_cheuse.models.Category
 import com.example.lafo_cheuse.models.Expense
 import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.models.Income
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
+import java.util.*
 
 class CreateIncomeExpenseActivity : AppCompatActivity() {
     val expenseViewModel : ExpenseViewModel by viewModels()
@@ -48,17 +49,33 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         }
 
         confirmButton.setOnClickListener{
+            val today : DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
             if(toggleButton.isChecked) {
-                expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_MONTH, ie_name.text.toString(),
-                    Category(categoryChooserButton.text.toString(),categoryChooserButton.text.toString()), ie_value.text.toString().toDouble()))
-                finish()
+                expenseViewModel.insertExpense(
+                    Expense(
+                        Frequency.OUNCE_A_DAY,
+                        ie_name.text.toString(),
+                        Category(categoryChooserButton.text.toString(),categoryChooserButton.text.toString()),
+                        -ie_value.text.toString().toDouble(),
+                        today.year,
+                        today.month,
+                        today.day
+                    )
+                )
             } else {
                 incomeViewModel.insertIncome(
-                    Income(Frequency.OUNCE_A_MONTH, ie_name.text.toString(),
-                    Category(categoryChooserButton.text.toString(),categoryChooserButton.text.toString()), ie_value.text.toString().toDouble())
+                    Income(
+                        Frequency.OUNCE_A_DAY,
+                        ie_name.text.toString(),
+                        Category(categoryChooserButton.text.toString(),categoryChooserButton.text.toString()),
+                        ie_value.text.toString().toDouble(),
+                        today.year,
+                        today.month,
+                        today.day
+                    )
                 )
-                finish()
             }
+            finish()
         }
 
         resultLauncher = registerForActivityResult(
@@ -71,5 +88,16 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
                 categoryChooserButton.setText(emoji)
             }
         }
+    }
+
+    /**
+     * Small function to convert a calendar date to DatabaseDate object
+     *
+     * @param calendar - a Calendar object from java.utils which one wants to convert
+     * @return a DatabaseDate object with all the [calendar] data
+     */
+    private fun convertDateInDatabaseDate(calendar: Calendar) : DatabaseDate {
+        return DatabaseDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(
+            Calendar.DAY_OF_MONTH))
     }
 }
