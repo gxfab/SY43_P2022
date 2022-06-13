@@ -70,9 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:inputType="number"
             android:hint="Amount of money"
-
-            android:inputType="textPersonName"
               />
 
         <Spinner

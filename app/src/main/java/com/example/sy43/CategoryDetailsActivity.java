@@ -2,6 +2,7 @@ package com.example.sy43;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -44,11 +45,21 @@ public class CategoryDetailsActivity extends AppCompatActivity {
 
         CategoryViewModel categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         categoryViewModel.init();
+
+        TransactionViewModel transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
+        transactionViewModel.init();
+
+        SubCategoryViewModel subCategoryViewModel = new ViewModelProvider(this).get(SubCategoryViewModel.class);
+        subCategoryViewModel.init();
+
+        LifecycleOwner owner = this;
+
         Bundle b = getIntent().getExtras();
         int categoryId = b.getInt("categoryId");
         categoryViewModel.getCategoryById(categoryId).observe(this, new Observer<Categorydb>() {
             @Override
             public void onChanged(Categorydb receivedCategory) {
+                /*
                 RelativeLayout card = findViewById(R.id.categoryCard);
                 TextView price = card.findViewById(R.id.tvCurrentPrice);
                 TextView name = card.findViewById(R.id.tvName);
@@ -58,24 +69,39 @@ public class CategoryDetailsActivity extends AppCompatActivity {
                 progressBar.setProgress((int) receivedCategory.CurrentValue(), true);
                 name.setText(receivedCategory.getCatName());
                 price.setText("$" + receivedCategory.CurrentValue() + "/$" + receivedCategory.getMaxValue());
+                */
+                List<Categorydb> categories = new ArrayList<Categorydb>();
+                categories.add(receivedCategory);
+
+                CategoryAdapter catArrayAdapter = new CategoryAdapter(
+                        CategoryDetailsActivity.this,
+                        owner,
+                        R.layout.category_list_item,
+                        categories,
+                        categoryViewModel,
+                        transactionViewModel,
+                        subCategoryViewModel
+
+                );
+                ListView catLv = (ListView) findViewById(R.id.categoryListView);
+                catLv.setAdapter(catArrayAdapter);
+
             }
         });
         EditText editTontant = (EditText) findViewById(R.id.editMontant);
         Spinner spinnerCategories = (Spinner) findViewById(R.id.spinnerChooseSubCategory);
         Button btnAddTransaction = (Button) findViewById(R.id.btnAddTransaction);
-        SubCategoryViewModel subCategoryViewModel = new ViewModelProvider(this).get(SubCategoryViewModel.class);
-        subCategoryViewModel.init();
-        TransactionViewModel transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
-        transactionViewModel.init();
+
         subCategoryViewModel.getSubCategoriesByCatId(categoryId).observe(this, new Observer<List<SubCategory>>() {
             @Override
             public void onChanged(List<SubCategory> subCategories) {
                 // Affichage en forme de card
                 SubCategoryAdapter objArrayAdapter = new SubCategoryAdapter(
                         CategoryDetailsActivity.this,
+                        owner,
                         R.layout.category_list_item,
                         subCategories,
-                        subCategoryViewModel);
+                        subCategoryViewModel, transactionViewModel);
                 ListView objLv = (ListView) findViewById(R.id.objectiveListView);
                 objLv.setAdapter(objArrayAdapter);
 
@@ -109,6 +135,11 @@ public class CategoryDetailsActivity extends AppCompatActivity {
                         transaction.setValue(montant);
                         transaction.setDate(System.currentTimeMillis());
                         transactionViewModel.createTransaction(transaction);
+
+                        finish();
+                        overridePendingTransition(0, 0);
+                        startActivity(getIntent());
+                        overridePendingTransition(0, 0);
                     }
 
                 });

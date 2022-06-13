@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Entity(tableName = "transaction",
         indices = {@Index(value = {"TransactionID"})},
         foreignKeys = {@ForeignKey(entity = Categorydb.class, parentColumns = "CatID", childColumns = "Category", onDelete = ForeignKey.CASCADE),
-                @ForeignKey(entity = SubCategory.class, parentColumns = "SubCatID", childColumns = "SubCategory")})
+                @ForeignKey(entity = SubCategory.class, parentColumns = "SubCatID", childColumns = "SubCategory", onDelete = ForeignKey.CASCADE)})
 public class Transaction {
     @PrimaryKey(autoGenerate = true)
     private int TransactionID;

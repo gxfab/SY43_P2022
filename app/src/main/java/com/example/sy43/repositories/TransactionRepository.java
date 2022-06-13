@@ -33,7 +33,23 @@ public class TransactionRepository {
     }
 
 
+    public MutableLiveData<List<Transaction>> getTransactionsFromSubCat(int id) {
+        MutableLiveData<List<Transaction>> data = new MutableLiveData<>();
 
+        Futures.addCallback(
+                db.TransactionDAO().findBySubCategory(id),
+                new FutureCallback<List<Transaction>>() {
+                    public void onSuccess(List<Transaction> result) {
+                        data.postValue(result);
+                    }
+
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                databaseExecutor
+        );
+        return data;
+    }
 
     public MutableLiveData<List<Transaction>> getTransactionsFromCat(int id) {
         MutableLiveData<List<Transaction>> data = new MutableLiveData<>();

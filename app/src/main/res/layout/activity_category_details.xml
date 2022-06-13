@@ -22,14 +22,10 @@
             tools:layout_editor_absoluteY="0dp">
 
 
-
-            <include
-                android:id="@+id/categoryCard"
-                layout="@layout/category_list_item"
+            <ListView
+                android:id="@+id/categoryListView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout

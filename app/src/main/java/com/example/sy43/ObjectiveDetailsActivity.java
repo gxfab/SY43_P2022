@@ -29,7 +29,7 @@ public class ObjectiveDetailsActivity extends AppCompatActivity {
         CategoryViewModel categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         categoryViewModel.init();
         TransactionViewModel transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
-        categoryViewModel.init();
+        transactionViewModel.init();
 
         Bundle b = getIntent().getExtras();
         int categoryId = b.getInt("categoryId");
@@ -53,6 +53,7 @@ public class ObjectiveDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 CharSequence text = "Transaction created.";
+
                 int duration = Toast.LENGTH_LONG;
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
@@ -72,4 +73,5 @@ public class ObjectiveDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
 }

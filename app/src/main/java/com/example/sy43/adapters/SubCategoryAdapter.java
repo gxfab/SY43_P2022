@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 
 import com.example.sy43.CategoryActivity;
 import com.example.sy43.CategoryDetailsActivity;
@@ -22,7 +25,9 @@ import com.example.sy43.ObjectiveDetailsActivity;
 import com.example.sy43.R;
 import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.db.entity.SubCategory;
+import com.example.sy43.db.entity.Transaction;
 import com.example.sy43.viewmodels.SubCategoryViewModel;
+import com.example.sy43.viewmodels.TransactionViewModel;
 
 import java.util.List;
 
@@ -30,12 +35,16 @@ public class SubCategoryAdapter extends ArrayAdapter<SubCategory> {
     private int resourceLayout;
     private Context mContext;
     private SubCategoryViewModel subCatVM;
+    private TransactionViewModel transVM;
+    private LifecycleOwner owner;
 
-    public SubCategoryAdapter(@NonNull Context context, int resource, List<SubCategory> categories, SubCategoryViewModel subCatVM) {
+    public SubCategoryAdapter(@NonNull Context context, LifecycleOwner owner, int resource, List<SubCategory> categories, SubCategoryViewModel subCatVM, TransactionViewModel transVM) {
         super(context, resource, categories);
         this.resourceLayout = resource;
         this.mContext = context;
         this.subCatVM = subCatVM;
+        this.transVM = transVM;
+        this.owner = owner;
     }
 
 
@@ -58,11 +67,23 @@ public class SubCategoryAdapter extends ArrayAdapter<SubCategory> {
             ProgressBar progressBar = v.findViewById(R.id.progressBar);
             progressBar.setMax((int) category.getMaxValue());
             progressBar.setProgress((int) category.CurrentValue(), true);
-
             name.setText(category.getSubCatName());
-            price.setText("$" + category.CurrentValue() + "/$" + category.getMaxValue());
+            float montant = 0;
+            transVM.getTransactionsFromSubCat(category.getSubCatID()).observe(owner, new Observer<List<Transaction>>() {
+                @Override
+                public void onChanged(List<Transaction> receivedTransactions) {
+                    float montant = 0;
+                    for (Transaction trans : receivedTransactions) {
+                        montant += trans.getValue();
+                    }
+                    price.setText("$" + montant + "/$" + category.getMaxValue());
+                    category.setCurrentValue(montant);
+                    progressBar.setProgress((int) category.CurrentValue(), true);
+                }
+            });
 
-            Button del= v.findViewById(R.id.deleteButton);
+            //price.setText("$" + montant + "/$" + category.getMaxValue());
+            Button del = v.findViewById(R.id.deleteButton);
             del.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -80,6 +101,7 @@ public class SubCategoryAdapter extends ArrayAdapter<SubCategory> {
 
         return v;
     }
+
 
 
 }

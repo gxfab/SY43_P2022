@@ -72,9 +72,11 @@ public class SubCategoryRepository {
                 new FutureCallback<Void>() {
                     @Override
                     public void onSuccess(Void stp) {
+                        Log.d("Test10", "Working!");
                     }
 
                     public void onFailure(@NonNull Throwable thrown) {
+                        Log.d("Test10", String.valueOf(thrown));
                     }
                 },
                 databaseExecutor

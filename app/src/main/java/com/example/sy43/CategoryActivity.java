@@ -2,6 +2,7 @@ package com.example.sy43;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,6 +20,8 @@ import com.example.sy43.adapters.CategoryAdapter;
 import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.models.Category;
 import com.example.sy43.viewmodels.CategoryViewModel;
+import com.example.sy43.viewmodels.SubCategoryViewModel;
+import com.example.sy43.viewmodels.TransactionViewModel;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 
@@ -30,6 +33,8 @@ import java.util.stream.Collectors;
 
 public class CategoryActivity extends AppCompatActivity {
     private CategoryViewModel categoryViewModel;
+    private TransactionViewModel transactionViewModel;
+    private SubCategoryViewModel subCategoryViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +58,27 @@ public class CategoryActivity extends AppCompatActivity {
         super.onResume();
         categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         categoryViewModel.init();
+
+        transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
+        transactionViewModel.init();
+
+        subCategoryViewModel = new ViewModelProvider(this).get(SubCategoryViewModel.class);
+        subCategoryViewModel.init();
+
+        LifecycleOwner owner = this;
         categoryViewModel.getCategories().observe(this, new Observer<List<Categorydb>>() {
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {
                 // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
                 CategoryAdapter catArrayAdapter = new CategoryAdapter(
                         CategoryActivity.this,
+                        owner,
                         R.layout.category_list_item,
                         receivedCategories,
-                        categoryViewModel);
+                        categoryViewModel,
+                        transactionViewModel,
+                        subCategoryViewModel
+                );
                 ListView catLv = (ListView) findViewById(R.id.categoryListView);
                 catLv.setAdapter(catArrayAdapter);
 
@@ -75,9 +92,10 @@ public class CategoryActivity extends AppCompatActivity {
 
                 CategoryAdapter objArrayAdapter = new CategoryAdapter(
                         CategoryActivity.this,
+                        owner,
                         R.layout.category_list_item,
                         receivedObjectives,
-                        categoryViewModel);
+                        categoryViewModel, transactionViewModel, subCategoryViewModel);
                 ListView objLv = (ListView) findViewById(R.id.objectiveListView);
                 objLv.setAdapter(objArrayAdapter);
             }
