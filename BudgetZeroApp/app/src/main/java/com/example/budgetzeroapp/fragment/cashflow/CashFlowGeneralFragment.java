@@ -11,23 +11,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
+import com.example.budgetzeroapp.tool.item.ExpenseItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class CashFlowGeneralFragment extends Fragment implements BudgetRecyclerViewAdapter.ItemClickListener{
+public class CashFlowGeneralFragment extends DataBaseFragment{
     private BudgetRecyclerViewAdapter adapter;
+    private List<ExpenseItem> items;
+    private ListView list;
 
     public CashFlowGeneralFragment() {
         // Required empty public constructor
     }
 
     public static CashFlowGeneralFragment newInstance(String param1, String param2) {
-        CashFlowGeneralFragment fragment = new CashFlowGeneralFragment();
-        return fragment;
+        return  new CashFlowGeneralFragment();
     }
 
     @Override
@@ -39,34 +45,13 @@ public class CashFlowGeneralFragment extends Fragment implements BudgetRecyclerV
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cash_flow_general, container, false);
+        View view = inflater.inflate(R.layout.fragment_cash_flow_general, container, false);
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        /**Sorting RecyclerView Initialization**/
-        // data to populate the RecyclerView with
-        ArrayList<String> sortingItems = new ArrayList<>();
-        sortingItems.add("Category");
-        sortingItems.add("Spent");
-        sortingItems.add("Budget");
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.budget_sorting);
-        LinearLayoutManager horizontalLayoutManager
-                = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(horizontalLayoutManager);
-
-        adapter = new BudgetRecyclerViewAdapter(view.getContext(), sortingItems);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
-        // USE THIS LISTENER TO DETERMINE WHICH SORTING TO APPLY
-        Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 }

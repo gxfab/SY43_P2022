@@ -8,7 +8,7 @@ import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.MainActivity;
 
-public class DataBaseFragment extends Fragment {
+public abstract class DataBaseFragment extends Fragment {
     protected DBHelper database;
     protected int id;
 
@@ -26,5 +26,7 @@ public class DataBaseFragment extends Fragment {
             Toast.makeText(AppContext.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    public void redirect(Fragment f) {MainActivity.getActivity().replaceFragment(f); }
+    public void redirect(DataBaseFragment f) {MainActivity.getActivity().replaceFragment(f); }
+
+    //public abstract int getToolBarID();
 }

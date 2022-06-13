@@ -16,25 +16,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@color/light_gray">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="Sort by: "
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"/>
+
             <include
-                layout="@layout/sorting_budget"/>
+                layout="@layout/expense"/>
             <include
-                layout="@layout/template_expense"/>
+                layout="@layout/expense"/>
             <include
-                layout="@layout/template_expense"/>
+                layout="@layout/expense"/>
             <include
-                layout="@layout/template_expense"/>
+                layout="@layout/expense"/>
             <include
-                layout="@layout/template_expense"/>
-            <include
-                layout="@layout/template_expense"/>
+                layout="@layout/expense"/>
         </LinearLayout>
     </ScrollView>
 

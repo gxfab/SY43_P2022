@@ -26,10 +26,17 @@ public class EditExpenseFragment extends EditDataBaseFragment {
     private Calendar defaultDate;
     private float defaultAmount;
     private int defaultStable;
+    private int type;
 
 
-    public EditExpenseFragment(){ super(); }
-    public EditExpenseFragment(int id){ super(id); }
+    public EditExpenseFragment(int id){
+        super(id);
+        type = 0;
+    }
+    public EditExpenseFragment(int id, int type){
+        super(id);
+        this.type=type;
+    }
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {

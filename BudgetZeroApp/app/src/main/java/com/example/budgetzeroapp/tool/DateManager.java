@@ -39,7 +39,14 @@ public class DateManager {
         cal.set(year, month, day);
         return day == cal.getActualMaximum(Calendar.DATE);
     }
+
     public static boolean isLastMonthDay(Date d){
         return isLastMonthDay(dateToYear(d), dateToMonth(d), dateToDay(d));
+    }
+
+    public String intDateToString(int date){
+        return Integer.toString(date%100)+"/"+
+                Integer.toString((date/100)%100)+"/"+
+                Integer.toString((date/10000)%100);
     }
 }

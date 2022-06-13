@@ -12,10 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.tool.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-public class CashFlowFragment extends Fragment  {
+public class CashFlowFragment extends DataBaseFragment {
     TabLayout tablayout;
     ViewPager viewPager;
     public CashFlowFragment() {

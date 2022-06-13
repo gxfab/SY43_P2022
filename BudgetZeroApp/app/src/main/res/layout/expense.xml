@@ -16,17 +16,17 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
         <TextView
+            android:id="@+id/label"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Expense Name"
             android:textSize="15sp"
             android:textStyle="bold" />
         <TextView
+            android:id="@+id/category_name"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Category"
             android:textSize="12sp"
             android:textStyle="normal"/>
     </LinearLayout>
@@ -37,10 +37,10 @@
         android:gravity="right"
         android:layout_margin="10dp">
         <TextView
+            android:id="@+id/amount"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="-50€"
             android:textSize="18sp"
             android:textStyle="bold"
             android:gravity="center_vertical|right" />

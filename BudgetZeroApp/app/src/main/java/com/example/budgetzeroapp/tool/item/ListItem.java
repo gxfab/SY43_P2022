@@ -3,12 +3,16 @@ package com.example.budgetzeroapp.tool.item;
 import android.database.Cursor;
 
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
+import com.example.budgetzeroapp.fragment.view.ViewDebtFragment;
+import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
+import com.example.budgetzeroapp.fragment.view.ViewExpenseFragment;
+import com.example.budgetzeroapp.fragment.view.ViewIncomeCatFragment;
+import com.example.budgetzeroapp.fragment.view.ViewSavingCatFragment;
 import com.example.budgetzeroapp.tool.DBHelper;
 
 public class ListItem {
     protected int id;
     protected String name;
-    protected DataBaseFragment frag;
 
     public ListItem(int id, String name) {
         this.id = id;
@@ -40,6 +44,16 @@ public class ListItem {
                 name = c.getString(c.getColumnIndexOrThrow(DBHelper.EXP_COL_LABEL));
             }
         }
+    }
 
+    public DataBaseFragment getFrag(int type){
+        switch(type){
+            case DBHelper.TYPE_EXP: return new ViewExpenseCatFragment(id);
+            case DBHelper.TYPE_DEBT: return new ViewDebtFragment(id);
+            case DBHelper.TYPE_INC: return new ViewIncomeCatFragment(id);
+            case DBHelper.TYPE_SAV: return new ViewSavingCatFragment(id);
+            default:
+            case DBHelper.TYPE_CASH_FLOW: return new ViewExpenseFragment(id);
+        }
     }
 }

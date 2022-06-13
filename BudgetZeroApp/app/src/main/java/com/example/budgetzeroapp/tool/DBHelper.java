@@ -3,6 +3,7 @@ package com.example.budgetzeroapp.tool;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.budgetzeroapp.AppContext;
+import com.example.budgetzeroapp.tool.item.ExpenseItem;
 
 
 @SuppressWarnings({"UnusedDeclaration"})
@@ -134,11 +136,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+")"+
                         " values ('Shopping'),('Vehicle'),('Leisure'),('Health'),('Miscellaneous');"
         );
-        /**insertExpenseCat("Shopping", 0, false, 0);
-        insertExpenseCat("Vehicle", 0, false, 0);
-        insertExpenseCat("Leisure", 0, false, 0);
-        insertExpenseCat("Health", 0, false, 0);
-        insertExpenseCat("Miscellaneous", 0, false, 0);**/
 
     }
 
@@ -353,9 +350,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 " from " + EXP_TABLE_NAME +
                 " where " + EXP_COL_TYPE + "=" + TYPE_EXP +
                 " and " + EXP_CAT_COL_ID + "=" + idCat);
-
+        //TODO Add sum of sub categories
         res.moveToFirst();
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
+    }
+
+    public List<ExpenseItem> allExpensesToList(){
+        //TODO
+        return new ArrayList<>();
     }
 
     public Cursor getMainExpCat() {
