@@ -15,7 +15,7 @@ public class Category {
     @ColumnInfo(name = "NAME_CAT")
     public String categoryName;
 
-    public Category(String Name){
-        this.categoryName = Name;
+    public Category(String categoryName){
+        this.categoryName = categoryName;
     }
 }
