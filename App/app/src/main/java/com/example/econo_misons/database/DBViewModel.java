@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Category;
+import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.User;
 import com.example.econo_misons.database.repositories.BudgetDataRepository;
 import com.example.econo_misons.database.repositories.CategoryDataRepository;
+import com.example.econo_misons.database.repositories.PrevBudgetDataRepository;
 import com.example.econo_misons.database.repositories.UserDataRepository;
 
 import java.util.List;
@@ -33,16 +35,18 @@ public class DBViewModel extends ViewModel {
     private final UserDataRepository userDataSource;
     private final BudgetDataRepository budgetDataSource;
     private final CategoryDataRepository categoryDataSource;
+    private final PrevBudgetDataRepository prevBudgetDataSource;
 
     private final Executor executor;
 
     @Nullable
     private LiveData<User> currentUser;
 
-    public  DBViewModel(UserDataRepository userDataSource, BudgetDataRepository budgetDataSource, CategoryDataRepository categoryDataSource,Executor executor){
+    public  DBViewModel(UserDataRepository userDataSource, BudgetDataRepository budgetDataSource, CategoryDataRepository categoryDataSource, PrevBudgetDataRepository prevBudgetDataSource, Executor executor){
         this.userDataSource = userDataSource;
         this.budgetDataSource = budgetDataSource;
         this.categoryDataSource = categoryDataSource;
+        this.prevBudgetDataSource = prevBudgetDataSource;
         this.executor = executor;
     }
 
@@ -87,4 +91,17 @@ public class DBViewModel extends ViewModel {
     public LiveData<List<Category>> getAllCategories(){return categoryDataSource.getAllCategories();}
 
     public LiveData<List<Category>> getCategoryByID(int id){return categoryDataSource.getCategoryByID(id);}
+
+    //PREVISIONAL BUDGET
+
+    public void addPrevBudget(PrevisionalBudget prevBud) {executor.execute(() -> prevBudgetDataSource.addPrevBudget(prevBud));}
+
+    public void deletePrevBudget(PrevisionalBudget prevBud) {executor.execute(() -> prevBudgetDataSource.deletePrevBudget(prevBud));}
+
+    public LiveData<List<PrevisionalBudget>> getAllPrevBudgets() {return prevBudgetDataSource.getAllPrevBudgets();}
+
+    public LiveData<List<PrevisionalBudget>> getPrevBudgetsByBudget(int budgetID) {return prevBudgetDataSource.getPrevBudgetsByBudget(budgetID);}
+
+    public LiveData<List<PrevisionalBudget>> getUserPrevBudgets(int userID) {return prevBudgetDataSource.getUserPrevBudgets(userID);}
+
 }

@@ -10,6 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.econo_misons.database.dao.budgetDAO;
 import com.example.econo_misons.database.dao.categoryDAO;
+import com.example.econo_misons.database.dao.prevBudgetDAO;
 import com.example.econo_misons.database.dao.userDAO;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Budget_User;
@@ -32,6 +33,8 @@ public abstract class MoneyDB extends RoomDatabase {
     public abstract budgetDAO budgetdao();
 
     public abstract categoryDAO catdao();
+
+    public abstract prevBudgetDAO prevdao();
 
     public static MoneyDB getInstance(Context context) {
 
@@ -66,6 +69,7 @@ public abstract class MoneyDB extends RoomDatabase {
                 Executors.newSingleThreadExecutor().execute(() -> {
                     INSTANCE.budgetdao().addBudget(new Budget("Budget perso"));
                     INSTANCE.budgetdao().linkBudgetUser(new Budget_User(1,1));
+                    INSTANCE.prevdao().addPrevBudget(new PrevisionalBudget(1,"2022-06"));
                 });
                 Executors.newSingleThreadExecutor().execute(() -> {
                     INSTANCE.catdao().addCategory(new Category("Courses"));
