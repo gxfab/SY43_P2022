@@ -1,7 +1,14 @@
 <resources>
     <string name="app_name">Econo-misons</string>
     <string name="return_to_the_homepage">Return to the homepage</string>
-    <string name="Actual_budget" />
+    <string name="Actual_budget">Budget :</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_budget_prev">BudgetPrev</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="prev_budget"></string>
+    <string name="categorie_choisie"></string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

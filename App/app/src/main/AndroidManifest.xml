@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Economisons">
         <activity
+            android:name=".AjoutCategorie"
+            android:exported="false" />
+        <activity
+            android:name=".Categorie"
+            android:exported="false" />
+        <activity
+            android:name=".AjoutDepense"
+            android:exported="false" />
+        <activity
+            android:name=".BudgetPrev"
+            android:exported="false" />
+        <activity
             android:name=".ChangerBudget"
             android:exported="false" />
         <activity

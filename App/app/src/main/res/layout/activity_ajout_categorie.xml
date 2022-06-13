@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".AjoutCategorie">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -23,43 +22,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
+            android:text="AJOUT DE CATEGORIE"
             android:textColor="?attr/colorSecondary"
-            android:textSize="30sp"
-            android:text="@string/Actual_budget"
-            />
+            android:textSize="30sp" />
 
     </androidx.appcompat.widget.Toolbar>
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="160dp"
-        android:hint="Username"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <Button
-        android:id="@+id/addbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
-
-    <Button
-        android:id="@+id/viewbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addbutton" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -67,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="?attr/colorPrimary"
+        android:background="?android:attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -76,14 +43,44 @@
         app:menu="@menu/bottom_menu"
         />
 
+    <EditText
+        android:id="@+id/cat_nom"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:textSize="25dp"
+        android:text="Nom categorie"
+        android:background="?attr/colorSecondary"
+        android:textColor="?attr/colorPrimaryVariant"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="left"
+        />
+    <EditText
+        android:id="@+id/color"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:textSize="25dp"
+        android:text="Couleur"
+        android:background="?attr/colorSecondary"
+        android:textColor="?attr/colorPrimaryVariant"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/cat_nom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="left"
+        />
+
     <Button
-        android:id="@+id/ajout_dep"
+        android:id="@+id/valider"
         android:layout_width="215dp"
         android:layout_height="65dp"
         android:layout_marginBottom="70dp"
-        android:text="Ajouter une depense"
+        android:text="Valider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

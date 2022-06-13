@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         //  Bottom Bar controller
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
-        // Set Home selected
+        // Set selected
         bottomNavigationView.setSelectedItemId(R.id.MainMenu);
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.MainMenu:
+                        return true;
+                    case R.id.BudgetPrev:
+                        startActivity(new Intent(getApplicationContext(),BudgetPrev.class));
+                        overridePendingTransition(0,0);
                         return true;
                 }
                 return false;

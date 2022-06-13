@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChangerBudget">
+    tools:context=".Categorie">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,6 +16,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,9 +24,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="BUDGETS"
+            android:text="CATEGORIE"
             android:textColor="?attr/colorSecondary"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -49,14 +51,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="30dp"
         android:contentDescription="Lists of all the budgets"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/ajout_dep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/cat_nom">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,13 +67,47 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="215dp"
-        android:layout_height="65dp"
+        android:id="@+id/ajout_dep"
+        android:layout_width="165dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
         android:layout_marginBottom="70dp"
-        android:text="Ajouter un budget"
+        android:text="Ajouter une depense"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/valider"
+        android:layout_width="165dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="70dp"
+        android:text="Valider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/budget_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/Actual_budget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="?attr/colorSecondary"
+        android:textSize="34dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/cat_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/categorie_choisie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="?attr/colorSecondary"
+        android:textSize="34dp"
+        app:layout_constraintTop_toBottomOf="@+id/budget_prev" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

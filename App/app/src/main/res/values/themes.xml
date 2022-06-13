@@ -7,10 +7,20 @@
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/pale_green</item>
-        <item name="colorSecondaryVariant">@color/dark_green</item>
+        <item name="colorSecondaryVariant">@color/back_green</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/back_green</item>
         <!-- Customize your theme here. -->
+        <item name="android:colorBackground">@color/back_green</item>
     </style>
+
+    <style name="Theme.Economisons.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">false</item>
+    </style>
+
+    <style name="Theme.Economisons.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Economisons.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

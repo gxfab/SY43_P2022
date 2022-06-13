@@ -9,18 +9,18 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ChangerBudget extends AppCompatActivity {
+public class BudgetPrev extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_changer_budget);
+        setContentView(R.layout.activity_budget_prev);
 
         //  Bottom Bar controller
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
         // Set selected
-        bottomNavigationView.setSelectedItemId(R.id.ChangeBudget);
+        bottomNavigationView.setSelectedItemId(R.id.BudgetPrev);
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -32,10 +32,10 @@ public class ChangerBudget extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.ChangeBudget:
-                        return true;
                     case R.id.BudgetPrev:
-                        startActivity(new Intent(getApplicationContext(),BudgetPrev.class));
+                        return true;
+                    case R.id.ChangeBudget:
+                        startActivity(new Intent(getApplicationContext(),ChangerBudget.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

@@ -2,15 +2,16 @@
     <!-- Base application theme. -->
     <style name="Theme.Economisons" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/pale_green</item>
+        <item name="colorPrimary">@color/dark_green</item>
         <item name="colorPrimaryVariant">@color/back_green</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/dark_green</item>
-        <item name="colorSecondaryVariant">@color/dark_green</item>
+        <item name="colorSecondary">@color/pale_green</item>
+        <item name="colorSecondaryVariant">@color/back_green</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/back_green</item>
         <!-- Customize your theme here. -->
+        <item name="android:colorBackground">@color/back_green</item>
     </style>
 </resources>
