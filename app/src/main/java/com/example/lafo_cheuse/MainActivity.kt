@@ -84,30 +84,29 @@ class MainActivity : AppCompatActivity() {
 
     private fun initTheme() {
         optionViewModel.getOption("option_theme")?.observe(this) { themeOption ->
-            Log.d("option",themeOption.optionDescription)
-            optionViewModel.getOptionFields(themeOption)?.observe(this) { themes ->
-                for(field in themes) {
-
-                    when(field.fieldValue) {
-                        "light_theme" -> {
-                            if(field.chosen) {
-                                changeApplicationTheme(AppCompatDelegate.MODE_NIGHT_NO)
+            if(themeOption != null) {
+                optionViewModel.getOptionFields(themeOption)?.observe(this) { themes ->
+                    for(field in themes) {
+                        when(field.fieldValue) {
+                            "light_theme" -> {
+                                if(field.chosen) {
+                                    changeApplicationTheme(AppCompatDelegate.MODE_NIGHT_NO)
+                                }
                             }
-                        }
-                        "dark_theme" -> {
-                            if(field.chosen) {
-                                changeApplicationTheme(AppCompatDelegate.MODE_NIGHT_YES)
+                            "dark_theme" -> {
+                                if(field.chosen) {
+                                    changeApplicationTheme(AppCompatDelegate.MODE_NIGHT_YES)
+                                }
                             }
-                        }
-                        "system_theme" -> {
-                            if(field.chosen) {
-                                changeApplicationTheme(MODE_NIGHT_FOLLOW_SYSTEM)
+                            "system_theme" -> {
+                                if(field.chosen) {
+                                    changeApplicationTheme(MODE_NIGHT_FOLLOW_SYSTEM)
+                                }
                             }
                         }
                     }
                 }
             }
-
         }
     }
 
