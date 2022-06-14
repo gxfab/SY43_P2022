@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:layout_gravity="fill"
+        app:cardBackgroundColor="@color/dark_green"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="4dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ProgressBar
+                    android:id="@+id/category_progress_bar"
+                    style="?android:progressBarStyleHorizontal"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:progress="65"
+                    android:progressDrawable="@drawable/complete_progress_bar"
+                    />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/money_spent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="125 €"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/inter"
+                    app:layout_constraintBottom_toTopOf="@+id/money_divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/money_divider"
+                    android:layout_width="45dp"
+                    android:layout_height="1dp"
+                    app:dividerColor="@color/light_blue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/money_limit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/money_divider"
+                    android:text="230 €"
+                    android:textAlignment="center"
+                    android:textColor="@color/light_blue"
+                    android:textSize="14sp"
+                    app:fontFamily="@font/inter"
+                    app:layout_constraintTop_toBottomOf="@id/money_divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category Name"
+                android:textColor="@color/white"
+                android:textSize="10pt"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</RelativeLayout>

@@ -4,5 +4,14 @@
         android:drawable="@drawable/circle"
         android:gravity="center"
         />
+    <item>
+        <shape
+            android:shape="ring"
+            android:useLevel="false"
+            android:thicknessRatio="100">
+            <solid
+                android:color="@color/blue"></solid>
+        </shape>
+    </item>
     <item android:drawable="@drawable/circular_progress_bar" />
 </layer-list>

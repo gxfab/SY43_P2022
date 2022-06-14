@@ -5,10 +5,7 @@
 
     <shape xmlns:android="http://schemas.android.com/apk/res/android"
         android:shape="ring"
-        android:innerRadiusRatio="2.5"
-        android:thickness="9dp"
         android:useLevel="true"
-        android:innerRadius="38dp"
         >
 
         <solid android:color="@color/blue" />

@@ -48,11 +48,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
-                    android:paddingLeft="20dp"
+                    android:paddingStart="20dp"
                     android:paddingTop="6dp"
                     android:text="Hello, Jacob"
                     android:textFontWeight="900"
-                    android:textSize="26sp" />
+                    android:textSize="26sp"
+                    tools:ignore="RtlSymmetry" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,24 +62,25 @@
                     android:orientation="horizontal">
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1.4">
+                        android:layout_weight="1.7"
+                        android:layout_margin="4dp">
 
                         <ProgressBar
                             style="?android:progressBarStyleHorizontal"
                             android:layout_width="110dp"
                             android:layout_height="110dp"
                             android:layout_centerInParent="true"
-                            android:background="@drawable/circle"
                             android:progress="65"
-                            android:progressDrawable="@drawable/circular_progress_bar" />
+                            android:progressDrawable="@drawable/complete_progress_bar" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/total_money_spent"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_above="@id/moneyDivider"
@@ -97,6 +99,7 @@
                                 app:dividerColor="@color/light_blue" />
 
                             <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/total_money_limit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/moneyDivider"
@@ -110,7 +113,6 @@
 
                         </RelativeLayout>
 
-
                     </RelativeLayout>
 
                     <com.google.android.material.divider.MaterialDivider
@@ -122,12 +124,20 @@
 
                     </com.google.android.material.divider.MaterialDivider>
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:layout_marginLeft="8dp">
 
-                    </RelativeLayout>
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Last expenses :"
+                            android:textSize="8pt"
+                            />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -164,46 +174,14 @@
 
                 </com.google.android.material.textview.MaterialTextView>
 
-                <GridLayout
+                <GridView
+                    android:layout_marginHorizontal="2dp"
+                    android:id="@+id/categories_grid_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:columnCount="3"
-                    android:orientation="horizontal"
-                    android:rowCount="4">
+                    android:numColumns="3"
+                    />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_height="50pt"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill"
-                        android:layout_margin="10dp"
-                        app:cardBackgroundColor="@color/dark_green"
-                        app:cardCornerRadius="20dp"></com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_height="50pt"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill"
-                        android:layout_margin="10dp"
-                        app:cardBackgroundColor="@color/dark_green"
-                        app:cardCornerRadius="20dp"></com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_height="50pt"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill"
-                        android:layout_margin="10dp"
-                        app:cardBackgroundColor="@color/dark_green"
-                        app:cardCornerRadius="20dp"></com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_height="50pt"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill"
-                        android:layout_margin="10dp"
-                        app:cardBackgroundColor="@color/dark_green"
-                        app:cardCornerRadius="20dp"></com.google.android.material.card.MaterialCardView>
-
-                </GridLayout>
             </LinearLayout>
 
 
@@ -211,5 +189,15 @@
 
     </LinearLayout>
 
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="6dp"
+        android:src="@drawable/ic_baseline_add_24"
+        app:fabCustomSize="64dp"
+        app:tint="@color/black"
+        app:backgroundTint="@color/light_green"
+        />
 </RelativeLayout>
