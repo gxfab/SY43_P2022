@@ -73,11 +73,13 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
         runBlocking {
 
             val accountNumber = db.accountDao().insertAccount(Account(0, newAccountName))
-            var categoryNames = listOf<String>("🍕Nourriture", "🍺Loisirs", "🏠Loyer", "🎾Sport")
-            var now = LocalDate.now()
+            val categoryNames = resources.getStringArray(R.array.default_categories)
+            val now = LocalDate.now()
 
-            for(names in categoryNames){
-                val category : Category = Category(0, names,0.0f,now.monthValue, now.year,accountNumber.toInt())
+            // Add default categories to the newly created account
+            for (names in categoryNames) {
+                val category =
+                    Category(0, names, 0.0f, now.monthValue, now.year, accountNumber.toInt())
                 db.categoryDao().insertCategory(category)
             }
         }

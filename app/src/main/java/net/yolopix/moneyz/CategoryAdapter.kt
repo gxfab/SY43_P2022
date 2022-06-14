@@ -44,7 +44,6 @@ class CategoryAdapter(
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
         // For expense view
         if (expenseMode) {
-            //viewHolder.categoryPriceTextView.visibility = View.GONE
             viewHolder.expensesRecyclerView.layoutManager = LinearLayoutManager(context)
             context.lifecycleScope.launch {
                 viewHolder.expensesRecyclerView.adapter = ExpensesAdapter(
@@ -65,10 +64,14 @@ class CategoryAdapter(
                     viewHolder.expandButton.rotation = 0f
                 }
             }
-        } else { // For prevision view
+        }
+
+        // For prevision view
+        else {
             viewHolder.expandButton.visibility = View.GONE
             viewHolder.expensesRecyclerView.visibility = View.GONE
         }
+
         // Common to both prevision/expenses view
         viewHolder.categoryNameTextView.text = categoryList[position].name
         viewHolder.categoryPriceTextView.text = context.getString(

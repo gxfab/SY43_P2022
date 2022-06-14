@@ -48,4 +48,10 @@
     <string name="month_history">Historique</string>
     <string name="edit">Modifier</string>
     <string name="title_expense_edit">Modifier la dépense</string>
+    <string-array name="default_categories">
+        <item>🍕Nourriture</item>
+        <item>🍺Loisirs</item>
+        <item>🏠Loyer</item>
+        <item>🎾Sport</item>
+    </string-array>
 </resources>
