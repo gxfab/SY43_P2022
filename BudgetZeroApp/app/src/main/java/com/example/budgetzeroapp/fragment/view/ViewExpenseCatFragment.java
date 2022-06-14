@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,8 +39,8 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         View view= inflater.inflate(R.layout.fragment_view_expense_cat, parent, false);
         name = view.findViewById(R.id.textViewCatNameEntry);
         budget = view.findViewById(R.id.textViewCatBudgetEntry);
-        expList = view.findViewById(R.id.layoutCatExpenses);
-        subCatList = view.findViewById(R.id.layoutCatClickSub);
+        expList = view.findViewById(R.id.listViewCatExpenses);
+        subCatList = view.findViewById(R.id.listViewCatClickSub);
         getValues();
         setValues();
         return view;
@@ -63,7 +62,8 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
     public void setValues()   {
         name.setText(nameVal);
         budget.setText(String.valueOf(budgetVal));
-        ClickableListManager.clickableBudgetList(subCatList, subCatVal);
+        subCatList = ClickableListManager.clickableBudgetList(expList, subCatVal);
         ClickableListManager.clickableExpenseList(expList, expVal);
+
     }
 }

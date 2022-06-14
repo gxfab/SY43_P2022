@@ -22,10 +22,9 @@
         <TextView
             android:id="@+id/textViewSaveNameEntry"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textViewSaveName"
-            android:layout_marginStart="180dp"
-            android:layout_marginBottom="-10dp" />
+            android:layout_marginStart="180dp" />
 
         <TextView
             android:id="@+id/textViewSaveGoal"
@@ -39,10 +38,9 @@
         <TextView
             android:id="@+id/textViewSaveGoalEntry"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewSaveNameEntry"
-            android:layout_alignBottom="@+id/textViewSaveGoal"
-            android:layout_marginBottom="-10dp" />
+            android:layout_alignBottom="@+id/textViewSaveGoal" />
 
         <TextView
             android:id="@+id/textViewSaveCurrent"
@@ -56,10 +54,9 @@
         <TextView
             android:id="@+id/textViewSaveCurrentEntry"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewSaveGoalEntry"
-            android:layout_alignBottom="@+id/textViewSaveCurrent"
-            android:layout_marginBottom="-10dp" />
+            android:layout_alignBottom="@+id/textViewSaveCurrent" />
 
         <TextView
             android:id="@+id/textViewSavePrio"
@@ -73,10 +70,9 @@
         <TextView
             android:id="@+id/textViewSavePrioEntry"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewSaveCurrentEntry"
-            android:layout_alignBottom="@+id/textViewSavePrio"
-            android:layout_marginBottom="-10dp" />
+            android:layout_alignBottom="@+id/textViewSavePrio" />
 
         <TextView
             android:id="@+id/textViewSavePerc"
@@ -90,10 +86,9 @@
         <TextView
             android:id="@+id/textViewSavePercEntry"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewSavePrioEntry"
-            android:layout_alignBottom="@+id/textViewSavePerc"
-            android:layout_marginBottom="-10dp" />
+            android:layout_alignBottom="@+id/textViewSavePerc" />
 
         <TextView
             android:id="@+id/textViewSaveList"
@@ -104,15 +99,15 @@
             android:layout_marginBottom="-40dp"
             android:text="@string/save_cat_list" />
 
-        <LinearLayout
-            android:id="@+id/layoutSaveList"
+        <ListView
+            android:id="@+id/listViewSaveList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewSavePercEntry"
             android:layout_alignTop="@+id/textViewSaveList"
             android:orientation="vertical" >
 
-        </LinearLayout>
+        </ListView>
 
 
     </RelativeLayout>

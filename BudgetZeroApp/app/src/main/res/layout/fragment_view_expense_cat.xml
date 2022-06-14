@@ -22,10 +22,9 @@
         <TextView
             android:id="@+id/textViewCatNameEntry"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textViewCatName"
-            android:layout_marginStart="140dp"
-            android:layout_marginBottom="-10dp" />
+            android:layout_marginStart="140dp" />
 
         <TextView
             android:id="@+id/textViewCatBudget"
@@ -39,10 +38,9 @@
         <TextView
             android:id="@+id/textViewCatBudgetEntry"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewCatNameEntry"
-            android:layout_alignBottom="@+id/textViewCatBudget"
-            android:layout_marginBottom="-10dp" />
+            android:layout_alignBottom="@+id/textViewCatBudget" />
 
         <TextView
             android:id="@+id/textViewCatClickSub"
@@ -54,7 +52,7 @@
             android:text="@string/exp_cat_click_sub" />
 
         <ListView
-            android:id="@+id/layoutCatClickSub"
+            android:id="@+id/listViewCatClickSub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewCatBudgetEntry"
@@ -74,10 +72,10 @@
 
 
         <ListView
-            android:id="@+id/layoutCatExpenses"
+            android:id="@+id/listViewCatExpenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/layoutCatClickSub"
+            android:layout_alignStart="@+id/listViewCatClickSub"
             android:layout_alignTop="@+id/textViewCatExpenses"
             android:orientation="vertical" >
 

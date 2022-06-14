@@ -22,10 +22,9 @@
         <TextView
             android:id="@+id/textViewIncNameEntry"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textViewIncName"
-            android:layout_marginStart="140dp"
-            android:layout_marginBottom="-10dp" />
+            android:layout_marginStart="140dp" />
 
         <TextView
             android:id="@+id/textViewCatInc"
@@ -36,15 +35,15 @@
             android:layout_marginBottom="-40dp"
             android:text="@string/inc_cat_list" />
 
-        <LinearLayout
-            android:id="@+id/layoutCatInc"
+        <ListView
+            android:id="@+id/listViewCatInc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewIncNameEntry"
             android:layout_alignTop="@+id/textViewCatInc"
             android:orientation="vertical" >
 
-        </LinearLayout>
+        </ListView>
 
 
 
