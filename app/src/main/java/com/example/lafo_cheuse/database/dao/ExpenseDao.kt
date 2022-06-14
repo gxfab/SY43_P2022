@@ -50,6 +50,15 @@ interface ExpenseDao {
             "GROUP BY category_categoryId")
     fun getExpensesSumForCategoryAndMonth(frequency: Frequency, categoryID: Long, year: Int, month: Int) : LiveData<List<ExpenseSumContainer>>
 
+    @Query("SELECT category_name,category_emoji," +
+            "SUM(EXP.amount) AS totalAmount " +
+            "FROM Expense EXP " +
+            "WHERE EXP.frequency = :frequency " +
+            "AND EXP.category_categoryId = :categoryID " +
+            "AND (date_year is null OR date_year = :year) AND (date_month is null OR date_month = :month)" +
+            "GROUP BY category_categoryId")
+    suspend fun getExpensesSumForCategoryAndMonthSync(frequency: Frequency, categoryID: Long, year: Int, month: Int): List<ExpenseSumContainer>
+
     @Query("SELECT SUM(amount) FROM Expense WHERE frequency = :frequency")
     fun getExpensesSum(frequency: Frequency) : LiveData<Double>
 

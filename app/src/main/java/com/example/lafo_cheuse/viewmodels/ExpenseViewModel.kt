@@ -140,7 +140,7 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
         category: Category,
         year: Int,
         month: Int
-    ) : LiveData<List<ExpenseSumContainer>> {
-        return repository.getExpensesSumForCategoryAndMonth(Frequency.OUNCE_A_DAY,category,year,month)
+    ) : List<ExpenseSumContainer> {
+        return repository.getExpensesSumForCategoryAndMonthSync(Frequency.OUNCE_A_DAY,category,year,month)
     }
 }
