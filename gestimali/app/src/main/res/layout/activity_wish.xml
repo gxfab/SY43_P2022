@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WishActivity">
+
+    <TextView
+        android:id="@+id/homeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="11dp"
+        android:text="@string/app_name"
+        android:layout_marginTop="@dimen/title_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TitleStyle"
+        />
+
+    <ImageView
+        android:id="@+id/titleRectangle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/title_rectangle"
+        android:translationZ="10dp"/>
+
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_blue"
+        android:text="Wish"
+        app:layout_constraintTop_toBottomOf="@id/titleRectangle" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:text="Savings"
+            android:backgroundTint="@color/light_blue"
+            android:onClick="seeSavingsOverview"
+            />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:constraint_referenced_ids="button1,button2"
+        app:flow_horizontalAlign="start"
+        app:flow_verticalGap="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleRectangle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -102,12 +102,14 @@
         android:layout_width="@dimen/home_page_btn_width"
         android:layout_height="@dimen/home_page_btn_height"
         android:backgroundTint="@color/purple_700"
+        android:onClick="seeWishOverview"
         android:text="@string/home_page_btn2"
         app:cornerRadius="@dimen/home_page_btn_radius"
         app:layout_constraintBottom_toTopOf="@id/homePageButton3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homePageButton1" />
+        app:layout_constraintTop_toBottomOf="@+id/homePageButton1"
+        />
 
     <Button
         android:id="@+id/homePageButton3"
