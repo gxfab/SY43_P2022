@@ -30,6 +30,10 @@ public class ExpenseItem extends ListItem {
         return ExpensesToList(database.getAllExpenses(), database);
     }
 
+    public static List<ExpenseItem> catExpensesToList(DBHelper database, int idCat, int type){
+        return ExpensesToList(database.getExpensesFromCat(idCat, type), database);
+    }
+
     public static List<ExpenseItem> ExpensesToList(Cursor row, DBHelper database){
         List<ExpenseItem> items = new ArrayList<>();
         row.moveToFirst();
@@ -39,6 +43,7 @@ public class ExpenseItem extends ListItem {
         }
         return items;
     }
+
     public static ExpenseItem ExpenseToItem(Cursor c, DBHelper database){
         int day, month, year, type, idCat;
 

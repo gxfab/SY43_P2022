@@ -30,9 +30,7 @@ public class CashFlowGeneralFragment extends DataBaseFragment{
     private List<ExpenseItem> items;
     private ListView list;
 
-    public CashFlowGeneralFragment() {
-        // Required empty public constructor
-    }
+    public CashFlowGeneralFragment() { super(); }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

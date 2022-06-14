@@ -327,6 +327,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return exp;
     }
 
+    public Cursor getExpensesFromCat(int idCat, int type){
+        return getData("select * from "+EXP_TABLE_NAME+
+                " where " +getCatColName(type)+ " = "+idCat);
+    }
+
+    public Cursor getCatFromType(int idCat, int type){
+        return getData("select * from "+getTableName(type)+
+                " where id = "+idCat);
+    }
+
     public float getSumExp() {
         Cursor res = getData("select sum(" + EXP_COL_AMOUNT + ") as " + REQ_SUM +
                 " from " + EXP_TABLE_NAME+
@@ -359,6 +369,26 @@ public class DBHelper extends SQLiteOpenHelper {
         //TODO Add sum of sub categories
         res.moveToFirst();
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
+    }
+
+    public static String getTableName(int type){
+        switch(type){
+            case TYPE_EXP: return EXP_CAT_TABLE_NAME;
+            case TYPE_INC: return INC_CAT_TABLE_NAME;
+            case TYPE_SAV: return SAV_CAT_TABLE_NAME;
+            case TYPE_DEBT: return DEBT_TABLE_NAME;
+            default : return EXP_TABLE_NAME;
+        }
+    }
+
+    public static String getCatColName(int type){
+        switch(type){
+            default:
+            case TYPE_EXP: return EXP_COL_ID_EXP;
+            case TYPE_INC: return EXP_COL_ID_INC;
+            case TYPE_SAV: return EXP_COL_ID_SAV;
+            case TYPE_DEBT: return EXP_COL_ID_DEBT;
+        }
     }
 
     public String getNameFromEXPCursor(Cursor c, int type) {

@@ -53,7 +53,7 @@
             android:layout_marginBottom="-40dp"
             android:text="@string/exp_cat_click_sub" />
 
-        <LinearLayout
+        <ListView
             android:id="@+id/layoutCatClickSub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             android:layout_alignTop="@+id/textViewCatClickSub"
             android:orientation="vertical" >
 
-        </LinearLayout>
+        </ListView>
 
         <TextView
             android:id="@+id/textViewCatExpenses"
@@ -73,7 +73,7 @@
             android:text="@string/exp_cat_expenses" />
 
 
-        <LinearLayout
+        <ListView
             android:id="@+id/layoutCatExpenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             android:orientation="vertical" >
 
 
-        </LinearLayout>
+        </ListView>
 
 
 
