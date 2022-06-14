@@ -133,8 +133,12 @@ class HomeFragment() : Fragment() {
             "Dépenses prévues"-> {
                 expenseViewModel.getMonthlyExpensesSumByCategory().observe(viewLifecycleOwner) { mExpenses ->
                     budgetedExpenses = mExpenses as ArrayList<ExpenseSumContainer>?
-                    expenseViewModel.getMonthlyExpensesSumByDate(today.year,today.month).observe(viewLifecycleOwner) { expenseSum ->
-                        incomeViewModel.getIncomeSumByDate(today.year,today.month).observe(viewLifecycleOwner) { incomeSum ->
+                    expenseViewModel.getMonthlyExpensesSumByDate(today.year,today.month).observe(viewLifecycleOwner) { _expenseSum ->
+                        incomeViewModel.getIncomeSumByDate(today.year,today.month).observe(viewLifecycleOwner) { _incomeSum ->
+                            var incomeSum : Double? = _incomeSum
+                            var expenseSum : Double? = _expenseSum
+                            if(expenseSum == null) expenseSum = 0.0
+                            if(incomeSum == null) incomeSum = 0.0
                             if(expenseSum + incomeSum != 0.0) {
                                 val nonAllocatedSum = ExpenseSumContainer("Non alloué","❌",-(expenseSum + incomeSum))
                                 budgetedExpenses?.add(nonAllocatedSum)

@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lafo_cheuse.R
-import com.example.lafo_cheuse.models.Expense
 import com.example.lafo_cheuse.models.Income
 import java.util.ArrayList
 
