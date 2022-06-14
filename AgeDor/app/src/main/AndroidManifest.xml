@@ -21,6 +21,32 @@
             android:name=".view.ConsulterDepensesActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".view.EditCategoriesActivity"
+            android:exported="false"
+            android:parentActivityName=".view.EditerBudgetActivity" />
+        <activity
+            android:name=".view.EditDepensesActivity"
+            android:exported="false"
+            android:parentActivityName=".view.EditerBudgetActivity" />
+        <activity
+            android:name=".view.EditDettesActivity"
+            android:exported="false"
+            android:parentActivityName=".view.EditerBudgetActivity" />
+        <activity
+            android:name=".view.EditRevenusActivity"
+            android:exported="false"
+            android:parentActivityName=".view.EditerBudgetActivity" />
+        <activity
+            android:name=".view.EditProjetsActivity"
+            android:exported="false"
+            android:parentActivityName=".view.EditerBudgetActivity" />
+        <activity
+            android:name=".view.EditExtraActivity"
+            android:exported="false"
+            android:parentActivityName=".view.EditerBudgetActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

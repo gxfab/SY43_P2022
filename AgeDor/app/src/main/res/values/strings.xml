@@ -5,4 +5,12 @@
     <string name="editerLeBudget">Editer le budget prévisionnel</string>
     <string name="parametres">Paramètres</string>
     <string name="bienvenue">Bienvenue, Jesse</string>
+
+    <string name="bvn_editer_budget">Editer les budgets</string>
+    <string name="dettes">Dettes</string>
+    <string name="categories">Catégories</string>
+    <string name="depenses">Dépenses</string>
+    <string name="projets">Projets</string>
+    <string name="revenus">Revenus</string>
+    <string name="extra">Dépenses exceptionnelles</string>
 </resources>
