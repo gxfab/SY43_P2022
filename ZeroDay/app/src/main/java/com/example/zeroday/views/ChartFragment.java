@@ -61,6 +61,7 @@ public class ChartFragment extends Fragment {
     private void configRadarChart(){
 
         radarChart.setRotationEnabled(false);
+        radarChart.getDescription().setEnabled(false);
     }
 
     private void loadRadarChart(){
