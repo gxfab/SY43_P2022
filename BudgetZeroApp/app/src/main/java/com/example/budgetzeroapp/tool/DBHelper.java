@@ -332,6 +332,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 " where " +getCatColName(type)+ " = "+idCat);
     }
 
+    public float getSumFromCat(int idCat, int type){
+        Cursor res = getData("select sum("+EXP_COL_AMOUNT+") as "+REQ_SUM+
+                " from "+EXP_TABLE_NAME+
+                " where " +getCatColName(type)+ " = "+idCat);
+        res.moveToFirst();
+        return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
+    }
+
     public Cursor getCatFromType(int idCat, int type){
         return getData("select * from "+getTableName(type)+
                 " where id = "+idCat);

@@ -23,11 +23,6 @@ public class CashFlowFragment extends DataBaseFragment {
         // Required empty public constructor
     }
 
-    public static CashFlowFragment newInstance(String param1, String param2) {
-        CashFlowFragment fragment = new CashFlowFragment();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
