@@ -3,8 +3,20 @@ plugins {
     id 'com.android.application' version '7.1.3' apply false
     id 'com.android.library' version '7.1.3' apply false
     id 'org.jetbrains.kotlin.android' version '1.5.30' apply false
+    id "com.eden.orchidPlugin" version "0.21.1"
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+dependencies {
+    orchidRuntimeOnly 'io.github.copper-leaf.orchid:orchid-core:1.0.0-SNAPSHOT'
 }
+
+orchid {
+    theme = "Editorial"
+    version = "1.0.0"
+    srcDir  = "app/src/main/java/fr/sy/lebudgetduzero/"
+    destDir = "build/docs/orchid"
+}
+
+/*task clean(type: Delete) {
+    delete rootProject.buildDir
+}*/
