@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.widget.EditText
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.models.Expense
@@ -18,10 +19,10 @@ import java.util.ArrayList
 class IncomeAdapter (var context : Activity, val itemClickListener: DeleteButtonClickListener) : RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
     private var mIncome: List<Income> = ArrayList<Income>()
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ieName: EditText = itemView.findViewById(R.id.ie_name)
+        val ieName: TextView = itemView.findViewById(R.id.ie_name)
         val categoryEmojiButton: Button = itemView.findViewById(R.id.emojiButton)
-        val ieValue: EditText = itemView.findViewById(R.id.ie_value)
-        val ieDate: EditText = itemView.findViewById(R.id.ie_date)
+        val ieValue: TextView = itemView.findViewById(R.id.ie_value)
+        val ieDate: TextView = itemView.findViewById(R.id.ie_date)
         val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton2)
     }
 
