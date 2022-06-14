@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -50,8 +51,8 @@ public class InfrequentExpensesAndIncomeDaoTest {
         long categoriesId = categoriesDao.insertCategory(category);
         SubCategories subCategory = new SubCategories("test", categoriesId);
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
-        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, '+',1990, subCategoriesId);
-        infrequentExpensesAndIncomeDao.insertInfrequentExpenseOrIncome(infrequent);
+        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, "+","1984", subCategoriesId);
+        infrequentExpensesAndIncomeDao.insertInfrequentExpenseAndIncome(infrequent);
         List<InfrequentExpensesAndIncome> infrequents = infrequentExpensesAndIncomeDao.getInfrequent();
 
         assertEquals(infrequents.get(0).getName(),infrequent.getName());
@@ -69,8 +70,8 @@ public class InfrequentExpensesAndIncomeDaoTest {
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory1);
         SubCategories subCategory2 = new SubCategories("test2", categoriesId);
         long subCategoriesId2 = subCategoriesDao.insertSubCategory(subCategory2);
-        InfrequentExpensesAndIncome infrequent1 = new InfrequentExpensesAndIncome("test1", 20, '+',1990, subCategoriesId);
-        InfrequentExpensesAndIncome infrequent2 = new InfrequentExpensesAndIncome("test2", 2, '-',1999, subCategoriesId2);
+        InfrequentExpensesAndIncome infrequent1 = new InfrequentExpensesAndIncome("test1", 20, "+","1990", subCategoriesId);
+        InfrequentExpensesAndIncome infrequent2 = new InfrequentExpensesAndIncome("test2", 2, "-","1999", subCategoriesId2);
         infrequentExpensesAndIncomeDao.insertInfrequentExpensesAndIncome(infrequent1,infrequent2);
         List<InfrequentExpensesAndIncome> infrequents = infrequentExpensesAndIncomeDao.getInfrequent();
 
@@ -95,15 +96,15 @@ public class InfrequentExpensesAndIncomeDaoTest {
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
         SubCategories subCategory2 = new SubCategories("test2", categoriesId);
         long subCategoriesId2 = subCategoriesDao.insertSubCategory(subCategory2);
-        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, '+',1990, subCategoriesId);
-        long insertedID = infrequentExpensesAndIncomeDao.insertInfrequentExpenseOrIncome(infrequent);
+        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, "+","1990", subCategoriesId);
+        long insertedID = infrequentExpensesAndIncomeDao.insertInfrequentExpenseAndIncome(infrequent);
         infrequent.setId(insertedID);
         infrequent.setAmount(3);
-        infrequent.setDate(1880);
+        infrequent.setDate("1880");
         infrequent.setName("hello");
-        infrequent.setSign('-');
+        infrequent.setSign("-");
         infrequent.setSubCategoriesId(subCategoriesId2);
-        infrequentExpensesAndIncomeDao.updateInfrequentExpenseOrIncome(infrequent);
+        infrequentExpensesAndIncomeDao.updateInfrequentExpenseAndIncome(infrequent);
         List<InfrequentExpensesAndIncome> infrequents = infrequentExpensesAndIncomeDao.getInfrequent();
 
         assertEquals(infrequents.get(0).getName(),infrequent.getName());
@@ -121,26 +122,26 @@ public class InfrequentExpensesAndIncomeDaoTest {
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
         SubCategories subCategory2 = new SubCategories("test2", categoriesId);
         long subCategoriesId2 = subCategoriesDao.insertSubCategory(subCategory2);
-        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, '+',1990, subCategoriesId);
+        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, "+","1990", subCategoriesId);
         SubCategories subCategory3 = new SubCategories("test3", categoriesId);
         long subCategoriesId3 = subCategoriesDao.insertSubCategory(subCategory3);
         SubCategories subCategory4 = new SubCategories("test4", categoriesId);
         long subCategoriesId4 = subCategoriesDao.insertSubCategory(subCategory4);
-        InfrequentExpensesAndIncome infrequent2 = new InfrequentExpensesAndIncome("test5", 2, '-',199, subCategoriesId3);
+        InfrequentExpensesAndIncome infrequent2 = new InfrequentExpensesAndIncome("test5", 2, "-","199", subCategoriesId3);
 
         List<Long> insertedID = infrequentExpensesAndIncomeDao.insertInfrequentExpensesAndIncome(infrequent,infrequent2);
         infrequent.setId(insertedID.get(0));
         infrequent.setAmount(3);
-        infrequent.setDate(1880);
+        infrequent.setDate("1880");
         infrequent.setName("hello");
-        infrequent.setSign('-');
+        infrequent.setSign("-");
         infrequent.setSubCategoriesId(subCategoriesId2);
 
         infrequent2.setId(insertedID.get(1));
         infrequent2.setAmount(23);
-        infrequent2.setDate(2880);
+        infrequent2.setDate("2880");
         infrequent2.setName("hello2");
-        infrequent2.setSign('+');
+        infrequent2.setSign("+");
         infrequent2.setSubCategoriesId(subCategoriesId4);
 
         infrequentExpensesAndIncomeDao.updateInfrequentExpensesAndIncome(infrequent,infrequent2);
@@ -165,10 +166,10 @@ public class InfrequentExpensesAndIncomeDaoTest {
         long categoriesId = categoriesDao.insertCategory(category);
         SubCategories subCategory = new SubCategories("test", categoriesId);
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
-        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, '+',1990, subCategoriesId);
-        long insertedId = infrequentExpensesAndIncomeDao.insertInfrequentExpenseOrIncome(infrequent);
+        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, "+","1990", subCategoriesId);
+        long insertedId = infrequentExpensesAndIncomeDao.insertInfrequentExpenseAndIncome(infrequent);
         infrequent.setId(insertedId);
-        infrequentExpensesAndIncomeDao.deleteInfrequentExpenseOrIncome(infrequent);
+        infrequentExpensesAndIncomeDao.deleteInfrequentExpenseAndIncome(infrequent);
         List<InfrequentExpensesAndIncome> infrequents = infrequentExpensesAndIncomeDao.getInfrequent();
         assertThat(infrequents.isEmpty(), is(true));
     }
@@ -179,10 +180,10 @@ public class InfrequentExpensesAndIncomeDaoTest {
         long categoriesId = categoriesDao.insertCategory(category);
         SubCategories subCategory = new SubCategories("test", categoriesId);
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
-        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, '+',1990, subCategoriesId);
+        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, "+","1990", subCategoriesId);
         SubCategories subCategory3 = new SubCategories("test3", categoriesId);
         long subCategoriesId3 = subCategoriesDao.insertSubCategory(subCategory3);
-        InfrequentExpensesAndIncome infrequent2 = new InfrequentExpensesAndIncome("test5", 2, '-',199, subCategoriesId3);
+        InfrequentExpensesAndIncome infrequent2 = new InfrequentExpensesAndIncome("test5", 2, "-","199", subCategoriesId3);
 
         List<Long> insertedID = infrequentExpensesAndIncomeDao.insertInfrequentExpensesAndIncome(infrequent,infrequent2);
         infrequent.setId(insertedID.get(0));

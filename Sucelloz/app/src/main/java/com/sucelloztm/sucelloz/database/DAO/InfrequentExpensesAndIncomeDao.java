@@ -35,6 +35,9 @@ public interface InfrequentExpensesAndIncomeDao {
     @Query("SELECT * FROM infrequent_expenses")
     LiveData<List<InfrequentExpensesAndIncome>> getAllInfrequent();
 
+    @Query("SELECT * FROM infrequent_expenses")
+    List<InfrequentExpensesAndIncome> getInfrequent();
+
     @Query("SELECT * FROM infrequent_expenses WHERE sign LIKE '+'")
     LiveData<List<InfrequentExpensesAndIncome>> getAllPositiveInfrequent();
 

@@ -38,6 +38,9 @@ public interface CategoriesDao {
     @Query("SELECT * FROM categories")
     LiveData<List<Categories>> getAllCategories();
 
+    @Query("SELECT * FROM categories")
+    List<Categories> getCategories();
+
     @Transaction
     @Query("SELECT * FROM categories")
     List<CategoriesWithSubCategories> getCategoriesWithSubCategories();
