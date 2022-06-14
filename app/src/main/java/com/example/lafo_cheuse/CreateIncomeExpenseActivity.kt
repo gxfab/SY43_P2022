@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -13,20 +14,22 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
 import com.example.lafo_cheuse.material.DatabaseDate
-import com.example.lafo_cheuse.models.Category
-import com.example.lafo_cheuse.models.Expense
-import com.example.lafo_cheuse.models.Frequency
-import com.example.lafo_cheuse.models.Income
+import com.example.lafo_cheuse.models.*
 import com.example.lafo_cheuse.viewmodels.CategoryViewModel
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class CreateIncomeExpenseActivity : AppCompatActivity() {
-    val expenseViewModel : ExpenseViewModel by viewModels()
-    val incomeViewModel : IncomeViewModel by viewModels()
-    val categoryViewModel : CategoryViewModel by viewModels()
+    private val expenseViewModel : ExpenseViewModel by viewModels()
+    private val incomeViewModel : IncomeViewModel by viewModels()
+    private val categoryViewModel : CategoryViewModel by viewModels()
     private var resultLauncher : ActivityResultLauncher<Intent>? = null
     var selectedCategory : Category? = null
 
@@ -46,7 +49,7 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         }
 
         initToggleButton(toggleButton,confirmButton)
-        initConfirmButton(confirmButton,toggleButton,ieName,ieValue, categoryChooserButton)
+        initConfirmButton(confirmButton,toggleButton,ieName,ieValue)
 
         categoryChooserButton.setOnClickListener {
             val bundle = bundleOf("moneyChangeId" to 0, "type" to "none")
@@ -91,8 +94,7 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         confirmButton: Button,
         toggleButton: ToggleButton,
         ieName : TextView,
-        ieValue : TextView,
-        categoryChooserButton : Button
+        ieValue : TextView
     ) {
         confirmButton.setOnClickListener{
             val today : DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
@@ -102,59 +104,20 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
             else if (ieValue.text.toString().trim().isEmpty())
                 Toast.makeText(this,
                     "Somme manquante !", Toast.LENGTH_SHORT).show()
-                val calendar: DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
                 if (toggleButton.isChecked) {
-                    expenseViewModel.getMonthlyExpensesSum().observe(this) { _globalExpensesSum ->
-                        expenseViewModel.getOneTimeExpensesSumByDate(calendar.year,calendar.month).observe(this) { _partialExpensesSum ->
-                            var globalExpensesSum : Double =
-                                if(_globalExpensesSum == null) {
-                                    0.0
-                                } else {
-                                    _globalExpensesSum
-                                }
-                            var partialExpensesSum : Double =
-                                if(_partialExpensesSum == null) {
-                                    0.0
-                                } else {
-                                    _partialExpensesSum
-                                }
-
-                            val newExpenseSum : Double = partialExpensesSum - ieValue.text.toString().toDouble()
-                            if (globalExpensesSum > newExpenseSum) {
-                                Toast.makeText(applicationContext,
-                                    "❌ Vous allez dépasser votre budget", Toast.LENGTH_SHORT).show()
-                            } else {
-                                expenseViewModel.insertExpense(
-                                    Expense(
-                                        Frequency.OUNCE_A_DAY,
-                                        ieName.text.toString(),
-                                        Category(
-                                            categoryChooserButton.text.toString(),
-                                            categoryChooserButton.text.toString()
-                                        ),
-                                        -ieValue.text.toString().toDouble(),
-                                        today.year,
-                                        today.month,
-                                        today.day
-                                    )
-                                )
-                                finish()
-                            }
-                         }
+                    lifecycleScope.launch(Dispatchers.Main) {
+                        addExpense(today,ieValue,ieName)
                     }
                 } else {
                     incomeViewModel.insertIncome(
                         Income(
                             Frequency.OUNCE_A_DAY,
                             ieName.text.toString(),
-                            Category(
-                                categoryChooserButton.text.toString(),
-                                categoryChooserButton.text.toString()
-                            ),
+                            selectedCategory!!,
                             ieValue.text.toString().toDouble(),
                             today.year,
-                            today.month,                            today.day
-
+                            today.month,
+                            today.day
                         )
                     )
                     finish()
@@ -173,5 +136,42 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
     private fun convertDateInDatabaseDate(calendar: Calendar) : DatabaseDate {
         return DatabaseDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(
             Calendar.DAY_OF_MONTH))
+    }
+
+    private suspend fun addExpense(
+        date : DatabaseDate,
+        ieValue : TextView,
+        ieName : TextView,
+    ) = coroutineScope {
+        val globalExpensesSum : Double =
+            expenseViewModel.getMonthlyExpensesSumSync() ?: 0.0
+        val partialExpensesSumList : List<ExpenseSumContainer> =
+            expenseViewModel.getOneTimeExpensesSumForCategoryAndMonthSync(selectedCategory!!,date.year,date.month)
+        val partialExpensesSum : Double =
+            if (partialExpensesSumList.isEmpty()) {
+                0.0
+            } else {
+                partialExpensesSumList[0].totalAmount
+            }
+
+        val newExpenseSum : Double = partialExpensesSum - ieValue.text.toString().toDouble()
+        if (globalExpensesSum > newExpenseSum) {
+            Toast.makeText(applicationContext,
+                "❌ Vous allez dépasser votre budget", Toast.LENGTH_SHORT).show()
+        } else {
+            Log.d("why?","global : $globalExpensesSum; partial : $partialExpensesSum")
+            expenseViewModel.insertExpense(
+                Expense(
+                    Frequency.OUNCE_A_DAY,
+                    ieName.text.toString(),
+                    selectedCategory!!,
+                    -ieValue.text.toString().toDouble(),
+                    date.year,
+                    date.month,
+                    date.day
+                )
+            )
+            finish()
+        }
     }
 }
