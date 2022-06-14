@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.ToggleButton
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,19 +19,10 @@ import com.example.lafo_cheuse.BudgetSetterActivity
 import com.example.lafo_cheuse.CreateIncomeExpenseActivity
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.material.ExpenseAdapter
-import com.example.lafo_cheuse.material.ExpenseSetterAdapter
 import com.example.lafo_cheuse.material.IncomeAdapter
-import com.example.lafo_cheuse.material.IncomeSetterAdapter
-import com.example.lafo_cheuse.models.Income
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 
 /**
  * Fragment where the one time expenses are dispalyed and where we can modify them.
@@ -105,7 +95,7 @@ class SetIncomesExpensesFragment : Fragment() {
                     show()
                 }
             }
-        })
+        },resources)
         recyclerView.adapter = incomeAdapter
         recyclerView.setHasFixedSize(true)
 
@@ -140,7 +130,7 @@ class SetIncomesExpensesFragment : Fragment() {
                     show()
                 }
             }
-        })
+        }, resources)
         recyclerView.adapter = expenseAdapter
         recyclerView.setHasFixedSize(true)
 
