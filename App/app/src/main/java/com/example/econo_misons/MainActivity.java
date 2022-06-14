@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 /*String usernameTXT = username.getText().toString();
                 newUser(usernameTXT);*/
                 dbViewModel.setCurrentUser(1, MainActivity.this);
+                dbViewModel.setCurrentBudget(1, MainActivity.this);
+                dbViewModel.setCurrentPrevBudget(new PrevisionalBudget(1,"2022-06"));
             }
         });
 
@@ -104,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
     private void getAllUsers() {
         PrevisionalBudget prevBud = new PrevisionalBudget(1,"2022-06");
         Log.d("MA","entered");
-        if (this.dbViewModel.getCurrentUser() != null){
-            this.dbViewModel.getCurrentUser().observe(this, this::showUserList);
+        if (this.dbViewModel.getCurrentPrevBudget() != null){
+            this.dbViewModel.getCurrentPrevBudget().observe(this, this::showUserList);
         }
 
         Log.d("MA","exit");
@@ -117,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         this.dbViewModel.newUser(new User(username));
     }
 
-    private void showUserList(User list){
+    private void showUserList(PrevisionalBudget list){
         Log.d("MA","toast");
         Toast toast = Toast.makeText(getApplicationContext(), list.toString(), Toast.LENGTH_LONG);
         toast.show();

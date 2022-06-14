@@ -108,7 +108,19 @@ public class DBViewModel extends ViewModel {
         executor.execute(() -> budgetDataSource.addUserToBudget(budget, user));
     }
 
-    public void setCurrentBudget(int budID){ this.budgetDataSource.getBudgetByID(budID);}
+    public void setCurrentBudget(int budID, LifecycleOwner owner){
+        this.budgetDataSource.getBudgetByID(budID).observe(owner, this::setBudget);}
+
+    private void setBudget(List<Budget> budget){
+        if (budget.isEmpty()){
+            Log.d("DBMV", "Budget not found");
+            return;
+        }
+        MutableLiveData<Budget> temp = new MutableLiveData<Budget>();
+        Log.d("DBMV", "Setting current budget to : " + budget);
+        temp.setValue(budget.get(0));
+        this.currentBudget = temp;
+    }
 
     public LiveData<Budget> getCurrentBudget() {return this.currentBudget;}
 
