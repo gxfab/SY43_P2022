@@ -111,7 +111,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
             while (cursor.moveToNext()) {
-                depensesList.add(new StorageDepenses(Integer.parseInt(cursor.getString(1)), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))));
+                depensesList.add(new StorageDepenses(cursor.getString(1), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))));
             }
         }
         cursor.close();
