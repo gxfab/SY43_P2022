@@ -67,6 +67,10 @@ class CategoryAdapter(
                     viewHolder.expandButton.rotation = 0f
                 }
             }
+            // Add spacing at the end of the list
+            if (position == categoryList.lastIndex) {
+                viewHolder.bottomSpace.visibility = View.VISIBLE
+            }
         }
 
         // For prevision view
@@ -82,9 +86,6 @@ class CategoryAdapter(
             R.string.money_format,
             String.format("%.2f", categoryList[position].predictedAmount)
         )
-        if (position == categoryList.lastIndex) {
-            viewHolder.bottomSpace.visibility = View.VISIBLE
-        }
     }
 
     override fun getItemCount(): Int {

@@ -54,4 +54,7 @@
         <item>🏠Loyer</item>
         <item>🎾Sport</item>
     </string-array>
+    <string name="info_deleted_category">La catégorie a bien été supprimée</string>
+    <string name="info_deleted_account">Le compte a bien été supprimé</string>
+    <string name="info_deleted_expense">La dépense a bien été supprimée</string>
 </resources>

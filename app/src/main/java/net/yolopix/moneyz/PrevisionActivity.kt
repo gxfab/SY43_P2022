@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.slider.Slider
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Month
@@ -122,33 +123,25 @@ class PrevisionActivity : AppCompatActivity() {
         // Initialize the category RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
 
-        lifecycleScope.launch {
-
-            val swipeToDeleteExpense = object : SwipeToDeleteExpense(){
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    lifecycleScope.launch {  val categoryList = db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!)
-                        val position = viewHolder.adapterPosition
-
-
-
-                        db.categoryDao().deleteCategory(categoryList[position])
-                        loadAll()
-                    }
-
-
+        val swipeToDeleteExpense = object : SwipeToDeleteExpense() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                lifecycleScope.launch {
+                    val categoryList = db.categoryDao()
+                        .getCategoriesForMonth(now.monthValue, now.year, accountUid!!)
+                    val position = viewHolder.adapterPosition
+                    db.categoryDao().deleteCategory(categoryList[position])
+                    loadAll()
+                    Snackbar.make(
+                        recyclerView,
+                        R.string.info_deleted_category,
+                        Snackbar.LENGTH_SHORT
+                    )
+                        .show()
                 }
-
             }
-            val itemTouchHelper = ItemTouchHelper(swipeToDeleteExpense)
-            itemTouchHelper.attachToRecyclerView(recyclerView)
         }
-
-
-
-
-
-
-
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteExpense)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
 
         // Load asynchronous databases operations when the activity is created
         loadAll()
