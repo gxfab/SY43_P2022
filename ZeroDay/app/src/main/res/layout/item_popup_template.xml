@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_popup_style">
+
+    <TextView
+        android:id="@+id/item_popup_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleDefaultStyle"
+        android:text="Add Category"
+        android:layout_marginLeft="@dimen/default_left_margin"
+        />
+
+    <EditText
+        android:id="@+id/item_popup_label"
+        android:textColor="@color/zero_title"
+        android:textColorHint="@color/zero_subtitle"
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:layout_marginRight="@dimen/default_left_margin"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:hint="Category name"
+        />
+
+    <Spinner
+        android:id="@+id/item_popup_spinner"
+        android:layout_width=""
+        android:layout_height=""
+        android:spinnerMode="dropdown"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right">
+
+        <Button
+            android:id="@+id/item_popup_cancel"
+            android:background="@color/transparent"
+            android:textColor="@color/zero_pink1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            />
+
+        <Button
+            android:id="@+id/item_popup_add"
+            android:background="@color/transparent"
+            android:textColor="@color/zero_pink0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
