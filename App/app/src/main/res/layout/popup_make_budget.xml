@@ -40,7 +40,4 @@
         app:layout_constraintTop_toBottomOf="@+id/valider"
         android:layout_marginTop="10dp"/>
 
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
