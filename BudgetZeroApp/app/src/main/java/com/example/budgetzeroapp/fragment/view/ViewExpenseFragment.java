@@ -17,6 +17,8 @@ import com.example.budgetzeroapp.tool.item.CategoryItem;
 import com.example.budgetzeroapp.tool.item.ExpenseItem;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class ViewExpenseFragment extends DataBaseFragment {
 
@@ -61,7 +63,9 @@ public class ViewExpenseFragment extends DataBaseFragment {
     public void setValues() {
         name.setText(nameVal);
         amount.setText(String.valueOf(amountVal));
-        date.setText(dateVal.toString());
+        Date dateString = dateVal.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        date.setText(dateFormat.format(dateString));
         switch(typeVal) {
             case 1:
                 type.setText("Expense");

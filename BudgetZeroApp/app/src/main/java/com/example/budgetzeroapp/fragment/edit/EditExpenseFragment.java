@@ -16,6 +16,8 @@ import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.DBHelper;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class EditExpenseFragment extends EditDataBaseFragment {
 
@@ -77,7 +79,9 @@ public class EditExpenseFragment extends EditDataBaseFragment {
     @Override
     public void setDefaultValues() {
         name.setText(defaultName);
-        date.setText(defaultDate.toString());
+        Date dateString = defaultDate.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        date.setText(dateFormat.format(dateString));
         amount.setText(String.valueOf(defaultAmount));
         stable.setChecked(defaultStable!=0);
     }
