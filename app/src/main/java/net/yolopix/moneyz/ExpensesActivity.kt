@@ -36,12 +36,18 @@ class ExpensesActivity : AppCompatActivity() {
     // Widgets
     private lateinit var expensesRecyclerView: RecyclerView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override  fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expenses)
 
         // Get the database object
         db = DatabaseFactory.getDB(applicationContext)
+        val expenseList = mutableListOf(
+            lifecycleScope.launch {  db.expenseDao().getAllExpenses()}
+
+        )
+
+
 
         // Fetch the account from the uid passed to the activity as extra
         accountUid = intent.getIntExtra(EXTRA_MESSAGE,0)
@@ -70,6 +76,21 @@ class ExpensesActivity : AppCompatActivity() {
         // Initialize the main RecylerView
         expensesRecyclerView = findViewById(R.id.expenses_recy_view)
         expensesRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
+
+
+
+        //adapter = ExpensesAdapter(expenseList,currentMonth.monthNumber, currentMonth.yearNumber,db)
+
+        /*val swipeToDeleteExpense = object : SwipeToDeleteExpense(){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                expenseList.removeAt(position)
+                expensesRecyclerView.adapter?.notifyItemRemoved(position)
+            }
+
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteExpense)
+        itemTouchHelper.attachToRecyclerView(expensesRecyclerView)*/
     }
 
     /**
