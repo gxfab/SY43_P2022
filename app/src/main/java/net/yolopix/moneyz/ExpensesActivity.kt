@@ -44,7 +44,7 @@ class ExpensesActivity : AppCompatActivity() {
         db = DatabaseFactory.getDB(applicationContext)
 
         // Fetch the account from the uid passed to the activity as extra
-        accountUid = intent.getIntExtra(EXTRA_MESSAGE,0)
+        accountUid = intent.getIntExtra(EXTRA_MESSAGE, 0)
         lifecycleScope.launch {
             if (accountUid == null) {
                 finish()
@@ -70,6 +70,15 @@ class ExpensesActivity : AppCompatActivity() {
         // Initialize the main RecylerView
         expensesRecyclerView = findViewById(R.id.expenses_recy_view)
         expensesRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
+
+        // When clicking on the history button, open the history activity
+        val historyButton: Button = findViewById(R.id.button_history)
+        historyButton.setOnClickListener {
+            val intentPrevisionActivity = Intent(this, HistoryActivity::class.java).apply {
+                putExtra(EXTRA_MESSAGE, account.uid)
+            }
+            startActivity(intentPrevisionActivity)
+        }
     }
 
     /**

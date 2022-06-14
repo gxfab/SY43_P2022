@@ -12,20 +12,39 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button_make_previsions"
-            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_margin="16dp"
-            android:text="@string/make_previsions"
-            android:textColor="@color/white"
-            app:icon="@drawable/ic_outline_chevron_right_24"
-            app:iconGravity="end"
-            app:iconTint="@color/white"
-            app:strokeColor="@color/white"
-            app:strokeWidth="2dp" />
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_make_previsions"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/make_previsions"
+                android:textColor="@color/white"
+                app:icon="@drawable/ic_outline_chevron_right_24"
+                app:iconGravity="end"
+                app:iconTint="@color/white"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp" />
+
+            <Button
+                android:id="@+id/button_history"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/month_history"
+                android:textColor="@color/white"
+                app:icon="@drawable/ic_outline_history_24"
+                app:iconTint="@color/white"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp" />
+        </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MoneyZ.MaterialCardView.BackgroundCard"

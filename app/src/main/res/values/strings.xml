@@ -43,4 +43,7 @@
     <string name="error_invalid_day_of_month">Le jour du mois n\'est pas valide</string>
     <string name="error_amount_zero">Le montant doit être supérieur à 0</string>
     <string name="error_invalid_amount">Le montant est invalide</string>
+    <string name="title_history_screen">Historique des mois</string>
+    <string name="placeholder_month_name">Nom du mois</string>
+    <string name="month_history">Historique</string>
 </resources>
