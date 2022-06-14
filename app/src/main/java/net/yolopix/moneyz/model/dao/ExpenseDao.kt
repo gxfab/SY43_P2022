@@ -1,6 +1,7 @@
 package net.yolopix.moneyz.model.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -16,4 +17,7 @@ interface ExpenseDao {
 
     @Insert
     suspend fun insertExpense(expense: Expense)
+
+    @Delete
+    suspend fun deleteExpense(expense: Expense)
 }

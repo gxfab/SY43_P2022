@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -118,6 +119,34 @@ class PrevisionActivity : AppCompatActivity() {
 
         // Initialize the category RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+
+        lifecycleScope.launch {
+
+            val swipeToDeleteExpense = object : SwipeToDeleteExpense(){
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    lifecycleScope.launch {  val categoryList = db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!)
+                        val position = viewHolder.adapterPosition
+
+
+
+                        db.categoryDao().deleteCategory(categoryList[position])
+                        loadAll()
+                    }
+
+
+                }
+
+            }
+            val itemTouchHelper = ItemTouchHelper(swipeToDeleteExpense)
+            itemTouchHelper.attachToRecyclerView(recyclerView)
+        }
+
+
+
+
+
+
+
 
         // Load asynchronous databases operations when the activity is created
         loadAll()

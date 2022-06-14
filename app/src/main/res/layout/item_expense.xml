@@ -26,6 +26,7 @@
 
     <TextView
         android:id="@+id/text_view_amount"
+        android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/money_placeholder"

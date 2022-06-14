@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Account
+import net.yolopix.moneyz.model.entities.Category
+import java.time.LocalDate
 
 /**
  * A bottom sheet dialog fragment containing widgets to add a new account in the database
@@ -69,11 +71,20 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
         // Fetch the account name in the EditText and add it to the database
         val newAccountName = editTextAccountName.text.toString()
         runBlocking {
-            db.accountDao().insertAccount(Account(0, newAccountName))
+
+            val accountNumber = db.accountDao().insertAccount(Account(0, newAccountName))
+            var categoryNames = listOf<String>("🍕Nourriture", "🍺Loisirs", "🏠Loyer", "🎾Sport")
+            var now = LocalDate.now()
+
+            for(names in categoryNames){
+                val category : Category = Category(0, names,0.0f,now.monthValue, now.year,accountNumber.toInt())
+                db.categoryDao().insertCategory(category)
+            }
         }
         lifecycleScope.launch {
             (activity as MainActivity).loadAccounts()
         }
+
         dismiss()
     }
 
