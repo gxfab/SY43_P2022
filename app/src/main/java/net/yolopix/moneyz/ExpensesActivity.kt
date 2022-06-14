@@ -115,7 +115,7 @@ class ExpensesActivity : AppCompatActivity() {
 
             // Check if the month has passed and the user can make a new prevision
             val now: LocalDate = LocalDate.now()
-            if (!now.isAfter(monthAsLocalDate)) {// If the month has non ended yet
+            if (now.isBefore(monthAsLocalDate)) {// If the month has non ended yet
                 makePrevisionsButton.visibility = View.GONE //TODO check if total expenses reached 0
             }
 

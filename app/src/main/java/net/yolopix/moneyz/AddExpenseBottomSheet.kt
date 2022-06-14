@@ -27,7 +27,11 @@ import java.time.LocalDate
  * @param db The main database of the app
  * @param month The month in which the expense will be added
  */
-class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Month) :
+class AddExpenseBottomSheet(
+    private val db: AppDatabase,
+    private val month: Month,
+    private val expenseToEdit: Expense? = null
+) :
     BottomSheetDialogFragment() {
 
     override fun onCreateView(
@@ -87,7 +91,6 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
             checkFormErrors()
         }
 
-
         editTextExpenseAmount.addTextChangedListener {
             amountTextInputLayout.error = when (it.toString().toFloatOrNull()) {
                 null -> getString(R.string.error_empty_text)
@@ -143,6 +146,27 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
             )
         }
 
+        // If the bottom sheet was opened to edit an already existing expense, fill the form
+        if (expenseToEdit != null) {
+            view.findViewById<TextView>(R.id.text_view_add_expense_title)
+                .setText(R.string.title_expense_edit)
+            editTextExpenseName.setText(expenseToEdit.name)
+            editTextExpenseAmount.setText(expenseToEdit.amount.toString())
+            editTextExpenseDay.setText(expenseToEdit.dayOfMonth.toString())
+            recurringCheckBox.isChecked = expenseToEdit.recurring
+            buttonAdd.text = getString(R.string.edit)
+            lifecycleScope.launch {
+                val categoryList: List<Int> = db.categoryDao()
+                    .getCategoriesUidsForMonth(
+                        month.monthNumber,
+                        month.yearNumber,
+                        month.accountUid
+                    )
+                val categoryIndexInSpinner = categoryList.indexOf(expenseToEdit.categoryUid)
+                categorySpinner.setSelection(categoryIndexInSpinner)
+            }
+        }
+
     }
 
     /**
@@ -156,11 +180,24 @@ class AddExpenseBottomSheet(private val db: AppDatabase, private val month: Mont
         val recurring = recurringCheckBox.isChecked
         val category = categorySpinner.selectedItem as Category
 
-        val newExpense = Expense(0, expenseDay, category.uid, expenseName, recurring, expensePrice)
-
+        val newExpenseUid =
+            expenseToEdit?.uid ?: 0 // Auto-increment (uid=0) if adding a new expense
+        val newExpense =
+            Expense(
+                newExpenseUid, expenseDay, category.uid,
+                expenseName,
+                recurring,
+                expensePrice
+            )
         runBlocking {
-            db.expenseDao().insertExpense(newExpense)
+            if (expenseToEdit == null) {
+                db.expenseDao().insertExpense(newExpense)
+            } else {
+                db.expenseDao().updateExpense(newExpense)
+            }
         }
+
+
         lifecycleScope.launch {
             val parent = activity as ExpensesActivity
             parent.loadExpenses()

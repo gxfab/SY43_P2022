@@ -44,12 +44,15 @@ class CategoryAdapter(
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
         // For expense view
         if (expenseMode) {
-            viewHolder.categoryPriceTextView.visibility = View.GONE
+            //viewHolder.categoryPriceTextView.visibility = View.GONE
             viewHolder.expensesRecyclerView.layoutManager = LinearLayoutManager(context)
             context.lifecycleScope.launch {
                 viewHolder.expensesRecyclerView.adapter = ExpensesAdapter(
                     db.expenseDao().getExpenseForCategory(categoryList[position].uid),
-                    monthNumber!!, yearNumber!!
+                    monthNumber!!,
+                    yearNumber!!,
+                    db,
+                    context
                 )
             }
             // Expand/collapse the expenses nested under the category
@@ -65,13 +68,13 @@ class CategoryAdapter(
         } else { // For prevision view
             viewHolder.expandButton.visibility = View.GONE
             viewHolder.expensesRecyclerView.visibility = View.GONE
-            viewHolder.categoryPriceTextView.text = context.getString(
-                R.string.money_format,
-                String.format("%.2f", categoryList[position].predictedAmount)
-            )
         }
         // Common to both prevision/expenses view
         viewHolder.categoryNameTextView.text = categoryList[position].name
+        viewHolder.categoryPriceTextView.text = context.getString(
+            R.string.money_format,
+            String.format("%.2f", categoryList[position].predictedAmount)
+        )
     }
 
     override fun getItemCount(): Int {

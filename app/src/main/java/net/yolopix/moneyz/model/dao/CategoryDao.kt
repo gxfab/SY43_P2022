@@ -16,6 +16,15 @@ interface CategoryDao {
         accountUid: Int
     ): List<Category>
 
+    @Query("SELECT uid FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid")
+    suspend fun getCategoriesUidsForMonth(
+        monthNumber: Int,
+        yearNumber: Int,
+        accountUid: Int
+    ): List<Int>
+
+    @Query("SELECT * FROM Category WHERE uid = :categoryUid")
+    suspend fun getCategory(categoryUid: Int): Category
 
     @Insert
     suspend fun insertCategory(category: Category)

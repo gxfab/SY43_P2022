@@ -166,7 +166,7 @@ class PrevisionActivity : AppCompatActivity() {
                 db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!),
                 this,
                 false,
-                db
+                db,
             )
         recyclerView.adapter = adapter
     }

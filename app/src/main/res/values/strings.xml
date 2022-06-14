@@ -46,4 +46,6 @@
     <string name="title_history_screen">Historique des mois</string>
     <string name="placeholder_month_name">Nom du mois</string>
     <string name="month_history">Historique</string>
+    <string name="edit">Modifier</string>
+    <string name="title_expense_edit">Modifier la dépense</string>
 </resources>
