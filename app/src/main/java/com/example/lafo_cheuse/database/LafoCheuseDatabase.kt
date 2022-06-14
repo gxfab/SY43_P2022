@@ -93,11 +93,13 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
                         val optionNotifications = Option("option_notifications",OptionType.CHECKBOX)
                         val optionNotificationsSum = Option("option_notification_sum",OptionType.TEXT_EDIT)
                         val optionBudget = Option("option_budget",OptionType.SPINNER)
+                        val optionPopulate = Option("option_populate",OptionType.RADIOBUTTON)
 
                         INSTANCE!!.optionDao()?.insertOption(optionTheme)
                         INSTANCE!!.optionDao()?.insertOption(optionNotifications)
                         INSTANCE!!.optionDao()?.insertOption(optionNotificationsSum)
                         INSTANCE!!.optionDao()?.insertOption(optionBudget)
+                        INSTANCE!!.optionDao()?.insertOption(optionPopulate)
 
                         INSTANCE!!.optionFieldDao()?.insertOptionField(
                             OptionField("light_theme",optionTheme,false)
@@ -121,6 +123,10 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
 
                         INSTANCE!!.optionFieldDao()?.insertOptionField(
                             OptionField(1.toString(),optionBudget,false)
+                        )
+
+                        INSTANCE!!.optionFieldDao()?.insertOptionField(
+                            OptionField("isPopulated",optionPopulate,false)
                         )
                     }
                 }
