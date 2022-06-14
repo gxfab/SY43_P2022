@@ -4,11 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.launch
-import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Expense
 import java.text.NumberFormat
 import java.time.LocalDate
@@ -24,8 +20,6 @@ class ExpensesAdapter(
     private val expenseList: List<Expense>,
     private val monthNumber: Int,
     private val yearNumber: Int,
-    private val db: AppDatabase,
-    private val context: AppCompatActivity,
 ) :
     RecyclerView.Adapter<ExpensesAdapter.ExpensesViewHolder>() {
 
@@ -36,8 +30,6 @@ class ExpensesAdapter(
         val textViewExpenseName: TextView = itemView.findViewById(R.id.text_view_expense_name)
         val textViewDate: TextView = itemView.findViewById(R.id.text_view_date)
         val textViewAmount: TextView = itemView.findViewById(R.id.text_view_amount)
-        val deleteButtonExpense : TextView = itemView.findViewById(R.id.text_view_amount)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
@@ -60,22 +52,13 @@ class ExpensesAdapter(
         val expenseFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         holder.textViewDate.text = expenseLocalDate.format(expenseFormat)
 
-        holder.deleteButtonExpense.setOnClickListener{
-            context.lifecycleScope.launch{
-                deleteExpenseItem(position)
-            }
-        }
+
     }
 
     override fun getItemCount(): Int {
         return expenseList.size
     }
-    private suspend fun deleteExpenseItem(position: Int){
-        val item = expenseList[position]
-        (expenseList as MutableList).removeAt(position)
-        db.expenseDao().deleteExpense(item)
 
-    }
 
 
 }
