@@ -2,6 +2,8 @@ package com.example.econo_misons;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.Transaction;
@@ -25,7 +28,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     EditText username;
-    Button add, view;
+    Button add, view, depense;
     private DBViewModel dbViewModel;
 
 
@@ -33,14 +36,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("MA","debut");
+
 
         username = findViewById(R.id.username);
         add = findViewById(R.id.addbutton);
         view = findViewById(R.id.viewbutton);
+        depense = findViewById(R.id.ajout_dep);
 
         configureViewModel();
-
-
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("MA","view_click");
                 getAllUsers();
+                Log.d("MA","end_view_click");
             }
 
         });
@@ -93,15 +99,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void getAllUsers() {
         PrevisionalBudget prevBud = new PrevisionalBudget(1,"2022-06");
-        this.dbViewModel.getCurrentBudgetEnvelope(prevBud).observe(this, this::showUserList);
+        Log.d("MA","entered");
+        this.dbViewModel.getAllCategories().observe(this, this::showUserList);
+        Log.d("MA","exit");
+
 
     }
 
     private void newUser(String username) {
-        dbViewModel.newUser(new User(username));
+        this.dbViewModel.newUser(new User(username));
     }
 
-    private void showUserList(List<Envelope> list){
+    private void showUserList(List<Category> list){
+        Log.d("MA","toast");
         Toast toast = Toast.makeText(getApplicationContext(), list.toString(), Toast.LENGTH_LONG);
         toast.show();
     }

@@ -36,7 +36,9 @@ public class DBViewModel extends ViewModel {
 
     @Nullable
     private LiveData<User> currentUser;
+    @Nullable
     private LiveData<Budget> currentBudget;
+    @Nullable
     private LiveData<PrevisionalBudget> currentPrevisionalBudget;
 
     public  DBViewModel(UserDataRepository userDataSource, BudgetDataRepository budgetDataSource, CategoryDataRepository categoryDataSource, PrevBudgetDataRepository prevBudgetDataSource, TransactionDataRepository transactionDataRepository, Executor executor){
@@ -66,13 +68,18 @@ public class DBViewModel extends ViewModel {
 
     public LiveData<List<User>> getUser(int id){ return userDataSource.getUser(id);}
 
-    public void setCurrentUser(int userID){ this.userDataSource.getUser(userID);}
+    public void setCurrentUser(int userID){
+        MutableLiveData<User> temp = new MutableLiveData<User>();
+        temp.setValue(this.userDataSource.getUser(userID).getValue().get(0));
+        this.currentUser = temp;
+    }
 
     public LiveData<User> getCurrentUser() {return this.currentUser;}
 
     //BUDGET
 
     public void addBudget(Budget budget, User user){ executor.execute(() -> budgetDataSource.addBudget(budget, user));}
+    //public void addBudget(Budget budget){ executor.execute(() -> budgetDataSource.addBudget(budget, this.currentUse));}
 
     public LiveData<List<Budget>> getAllBudgets(){ return budgetDataSource.getAllBudgets();}
 
@@ -120,7 +127,7 @@ public class DBViewModel extends ViewModel {
         MutableLiveData<PrevisionalBudget> temp = new MutableLiveData<PrevisionalBudget>();
         temp.setValue(preBud);
         this.currentPrevisionalBudget = temp;
-        }
+    }
 
     public LiveData<PrevisionalBudget> getCurrentPrevBudget() {return this.currentPrevisionalBudget;}
 
