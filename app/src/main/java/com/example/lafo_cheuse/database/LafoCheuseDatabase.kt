@@ -106,7 +106,7 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
                             OptionField("dark_theme",optionTheme,false)
                         )
                         INSTANCE!!.optionFieldDao()?.insertOptionField(
-                            OptionField("system_theme",optionTheme,false)
+                            OptionField("system_theme",optionTheme,true)
                         )
 
                         INSTANCE!!.optionFieldDao()?.insertOptionField(
