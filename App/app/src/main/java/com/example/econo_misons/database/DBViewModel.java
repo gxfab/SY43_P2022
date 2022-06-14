@@ -1,10 +1,14 @@
 package com.example.econo_misons.database;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.econo_misons.MainActivity;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Envelope;
@@ -17,6 +21,7 @@ import com.example.econo_misons.database.repositories.PrevBudgetDataRepository;
 import com.example.econo_misons.database.repositories.TransactionDataRepository;
 import com.example.econo_misons.database.repositories.UserDataRepository;
 
+import java.security.acl.Owner;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -50,6 +55,7 @@ public class DBViewModel extends ViewModel {
         this.executor = executor;
     }
 
+
     //USER
 
     public LiveData<List<User>> getAllUsers() {return userDataSource.getAllUsers();}
@@ -68,9 +74,18 @@ public class DBViewModel extends ViewModel {
 
     public LiveData<List<User>> getUser(int id){ return userDataSource.getUser(id);}
 
-    public void setCurrentUser(int userID){
+    public void setCurrentUser(int userID, LifecycleOwner owner){
+    this.userDataSource.getUser(userID).observe(owner,this::setUser);
+    }
+
+    private void setUser(List<User> user){
+        if (user.isEmpty()){
+            Log.d("DBMV", "User not found");
+            return;
+        }
         MutableLiveData<User> temp = new MutableLiveData<User>();
-        temp.setValue(this.userDataSource.getUser(userID).getValue().get(0));
+        Log.d("DBMV", "Setting current user to : " + user);
+        temp.setValue(user.get(0));
         this.currentUser = temp;
     }
 
