@@ -30,19 +30,9 @@ public class BudgetPrev extends AppCompatActivity {
         valider = findViewById(R.id.valider);
         ajoutCat = findViewById(R.id.ajout_cat);
 
-        valider.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        valider.setOnClickListener(v -> finish());
 
-        ajoutCat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onButtonShowPopupWindowClick(v);
-            }
-        });
+        ajoutCat.setOnClickListener(v -> onButtonShowPopupWindowClick(v));
 
         //  Bottom Bar controller
         // Initialize and assign variable
@@ -94,26 +84,11 @@ public class BudgetPrev extends AppCompatActivity {
         Button annuler = popupView.findViewById(R.id.annuler);
         Button ajoutCat = popupView.findViewById(R.id.ajout_cat);
 
-        valider.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
+        valider.setOnClickListener(v -> popupWindow.dismiss());
 
-        annuler.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
+        annuler.setOnClickListener(v -> popupWindow.dismiss());
 
-        ajoutCat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeActivity();
-            }
-        });
+        ajoutCat.setOnClickListener(v -> changeActivity());
     }
 
     private void changeActivity(){

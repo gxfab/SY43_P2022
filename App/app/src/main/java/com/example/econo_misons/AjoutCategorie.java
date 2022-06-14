@@ -31,12 +31,7 @@ public class AjoutCategorie extends AppCompatActivity {
             }
         });
 
-        annuler.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        annuler.setOnClickListener(v -> finish());
 
         //  Bottom Bar controller
         // Initialize and assign variable

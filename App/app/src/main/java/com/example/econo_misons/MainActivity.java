@@ -48,7 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
         configureViewModel();
 
-
+        depense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeActivity();
+            }
+        });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,4 +131,8 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
+    private void changeActivity(){
+        Intent intent = new Intent(this, AjoutDepense.class);
+        startActivity(intent);
+    }
 }

@@ -36,12 +36,7 @@ public class ChangerBudget extends AppCompatActivity {
 
         createBudget = findViewById(R.id.button);
 
-        createBudget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onButtonShowPopupWindowClick(v);
-            }
-        });
+        createBudget.setOnClickListener(v -> onButtonShowPopupWindowClick(v));
 
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
         //dbViewModel.setCurrentUser(2);
@@ -108,11 +103,6 @@ public class ChangerBudget extends AppCompatActivity {
             }
         });
 
-        annuler.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
+        annuler.setOnClickListener(v -> popupWindow.dismiss());
     }
 }

@@ -37,24 +37,14 @@ public class AjoutDepense extends AppCompatActivity {
         dateText = findViewById(R.id.date);
 
 
-        ajoutCat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeActivity();
-            }
-        });
-
-        ajoutCat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectDate();
-            }
-        });
+        ajoutCat.setOnClickListener(v -> changeActivity());
 
         final Calendar c = Calendar.getInstance();
         this.lastSelectedYear = c.get(Calendar.YEAR);
         this.lastSelectedMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+
+        date.setOnClickListener(v -> selectDate());
 
         valider.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +54,7 @@ public class AjoutDepense extends AppCompatActivity {
             }
         });
 
-        annuler.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        annuler.setOnClickListener(v -> finish());
 
         //  Bottom Bar controller
         // Initialize and assign variable
