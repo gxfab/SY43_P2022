@@ -49,7 +49,7 @@ class CategoryAdapter(
             context.lifecycleScope.launch {
                 viewHolder.expensesRecyclerView.adapter = ExpensesAdapter(
                     db.expenseDao().getExpenseForCategory(categoryList[position].uid),
-                    monthNumber!!, yearNumber!!,db, context
+                    monthNumber!!, yearNumber!!,
                 )
             }
             // Expand/collapse the expenses nested under the category

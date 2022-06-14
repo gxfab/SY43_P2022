@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
@@ -33,6 +34,28 @@ class MainActivity : AppCompatActivity() {
         // Set up recycler view
         recyclerView = findViewById(R.id.account_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+
+
+        lifecycleScope.launch {
+
+            val swipeToDeleteExpense = object : SwipeToDeleteExpense(){
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    lifecycleScope.launch {
+                        val accountList = db.accountDao().getAll()
+                        val position = viewHolder.adapterPosition
+                        db.accountDao().deleteAccount(accountList[position])
+                        loadAccounts()
+                    }
+
+
+                }
+
+            }
+            val itemTouchHelper = ItemTouchHelper(swipeToDeleteExpense)
+            itemTouchHelper.attachToRecyclerView(recyclerView)
+        }
+
+
         lifecycleScope.launch {
             loadAccounts()
         }

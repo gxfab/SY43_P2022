@@ -1,6 +1,7 @@
 package net.yolopix.moneyz.model.entities
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -13,5 +14,8 @@ interface AccountDao {
     suspend fun getAccountById(uid: Int): Account
 
     @Insert
-    suspend fun insertAccount(account: Account)
+    suspend fun insertAccount(account: Account): Long
+
+    @Delete
+    suspend fun deleteAccount(account: Account)
 }

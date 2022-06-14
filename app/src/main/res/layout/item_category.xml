@@ -35,15 +35,7 @@
             android:text="@string/money_placeholder"
             android:textSize="17sp" />
 
-        <Button
-            android:id="@+id/button_delete_category"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:paddingStart="8dp"
-            android:visibility="gone"
-            app:icon="@drawable/ic_outline_delete_24"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp" />
+
 
         <ImageView
             android:id="@+id/button_expand"
