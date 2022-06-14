@@ -1,13 +1,12 @@
-package com.example.agedor;
+package com.example.agedor.data;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
 
 public class DBHandler extends SQLiteOpenHelper {

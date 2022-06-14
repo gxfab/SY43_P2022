@@ -1,4 +1,4 @@
-package com.example.agedor;
+package com.example.agedor.data;
 
 public class StorageDettes {
     public String date_dette;
