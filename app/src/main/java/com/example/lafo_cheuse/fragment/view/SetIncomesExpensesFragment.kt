@@ -1,12 +1,15 @@
 package com.example.lafo_cheuse.fragment.view
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
@@ -79,11 +82,30 @@ class SetIncomesExpensesFragment : Fragment() {
     private fun initializeRecyclerViewIncome(recyclerView: RecyclerView) {
         recyclerView?.layoutManager = LinearLayoutManager(activity)
         incomeAdapter = IncomeAdapter(context as Activity, object : IncomeAdapter.deleteButtonClickListener {
-                override fun onDeleteButtonClick(position: Int) {
-                    deleteIncomeItem(position)
+            override fun onDeleteButtonClick(position: Int) {
+                val alertDialog : AlertDialog.Builder = AlertDialog.Builder(activity)
+
+                with(alertDialog)
+                {
+                    alertDialog.setTitle("Suppression définitive")
+                    alertDialog.setMessage("Êtes-vous sûr de vouloir supprimer cet élément ?")
+                    alertDialog.setCancelable(true)
+
+                    val deleteIncomeItem = { dialog: DialogInterface, which: Int ->
+                        val item = incomeAdapter?.getItemAt(position)
+                        if (item != null) {
+                            incomeViewModel.deleteIncome(item)
+                            Toast.makeText(activity, "Suppression réussie", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+                    alertDialog.setPositiveButton("Oui", DialogInterface.OnClickListener(deleteIncomeItem))
+                    alertDialog.setNeutralButton("Annuler", DialogInterface.OnClickListener(cancel))
+                    show()
                 }
             }
-        )
+        })
         recyclerView?.adapter = incomeAdapter
         recyclerView?.setHasFixedSize(true)
 
@@ -96,7 +118,27 @@ class SetIncomesExpensesFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(activity)
         expenseAdapter = ExpenseAdapter(context as Activity, object : ExpenseAdapter.deleteButtonClickListener {
             override fun onDeleteButtonClick(position: Int) {
-                deleteExpenseItem(position)
+                val alertDialog : AlertDialog.Builder = AlertDialog.Builder(activity)
+
+                with(alertDialog)
+                {
+                    alertDialog.setTitle("Suppression définitive")
+                    alertDialog.setMessage("Êtes-vous sûr de vouloir supprimer cet élément ?")
+                    alertDialog.setCancelable(true)
+
+                    val deleteExpenseItem = { dialog: DialogInterface, which: Int ->
+                        val item = expenseAdapter?.getItemAt(position)
+                        if (item != null) {
+                            expenseViewModel.deleteExpense(item)
+                            Toast.makeText(activity,
+                                "Suppression réussie", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    alertDialog.setPositiveButton("Oui", DialogInterface.OnClickListener(deleteExpenseItem))
+                    alertDialog.setNeutralButton("Annuler", DialogInterface.OnClickListener(cancel))
+                    show()
+                }
             }
         })
         recyclerView?.adapter = expenseAdapter
@@ -114,10 +156,8 @@ class SetIncomesExpensesFragment : Fragment() {
         }
     }
 
-    private fun deleteExpenseItem(position: Int) {
-        val item = expenseAdapter?.getItemAt(position)
-        if (item != null) {
-            expenseViewModel.deleteExpense(item)
-        }
+    val cancel = { dialog: DialogInterface, which: Int ->
+        Toast.makeText(activity,
+            "Annulation de la suppression", Toast.LENGTH_LONG).show()
     }
 }
