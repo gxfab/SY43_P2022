@@ -23,7 +23,7 @@ interface IncomeDao {
     @Query("SELECT * FROM Income WHERE moneyChangeId = :moneyChangeId")
     fun getIncome(moneyChangeId : Long): LiveData<List<Income>>
 
-    @Query("SELECT * FROM Income WHERE frequency = :frequency ORDER BY date_year DESC,date_month DESC,date_day DESC")
+    @Query("SELECT * FROM Income WHERE frequency = :frequency ORDER BY date_year DESC,date_month DESC,date_day DESC, moneyChangeId DESC")
     fun getIncomesByFrequency(frequency: Frequency) : LiveData<List<Income>>
 
     @Query("SELECT * FROM Income WHERE frequency = :frequency AND date_year = :year AND date_month = :month ORDER BY date_year DESC,date_month DESC,date_day DESC")

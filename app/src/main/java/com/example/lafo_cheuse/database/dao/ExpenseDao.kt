@@ -12,7 +12,7 @@ interface ExpenseDao {
     @Query("SELECT * FROM Expense WHERE moneyChangeId = :moneyChangeId")
     fun getExpense(moneyChangeId : Long): LiveData<List<Expense>>
 
-    @Query("SELECT * FROM Expense WHERE frequency = :frequency ORDER BY date_year DESC,date_month DESC,date_day DESC")
+    @Query("SELECT * FROM Expense WHERE frequency = :frequency ORDER BY date_year DESC,date_month DESC,date_day DESC, moneyChangeId DESC")
     fun getExpensesByFrequency(frequency: Frequency) : LiveData<List<Expense>>
 
     @Query("SELECT * FROM Expense WHERE frequency = :frequency AND date_year = :year AND date_month = :month ORDER BY date_year DESC,date_month DESC,date_day DESC")
