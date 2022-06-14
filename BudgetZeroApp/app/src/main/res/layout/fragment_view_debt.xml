@@ -1,6 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".fragment.view.ViewDebtFragment" >
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textViewDebtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/debt_name" />
+
+        <TextView
+            android:id="@+id/textViewDebtNameEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_alignBottom="@+id/textViewDebtName"
+            android:layout_marginStart="140dp"
+            android:layout_marginBottom="-10dp" />
+
+        <TextView
+            android:id="@+id/textViewDebtMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDebtName"
+            android:layout_alignTop="@+id/textViewDebtName"
+            android:layout_marginTop="40dp"
+            android:text="@string/debt_month" />
+
+        <TextView
+            android:id="@+id/textViewDebtMonthEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/textViewDebtNameEntry"
+            android:layout_alignBottom="@+id/textViewDebtMonth"
+            android:layout_marginBottom="-10dp" />
+
+        <TextView
+            android:id="@+id/textViewDebtTotalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDebtMonth"
+            android:layout_alignTop="@+id/textViewDebtMonth"
+            android:layout_marginTop="40dp"
+            android:text="@string/debt_amount" />
+
+        <TextView
+            android:id="@+id/textViewDebtTotalAmountEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/textViewDebtMonthEntry"
+            android:layout_alignBottom="@+id/textViewDebtTotalAmount"
+            android:layout_marginBottom="-10dp" />
+
+        <TextView
+            android:id="@+id/textViewDebtRefunded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDebtTotalAmount"
+            android:layout_alignTop="@+id/textViewDebtTotalAmount"
+            android:layout_marginTop="40dp"
+            android:text="@string/debt_refunded" />
+
+        <TextView
+            android:id="@+id/textViewDebtRefundedEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/textViewDebtTotalAmountEntry"
+            android:layout_alignBottom="@+id/textViewDebtRefunded"
+            android:layout_marginBottom="-10dp" />
+
+        <TextView
+            android:id="@+id/textViewDebtExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDebtRefunded"
+            android:layout_alignTop="@+id/textViewDebtRefunded"
+            android:layout_marginTop="40dp"
+            android:text="@string/debt_expenses" />
+
+        <LinearLayout
+            android:id="@+id/layoutDebtExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDebtRefundedEntry"
+            android:layout_alignTop="@+id/textViewDebtExpenses"
+            android:orientation="vertical" >
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

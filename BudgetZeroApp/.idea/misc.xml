@@ -9,9 +9,17 @@
         <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_add_category.xml" value="0.18659420289855072" />
         <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_budget.xml" value="0.18659420289855072" />
         <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_cash_flow.xml" value="0.18659420289855072" />
+        <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_edit_debt.xml" value="0.16077898550724637" />
+        <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_edit_expense_cat.xml" value="0.16077898550724637" />
+        <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_edit_income_cat.xml" value="0.15670289855072464" />
+        <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_edit_saving_cat.xml" value="0.15670289855072464" />
         <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_expense.xml" value="0.18659420289855072" />
         <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_savings.xml" value="0.18659420289855072" />
         <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_select_expense_type.xml" value="0.18659420289855072" />
+        <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_view_debt.xml" value="0.33" />
+        <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_view_expense_cat.xml" value="0.22" />
+        <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_view_income_cat.xml" value="0.15670289855072464" />
+        <entry key="..\:/UTBM/GI02/SY43/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_view_saving_cat.xml" value="0.5" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2665" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2665" />
@@ -22,13 +30,6 @@
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/activity_savings.xml" value="0.264" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/toolbar.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/menu/menu.xml" value="0.4" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/drawable/ic_cash_flow.xml" value="0.251" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/drawable/ic_coffee.xml" value="0.251" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_budget.xml" value="0.20652173913043478" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_cash_flow.xml" value="0.20652173913043478" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_home.xml" value="0.20652173913043478" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_savings.xml" value="0.20652173913043478" />
-        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/progress_bar_cat.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroAppOLD/app/src/main/res/layout/activity_main.xml" value="0.25769927536231885" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroAppOLD/app/src/main/res/layout/fragment_budget.xml" value="0.25769927536231885" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroAppOLD/app/src/main/res/layout/fragment_cash_flow.xml" value="0.25769927536231885" />
@@ -39,12 +40,9 @@
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/activity_display_expense.xml" value="0.33" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/activity_select_expense_type.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_budget.xml" value="0.16875" />
-        <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_cash_flow_general.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_cash_flow_stable.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_edit_debt.xml" value="0.20380434782608695" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_edit_saving_cat.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_home.xml" value="0.10260416666666666" />
-        <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_savings.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_view_debt.xml" value="0.20380434782608695" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_view_expense_cat.xml" value="0.20380434782608695" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_view_income_cat.xml" value="0.20380434782608695" />
@@ -52,12 +50,7 @@
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/progress_bar_health.xml" value="0.10643115942028986" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/progress_bar_leisure.xml" value="0.10260416666666666" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/progress_bar_miscellaneous.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/sorting_budget.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/toolbar.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/toolbar_budget.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/toolbar_cashflow.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/toolbar_home.xml" value="0.19791666666666666" />
-        <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/upper_toolbar.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/menu/activity_select_expense_type.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/youri/OneDrive/Documents/GitHub/SY43_P2022/BudgetZeroApp/app/src/main/res/menu/display_expense.xml" value="0.27291666666666664" />
         <entry key="app/src/main/res/layout/fragment_add_category.xml" value="0.67" />

@@ -21,17 +21,24 @@
         <item>Cat3</item>
         <item>Cat4</item>
     </string-array>
+    <string name="exp_cat_click_sub">Subcategories</string>
+    <string name="exp_cat_expenses">Expenses</string>
 
     <string name="inc_cat_name">Category name</string>
+    <string name="inc_cat_list">Incomes list</string>
 
     <string name="debt_name">Debt name</string>
-    <string name="debt_month">Months left </string>
+    <string name="debt_month">Months left</string>
     <string name="debt_amount">Total amount</string>
+    <string name="debt_refunded">Refunded</string>
+    <string name="debt_expenses">Expenses list</string>
 
     <string name="save_cat_name">Category name</string>
     <string name="save_cat_goal">Goal amount</string>
+    <string name="save_cat_current">Current amount</string>
     <string name="save_cat_perc">Percentage allocated</string>
     <string name="save_cat_prio">Priority order</string>
+    <string name="save_cat_list">Savings list</string>
 
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
