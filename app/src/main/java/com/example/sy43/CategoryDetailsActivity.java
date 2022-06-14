@@ -120,8 +120,16 @@ public class CategoryDetailsActivity extends AppCompatActivity {
                 btnAddTransaction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (editTontant.getText().length() == 0) {
+                            Context context = getApplicationContext();
+                            CharSequence text = "Please enter a correct amount";
+                            int duration = Toast.LENGTH_SHORT;
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                            return;
+                        }
                         float montant = Float.parseFloat(editTontant.getText().toString());
-                        //Log.d("Test8", String.valueOf(categoryId));
                         SubCategory selectedSubCategory = null;
                         for (SubCategory _subCat : subCategories) {
                             if (_subCat.getSubCatName() == spinnerCategories.getSelectedItem().toString()) {

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="45dp"
+            android:text="Welcome"
+            android:textColor="#000"
+            android:textSize="40dp" />
+
+        <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:columnCount="2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/category"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:text="Categories"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerInside"
+                    android:scaleX="1"
+                    android:scaleY="1"
+                    android:src="@drawable/list" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:text="Add expense"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerInside"
+                    android:scaleX="1"
+                    android:scaleY="1"
+                    android:src="@drawable/add" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="15dp"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:text="Summary"
+                    android:textSize="20sp" />
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerInside"
+                    android:scaleX="1"
+                    android:scaleY="1"
+                    android:src="@drawable/summary" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="15dp"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:text="Preview"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerInside"
+                    android:scaleX="1"
+                    android:scaleY="1"
+                    android:src="@drawable/preview" />
+
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -51,7 +51,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_gravity="center|right"
-            android:background="@drawable/trash"/>
+            android:background="@drawable/trash" />
 
 
     </androidx.cardview.widget.CardView>

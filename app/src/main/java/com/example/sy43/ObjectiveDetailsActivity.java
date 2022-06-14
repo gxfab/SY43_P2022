@@ -10,12 +10,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sy43.db.entity.Categorydb;
+import com.example.sy43.db.entity.Transaction;
+import com.example.sy43.models.Category;
 import com.example.sy43.viewmodels.CategoryViewModel;
 import com.example.sy43.viewmodels.TransactionViewModel;
 
@@ -30,7 +33,6 @@ public class ObjectiveDetailsActivity extends AppCompatActivity {
         categoryViewModel.init();
         TransactionViewModel transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
         transactionViewModel.init();
-
         Bundle b = getIntent().getExtras();
         int categoryId = b.getInt("categoryId");
         categoryViewModel.getCategoryById(categoryId).observe(this, new Observer<Categorydb>() {
@@ -47,16 +49,40 @@ public class ObjectiveDetailsActivity extends AppCompatActivity {
                 price.setText("$" + receivedCategory.CurrentValue() + "/$" + receivedCategory.getMaxValue());
             }
         });
+        EditText editMontant = (EditText) findViewById(R.id.editMontant);
 
         final Button buttonPreview = findViewById(R.id.btnAddTransaction);
         buttonPreview.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if (editMontant.getText().length() == 0) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Please enter a correct amount";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
+                float montant = Float.parseFloat(editMontant.getText().toString());
+
                 Context context = getApplicationContext();
                 CharSequence text = "Transaction created.";
 
                 int duration = Toast.LENGTH_LONG;
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
+
+                Transaction transaction = new Transaction();
+                transaction.setSubCategory(-1);
+                transaction.setCategory(categoryId);
+                transaction.setValue(montant);
+                transaction.setDate(System.currentTimeMillis());
+                transactionViewModel.createTransaction(transaction);
+
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
             }
         });
 

@@ -2,6 +2,7 @@ package com.example.sy43;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,15 +28,16 @@ public class MainActivity extends AppCompatActivity {
         DB db = DB.getAppDatabase(getAppContext());
         DBexec databaseExecutor = DBexec.getExecutor();
 
-        setContentView(R.layout.activity_main);
-        final Button button = findViewById(R.id.category);
-        button.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_home);
+
+        final CardView cardView = findViewById(R.id.category);
+        cardView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), CategoryActivity.class);
                 v.getContext().startActivity(intent);
             }
         });
-
+        /*
         final Button buttonSummary = findViewById(R.id.summary);
         buttonSummary.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         });
+         */
     }
 
     public static Context getAppContext() {

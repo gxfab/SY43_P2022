@@ -96,6 +96,7 @@ public class TransactionRepository {
                     }
 
                     public void onFailure(@NonNull Throwable thrown) {
+                        Log.d("Test10", String.valueOf(thrown));
                     }
                 },
                 databaseExecutor
