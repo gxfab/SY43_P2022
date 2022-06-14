@@ -37,4 +37,8 @@ class OptionRepository(application: Application) {
     suspend fun updateOptionField(field : OptionField) = withContext(Dispatchers.IO) {
         optionFieldDao?.updateOptionField(field)
     }
+
+    suspend fun getOptionFieldsSync(option : Option) : List<OptionField>? {
+        return optionFieldDao?.getOptionFieldsSync(option.optionDescription)
+    }
 }
