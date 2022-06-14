@@ -1,6 +1,7 @@
 package com.example.sy43.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +48,9 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
         Transaction trans = getItem(position);
 
         if (trans != null) {
-            /* TODO
             TextView price = v.findViewById(R.id.tvCurrentPrice);
-            TextView name = v.findViewById(R.id.tvName);*/
+            TextView name = v.findViewById(R.id.tvName);
+            name.setText("Test");
         }
 
         return v;

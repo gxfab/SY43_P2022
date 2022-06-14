@@ -77,10 +77,11 @@ public class TransactionRepository {
                 new FutureCallback<List<Transaction>>() {
                     public void onSuccess(List<Transaction> result) {
                         data.postValue(result);
+                        Log.d("Test17", String.valueOf(result.size()));
                     }
 
                     public void onFailure(@NonNull Throwable thrown) {
-                    }
+                     }
                 },
                 databaseExecutor
         );

@@ -2,6 +2,8 @@ package com.example.sy43;
 
 import static com.example.sy43.MainActivity.getAppContext;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -48,8 +50,10 @@ public class TransactionSummary extends AppCompatActivity {
                         transVM);
                 ListView catLv = (ListView) findViewById(R.id.categoryListView);
                 catLv.setAdapter(transArrayAdapter);
-
             }
         });
+
+
+
     }
 }

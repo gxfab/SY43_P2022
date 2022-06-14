@@ -37,15 +37,14 @@ public class MainActivity extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         });
-        /*
-        final Button buttonSummary = findViewById(R.id.summary);
-        buttonSummary.setOnClickListener(new View.OnClickListener() {
+        final CardView cardSummary = findViewById(R.id.summaryCard);
+        cardSummary.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), TransactionSummary.class);
                 v.getContext().startActivity(intent);
             }
         });
-
+        /*
         final Button buttonPreview = findViewById(R.id.preview);
         buttonPreview.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -34,7 +34,7 @@ public class TransactionViewModel extends ViewModel {
         return transactionRepo.getTransactionsFromSubCat(subCatId);
     }
     public LiveData<List<Transaction>> getTransactions(){
-        return trans;
+         return transactionRepo.getTransactions();
     }
 
     public void createTransaction(final Transaction transaction) {
