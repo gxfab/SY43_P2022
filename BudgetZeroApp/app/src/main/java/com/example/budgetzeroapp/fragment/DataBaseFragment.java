@@ -22,11 +22,10 @@ public abstract class DataBaseFragment extends Fragment {
     public void setId(int id) {this.id = id;}
 
     public void message(String message) {
-        if (isAdded())
-            Toast.makeText(AppContext.getContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(AppContext.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    public void redirect(DataBaseFragment f) {MainActivity.getActivity().replaceFragment(f); }
+    public static void redirect(DataBaseFragment f) {MainActivity.getActivity().replaceFragment(f); }
 
     //public abstract int getToolBarID();
 }

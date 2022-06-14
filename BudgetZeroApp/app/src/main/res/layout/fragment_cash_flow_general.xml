@@ -11,23 +11,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
+        <ListView
+            android:id="@+id/expense_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@color/light_gray">
-
-            <include
-                layout="@layout/expense"/>
-            <include
-                layout="@layout/expense"/>
-            <include
-                layout="@layout/expense"/>
-            <include
-                layout="@layout/expense"/>
-            <include
-                layout="@layout/expense"/>
-        </LinearLayout>
+        </ListView>
     </ScrollView>
 
 </FrameLayout>

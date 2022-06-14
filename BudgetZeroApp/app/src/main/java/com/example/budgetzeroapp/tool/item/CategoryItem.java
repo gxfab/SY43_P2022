@@ -1,12 +1,19 @@
 package com.example.budgetzeroapp.tool.item;
 
+import android.database.Cursor;
+
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.BudgetFragment;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.savings.SavingsFragment;
 import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
+import com.example.budgetzeroapp.fragment.view.ViewIncomeCatFragment;
+import com.example.budgetzeroapp.tool.DBHelper;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryItem extends ListItem{
 
@@ -37,17 +44,49 @@ public class CategoryItem extends ListItem{
         }
     }
 
+    public static List<CategoryItem> initCategoryList(DBHelper database, boolean type){
+        Cursor rows = database.getMainExpCat();
+        List<CategoryItem> list = new ArrayList<>();
+        int id;
+        float amount, total, perOrBudget;
+        total = database.getSumExp();
+        String name;
+        rows.moveToFirst();
+        while (!rows.isAfterLast()) {
+            id = rows.getInt(rows.getColumnIndexOrThrow("id"));
+            name = rows.getString(rows.getColumnIndexOrThrow("name"));
+            amount = database.getSumCatExp(id);
+            if(type) perOrBudget = (100 * amount / total);
+            else perOrBudget = rows.getFloat(rows.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));
+            list.add(new CategoryItem(id, name, amount, perOrBudget));
+            rows.moveToNext();
+        }
+        if(type){
+            amount = database.getSumSav();
+            list.add(new CategoryItem(-1, "Savings", amount, (int)(100*amount/total)));
+            amount = database.getSumDebt();
+            list.add(new CategoryItem(0, "Debts", amount, (int)(100*amount/total)));
+        }
+
+        return list;
+    }
+
     public void redirect(){
-        if(id == -1 || id == 0) MainActivity.getActivity().bottomNavigationRedirect(R.id.Savings);
+        if(id == 0) redirect(DBHelper.TYPE_DEBT);
+        else if(id == -1) redirect(DBHelper.TYPE_SAV);
+        else redirect(DBHelper.TYPE_EXP);
+
+    }
+    public void redirect(int type){
+        if(type == DBHelper.TYPE_DEBT || type == DBHelper.TYPE_SAV)
+            MainActivity.getActivity().bottomNavigationRedirect(R.id.Savings);
+        if(type == DBHelper.TYPE_DEBT) DataBaseFragment.redirect(new SavingsFragment(false));
+        else if(type == DBHelper.TYPE_SAV) DataBaseFragment.redirect(new SavingsFragment(true));
+        else if(type == DBHelper.TYPE_INC) DataBaseFragment.redirect(new ViewIncomeCatFragment(id));
+        else DataBaseFragment.redirect(new ViewExpenseCatFragment(id));
     }
 
     public float getTotal(){ return total; }
     public float getPercent(){ return percentage; }
     public float getBudget(){ return budget; }
-
-    public DataBaseFragment getFragment(){
-        if(id == 0) return new SavingsFragment(false);
-        else if(id == -1) return new SavingsFragment();
-        return new ViewExpenseCatFragment(id);
-    }
 }

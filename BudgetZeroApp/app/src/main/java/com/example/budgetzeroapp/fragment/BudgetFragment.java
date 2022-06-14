@@ -47,8 +47,8 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
         // Inflate the layout for this fragment
          View view = inflater.inflate(R.layout.fragment_budget, container, false);
         list = view.findViewById(R.id.list_view_cat);
-        items = ClickableListManager.initCategoryList(database, false);
-        list = ClickableListManager.clickableCategoryList(list, items);
+        items = CategoryItem.initCategoryList(database, false);
+        list = ClickableListManager.clickableBudgetList(list, items);
         return view;
     }
 

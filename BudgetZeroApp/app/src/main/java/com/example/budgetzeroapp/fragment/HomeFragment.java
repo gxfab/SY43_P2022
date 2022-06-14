@@ -59,8 +59,8 @@ public class HomeFragment extends DataBaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<CategoryItem> items = ClickableListManager.initCategoryList(database, true);
-        list = ClickableListManager.clickableListPB(list, items);
+        List<CategoryItem> items = CategoryItem.initCategoryList(database, true);
+        list = ClickableListManager.clickableProgressBarList(list, items);
         setupPieChart();
         loadPieChartData(items);
     }

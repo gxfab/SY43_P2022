@@ -44,9 +44,13 @@ public class DateManager {
         return isLastMonthDay(dateToYear(d), dateToMonth(d), dateToDay(d));
     }
 
-    public String intDateToString(int date){
+    public static String intDateToString(int date){
         return Integer.toString(date%100)+"/"+
                 Integer.toString((date/100)%100)+"/"+
                 Integer.toString((date/10000)%100);
+    }
+
+    public static int dateToInt(int y, int m, int d){
+        return y*10000+m*100+d;
     }
 }

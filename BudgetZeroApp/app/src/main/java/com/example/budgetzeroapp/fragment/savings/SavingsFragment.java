@@ -58,6 +58,7 @@ public class SavingsFragment extends DataBaseFragment {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         if(!defaultTab) selectPage(2);
+        else selectPage(1);
     }
 
     public void selectPage(int pageIndex){

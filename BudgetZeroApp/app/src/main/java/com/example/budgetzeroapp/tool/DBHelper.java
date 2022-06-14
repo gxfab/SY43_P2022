@@ -60,7 +60,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SAV_CAT_COL_PERCENTAGE = "percentage";
     public static final String SAV_CAT_COL_PRIORITY_ORDER = "priority_order";
 
+
     public static final String REQ_SUM = "sum";
+    public static final String REQ_CAT_NAME = "cat_name";
 
     public static final int TYPE_EXP = 1;
     public static final int TYPE_INC = 2;
@@ -136,7 +138,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+")"+
                         " values ('Shopping'),('Vehicle'),('Leisure'),('Health'),('Miscellaneous');"
         );
-
+        db.execSQL(
+                "insert into "+EXP_TABLE_NAME+
+                        "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+")"+
+                        " values ('Courses soirée', 120, +"+TYPE_EXP+", 1);"
+        );
     }
 
     @Override
@@ -355,9 +361,29 @@ public class DBHelper extends SQLiteOpenHelper {
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
     }
 
-    public List<ExpenseItem> allExpensesToList(){
-        //TODO
-        return new ArrayList<>();
+    public String getNameFromEXPCursor(Cursor c, int type) {
+        String table;
+        int id;
+        switch(type){
+            case TYPE_EXP:
+                id = c.getInt(c.getColumnIndexOrThrow(EXP_COL_ID_EXP));
+                table = EXP_CAT_TABLE_NAME;
+                break;
+            case TYPE_INC:
+                id = c.getInt(c.getColumnIndexOrThrow(EXP_COL_ID_INC));
+                table = INC_CAT_TABLE_NAME;
+                break;
+            case TYPE_SAV:
+                id = c.getInt(c.getColumnIndexOrThrow(EXP_COL_ID_SAV));
+                table = SAV_CAT_TABLE_NAME;
+                break;
+            case TYPE_DEBT:
+                id = c.getInt(c.getColumnIndexOrThrow(EXP_COL_ID_DEBT));
+                table = DEBT_TABLE_NAME;
+                break;
+            default : return "";
+        }
+        return getNameFromID(id, table);
     }
 
     public Cursor getMainExpCat() {
@@ -399,44 +425,34 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getSavingsFromPriority(int priority) {
-        Cursor saving = getData(
+        return getData(
                 "select * from " + SAV_CAT_TABLE_NAME +
                         " where " + SAV_CAT_COL_PRIORITY_ORDER + "=" + priority);
-        saving.moveToFirst();
-        return saving;
     }
 
     public Cursor getAllSavingsCat() {
-        Cursor saving = getData("select * from " + SAV_CAT_TABLE_NAME);
-        saving.moveToFirst();
-        return saving;
+        return getData("select * from " + SAV_CAT_TABLE_NAME);
     }
 
     public Cursor getAllExpenses() {
-        Cursor saving = getData("select * from " + EXP_TABLE_NAME +
-                "order by " + EXP_COL_YEAR + " desc, " +
+        return getData("select * from " + EXP_TABLE_NAME +
+                " order by " + EXP_COL_YEAR + " desc, " +
                 EXP_COL_MONTH + " desc, " +
                 EXP_COL_DAY + " desc");
-        saving.moveToFirst();
-        return saving;
     }
 
     public Cursor getDateExpenses(int year, int month, int day) {
-        Cursor saving = getData("select * from " + EXP_TABLE_NAME +
+        return getData("select * from " + EXP_TABLE_NAME +
                 " where " + EXP_COL_DAY + " = " + day +
                 "and " + EXP_COL_MONTH + " = " + month +
                 "and " + EXP_COL_YEAR + " = " + year);
-        saving.moveToFirst();
-        return saving;
     }
 
     public Cursor getEndMonthExpenses(int year, int month, int day) {
-        Cursor saving = getData("select * from " + EXP_TABLE_NAME +
+        return getData("select * from " + EXP_TABLE_NAME +
                 " where " + EXP_COL_DAY + " <= " + day +
                 "and " + EXP_COL_MONTH + " = " + month +
                 "and " + EXP_COL_YEAR + " = " + year);
-        saving.moveToFirst();
-        return saving;
     }
 
     public int numberOfRows() {

@@ -10,6 +10,9 @@ import com.example.budgetzeroapp.fragment.view.ViewIncomeCatFragment;
 import com.example.budgetzeroapp.fragment.view.ViewSavingCatFragment;
 import com.example.budgetzeroapp.tool.DBHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListItem {
     protected int id;
     protected String name;
@@ -55,5 +58,23 @@ public class ListItem {
             default:
             case DBHelper.TYPE_CASH_FLOW: return new ViewExpenseFragment(id);
         }
+    }
+
+    public void redirect(){
+        //DataBaseFragment.redirect(new ViewExpenseFragment(id));
+    }
+
+    public static List<ListItem> cursorToSimpleList(Cursor rows){
+        List<ListItem> list = new ArrayList<>();
+        rows.moveToFirst();
+        int id;
+        String name;
+        while(!rows.isAfterLast()){
+            id = rows.getInt(rows.getColumnIndexOrThrow("id"));
+            name = rows.getString(rows.getColumnIndexOrThrow("name"));
+            list.add(new ListItem(id, name));
+            rows.moveToNext();
+        }
+        return list;
     }
 }
