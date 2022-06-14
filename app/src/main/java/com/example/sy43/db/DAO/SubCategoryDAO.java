@@ -18,7 +18,7 @@ public interface SubCategoryDAO{
     public ListenableFuture<Void> insert(SubCategory... subCategory);
 
     @Query("SELECT * FROM SubCategory WHERE SubCatID LIKE :SubCatID")
-    public ListenableFuture<List<SubCategory>> findByID(int SubCatID);
+    public ListenableFuture<SubCategory> findByID(int SubCatID);
 
     @Query("SELECT CurrentValue FROM SubCategory")
     public ListenableFuture<List<Float>> findValues();

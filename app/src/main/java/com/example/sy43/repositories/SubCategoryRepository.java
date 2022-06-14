@@ -31,7 +31,24 @@ public class SubCategoryRepository {
         databaseExecutor = DBexec.getExecutor();
     }
 
+    public MutableLiveData<SubCategory> getSubCategoryById(int id) {
+        MutableLiveData<SubCategory> data = new MutableLiveData<>();
 
+        Futures.addCallback(
+                db.SubCategoryDAO().findByID(id),
+                new FutureCallback<SubCategory>() {
+                    public void onSuccess(SubCategory result) {
+                        data.postValue(result);
+                    }
+
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                //MainActivity.getAppContext().getMainExecutor()
+                databaseExecutor
+        );
+        return data;
+    }
     public MutableLiveData<List<SubCategory>> getSubCategoriesByCatId(int id) {
         MutableLiveData<List<SubCategory>> data = new MutableLiveData<>();
 

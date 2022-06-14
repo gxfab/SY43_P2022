@@ -40,6 +40,7 @@ public class CreateActivity extends AppCompatActivity {
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
@@ -62,7 +63,7 @@ public class CreateActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {
                 final List<String> list = new ArrayList<String>();
-                for (Categorydb cat: receivedCategories) {
+                for (Categorydb cat : receivedCategories) {
                     list.add(cat.getCatName());
                 }
                 ArrayAdapter<String> adp1 = new ArrayAdapter<String>(context,
@@ -92,7 +93,7 @@ public class CreateActivity extends AppCompatActivity {
                     TextView name = (TextView) findViewById(R.id.txtCategory);
                     cat.setSubCatName(name.getText().toString());
                     //cat.setCategory();
-                    List<Categorydb> categories =  categoryViewModel.getCategories().getValue();
+                    List<Categorydb> categories = categoryViewModel.getCategories().getValue();
                     Categorydb parentCat = null;
                     for (Categorydb _cat : categories) {
                         if (_cat.getCatName() == spinnerChooseCategory.getSelectedItem().toString()) {
@@ -105,7 +106,7 @@ public class CreateActivity extends AppCompatActivity {
                     cat.setCategory(parentCat.getCatID());
                     subCategoryViewModel.createSubCategory(cat);
                 }
-                 Intent intent = new Intent(v.getContext(), CategoryActivity.class);
+                Intent intent = new Intent(v.getContext(), CategoryActivity.class);
                 v.getContext().startActivity(intent);
             }
         });
@@ -129,7 +130,7 @@ public class CreateActivity extends AppCompatActivity {
             }
         });
 
-         visibilitySubcategoryFields(View.INVISIBLE);
+        visibilitySubcategoryFields(View.INVISIBLE);
         subSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -149,6 +150,7 @@ public class CreateActivity extends AppCompatActivity {
 
 
     }
+
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);

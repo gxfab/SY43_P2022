@@ -5,6 +5,7 @@ import static com.example.sy43.MainActivity.getAppContext;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -18,8 +19,10 @@ import com.example.sy43.db.entity.Transaction;
 import com.example.sy43.db.mainDB.DB;
 import com.example.sy43.db.mainDB.DBexec;
 import com.example.sy43.viewmodels.CategoryViewModel;
+import com.example.sy43.viewmodels.SubCategoryViewModel;
 import com.example.sy43.viewmodels.TransactionViewModel;
 
+import java.util.Collections;
 import java.util.List;
 
 public class TransactionSummary extends AppCompatActivity {
@@ -39,15 +42,23 @@ public class TransactionSummary extends AppCompatActivity {
         super.onResume();
         transVM = new ViewModelProvider(this).get(TransactionViewModel.class);
         transVM.init();
+        CategoryViewModel categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
+        categoryViewModel.init();
+        SubCategoryViewModel subCategoryViewModel = new ViewModelProvider(this).get(SubCategoryViewModel.class);
+        subCategoryViewModel.init();
+        LifecycleOwner owner = this;
+
         transVM.getTransactions().observe(this, new Observer<List<Transaction>>() {
             @Override
             public void onChanged(List<Transaction> receivedTransactions) {
                 // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
+                Collections.reverse(receivedTransactions);
                 TransactionAdapter transArrayAdapter = new TransactionAdapter(
                         TransactionSummary.this,
-                        R.layout.category_list_item,
+                        owner,
+                        R.layout.transaction_list_item,
                         receivedTransactions,
-                        transVM);
+                        transVM, categoryViewModel, subCategoryViewModel);
                 ListView catLv = (ListView) findViewById(R.id.categoryListView);
                 catLv.setAdapter(transArrayAdapter);
             }

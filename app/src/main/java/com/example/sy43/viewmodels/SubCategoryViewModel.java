@@ -2,6 +2,7 @@ package com.example.sy43.viewmodels;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -21,6 +22,10 @@ public class SubCategoryViewModel extends ViewModel {
     public MutableLiveData<List<SubCategory>> getSubCategoriesByCatId(int catId){
         return subCatRepo.getSubCategoriesByCatId(catId);
 
+    }
+
+    public LiveData<SubCategory> getSubCategoryById(int id){
+        return this.subCatRepo.getSubCategoryById(id);
     }
     public void createSubCategory(final SubCategory subCategory) {
         this.subCatRepo.createSubCategory(subCategory);
