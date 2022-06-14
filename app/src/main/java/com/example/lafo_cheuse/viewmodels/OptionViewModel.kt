@@ -30,6 +30,10 @@ class OptionViewModel(application : Application) : AndroidViewModel(application)
         return repository.getOptionFields(option)
     }
 
+    suspend fun getOptionFieldsSync(option : Option) : List<OptionField>? {
+        return repository.getOptionFieldsSync(option)
+    }
+
     fun updateOptionField(field : OptionField) = viewModelScope.launch {
         repository.updateOptionField(field)
     }
