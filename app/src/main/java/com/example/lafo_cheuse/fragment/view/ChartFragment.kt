@@ -96,6 +96,19 @@ class ChartFragment : Fragment() {
     }
 
     /**
+     * Function to reset the graphic currently displayed
+     *
+     */
+    private fun resetGraph() {
+        chartView!!.fitScreen()
+        chartView!!.data?.clearValues()
+        chartView!!.xAxis.valueFormatter = null
+        chartView!!.notifyDataSetChanged()
+        chartView!!.clear()
+        chartView!!.invalidate()
+    }
+
+    /**
      * Method to configure the chart appearance. We use a specific renderer in this method.
      *
      * @param chartMaximum - a [Float] which set the maximum value of the gauge
@@ -177,6 +190,8 @@ class ChartFragment : Fragment() {
             expenseViewModel.getOneTimeExpensesSumForCategoryAndMonth(category,today.year,today.month).observe(viewLifecycleOwner) { currentValue ->
                 if(!(currentValue.isEmpty() || maximumExpense.isEmpty())) {
                     createGraph(convertExpensesInList(currentValue[0]),maximumExpense[0].totalAmount.toFloat())
+                } else {
+                    resetGraph()
                 }
             }
         }
