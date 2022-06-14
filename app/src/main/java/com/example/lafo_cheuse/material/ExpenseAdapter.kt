@@ -1,6 +1,7 @@
 package com.example.lafo_cheuse.material
 
 import android.app.Activity
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,11 @@ import com.example.lafo_cheuse.models.Expense
 import java.util.*
 import kotlin.math.exp
 
-class ExpenseAdapter (var context : Activity, val itemClickListener: DeleteButtonClickListener) : RecyclerView.Adapter<ExpenseAdapter.ViewHolder>() {
+class ExpenseAdapter (
+    var context : Activity,
+    private val itemClickListener: DeleteButtonClickListener,
+    val resources: Resources
+    ) : RecyclerView.Adapter<ExpenseAdapter.ViewHolder>() {
     private var mExpense: List<Expense> = ArrayList<Expense>()
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ieName: TextView = itemView.findViewById(R.id.ie_name)
@@ -32,10 +37,10 @@ class ExpenseAdapter (var context : Activity, val itemClickListener: DeleteButto
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val expense: Expense = mExpense[position]
-        holder.ieName.setText(expense.name)
+        holder.ieName.text = expense.name
         holder.categoryEmojiButton.text = expense.category?.categoryEmoji
-        holder.ieValue.setText(expense.amount.toString())
-        holder.ieDate.setText(expense.dateDay.toString()+"/"+expense.dateMonth.toString()+"/"+expense.dateYear.toString())
+        holder.ieValue.text = resources.getString(R.string.sum,-expense.amount)
+        holder.ieDate.text = resources.getString(R.string.date,expense.dateDay,expense.dateMonth,expense.dateYear)
 
         holder.deleteButton.setOnClickListener {
             itemClickListener.onDeleteButtonClick(position)

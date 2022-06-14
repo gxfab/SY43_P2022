@@ -1,7 +1,7 @@
 package com.example.lafo_cheuse.material
 
 import android.app.Activity
-import android.system.Os.remove
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,11 @@ import com.example.lafo_cheuse.models.Income
 import java.util.ArrayList
 
 
-class IncomeAdapter (var context : Activity, val itemClickListener: DeleteButtonClickListener) : RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
+class IncomeAdapter (
+    var context : Activity,
+    val itemClickListener: DeleteButtonClickListener,
+    val resources : Resources
+    ) : RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
     private var mIncome: List<Income> = ArrayList<Income>()
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ieName: TextView = itemView.findViewById(R.id.ie_name)
@@ -33,10 +37,10 @@ class IncomeAdapter (var context : Activity, val itemClickListener: DeleteButton
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val income: Income = mIncome[position]
-        holder.ieName.setText(income.name)
+        holder.ieName.text = income.name
         holder.categoryEmojiButton.text = income.category?.categoryEmoji
-        holder.ieValue.setText(income.amount.toString())
-        holder.ieDate.setText(income.dateDay.toString()+"/"+income.dateMonth.toString()+"/"+income.dateYear.toString())
+        holder.ieValue.text = resources.getString(R.string.sum,income.amount)
+        holder.ieDate.text = resources.getString(R.string.date,income.dateDay,income.dateMonth,income.dateYear)
         holder.deleteButton.setOnClickListener {
             itemClickListener.onDeleteButtonClick(position)
             notifyDataSetChanged()
