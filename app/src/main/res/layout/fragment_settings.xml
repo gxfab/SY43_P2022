@@ -174,6 +174,7 @@
                     android:layout_marginEnd="25dp"/>
 
                 <Button
+                    android:id="@+id/option_populate_db_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/yellow"
@@ -189,6 +190,7 @@
                     android:layout_marginEnd="10dp"/>
 
                 <Button
+                    android:id="@+id/option_delete_db_button"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:backgroundTint="@color/red"
