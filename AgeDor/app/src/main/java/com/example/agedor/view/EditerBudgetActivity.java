@@ -1,14 +1,16 @@
-package com.example.agedor;
+package com.example.agedor.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class NouvelleDepenseActivity extends AppCompatActivity {
+import com.example.agedor.R;
+
+public class EditerBudgetActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nouvelle_depense);
+        setContentView(R.layout.editer_budget);
     }
 }

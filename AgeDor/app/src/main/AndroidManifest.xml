@@ -10,23 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgeDor">
         <activity
-            android:name=".MesProjetsActivity"
+            android:name=".view.EditerBudgetActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".EditerBudgetActivity"
+            android:name=".view.NouvelleDepenseActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".NouvelleDepenseActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".ConsulterDepensesActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".SuivreBudgetActivity"
+            android:name=".view.ConsulterDepensesActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ConsulterDepensesActivity">
+
+    <TextView
+        android:id="@+id/titreConsulterDepenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/consulterMesDepenses"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="58dp" />
+
+    <TextView
+        android:id="@+id/titreConsulterDepenses2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contenu des enveloppes"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="126dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="313dp"
+        android:layout_height="482dp"
+        android:layout_marginStart="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="173dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

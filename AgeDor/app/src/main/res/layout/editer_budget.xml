@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NouvelleDepenseActivity">
+    tools:context=".view.EditerBudgetActivity">
 
     <TextView
-        android:id="@+id/titreNouvelleDepense"
+        android:id="@+id/titreEditerBudget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nouvelleDepense"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="53dp" />
+        android:text="@string/editerLeBudget"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="62dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
