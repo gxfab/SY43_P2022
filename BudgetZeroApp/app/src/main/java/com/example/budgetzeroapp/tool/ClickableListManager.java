@@ -21,14 +21,14 @@ import java.util.List;
 public class ClickableListManager {
 
     /**public static ListView clickableList(View view, int listViewID,int layout,
-                                  List<ListItem> items, DataBaseFragment frag){
-        return clickableList((ListView) view.findViewById(listViewID), new SimpleListAdapter(layout, items), frag);
-    }
+     List<ListItem> items, DataBaseFragment frag){
+     return clickableList((ListView) view.findViewById(listViewID), new SimpleListAdapter(layout, items), frag);
+     }
 
-    public static ListView clickableList(
-            ListView list, int layout, List<ListItem> items, DataBaseFragment frag) {
-        return clickableList(list, new SimpleListAdapter(layout, items), frag);
-    }**/
+     public static ListView clickableList(
+     ListView list, int layout, List<ListItem> items, DataBaseFragment frag) {
+     return clickableList(list, new SimpleListAdapter(layout, items), frag);
+     }**/
 
     public static ListView clickableBudgetList(ListView list, List<CategoryItem> items){
         return clickableList(list, new BudgetAdapter(items));
@@ -51,26 +51,26 @@ public class ClickableListManager {
         return list;
     }
     /**
-    public static Spinner clickableSpinner(View view, int SpinnerID,int layout,
-                                  List<ListItem> items, DataBaseFragment frag){
-        return clickableSpinner((Spinner) view.findViewById(SpinnerID), new SimpleListAdapter(layout, items), frag);
-    }
+     public static Spinner clickableSpinner(View view, int SpinnerID,int layout,
+     List<ListItem> items, DataBaseFragment frag){
+     return clickableSpinner((Spinner) view.findViewById(SpinnerID), new SimpleListAdapter(layout, items), frag);
+     }
 
-    public static Spinner clickableSpinner(
-            Spinner list, int layout,
-            List<ListItem> items, DataBaseFragment frag) {
-        return clickableSpinner(list, new SimpleListAdapter(layout, items), frag);
-    }
+     public static Spinner clickableSpinner(
+     Spinner list, int layout,
+     List<ListItem> items, DataBaseFragment frag) {
+     return clickableSpinner(list, new SimpleListAdapter(layout, items), frag);
+     }
 
-    public static Spinner clickableSpinner(Spinner list, ArrayAdapter<ListItem> adapter, DataBaseFragment frag){
-        list.setAdapter(adapter);
-        list.setOnItemClickListener((parent, v, position, id) -> {
-            ListItem item = (ListItem)list.getItemAtPosition(position);
-            frag.setId(item.getId());
-            frag.redirect(frag);
-        });
-        return list;
-    }
+     public static Spinner clickableSpinner(Spinner list, ArrayAdapter<ListItem> adapter, DataBaseFragment frag){
+     list.setAdapter(adapter);
+     list.setOnItemClickListener((parent, v, position, id) -> {
+     ListItem item = (ListItem)list.getItemAtPosition(position);
+     frag.setId(item.getId());
+     frag.redirect(frag);
+     });
+     return list;
+     }
      **/
 
 }

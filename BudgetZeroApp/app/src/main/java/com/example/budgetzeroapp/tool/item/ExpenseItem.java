@@ -89,6 +89,4 @@ public class ExpenseItem extends ListItem {
     public int getDate(){return date;}
     public String getCategoryName(){ return categoryName; }
     public float getAmount(){ return amount; }
-
-
 }

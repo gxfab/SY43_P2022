@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -58,7 +59,10 @@ public class SavingsFragment extends DataBaseFragment {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         if(!defaultTab) selectPage(2);
-        else selectPage(1);
+
+        /**Setting toolbar title**/
+        Toolbar toolbar = view.findViewById(R.id.toolbar_savings);
+        toolbar.setTitle("Savings");
     }
 
     public void selectPage(int pageIndex){

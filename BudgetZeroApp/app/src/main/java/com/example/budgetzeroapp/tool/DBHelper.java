@@ -115,25 +115,25 @@ public class DBHelper extends SQLiteOpenHelper {
                         ");"
         );
         db.execSQL(
-             "create table " + EXP_TABLE_NAME +
-             "(" + EXP_COL_ID + " integer primary key autoincrement, " +
-             EXP_COL_DAY + " integer default " + DateManager.dateToDay(new Date()) + ", " +
-             EXP_COL_MONTH + " integer default " + DateManager.dateToMonth(new Date()) + ", " +
-             EXP_COL_YEAR + " integer default " + DateManager.dateToYear(new Date()) + ", " +
-             EXP_COL_AMOUNT + " real not null, " +
-             EXP_COL_LABEL + " text, " +
-             EXP_COL_IS_STABLE + " integer default 0, " +
-             EXP_COL_TYPE + " integer not null default 1, " +
-             EXP_COL_ID_EXP + " integer default null, " +
-             EXP_COL_ID_DEBT + " integer default null, " +
-             EXP_COL_ID_INC + " integer default null, " +
-             EXP_COL_ID_SAV + " integer default null," +
-             "foreign key(" + EXP_COL_ID_EXP + ") references " + EXP_CAT_TABLE_NAME + "(id)," +
-             "foreign key(" + EXP_COL_ID_DEBT + ") references " + DEBT_TABLE_NAME + "(id)," +
-             "foreign key(" + EXP_COL_ID_INC + ") references " + INC_CAT_TABLE_NAME + "(id)," +
-             "foreign key(" + EXP_COL_ID_SAV + ") references " + SAV_CAT_TABLE_NAME + "(id)" +
-             ");"
-         );
+                "create table " + EXP_TABLE_NAME +
+                        "(" + EXP_COL_ID + " integer primary key autoincrement, " +
+                        EXP_COL_DAY + " integer default " + DateManager.dateToDay(new Date()) + ", " +
+                        EXP_COL_MONTH + " integer default " + DateManager.dateToMonth(new Date()) + ", " +
+                        EXP_COL_YEAR + " integer default " + DateManager.dateToYear(new Date()) + ", " +
+                        EXP_COL_AMOUNT + " real not null, " +
+                        EXP_COL_LABEL + " text, " +
+                        EXP_COL_IS_STABLE + " integer default 0, " +
+                        EXP_COL_TYPE + " integer not null default 1, " +
+                        EXP_COL_ID_EXP + " integer default null, " +
+                        EXP_COL_ID_DEBT + " integer default null, " +
+                        EXP_COL_ID_INC + " integer default null, " +
+                        EXP_COL_ID_SAV + " integer default null," +
+                        "foreign key(" + EXP_COL_ID_EXP + ") references " + EXP_CAT_TABLE_NAME + "(id)," +
+                        "foreign key(" + EXP_COL_ID_DEBT + ") references " + DEBT_TABLE_NAME + "(id)," +
+                        "foreign key(" + EXP_COL_ID_INC + ") references " + INC_CAT_TABLE_NAME + "(id)," +
+                        "foreign key(" + EXP_COL_ID_SAV + ") references " + SAV_CAT_TABLE_NAME + "(id)" +
+                        ");"
+        );
         db.execSQL(
                 "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+")"+
                         " values ('Shopping'),('Vehicle'),('Leisure'),('Health'),('Miscellaneous');"

@@ -24,6 +24,7 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
 
     public EditSavingCatFragment(){ super(); }
     public EditSavingCatFragment(int id){ super(id); }
+
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_saving_cat, parent, false);

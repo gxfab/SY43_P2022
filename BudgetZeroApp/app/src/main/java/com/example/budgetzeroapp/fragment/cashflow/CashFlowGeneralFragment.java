@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
-import com.example.budgetzeroapp.fragment.view.ViewExpenseFragment;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
 import com.example.budgetzeroapp.tool.item.ExpenseItem;
@@ -32,6 +31,11 @@ public class CashFlowGeneralFragment extends DataBaseFragment{
 
     public CashFlowGeneralFragment() { super(); }
 
+
+    public static CashFlowGeneralFragment newInstance(String param1, String param2) {
+        return  new CashFlowGeneralFragment();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +44,16 @@ public class CashFlowGeneralFragment extends DataBaseFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cash_flow_general, null, false);
-        list = view.findViewById(R.id.expense_list);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_cash_flow_general, container, false);
+        //list = view.findViewById(R.id.expense_list);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        items = ExpenseItem.allExpensesToList(database);
-        list = ClickableListManager.clickableExpenseList(list, items);
-     }
+       /* items = ExpenseItem.allExpensesToList(database);
+        list = ClickableListManager.clickableExpenseList(list, items);*/
+    }
 }

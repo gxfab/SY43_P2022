@@ -4,6 +4,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.text.Layout;
@@ -30,50 +34,29 @@ public class MainActivity extends OptionsMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         activity = this;
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
 
-        /**Menu**/
-        inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-            updateUpperToolBar(item.getItemId());
-            return true;
-        });
+        /**Navigation**/
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
     }
 
-
-    public void updateUpperToolBar(int id){
-        View childLayout;
-        if(id == R.id.Home){
-            replaceFragment(new HomeFragment());
-            childLayout = inflater.inflate(R.layout.toolbar_home, (ViewGroup)findViewById(R.id.toolbar_home));
-        }else if(id == R.id.Budget){
-            replaceFragment(new BudgetFragment());
-            childLayout = inflater.inflate(R.layout.toolbar_budget, (ViewGroup)findViewById(R.id.toolbar_budget));
-        }else if(id == R.id.CashFlow){
-            replaceFragment(new CashFlowFragment());
-            childLayout = inflater.inflate(R.layout.toolbar_cashflow, (ViewGroup)findViewById(R.id.toolbar_cashflow));
-        }else{
-            replaceFragment(new SavingsFragment());
-            childLayout = inflater.inflate(R.layout.toolbar_savings, (ViewGroup)findViewById(R.id.toolbar_savings));
-        }
-        LinearLayout appbar = (LinearLayout) findViewById(R.id.appBarLayout);
-        appbar.removeAllViewsInLayout();
-        appbar.addView(childLayout);
-    }
 
     public void bottomNavigationRedirect(int id){
         binding.bottomNavigationView.setSelectedItemId(id);
     }
 
-    public void replaceFragment(DataBaseFragment frag){
+    public void replaceFragment(DataBaseFragment frag) {
         FragmentManager fragManager = getSupportFragmentManager();
         FragmentTransaction fragTransaction = fragManager.beginTransaction();
-        fragTransaction.replace(R.id.frame_layout,frag);
+        fragTransaction.replace(R.id.frame_layout, frag);
         fragTransaction.commit();
-        //frag.getToolBarID();
+        //int id = frag.getToolBarID();
     }
 
     public static MainActivity getActivity() {

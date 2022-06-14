@@ -6,11 +6,18 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +37,13 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 
 public class HomeFragment extends DataBaseFragment {
-
     private PieChart pieChart;
     private ListView list;
 
     public HomeFragment() {
         super();
     }
+
 
     public static HomeFragment newInstance(String param1, String param2) {
         return new HomeFragment();
@@ -51,18 +58,27 @@ public class HomeFragment extends DataBaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        list = view.findViewById(R.id.list_view_cat);
-        pieChart = view.findViewById(R.id.pie_chart);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        list = view.findViewById(R.id.list_view_cat);
+        pieChart = view.findViewById(R.id.pie_chart);
+
         super.onViewCreated(view, savedInstanceState);
-        List<CategoryItem> items = CategoryItem.initCategoryList(database, true);
+        /*List<CategoryItem> items = ClickableListManager.initCategoryList(database, true);
         list = ClickableListManager.clickableProgressBarList(list, items);
         setupPieChart();
-        loadPieChartData(items);
+        loadPieChartData(items);*/
+
+        /**Navigation**/
+
+
+        /**Setting toolbar title**/
+        Toolbar tool = view.findViewById(R.id.toolbar_home);
+        tool.setTitle("Home");
+
     }
 
 

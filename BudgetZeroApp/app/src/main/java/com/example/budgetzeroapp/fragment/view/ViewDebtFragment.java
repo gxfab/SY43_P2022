@@ -31,6 +31,7 @@ public class ViewDebtFragment extends DataBaseFragment {
     public ViewDebtFragment(){ super(); }
     public ViewDebtFragment(int id){ super(id); }
 
+
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_view_debt, parent, false);
         name = view.findViewById(R.id.textViewDebtNameEntry);

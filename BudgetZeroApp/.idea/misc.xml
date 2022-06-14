@@ -32,6 +32,30 @@
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/activity_savings.xml" value="0.264" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/layout/toolbar.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/BudgetZeroApp/app/src/main/res/menu/menu.xml" value="0.4" />
+<<<<<<< Updated upstream
+=======
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/drawable/ic_cash_flow.xml" value="0.251" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/drawable/ic_coffee.xml" value="0.251" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/category.xml" value="0.2504528985507246" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_add_category.xml" value="0.2504528985507246" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_add_categoryragment.xml" value="0.2504528985507246" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_budget.xml" value="0.264" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_cash_flow.xml" value="0.20652173913043478" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_edit_debt.xml" value="0.2504528985507246" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_home.xml" value="0.20652173913043478" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/fragment_savings.xml" value="0.20652173913043478" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/progress_bar_cat.xml" value="0.23822463768115942" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/toolbar_add_category.xml" value="0.2504528985507246" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/toolbar_budget.xml" value="0.264" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/toolbar_cashflow.xml" value="0.2" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/toolbar_home.xml" value="0.16259057971014493" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/layout/toolbar_savings.xml" value="0.16259057971014493" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/menu/budget_menu.xml" value="0.264" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/menu/cash_flow_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/menu/home_menu.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroApp/app/src/main/res/menu/savings_menu.xml" value="0.27447916666666666" />
+>>>>>>> Stashed changes
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroAppOLD/app/src/main/res/layout/activity_main.xml" value="0.25769927536231885" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroAppOLD/app/src/main/res/layout/fragment_budget.xml" value="0.25769927536231885" />
         <entry key="..\:/Users/Leo/Desktop/UTBM/BR02/SY43/TPs/SY43_P2022/BudgetZeroAppOLD/app/src/main/res/layout/fragment_cash_flow.xml" value="0.25769927536231885" />

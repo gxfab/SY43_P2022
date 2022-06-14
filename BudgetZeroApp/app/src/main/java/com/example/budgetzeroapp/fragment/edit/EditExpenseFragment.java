@@ -35,6 +35,8 @@ public class EditExpenseFragment extends EditDataBaseFragment {
         super(id);
         type = 0;
     }
+
+
     public EditExpenseFragment(int id, int type){
         super(id);
         this.type=type;

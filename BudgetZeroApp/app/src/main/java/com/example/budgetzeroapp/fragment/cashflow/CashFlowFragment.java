@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -23,6 +24,11 @@ public class CashFlowFragment extends DataBaseFragment {
         // Required empty public constructor
     }
 
+    public static CashFlowFragment newInstance(String param1, String param2) {
+        CashFlowFragment fragment = new CashFlowFragment();
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -40,6 +46,10 @@ public class CashFlowFragment extends DataBaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         addFragment(view);
+
+        /**Setting toolbar title**/
+        Toolbar toolbar = view.findViewById(R.id.toolbar_cashflow);
+        toolbar.setTitle("Cash Flow");
     }
 
     private void addFragment(View view)
