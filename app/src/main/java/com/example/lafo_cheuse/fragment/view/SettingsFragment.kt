@@ -11,10 +11,13 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.models.Option
 import com.example.lafo_cheuse.models.OptionField
 import com.example.lafo_cheuse.viewmodels.OptionViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * Fragment where the options and references are displayed.
@@ -26,6 +29,7 @@ import com.example.lafo_cheuse.viewmodels.OptionViewModel
  * @property optionNotification - [Option] where the current notifications chosen are stored
  * @property optionNotificationSum - [Option] where the current sum of one of the notification is stored
  * @property optionBudget - [Option] where the day to start the new budget is stored
+ * @property optionPopulate - [Option] that indicates if the database has been populated or not
  *
  */
 class SettingsFragment : Fragment() {
@@ -34,6 +38,7 @@ class SettingsFragment : Fragment() {
     var optionNotification : Option? = null
     var optionNotificationSum : Option? = null
     var optionBudget : Option? = null
+    var optionPopulate : Option? = null
 
     /**
      * Initialization of the view. We will link our widgets to the database using this function.
@@ -55,6 +60,8 @@ class SettingsFragment : Fragment() {
         val themeSetter : RadioGroup = view.findViewById(R.id.option_radiobutton)
         val optionNextIncomeNotification : CheckBox = view.findViewById(R.id.option_next_income_notification)
         val optionBelowSumNotification : CheckBox = view.findViewById(R.id.option_below_sum_notification)
+        val optionPopulateDBButton : Button = view.findViewById(R.id.option_populate_db_button)
+        val optionDeleteDBButton : Button = view.findViewById(R.id.option_delete_db_button)
 
         optionViewModel.getOptions()?.observe(viewLifecycleOwner) { optionList ->
             for(option in optionList) {
@@ -71,11 +78,15 @@ class SettingsFragment : Fragment() {
                     "option_budget" -> {
                         optionBudget = option
                     }
+                    "option_populate" -> {
+                        optionPopulate = option
+                    }
                 }
             }
             setupSpinner(optionSpinner, optionBudget!!)
             setupThemeSetter(themeSetter,optionTheme!!)
             setupNotificationSetter(optionNextIncomeNotification,optionBelowSumNotification, optionNotification!!)
+            setupDatabasePopulation(optionPopulateDBButton,optionDeleteDBButton, optionPopulate!!)
         }
 
         optionIcon.movementMethod = LinkMovementMethod.getInstance()
@@ -83,6 +94,42 @@ class SettingsFragment : Fragment() {
 
 
         return view
+    }
+
+    /**
+     * Setup the buttons that are charged to delete or populate the database for a demo.
+     *
+     * @param optionPopulateDBButton - [Button] that let the user populate the database with some data to show a demo
+     * @param optionDeleteDBButton - [Button] that let the user delete all the data added by the [optionPopulateDBButton]
+     * @param option - [Option] that manage the state of the database (populated or not)
+     */
+    private fun setupDatabasePopulation(optionPopulateDBButton: Button, optionDeleteDBButton: Button, option : Option) {
+        optionViewModel.getOptionFields(option)?.observe(viewLifecycleOwner) { fields ->
+            val isPopulated : Boolean = fields[0].chosen
+            if(isPopulated) {
+                optionDeleteDBButton.isEnabled = true
+                optionPopulateDBButton.isEnabled = false
+            } else {
+                optionDeleteDBButton.isEnabled = false
+                optionPopulateDBButton.isEnabled = true
+            }
+        }
+
+        optionDeleteDBButton.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val optionField : List<OptionField>? = optionViewModel.getOptionFieldsSync(option)
+                optionField?.get(0)?.chosen = !optionField?.get(0)!!.chosen
+                optionViewModel.updateOptionField(optionField[0])
+            }
+        }
+
+        optionPopulateDBButton.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val optionField : List<OptionField>? = optionViewModel.getOptionFieldsSync(option)
+                optionField?.get(0)?.chosen = !optionField?.get(0)!!.chosen
+                optionViewModel.updateOptionField(optionField[0])
+            }
+        }
     }
 
     /**
