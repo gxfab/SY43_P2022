@@ -20,10 +20,10 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS CATEGORIES (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS DEPENSES (ID_DEPENSES INTEGER PRIMARY KEY AUTOINCREMENT, ID_CAT INTEGER, DATE_DEPENSES TEXT, NOM TEXT, MONTANT DECIMAL, FOREIGN KEY (ID_CAT) REFERENCES CATEGORIES(ID));");
-        db.execSQL("CREATE TABLE IF NOT EXISTS REVENUS (ID_REVENUS INTEGER PRIMARY KEY AUTOINCREMENT, ID_CAT INTEGER, DATE_REVENUS TEXT, NOM TEXT, MONTANT DECIMAL, FOREIGN KEY (ID_CAT) REFERENCES CATEGORIES(ID));");
-        db.execSQL("CREATE TABLE IF NOT EXISTS DETTES (ID_DETTES INTEGER PRIMARY KEY AUTOINCREMENT, DATE_DETTE TEXT, NOM TEXT, MONTANT DECIMAL);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS EXTRA (ID_EXTRA INTEGER PRIMARY KEY AUTOINCREMENT, DATE_EXTRA TEXT, NOM TEXT, MONTANT DECIMAL);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS DEPENSES (ID_DEPENSES INTEGER PRIMARY KEY AUTOINCREMENT, ID_CAT INTEGER, DATE TEXT, NOM TEXT, MONTANT DECIMAL, FOREIGN KEY (ID_CAT) REFERENCES CATEGORIES(ID));");
+        db.execSQL("CREATE TABLE IF NOT EXISTS REVENUS (ID_REVENUS INTEGER PRIMARY KEY AUTOINCREMENT, DATE TEXT, NOM TEXT, MONTANT DECIMAL);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS DETTES (ID_DETTES INTEGER PRIMARY KEY AUTOINCREMENT, DATE TEXT, NOM TEXT, MONTANT DECIMAL);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS EXTRA (ID_EXTRA INTEGER PRIMARY KEY AUTOINCREMENT, DATE TEXT, NOM TEXT, MONTANT DECIMAL);");
         db.execSQL("CREATE TABLE IF NOT EXISTS PROJETS (ID_PROJETS INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
     }
 
@@ -32,7 +32,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("ID_CAT", id_cat);
-        values.put("DATE_REVENUS", date_revenus);
+        values.put("DATE", date_revenus);
         values.put("NOM", nom);
         values.put("MONTANT", montant);
 
@@ -56,7 +56,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("ID_CAT", id_cat);
-        values.put("DATE_DEPENSES", date_depenses);
+        values.put("DATE", date_depenses);
         values.put("NOM", nom);
         values.put("MONTANT", montant);
 
@@ -68,7 +68,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // ajoute une nouvelle entrée a la table DETTES
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("DATE_DETTE", date_dette);
+        values.put("DATE", date_dette);
         values.put("NOM", nom);
         values.put("MONTANT", montant);
 
@@ -80,7 +80,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // ajoute une nouvelle entrée a la table EXTRA
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("DATE_EXTRA", date_extra);
+        values.put("DATE", date_extra);
         values.put("NOM", nom);
         values.put("MONTANT", montant);
 
@@ -105,7 +105,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<StorageDepenses> getDepenses() {
         // Retourne une liste d'objets représentat une ligne de la table DEPENSES
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM DEPENSES;", null);
+        Cursor cursor = db.rawQuery("select cat.NOM, dep.DATE, dep.NOM, dep.MONTANT from DEPENSES dep inner join CATEGORIE cat on cat.ID = dep.ID_CAT;", null);
         ArrayList<StorageDepenses> depensesList = new ArrayList<>();
 
         // moving our cursor to first position.
@@ -127,7 +127,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
             while (cursor.moveToNext()) {
-                revenusList.add(new StorageRevenus(Integer.parseInt(cursor.getString(1)), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))));
+                revenusList.add(new StorageRevenus(cursor.getString(1), cursor.getString(2), Double.parseDouble(cursor.getString(3))));
             }
         }
         cursor.close();
@@ -185,7 +185,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<StorageProjets> getProjets() {
         // Retourne une lite d'objets représentant une ligne de la table PROJETS.
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM EXTRA;", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM PROJETS;", null);
         ArrayList<StorageProjets> Liste = new ArrayList<>();
 
         // moving our cursor to first position.

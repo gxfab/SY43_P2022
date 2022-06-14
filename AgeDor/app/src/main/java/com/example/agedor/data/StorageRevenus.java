@@ -1,15 +1,13 @@
 package com.example.agedor.data;
 
 public class StorageRevenus {
-    public int id_cat;
     public String date_depense;
     public String nom;
     public Double montant;
     public int id;
 
     // Constructeur pour notre classe
-    public StorageRevenus(int id_cat, String date_depense, String nom, Double montant) {
-        this.id_cat = id_cat;
+    public StorageRevenus(String date_depense, String nom, Double montant) {
         this.date_depense = date_depense;
         this.nom = nom;
         this.montant = montant;
