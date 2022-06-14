@@ -46,7 +46,7 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         }
 
         initToggleButton(toggleButton,confirmButton)
-        initConfirmButton(confirmButton,toggleButton,ieName,ieValue)
+        initConfirmButton(confirmButton,toggleButton,ieName,ieValue, categoryChooserButton)
 
         categoryChooserButton.setOnClickListener {
             val bundle = bundleOf("moneyChangeId" to 0, "type" to "none")
@@ -87,7 +87,13 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         }
     }
 
-    private fun initConfirmButton(confirmButton: Button,toggleButton: ToggleButton, ieName : TextView, ieValue : TextView) {
+    private fun initConfirmButton(
+        confirmButton: Button,
+        toggleButton: ToggleButton,
+        ieName : TextView,
+        ieValue : TextView,
+        categoryChooserButton : Button
+    ) {
         confirmButton.setOnClickListener{
             val today : DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
             if (ieName.text.toString().trim().isEmpty())
@@ -96,34 +102,67 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
             else if (ieValue.text.toString().trim().isEmpty())
                 Toast.makeText(this,
                     "Somme manquante !", Toast.LENGTH_SHORT).show()
-            if(toggleButton.isChecked) {
-                expenseViewModel.insertExpense(
-                    Expense(
-                        Frequency.OUNCE_A_DAY,
-                        ieName.text.toString(),
-                        selectedCategory!!,
-                        -ieValue.text.toString().toDouble(),
-                        today.year,
-                        today.month,
-                        today.day
+                val calendar: DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
+                if (toggleButton.isChecked) {
+                    expenseViewModel.getMonthlyExpensesSum().observe(this) { _globalExpensesSum ->
+                        expenseViewModel.getOneTimeExpensesSumByDate(calendar.year,calendar.month).observe(this) { _partialExpensesSum ->
+                            var globalExpensesSum : Double =
+                                if(_globalExpensesSum == null) {
+                                    0.0
+                                } else {
+                                    _globalExpensesSum
+                                }
+                            var partialExpensesSum : Double =
+                                if(_partialExpensesSum == null) {
+                                    0.0
+                                } else {
+                                    _partialExpensesSum
+                                }
+
+                            val newExpenseSum : Double = partialExpensesSum - ieValue.text.toString().toDouble()
+                            if (globalExpensesSum > newExpenseSum) {
+                                Toast.makeText(applicationContext,
+                                    "❌ Vous allez dépasser votre budget", Toast.LENGTH_SHORT).show()
+                            } else {
+                                expenseViewModel.insertExpense(
+                                    Expense(
+                                        Frequency.OUNCE_A_DAY,
+                                        ieName.text.toString(),
+                                        Category(
+                                            categoryChooserButton.text.toString(),
+                                            categoryChooserButton.text.toString()
+                                        ),
+                                        -ieValue.text.toString().toDouble(),
+                                        today.year,
+                                        today.month,
+                                        today.day
+                                    )
+                                )
+                                finish()
+                            }
+                         }
+                    }
+                } else {
+                    incomeViewModel.insertIncome(
+                        Income(
+                            Frequency.OUNCE_A_DAY,
+                            ieName.text.toString(),
+                            Category(
+                                categoryChooserButton.text.toString(),
+                                categoryChooserButton.text.toString()
+                            ),
+                            ieValue.text.toString().toDouble(),
+                            today.year,
+                            today.month,                            today.day
+
+                        )
                     )
-                )
-            } else {
-                incomeViewModel.insertIncome(
-                    Income(
-                        Frequency.OUNCE_A_DAY,
-                        ieName.text.toString(),
-                        selectedCategory!!,
-                        ieValue.text.toString().toDouble(),
-                        today.year,
-                        today.month,
-                        today.day
-                    )
-                )
+                    finish()
+
+                }
+
             }
-            finish()
         }
-    }
 
     /**
      * Small function to convert a calendar date to DatabaseDate object

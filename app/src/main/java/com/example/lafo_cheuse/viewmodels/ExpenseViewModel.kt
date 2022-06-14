@@ -131,4 +131,16 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
     suspend fun getMonthlyExpensesSumSync() : Double {
         return repository.getExpensesSumByFrequencySync(Frequency.OUNCE_A_MONTH)
     }
+
+    suspend fun getOneTimeExpensesSumByDateSync(year : Int, month : Int) : Double {
+        return repository.getExpensesSumSynchronousByDate(Frequency.OUNCE_A_DAY,year,month)
+    }
+
+    suspend fun getOneTimeExpensesSumForCategoryAndMonthSync(
+        category: Category,
+        year: Int,
+        month: Int
+    ) : LiveData<List<ExpenseSumContainer>> {
+        return repository.getExpensesSumForCategoryAndMonth(Frequency.OUNCE_A_DAY,category,year,month)
+    }
 }
