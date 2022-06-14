@@ -25,6 +25,18 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS DETTES (ID_DETTES INTEGER PRIMARY KEY AUTOINCREMENT, DATE TEXT, NOM TEXT, MONTANT DECIMAL);");
         db.execSQL("CREATE TABLE IF NOT EXISTS EXTRA (ID_EXTRA INTEGER PRIMARY KEY AUTOINCREMENT, DATE TEXT, NOM TEXT, MONTANT DECIMAL);");
         db.execSQL("CREATE TABLE IF NOT EXISTS PROJETS (ID_PROJETS INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS FACTURES (ID_FACTURES INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
+    }
+
+    public void addNewFacture(String nom, double montant){
+        // ajoute une nouvelle entrée à la table FACTURES
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("NOM", nom);
+        contentValues.put("MONTANT", montant);
+
+        db.insert("FACTURES", null, contentValues);
+        db.close();
     }
 
     public void addNewRevenus(Integer id_cat, String date_revenus, String nom, Double montant) {
@@ -101,6 +113,21 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
+    public ArrayList<StorageFactures> getFactures() {
+        // récupère toutes les factures de la table FACTURES
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<StorageFactures> factures = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM FACTURES", null);
+
+        // moving our cursor to first position.
+        if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
+                factures.add(new StorageFactures(cursor.getString(1), cursor.getDouble(2)));
+            }
+        }
+        cursor.close();
+        return factures;
+    }
 
     public ArrayList<StorageDepenses> getDepenses() {
         // Retourne une liste d'objets représentat une ligne de la table DEPENSES
