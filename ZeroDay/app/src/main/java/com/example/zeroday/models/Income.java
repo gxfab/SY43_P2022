@@ -3,21 +3,26 @@ package com.example.zeroday.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Objects;
-
-public class Income implements Parcelable {
-    private Long idIncome;
-    private Frequence frequenceIncome;
+public class Income extends ZeroBaseModel implements Parcelable {   
+    
+    private Frequency frequencyIncome;
     private Long amountIncome;
     private String labelIncome;
-    private IncomesCategory incomeCategories;
+    private IncomeCategory incomeCategories;
 
     public Income() {
     }
 
-    public Income(Long idIncome, Frequence frequenceIncome, Long amountIncome, String labelIncome, IncomesCategory incomeCategories) {
-        this.idIncome = idIncome;
-        this.frequenceIncome = frequenceIncome;
+    public Income(Frequency frequencyIncome, Long amountIncome, String labelIncome, IncomeCategory incomeCategories) {
+        this.frequencyIncome = frequencyIncome;
+        this.amountIncome = amountIncome;
+        this.labelIncome = labelIncome;
+        this.incomeCategories = incomeCategories;
+    }
+
+    public Income(Long id, Frequency frequencyIncome, Long amountIncome, String labelIncome, IncomeCategory incomeCategories) {
+        this.id = id;
+        this.frequencyIncome = frequencyIncome;
         this.amountIncome = amountIncome;
         this.labelIncome = labelIncome;
         this.incomeCategories = incomeCategories;
@@ -25,17 +30,29 @@ public class Income implements Parcelable {
 
     protected Income(Parcel in) {
         if (in.readByte() == 0) {
-            idIncome = null;
-        } else {
-            idIncome = in.readLong();
-        }
-        if (in.readByte() == 0) {
             amountIncome = null;
         } else {
             amountIncome = in.readLong();
         }
         labelIncome = in.readString();
-        incomeCategories = in.readParcelable(IncomesCategory.class.getClassLoader());
+        incomeCategories = in.readParcelable(IncomeCategory.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (amountIncome == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(amountIncome);
+        }
+        dest.writeString(labelIncome);
+        dest.writeParcelable(incomeCategories, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Income> CREATOR = new Creator<Income>() {
@@ -50,91 +67,36 @@ public class Income implements Parcelable {
         }
     };
 
-    public Long getIdIncome() {
-        return idIncome;
+    public Frequency getFrequenceIncome() {
+        return frequencyIncome;
     }
 
-    public void setIdIncome(Long idIncome) {
-        this.idIncome = idIncome;
+    public void setFrequenceIncome(Frequency frequencyIncome) {
+        this.frequencyIncome = frequencyIncome;
     }
 
-    public Frequence getFrequenceIncome() {
-        return frequenceIncome;
-    }
-
-    public Long getAmmountIncome() {
+    public Long getAmountIncome() {
         return amountIncome;
+    }
+
+    public void setAmountIncome(Long amountIncome) {
+        this.amountIncome = amountIncome;
     }
 
     public String getLabelIncome() {
         return labelIncome;
     }
 
-    public IncomesCategory getIncomeCategories() {
-        return incomeCategories;
-    }
-
-    public void setFrequenceIncome(Frequence frequenceIncome) {
-        this.frequenceIncome = frequenceIncome;
-    }
-
-    public void setAmmountIncome(Long amountIncome) {
-        this.amountIncome = amountIncome;
-    }
-
     public void setLabelIncome(String labelIncome) {
         this.labelIncome = labelIncome;
     }
 
-    public void setIncomeCategories(IncomesCategory incomeCategories) {
+    public IncomeCategory getIncomeCategories() {
+        return incomeCategories;
+    }
+
+    public void setIncomeCategories(IncomeCategory incomeCategories) {
         this.incomeCategories = incomeCategories;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        if (idIncome == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeLong(idIncome);
-        }
-        if (amountIncome == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeLong(amountIncome);
-        }
-        parcel.writeString(labelIncome);
-        parcel.writeParcelable(incomeCategories, i);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Income)) return false;
-        Income income = (Income) o;
-        return getIdIncome().equals(income.getIdIncome()) && getFrequenceIncome() == income.getFrequenceIncome() && amountIncome.equals(income.amountIncome) && getLabelIncome().equals(income.getLabelIncome()) && getIncomeCategories().equals(income.getIncomeCategories());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getIdIncome(), getFrequenceIncome(), amountIncome, getLabelIncome(), getIncomeCategories());
-    }
-
-    @Override
-    public String toString() {
-        return "Income{" +
-                "idIncome=" + idIncome +
-                ", frequenceIncome=" + frequenceIncome +
-                ", amountIncome=" + amountIncome +
-                ", labelIncome='" + labelIncome + '\'' +
-                ", incomeCategories=" + incomeCategories +
-                '}';
     }
 }
 

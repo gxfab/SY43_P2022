@@ -1,29 +1,20 @@
 package com.example.zeroday.repositories;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.zeroday.dao.DbHelper;
 import com.example.zeroday.models.Budget;
-import com.example.zeroday.models.Frequence;
+import com.example.zeroday.models.Frequency;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BudgetRepository {
 
-    // Select All Query
-    private static final String SELECT_ALL_BUDGET = "SELECT * FROM " + DbHelper.TABLE_BUDGET;
-
-    private SQLiteDatabase sqLiteDatabase;
-
-    public BudgetRepository(SQLiteDatabase sqLiteDatabase) {
-        this.sqLiteDatabase = sqLiteDatabase;
-    }
+    
 
     public List<Budget> fromCursor(Cursor cursor) {
         if(cursor == null) {
@@ -59,7 +50,7 @@ public class BudgetRepository {
                         cursor.getString(DbHelper.COL_CODE_BUDGET_INDEX),
                         cursor.getString(DbHelper.COL_START_DATE_BUDGET_INDEX),
                         cursor.getString(DbHelper.COL_END_DATE_BUDGET_INDEX),
-                        Frequence.valueOf(cursor.getString(DbHelper.COL_FRQUENCE_BUDGET_INDEX))
+                        Frequency.valueOf(cursor.getString(DbHelper.COL_FRQUENCE_BUDGET_INDEX))
                 ));
             }
             return budgets;

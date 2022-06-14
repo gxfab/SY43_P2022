@@ -3,32 +3,32 @@ package com.example.zeroday.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Objects;
-
-public class Budget implements Parcelable {
-    private Long idBudget;
+public class Budget extends ZeroBaseModel implements Parcelable {
+    
     private String codeBudget;
     private String startDateBuget;
     private String endDateBuget;
-    private Frequence frequence;
-
-    public Budget(Long idBudget, String codeBudget, String startDateBuget, String endDateBuget, Frequence frequence) {
-        this.idBudget = idBudget;
-        this.codeBudget = codeBudget;
-        this.startDateBuget = startDateBuget;
-        this.endDateBuget = endDateBuget;
-        this.frequence = frequence;
-    }
+    private Frequency frequency;
 
     public Budget() {
     }
 
+    public Budget( String codeBudget, String startDateBuget, String endDateBuget, Frequency frequency) {
+        this.codeBudget = codeBudget;
+        this.startDateBuget = startDateBuget;
+        this.endDateBuget = endDateBuget;
+        this.frequency = frequency;
+    }
+
+    public Budget(Long id, String codeBudget, String startDateBuget, String endDateBuget, Frequency frequency) {
+        this.id = id;
+        this.codeBudget = codeBudget;
+        this.startDateBuget = startDateBuget;
+        this.endDateBuget = endDateBuget;
+        this.frequency = frequency;
+    }
+
     protected Budget(Parcel in) {
-        if (in.readByte() == 0) {
-            idBudget = null;
-        } else {
-            idBudget = in.readLong();
-        }
         codeBudget = in.readString();
         startDateBuget = in.readString();
         endDateBuget = in.readString();
@@ -45,14 +45,6 @@ public class Budget implements Parcelable {
             return new Budget[size];
         }
     };
-
-    public Long getIdBudget() {
-        return idBudget;
-    }
-
-    public void setIdBudget(Long idBudget) {
-        this.idBudget = idBudget;
-    }
 
     public String getCodeBudget() {
         return codeBudget;
@@ -78,36 +70,12 @@ public class Budget implements Parcelable {
         this.endDateBuget = endDateBuget;
     }
 
-    public Frequence getFrequence() {
-        return frequence;
+    public Frequency getFrequence() {
+        return frequency;
     }
 
-    public void setFrequence(Frequence frequence) {
-        this.frequence = frequence;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Budget)) return false;
-        Budget budget = (Budget) o;
-        return getIdBudget().equals(budget.getIdBudget()) && getCodeBudget().equals(budget.getCodeBudget()) && getStartDateBuget().equals(budget.getStartDateBuget()) && Objects.equals(getEndDateBuget(), budget.getEndDateBuget()) && getFrequence() == budget.getFrequence();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getIdBudget(), getCodeBudget(), getStartDateBuget(), getEndDateBuget(), getFrequence());
-    }
-
-    @Override
-    public String toString() {
-        return "Budget{" +
-                "idBudget=" + idBudget +
-                ", codeBudget='" + codeBudget + '\'' +
-                ", startDateBuget='" + startDateBuget + '\'' +
-                ", endDateBuget='" + endDateBuget + '\'' +
-                ", frequence=" + frequence +
-                '}';
+    public void setFrequence(Frequency frequency) {
+        this.frequency = frequency;
     }
 
     @Override
@@ -117,12 +85,6 @@ public class Budget implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        if (idBudget == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeLong(idBudget);
-        }
         parcel.writeString(codeBudget);
         parcel.writeString(startDateBuget);
         parcel.writeString(endDateBuget);

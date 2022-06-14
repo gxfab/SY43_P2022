@@ -1,6 +1,6 @@
 package com.example.zeroday.models;
 
-public enum Frequence {
+public enum Frequency {
     // "WEEKLY" = 1,
     // "MONTHLY" = 2,
     // "YEARLY" = 3,
@@ -19,7 +19,7 @@ public enum Frequence {
     private final int numberOfdays;
     private final String label;
 
-    Frequence(int id, String label, int numberOfdays) {
+    Frequency(int id, String label, int numberOfdays) {
         this.id = id;
         this.label = label;
         this.numberOfdays = numberOfdays;

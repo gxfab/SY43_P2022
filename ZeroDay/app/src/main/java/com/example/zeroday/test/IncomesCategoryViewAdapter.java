@@ -3,13 +3,11 @@ package com.example.zeroday.test;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.zeroday.databinding.FragmentIncomesCategoryBinding;
-import com.example.zeroday.models.IncomesCategory;
-import com.example.zeroday.repositories.IncomesCategoryRepository;
+import com.example.zeroday.models.IncomeCategory;
 import com.example.zeroday.test.placeholder.PlaceholderContent.PlaceholderItem;
 
 
@@ -21,9 +19,9 @@ import java.util.List;
  */
 public class IncomesCategoryViewAdapter extends RecyclerView.Adapter<IncomesCategoryViewAdapter.ViewHolder> {
 
-    private final List<IncomesCategory> mValues;
+    private final List<IncomeCategory> mValues;
 
-    public IncomesCategoryViewAdapter(List<IncomesCategory> items) {
+    public IncomesCategoryViewAdapter(List<IncomeCategory> items) {
         mValues = items;
     }
 
@@ -38,7 +36,7 @@ public class IncomesCategoryViewAdapter extends RecyclerView.Adapter<IncomesCate
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(String.valueOf(Math.toIntExact(mValues.get(position).getIdIncomesCategory())));
-        holder.mContentView.setText(mValues.get(position).getLabelIncomesCategory());
+        holder.mContentView.setText(mValues.get(position).getLabelIncomeCategory());
     }
 
     @Override
@@ -49,7 +47,7 @@ public class IncomesCategoryViewAdapter extends RecyclerView.Adapter<IncomesCate
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
-        public IncomesCategory mItem;
+        public IncomeCategory mItem;
 
         public ViewHolder(FragmentIncomesCategoryBinding binding) {
             super(binding.getRoot());

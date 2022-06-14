@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.zeroday.dao.DbHelper;
-import com.example.zeroday.models.IncomesCategory;
+import com.example.zeroday.models.IncomeCategory;
 import com.example.zeroday.repositories.IncomesCategoryRepository;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class IncomeCategoryService {
         this.incomesCategoryRepository = new IncomesCategoryRepository(this.sqLiteDatabase);
     }
 
-    public List<IncomesCategory> findAll(){
+    public List<IncomeCategory> findAll(){
         return this.incomesCategoryRepository.findAll();
     }
 }

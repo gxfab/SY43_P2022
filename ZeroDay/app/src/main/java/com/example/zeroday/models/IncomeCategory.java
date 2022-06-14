@@ -1,81 +1,35 @@
 package com.example.zeroday.models;
 
-import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.List;
-import java.util.Objects;
+public class IncomeCategory extends ZeroBaseModel implements Parcelable {
+    private String codeIncomeCategory;
+    private String labelIncomeCategory;
 
-public class IncomesCategory implements Parcelable {
-    private Long idIncomesCategory;
-    private String codeIncomesCategory;
-    private String labelIncomesCategory;
-
-    public IncomesCategory(Long idIncomesCategory, String codeIncomesCategory, String labelIncomesCategory) {
-        this.idIncomesCategory = idIncomesCategory;
-        this.codeIncomesCategory = codeIncomesCategory;
-        this.labelIncomesCategory = labelIncomesCategory;
+    public IncomeCategory() {
     }
 
-    public IncomesCategory() {
+    public IncomeCategory(String codeIncomeCategory, String labelIncomeCategory) {
+        this.codeIncomeCategory = codeIncomeCategory;
+        this.labelIncomeCategory = labelIncomeCategory;
     }
 
-    protected IncomesCategory(Parcel in) {
-        idIncomesCategory = in.readLong();
-        codeIncomesCategory = in.readString();
-        labelIncomesCategory = in.readString();
+    public IncomeCategory(Long id, String codeIncomeCategory, String labelIncomeCategory) {
+        this.id = id;
+        this.codeIncomeCategory = codeIncomeCategory;
+        this.labelIncomeCategory = labelIncomeCategory;
     }
 
-    public static final Creator<IncomesCategory> CREATOR = new Creator<IncomesCategory>() {
-        @Override
-        public IncomesCategory createFromParcel(Parcel in) {
-            return new IncomesCategory(in);
-        }
-
-        @Override
-        public IncomesCategory[] newArray(int size) {
-            return new IncomesCategory[size];
-        }
-    };
-
-
-
-    public Long getIdIncomesCategory() {
-        return idIncomesCategory;
-    }
-
-    public void setIdIncomesCategory(Long idIncomesCategory) {
-        this.idIncomesCategory = idIncomesCategory;
-    }
-
-    public String getCodeIncomesCategory() {
-        return codeIncomesCategory;
-    }
-
-    public void setCodeIncomesCategory(String codeIncomesCategory) {
-        this.codeIncomesCategory = codeIncomesCategory;
-    }   
-
-    public String getLabelIncomesCategory() {
-        return labelIncomesCategory;
-    }
-
-    public void setLabelIncomesCategory(String labelIncomesCategory) {
-        this.labelIncomesCategory = labelIncomesCategory;
+    protected IncomeCategory(Parcel in) {
+        codeIncomeCategory = in.readString();
+        labelIncomeCategory = in.readString();
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        IncomesCategory that = (IncomesCategory) o;
-        return Objects.equals(getIdIncomesCategory(), that.getIdIncomesCategory()) && Objects.equals(getCodeIncomesCategory(), that.getCodeIncomesCategory()) && Objects.equals(getLabelIncomesCategory(), that.getLabelIncomesCategory());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getIdIncomesCategory(), getCodeIncomesCategory(), getLabelIncomesCategory());
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(codeIncomeCategory);
+        dest.writeString(labelIncomeCategory);
     }
 
     @Override
@@ -83,24 +37,31 @@ public class IncomesCategory implements Parcelable {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        if(idIncomesCategory == null){
-            parcel.writeByte((byte) 0);
-        }else{
-            parcel.writeByte((byte) 1);
-            parcel.writeLong(idIncomesCategory);
+    public static final Creator<IncomeCategory> CREATOR = new Creator<IncomeCategory>() {
+        @Override
+        public IncomeCategory createFromParcel(Parcel in) {
+            return new IncomeCategory(in);
         }
-        parcel.writeString(codeIncomesCategory);
-        parcel.writeString(labelIncomesCategory);
+
+        @Override
+        public IncomeCategory[] newArray(int size) {
+            return new IncomeCategory[size];
+        }
+    };
+
+    public String getCodeIncomeCategory() {
+        return codeIncomeCategory;
     }
 
-    @Override
-    public String toString() {
-        return "IncomesCategory{" +
-                "idIncomesCategory='" + idIncomesCategory + '\'' +
-                ", codeIncomesCategory='" + codeIncomesCategory + '\'' +
-                ", labelIncomesCategory='" + labelIncomesCategory + '\'' +
-                '}';
+    public void setCodeIncomeCategory(String codeIncomeCategory) {
+        this.codeIncomeCategory = codeIncomeCategory;
+    }
+
+    public String getLabelIncomeCategory() {
+        return labelIncomeCategory;
+    }
+
+    public void setLabelIncomeCategory(String labelIncomeCategory) {
+        this.labelIncomeCategory = labelIncomeCategory;
     }
 }

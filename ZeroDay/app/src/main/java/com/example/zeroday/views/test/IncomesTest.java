@@ -7,8 +7,7 @@ import android.util.Log;
 
 import com.example.zeroday.R;
 import com.example.zeroday.dao.DbHelper;
-import com.example.zeroday.models.IncomesCategory;
-import com.example.zeroday.repositories.IncomesCategoryRepository;
+import com.example.zeroday.models.IncomeCategory;
 import com.example.zeroday.services.IncomeCategoryService;
 
 import java.util.List;
@@ -25,9 +24,9 @@ public class IncomesTest extends AppCompatActivity {
 
         IncomeCategoryService incomeCategoryService = new IncomeCategoryService(this);
 
-        List<IncomesCategory> incomesCategoryList = incomeCategoryService.findAll();
+        List<IncomeCategory> incomeCategoryList = incomeCategoryService.findAll();
 
-        Log.i("Test", incomesCategoryList.toString());
+        Log.i("Test", incomeCategoryList.toString());
 
     }
 

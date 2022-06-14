@@ -5,9 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.zeroday.dao.DbHelper;
-import com.example.zeroday.models.Frequence;
+import com.example.zeroday.models.Frequency;
 import com.example.zeroday.models.Income;
-import com.example.zeroday.models.IncomesCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ public class IncomeRepository {
             while(cursor.moveToNext()) {
                 incomes.add(new Income(
                         cursor.getLong(DbHelper.COL_ID_INCOME_INDEX),
-                        Frequence.valueOf( cursor.getString(DbHelper.COL_FRQUENCE_INCOME_INDEX)),
+                        Frequency.valueOf( cursor.getString(DbHelper.COL_FRQUENCY_INCOME_INDEX)),
                         cursor.getLong(DbHelper.COL_AMOUNT_INCOME_INDEX),
                         cursor.getString(DbHelper.COL_LABEL_INCOME_INDEX),
                         incomesCategoryRepository.findOne(cursor.getInt(DbHelper.COL_ID_INCOME_CATEGORY_INDEX))
