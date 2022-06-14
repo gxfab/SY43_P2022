@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
+import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.item.CategoryItem;
@@ -25,7 +26,6 @@ import java.util.List;
 public class ViewExpenseCatFragment extends DataBaseFragment {
 
     private TextView name, budget;
-    private ListView subCat, exp;
     private ListView subCatList, expList;
     private String nameVal;
     private float budgetVal;
@@ -51,7 +51,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
 
         Cursor cat = database.getCatFromType(id, DBHelper.TYPE_EXP);
         cat.moveToFirst();
-        if (cat.isAfterLast()) id = 0;
+        if (cat.isAfterLast()) redirect(new HomeFragment());
         else {
             nameVal = cat.getString(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             budgetVal = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));
@@ -63,8 +63,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
     public void setValues()   {
         name.setText(nameVal);
         budget.setText(String.valueOf(budgetVal));
-        subCatList = ClickableListManager.clickableBudgetList(expList, subCatVal);
-        expList = ClickableListManager.clickableExpenseList(expList, expVal);
-
+        ClickableListManager.clickableBudgetList(subCatList, subCatVal);
+        ClickableListManager.clickableExpenseList(expList, expVal);
     }
 }

@@ -471,6 +471,31 @@ public class DBHelper extends SQLiteOpenHelper {
                 EXP_COL_DAY + " desc");
     }
 
+    public Cursor getLastMonthStable(int type){
+        String operator;
+        if(type == TYPE_INC) operator = " = ";
+        else operator = " <> ";
+        return getData("select * from "+EXP_TABLE_NAME+
+                " where "+EXP_COL_IS_STABLE+"= 1 and "+
+                EXP_COL_TYPE +operator+TYPE_INC+
+                " and " +isLastMonthReq());
+    }
+
+    public String isLastMonthReq(){
+        int day = DateManager.dateToDay(new Date());
+        int month = DateManager.dateToMonth(new Date());
+        int year = DateManager.dateToYear(new Date());
+        int prevMonth = DateManager.previousMonth(month);
+        int prevMonthYear = DateManager.previousMonthYear(month, year);
+
+        return "(("+EXP_COL_DAY+" > "+day+
+                " and "+EXP_COL_MONTH+" = "+prevMonth+
+                " and "+EXP_COL_YEAR+" = "+prevMonthYear+
+                ") or ("+EXP_COL_DAY+" <= "+day+
+                " and "+EXP_COL_MONTH+" = "+month+
+                " and "+EXP_COL_YEAR+" = "+year+"))";
+    }
+
     public Cursor getDateExpenses(int year, int month, int day) {
         return getData("select * from " + EXP_TABLE_NAME +
                 " where " + EXP_COL_DAY + " = " + day +

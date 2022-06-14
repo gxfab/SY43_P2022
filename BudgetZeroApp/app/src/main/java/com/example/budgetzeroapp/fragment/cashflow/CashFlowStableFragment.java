@@ -7,30 +7,41 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.DataBaseFragment;
+import com.example.budgetzeroapp.tool.ClickableListManager;
+import com.example.budgetzeroapp.tool.DBHelper;
+import com.example.budgetzeroapp.tool.item.ExpenseItem;
 
-public class CashFlowStableFragment extends Fragment {
+import java.util.List;
 
-    public CashFlowStableFragment() {
-        // Required empty public constructor
-    }
+public class CashFlowStableFragment extends DataBaseFragment {
 
-    public static CashFlowStableFragment newInstance(String param1, String param2) {
-        CashFlowStableFragment fragment = new CashFlowStableFragment();
-        return fragment;
-    }
+    ListView earnList, expList;
+
+    public CashFlowStableFragment() { super(); }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cash_flow_stable, container, false);
+        View view =inflater.inflate(R.layout.fragment_cash_flow_stable, container, false);
+        expList = view.findViewById(R.id.expenses_list);
+        earnList = view.findViewById(R.id.earnings_list);
+        List<ExpenseItem> earn = ExpenseItem.ExpensesToList(
+                database.getLastMonthStable(DBHelper.TYPE_INC), database);
+        List<ExpenseItem> exp = ExpenseItem.ExpensesToList(
+                database.getLastMonthStable(DBHelper.TYPE_EXP), database);
+        ClickableListManager.clickableExpenseList(expList, exp);
+        ClickableListManager.clickableExpenseList(earnList, earn);
+        return view;
     }
 }

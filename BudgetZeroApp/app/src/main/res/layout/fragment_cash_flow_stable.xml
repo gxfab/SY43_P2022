@@ -19,26 +19,34 @@
                 android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Spendings"
+                android:text="@string/expenses"
                 android:textSize="15sp"
                 android:textStyle="bold" />
-            <include
-                layout="@layout/expense"/>
-            <include
-                layout="@layout/expense"/>
+
+            <ListView
+                android:id="@+id/expenses_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/light_gray">
+            </ListView>
 
             <TextView
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Earnings"
+                android:text="@string/earnings"
                 android:textSize="15sp"
                 android:textStyle="bold" />
-            <include
-                layout="@layout/expense"/>
-            <include
-                layout="@layout/expense"/>
+
+            <ListView
+                android:id="@+id/earnings_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/light_gray">
+            </ListView>
         </LinearLayout>
     </ScrollView>
 
