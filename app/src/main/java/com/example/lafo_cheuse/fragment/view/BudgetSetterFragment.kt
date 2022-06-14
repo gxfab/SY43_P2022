@@ -88,7 +88,4 @@ class BudgetSetterFragment : Fragment() {
 
         return budgetSetterView
     }
-
-
-
 }

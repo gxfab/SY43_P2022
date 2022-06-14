@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -52,32 +53,47 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
 
         confirmButton.setOnClickListener{
             val today : DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
-            if(toggleButton.isChecked) {
-                expenseViewModel.insertExpense(
-                    Expense(
-                        Frequency.OUNCE_A_DAY,
-                        ie_name.text.toString(),
-                        Category(categoryChooserButton.text.toString(),categoryChooserButton.text.toString()),
-                        -ie_value.text.toString().toDouble(),
-                        today.year,
-                        today.month,
-                        today.day
+            if (ie_name.text.toString().trim().isEmpty())
+                Toast.makeText(this,
+                    "Nom manquant !", Toast.LENGTH_SHORT).show()
+            else if (ie_value.text.toString().trim().isEmpty())
+                Toast.makeText(this,
+                    "Somme manquante !", Toast.LENGTH_SHORT).show()
+            else {
+                if (toggleButton.isChecked) {
+                    expenseViewModel.insertExpense(
+                        Expense(
+                            Frequency.OUNCE_A_DAY,
+                            ie_name.text.toString(),
+                            Category(
+                                categoryChooserButton.text.toString(),
+                                categoryChooserButton.text.toString()
+                            ),
+                            -ie_value.text.toString().toDouble(),
+                            today.year,
+                            today.month,
+                            today.day
+                        )
                     )
-                )
-            } else {
-                incomeViewModel.insertIncome(
-                    Income(
-                        Frequency.OUNCE_A_DAY,
-                        ie_name.text.toString(),
-                        Category(categoryChooserButton.text.toString(),categoryChooserButton.text.toString()),
-                        ie_value.text.toString().toDouble(),
-                        today.year,
-                        today.month,
-                        today.day
+
+                } else {
+                    incomeViewModel.insertIncome(
+                        Income(
+                            Frequency.OUNCE_A_DAY,
+                            ie_name.text.toString(),
+                            Category(
+                                categoryChooserButton.text.toString(),
+                                categoryChooserButton.text.toString()
+                            ),
+                            ie_value.text.toString().toDouble(),
+                            today.year,
+                            today.month,
+                            today.day
+                        )
                     )
-                )
+                }
+                finish()
             }
-            finish()
         }
 
         resultLauncher = registerForActivityResult(
