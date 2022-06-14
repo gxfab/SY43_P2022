@@ -80,7 +80,7 @@ class SetIncomesExpensesFragment : Fragment() {
         return view
     }
     private fun initializeRecyclerViewIncome(recyclerView: RecyclerView) {
-        recyclerView?.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
         incomeAdapter = IncomeAdapter(context as Activity, object : IncomeAdapter.DeleteButtonClickListener {
             override fun onDeleteButtonClick(position: Int) {
                 val alertDialog : AlertDialog.Builder = AlertDialog.Builder(activity)
@@ -106,8 +106,8 @@ class SetIncomesExpensesFragment : Fragment() {
                 }
             }
         })
-        recyclerView?.adapter = incomeAdapter
-        recyclerView?.setHasFixedSize(true)
+        recyclerView.adapter = incomeAdapter
+        recyclerView.setHasFixedSize(true)
 
         incomeViewModel.getOneTimeIncome().observe(viewLifecycleOwner) { list ->
             incomeAdapter!!.setIncomes(list)
@@ -115,7 +115,7 @@ class SetIncomesExpensesFragment : Fragment() {
     }
 
     private fun initializeRecyclerViewExpense(recyclerView: RecyclerView) {
-        recyclerView?.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
         expenseAdapter = ExpenseAdapter(context as Activity, object : ExpenseAdapter.DeleteButtonClickListener {
             override fun onDeleteButtonClick(position: Int) {
                 val alertDialog : AlertDialog.Builder = AlertDialog.Builder(activity)
@@ -141,8 +141,8 @@ class SetIncomesExpensesFragment : Fragment() {
                 }
             }
         })
-        recyclerView?.adapter = expenseAdapter
-        recyclerView?.setHasFixedSize(true)
+        recyclerView.adapter = expenseAdapter
+        recyclerView.setHasFixedSize(true)
 
         expenseViewModel.getOneTimeExpense().observe(viewLifecycleOwner) { list ->
             expenseAdapter!!.setExpenses(list)
