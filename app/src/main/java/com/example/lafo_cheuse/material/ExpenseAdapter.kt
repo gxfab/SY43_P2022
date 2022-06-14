@@ -37,9 +37,6 @@ class ExpenseAdapter (var context : Activity, val itemClickListener: DeleteButto
         holder.categoryEmojiButton.text = expense.category?.categoryEmoji
         holder.ieValue.setText(expense.amount.toString())
         holder.ieDate.setText(expense.dateDay.toString()+"/"+expense.dateMonth.toString()+"/"+expense.dateYear.toString())
-        holder.categoryEmojiButton.setOnClickListener {
-             //chooseCategory(category)
-        }
 
         holder.deleteButton.setOnClickListener {
             itemClickListener.onDeleteButtonClick(position)

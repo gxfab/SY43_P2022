@@ -33,15 +33,11 @@ class IncomeAdapter (var context : Activity, val itemClickListener: DeleteButton
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val Income: Income = mIncome[position]
-        holder.ieName.setText(Income.name)
-        holder.categoryEmojiButton.text = Income.category?.categoryEmoji
-        holder.ieValue.setText(Income.amount.toString())
-        holder.ieDate.setText(Income.dateDay.toString()+"/"+Income.dateMonth.toString()+"/"+Income.dateYear.toString())
-        holder.categoryEmojiButton.setOnClickListener {
-            //chooseCategory(category)
-        }
-
+        val income: Income = mIncome[position]
+        holder.ieName.setText(income.name)
+        holder.categoryEmojiButton.text = income.category?.categoryEmoji
+        holder.ieValue.setText(income.amount.toString())
+        holder.ieDate.setText(income.dateDay.toString()+"/"+income.dateMonth.toString()+"/"+income.dateYear.toString())
         holder.deleteButton.setOnClickListener {
             itemClickListener.onDeleteButtonClick(position)
             notifyDataSetChanged()
