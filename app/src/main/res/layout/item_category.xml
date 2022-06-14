@@ -5,18 +5,18 @@
     android:id="@+id/linearLayoutContainerCategory"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
     android:orientation="vertical"
-    android:paddingVertical="8dp">
+    android:paddingHorizontal="16dp">
 
     <LinearLayout
         android:id="@+id/layout_category_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:orientation="horizontal"
-        android:paddingVertical="8dp">
+        android:paddingVertical="12dp">
 
         <TextView
             android:id="@+id/categoryName"
@@ -35,8 +35,6 @@
             android:text="@string/money_placeholder"
             android:textSize="17sp" />
 
-
-
         <ImageView
             android:id="@+id/button_expand"
             android:layout_width="wrap_content"
@@ -48,6 +46,13 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider_item_category"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/listDivider" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_expenses"
         android:layout_width="match_parent"
@@ -55,11 +60,9 @@
         tools:itemCount="5"
         tools:listitem="@layout/item_expense" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="@string/item_category_prevision_advice"
-        android:textColor="@color/red"
+    <Space
+        android:id="@+id/space_bottom_category"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
         android:visibility="gone" />
 </LinearLayout>

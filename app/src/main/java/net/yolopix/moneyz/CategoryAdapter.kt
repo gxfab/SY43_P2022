@@ -3,6 +3,7 @@ package net.yolopix.moneyz
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Space
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -39,6 +40,8 @@ class CategoryAdapter(
         val expandButton: View = itemView.findViewById(R.id.button_expand)
         val expensesRecyclerView: RecyclerView = itemView.findViewById(R.id.recyclerview_expenses)
         val categoryHeaderLayout: View = itemView.findViewById(R.id.layout_category_header)
+        val bottomSpace: Space = itemView.findViewById(R.id.space_bottom_category)
+        val itemDivider: View = itemView.findViewById(R.id.divider_item_category)
     }
 
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
@@ -70,6 +73,7 @@ class CategoryAdapter(
         else {
             viewHolder.expandButton.visibility = View.GONE
             viewHolder.expensesRecyclerView.visibility = View.GONE
+            viewHolder.itemDivider.visibility = View.GONE
         }
 
         // Common to both prevision/expenses view
@@ -78,6 +82,9 @@ class CategoryAdapter(
             R.string.money_format,
             String.format("%.2f", categoryList[position].predictedAmount)
         )
+        if (position == categoryList.lastIndex) {
+            viewHolder.bottomSpace.visibility = View.VISIBLE
+        }
     }
 
     override fun getItemCount(): Int {

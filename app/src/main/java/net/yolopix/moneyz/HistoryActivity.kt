@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
-import net.yolopix.moneyz.model.entities.Account
 import net.yolopix.moneyz.model.entities.Month
+import net.yolopix.moneyz.utils.DatabaseFactory
 
 class HistoryActivity : AppCompatActivity() {
 

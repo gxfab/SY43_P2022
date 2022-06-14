@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayoutContainerCategory"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -17,10 +16,10 @@
             android:id="@+id/categoryName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/item_category_prevision_name"
             android:textColor="@color/material_on_background_emphasis_high_type"
-            android:textSize="17sp"
-            android:layout_weight="1"/>
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/categoryPrice"
@@ -28,7 +27,6 @@
             android:layout_height="wrap_content"
             android:text="@string/money_placeholder"
             android:textSize="17sp" />
-
 
 
     </LinearLayout>

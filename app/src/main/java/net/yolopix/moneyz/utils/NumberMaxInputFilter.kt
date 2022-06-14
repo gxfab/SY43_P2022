@@ -1,4 +1,4 @@
-package net.yolopix.moneyz
+package net.yolopix.moneyz.utils
 
 import android.text.InputFilter
 import android.text.Spanned

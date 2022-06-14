@@ -18,6 +18,7 @@ import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Category
 import net.yolopix.moneyz.model.entities.Expense
 import net.yolopix.moneyz.model.entities.Month
+import net.yolopix.moneyz.utils.NumberMaxInputFilter
 import java.time.Duration
 import java.time.LocalDate
 

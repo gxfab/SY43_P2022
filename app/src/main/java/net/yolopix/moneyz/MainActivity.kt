@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.utils.DatabaseFactory
 
 const val EXTRA_MESSAGE = "net.yolopix.moneyz.ACCOUNT_UID"
 

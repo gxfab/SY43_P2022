@@ -15,6 +15,8 @@ import com.google.android.material.slider.Slider
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Month
+import net.yolopix.moneyz.utils.DatabaseFactory
+import net.yolopix.moneyz.utils.NumberMaxInputFilter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
