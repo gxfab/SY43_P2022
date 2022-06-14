@@ -6,16 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.noappnogain.BalanceAnnuel
 import com.example.noappnogain.BalanceMensuel
 import com.example.noappnogain.R
 import com.example.noappnogain.adapter.HomeAdapter
 import com.example.noappnogain.databinding.FragmentStatistiqueBinding
+import com.example.noappnogain.model.Budget
 import com.example.noappnogain.model.Data
 import com.example.noappnogain.ui.budget.BudgetFragment
 import com.github.mikephil.charting.animation.Easing
@@ -107,22 +105,64 @@ class StatistiqueFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerMois!!.adapter = adapter
         }
+        spinnerAnnee?.setSelection(Adapter.NO_SELECTION, true);
+        spinnerAnnee?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                annee = spinnerAnnee?.selectedItem.toString().trim { it <= ' ' }
+                posAnnee = position
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                annee = "0"
+            }
+        })
+        spinnerMois?.setSelection(Adapter.NO_SELECTION, true);
+        spinnerMois?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                mois = position.toString()
+                posMois = position
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                mois = "0"
+            }
+        })
 
-        var category = ArrayList<String>()
         initPieChart()
-        val pieArrayList = ArrayList<PieEntry>()
+
+        var pieArrayList = ArrayList<PieEntry>()
         val valueEventListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                pieArrayList = ArrayList<PieEntry>()
                 mouvementArrayList = arrayListOf<Data>()
                 if (snapshot.exists()) {
-                    for (userSnapshot in snapshot.children) {
-                        val data: Data? = userSnapshot.getValue(Data::class.java)
-                        if (data != null) {
-                            if (data.amount < 0) {
-                                pieArrayList!!.add(PieEntry(abs(data.amount).toFloat(), data.type.toString()))
+                    val categorie_depense : Array<String>? = arrayOf("Alimentation", "Animaux", "Cadeaux offerts", "Education", "Enfants",
+                        "Epargne", "Habillement", "Impôts", "Intérêts dette", "Inventissement", "Loisirs", "Ménage", "Santé", "Transport", "Logement")
+                    for(cat in categorie_depense!!){
+                        var amount = 0
+                        for (userSnapshot in snapshot.children) {
+                            val data: Data? = userSnapshot.getValue(Data::class.java)
+                            if (data != null) {
+                                if (data.amount < 0) {
+                                    if (data.type == cat) {
+                                        amount -= data.amount
+                                    }
+                                }
                             }
                         }
+                        if(amount != 0){
+                            pieArrayList!!.add(PieEntry(abs(amount).toFloat(), cat))
+                        }
                     }
+
                     val colors = java.util.ArrayList<Int>()
                     for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
                     for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
@@ -138,8 +178,9 @@ class StatistiqueFragment : Fragment() {
                     dataSet.sliceSpace = 3f
                     dataSet.colors = colors
                     pieChart.data = data
-                    data.setValueTextSize(15f)
-                    pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+                    data.setDrawValues(true)
+                    data.setValueTextSize(10f)
+                    pieChart.setExtraOffsets(5f, 0f, 5f, 5f)
                     pieChart.animateY(1400, Easing.EaseInOutQuad)
                 }
             }
@@ -165,16 +206,18 @@ class StatistiqueFragment : Fragment() {
         pieChart.setUsePercentValues(true)
         pieChart.description.text = ""
         //hollow pie chart
-        pieChart.isDrawHoleEnabled = false
-        pieChart.setTouchEnabled(false)
-        pieChart.setDrawEntryLabels(false)
+        pieChart.isDrawHoleEnabled = true
+        pieChart.setTouchEnabled(true)
         //adding padding
-        pieChart.setExtraOffsets(100f, 0f, 100f, 100f)
+        pieChart.setExtraOffsets(100f, 100f, 100f, 0f)
         pieChart.setUsePercentValues(true)
-        pieChart.isRotationEnabled = false
-        pieChart.setDrawEntryLabels(false)
+        pieChart.isRotationEnabled = true
+        pieChart.setDrawEntryLabels(true)
+        pieChart.setEntryLabelColor(Color.BLACK)
+        pieChart.setEntryLabelTextSize(15f)
         pieChart.legend.orientation = Legend.LegendOrientation.VERTICAL
         pieChart.legend.isWordWrapEnabled = true
+        pieChart.setHoleColor(Color.WHITE)
 
     }
 
@@ -182,97 +225,77 @@ class StatistiqueFragment : Fragment() {
     fun filtreData(){
 
         initPieChart()
-        val pieArrayList = ArrayList<PieEntry>()
+        var pieArrayList = ArrayList<PieEntry>()
 
-        spinnerAnnee?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                annee = spinnerAnnee!!.selectedItem.toString().trim { it <= ' ' }
-                posAnnee = position
-                println("posAnnee" + position)
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                annee = "0"
-            }
-        })
-
-        spinnerMois?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                mois = position.toString()
-                posMois = position
-                println("posMois" + position)
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                mois = "0"
-            }
-        })
-
-
-        var tous : Boolean = false
-        var month : Boolean = false
-        var year : Boolean = false
+        var withMonth : Boolean = false
+        var onlyYear : Boolean = false
 
         if(posAnnee == 0 && posMois == 0){
-            tous = true
-            year = true
-            month = true
+            onlyYear = false
+            withMonth = false
         }
         if(posAnnee > 0 && posMois == 0){
-            tous = true
-            year = false
-            month = true
+            onlyYear = true
+            withMonth = false
         }
         if(posAnnee == 0 && posMois > 0){
-            tous = true
-            year = true
-            month = false
+            onlyYear = false
+            withMonth = false
         }
         if(posAnnee > 0 && posMois > 0){
-            tous = false
-            year = false
-            month = false
+            onlyYear = true
+            withMonth = true
         }
 
         val valueEventListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                pieArrayList = ArrayList<PieEntry>()
                 mouvementArrayList = arrayListOf<Data>()
                 if (snapshot.exists()) {
-                    for (userSnapshot in snapshot.children) {
-                        val data: Data? = userSnapshot.getValue(Data::class.java)
-                        if (data != null) {
-                            if (data.amount < 0) {
-                                var mDate = ""
-                                if(!year && !month){
-                                    mDate = "/".plus(mois).plus("/").plus(annee)
-                                    println("mDate" + mDate)
-                                }
-                                if(!tous){
-                                    if(!year){
-                                        if(!month){
+                    val categorie_depense : Array<String>? = arrayOf("Alimentation", "Animaux", "Cadeaux offerts", "Education", "Enfants",
+                        "Epargne", "Habillement", "Impôts", "Intérêts dette", "Inventissement", "Loisirs", "Ménage", "Santé", "Transport", "Logement")
+                    for(cat in categorie_depense!!){
+                        var amount = 0
+                        for (userSnapshot in snapshot.children) {
+                            val data: Data? = userSnapshot.getValue(Data::class.java)
+                            if (data != null) {
+                                if (data.amount < 0) {
+                                    var mDate = ""
+                                    if(onlyYear && withMonth){
+                                        mDate = "/".plus(mois).plus("/").plus(annee)
+                                        println("mDate" + mDate)
+                                    }
+                                    if(onlyYear && !withMonth){
+                                        mDate = "/".plus(annee)
+                                        println("mDate" + mDate)
+                                    }
+                                    if(onlyYear){
+                                        if(withMonth){
                                             if(data.date!!.endsWith(mDate)){
-                                                pieArrayList!!.add(PieEntry(abs(data.amount).toFloat(), data.type.toString()))
+                                                if (data.type == cat) {
+                                                    amount -= data.amount
+                                                }
+                                            }
+                                        }else{
+                                            if(data.date!!.endsWith(mDate)){
+                                                if (data.type == cat) {
+                                                    amount -= data.amount
+                                                }
                                             }
                                         }
                                     }else{
-                                        if(data.date!!.endsWith(annee)){
-                                            pieArrayList!!.add(PieEntry(abs(data.amount).toFloat(), data.type.toString()))
+                                        if (data.type == cat) {
+                                            amount -= data.amount
                                         }
                                     }
-                                }else{
-                                    pieArrayList!!.add(PieEntry(abs(data.amount).toFloat(), data.type.toString()))
                                 }
                             }
                         }
+                        if(amount != 0){
+                            pieArrayList!!.add(PieEntry(abs(amount).toFloat(), cat))
+                        }
                     }
+
                     val colors = java.util.ArrayList<Int>()
                     for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
                     for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
@@ -288,8 +311,8 @@ class StatistiqueFragment : Fragment() {
                     dataSet.sliceSpace = 3f
                     dataSet.colors = colors
                     pieChart.data = data
-                    data.setValueTextSize(15f)
                     pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+                    data.setValueTextSize(15f)
                     pieChart.animateY(1400, Easing.EaseInOutQuad)
                 }
             }

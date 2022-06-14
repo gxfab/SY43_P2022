@@ -83,7 +83,7 @@
 
     <LinearLayout
         android:layout_margin="5dp"
-        android:layout_width="220dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="3dp"
         android:background="@drawable/spinner"
@@ -100,16 +100,16 @@
 
         <Spinner
             android:id="@+id/spinner_categorie"
-            android:layout_width="120dp"
+            android:layout_width="159dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:backgroundTint="@color/white"
             android:gravity="center_horizontal"
             android:spinnerMode="dropdown"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15dp"
-            android:textStyle="bold"
-            android:backgroundTint="@color/white"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 

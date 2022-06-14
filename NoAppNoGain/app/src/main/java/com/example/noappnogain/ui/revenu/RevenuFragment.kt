@@ -15,7 +15,6 @@ import com.example.noappnogain.model.Data
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class RevenuFragment : Fragment() {
@@ -87,6 +86,56 @@ class RevenuFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerCat!!.adapter = adapter
         }
+        spinnerAnnee?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerAnnee?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                annee = spinnerAnnee?.selectedItem.toString().trim { it <= ' ' }
+                posAnnee = position
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                annee = "0"
+            }
+        }
+        spinnerMois?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerMois?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                mois = position.toString()
+                posMois = position
+                println("posMois" + position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                mois = "0"
+            }
+        }
+        spinnerCat?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerCat?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                categorie = spinnerCat?.selectedItem.toString().trim { it <= ' ' }
+                posCat = position
+                println("cat : " + categorie)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                categorie = "---"
+            }
+        }
 
         val btnFiltre: Button = binding.btnFiltre
         btnFiltre.setOnClickListener(View.OnClickListener {
@@ -124,7 +173,7 @@ class RevenuFragment : Fragment() {
             edtCat.adapter = adapter
         }
         var edtType: String? = null
-        edtCat.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        edtCat.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -133,29 +182,36 @@ class RevenuFragment : Fragment() {
             ) {
                 edtType = edtCat.selectedItem.toString()
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
+        }
 
         val edtNote = myviewm.findViewById<EditText>(R.id.nom_edt)
+        val edtDate = myviewm.findViewById<DatePicker>(R.id.date_edt)
         val btnSave = myviewm.findViewById<Button>(R.id.btnSave)
         val btnCancel = myviewm.findViewById<Button>(R.id.btnCancel)
         btnSave.setOnClickListener(View.OnClickListener {
+            val day = edtDate.dayOfMonth.toString()
+            val emonth = edtDate.month.toString()
+            val month = emonth.toInt() + 1
+            val year = edtDate.year.toString()
+            val mDate = day.plus("/").plus(month).plus("/").plus(year)
             val type = edtType.toString().trim { it <= ' ' }
             val amount = edtAmount.text.toString().trim { it <= ' ' }
             val note = edtNote.text.toString().trim { it <= ' ' }
             if (TextUtils.isEmpty(amount) || amount.toInt() < 0) {
                 edtAmount.error
+                Toast.makeText(activity, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
             val ouramountinte = amount.toInt()
             if (TextUtils.isEmpty(note)) {
                 edtNote.error
+                Toast.makeText(activity, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
             if (mAuth?.currentUser != null) {
                 val id: String? = mMouvementDatabase?.push()?.key
-                val sdFormat: SimpleDateFormat = SimpleDateFormat("d/M/yyyy")
-                val mDate = sdFormat.format(Date())
                 val data = Data(ouramountinte, type, note, id, mDate)
                 if (id != null) {
                     mMouvementDatabase?.child(id)?.setValue(data)
@@ -182,7 +238,7 @@ class RevenuFragment : Fragment() {
                         val data: Data? = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
                             if (data.amount > 0) {
-                                mouvementArrayList.add(data!!)
+                                mouvementArrayList.add(data)
                             }
                         }
                     }
@@ -200,87 +256,30 @@ class RevenuFragment : Fragment() {
 
     fun filtreData(){
 
-        spinnerAnnee?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                annee = spinnerAnnee!!.selectedItem.toString().trim { it <= ' ' }
-                posAnnee = position
-                println("posAnnee" + position)
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                annee = "0"
-            }
-        })
-
-        spinnerMois?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                mois = position.toString()
-                posMois = position
-                println("posMois" + position)
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                mois = "0"
-            }
-        })
-
-        spinnerCat?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                categorie = spinnerCat!!.selectedItem.toString().trim { it <= ' ' }
-                posCat = position
-                println("cat : " + categorie)
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                categorie = "---"
-            }
-        })
-
-        var tous : Boolean = false
-        var month : Boolean = false
-        var year : Boolean = false
+        var withMonth : Boolean = false
+        var onlyYear : Boolean = false
         var tousCat : Boolean = true
 
         if(posAnnee == 0 && posMois == 0){
-            tous = true
-            year = true
-            month = true
+            onlyYear = false
+            withMonth = false
         }
         if(posAnnee > 0 && posMois == 0){
-            tous = true
-            year = false
-            month = true
+            onlyYear = true
+            withMonth = false
         }
         if(posAnnee == 0 && posMois > 0){
-            tous = true
-            year = true
-            month = false
+            onlyYear = false
+            withMonth = false
         }
         if(posAnnee > 0 && posMois > 0){
-            tous = false
-            year = false
-            month = false
+            onlyYear = true
+            withMonth = true
         }
-        if(posCat > 0){
-            tousCat = false
-        }else{
-            tous = true
-        }
+        tousCat = posCat <= 0
 
         val recyclerView = binding.recyclerIdIncome
-        val valueEventListener: ValueEventListener = object : ValueEventListener {
+        mMouvementDatabase?.addValueEventListener( object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 mouvementArrayList = arrayListOf<Data>()
@@ -290,41 +289,43 @@ class RevenuFragment : Fragment() {
                         if (data != null) {
                             if (data.amount > 0) {
                                 var mDate = ""
-                                if(!year && !month){
+                                if(onlyYear && withMonth){
                                     mDate = "/".plus(mois).plus("/").plus(annee)
                                     println("mDate" + mDate)
                                 }
-                                if(!tous){
-                                    if(!year){
-                                        if(!month){
-                                            if(data.date!!.endsWith(mDate)){
-                                                if (!tousCat) {
-                                                    if (data.type == categorie) {
-                                                        mouvementArrayList.add(data!!)
-                                                    }
-                                                }else{
-                                                    mouvementArrayList.add(data!!)
+                                if(onlyYear && !withMonth){
+                                    mDate = "/".plus(annee)
+                                    println("mDate" + mDate)
+                                }
+                                if(onlyYear){
+                                    if(withMonth){
+                                        if(data.date!!.endsWith(mDate)){
+                                            if (!tousCat) {
+                                                if (data.type == categorie) {
+                                                    mouvementArrayList.add(data)
                                                 }
+                                            }else{
+                                                mouvementArrayList.add(data)
                                             }
                                         }
                                     }else{
-                                        if(data.date!!.endsWith(annee)){
+                                        if(data.date!!.endsWith(mDate)){
                                             if (!tousCat) {
                                                 if (data.type == categorie) {
-                                                    mouvementArrayList.add(data!!)
+                                                    mouvementArrayList.add(data)
                                                 }
                                             }else{
-                                                mouvementArrayList.add(data!!)
+                                                mouvementArrayList.add(data)
                                             }
                                         }
                                     }
                                 }else{
                                     if (!tousCat) {
                                         if (data.type == categorie) {
-                                            mouvementArrayList.add(data!!)
+                                            mouvementArrayList.add(data)
                                         }
                                     }else{
-                                        mouvementArrayList.add(data!!)
+                                        mouvementArrayList.add(data)
                                     }
                                 }
                             }
@@ -337,9 +338,7 @@ class RevenuFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-        }
-
-        mMouvementDatabase?.addListenerForSingleValueEvent(valueEventListener)
+        })
 
     }
 

@@ -25,14 +25,7 @@
         android:id="@+id/nav_statistique"
         android:name="com.example.noappnogain.ui.statistique.StatistiqueFragment"
         android:label="Statistique"
-        tools:layout="@layout/fragment_statistique" >
-        <action
-            android:id="@+id/action_nav_statistique_to_action_balance_annuel"
-            app:destination="@id/action_balance_annuel" />
-        <action
-            android:id="@+id/action_nav_statistique_to_action_balance_mensuel"
-            app:destination="@id/action_balance_mensuel" />
-    </fragment>
+        tools:layout="@layout/fragment_statistique" />
 
     <fragment
         android:id="@+id/nav_depense"

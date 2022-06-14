@@ -3,6 +3,7 @@ package com.example.noappnogain.adapter
 
 import android.app.AlertDialog
 import android.graphics.Color
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.R
 import com.example.noappnogain.model.Data
+import com.example.noappnogain.model.Projet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -40,6 +42,8 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
         holder.type.text = currentitem.type
         if(currentitem.amount > 0) {
             holder.amount.setTextColor(Color.parseColor("#0dff00"));
+        }else{
+            holder.amount.setTextColor(Color.parseColor("#ff0000"));
         }
         holder.amount.text = currentitem.amount.toString()
 
@@ -63,6 +67,7 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
             val edtAmount = myviewm.findViewById<EditText>(R.id.montant_edt)
             val edtCat = myviewm.findViewById<TextView>(R.id.categorie_edt)
             val edtNote = myviewm.findViewById<EditText>(R.id.nom_edt)
+            val edtDate = myviewm.findViewById<DatePicker>(R.id.date_edt)
 
             var type = dataList[position].type
             val post_key = dataList[position].id
@@ -77,12 +82,31 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
             val btnUpdate = myviewm.findViewById<Button>(R.id.btn_upd_Update)
             val btnDelete = myviewm.findViewById<Button>(R.id.btnuPD_Delete)
             val dialog = mydialog.create()
+            dialog.show()
             btnUpdate.setOnClickListener {
+                val day = edtDate.dayOfMonth.toString()
+                val emonth = edtDate.month.toString()
+                val month = emonth.toInt() + 1
+                val year = edtDate.year.toString()
+                val mDate = day.plus("/").plus(month).plus("/").plus(year)
                 val note = edtNote.getText().toString().trim { it <= ' ' }
+                if (TextUtils.isEmpty(note)) {
+                    edtNote.error
+                    Toast.makeText(view.context, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 val mdAmount = edtAmount.text.toString().trim { it <= ' ' }
+                if (TextUtils.isEmpty(mdAmount)) {
+                    edtAmount.error
+                    Toast.makeText(view.context, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 val myAmount = mdAmount.toInt()
-                val data = Data(myAmount, type, note, post_key, date)
-                mMouvementDatabase?.child(post_key.toString())?.setValue(data)
+                if (mAuth?.currentUser != null) {
+                    val data = Data(myAmount, type, note, post_key, mDate)
+                    mMouvementDatabase?.child(post_key.toString())?.setValue(data)
+                    Toast.makeText(view.context, "Enregistrement réussi...", Toast.LENGTH_SHORT).show()
+                }
                 dialog.dismiss()
             }
 
@@ -90,9 +114,7 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
                 mMouvementDatabase?.child(post_key.toString())?.removeValue()
                 dialog.dismiss()
             }
-            dialog.show()
         }
-
     }
 
     override fun getItemCount(): Int {

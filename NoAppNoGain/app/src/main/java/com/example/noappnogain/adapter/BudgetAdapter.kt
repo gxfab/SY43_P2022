@@ -1,6 +1,7 @@
 package com.example.noappnogain.adapter
 
 import android.app.AlertDialog
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.R
 import com.example.noappnogain.model.Budget
+import com.example.noappnogain.model.Projet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -61,17 +63,20 @@ class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
             edtAmount.setText(amount.toString())
 
             val btnUpdate = myviewm.findViewById<Button>(R.id.btn_upd_Update)
-            val btnDelete = myviewm.findViewById<Button>(R.id.btnuPD_Delete)
             val dialog = mydialog.create()
             btnUpdate.setOnClickListener(View.OnClickListener {
                 val amount = edtAmount.text.toString().trim { it <= ' ' }
+                if (TextUtils.isEmpty(amount)) {
+                    edtAmount.error
+                    Toast.makeText(view.context, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
+                    return@OnClickListener
+                }
                 val myAmount = amount.toInt()
-                val data = Budget(myAmount, type, post_key)
-                mBudgetDatabase?.child(post_key.toString())?.setValue(data)
-                dialog.dismiss()
-            })
-            btnDelete.setOnClickListener(View.OnClickListener {
-                mBudgetDatabase?.child(post_key.toString())?.removeValue()
+                if (mAuth?.currentUser != null) {
+                    val data = Budget(myAmount, type, post_key)
+                    mBudgetDatabase?.child(post_key.toString())?.setValue(data)
+                    Toast.makeText(view.context, "Enregistrement réussi...", Toast.LENGTH_SHORT).show()
+                }
                 dialog.dismiss()
             })
             dialog.show()

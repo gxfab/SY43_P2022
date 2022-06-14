@@ -16,6 +16,7 @@ import com.example.noappnogain.model.Data
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -75,6 +76,19 @@ class HomeFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerCat!!.adapter = adapter
         }
+        spinnerCat?.setSelection(Adapter.NO_SELECTION, true);
+        spinnerCat?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                edtType = spinnerCat?.selectedItem.toString()
+                println("posCat : $position")
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
 
         mMouvementDatabase?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -84,7 +98,11 @@ class HomeFragment : Fragment() {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
-                            balance += data.amount.toInt()
+                            val sdFormat = SimpleDateFormat("M/yyyy")
+                            val mDate = sdFormat.format(Date())
+                            if(data.date!!.endsWith(mDate)){
+                                balance += data.amount.toInt()
+                            }
                         }
                         // vérifier la balance
                         if(balance > 0) {
@@ -118,19 +136,6 @@ class HomeFragment : Fragment() {
     }
 
     fun dataInsert() {
-
-        spinnerCat?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                edtType = spinnerCat?.selectedItem.toString()
-                println("posCat : $position")
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
 
         val type = edtType.toString().trim { it <= ' ' }
         val amount = edtAmount?.text.toString().trim { it <= ' ' }

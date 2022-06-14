@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.adapter.ProjetAdapter
@@ -116,22 +117,23 @@ class ProjetFragment : Fragment() {
             val name = edtNom.text.toString().trim { it <= ' ' }
             if (TextUtils.isEmpty(actualAmount)) {
                 edtAmountActual.error
+                Toast.makeText(activity, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
             val myActualAmount = actualAmount.toInt()
             if (TextUtils.isEmpty(totalAmount)) {
                 edtAmountTotal.error
+                Toast.makeText(activity, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
             if (TextUtils.isEmpty(name)) {
                 edtNom.error
+                Toast.makeText(activity, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
             if (mAuth?.currentUser != null) {
 
                 val id: String? = mProjetDatabase?.push()?.key
-                val sdFormat = SimpleDateFormat("dd/MM/yyyy")
-                sdFormat.format(Date())
                 val data = Projet(myActualAmount, myTotalAmount, isFinished, name, id, date)
                 if (id != null) {
                     mProjetDatabase?.child(id)?.setValue(data)

@@ -133,6 +133,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/input"
+                android:layout_margin="4dp">
+
+                <TextView
+                    android:padding="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DATE : "
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+
+                <DatePicker
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/date_edt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <RelativeLayout

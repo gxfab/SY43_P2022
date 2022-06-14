@@ -89,7 +89,7 @@
 
     <LinearLayout
         android:layout_margin="5dp"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
@@ -122,6 +122,25 @@
 
         </LinearLayout>
 
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_id_budget"
+        android:layout_width="wrap_content"
+        android:layout_height="513dp"
+        android:layout_gravity="center_horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -151,20 +170,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_id_budget"
-        android:layout_width="wrap_content"
-        android:layout_height="514dp"
-        android:layout_gravity="center_horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
-    <Button
-        android:id="@+id/btn_ajouter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+ AJOUTER BUDGET"/>
 
 </LinearLayout>

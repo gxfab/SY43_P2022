@@ -55,7 +55,7 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
 
         }
 
-        if(currentitem.totalAmount < currentitem.actualAmount){
+        if(currentitem.totalAmount > currentitem.actualAmount){
             holder.totalAmount.setTextColor(Color.parseColor("#ff0000"));
         }else{
             holder.actualAmount.setTextColor(Color.parseColor("#0dff00"));
@@ -100,20 +100,21 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
             val btnUpdate = myviewm.findViewById<Button>(R.id.btn_upd_Update)
             val btnDelete = myviewm.findViewById<Button>(R.id.btnuPD_Delete)
             val dialog = mydialog.create()
+            dialog.show()
             btnUpdate.setOnClickListener {
-
-                var error = false
                 val isFinished = false
                 val actualAmount = edtAmountActual.text.toString().trim { it <= ' ' }
                 if (TextUtils.isEmpty(actualAmount)) {
                     edtAmountActual.error
-                    error = true
+                    Toast.makeText(view.context, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
                 }
                 val myActualAmount = actualAmount.toInt()
                 val totalAmount = edtAmountTotal.text.toString().trim { it <= ' ' }
                 if (TextUtils.isEmpty(totalAmount)) {
-                    edtAmountActual.error
-                    error = true
+                    edtAmountTotal.error
+                    Toast.makeText(view.context, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
                 }
                 val myTotalAmount = totalAmount.toInt()
                 val day = edtDateLimite.dayOfMonth.toString()
@@ -123,23 +124,22 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
                 val date = day.plus("/").plus(month).plus("/").plus(year)
                 val myName = edtName.text.toString()
                 if (TextUtils.isEmpty(name)) {
-                    error = true
+                    edtName.error
+                    Toast.makeText(view.context, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
                 }
-                if (mAuth?.currentUser != null && !error) {
+                if (mAuth?.currentUser != null) {
                     val data = Projet(myActualAmount, myTotalAmount, isFinished, myName, post_key, date)
                     mProjetDatabase?.child(post_key.toString())?.setValue(data)
                     Toast.makeText(view.context, "Enregistrement réussi...", Toast.LENGTH_SHORT).show()
-                    dialog.dismiss()
-                }else{
-                    Toast.makeText(view.context, "Les champs ne peuvent pas être vides...", Toast.LENGTH_SHORT).show()
                 }
+                dialog.dismiss()
             }
 
             btnDelete.setOnClickListener {
                 mProjetDatabase?.child(post_key.toString())?.removeValue()
                 dialog.dismiss()
             }
-            dialog.show()
         }
 
 

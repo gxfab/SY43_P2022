@@ -97,23 +97,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content">
 
-                    <Button
-                        android:id="@+id/btnuPD_Delete"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Supprimer"
-                        android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@color/black" />
-
-
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="0dp"
