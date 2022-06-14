@@ -14,7 +14,7 @@ import com.example.lafo_cheuse.models.Income
 import java.util.*
 import kotlin.math.exp
 
-class ExpenseAdapter (var context : Activity, val itemClickListener: deleteButtonClickListener) : RecyclerView.Adapter<ExpenseAdapter.ViewHolder>() {
+class ExpenseAdapter (var context : Activity, val itemClickListener: DeleteButtonClickListener) : RecyclerView.Adapter<ExpenseAdapter.ViewHolder>() {
     private var mExpense: List<Expense> = ArrayList<Expense>()
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ieName: EditText = itemView.findViewById(R.id.ie_name)
@@ -47,7 +47,7 @@ class ExpenseAdapter (var context : Activity, val itemClickListener: deleteButto
         }
     }
 
-    interface deleteButtonClickListener {
+    interface DeleteButtonClickListener {
         fun onDeleteButtonClick(position: Int)
     }
 

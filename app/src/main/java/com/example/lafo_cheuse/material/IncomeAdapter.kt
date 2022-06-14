@@ -15,7 +15,7 @@ import com.example.lafo_cheuse.models.Income
 import java.util.ArrayList
 
 
-class IncomeAdapter (var context : Activity, val itemClickListener: deleteButtonClickListener) : RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
+class IncomeAdapter (var context : Activity, val itemClickListener: DeleteButtonClickListener) : RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
     private var mIncome: List<Income> = ArrayList<Income>()
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ieName: EditText = itemView.findViewById(R.id.ie_name)
@@ -48,7 +48,7 @@ class IncomeAdapter (var context : Activity, val itemClickListener: deleteButton
         }
     }
 
-    interface deleteButtonClickListener {
+    interface DeleteButtonClickListener {
         fun onDeleteButtonClick(position: Int)
     }
 

@@ -81,7 +81,7 @@ class SetIncomesExpensesFragment : Fragment() {
     }
     private fun initializeRecyclerViewIncome(recyclerView: RecyclerView) {
         recyclerView?.layoutManager = LinearLayoutManager(activity)
-        incomeAdapter = IncomeAdapter(context as Activity, object : IncomeAdapter.deleteButtonClickListener {
+        incomeAdapter = IncomeAdapter(context as Activity, object : IncomeAdapter.DeleteButtonClickListener {
             override fun onDeleteButtonClick(position: Int) {
                 val alertDialog : AlertDialog.Builder = AlertDialog.Builder(activity)
 
@@ -116,7 +116,7 @@ class SetIncomesExpensesFragment : Fragment() {
 
     private fun initializeRecyclerViewExpense(recyclerView: RecyclerView) {
         recyclerView?.layoutManager = LinearLayoutManager(activity)
-        expenseAdapter = ExpenseAdapter(context as Activity, object : ExpenseAdapter.deleteButtonClickListener {
+        expenseAdapter = ExpenseAdapter(context as Activity, object : ExpenseAdapter.DeleteButtonClickListener {
             override fun onDeleteButtonClick(position: Int) {
                 val alertDialog : AlertDialog.Builder = AlertDialog.Builder(activity)
 
@@ -146,13 +146,6 @@ class SetIncomesExpensesFragment : Fragment() {
 
         expenseViewModel.getOneTimeExpense().observe(viewLifecycleOwner) { list ->
             expenseAdapter!!.setExpenses(list)
-        }
-    }
-
-    private fun deleteIncomeItem(position: Int) {
-        val item = incomeAdapter?.getItemAt(position)
-        if (item != null) {
-            incomeViewModel.deleteIncome(item)
         }
     }
 
