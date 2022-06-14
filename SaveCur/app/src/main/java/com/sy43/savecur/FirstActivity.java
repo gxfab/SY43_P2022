@@ -16,7 +16,12 @@ public class FirstActivity extends AppCompatActivity {
     }
 
     public void onSignInBtnClicked(android.view.View view) {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
+    }
+
+    public void onRegisterBtnClicked(android.view.View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 }

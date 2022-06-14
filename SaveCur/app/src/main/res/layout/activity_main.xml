@@ -38,6 +38,7 @@
         android:backgroundTint="#62AD62"
         android:textSize="40px"
         android:textStyle="bold"
+        android:onClick="onRegisterBtnClicked"
         />
 
 

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SaveCur</string>
+    <string name="Email" />
+    <string name="TextEmail">Email</string>
+    <string name="PasswordText">Password</string>
+    <string name="TextName">Name</string>
+    <string name="CompanyName">Company Name</string>
+    <string-array name="ListeRegister">
+        <item>Company</item>
+        <item>Personal</item>
+    </string-array>
 </resources>
