@@ -1,8 +1,10 @@
 package net.yolopix.moneyz
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
@@ -10,10 +12,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.slider.Slider
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.ExpenseType
 import net.yolopix.moneyz.model.entities.Month
 import net.yolopix.moneyz.utils.DatabaseFactory
 import net.yolopix.moneyz.utils.NumberMaxInputFilter
@@ -39,11 +44,14 @@ class PrevisionActivity : AppCompatActivity() {
     // Widgets
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressTextView: TextView
+    private lateinit var progress2TextView: TextView
     private lateinit var salaryEditText: EditText
     private lateinit var salarySlider: Slider
-    private lateinit var doneFloatingActionButton: ExtendedFloatingActionButton
+    private lateinit var nextFloatingActionButton: ExtendedFloatingActionButton
     private lateinit var salaryTextField: com.google.android.material.textfield.TextInputLayout
     private lateinit var paydayTextField: com.google.android.material.textfield.TextInputLayout
+    private lateinit var doneButton: Button
+    private lateinit var stepsViewPager: LockableViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,12 +66,63 @@ class PrevisionActivity : AppCompatActivity() {
         db = DatabaseFactory.getDB(applicationContext)
         recyclerView = findViewById(R.id.category_recycler_view)
         progressTextView = findViewById(R.id.progress_text)
+        progress2TextView = findViewById(R.id.progress_text2)
         salaryEditText = findViewById(R.id.edittext_salary)
         salarySlider = findViewById(R.id.slider_salary)
         now = LocalDate.now()
-        doneFloatingActionButton = findViewById(R.id.button_done)
+        nextFloatingActionButton = findViewById(R.id.button_next)
         salaryTextField = findViewById(R.id.textfield_salary)
         paydayTextField = findViewById(R.id.textfield_payday)
+        doneButton = findViewById(R.id.button_done)
+        stepsViewPager = findViewById(R.id.viewpager_steps)
+
+        val endDescriptionTextView: TextView = findViewById(R.id.textview_end_description)
+
+        // Initialize view pager
+        stepsViewPager.adapter = PrevisionStepsAdapter()
+        stepsViewPager.offscreenPageLimit = 10 // Workaround for empty pages
+
+        // When changing pages, reuse the same category view
+        // to avoid creation and destruction of different instances
+        val movableLayout: LinearLayout = findViewById(R.id.layout_movable_category_manager)
+        var lastPage = 0
+        stepsViewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+
+            // When the page is scrolled, move the view to the current page
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                val currentPageIndex = stepsViewPager.currentItem
+                if (currentPageIndex in 1 until PrevisionStepsAdapter.viewList.size - 1) {
+                    // If the page has changed
+                    if (currentPageIndex != lastPage) {
+                        val currentPageViewResId = PrevisionStepsAdapter.viewList[currentPageIndex]
+                        (movableLayout.parent as LinearLayout).removeView(movableLayout)
+                        findViewById<LinearLayout>(currentPageViewResId).addView(movableLayout)
+                        lifecycleScope.launch {
+                            loadCategories()
+                        }
+                    }
+                    lastPage = currentPageIndex
+                } else if (currentPageIndex == PrevisionStepsAdapter.viewList.size - 1) {
+                    lifecycleScope.launch {
+                        val categorizedAmount = calculateCategorizedAmount()
+                        val totalAmount: Float? = salaryEditText.text.toString().toFloatOrNull()
+
+                        if (categorizedAmount == totalAmount) {
+                            doneButton.isEnabled = true
+                            endDescriptionTextView.text = getString(R.string.section_end_ready)
+                        }
+                        else {
+                            doneButton.isEnabled = false
+                            endDescriptionTextView.text = getString(R.string.section_end_wrong)
+                        }
+                    }
+                }
+            }
+        })
 
         // Set salary value
         lifecycleScope.launch {
@@ -112,7 +171,8 @@ class PrevisionActivity : AppCompatActivity() {
                 now.monthValue,
                 now.year,
                 accountUid!!,
-                salaryEditText.text.toString().toFloatOrNull()
+                salaryEditText.text.toString().toFloatOrNull(),
+                getCurrentType()!!
             ).apply {
                 show(supportFragmentManager, tag)
             }
@@ -122,39 +182,32 @@ class PrevisionActivity : AppCompatActivity() {
         // Initialize the category RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
 
-        lifecycleScope.launch {
-
-            val swipeToDeleteExpense = object : SwipeToDeleteExpense(){
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    lifecycleScope.launch {  val categoryList = db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!)
-                        val position = viewHolder.adapterPosition
-
-
-
-                        db.categoryDao().deleteCategory(categoryList[position])
-                        loadAll()
-                    }
-
-
+        // Swipe an item inside the recyclerview to delete it
+        val swipeToDeleteExpense = object : SwipeToDeleteExpense() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                lifecycleScope.launch {
+                    val categoryList = db.categoryDao()
+                        .getCategoriesForMonth(now.monthValue, now.year, accountUid!!)
+                    val position = viewHolder.adapterPosition
+                    db.categoryDao().deleteCategory(categoryList[position])
+                    loadAll()
+                    Snackbar.make(
+                        recyclerView,
+                        R.string.info_deleted_category,
+                        Snackbar.LENGTH_SHORT
+                    )
+                        .show()
                 }
-
             }
-            val itemTouchHelper = ItemTouchHelper(swipeToDeleteExpense)
-            itemTouchHelper.attachToRecyclerView(recyclerView)
         }
-
-
-
-
-
-
-
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteExpense)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
 
         // Load asynchronous databases operations when the activity is created
         loadAll()
 
         // When the user has finished to make previsions
-        doneFloatingActionButton.setOnClickListener {
+        doneButton.setOnClickListener {
             val newMonth = Month(
                 now.monthValue,
                 now.year,
@@ -166,6 +219,10 @@ class PrevisionActivity : AppCompatActivity() {
                 db.monthDao().insertMonth(newMonth)
             }
             finish()
+        }
+
+        nextFloatingActionButton.setOnClickListener {
+            stepsViewPager.arrowScroll(View.FOCUS_RIGHT)
         }
 
         // Display the current month in the action bar
@@ -183,8 +240,15 @@ class PrevisionActivity : AppCompatActivity() {
         lifecycleScope.launch {
             loadCategories()
             loadBudgetBar()
-            loadLimits()
         }
+    }
+
+    /**
+     * Get the type of expense the user is currently making previsions
+     * @return the expense type
+     */
+    private fun getCurrentType(): ExpenseType? {
+        return ExpenseType.getTypeFromInt(stepsViewPager.currentItem)
     }
 
     /**
@@ -192,25 +256,30 @@ class PrevisionActivity : AppCompatActivity() {
      * and display the recyclerview containing these categories
      */
     private suspend fun loadCategories() {
-        val adapter =
+        val expenseType = getCurrentType()
+
+        // If an expense type has been selected, only get categories having this type
+        val adapter = if (expenseType == null) {
             CategoryAdapter(
                 db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!),
                 this,
                 false,
                 db,
             )
-        recyclerView.adapter = adapter
-    }
-
-    /**
-     * Load and apply min and max values for EditText
-     */
-    private suspend fun loadLimits() {
-        val categorizedAmount: Float = db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
-
-        if (salaryEditText.text.toString().toFloat() < categorizedAmount) {
-            salaryEditText.setText(categorizedAmount.toString())
+        } else {
+            CategoryAdapter(
+                db.categoryDao().getCategoriesOfTypeForMonth(
+                    now.monthValue,
+                    now.year,
+                    accountUid!!,
+                    expenseType
+                ),
+                this,
+                false,
+                db,
+            )
         }
+        recyclerView.adapter = adapter
     }
 
     /**
@@ -225,6 +294,8 @@ class PrevisionActivity : AppCompatActivity() {
         if (totalAmount == null)
             totalAmount = 0f
 
+        val remainingAmount = totalAmount - categorizedAmount
+
         progressTextView.text = getString(
             R.string.prevision_progress_format,
             String.format("%.2f", categorizedAmount),
@@ -238,6 +309,11 @@ class PrevisionActivity : AppCompatActivity() {
             salarySlider.value = categorizedAmount
         else
             salarySlider.value = 0f
+
+        progress2TextView.text =
+            if (categorizedAmount == totalAmount)
+                getString(R.string.zero_remaining_prevision)
+            else getString(R.string.remaining_prevision, String.format("%.2f", remainingAmount))
     }
 
 
@@ -248,8 +324,9 @@ class PrevisionActivity : AppCompatActivity() {
      * If so, disable the submit button
      */
     private fun checkFormErrors() {
-        doneFloatingActionButton.isEnabled =
-            salaryTextField.error == null && paydayTextField.error == null
+        val hasNoErrors = salaryTextField.error == null && paydayTextField.error == null
+        nextFloatingActionButton.isEnabled = hasNoErrors
+        stepsViewPager.isLocked = !hasNoErrors
     }
 
 }

@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="ExtraText, SpeakableTextPresentCheck">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,142 +26,229 @@
             android:id="@+id/progress_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:text="@string/placeholder_short"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/progress_text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/placeholder_short"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MoneyZ.MaterialCardView.BackgroundCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ScrollView
+            <net.yolopix.moneyz.LockableViewPager
+                android:id="@+id/viewpager_steps"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
                 <LinearLayout
+                    android:id="@+id/layout_salary"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_income_title" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textfield_payday"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:hint="@string/payday">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_payday"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="@string/default_month" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textfield_salary"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:hint="@string/salary_amount"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_salary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1"
+                            android:text="@string/default_salary" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_bills"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="8dp"
-                        android:text="@string/section_income_title"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:text="@string/section_bills" />
 
                     <LinearLayout
+                        android:id="@+id/layout_movable_category_manager"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/category_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/item_category" />
+
+                        <Button
+                            android:id="@+id/button_add_category"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/payday"
-                            android:visibility="gone" />
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/new_category"
+                            app:icon="@drawable/ic_outline_add_24" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textfield_payday"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:layout_weight="1"
-                            android:hint="@string/payday">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edittext_payday"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:maxLines="1"
-                                android:text="@string/default_month" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/salary_amount"
-                            android:visibility="gone" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textfield_salary"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:layout_weight="1"
-                            android:hint="@string/salary_amount"
-                            app:errorEnabled="true">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edittext_salary"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="numberDecimal"
-                                android:maxLines="1"
-                                android:text="@string/default_salary" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-
-                    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_envelopes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="8dp"
-                        android:text="@string/section_prevision_category"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:text="@string/section_envelopes" />
 
+                </LinearLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/category_recycler_view"
+                <LinearLayout
+                    android:id="@+id/layout_sinking_funds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:itemCount="2"
-                        tools:listitem="@layout/item_category" />
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_sinking_funds" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_extra_debt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_extra_debt" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_extra_savings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_extra_savings" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_end_previsions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_end_title" />
+
+                    <TextView
+                        android:id="@+id/textview_end_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="@string/section_end_ready"
+                        tools:targetApi="o" />
 
                     <Button
-                        android:id="@+id/button_add_category"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:id="@+id/button_done"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@string/new_category"
-                        app:icon="@drawable/ic_outline_add_24" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="64dp" />
+                        android:layout_margin="16dp"
+                        android:text="@string/done"
+                        app:icon="@drawable/ic_outline_check_24" />
 
                 </LinearLayout>
-            </ScrollView>
 
+            </net.yolopix.moneyz.LockableViewPager>
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/button_done"
+        android:id="@+id/button_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:text="@string/done"
-        app:icon="@drawable/ic_outline_check_24" />
+        android:text="@string/next"
+        app:icon="@drawable/ic_outline_arrow_forward_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

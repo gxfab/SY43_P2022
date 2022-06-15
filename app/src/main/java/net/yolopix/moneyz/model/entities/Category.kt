@@ -2,6 +2,7 @@ package net.yolopix.moneyz.model.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import net.yolopix.moneyz.model.ExpenseType
 
 /**
  * This entity represents a category that can be used to sort expenses by type
@@ -19,7 +20,8 @@ data class Category(
     var predictedAmount: Float,
     val monthNumber: Int,
     val yearNumber: Int,
-    val accountUid: Int
+    val accountUid: Int,
+    val expenseType: ExpenseType
 ) {
     override fun toString(): String {
         return name

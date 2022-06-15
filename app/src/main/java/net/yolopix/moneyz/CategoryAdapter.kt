@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.Space
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.ExpenseType
 import net.yolopix.moneyz.model.entities.Category
 
 /**
@@ -28,12 +28,8 @@ class CategoryAdapter(
     private val db: AppDatabase,
     private val monthNumber: Int? = null,
     private val yearNumber: Int? = null,
-    private var accountUid: Int? = null
-
-
     ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
-
 
     /**
      * A nested class for the view holder
@@ -46,12 +42,9 @@ class CategoryAdapter(
         val categoryHeaderLayout: View = itemView.findViewById(R.id.layout_category_header)
         val bottomSpace: Space = itemView.findViewById(R.id.space_bottom_category)
         val itemDivider: View = itemView.findViewById(R.id.divider_item_category)
-
     }
 
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
-
-
         // For expense view
         if (expenseMode) {
             viewHolder.expensesRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -66,7 +59,6 @@ class CategoryAdapter(
             }
             // Expand/collapse the expenses nested under the category
             viewHolder.categoryHeaderLayout.setOnClickListener {
-
                 if (viewHolder.expensesRecyclerView.visibility == View.GONE) {
                     viewHolder.expensesRecyclerView.visibility = View.VISIBLE
                     viewHolder.expandButton.rotation = 180f
@@ -75,19 +67,10 @@ class CategoryAdapter(
                     viewHolder.expandButton.rotation = 0f
                 }
             }
-            context.lifecycleScope.launch{
-
-
-                if(categoryList[position].predictedAmount > db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid)){
-                    R.string.money_format
-                    viewHolder.categoryPriceTextView.setText(String.format("%.2f", categoryList[position].predictedAmount))
-                }else{
-                    viewHolder.categoryPriceTextView.setText(String.format((db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid) - categoryList[position].predictedAmount).toString()))
-                    viewHolder.categoryPriceTextView.setTextColor(ContextCompat.getColor(context, R.color.red))
-                }
-
+            // Add spacing at the end of the list
+            if (position == categoryList.lastIndex) {
+                viewHolder.bottomSpace.visibility = View.VISIBLE
             }
-
         }
 
         // For prevision view
@@ -95,20 +78,14 @@ class CategoryAdapter(
             viewHolder.expandButton.visibility = View.GONE
             viewHolder.expensesRecyclerView.visibility = View.GONE
             viewHolder.itemDivider.visibility = View.GONE
-            viewHolder.categoryNameTextView.text = categoryList[position].name
-            viewHolder.categoryPriceTextView.text = context.getString(
-                R.string.money_format,
-                String.format("%.2f", categoryList[position].predictedAmount)
-            )
         }
 
         // Common to both prevision/expenses view
         viewHolder.categoryNameTextView.text = categoryList[position].name
-
-
-        if (position == categoryList.lastIndex) {
-            viewHolder.bottomSpace.visibility = View.VISIBLE
-        }
+        viewHolder.categoryPriceTextView.text = context.getString(
+            R.string.money_format,
+            String.format("%.2f", categoryList[position].predictedAmount)
+        )
     }
 
     override fun getItemCount(): Int {

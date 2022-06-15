@@ -14,6 +14,7 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.ExpenseType
 import net.yolopix.moneyz.model.entities.Account
 import net.yolopix.moneyz.model.entities.Category
 import java.time.LocalDate
@@ -79,7 +80,10 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
             // Add default categories to the newly created account
             for (names in categoryNames) {
                 val category =
-                    Category(0, names, 0.0f, now.monthValue, now.year, accountNumber.toInt())
+                    Category(
+                        0, names, 0.0f, now.monthValue, now.year, accountNumber.toInt(),
+                        ExpenseType.ENVELOPES
+                    )
                 db.categoryDao().insertCategory(category)
             }
         }
