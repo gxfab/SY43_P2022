@@ -123,25 +123,92 @@
                         android:paddingVertical="8dp"
                         android:text="@string/section_bills" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/category_recycler_view"
+                    <LinearLayout
+                        android:id="@+id/layout_movable_category_manager"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:itemCount="2"
-                        tools:listitem="@layout/item_category" />
+                        android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/button_add_category"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/new_category"
-                        app:icon="@drawable/ic_outline_add_24" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/category_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/item_category" />
 
-                    <Space
+                        <Button
+                            android:id="@+id/button_add_category"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/new_category"
+                            app:icon="@drawable/ic_outline_add_24" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_envelopes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="match_parent"
-                        android:layout_height="64dp" />
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_envelopes" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_sinking_funds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_sinking_funds" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_extra_debt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_extra_debt" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_extra_savings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_extra_savings" />
 
                 </LinearLayout>
 

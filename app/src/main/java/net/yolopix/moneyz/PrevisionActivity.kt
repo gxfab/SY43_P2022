@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
@@ -79,14 +80,28 @@ class PrevisionActivity : AppCompatActivity() {
         // Initialize view pager
         val stepsViewPager: ViewPager = findViewById(R.id.viewpager_steps)
         stepsViewPager.adapter = PrevisionStepsAdapter()
+        stepsViewPager.offscreenPageLimit = 10 // Workaround for empty pages
 
+        // When changing pages, reuse the same category view
+        // to avoid creation and destruction of different instances
+        val movableLayout: LinearLayout = findViewById(R.id.layout_movable_category_manager)
         stepsViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             override fun onPageScrollStateChanged(state: Int) {
             }
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
+            // When the page is scrolled, move the view to the current page
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                val currentPageIndex = stepsViewPager.currentItem
+                if (currentPageIndex in 1 until PrevisionStepsAdapter.viewList.size-1) {
+                    val currentPageViewResId = PrevisionStepsAdapter.viewList[currentPageIndex]
+                    (movableLayout.parent as LinearLayout).removeView(movableLayout)
+                    findViewById<LinearLayout>(currentPageViewResId).addView(movableLayout)
+                }
             }
 
             override fun onPageSelected(position: Int) {
