@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="ExtraText, SpeakableTextPresentCheck">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,13 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager2_steps"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp" />
-
-            <androidx.viewpager.widget.ViewPager
+            <net.yolopix.moneyz.LockableViewPager
                 android:id="@+id/viewpager_steps"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -225,6 +218,14 @@
                         android:paddingVertical="8dp"
                         android:text="@string/section_end_title" />
 
+                    <TextView
+                        android:id="@+id/textview_end_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="@string/section_end_ready"
+                        tools:targetApi="o" />
+
                     <Button
                         android:id="@+id/button_done"
                         android:layout_width="wrap_content"
@@ -236,7 +237,7 @@
 
                 </LinearLayout>
 
-            </androidx.viewpager.widget.ViewPager>
+            </net.yolopix.moneyz.LockableViewPager>
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>

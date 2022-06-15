@@ -51,7 +51,7 @@ class PrevisionActivity : AppCompatActivity() {
     private lateinit var salaryTextField: com.google.android.material.textfield.TextInputLayout
     private lateinit var paydayTextField: com.google.android.material.textfield.TextInputLayout
     private lateinit var doneButton: Button
-    private lateinit var stepsViewPager: ViewPager
+    private lateinit var stepsViewPager: LockableViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +75,8 @@ class PrevisionActivity : AppCompatActivity() {
         paydayTextField = findViewById(R.id.textfield_payday)
         doneButton = findViewById(R.id.button_done)
         stepsViewPager = findViewById(R.id.viewpager_steps)
+
+        val endDescriptionTextView: TextView = findViewById(R.id.textview_end_description)
 
         // Initialize view pager
         stepsViewPager.adapter = PrevisionStepsAdapter()
@@ -104,6 +106,20 @@ class PrevisionActivity : AppCompatActivity() {
                         }
                     }
                     lastPage = currentPageIndex
+                } else if (currentPageIndex == PrevisionStepsAdapter.viewList.size - 1) {
+                    lifecycleScope.launch {
+                        val categorizedAmount = calculateCategorizedAmount()
+                        val totalAmount: Float? = salaryEditText.text.toString().toFloatOrNull()
+
+                        if (categorizedAmount == totalAmount) {
+                            doneButton.isEnabled = true
+                            endDescriptionTextView.text = getString(R.string.section_end_ready)
+                        }
+                        else {
+                            doneButton.isEnabled = false
+                            endDescriptionTextView.text = getString(R.string.section_end_wrong)
+                        }
+                    }
                 }
             }
         })
@@ -224,7 +240,6 @@ class PrevisionActivity : AppCompatActivity() {
         lifecycleScope.launch {
             loadCategories()
             loadBudgetBar()
-            loadLimits()
         }
     }
 
@@ -265,17 +280,6 @@ class PrevisionActivity : AppCompatActivity() {
             )
         }
         recyclerView.adapter = adapter
-    }
-
-    /**
-     * Load and apply min and max values for EditText
-     */
-    private suspend fun loadLimits() {
-        val categorizedAmount: Float = calculateCategorizedAmount()
-
-        if (salaryEditText.text.toString().toFloat() < categorizedAmount) {
-            salaryEditText.setText(categorizedAmount.toString())
-        }
     }
 
     /**
@@ -333,8 +337,9 @@ class PrevisionActivity : AppCompatActivity() {
      * If so, disable the submit button
      */
     private fun checkFormErrors() {
-        nextFloatingActionButton.isEnabled =
-            salaryTextField.error == null && paydayTextField.error == null
+        val hasNoErrors = salaryTextField.error == null && paydayTextField.error == null
+        nextFloatingActionButton.isEnabled = hasNoErrors
+        stepsViewPager.isLocked = !hasNoErrors
     }
 
 }
