@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import com.example.sy43.CategoryDetailsActivity;
 import com.example.sy43.MainActivity;
 import com.example.sy43.ObjectiveDetailsActivity;
 import com.example.sy43.R;
+import com.example.sy43.TransactionSummary;
 import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.db.entity.SubCategory;
 import com.example.sy43.db.entity.Transaction;
@@ -31,6 +33,8 @@ import com.example.sy43.viewmodels.CategoryViewModel;
 import com.example.sy43.viewmodels.SubCategoryViewModel;
 import com.example.sy43.viewmodels.TransactionViewModel;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 //https://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
@@ -78,7 +82,24 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
             Boolean isObjective = category.getIsObjective();
 
             if (isObjective) {
-                price.setText("$0/$"+category.getMaxValue()+" saved");
+                price.setText("$0/$" + category.getMaxValue() + " saved");
+                Date objectiveDate = new Date(category.getDate());
+                final float[] montant = {0};
+                transactionViewModel.getTransactions().observe(owner, new Observer<List<Transaction>>() {
+                    @Override
+                    public void onChanged(List<Transaction> receivedTransactions) {
+                        // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
+                        /*
+                        for (Transaction trans: receivedTransactions) {
+                            Date transactionDate = new Date(trans.getDate());
+                            if (transactionDate.before(objectiveDate)) {
+                                montant[0] += trans.getValue();
+                            }
+                        }
+                     */
+                    }
+                });
+
 
             } else {
                 transactionViewModel.getTransactionsFromCat(category.getCatID()).observe(owner, new Observer<List<Transaction>>() {
@@ -92,6 +113,8 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
                         progressBar.setProgress((int) value[0], true);
                         progressBar.getProgressDrawable().setColorFilter(
                                 value[0] < value[1] ? Color.GREEN : Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
+                        category.setCurrentValue(value[0]);
+                        updateCategory(category);
                     }
                 });
 
@@ -106,7 +129,8 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
                         progressBar.setMax((int) value[1]);
                         progressBar.getProgressDrawable().setColorFilter(
                                 value[0] < value[1] ? Color.GREEN : Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
-
+                        category.setMaxValue(value[1]);
+                        updateCategory(category);
                     }
                 });
             }
@@ -139,6 +163,8 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
 
         return v;
     }
-
+    private void updateCategory(Categorydb cat) {
+        catViewModel.updateCategory(cat);
+    }
 
 }

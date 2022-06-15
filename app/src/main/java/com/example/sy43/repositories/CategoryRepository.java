@@ -33,7 +33,21 @@ public class CategoryRepository {
         db = DB.getAppDatabase(MainActivity.getAppContext());
         databaseExecutor = DBexec.getExecutor();
     }
+    public void updateCategory(Categorydb category) {
+        Futures.addCallback(
+                db.CategoryDAO().update(category),
+                new FutureCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void result) {
 
+                    }
+
+                    public void onFailure(@NonNull Throwable thrown) {
+                    }
+                },
+                databaseExecutor
+        );
+    }
     public MutableLiveData<Categorydb> getCategoryById(int id) {
         MutableLiveData<Categorydb> data = new MutableLiveData<>();
 

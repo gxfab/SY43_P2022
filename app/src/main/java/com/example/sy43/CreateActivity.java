@@ -53,7 +53,7 @@ public class CreateActivity extends AppCompatActivity {
 
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, month + 1, day);
+
 
         CategoryViewModel categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         categoryViewModel.init();
@@ -86,10 +86,12 @@ public class CreateActivity extends AppCompatActivity {
                 boolean isCategory = !subSwitch.isChecked();
                 if (isCategory) {
                     Categorydb cat = new Categorydb();
-                    TextView name = (TextView) findViewById(R.id.txtCategory);
+                    EditText name = (EditText) findViewById(R.id.txtCategory);
+                    if (name.getText().toString().length() == 0) return;
                     cat.setCatName(name.getText().toString());
                     cat.setObjective(false);
                     categoryViewModel.createCategory(cat);
+
                 } else {
                     SubCategory cat = new SubCategory();
                     TextView name = (TextView) findViewById(R.id.txtCategory);
@@ -102,7 +104,8 @@ public class CreateActivity extends AppCompatActivity {
                             parentCat = _cat;
                         }
                     }
-                    TextView montant = (TextView) findViewById(R.id.editMontant);
+                    EditText montant = (EditText) findViewById(R.id.editMontant);
+                    if (montant.getText().toString().length() == 0) return;
                     cat.setMaxValue(Float.parseFloat(montant.getText().toString()));
                     cat.setCurrentValue(0);
                     cat.setCategory(parentCat.getCatID());
@@ -117,15 +120,22 @@ public class CreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Categorydb cat = new Categorydb();
-                TextView name = (TextView) findViewById(R.id.objName);
+                EditText name = (EditText) findViewById(R.id.objName);
                 cat.setCatName(name.getText().toString());
 
-                TextView value = (TextView) findViewById(R.id.objValue);
+                EditText value = (EditText) findViewById(R.id.objValue);
+                if (name.getText().toString().length() == 0 || value.getText().toString().length() == 0) return;
                 Log.d("Test", String.valueOf(value.getText()));
                 cat.setMaxValue(parseFloat(value.getText().toString()));
 
                 cat.setCurrentValue(0);
                 cat.setObjective(true);
+                Date date = showDate(year, month, day);
+                if (date == null) {
+                    return;
+                }
+                cat.setDate(date.getTime());
+
                 categoryViewModel.createCategory(cat);
                 Intent intent = new Intent(v.getContext(), CategoryActivity.class);
                 v.getContext().startActivity(intent);
@@ -184,11 +194,12 @@ public class CreateActivity extends AppCompatActivity {
                 }
             };
 
-    private void showDate(int year, int month, int day) {
+    private Date showDate(int year, int month, int day) {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-YY");
         Date d = new Date(year, month, day);
         String strDate = dateFormatter.format(d);
         dateView.setText(strDate);
+        return d;
     }
 
 

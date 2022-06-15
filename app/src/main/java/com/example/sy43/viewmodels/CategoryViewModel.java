@@ -41,9 +41,14 @@ public class CategoryViewModel extends ViewModel {
         this.catRepo.deleteCategory(id);
     }
 
-    public LiveData<Categorydb> getCategoryById(int id){
+    public LiveData<Categorydb> getCategoryById(int id) {
         return this.catRepo.getCategoryById(id);
     }
+
+    public void updateCategory(Categorydb categorydb) {
+        this.catRepo.updateCategory(categorydb);
+    }
+
 
     public LiveData<List<Categorydb>> getCategories() {
         return categories;
