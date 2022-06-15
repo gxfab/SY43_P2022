@@ -59,16 +59,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        /*
-        final Button buttonPreview = findViewById(R.id.preview);
-        buttonPreview.setOnClickListener(new View.OnClickListener() {
+        final CardView cardPreview = findViewById(R.id.preview);
+        cardPreview.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MonthlyReportActivity.class);
+                Intent intent = new Intent(v.getContext(), graphActivity.class);
                 v.getContext().startActivity(intent);
             }
         });
-         */
     }
 
     public static Context getAppContext() {
