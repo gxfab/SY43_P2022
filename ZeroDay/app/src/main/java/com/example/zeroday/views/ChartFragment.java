@@ -85,8 +85,13 @@ public class ChartFragment extends Fragment {
         RadarDataSet currentDataSet = new RadarDataSet(currentDataVals, "Current expenses");
         RadarDataSet lastDataSet = new RadarDataSet(lastDataVals, "Last cycle expenses");
 
+        currentDataSet.setFillColor(ContextCompat.getColor(getContext(), R.color.zero_purple));
         currentDataSet.setColor(ContextCompat.getColor(getContext(), R.color.zero_purple));
-        lastDataSet.setColors(ContextCompat.getColor(getContext(), R.color.zero_pink0));
+        currentDataSet.setDrawFilled(true);
+
+        lastDataSet.setFillColor(ContextCompat.getColor(getContext(), R.color.zero_pink0));
+        lastDataSet.setColor(ContextCompat.getColor(getContext(), R.color.zero_pink0));
+        lastDataSet.setDrawFilled(true);
 
         RadarData data = new RadarData();
         data.addDataSet(currentDataSet);
