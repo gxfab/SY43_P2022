@@ -145,8 +145,12 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         ieValue : TextView,
         ieName : TextView,
     ) = coroutineScope {
-        val globalExpensesSum : Double =
-            expenseViewModel.getMonthlyExpensesSumSync()
+        val globalExpensesSum : Double = if(expenseViewModel.getMonthlyExpensesSumForCategorySync(selectedCategory!!)?.isEmpty() == true) {
+            0.0
+        } else {
+            expenseViewModel.getMonthlyExpensesSumForCategorySync(selectedCategory!!)?.get(0)?.totalAmount!!
+        }
+
         val partialExpensesSumList : List<ExpenseSumContainer> =
             expenseViewModel.getOneTimeExpensesSumForCategoryAndMonthSync(selectedCategory!!,date.year,date.month)
         val partialExpensesSum : Double =
