@@ -63,7 +63,7 @@ public class IncomesCategoryRepository extends ZeroBaseRepository<IncomeCategory
     @Override
     public ContentValues toContentValues(IncomeCategory incomeCategory) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DbHelper.KEY_ID_INCOME_CATEGORY, incomeCategory.getId());
+//        contentValues.put(DbHelper.KEY_ID_INCOME_CATEGORY, incomeCategory.getId());
         contentValues.put(DbHelper.KEY_CODE_INCOME_CATEGORY, incomeCategory.getCodeIncomeCategory());
         contentValues.put(DbHelper.KEY_LABEL_INCOME_CATEGORY, incomeCategory.getLabelIncomeCategory());
         return contentValues;
