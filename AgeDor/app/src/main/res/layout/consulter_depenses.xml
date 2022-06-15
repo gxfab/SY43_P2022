@@ -10,22 +10,49 @@
         android:id="@+id/titreConsulterDepenses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
         android:text="@string/consulterMesDepenses"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="58dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titreConsulterDepenses2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contenu des enveloppes"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="126dp" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="92dp"
+        android:text="Nom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titreConsulterDepenses" />
+
+    <TextView
+        android:id="@+id/titreConsulterDepenses4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="92dp"
+        android:text="Categorie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titreConsulterDepenses" />
+
+    <TextView
+        android:id="@+id/titreConsulterDepenses5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="92dp"
+        android:text="Date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titreConsulterDepenses" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="313dp"
-        android:layout_height="482dp"
-        android:layout_marginStart="48dp"
+        android:id="@+id/consulter_depenses"
+        android:layout_width="match_parent"
+        android:layout_height="539dp"
+        android:layout_marginTop="188dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="173dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

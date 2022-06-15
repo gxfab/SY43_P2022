@@ -29,6 +29,7 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
     private EditText montant;
     private DatePicker date;
 
+    // Variables à distribuer à la BD
     private String sNom;
     private String sCategorie;
     private String sDate;
@@ -119,7 +120,7 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
         //calendar.set(year,month,day);
 
         //this.sDate = new String(String.valueOf(calendar.getTime()));
-        this.sDate = new String(String.valueOf(day+""+month+""+year));
+        this.sDate = (day+""+month+""+year);
 
     }
 
