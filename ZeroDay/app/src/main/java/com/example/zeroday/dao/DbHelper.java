@@ -10,7 +10,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     // Database object
     // Database Version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
 
     // Database Name
     private static final String DATABASE_NAME = "ZERO_DAY_DB";
@@ -26,31 +26,31 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     //INCOMES_CATEGORY Table - column names
-    public static final String KEY_ID_INCOME_CATEGORY = "ID_INCOME_CATEGORY";
+    public static final String KEY_ID_INCOME_CATEGORY = "ID";
     public static final String KEY_CODE_INCOME_CATEGORY = "CODE_INCOME_CATEGORY";
     public static final String KEY_LABEL_INCOME_CATEGORY = "NAME_INCOME_CATEGORY";
 
     //EXPENSE_CATEGORY Table - column names
-    public static final String KEY_ID_EXPENSE_CATEGORY = "ID_EXPENSE_CATEGORY";
+    public static final String KEY_ID_EXPENSE_CATEGORY = "ID";
     public static final String KEY_CODE_EXPENSE_CATEGORY = "CODE_EXPENSE_CATEGORY";
     public static final String KEY_LABEL_EXPENSE_CATEGORY = "LABEL_EXPENSE_CATEGORY";
 
     //BUDGET Table - column names
-    public static final String KEY_ID_BUDGET = "ID_BUDGET";
+    public static final String KEY_ID_BUDGET = "ID";
     public static final String KEY_CODE_BUDGET = "CODE_BUDGET";
     public static final String KEY_START_DATE_BUDGET = "START_DATE_BUDGET";
     public static final String KEY_END_DATE_BUDGET = "END_DATE_BUDGET";
     public static final String KEY_FREQUENCY_BUDGET = "FREQUENCY_BUDGET";
 
     //INCOME Table - column names
-    public static final String KEY_ID_INCOME = "ID_INCOME";
+    public static final String KEY_ID_INCOME = "ID";
     public static final String KEY_LABEL_INCOME = "LABEL_INCOME";
     public static final String KEY_AMOUNT_INCOME = "AMOUNT_INCOME";
     public static final String KEY_FREQUENCY_INCOME = "FREQUENCY_INCOME";
     public static final String KEY_FK_ID_INCOME_CATEGORY = "ID_INCOME_CATEGORY";
 
     //EXPENSE Table - column names
-    public static final String KEY_ID_EXPENSE = "ID_EXPENSE";
+    public static final String KEY_ID_EXPENSE = "ID";
     public static final String KEY_LABEL_EXPENSE = "LABEL_EXPENSE";
     public static final String KEY_AMOUNT_EXPENSE = "AMOUNT_EXPENSE";
     public static final String KEY_FREQUENCY_EXPENSE = "FREQUENCY_EXPENSE";
@@ -59,19 +59,20 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String KEY_COMMENT_EXPENSE = "COMMENT_EXPENSE";
 
     //PREVISION Table - column names
-    public static final String KEY_ID_PREVISION = "ID_PREVISION";
-    public static final String KEY_ID_BUDGET_PREVISION = "ID_BUDGET_PREVISION";
+    public static final String KEY_ID_PREVISION = "ID";
+    public static final String KEY_FK_ID_BUDGET_PREVISION = "ID_BUDGET_PREVISION";
     public static final String KEY_AMOUNT_PREVISION = "AMOUNT_PREVISION";
     public static final String KEY_DATE_PREVISION = "DATE_PREVISION";
+    public static final String KEY_TIMESTAP_PREVISION_START = "TIMESTAP_PREVISION_START";
+    public static final String KEY_TIMESTAP_PREVISION_END = "TIMESTAP_PREVISION_END";
+
 
     //PREVISION_EXPENSE Table - column names
-    public static final String KEY_ID_PREVISION_EXPENSE = "ID_PREVISION_EXPENSE";
+    public static final String KEY_ID_PREVISION_EXPENSE = "ID";
     public static final String KEY_LABEL_PREVISION_EXPENSE = "LABEL_PREVISION_EXPENSE";
     public static final String KEY_AMOUNT_PREVISION_EXPENSE = "AMOUNT_PREVISION_EXPENSE";
     public static final String KEY_ID_PREVISION_EXPENSE_CATEGORY = "ID_PREVISION_EXPENSE_CATEGORY";
     public static final String KEY_COMMENT_PREVISION_EXPENSE = "COMMENT_PREVISION_EXPENSE";
-
-    
 
     //Table column indexes
     public static final int COL_ID_INCOME_CATEGORY_INDEX = 0;
@@ -97,7 +98,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final int COL_ID_EXPENSE_INDEX = 0;
     public static final int COL_LABEL_EXPENSE_INDEX = 1;
     public static final int COL_AMOUNT_EXPENSE_INDEX = 2;
-    public static final int COL_FRQUENCE_EXPENSE_INDEX = 3;
+    public static final int COL_FREQUENCY_EXPENSE_INDEX = 3;
     public static final int COL_FK_ID_EXPENSE_CATEGORY_INDEX = 4;
     public static final int COL_DATE_EXPENSE_INDEX = 5;
     public static final int COL_COMMENT_EXPENSE_INDEX = 6;
@@ -106,6 +107,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final int COL_FK_ID_BUDGET_PREVISION_INDEX = 1;
     public static final int COL_AMOUNT_PREVISION_INDEX = 2;
     public static final int COL_DATE_PREVISION_INDEX = 3;
+    public static final int COL_TIMESTAP_PREVISION_START_INDEX = 4;
+    public static final int COL_TIMESTAP_PREVISION_END_INDEX = 5;
 
     public static final int COL_ID_PREVISION_EXPENSE_INDEX = 0;
     public static final int COL_LABEL_PREVISION_EXPENSE_INDEX = 1;
@@ -117,9 +120,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     // Table Create Statements
     // INCOMES_CATEGORY table create statement
-    private static final String CREATE_TABLE_INCOMES_CATEGORY = "CREATE TABLE "
+    private static final String CREATE_TABLE_INCOME_CATEGORY = "CREATE TABLE "
             + TABLE_INCOME_CATEGORY + "(" + KEY_ID_INCOME_CATEGORY + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_CODE_INCOME_CATEGORY
-            + " TEXT," + KEY_LABEL_EXPENSE_CATEGORY + " TEXT" + ")";
+            + " TEXT," + KEY_LABEL_INCOME_CATEGORY + " TEXT" + ")";
 
     // EXPENSE_CATEGORY table create statement
     private static final String CREATE_TABLE_EXPENSE_CATEGORY = "CREATE TABLE "
@@ -134,16 +137,16 @@ public class DbHelper extends SQLiteOpenHelper {
     // INCOME table create statement
     private static final String CREATE_TABLE_INCOME = "CREATE TABLE "
             + TABLE_INCOME + "(" + KEY_ID_INCOME + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_LABEL_INCOME
-            + " TEXT," + KEY_AMOUNT_INCOME + " TEXT," + KEY_FREQUENCY_INCOME + " TEXT," + KEY_ID_INCOME_CATEGORY + " INTEGER" + ")";
+            + " TEXT," + KEY_AMOUNT_INCOME + " TEXT," + KEY_FREQUENCY_INCOME + " TEXT," + KEY_FK_ID_INCOME_CATEGORY + " INTEGER" + ")";
 
     // EXPENSE table create statement
     private static final String CREATE_TABLE_EXPENSE = "CREATE TABLE "
             + TABLE_EXPENSE + "(" + KEY_ID_EXPENSE + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_LABEL_EXPENSE
-            + " TEXT," + KEY_AMOUNT_EXPENSE + " TEXT," + KEY_FREQUENCY_EXPENSE + " TEXT," + KEY_ID_EXPENSE_CATEGORY + " INTEGER," + KEY_DATE_EXPENSE + " TEXT," + KEY_COMMENT_EXPENSE + " TEXT" + ")";
+            + " TEXT," + KEY_AMOUNT_EXPENSE + " TEXT," + KEY_FREQUENCY_EXPENSE + " TEXT," + KEY_FK_ID_EXPENSE_CATEGORY + " INTEGER," + KEY_DATE_EXPENSE + " TEXT," + KEY_COMMENT_EXPENSE + " TEXT" + ")";
 
     // PREVISION table create statement
     private static final String CREATE_TABLE_PREVISION = "CREATE TABLE "
-            + TABLE_PREVISION + "(" + KEY_ID_PREVISION + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_ID_BUDGET_PREVISION + " INTEGER," + KEY_AMOUNT_PREVISION + " TEXT," + KEY_DATE_PREVISION + " TEXT" + ")";
+            + TABLE_PREVISION + "(" + KEY_ID_PREVISION + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_FK_ID_BUDGET_PREVISION + " INTEGER," + KEY_AMOUNT_PREVISION + " TEXT," + KEY_DATE_PREVISION + " TEXT" + ")";
 
     // PREVISION_EXPENSE table create statement
     private static final String CREATE_TABLE_PREVISION_EXPENSE = "CREATE TABLE "
@@ -152,7 +155,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     //Drop table statement
     //Drop incomes category table
-    private static final String DROP_TABLE_INCOMES_CATEGORY = "DROP TABLE IF EXISTS " + TABLE_INCOME_CATEGORY;
+    private static final String DROP_TABLE_INCOME_CATEGORY = "DROP TABLE IF EXISTS " + TABLE_INCOME_CATEGORY;
 
     //Drop expense category table
     private static final String DROP_TABLE_EXPENSE_CATEGORY = "DROP TABLE IF EXISTS " + TABLE_EXPENSE_CATEGORY;
@@ -184,7 +187,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // creating required tables
         //IncomeCategory table create statement
-        sqLiteDatabase.execSQL(CREATE_TABLE_INCOMES_CATEGORY);
+        sqLiteDatabase.execSQL(CREATE_TABLE_INCOME_CATEGORY);
         sqLiteDatabase.execSQL(CREATE_TABLE_EXPENSE_CATEGORY);
         sqLiteDatabase.execSQL(CREATE_TABLE_BUDGET);
         sqLiteDatabase.execSQL(CREATE_TABLE_INCOME);
@@ -203,7 +206,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DROP_TABLE_PREVISION_EXPENSE);
         sqLiteDatabase.execSQL(DROP_TABLE_PREVISION);
         sqLiteDatabase.execSQL(DROP_TABLE_BUDGET);
-        sqLiteDatabase.execSQL(DROP_TABLE_INCOMES_CATEGORY);
+        sqLiteDatabase.execSQL(DROP_TABLE_INCOME_CATEGORY);
         sqLiteDatabase.execSQL(DROP_TABLE_EXPENSE_CATEGORY);
         onCreate(sqLiteDatabase);
         

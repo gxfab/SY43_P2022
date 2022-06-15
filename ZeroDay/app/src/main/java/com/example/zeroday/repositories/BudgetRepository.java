@@ -12,10 +12,16 @@ import com.example.zeroday.models.Frequency;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BudgetRepository {
+public class BudgetRepository extends ZeroBaseRepository<Budget> {
 
-    
 
+    public BudgetRepository(SQLiteDatabase sqLiteDatabase) {
+        super(sqLiteDatabase);
+        this.tableName = DbHelper.TABLE_BUDGET;
+        this.primaryKeyColumn = DbHelper.KEY_ID_BUDGET;
+    }
+
+    @Override
     public List<Budget> fromCursor(Cursor cursor) {
         if(cursor == null) {
             return null;
@@ -50,7 +56,7 @@ public class BudgetRepository {
                         cursor.getString(DbHelper.COL_CODE_BUDGET_INDEX),
                         cursor.getString(DbHelper.COL_START_DATE_BUDGET_INDEX),
                         cursor.getString(DbHelper.COL_END_DATE_BUDGET_INDEX),
-                        Frequency.valueOf(cursor.getString(DbHelper.COL_FRQUENCE_BUDGET_INDEX))
+                        Frequency.valueOf(cursor.getString(DbHelper.COL_FREQUENCY_BUDGET_INDEX))
                 ));
             }
             return budgets;
@@ -60,62 +66,22 @@ public class BudgetRepository {
         }
     }
 
-    public List<Budget> getAllBudgets() {
-        Cursor cursor = sqLiteDatabase.rawQuery(SELECT_ALL_BUDGET, null);
-        return fromCursor(cursor);
-    }
 
-    public Budget getBudgetById(Long idBudget) {
-        Cursor cursor = sqLiteDatabase.query(
-                DbHelper.TABLE_BUDGET,
-                null,
-                DbHelper.KEY_ID_BUDGET + " = ?",
-                new String[] { idBudget.toString() },
-                null,
-                null,
-                null
-        );
-        return fromCursor(cursor).get(0);
-    }
-
-    public Budget getBudgetByCode(String codeBudget) {
-        Cursor cursor = sqLiteDatabase.query(
-                DbHelper.TABLE_BUDGET,
-                null,
-                DbHelper.KEY_CODE_BUDGET + " = ?",
-                new String[] { codeBudget },
-                null,
-                null,
-                null
-        );
-        return fromCursor(cursor).get(0);
-    }
-
+    @Override
     public ContentValues toContentValues(Budget budget) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DbHelper.KEY_ID_BUDGET, budget.getIdBudget());
-        contentValues.put(DbHelper.KEY_CODE_BUDGET, budget.getCodeBudget());
-        contentValues.put(DbHelper.KEY_START_DATE_BUDGET, budget.getStartDateBuget());
-        contentValues.put(DbHelper.KEY_END_DATE_BUDGET, budget.getEndDateBuget());
-        contentValues.put(DbHelper.KEY_FREQUENCY_BUDGET, budget.getFrequence().toString());
-        return contentValues;
+        try{
+            ContentValues contentValues = new ContentValues();
+            // contentValues.put(DbHelper.KEY_ID_BUDGET, budget.getId());
+            contentValues.put(DbHelper.KEY_CODE_BUDGET, budget.getCodeBudget());
+            contentValues.put(DbHelper.KEY_START_DATE_BUDGET, budget.getStartDateBuget());
+            contentValues.put(DbHelper.KEY_END_DATE_BUDGET, budget.getEndDateBuget());
+            contentValues.put(DbHelper.KEY_FREQUENCY_BUDGET, budget.getFrequence().toString());
+            return contentValues;
+        } catch (Exception e) {
+            Log.e("BudgetRepository", "toContentValues: ", e);
+            return null;
+        }
     }
-
-    public void save(Budget budget) {
-        ContentValues contentValues = toContentValues(budget);
-        sqLiteDatabase.insert(DbHelper.TABLE_BUDGET, null, contentValues);
-    }
-
-    public void update(Budget budget) {
-        ContentValues contentValues = toContentValues(budget);
-        sqLiteDatabase.update(DbHelper.TABLE_BUDGET, contentValues, DbHelper.KEY_ID_BUDGET + " = ?", new String[] { budget.getIdBudget().toString() });
-    }
-
-    public void delete(Budget budget) {
-        sqLiteDatabase.delete(DbHelper.TABLE_BUDGET, DbHelper.KEY_ID_BUDGET + " = ?", new String[] { budget.getIdBudget().toString() });
-    }
-
-    //TODO: implement research method
 
 
 }

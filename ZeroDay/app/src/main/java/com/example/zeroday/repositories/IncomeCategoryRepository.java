@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class IncomesCategoryRepository extends ZeroBaseRepository<IncomeCategory> {
+public class IncomeCategoryRepository extends ZeroBaseRepository<IncomeCategory> {
 
 
-    public IncomesCategoryRepository(SQLiteDatabase sqLiteDatabase) {
+    public IncomeCategoryRepository(SQLiteDatabase sqLiteDatabase) {
         super(sqLiteDatabase);
         this.tableName = DbHelper.TABLE_INCOME_CATEGORY;
         this.primaryKeyColumn = DbHelper.KEY_ID_INCOME_CATEGORY;
@@ -68,5 +68,6 @@ public class IncomesCategoryRepository extends ZeroBaseRepository<IncomeCategory
         contentValues.put(DbHelper.KEY_LABEL_INCOME_CATEGORY, incomeCategory.getLabelIncomeCategory());
         return contentValues;
     }
+
 
 }

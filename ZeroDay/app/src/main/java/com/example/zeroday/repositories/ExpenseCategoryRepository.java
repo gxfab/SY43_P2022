@@ -65,11 +65,11 @@ public class ExpenseCategoryRepository extends ZeroBaseRepository<ExpenseCategor
     @Override
     public ContentValues toContentValues(ExpenseCategory expenseCategory) {
         try {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DbHelper.KEY_ID_EXPENSE_CATEGORY, expenseCategory.getId());
-        contentValues.put(DbHelper.KEY_CODE_EXPENSE_CATEGORY, expenseCategory.getCodeExpenseCategory());
-        contentValues.put(DbHelper.KEY_LABEL_EXPENSE_CATEGORY, expenseCategory.getLabelExpenseCategory());
-        return contentValues;
+            ContentValues contentValues = new ContentValues();
+            // contentValues.put(DbHelper.KEY_ID_EXPENSE_CATEGORY, expenseCategory.getId());
+            contentValues.put(DbHelper.KEY_CODE_EXPENSE_CATEGORY, expenseCategory.getCodeExpenseCategory());
+            contentValues.put(DbHelper.KEY_LABEL_EXPENSE_CATEGORY, expenseCategory.getLabelExpenseCategory());
+            return contentValues;
         } catch (Exception e) {
             Log.e("ExpenseCategoryRepository", "toContentValues: ", e);
             return null;

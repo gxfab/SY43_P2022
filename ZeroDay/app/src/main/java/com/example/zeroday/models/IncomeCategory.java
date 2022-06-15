@@ -64,4 +64,13 @@ public class IncomeCategory extends ZeroBaseModel implements Parcelable {
     public void setLabelIncomeCategory(String labelIncomeCategory) {
         this.labelIncomeCategory = labelIncomeCategory;
     }
+
+    @Override
+    public String toString() {
+        return "IncomeCategory{" +
+                "codeIncomeCategory='" + codeIncomeCategory + '\'' +
+                ", labelIncomeCategory='" + labelIncomeCategory + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

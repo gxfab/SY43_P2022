@@ -1,16 +1,16 @@
 package com.example.zeroday.views.test;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import java.util.List;
 
 import com.example.zeroday.R;
 import com.example.zeroday.dao.DbHelper;
 import com.example.zeroday.models.IncomeCategory;
+import com.example.zeroday.repositories.IncomeCategoryRepository;
 import com.example.zeroday.services.IncomeCategoryService;
-
-import java.util.List;
 
 public class IncomesTest extends AppCompatActivity {
     private DbHelper db;
@@ -23,10 +23,13 @@ public class IncomesTest extends AppCompatActivity {
         setContentView(R.layout.activity_incomes_test);
 
         IncomeCategoryService incomeCategoryService = new IncomeCategoryService(this);
+        incomeCategoryService.save(new IncomeCategory("Salary", "Salary"));
+        incomeCategoryService.save(new IncomeCategory("Bonus", "Bonus"));
+        incomeCategoryService.save(new IncomeCategory("Other", "Other"));
 
-        List<IncomeCategory> incomeCategoryList = incomeCategoryService.findAll();
+        List<IncomeCategory> incomeCategoryList = incomeCategoryService.getAll();
 
-        Log.i("Test", incomeCategoryList.toString());
+//        Log.i("Test", incomeCategoryList.toString());
 
     }
 

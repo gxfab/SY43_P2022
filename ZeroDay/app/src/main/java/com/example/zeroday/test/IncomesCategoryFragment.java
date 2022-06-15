@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 
 import com.example.zeroday.R;
 import com.example.zeroday.dao.DbHelper;
-import com.example.zeroday.repositories.IncomesCategoryRepository;
+import com.example.zeroday.repositories.IncomeCategoryRepository;
+import com.example.zeroday.services.IncomeCategoryService;
 
 /**
  * A fragment representing a list of Items.
@@ -56,9 +57,8 @@ public class IncomesCategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        DbHelper db = new DbHelper(getContext());
-        IncomesCategoryRepository incomesCategoryRepository = new IncomesCategoryRepository(db.getWritableDatabase());
-        incomesCategoryRepository.createDefaultIncomesCategory();
+        // IncomeCategoryRepository incomeCategoryRepository = new IncomeCategoryRepository(new DbHelper(this.getContext()).getWritableDatabase());
+        IncomeCategoryService incomeCategoryService = new IncomeCategoryService(this.getContext());
         View view = inflater.inflate(R.layout.fragment_incomes_category_list, container, false);
 
         // Set the adapter
@@ -68,9 +68,9 @@ public class IncomesCategoryFragment extends Fragment {
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount)); 
             }
-            recyclerView.setAdapter(new IncomesCategoryViewAdapter(incomesCategoryRepository.findAll()));
+            recyclerView.setAdapter(new IncomesCategoryViewAdapter(incomeCategoryService.getAll()));
         }
         return view;
     }

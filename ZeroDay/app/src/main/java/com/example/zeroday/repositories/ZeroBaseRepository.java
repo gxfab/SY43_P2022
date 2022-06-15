@@ -61,9 +61,9 @@ public abstract class ZeroBaseRepository<T extends ZeroBaseModel> {
         throw new UnsupportedOperationException();
     }
 
-    public long insert(T zeroBaseModelobject){
+    public Long insert(T zeroBaseModelobject){
         ContentValues contentValues = toContentValues(zeroBaseModelobject);
-        return sqLiteDatabase.insert(this.tableName, null, contentValues);
+        return sqLiteDatabase.insert(this.tableName, "ID", contentValues);
     }
 
     public Long update(T zeroBaseModelobject){

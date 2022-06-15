@@ -1,27 +1,16 @@
 package com.example.zeroday.services;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
-import com.example.zeroday.dao.DbHelper;
 import com.example.zeroday.models.IncomeCategory;
-import com.example.zeroday.repositories.IncomesCategoryRepository;
+import com.example.zeroday.repositories.IncomeCategoryRepository;
 
-import java.util.List;
+public class IncomeCategoryService extends ZeroBaseServices<IncomeCategoryRepository, IncomeCategory> {
 
-public class IncomeCategoryService {
-
-    private SQLiteDatabase sqLiteDatabase;
-    private Context context;
-    private IncomesCategoryRepository incomesCategoryRepository;
 
     public IncomeCategoryService(Context context) {
-        this.context = context;
-        this.sqLiteDatabase = new DbHelper(this.context).getWritableDatabase();
-        this.incomesCategoryRepository = new IncomesCategoryRepository(this.sqLiteDatabase);
+        super(context);
+        this.repository = new IncomeCategoryRepository(this.sqLiteDatabase);
     }
 
-    public List<IncomeCategory> findAll(){
-        return this.incomesCategoryRepository.findAll();
-    }
 }

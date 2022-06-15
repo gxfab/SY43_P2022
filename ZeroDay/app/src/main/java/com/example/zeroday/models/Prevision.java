@@ -12,12 +12,11 @@ public class Prevision extends ZeroBaseModel implements Parcelable {
     private String datePrevision;
     private String timestampPrevisionStartDate;
     private String timestampPrevisionEndDate;
-    private String commentPrevision;
 
     public Prevision() {
     }
 
-    public Prevision(Budget budgetPrevison, String amountPrevision, String datePrevision, String timestampPrevisionStartDate, String timestampPrevisionEndDate, String commentPrevision) {
+    public Prevision(Budget budgetPrevison, String amountPrevision, String datePrevision, String timestampPrevisionStartDate, String timestampPrevisionEndDate) {
         this.budgetPrevison = budgetPrevison;
         this.amountPrevision = amountPrevision;
         this.datePrevision = datePrevision;
@@ -25,7 +24,7 @@ public class Prevision extends ZeroBaseModel implements Parcelable {
         this.timestampPrevisionEndDate = timestampPrevisionEndDate;
     }
 
-    public Prevision(Long id, Budget budgetPrevison, String amountPrevision, String datePrevision, String timestampPrevisionStartDate, String timestampPrevisionEndDate, String commentPrevision) {
+    public Prevision(Long id, Budget budgetPrevison, String amountPrevision, String datePrevision, String timestampPrevisionStartDate, String timestampPrevisionEndDate) {
         this.id = id;
         this.budgetPrevison = budgetPrevison;
         this.amountPrevision = amountPrevision;
@@ -40,7 +39,7 @@ public class Prevision extends ZeroBaseModel implements Parcelable {
         datePrevision = in.readString();
         timestampPrevisionStartDate = in.readString();
         timestampPrevisionEndDate = in.readString();
-        commentPrevision = in.readString();
+
     }
 
     @Override
@@ -50,7 +49,6 @@ public class Prevision extends ZeroBaseModel implements Parcelable {
         dest.writeString(datePrevision);
         dest.writeString(timestampPrevisionStartDate);
         dest.writeString(timestampPrevisionEndDate);
-        dest.writeString(commentPrevision);
     }
 
     @Override
@@ -110,11 +108,4 @@ public class Prevision extends ZeroBaseModel implements Parcelable {
         this.timestampPrevisionEndDate = timestampPrevisionEndDate;
     }
 
-    public String getCommentPrevision() {
-        return commentPrevision;
-    }
-
-    public void setCommentPrevision(String commentPrevision) {
-        this.commentPrevision = commentPrevision;
-    }
 }

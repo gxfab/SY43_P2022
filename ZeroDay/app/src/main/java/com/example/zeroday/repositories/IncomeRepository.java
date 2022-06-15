@@ -1,5 +1,6 @@
 package com.example.zeroday.repositories;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -11,15 +12,15 @@ import com.example.zeroday.models.Income;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncomeRepository {
+public class IncomeRepository extends ZeroBaseRepository<Income> {
 
-    private SQLiteDatabase sqLiteDatabase;
 
     public IncomeRepository(SQLiteDatabase sqLiteDatabase) {
-        this.sqLiteDatabase = sqLiteDatabase;
+        super(sqLiteDatabase);
     }
 
-     public List<Income> fromCursor(Cursor cursor) {
+    @Override
+    public List<Income> fromCursor(Cursor cursor) {
         if(cursor == null) {
             return null;
         }
@@ -47,14 +48,13 @@ public class IncomeRepository {
         }
         try {
             List<Income> incomes = new ArrayList<>();
-            IncomesCategoryRepository incomesCategoryRepository = new IncomesCategoryRepository(this.sqLiteDatabase);
             while(cursor.moveToNext()) {
                 incomes.add(new Income(
                         cursor.getLong(DbHelper.COL_ID_INCOME_INDEX),
-                        Frequency.valueOf( cursor.getString(DbHelper.COL_FRQUENCY_INCOME_INDEX)),
+                        Frequency.valueOf( cursor.getString(DbHelper.COL_FREQUENCY_INCOME_INDEX)),
                         cursor.getLong(DbHelper.COL_AMOUNT_INCOME_INDEX),
                         cursor.getString(DbHelper.COL_LABEL_INCOME_INDEX),
-                        incomesCategoryRepository.findOne(cursor.getInt(DbHelper.COL_ID_INCOME_CATEGORY_INDEX))
+                        new IncomeCategoryRepository(this.sqLiteDatabase).findOneById(cursor.getLong(DbHelper.COL_ID_INCOME_CATEGORY_INDEX))
                         
                 ));
             }
@@ -63,4 +63,21 @@ public class IncomeRepository {
             Log.e("IncomeRepository", "fromCursor: ", e);
             return null;
         }
-}}
+}
+
+    @Override
+    public ContentValues toContentValues(Income income) {
+        try{
+            ContentValues contentValues = new ContentValues();
+//            contentValues.put(DbHelper.KEY_ID_INCOME, income.getId());
+            contentValues.put(DbHelper.KEY_LABEL_INCOME, income.getLabelIncome());
+            contentValues.put(DbHelper.KEY_AMOUNT_INCOME, income.getAmountIncome());
+            contentValues.put(DbHelper.KEY_ID_INCOME_CATEGORY, income.getIncomeCategories().getId());
+            contentValues.put(DbHelper.KEY_FREQUENCY_INCOME, income.getFrequenceIncome().toString());
+            return contentValues;
+        } catch (Exception e) {
+            Log.e("IncomeRepository", "toContentValues: ", e);
+            return null;
+        }
+    }
+}

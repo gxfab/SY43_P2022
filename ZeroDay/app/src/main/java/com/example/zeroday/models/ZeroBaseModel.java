@@ -2,7 +2,7 @@ package com.example.zeroday.models;
 
 public abstract class ZeroBaseModel {
 
-    protected long id;
+    protected Long id;
 
     public Long getId() {
         return id;
