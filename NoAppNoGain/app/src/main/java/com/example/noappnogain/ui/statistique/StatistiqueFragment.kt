@@ -62,24 +62,14 @@ class StatistiqueFragment : Fragment() {
 
         _binding = FragmentStatistiqueBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val btnMensuel: Button = binding.buttonMensuel
+        val btnAnnuel: Button = binding.buttonAnnuel
+        val btnFiltre: Button = binding.buttonFiltre
+        var pieArrayList = ArrayList<PieEntry>()
 
         pieChart = binding.activityMainPiechart
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth?.currentUser
-
-        val btnMensuel: Button = binding.buttonMensuel
-        val btnAnnuel: Button = binding.buttonAnnuel
-
-        btnMensuel.setOnClickListener(View.OnClickListener {
-            val intent = Intent(activity, BalanceMensuel::class.java)
-            startActivity(intent)
-        })
-
-        btnAnnuel.setOnClickListener(View.OnClickListener {
-            val intent = Intent(activity, BalanceAnnuel::class.java)
-            startActivity(intent)
-        })
-
 
         if (mAuth!!.currentUser != null) {
             val uid = mUser!!.uid
@@ -138,7 +128,6 @@ class StatistiqueFragment : Fragment() {
 
         initPieChart()
 
-        var pieArrayList = ArrayList<PieEntry>()
         val valueEventListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 pieArrayList = ArrayList<PieEntry>()
@@ -193,9 +182,24 @@ class StatistiqueFragment : Fragment() {
         mMouvementDatabase?.addListenerForSingleValueEvent(valueEventListener)
 
 
-        val btnFiltre: Button = binding.buttonFiltre
         btnFiltre.setOnClickListener(View.OnClickListener {
             filtreData()
+        })
+
+        btnMensuel.setOnClickListener(View.OnClickListener {
+            val intent = Intent(activity, BalanceMensuel::class.java)
+            var mDate = ""
+            mDate = "".plus(annee).plus("/").plus(mois)
+            intent.putExtra("mDate", mDate )
+            startActivity(intent)
+        })
+
+        btnAnnuel.setOnClickListener(View.OnClickListener {
+            val intent = Intent(activity, BalanceAnnuel::class.java)
+            var mDate = ""
+            mDate = "".plus(annee)
+            intent.putExtra("mDate", mDate )
+            startActivity(intent)
         })
 
         return root
@@ -264,22 +268,22 @@ class StatistiqueFragment : Fragment() {
                                 if (data.amount < 0) {
                                     var mDate = ""
                                     if(onlyYear && withMonth){
-                                        mDate = "/".plus(mois).plus("/").plus(annee)
+                                        mDate = "".plus(annee).plus("/").plus(mois)
                                         println("mDate" + mDate)
                                     }
                                     if(onlyYear && !withMonth){
-                                        mDate = "/".plus(annee)
+                                        mDate = "".plus(annee)
                                         println("mDate" + mDate)
                                     }
                                     if(onlyYear){
                                         if(withMonth){
-                                            if(data.date!!.endsWith(mDate)){
+                                            if(data.date!!.startsWith(mDate)){
                                                 if (data.type == cat) {
                                                     amount -= data.amount
                                                 }
                                             }
                                         }else{
-                                            if(data.date!!.endsWith(mDate)){
+                                            if(data.date!!.startsWith(mDate)){
                                                 if (data.type == cat) {
                                                     amount -= data.amount
                                                 }

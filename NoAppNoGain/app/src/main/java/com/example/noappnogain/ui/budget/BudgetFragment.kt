@@ -139,9 +139,9 @@ class BudgetFragment : Fragment() {
                         if (data != null) {
                             if (data.amount > 0) {
                                 var mDate = ""
-                                val sdFormat = SimpleDateFormat("M/yyyy")
+                                val sdFormat = SimpleDateFormat("yyyy/M")
                                 mDate = sdFormat.format(Date())
-                                if(data.date!!.endsWith(mDate)){
+                                if(data.date!!.startsWith(mDate)){
                                     budgetPlan += data.amount.toInt()
                                 }
                             }
@@ -252,19 +252,19 @@ class BudgetFragment : Fragment() {
                         if (data != null) {
                             if (data.amount > 0) {
                                 var mDate = ""
-                                val sdFormat = SimpleDateFormat("M/yyyy")
+                                val sdFormat = SimpleDateFormat("yyyy/M")
                                 mDate = sdFormat.format(Date())
                                 if(onlyYear && withMonth){
-                                    mDate = "/".plus(mois).plus("/").plus(annee)
+                                    mDate = "".plus(annee).plus("/").plus(mois)
                                 }
                                 if(onlyYear){
                                     if(withMonth){
-                                        if(data.date!!.endsWith(mDate)){
+                                        if(data.date!!.startsWith(mDate)){
                                             budgetPlan += data.amount.toInt()
                                         }
                                     }
                                 }else{
-                                    if(data.date!!.endsWith(mDate)){
+                                    if(data.date!!.startsWith(mDate)){
                                         budgetPlan += data.amount.toInt()
                                     }
                                 }

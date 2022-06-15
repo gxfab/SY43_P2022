@@ -88,7 +88,7 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
                 val emonth = edtDate.month.toString()
                 val month = emonth.toInt() + 1
                 val year = edtDate.year.toString()
-                val mDate = day.plus("/").plus(month).plus("/").plus(year)
+                val mDate = year.plus("/").plus(month).plus("/").plus(day)
                 val note = edtNote.getText().toString().trim { it <= ' ' }
                 if (TextUtils.isEmpty(note)) {
                     edtNote.error

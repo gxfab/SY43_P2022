@@ -90,7 +90,7 @@ class HomeFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         })
 
-        mMouvementDatabase?.addValueEventListener(object : ValueEventListener {
+        mMouvementDatabase?.orderByChild("date")?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 balance = 0
                 mouvementArrayList = arrayListOf<Data>()
@@ -151,7 +151,7 @@ class HomeFragment : Fragment() {
         }
         if (mAuth?.currentUser != null && !error && type != "null") {
             val id: String? = mMouvementDatabase?.push()?.key
-            val SDFormat: SimpleDateFormat = SimpleDateFormat("d/M/yyyy")
+            val SDFormat: SimpleDateFormat = SimpleDateFormat("yyyy/M/d")
             val mDate = SDFormat.format(Date())
             val data = Data(ouramountinte, type, note, id, mDate)
             if (id != null) {

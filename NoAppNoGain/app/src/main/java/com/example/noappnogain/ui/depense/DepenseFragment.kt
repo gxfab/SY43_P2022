@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.util.*
 
-
 class DepenseFragment : Fragment() {
 
     private var mAuth: FirebaseAuth? = null
@@ -53,6 +52,7 @@ class DepenseFragment : Fragment() {
         mouvementArrayList = arrayListOf<Data>()
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth!!.currentUser
+        val recyclerView = binding.recyclerIdExpense
 
         if (mAuth!!.currentUser != null) {
             val uid = mUser!!.uid
@@ -135,18 +135,37 @@ class DepenseFragment : Fragment() {
             }
         })
 
-        val btnFiltre: Button = binding.btnFiltre
-        btnFiltre.setOnClickListener(View.OnClickListener {
-            filtreData()
+        val valueEventListener = mMouvementDatabase?.orderByChild("date")?.addValueEventListener( object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                mouvementArrayList = arrayListOf<Data>()
+                if (snapshot.exists()) {
+                    for (userSnapshot in snapshot.children) {
+                        val data: Data? = userSnapshot.getValue(Data::class.java)
+                        if (data != null) {
+                            if (data.amount < 0) {
+                                mouvementArrayList.add(data!!)
+                            }
+                        }
+                    }
+                    recyclerView.adapter = HomeAdapter(mouvementArrayList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
         })
 
         val btnAjouter: Button = binding.btnAjouter
         btnAjouter.setOnClickListener(View.OnClickListener {
             dataInsert()
-            updateRecylerView()
         })
 
-        updateRecylerView()
+        val btnFiltre: Button = binding.btnFiltre
+        btnFiltre.setOnClickListener(View.OnClickListener {
+            filtreData()
+            mMouvementDatabase?.removeEventListener(valueEventListener!!)
+        })
 
         return root
     }
@@ -191,7 +210,7 @@ class DepenseFragment : Fragment() {
             val emonth = edtDate.month.toString()
             val month = emonth.toInt() + 1
             val year = edtDate.year.toString()
-            val mDate = day.plus("/").plus(month).plus("/").plus(year)
+            val mDate = year.plus("/").plus(month).plus("/").plus(day)
             val type = edtType.toString().trim { it <= ' ' }
             val amount = edtAmount.text.toString().trim { it <= ' ' }
             val note = edtNote.text.toString().trim { it <= ' ' }
@@ -214,40 +233,11 @@ class DepenseFragment : Fragment() {
                 }
             }
             dialog.dismiss()
-            updateRecylerView()
         })
         btnCancel.setOnClickListener {
             dialog.dismiss()
         }
         dialog.show()
-    }
-
-    fun updateRecylerView(){
-
-        val recyclerView = binding.recyclerIdExpense
-
-        val valueEventListener: ValueEventListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                mouvementArrayList = arrayListOf<Data>()
-                if (snapshot.exists()) {
-                    for (userSnapshot in snapshot.children) {
-                        val data: Data? = userSnapshot.getValue(Data::class.java)
-                        if (data != null) {
-                            if (data.amount < 0) {
-                                mouvementArrayList.add(data!!)
-                            }
-                        }
-                    }
-                    recyclerView.adapter = HomeAdapter(mouvementArrayList)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        }
-
-        mMouvementDatabase?.addListenerForSingleValueEvent(valueEventListener)
     }
 
     fun filtreData(){
@@ -275,7 +265,7 @@ class DepenseFragment : Fragment() {
         tousCat = posCat <= 0
 
         val recyclerView = binding.recyclerIdExpense
-        mMouvementDatabase?.addValueEventListener( object : ValueEventListener {
+        mMouvementDatabase?.orderByChild("date")?.addValueEventListener( object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 mouvementArrayList = arrayListOf<Data>()
@@ -286,16 +276,16 @@ class DepenseFragment : Fragment() {
                             if (data.amount < 0) {
                                 var mDate = ""
                                 if(onlyYear && withMonth){
-                                    mDate = "/".plus(mois).plus("/").plus(annee)
+                                    mDate = "".plus(annee).plus("/").plus(mois)
                                     println("mDate" + mDate)
                                 }
                                 if(onlyYear && !withMonth){
-                                    mDate = "/".plus(annee)
+                                    mDate = "".plus(annee)
                                     println("mDate" + mDate)
                                 }
                                 if(onlyYear){
                                     if(withMonth){
-                                        if(data.date!!.endsWith(mDate)){
+                                        if(data.date!!.startsWith(mDate)){
                                             if (!tousCat) {
                                                 if (data.type == categorie) {
                                                     mouvementArrayList.add(data)
@@ -305,7 +295,7 @@ class DepenseFragment : Fragment() {
                                             }
                                         }
                                     }else{
-                                        if(data.date!!.endsWith(mDate)){
+                                        if(data.date!!.startsWith(mDate)){
                                             if (!tousCat) {
                                                 if (data.type == categorie) {
                                                     mouvementArrayList.add(data)
