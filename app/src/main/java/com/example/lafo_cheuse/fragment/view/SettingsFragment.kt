@@ -13,10 +13,13 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.lafo_cheuse.R
-import com.example.lafo_cheuse.models.Option
-import com.example.lafo_cheuse.models.OptionField
+import com.example.lafo_cheuse.models.*
+import com.example.lafo_cheuse.viewmodels.CategoryViewModel
+import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
+import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.example.lafo_cheuse.viewmodels.OptionViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 /**
@@ -33,7 +36,10 @@ import kotlinx.coroutines.launch
  *
  */
 class SettingsFragment : Fragment() {
-    val optionViewModel : OptionViewModel by viewModels()
+    private val optionViewModel : OptionViewModel by viewModels()
+    private val categoryViewModel : CategoryViewModel by viewModels()
+    private val incomeViewModel : IncomeViewModel by viewModels()
+    private val expenseViewModel : ExpenseViewModel by viewModels()
     var optionTheme : Option? = null
     var optionNotification : Option? = null
     var optionNotificationSum : Option? = null
@@ -120,6 +126,8 @@ class SettingsFragment : Fragment() {
                 val optionField : List<OptionField>? = optionViewModel.getOptionFieldsSync(option)
                 optionField?.get(0)?.chosen = !optionField?.get(0)!!.chosen
                 optionViewModel.updateOptionField(optionField[0])
+
+                deleteDemoDatabase()
             }
         }
 
@@ -128,8 +136,31 @@ class SettingsFragment : Fragment() {
                 val optionField : List<OptionField>? = optionViewModel.getOptionFieldsSync(option)
                 optionField?.get(0)?.chosen = !optionField?.get(0)!!.chosen
                 optionViewModel.updateOptionField(optionField[0])
+
+                insertDemoDatabase()
             }
         }
+    }
+
+    private suspend fun insertDemoDatabase() = coroutineScope {
+        val shoppingCategory : Category = categoryViewModel.getCategorySync("Courses","🛒")!![0]
+        val taxesCategory : Category = categoryViewModel.getCategorySync("Taxes","🧾")!![0]
+        val outingCategory : Category = categoryViewModel.getCategorySync("Sorties","🎫")!![0]
+        val vehicleCategory : Category = categoryViewModel.getCategorySync("Véhicule","🚗")!![0]
+        val partyCategory : Category = categoryViewModel.getCategorySync("Soirées","🍻")!![0]
+        val extras : Category = categoryViewModel.getCategorySync("extras","❔")!![0]
+        val grantCategory : Category = categoryViewModel.getCategorySync("Bourses","\uD83D\uDCB0")!![0]
+        val streamingCategory : Category = categoryViewModel.getCategorySync("Streaming","📺")!![0]
+
+        incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_MONTH,"Parents",grantCategory,150.0))
+        incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_MONTH,"Crous",grantCategory,150.0))
+        incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_DAY,"Mamie",grantCategory,20.0,2022,6,6))
+
+    }
+
+    private fun deleteDemoDatabase() {
+        incomeViewModel.wipeIncome()
+        expenseViewModel.wipeExpense()
     }
 
     /**
