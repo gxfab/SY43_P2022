@@ -81,11 +81,9 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
     private fun initToggleButton(toggleButton : ToggleButton, confirmButton : Button) {
         toggleButton.setOnClickListener {
             if(toggleButton.isChecked) {
-                confirmButton.setBackgroundColor(Color.parseColor("#F91A1A"))
-                toggleButton.setTextColor(Color.parseColor("#F91A1A"))
+                confirmButton.setBackgroundColor(resources.getColor(R.color.green, null))
             } else {
-                confirmButton.setBackgroundColor(Color.parseColor("#32F91A"))
-                toggleButton.setTextColor(Color.parseColor("#32F91A"))
+                confirmButton.setBackgroundColor(resources.getColor(R.color.red, null))
             }
         }
     }
@@ -104,7 +102,7 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
             else if (ieValue.text.toString().trim().isEmpty())
                 Toast.makeText(this,
                     "Somme manquante !", Toast.LENGTH_SHORT).show()
-                if (toggleButton.isChecked) {
+                if (!toggleButton.isChecked) {
                     lifecycleScope.launch(Dispatchers.Main) {
                         addExpense(today,ieValue,ieName)
                     }
@@ -144,7 +142,7 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         ieName : TextView,
     ) = coroutineScope {
         val globalExpensesSum : Double =
-            expenseViewModel.getMonthlyExpensesSumSync() ?: 0.0
+            expenseViewModel.getMonthlyExpensesSumSync()
         val partialExpensesSumList : List<ExpenseSumContainer> =
             expenseViewModel.getOneTimeExpensesSumForCategoryAndMonthSync(selectedCategory!!,date.year,date.month)
         val partialExpensesSum : Double =
