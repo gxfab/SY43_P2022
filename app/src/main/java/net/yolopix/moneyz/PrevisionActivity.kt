@@ -67,7 +67,7 @@ class PrevisionActivity : AppCompatActivity() {
 
         // Set salary value
         lifecycleScope.launch {
-            val categorizedAmount = calculateCategorizedAmount()
+            val categorizedAmount = db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
             if (categorizedAmount > 0f) salaryEditText.setText(categorizedAmount.toString())
         }
 
@@ -82,7 +82,7 @@ class PrevisionActivity : AppCompatActivity() {
 
                 salaryTextField.error = when {
                     salaryValue == null -> getString(R.string.error_empty_text)
-                    salaryValue < calculateCategorizedAmount() -> getString(R.string.error_salary_greater_than_previsions)
+                    salaryValue < db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!) -> getString(R.string.error_salary_greater_than_previsions)
                     else -> null
                 }
 
@@ -206,7 +206,7 @@ class PrevisionActivity : AppCompatActivity() {
      * Load and apply min and max values for EditText
      */
     private suspend fun loadLimits() {
-        val categorizedAmount: Float = calculateCategorizedAmount()
+        val categorizedAmount: Float = db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
 
         if (salaryEditText.text.toString().toFloat() < categorizedAmount) {
             salaryEditText.setText(categorizedAmount.toString())
@@ -219,7 +219,7 @@ class PrevisionActivity : AppCompatActivity() {
      */
     private suspend fun loadBudgetBar() {
 
-        val categorizedAmount = calculateCategorizedAmount()
+        val categorizedAmount = db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
         var totalAmount: Float? = salaryEditText.text.toString().toFloatOrNull()
 
         if (totalAmount == null)
@@ -240,20 +240,8 @@ class PrevisionActivity : AppCompatActivity() {
             salarySlider.value = 0f
     }
 
-    /**
-     * Calculate the total amount of categorized money
-     * @return total amount of all previsions from the categories
-     */
-    private suspend fun calculateCategorizedAmount(): Float {
-        val categories =
-            db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!)
-        var categorizedAmount = 0f
 
-        for (category in categories) {
-            categorizedAmount += category.predictedAmount
-        }
-        return categorizedAmount
-    }
+
 
     /**
      * Checks if any of the TextEdits contains an error

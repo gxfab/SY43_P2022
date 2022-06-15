@@ -27,9 +27,12 @@ class CategoryAdapter(
     private val db: AppDatabase,
     private val monthNumber: Int? = null,
     private val yearNumber: Int? = null,
+    private var accountUid: Int? = null
+
 
     ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+
 
     /**
      * A nested class for the view holder
@@ -42,9 +45,12 @@ class CategoryAdapter(
         val categoryHeaderLayout: View = itemView.findViewById(R.id.layout_category_header)
         val bottomSpace: Space = itemView.findViewById(R.id.space_bottom_category)
         val itemDivider: View = itemView.findViewById(R.id.divider_item_category)
+
     }
 
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
+
+
         // For expense view
         if (expenseMode) {
             viewHolder.expensesRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -59,6 +65,7 @@ class CategoryAdapter(
             }
             // Expand/collapse the expenses nested under the category
             viewHolder.categoryHeaderLayout.setOnClickListener {
+
                 if (viewHolder.expensesRecyclerView.visibility == View.GONE) {
                     viewHolder.expensesRecyclerView.visibility = View.VISIBLE
                     viewHolder.expandButton.rotation = 180f
@@ -78,10 +85,25 @@ class CategoryAdapter(
 
         // Common to both prevision/expenses view
         viewHolder.categoryNameTextView.text = categoryList[position].name
-        viewHolder.categoryPriceTextView.text = context.getString(
-            R.string.money_format,
-            String.format("%.2f", categoryList[position].predictedAmount)
-        )
+        context.lifecycleScope.launch{
+            viewHolder.categoryPriceTextView.text = context.getString(
+                R.string.money_format,
+                //String.format("%.2f", categoryList[position].predictedAmount)
+                //String.format("%.2f", db.categoryDao().retrieveSinglePredictedAmount(monthNumber!!,yearNumber!!,accountUid!!, position))
+                if(categoryList[position].predictedAmount > db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid)){
+                    String.format("%.2f", categoryList[position].predictedAmount)
+                    }else{
+                        String.format((db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid) - categoryList[position].predictedAmount).toString())
+
+                }
+            )
+
+
+
+
+
+        }
+
         if (position == categoryList.lastIndex) {
             viewHolder.bottomSpace.visibility = View.VISIBLE
         }

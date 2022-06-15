@@ -132,7 +132,7 @@ class ExpensesActivity : AppCompatActivity() {
                 currentMonth.monthNumber,
                 currentMonth.yearNumber,
                 account.uid
-            ), this, true, db, currentMonth.monthNumber, currentMonth.yearNumber
+            ), this, true, db, currentMonth.monthNumber, currentMonth.yearNumber,account.uid
         )
     }
 
