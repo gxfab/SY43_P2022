@@ -126,7 +126,7 @@ class PrevisionActivity : AppCompatActivity() {
                         }
                     }
                 }
-                headerLayout.visibility = if (currentPageIndex==0) View.GONE else View.VISIBLE
+                headerLayout.visibility = if (currentPageIndex == 0) View.GONE else View.VISIBLE
             }
         })
 
@@ -187,7 +187,6 @@ class PrevisionActivity : AppCompatActivity() {
             ).apply {
                 show(supportFragmentManager, tag)
             }
-
         }
 
         // Initialize the category RecyclerView
@@ -270,15 +269,8 @@ class PrevisionActivity : AppCompatActivity() {
         val expenseType = getCurrentType()
 
         // If an expense type has been selected, only get categories having this type
-        val adapter = if (expenseType == null) {
-            CategoryAdapter(
-                db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!),
-                this,
-                false,
-                db,
-            )
-        } else {
-            CategoryAdapter(
+        if (expenseType != null) {
+            val adapter = CategoryAdapter(
                 db.categoryDao().getCategoriesOfTypeForMonth(
                     now.monthValue,
                     now.year,
@@ -288,9 +280,12 @@ class PrevisionActivity : AppCompatActivity() {
                 this,
                 false,
                 db,
+                now.monthValue,
+                now.year,
+                accountUid!!
             )
+            recyclerView.adapter = adapter
         }
-        recyclerView.adapter = adapter
     }
 
     /**

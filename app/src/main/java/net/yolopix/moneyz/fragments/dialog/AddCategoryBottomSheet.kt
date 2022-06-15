@@ -26,6 +26,9 @@ import kotlin.properties.Delegates
  * @param monthNumber The month in which the category will be added
  * @param yearNumber The year of the month in which the category will be added
  * @param accountUid: The identifier of the account in which the category will be added
+ * @param incomeAmount The total income amount
+ * @param type The zero budget type of category to add
+ * @param categoryToEdit Edit this category if not null instead of adding another
  */
 class AddCategoryBottomSheet(
     private val db: AppDatabase,
@@ -33,7 +36,8 @@ class AddCategoryBottomSheet(
     private val yearNumber: Int,
     private val accountUid: Int,
     private var incomeAmount: Float? = Float.MAX_VALUE, // Do not limit category max amount if the income value is not valid
-    private val type: ExpenseType
+    private val type: ExpenseType,
+    private val categoryToEdit: Category? = null
 ) : BottomSheetDialogFragment() {
     private lateinit var buttonAddCategoryName: Button
     private lateinit var editTextCategoryName: EditText
@@ -83,9 +87,19 @@ class AddCategoryBottomSheet(
             }
             checkFormErrors()
         }
+
+        // If the bottom sheet was opened to edit a category, fill the fields with the clicked item
+        if (categoryToEdit != null) {
+            editTextCategoryprice.setText(categoryToEdit.predictedAmount.toString())
+            editTextCategoryName.setText(categoryToEdit.name)
+            buttonAddCategoryName.text = getString(R.string.edit)
+        }
     }
 
-
+    /**
+     * Add a new category to the database using details filled in the form fields
+     * If an existing category was passed to this class, it will be updated instead of being duplicated
+     */
     private fun addCategory() {
         var newCategoryPrice by Delegates.notNull<Float>()
         // Fetch the account name in the EditText and add it to the database
@@ -96,19 +110,22 @@ class AddCategoryBottomSheet(
             editTextCategoryprice.text.toString().toFloat()
         }
 
-        val newCategory =
-            Category(
-                0,
-                newCategoryName,
-                newCategoryPrice,
-                monthNumber,
-                yearNumber,
-                accountUid,
-                type
-            )
+        val newCategory = Category(
+            categoryToEdit?.uid ?: 0,
+            newCategoryName,
+            newCategoryPrice,
+            monthNumber,
+            yearNumber,
+            accountUid,
+            type
+        )
         runBlocking {
-            db.categoryDao().insertCategory(newCategory)
+            if (categoryToEdit != null)
+                db.categoryDao().updateCategory(newCategory)
+            else
+                db.categoryDao().insertCategory(newCategory)
         }
+
         lifecycleScope.launch {
             val parent = activity as PrevisionActivity
             parent.loadAll()

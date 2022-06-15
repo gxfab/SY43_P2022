@@ -1,9 +1,6 @@
 package net.yolopix.moneyz.model.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import net.yolopix.moneyz.model.ExpenseType
 import net.yolopix.moneyz.model.entities.Category
 
@@ -52,6 +49,10 @@ interface CategoryDao {
 
     @Insert
     suspend fun insertCategory(category: Category)
+
+    @Update
+    suspend fun updateCategory(category: Category)
+
 
     @Delete
     suspend fun deleteCategory(category: Category)
