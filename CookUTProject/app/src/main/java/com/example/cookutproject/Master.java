@@ -28,4 +28,38 @@ public class Master {
     public void AddMateriel (Atelier atelier) {
         this.atelierList.add(atelier);
     }
+
+    public List<Atelier> getAtelierList() {
+        return atelierList;
+    }
+
+    public List<AutreEvenement> getAutreEventList() {
+        return autreEventList;
+    }
+
+    public List<Materiel> getMaterielList() {
+        return materielList;
+    }
+
+    public List<Repas> getRepasList() {
+        return repasList;
+    }
+
+    public  <T extends Budget> float sumRecetteEvenement(List<T> t){
+        float sommeRecette = 0;
+        int i=0;
+        while (t.get(i)!=null){
+            sommeRecette += t.get(i).getRecette();
+        }
+        return sommeRecette;
+    }
+
+    public  <T extends Budget> float sumDepenseEvenement(List<T> t){
+        float sommeDepense = 0;
+        int i=0;
+        while (t.get(i)!=null){
+            sommeDepense += t.get(i).getRecette();
+        }
+        return sommeDepense;
+    }
 }

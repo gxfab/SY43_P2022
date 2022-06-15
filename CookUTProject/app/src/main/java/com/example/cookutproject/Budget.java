@@ -7,14 +7,14 @@ public abstract class Budget {
     private float previsionnel;
     private float depense;
     private float recette;
-    private List<Facture> factures = new ArrayList<Facture>() {
+    private List<Operation> operations = new ArrayList<Operation>() {
     };
 
-    Budget(float previsionnel, float depense, float recette, ArrayList<Facture> facture){
+    Budget(float previsionnel, float depense, float recette, ArrayList<Operation> operation){
         this.previsionnel = previsionnel;
         this.depense = depense;
         this.recette = recette;
-        this.factures = facture;
+        this.operations = operation;
     }
     public float getPrevisionnel() {
         return previsionnel;
@@ -28,8 +28,8 @@ public abstract class Budget {
         return recette;
     }
 
-    public List<Facture> getAllFacture() {
-        return factures;
+    public List<Operation> getAllOperation() {
+        return operations;
     }
 
     public void setPrevisionnel(float previsionnel) {
@@ -44,27 +44,45 @@ public abstract class Budget {
         this.recette += recette;
     }
 
-    public void setFacture(Facture facture) {
-        this.factures.add(facture);
+    public void setOperation(Operation Operation) {
+        this.operations.add(Operation);
     }
 
     /**
-     * Retourne une facture suivant le numéro de facture demandé
-     * @param id l'identifiant de la facture
-     * @return une facture ou null si la facture n'existe pas
+     * Retourne une Operation suivant le numéro de Operation demandé
+     * @param id l'identifiant de la Operation
+     * @return une Operation ou null si la Operation n'existe pas
      */
 
-    public Facture getFactureById (int id){
-        Facture factureToReturn;
+    public Operation getOperationById (int id){
+        Operation OperationToReturn;
         int i=0;
-        Facture enumarationFacture=factures.get(i);
-        while (enumarationFacture.getId()!= id){
-            enumarationFacture = factures.get(i);
+        Operation enumarationOperation=operations.get(i);
+        while (enumarationOperation.getId()!= id){
+            enumarationOperation = operations.get(i);
         }
-        if(enumarationFacture.getId()==id){
-            return enumarationFacture;
+        if(enumarationOperation.getId()==id){
+            return enumarationOperation;
         }else
             return null;
 
+    }
+
+    public void sumDepenses (){
+        float totalDepense = 0;
+        int i=0;
+        while (operations.get(i)!=null && operations.get(i).getFacture().getAmount()<0){
+            totalDepense += operations.get(i).getFacture().getAmount();
+        }
+        this.depense = totalDepense;
+    }
+
+    public void sumRecettes(){
+        float totalRecette = 0;
+        int i=0;
+        while (operations.get(i)!=null && operations.get(i).getFacture().getAmount()>0){
+            totalRecette += operations.get(i).getFacture().getAmount();
+        }
+        this.depense = totalRecette;
     }
 }

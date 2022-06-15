@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Recap"
-    android:orientation="vertical">
-
-
+    android:orientation="vertical"
+    android:id="@+id/recapLayout"
+    android:gravity="">
+    
     <ImageButton
         android:id="@+id/imageButton_saisie"
         android:layout_width="65dp"
@@ -19,6 +21,100 @@
         android:adjustViewBounds="true"
         android:background="@drawable/home"
         tools:ignore="MissingConstraints"
-        android:onClick="changeActivityMain"/>
+        android:onClick="changeActivityMain"
+        android:layout_marginBottom="160dp"/>
+
+    <TextView
+        android:id="@+id/text_repas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkgreen_CookUT"
+        android:textSize="40dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Repas :"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/prix_repas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/decorateurs"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:textSize="50dp"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:id="@+id/text_atelier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkgreen_CookUT"
+        android:textSize="40dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Ateliers :"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/prix_atelier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/decorateurs"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:textSize="50dp"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:id="@+id/text_materiel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkgreen_CookUT"
+        android:textSize="40dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Matériel :"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/prix_materiel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/decorateurs"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:textSize="50dp"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:id="@+id/text_autre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkgreen_CookUT"
+        android:textSize="40dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Bilan autre :"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/prix_Autre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/decorateurs"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:textSize="50dp"
+        android:layout_marginBottom="10dp"
+        />
 
 </LinearLayout>

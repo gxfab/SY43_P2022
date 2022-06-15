@@ -6,7 +6,7 @@ public class Atelier extends Budget{
 
     private int idAtelier;
 
-    Atelier(float previsionnel, float depense, float recette, ArrayList<Facture> facture) {
-        super(previsionnel, depense, recette, facture);
+    Atelier(float previsionnel, float depense, float recette, ArrayList<Operation> operation) {
+        super(previsionnel, depense, recette, operation);
     }
 }
