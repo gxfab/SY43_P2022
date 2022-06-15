@@ -41,9 +41,6 @@ class PrevisionActivity : AppCompatActivity() {
     /** An object representing the time when the activity has been opened */
     private lateinit var now: LocalDate
 
-    /** The current zero based budget type */
-    private var currentStepType = ExpenseType.BILLS
-
     // Widgets
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressTextView: TextView
@@ -54,6 +51,7 @@ class PrevisionActivity : AppCompatActivity() {
     private lateinit var salaryTextField: com.google.android.material.textfield.TextInputLayout
     private lateinit var paydayTextField: com.google.android.material.textfield.TextInputLayout
     private lateinit var doneButton: Button
+    private lateinit var stepsViewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,19 +74,17 @@ class PrevisionActivity : AppCompatActivity() {
         salaryTextField = findViewById(R.id.textfield_salary)
         paydayTextField = findViewById(R.id.textfield_payday)
         doneButton = findViewById(R.id.button_done)
+        stepsViewPager = findViewById(R.id.viewpager_steps)
 
         // Initialize view pager
-        val stepsViewPager: ViewPager = findViewById(R.id.viewpager_steps)
         stepsViewPager.adapter = PrevisionStepsAdapter()
         stepsViewPager.offscreenPageLimit = 10 // Workaround for empty pages
 
         // When changing pages, reuse the same category view
         // to avoid creation and destruction of different instances
         val movableLayout: LinearLayout = findViewById(R.id.layout_movable_category_manager)
-        stepsViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-
-            override fun onPageScrollStateChanged(state: Int) {
-            }
+        var lastPage = 0
+        stepsViewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
 
             // When the page is scrolled, move the view to the current page
             override fun onPageScrolled(
@@ -97,14 +93,18 @@ class PrevisionActivity : AppCompatActivity() {
                 positionOffsetPixels: Int
             ) {
                 val currentPageIndex = stepsViewPager.currentItem
-                if (currentPageIndex in 1 until PrevisionStepsAdapter.viewList.size-1) {
-                    val currentPageViewResId = PrevisionStepsAdapter.viewList[currentPageIndex]
-                    (movableLayout.parent as LinearLayout).removeView(movableLayout)
-                    findViewById<LinearLayout>(currentPageViewResId).addView(movableLayout)
+                if (currentPageIndex in 1 until PrevisionStepsAdapter.viewList.size - 1) {
+                    // If the page has changed
+                    if (currentPageIndex != lastPage) {
+                        val currentPageViewResId = PrevisionStepsAdapter.viewList[currentPageIndex]
+                        (movableLayout.parent as LinearLayout).removeView(movableLayout)
+                        findViewById<LinearLayout>(currentPageViewResId).addView(movableLayout)
+                        lifecycleScope.launch {
+                            loadCategories()
+                        }
+                    }
+                    lastPage = currentPageIndex
                 }
-            }
-
-            override fun onPageSelected(position: Int) {
             }
         })
 
@@ -156,7 +156,7 @@ class PrevisionActivity : AppCompatActivity() {
                 now.year,
                 accountUid!!,
                 salaryEditText.text.toString().toFloatOrNull(),
-                currentStepType
+                getCurrentType()!!
             ).apply {
                 show(supportFragmentManager, tag)
             }
@@ -229,17 +229,41 @@ class PrevisionActivity : AppCompatActivity() {
     }
 
     /**
+     * Get the type of expense the user is currently making previsions
+     * @return the expense type
+     */
+    private fun getCurrentType(): ExpenseType? {
+        return ExpenseType.getTypeFromInt(stepsViewPager.currentItem)
+    }
+
+    /**
      * Load all categories from the current prevision from the database
      * and display the recyclerview containing these categories
      */
     private suspend fun loadCategories() {
-        val adapter =
+        val expenseType = getCurrentType()
+
+        // If an expense type has been selected, only get categories having this type
+        val adapter = if (expenseType == null) {
             CategoryAdapter(
                 db.categoryDao().getCategoriesForMonth(now.monthValue, now.year, accountUid!!),
                 this,
                 false,
                 db,
             )
+        } else {
+            CategoryAdapter(
+                db.categoryDao().getCategoriesOfTypeForMonth(
+                    now.monthValue,
+                    now.year,
+                    accountUid!!,
+                    expenseType
+                ),
+                this,
+                false,
+                db,
+            )
+        }
         recyclerView.adapter = adapter
     }
 

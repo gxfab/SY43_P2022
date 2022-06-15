@@ -5,5 +5,15 @@ enum class ExpenseType(val stepNumber: Int) {
     ENVELOPES(2),
     SINKING_FUNDS(3),
     EXTRA_DEBT(4),
-    EXTRA_SAVINGS(5)
+    EXTRA_SAVINGS(5);
+
+    companion object {
+        fun getTypeFromInt(stepNumber: Int): ExpenseType? {
+            for (value in values()) {
+                if (value.stepNumber == stepNumber)
+                    return value
+            }
+            return null
+        }
+    }
 }

@@ -28,7 +28,6 @@ class CategoryAdapter(
     private val db: AppDatabase,
     private val monthNumber: Int? = null,
     private val yearNumber: Int? = null,
-    private val showTypeId: ExpenseType? = null
     ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
