@@ -60,8 +60,8 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         list = view.findViewById(R.id.list_view_cat);
-        /*items = ClickableListManager.initCategoryList(database, false);
-        list = ClickableListManager.clickableCategoryList(list, items);*/
+        items = CategoryItem.initCategoryList(database, false);
+        list = ClickableListManager.clickableBudgetList(list, items);
 
         super.onViewCreated(view, savedInstanceState);
         /**Sorting RecyclerView Initialization**/

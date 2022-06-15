@@ -46,14 +46,14 @@ public class CashFlowGeneralFragment extends DataBaseFragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cash_flow_general, container, false);
-        //list = view.findViewById(R.id.expense_list);
+        list = view.findViewById(R.id.expense_list);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       /* items = ExpenseItem.allExpensesToList(database);
-        list = ClickableListManager.clickableExpenseList(list, items);*/
+       items = ExpenseItem.allExpensesToList(database);
+        list = ClickableListManager.clickableExpenseList(list, items);
     }
 }

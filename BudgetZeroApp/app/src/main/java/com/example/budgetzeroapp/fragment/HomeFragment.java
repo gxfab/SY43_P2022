@@ -67,10 +67,10 @@ public class HomeFragment extends DataBaseFragment {
         pieChart = view.findViewById(R.id.pie_chart);
 
         super.onViewCreated(view, savedInstanceState);
-        /*List<CategoryItem> items = ClickableListManager.initCategoryList(database, true);
+        List<CategoryItem> items = CategoryItem.initCategoryList(database, true);
         list = ClickableListManager.clickableProgressBarList(list, items);
         setupPieChart();
-        loadPieChartData(items);*/
+        loadPieChartData(items);
 
         /**Navigation**/
 
