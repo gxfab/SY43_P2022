@@ -24,6 +24,9 @@ public class Categorydb {
     @ColumnInfo( name = "isObjective")
     private boolean isObjective;
 
+    @ColumnInfo( name = "date")
+    private long date;
+
     public int getCatID(){
         return CatID;
     }
@@ -44,6 +47,10 @@ public class Categorydb {
         return isObjective;
     }
 
+    public long getDate() {
+        return date;
+    }
+
     public void setCatID(int CatID){
         this.CatID=CatID;
     }
@@ -62,5 +69,9 @@ public class Categorydb {
 
     public void setObjective(boolean objective) {
         isObjective = objective;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
     }
 }

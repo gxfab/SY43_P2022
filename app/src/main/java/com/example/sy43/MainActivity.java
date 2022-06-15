@@ -12,12 +12,18 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.sy43.db.entity.Categorydb;
+import com.example.sy43.db.entity.Transaction;
 import com.example.sy43.db.mainDB.DB;
 import com.example.sy43.db.mainDB.DBexec;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+import android.widget.Toast;
+
 import java.util.List;
+import java.util.concurrent.Future;
 
 public class MainActivity extends AppCompatActivity {
     private static Context context;
@@ -27,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.context = getApplicationContext();
         DB db = DB.getAppDatabase(getAppContext());
         DBexec databaseExecutor = DBexec.getExecutor();
-
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         setContentView(R.layout.activity_home);
 
         final CardView cardView = findViewById(R.id.category);
