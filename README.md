@@ -1,10 +1,10 @@
 # SY43_P2022
-SY43 GitHub Project Android
+SY43 GitHub Projet Android
 
 ![Mockup](https://github.com/gxfab/SY43_P2022/blob/HP_lovers/NoAppNoGain.png?raw=true)
 
 ## Participants
-* HP Lovers 
+HP Lovers : 
 * Titouan Burgy
 * Ahda Syathirah Binti Mat Yusof
 * Thomas Marmol
