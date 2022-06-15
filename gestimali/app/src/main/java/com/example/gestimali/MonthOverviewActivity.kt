@@ -18,7 +18,7 @@ class MonthOverviewActivity : AppCompatActivity() {
     }
 
     fun seeIncome(view : View){
-        val intent = Intent(this,MonthOverviewActivity::class.java)
+        val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
     }
 }

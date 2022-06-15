@@ -9,7 +9,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/month_name"
         style="@style/monthStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,13 +45,13 @@
         layout="@layout/item_money_flow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/unfixExpense"
+        app:layout_constraintBottom_toTopOf="@id/envelope"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expense" />
 
     <include
-        android:id="@+id/unfixExpense"
+        android:id="@+id/envelope"
         layout="@layout/item_money_flow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unfixExpense" />
+        app:layout_constraintTop_toBottomOf="@+id/envelope" />
 
     <ImageView
         android:id="@+id/monthRectangle"
@@ -79,6 +79,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/month_rectangle" />
+
+    <Button
+        android:id="@+id/plan_button"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:text="@string/plan_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent
+"
+        tools:layout_editor_absoluteY="269dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <!-- Month -->
+    <!-- Month Overview layout-->
     <string name="mon1">January</string>
     <string name="mon2">February</string>
     <string name="mon3">March</string>
@@ -26,6 +26,8 @@
     <string name="mon10">October</string>
     <string name="mon11">November</string>
     <string name="mon12">December</string>
+
+    <string name="plan_button">Plan this month</string>
 
     <!-- Money flow-->
     <string name="category_name">Category Name</string>
