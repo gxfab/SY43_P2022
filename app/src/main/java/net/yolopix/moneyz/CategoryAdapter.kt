@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Space
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -74,6 +75,19 @@ class CategoryAdapter(
                     viewHolder.expandButton.rotation = 0f
                 }
             }
+            context.lifecycleScope.launch{
+
+
+                if(categoryList[position].predictedAmount > db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid)){
+                    R.string.money_format
+                    viewHolder.categoryPriceTextView.setText(String.format("%.2f", categoryList[position].predictedAmount))
+                }else{
+                    viewHolder.categoryPriceTextView.setText(String.format((db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid) - categoryList[position].predictedAmount).toString()))
+                    viewHolder.categoryPriceTextView.setTextColor(ContextCompat.getColor(context, R.color.red))
+                }
+
+            }
+
         }
 
         // For prevision view
@@ -81,28 +95,16 @@ class CategoryAdapter(
             viewHolder.expandButton.visibility = View.GONE
             viewHolder.expensesRecyclerView.visibility = View.GONE
             viewHolder.itemDivider.visibility = View.GONE
+            viewHolder.categoryNameTextView.text = categoryList[position].name
+            viewHolder.categoryPriceTextView.text = context.getString(
+                R.string.money_format,
+                String.format("%.2f", categoryList[position].predictedAmount)
+            )
         }
 
         // Common to both prevision/expenses view
         viewHolder.categoryNameTextView.text = categoryList[position].name
-        context.lifecycleScope.launch{
-            viewHolder.categoryPriceTextView.text = context.getString(
-                R.string.money_format,
-                //String.format("%.2f", categoryList[position].predictedAmount)
-                //String.format("%.2f", db.categoryDao().retrieveSinglePredictedAmount(monthNumber!!,yearNumber!!,accountUid!!, position))
-                if(categoryList[position].predictedAmount > db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid)){
-                    String.format("%.2f", categoryList[position].predictedAmount)
-                    }else{
-                        String.format((db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid) - categoryList[position].predictedAmount).toString())
 
-                }
-            )
-
-
-
-
-
-        }
 
         if (position == categoryList.lastIndex) {
             viewHolder.bottomSpace.visibility = View.VISIBLE
