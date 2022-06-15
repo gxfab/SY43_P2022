@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void parametres(View view){
+        /*
 
         DBHandler db = new DBHandler(getApplicationContext());
 
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
+        */
 
         //Intent intent = new Intent(this, SettingsActivity.class);
         //startActivity(intent);
