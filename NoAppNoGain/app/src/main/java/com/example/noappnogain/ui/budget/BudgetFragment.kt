@@ -1,9 +1,7 @@
 package com.example.noappnogain.ui.budget
 
-import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,17 +13,10 @@ import com.example.noappnogain.adapter.BudgetAdapter
 import com.example.noappnogain.databinding.FragmentBudgetBinding
 import com.example.noappnogain.model.Budget
 import com.example.noappnogain.model.Data
-import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.formatter.PercentFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
-
 import java.util.*
 
 class BudgetFragment : Fragment() {
@@ -36,10 +27,6 @@ class BudgetFragment : Fragment() {
     private var mMouvementDatabase: DatabaseReference? = null
     private var _binding: FragmentBudgetBinding? = null
 
-    // budget update key
-    private var post_key: String? = null
-    private var categorie: String? = null
-    private var montant = 0
     var budgetPlanSetResult : TextView? = null
     var budgetRestSetResult : TextView? = null
 
@@ -140,11 +127,11 @@ class BudgetFragment : Fragment() {
                         val data = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
                             if (data.amount > 0) {
-                                var mDate = ""
+                                var mDate: String
                                 val sdFormat = SimpleDateFormat("yyyy/M")
                                 mDate = sdFormat.format(Date())
                                 if(data.date!!.startsWith(mDate)){
-                                    budgetPlan += data.amount.toInt()
+                                    budgetPlan += data.amount
                                 }
                             }
                         }
@@ -167,7 +154,7 @@ class BudgetFragment : Fragment() {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Budget::class.java)
                         if (data != null) {
-                            budgetRest += data.montant.toInt()
+                            budgetRest += data.montant
                         }
                         budgetArrayList.add(data!!)
                     }
@@ -180,9 +167,9 @@ class BudgetFragment : Fragment() {
                     budgetRestSetResult!!.text = budgetRest.toString()
                     recyclerView.adapter = BudgetAdapter(budgetArrayList)
                 }else{
-                    val categorie_depense : Array<String>? = arrayOf("Alimentation", "Animaux", "Cadeaux offerts", "Education", "Enfants",
+                    val categorie_depense : Array<String> = arrayOf("Alimentation", "Animaux", "Cadeaux offerts", "Education", "Enfants",
                         "Epargne", "Habillement", "Impôts", "Intérêts dette", "Inventissement", "Loisirs", "Ménage", "Santé", "Transport", "Logement")
-                    for(cat in categorie_depense!!){
+                    for(cat in categorie_depense){
                         val amount = 0
                         val id: String? = mBudgetDatabase?.push()?.key
                         val data = Budget(amount, cat, id.toString())
@@ -198,7 +185,7 @@ class BudgetFragment : Fragment() {
         })
 
         val btnFiltre: Button = binding.btnFiltre
-        btnFiltre.setOnClickListener(View.OnClickListener {
+        btnFiltre.setOnClickListener({
             filtreData()
         })
 
@@ -207,8 +194,8 @@ class BudgetFragment : Fragment() {
 
     fun filtreData(){
 
-        var withMonth : Boolean = false
-        var onlyYear : Boolean = false
+        var withMonth = false
+        var onlyYear = false
 
         if(posAnnee == 0 && posMois == 0){
             onlyYear = false
@@ -234,7 +221,7 @@ class BudgetFragment : Fragment() {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Budget::class.java)
                         if (data != null) {
-                            budgetRest += data.montant.toInt()
+                            budgetRest += data.montant
                         }
                     }
                     budgetPlanSetResult!!.text = budgetPlan.toString()
@@ -253,7 +240,7 @@ class BudgetFragment : Fragment() {
                         val data = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
                             if (data.amount > 0) {
-                                var mDate = ""
+                                var mDate: String
                                 val sdFormat = SimpleDateFormat("yyyy/M")
                                 mDate = sdFormat.format(Date())
                                 if(onlyYear && withMonth){
@@ -262,12 +249,12 @@ class BudgetFragment : Fragment() {
                                 if(onlyYear){
                                     if(withMonth){
                                         if(data.date!!.startsWith(mDate)){
-                                            budgetPlan += data.amount.toInt()
+                                            budgetPlan += data.amount
                                         }
                                     }
                                 }else{
                                     if(data.date!!.startsWith(mDate)){
-                                        budgetPlan += data.amount.toInt()
+                                        budgetPlan += data.amount
                                     }
                                 }
                             }

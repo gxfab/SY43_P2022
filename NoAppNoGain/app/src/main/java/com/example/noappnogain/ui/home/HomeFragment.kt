@@ -16,10 +16,8 @@ import com.example.noappnogain.model.Data
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -102,7 +100,7 @@ class HomeFragment : Fragment() {
                             val sdFormat = SimpleDateFormat("yyyy/M")
                             val mDate = sdFormat.format(Date())
                             if(data.date!!.startsWith(mDate)){
-                                balance += data.amount.toInt()
+                                balance += data.amount
                             }
                         }
                         // vérifier la balance
@@ -126,7 +124,7 @@ class HomeFragment : Fragment() {
         })
 
         val btnAjouter: Button = binding.btnAjouter
-        btnAjouter.setOnClickListener(View.OnClickListener {
+        btnAjouter.setOnClickListener({
             dataInsert()
             edtNote!!.text.clear()
             edtAmount!!.text.clear()
@@ -153,7 +151,7 @@ class HomeFragment : Fragment() {
         }
         if (mAuth?.currentUser != null && !error && type != "null") {
             val id: String? = mMouvementDatabase?.push()?.key
-            val SDFormat: SimpleDateFormat = SimpleDateFormat("yyyy/M/d")
+            val SDFormat = SimpleDateFormat("yyyy/M/d")
             val mDate = SDFormat.format(Date())
             val data = Data(ouramountinte, type, note, id, mDate)
             if (id != null) {

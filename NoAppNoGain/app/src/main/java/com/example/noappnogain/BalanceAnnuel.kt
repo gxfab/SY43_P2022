@@ -1,7 +1,6 @@
 package com.example.noappnogain
 
 import android.os.Bundle
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +11,6 @@ import com.example.noappnogain.model.Data
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import java.util.ArrayList
 
 class BalanceAnnuel : AppCompatActivity() {
 
@@ -63,7 +61,7 @@ class BalanceAnnuel : AppCompatActivity() {
                         if (data != null) {
                             if (data.amount > 0) {
                                 if(data.date!!.startsWith(mDate.toString())){
-                                    budgetPlan += data.amount.toInt()
+                                    budgetPlan += data.amount
                                 }
                             }
                         }

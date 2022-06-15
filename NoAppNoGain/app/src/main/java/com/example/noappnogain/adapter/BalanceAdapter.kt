@@ -33,12 +33,12 @@ class BalanceAdapter(private var budgetList: ArrayList<Budget>, private var mDat
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val currentitem = budgetList[position]
+        val mAuth: FirebaseAuth?
+        val mUser: FirebaseUser?
+        var mMouvementDatabase: DatabaseReference? = null
 
         holder.depensePlan.text = currentitem.montant.toString()
 
-        var mAuth: FirebaseAuth? = null
-        var mUser: FirebaseUser? = null
-        var mMouvementDatabase: DatabaseReference? = null
         mAuth = FirebaseAuth.getInstance()
         mUser = mAuth.currentUser
 

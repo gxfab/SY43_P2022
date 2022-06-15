@@ -27,7 +27,7 @@ class Sinscrire : AppCompatActivity() {
     }
 
     private fun registration() {
-        val mName = findViewById<EditText>(R.id.name_reg)
+        findViewById<EditText>(R.id.name_reg)
         mEmail = findViewById(R.id.email_reg)
         mPass = findViewById(R.id.password_reg)
         val btnReg = findViewById<Button>(R.id.btn_reg)
@@ -59,13 +59,11 @@ class Sinscrire : AppCompatActivity() {
                     mEmail = findViewById(R.id.email_reg)
                     val email = mEmail.text.toString().trim { it <= ' ' }
                     val mUser = mAuth.currentUser
-                    if (mAuth != null) {
-                        val uid = mUser!!.uid
-                        val myRootRef =
-                            FirebaseDatabase.getInstance().reference.child("UserInfo").child(uid)
-                        val userNameRef = myRootRef.child("Email")
-                        userNameRef.setValue(email)
-                    }
+                    val uid = mUser!!.uid
+                    val myRootRef =
+                        FirebaseDatabase.getInstance().reference.child("UserInfo").child(uid)
+                    val userNameRef = myRootRef.child("Email")
+                    userNameRef.setValue(email)
                 } else {
                     mDialog.dismiss()
                     Toast.makeText(

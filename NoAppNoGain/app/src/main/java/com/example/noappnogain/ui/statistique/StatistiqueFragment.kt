@@ -11,11 +11,8 @@ import androidx.fragment.app.Fragment
 import com.example.noappnogain.BalanceAnnuel
 import com.example.noappnogain.BalanceMensuel
 import com.example.noappnogain.R
-import com.example.noappnogain.adapter.HomeAdapter
 import com.example.noappnogain.databinding.FragmentStatistiqueBinding
-import com.example.noappnogain.model.Budget
 import com.example.noappnogain.model.Data
-import com.example.noappnogain.ui.budget.BudgetFragment
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
@@ -37,7 +34,6 @@ class StatistiqueFragment : Fragment() {
     private var mUser: FirebaseUser? = null
 
     private lateinit var mouvementArrayList: java.util.ArrayList<Data>
-    private lateinit var pieArrayList : ArrayList<PieEntry>
     private lateinit var pieChart : PieChart
 
     private var spinnerAnnee : Spinner? = null
@@ -65,7 +61,7 @@ class StatistiqueFragment : Fragment() {
         val btnMensuel: Button = binding.buttonMensuel
         val btnAnnuel: Button = binding.buttonAnnuel
         val btnFiltre: Button = binding.buttonFiltre
-        var pieArrayList = ArrayList<PieEntry>()
+        var pieArrayList: ArrayList<PieEntry>
 
         pieChart = binding.activityMainPiechart
         mAuth = FirebaseAuth.getInstance()
@@ -135,9 +131,9 @@ class StatistiqueFragment : Fragment() {
                 pieArrayList = ArrayList<PieEntry>()
                 mouvementArrayList = arrayListOf<Data>()
                 if (snapshot.exists()) {
-                    val categorie_depense : Array<String>? = arrayOf("Alimentation", "Animaux", "Cadeaux offerts", "Education", "Enfants",
+                    val categorie_depense : Array<String> = arrayOf("Alimentation", "Animaux", "Cadeaux offerts", "Education", "Enfants",
                         "Epargne", "Habillement", "Impôts", "Intérêts dette", "Inventissement", "Loisirs", "Ménage", "Santé", "Transport", "Logement")
-                    for(cat in categorie_depense!!){
+                    for(cat in categorie_depense){
                         var amount = 0
                         for (userSnapshot in snapshot.children) {
                             val data: Data? = userSnapshot.getValue(Data::class.java)
@@ -184,21 +180,21 @@ class StatistiqueFragment : Fragment() {
         mMouvementDatabase?.addListenerForSingleValueEvent(valueEventListener)
 
 
-        btnFiltre.setOnClickListener(View.OnClickListener {
+        btnFiltre.setOnClickListener({
             filtreData()
         })
 
-        btnMensuel.setOnClickListener(View.OnClickListener {
+        btnMensuel.setOnClickListener({
             val intent = Intent(activity, BalanceMensuel::class.java)
-            var mDate = ""
+            val mDate: String
             mDate = "".plus(annee).plus("/").plus(mois)
             intent.putExtra("mDate", mDate )
             startActivity(intent)
         })
 
-        btnAnnuel.setOnClickListener(View.OnClickListener {
+        btnAnnuel.setOnClickListener({
             val intent = Intent(activity, BalanceAnnuel::class.java)
-            var mDate = ""
+            val mDate: String
             mDate = "".plus(annee)
             intent.putExtra("mDate", mDate )
             startActivity(intent)
@@ -233,10 +229,10 @@ class StatistiqueFragment : Fragment() {
     fun filtreData(){
 
         initPieChart()
-        var pieArrayList = ArrayList<PieEntry>()
+        var pieArrayList: ArrayList<PieEntry>
 
-        var withMonth : Boolean = false
-        var onlyYear : Boolean = false
+        var withMonth = false
+        var onlyYear = false
 
         if(posAnnee == 0 && posMois == 0){
             onlyYear = false
@@ -260,9 +256,9 @@ class StatistiqueFragment : Fragment() {
                 pieArrayList = ArrayList<PieEntry>()
                 mouvementArrayList = arrayListOf<Data>()
                 if (snapshot.exists()) {
-                    val categorie_depense : Array<String>? = arrayOf("Alimentation", "Animaux", "Cadeaux offerts", "Education", "Enfants",
+                    val categorie_depense : Array<String> = arrayOf("Alimentation", "Animaux", "Cadeaux offerts", "Education", "Enfants",
                         "Epargne", "Habillement", "Impôts", "Intérêts dette", "Inventissement", "Loisirs", "Ménage", "Santé", "Transport", "Logement")
-                    for(cat in categorie_depense!!){
+                    for(cat in categorie_depense){
                         var amount = 0
                         for (userSnapshot in snapshot.children) {
                             val data: Data? = userSnapshot.getValue(Data::class.java)

@@ -161,13 +161,13 @@ class RevenuFragment : Fragment() {
         })
 
         val btnAjouter: Button = binding.btnAjouter
-        btnAjouter.setOnClickListener(View.OnClickListener {
+        btnAjouter.setOnClickListener({
             dataInsert()
 
         })
 
         val btnFiltre: Button = binding.btnFiltre
-        btnFiltre.setOnClickListener(View.OnClickListener {
+        btnFiltre.setOnClickListener({
             filtreData()
             mMouvementDatabase?.removeEventListener(valueEventListener!!)
         })
@@ -247,9 +247,9 @@ class RevenuFragment : Fragment() {
 
     fun filtreData(){
 
-        var withMonth : Boolean = false
-        var onlyYear : Boolean = false
-        var tousCat : Boolean = true
+        var withMonth = false
+        var onlyYear = false
+        val tousCat: Boolean
 
         if(posAnnee == 0 && posMois == 0){
             onlyYear = false

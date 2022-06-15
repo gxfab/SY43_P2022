@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import com.example.noappnogain.model.Projet
 import com.example.noappnogain.R
-import com.example.noappnogain.model.Data
+import com.example.noappnogain.model.Projet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -67,8 +66,8 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
         holder.actualAmount.text = currentitem.actualAmount.toString()
 
         holder.itemView.setOnClickListener { view ->
-            var mAuth: FirebaseAuth? = null
-            var mUser: FirebaseUser? = null
+            val mAuth: FirebaseAuth?
+            val mUser: FirebaseUser?
             var mProjetDatabase: DatabaseReference? = null
             mAuth = FirebaseAuth.getInstance()
             mUser = mAuth.currentUser

@@ -44,7 +44,7 @@ class Sidentifier : AppCompatActivity() {
                 }
             } else if (checkbox != "false") {
             }
-            remember.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            remember.setOnCheckedChangeListener({ buttonView, isChecked ->
                 if (buttonView.isChecked) {
                     val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
                     val editor = preferences.edit()

@@ -11,13 +11,10 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.R
 import com.example.noappnogain.model.Data
-import com.example.noappnogain.model.Projet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.text.DateFormat
-import java.util.*
 
 
 class HomeAdapter(private var dataList: ArrayList<Data>) :
@@ -48,8 +45,8 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
         holder.amount.text = currentitem.amount.toString()
 
         holder.itemView.setOnClickListener { view ->
-            var mAuth: FirebaseAuth? = null
-            var mUser: FirebaseUser? = null
+            val mAuth: FirebaseAuth?
+            val mUser: FirebaseUser?
             var mMouvementDatabase: DatabaseReference? = null
             mAuth = FirebaseAuth.getInstance()
             mUser = mAuth.currentUser
@@ -69,11 +66,11 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
             val edtNote = myviewm.findViewById<EditText>(R.id.nom_edt)
             val edtDate = myviewm.findViewById<DatePicker>(R.id.date_edt)
 
-            var type = dataList[position].type
-            val post_key = dataList[position].id
+            val type = dataList[position].type
+            val postKey = dataList[position].id
             val note = dataList[position].note
             val amount = dataList[position].amount
-            val date = dataList[position].date
+            dataList[position].date
 
             edtCat.text = type
             edtNote.setText(note)
@@ -103,15 +100,15 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
                 }
                 val myAmount = mdAmount.toInt()
                 if (mAuth.currentUser != null) {
-                    val data = Data(myAmount, type, note, post_key, mDate)
-                    mMouvementDatabase?.child(post_key.toString())?.setValue(data)
+                    val data = Data(myAmount, type, note, postKey, mDate)
+                    mMouvementDatabase?.child(postKey.toString())?.setValue(data)
                     Toast.makeText(view.context, "Enregistrement réussi...", Toast.LENGTH_SHORT).show()
                 }
                 dialog.dismiss()
             }
 
             btnDelete.setOnClickListener {
-                mMouvementDatabase?.child(post_key.toString())?.removeValue()
+                mMouvementDatabase?.child(postKey.toString())?.removeValue()
                 dialog.dismiss()
             }
         }

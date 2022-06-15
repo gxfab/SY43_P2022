@@ -5,16 +5,17 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.R
 import com.example.noappnogain.model.Budget
-import com.example.noappnogain.model.Projet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.util.ArrayList
 
 class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
     RecyclerView.Adapter<BudgetAdapter.MyViewHolder>() {
@@ -37,8 +38,8 @@ class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
         holder.amount.text = currentitem.montant.toString()
 
         holder.itemView.setOnClickListener { view ->
-            var mAuth: FirebaseAuth? = null
-            var mUser: FirebaseUser? = null
+            val mAuth: FirebaseAuth?
+            val mUser: FirebaseUser?
             var mBudgetDatabase: DatabaseReference? = null
             mAuth = FirebaseAuth.getInstance()
             mUser = mAuth.currentUser

@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
 import com.example.noappnogain.Changer
 import com.example.noappnogain.Sidentifier
@@ -61,12 +59,12 @@ class ProfilFragment : Fragment() {
         val logout = binding.btnLogout
         val deleteaccount = binding.btnDeleteaccount
 
-        changepass.setOnClickListener(View.OnClickListener {
+        changepass.setOnClickListener({
             val intent = Intent(activity, Changer::class.java)
             startActivity(intent)
         })
 
-        logout.setOnClickListener(View.OnClickListener {
+        logout.setOnClickListener({
             val builder = AlertDialog.Builder(activity)
             builder.setTitle("Se déconnecter")
             builder.setMessage("Voulez-vous vraiment vous déconnecter?")

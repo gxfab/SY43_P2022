@@ -12,14 +12,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.noappnogain.adapter.ProjetAdapter
-import com.example.noappnogain.model.Projet
 import com.example.noappnogain.R
+import com.example.noappnogain.adapter.ProjetAdapter
 import com.example.noappnogain.databinding.FragmentProjetBinding
+import com.example.noappnogain.model.Projet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class ProjetFragment : Fragment() {

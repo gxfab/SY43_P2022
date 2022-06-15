@@ -1,10 +1,8 @@
 package com.example.noappnogain
 
 import android.os.Bundle
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noappnogain.adapter.BalanceAdapter
 import com.example.noappnogain.databinding.ActivityBalanceMensuelBinding
@@ -13,8 +11,6 @@ import com.example.noappnogain.model.Data
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class BalanceMensuel : AppCompatActivity() {
 
@@ -28,7 +24,6 @@ class BalanceMensuel : AppCompatActivity() {
     var budgetPlanSetResult : TextView? = null
     var budgetPlan : Int = 0
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityBalanceMensuelBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +61,7 @@ class BalanceMensuel : AppCompatActivity() {
                         if (data != null) {
                             if (data.amount > 0) {
                                 if(data.date!!.startsWith(mDate.toString())){
-                                    budgetPlan += data.amount.toInt()
+                                    budgetPlan += data.amount
                                 }
                             }
                         }
