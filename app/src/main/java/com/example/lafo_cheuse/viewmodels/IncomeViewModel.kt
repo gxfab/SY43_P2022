@@ -159,7 +159,7 @@ class IncomeViewModel(application : Application) : AndroidViewModel(application)
      * Method to insert an [Income] into the database
      *
      * @param income
-     * @return
+     * @return [Unit] nothing
      */
     fun insertIncome(income : Income) = viewModelScope.launch {
         repository.insertIncome(income)
