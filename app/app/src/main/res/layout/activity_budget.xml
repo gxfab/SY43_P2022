@@ -32,7 +32,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/remainingMoney"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textAlignment="center"
+        android:layout_margin="12px"/>
+
 
     <ScrollView
         android:layout_width="match_parent"
