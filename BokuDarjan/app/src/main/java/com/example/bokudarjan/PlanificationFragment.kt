@@ -61,17 +61,8 @@ class planificationFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_planification, container, false)
 
-        // Observer to get the sum
 
-
-        /*
-        expenseViewModel.sumOfPositiveExpenses.observe(viewLifecycleOwner, Observer { sumOfPositiveExpenses ->
-            expenseViewModel.sumOfNegativeExpenses.observe(viewLifecycleOwner, Observer { sumOfNegativeExpenses ->
-            })
-        })*/
-
-
-        //RecyclerView for category
+        // RecyclerView for category
         val categoryAdapter = ListAdapterCategory()
         val categoryRecyclerView : RecyclerView = view.recyclerViewCategory
         categoryRecyclerView.adapter = categoryAdapter
@@ -94,6 +85,7 @@ class planificationFragment : Fragment() {
         })
 
 
+        //== Display and manage small buttons on top right
         //Views
         val expandBtn = view.findViewById<FloatingActionButton>(R.id.expandButton);
         val btn1 = view.findViewById<FloatingActionButton>(R.id.addCategoryBtn);

@@ -19,4 +19,8 @@ interface ExpenseDAO {
 
     @Query("SELECT SUM(amount) FROM expense_table WHERE NOT categoryName='Bénéfices'")
     fun getSumOfNegativeExpenses(): LiveData<Float>;
+
+    @Query("SELECT SUM(amount) FROM expense_table WHERE  categoryName = :name")
+    fun getSumOfExpenseByCategory(name: String):LiveData<Float>;
+
 }

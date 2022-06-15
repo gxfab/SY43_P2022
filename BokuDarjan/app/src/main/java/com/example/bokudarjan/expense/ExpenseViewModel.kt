@@ -10,8 +10,7 @@ import com.example.bokudarjan.expense.ExpenseRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class
-ExpenseViewModel(application: Application): AndroidViewModel(application) {
+class ExpenseViewModel(application: Application): AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Expense>>
     private val repository: ExpenseRepository
@@ -28,8 +27,13 @@ ExpenseViewModel(application: Application): AndroidViewModel(application) {
 
     fun addExpense(expense: Expense){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addUser(expense)
+            repository.addExpense(expense)
         }
     }
+
+    fun getSumOfExpenseByCategory(name: String):LiveData<Float>{
+            return repository.getSumOfExpenseByCategory(name);
+    }
+
 
 }

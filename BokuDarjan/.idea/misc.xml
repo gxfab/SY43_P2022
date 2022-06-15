@@ -20,29 +20,26 @@
         <entry key="app/src/main/res/drawable/icon_plan.xml" value="0.344" />
         <entry key="app/src/main/res/drawable/navbar_color.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/settings.xml" value="0.313" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/dialog_add_saving.xml" value="0.2557291666666667" />
-        <entry key="app/src/main/res/layout/dialog_edit_saving.xml" value="0.33605072463768115" />
-        <entry key="app/src/main/res/layout/envelope_card.xml" value="0.17552083333333332" />
-        <entry key="app/src/main/res/layout/envelope_category_card.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/expense_card.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/expense_category.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/expense_row.xml" value="0.3442028985507246" />
-        <entry key="app/src/main/res/layout/fragment_add_category.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_add_envelope.xml" value="0.29347826086956524" />
-        <entry key="app/src/main/res/layout/fragment_add_expense.xml" value="0.3442028985507246" />
-        <entry key="app/src/main/res/layout/fragment_category.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_expenses.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/fragment_list_expense.xml" value="0.3442028985507246" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/envelope_card.xml" value="0.2786458333333333" />
+        <entry key="app/src/main/res/layout/envelope_category_card.xml" value="0.17447916666666666" />
+        <entry key="app/src/main/res/layout/expense_card.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/expense_category.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/expense_row.xml" value="0.24864130434782608" />
+        <entry key="app/src/main/res/layout/fragment_add_category.xml" value="0.2786458333333333" />
+        <entry key="app/src/main/res/layout/fragment_add_envelope.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/fragment_add_expense.xml" value="0.296998420221169" />
+        <entry key="app/src/main/res/layout/fragment_category.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_chart.xml" value="0.175" />
+        <entry key="app/src/main/res/layout/fragment_expenses.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_list_expense.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_list_expense_list.xml" value="0.24864130434782608" />
         <entry key="app/src/main/res/layout/fragment_month.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/fragment_planification.xml" value="0.3751387347391787" />
-        <entry key="app/src/main/res/layout/fragment_savings.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_planification.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_savings.xml" value="0.3496376811594203" />
         <entry key="app/src/main/res/layout/fragment_side_bar.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/saving_card.xml" value="0.3489583333333333" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.353125" />
         <entry key="app/src/main/res/menu/sidebarmenu.xml" value="0.3536458333333333" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3255" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3255" />
       </map>
     </option>
   </component>

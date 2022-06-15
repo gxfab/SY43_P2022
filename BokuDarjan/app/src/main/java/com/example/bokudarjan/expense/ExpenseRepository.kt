@@ -1,6 +1,7 @@
 package com.example.bokudarjan.expense
 
 import androidx.lifecycle.LiveData
+import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.expense.ExpenseDAO
 import com.example.bokudarjan.expense.Expense
 
@@ -11,8 +12,16 @@ class ExpenseRepository(private val expenseDao: ExpenseDAO) {
     val sumOfPositiveExpenses: LiveData<Float> = expenseDao.getSumOfPositiveExpenses()
     val sumOfNegativeExpense: LiveData<Float> = expenseDao.getSumOfNegativeExpenses()
 
-    suspend fun addUser(expense: Expense) {
+
+    fun addExpense(expense: Expense) {
         expenseDao.addExpense(expense)
     }
+
+    fun getSumOfExpenseByCategory(name: String):LiveData<Float>{
+        return expenseDao.getSumOfExpenseByCategory(name);
+    }
+
+
+
 
 }
