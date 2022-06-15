@@ -18,7 +18,17 @@ import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-
+/**
+ * Activity where the user can choose a category for his/her income/expense. He can also create a new category by starting the [CreateCategoryActivity].
+ *
+ * @property incomeViewModel - An [IncomeViewModel] instance
+ * @property expenseViewModel - An [ExpenseViewModel] instance
+ * @property income - an [Income] to update (it is useful to modify the [Category] of an existing [Income])
+ * @property expense - an [Expense] to update (it is useful to modify the [Category] of an existing [Expense])
+ * @property type - a [String] representing the type of a MoneyChange
+ * @property isUpdate - a [Boolean] specifying if the activity should update an income/expense
+ *
+ */
 class CategoryChooserActivity : AppCompatActivity() {
     private val incomeViewModel : IncomeViewModel by viewModels()
     private val expenseViewModel : ExpenseViewModel by viewModels()
@@ -72,6 +82,14 @@ class CategoryChooserActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Choose a category for a give income/expense.
+     * It has 2 modes :
+     *  - The mode where the activity itself update the income/expense ([isUpdate] == true)
+     *  - The mode where it sent a result to another activity to choose the [Category] ([isUpdate] == false)
+     *
+     * @param categoryChosen - [Category] The category chosen in the [RecyclerView]
+     */
     fun chooseCategory(categoryChosen : Category) {
         if(isUpdate) {
             if(type == "income") {
