@@ -27,107 +27,101 @@
             android:id="@+id/progress_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:text="@string/placeholder_short"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/progress_text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/placeholder_short"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MoneyZ.MaterialCardView.BackgroundCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ScrollView
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager2_steps"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="16dp" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager_steps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
                 <LinearLayout
+                    android:id="@+id/layout_salary"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_income_title" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textfield_payday"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:hint="@string/payday">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_payday"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="@string/default_month" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textfield_salary"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:hint="@string/salary_amount"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_salary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1"
+                            android:text="@string/default_salary" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_bills"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="8dp"
-                        android:text="@string/section_income_title"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/payday"
-                            android:visibility="gone" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textfield_payday"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:layout_weight="1"
-                            android:hint="@string/payday">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edittext_payday"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:maxLines="1"
-                                android:text="@string/default_month" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/salary_amount"
-                            android:visibility="gone" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textfield_salary"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:layout_weight="1"
-                            android:hint="@string/salary_amount"
-                            app:errorEnabled="true">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edittext_salary"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="numberDecimal"
-                                android:maxLines="1"
-                                android:text="@string/default_salary" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="8dp"
-                        android:text="@string/section_prevision_category"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
-
+                        android:text="@string/section_bills" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/category_recycler_view"
@@ -150,19 +144,43 @@
                         android:layout_height="64dp" />
 
                 </LinearLayout>
-            </ScrollView>
 
+                <LinearLayout
+                    android:id="@+id/layout_end_previsions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="@string/section_end_title" />
+
+                    <Button
+                        android:id="@+id/button_done"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"
+                        android:text="@string/done"
+                        app:icon="@drawable/ic_outline_check_24" />
+
+                </LinearLayout>
+
+            </androidx.viewpager.widget.ViewPager>
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/button_done"
+        android:id="@+id/button_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:text="@string/done"
-        app:icon="@drawable/ic_outline_check_24" />
+        android:text="@string/next"
+        app:icon="@drawable/ic_outline_arrow_forward_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

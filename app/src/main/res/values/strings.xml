@@ -27,8 +27,13 @@
     <string name="new_category">Nouvelle catégorie</string>
     <string name="done">Terminé</string>
     <string name="make_previsions">Budgetiser maintenant</string>
-    <string name="section_income_title">Mes revenus</string>
-    <string name="section_prevision_category">Mes catégories de dépenses</string>
+    <string name="section_income_title">Étape 1 : Mes revenus</string>
+    <string name="section_bills">Étape 2 : Factures </string>
+    <string name="section_envelopes">Étape 3 : Enveloppes</string>
+    <string name="section_sinking_funds">Étape 4 : Fonds d\'amortissement</string>
+    <string name="section_extra_debt">Étape 5 : Dettes</string>
+    <string name="section_extra_savings">Étape 6 : Économies</string>
+    <string name="section_end_title">Prêt à commencer le mois ?</string>
     <string name="daymonth_placeholder">00/00</string>
     <string name="prevision_progress_format">%1$s€ / %2$s€</string>
     <string name="prevision_subtitle_month">"Pour le mois de %1$s"</string>
@@ -57,4 +62,7 @@
     <string name="info_deleted_category">La catégorie a bien été supprimée</string>
     <string name="info_deleted_account">Le compte a bien été supprimé</string>
     <string name="info_deleted_expense">La dépense a bien été supprimée</string>
+    <string name="zero_remaining_prevision">Budgetisation terminée !</string>
+    <string name="remaining_prevision">Reste %1$s€</string>
+    <string name="next">Suivant</string>
 </resources>

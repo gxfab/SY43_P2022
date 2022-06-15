@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.ExpenseType
 import net.yolopix.moneyz.model.entities.Category
 
 /**
@@ -27,7 +28,7 @@ class CategoryAdapter(
     private val db: AppDatabase,
     private val monthNumber: Int? = null,
     private val yearNumber: Int? = null,
-
+    private val showTypeId: ExpenseType? = null
     ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 

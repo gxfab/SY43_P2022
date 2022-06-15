@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.ExpenseType
 import net.yolopix.moneyz.model.entities.Category
 import kotlin.properties.Delegates
 
@@ -29,7 +30,8 @@ class AddCategoryBottomSheet(
     private val monthNumber: Int,
     private val yearNumber: Int,
     private val accountUid: Int,
-    private var incomeAmount: Float? = Float.MAX_VALUE // Do not limit category max amount if the income value is not valid
+    private var incomeAmount: Float? = Float.MAX_VALUE, // Do not limit category max amount if the income value is not valid
+    private val type: ExpenseType
 ) : BottomSheetDialogFragment() {
     private lateinit var buttonAddCategoryName: Button
     private lateinit var editTextCategoryName: EditText
@@ -93,7 +95,15 @@ class AddCategoryBottomSheet(
         }
 
         val newCategory =
-            Category(0, newCategoryName, newCategoryPrice, monthNumber, yearNumber, accountUid)
+            Category(
+                0,
+                newCategoryName,
+                newCategoryPrice,
+                monthNumber,
+                yearNumber,
+                accountUid,
+                type
+            )
         runBlocking {
             db.categoryDao().insertCategory(newCategory)
         }

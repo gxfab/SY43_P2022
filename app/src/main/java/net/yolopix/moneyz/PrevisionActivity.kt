@@ -1,6 +1,7 @@
 package net.yolopix.moneyz
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -10,11 +11,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.model.AppDatabase
+import net.yolopix.moneyz.model.ExpenseType
 import net.yolopix.moneyz.model.entities.Month
 import net.yolopix.moneyz.utils.DatabaseFactory
 import net.yolopix.moneyz.utils.NumberMaxInputFilter
@@ -37,14 +40,19 @@ class PrevisionActivity : AppCompatActivity() {
     /** An object representing the time when the activity has been opened */
     private lateinit var now: LocalDate
 
+    /** The current zero based budget type */
+    private var currentStepType = ExpenseType.BILLS
+
     // Widgets
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressTextView: TextView
+    private lateinit var progress2TextView: TextView
     private lateinit var salaryEditText: EditText
     private lateinit var salarySlider: Slider
-    private lateinit var doneFloatingActionButton: ExtendedFloatingActionButton
+    private lateinit var nextFloatingActionButton: ExtendedFloatingActionButton
     private lateinit var salaryTextField: com.google.android.material.textfield.TextInputLayout
     private lateinit var paydayTextField: com.google.android.material.textfield.TextInputLayout
+    private lateinit var doneButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,12 +67,31 @@ class PrevisionActivity : AppCompatActivity() {
         db = DatabaseFactory.getDB(applicationContext)
         recyclerView = findViewById(R.id.category_recycler_view)
         progressTextView = findViewById(R.id.progress_text)
+        progress2TextView = findViewById(R.id.progress_text2)
         salaryEditText = findViewById(R.id.edittext_salary)
         salarySlider = findViewById(R.id.slider_salary)
         now = LocalDate.now()
-        doneFloatingActionButton = findViewById(R.id.button_done)
+        nextFloatingActionButton = findViewById(R.id.button_next)
         salaryTextField = findViewById(R.id.textfield_salary)
         paydayTextField = findViewById(R.id.textfield_payday)
+        doneButton = findViewById(R.id.button_done)
+
+        // Initialize view pager
+        val stepsViewPager: ViewPager = findViewById(R.id.viewpager_steps)
+        stepsViewPager.adapter = PrevisionStepsAdapter()
+
+        stepsViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+            }
+        })
 
         // Set salary value
         lifecycleScope.launch {
@@ -113,7 +140,8 @@ class PrevisionActivity : AppCompatActivity() {
                 now.monthValue,
                 now.year,
                 accountUid!!,
-                salaryEditText.text.toString().toFloatOrNull()
+                salaryEditText.text.toString().toFloatOrNull(),
+                currentStepType
             ).apply {
                 show(supportFragmentManager, tag)
             }
@@ -123,6 +151,7 @@ class PrevisionActivity : AppCompatActivity() {
         // Initialize the category RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
 
+        // Swipe an item inside the recyclerview to delete it
         val swipeToDeleteExpense = object : SwipeToDeleteExpense() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 lifecycleScope.launch {
@@ -147,7 +176,7 @@ class PrevisionActivity : AppCompatActivity() {
         loadAll()
 
         // When the user has finished to make previsions
-        doneFloatingActionButton.setOnClickListener {
+        doneButton.setOnClickListener {
             val newMonth = Month(
                 now.monthValue,
                 now.year,
@@ -159,6 +188,10 @@ class PrevisionActivity : AppCompatActivity() {
                 db.monthDao().insertMonth(newMonth)
             }
             finish()
+        }
+
+        nextFloatingActionButton.setOnClickListener {
+            stepsViewPager.arrowScroll(View.FOCUS_RIGHT)
         }
 
         // Display the current month in the action bar
@@ -218,11 +251,14 @@ class PrevisionActivity : AppCompatActivity() {
         if (totalAmount == null)
             totalAmount = 0f
 
+        val remainingAmount = totalAmount - categorizedAmount
+
         progressTextView.text = getString(
             R.string.prevision_progress_format,
             String.format("%.2f", categorizedAmount),
             String.format("%.2f", totalAmount)
         )
+
 
         if (totalAmount >= categorizedAmount)
             salarySlider.valueTo = java.lang.Float.max(totalAmount, 1f)
@@ -231,6 +267,11 @@ class PrevisionActivity : AppCompatActivity() {
             salarySlider.value = categorizedAmount
         else
             salarySlider.value = 0f
+
+        progress2TextView.text =
+            if (categorizedAmount == totalAmount)
+                getString(R.string.zero_remaining_prevision)
+            else getString(R.string.remaining_prevision, String.format("%.2f", remainingAmount))
     }
 
     /**
@@ -253,7 +294,7 @@ class PrevisionActivity : AppCompatActivity() {
      * If so, disable the submit button
      */
     private fun checkFormErrors() {
-        doneFloatingActionButton.isEnabled =
+        nextFloatingActionButton.isEnabled =
             salaryTextField.error == null && paydayTextField.error == null
     }
 
