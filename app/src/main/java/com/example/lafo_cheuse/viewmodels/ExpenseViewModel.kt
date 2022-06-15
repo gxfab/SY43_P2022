@@ -143,4 +143,8 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
     ) : List<ExpenseSumContainer> {
         return repository.getExpensesSumForCategoryAndMonthSync(Frequency.OUNCE_A_DAY,category,year,month)
     }
+
+    fun wipeExpense() = viewModelScope.launch {
+        repository.wipeExpense()
+    }
 }

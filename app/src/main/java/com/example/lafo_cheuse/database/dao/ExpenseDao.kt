@@ -84,4 +84,7 @@ interface ExpenseDao {
 
     @Query("DELETE FROM Expense WHERE category_categoryId = :categoryID")
     fun deleteExpenseByCategory(categoryID : Long) : Int
+
+    @Query("DELETE FROM Expense")
+    fun wipeExpense() : Int
 }

@@ -107,5 +107,7 @@ class ExpenseRepository(application: Application) {
         return expenseDao.getExpensesSumSynchronousByDate(frequency,year,month)
     }
 
-
+    suspend fun wipeExpense() = withContext(Dispatchers.IO) {
+        expenseDao.wipeExpense()
+    }
 }
