@@ -1,19 +1,17 @@
 1.1.1 (2022-05-13) - MoneySaver
 
-Release Highlights
 - Kotlin
 
-Features
+Fonctionnalité
 - Réalisation du menu
 
 ***************************************************************************************
 
 2.1.1 (2022-06-08) - NoAppNoGain
 
-Release Highlights
 - Java
 
-Features
+Fonctionnalités
 - Créer un compte (S'inscrire)
 - S'identifier
 - Réinitialiser le mot de passe
@@ -23,35 +21,53 @@ Features
 - Page depense
 - Page revenu
 
-Bugs
+Problème rencontré
 - Problèmes avec FirebaseRecyclerAdapter
 
 ***************************************************************************************
 
 2.1.2 (2022-06-09) - NoAppNoGain
 
-Release Highlights
 - Kotlin
 
-Features
+Fonctionnalité
 - Partie connexion à la database qui marche sur l'autre projet : Reste à l'implémenter correctement dans le projet "NoAppNoGain"
 
-Bugs
+Problème rencontré
 - This Activity already has an action bar supplied by the window decor. Do not request Window.FEATURE_SUPPORT_ACTION_BAR and set windowActionBar to false in your theme to use a Toolbar instead ???
 
 ***************************************************************************************
 
-2.1.3 (2022-06-011) - NoAppNoGain
+2.1.3 (2022-06-11) - NoAppNoGain
 
-Release Highlights
 - Kotlin
 
-Features
+Fonctionnalités
 - Implementation FirebaseAuth avec DatabaseReference
 - Implementation navigation drawer avec bottom navigation
 
-Bugs
+Problème rencontré
 - RecyclerView dans DepenseFragment et RevenuFragment ne s'affichent pas
+
+***************************************************************************************
+
+2.1.4 (2022-06-15) - NoAppNoGain
+
+Fonctionnalités
+-Principales caractéristiques
+*Données sur le revenu (insérer/mettre à jour/supprimer)
+*Données de dépenses (insérer/mettre à jour/supprimer)
+*Vue statistique des dépenses
+-Autres caractéristiques
+*Connexion
+*Inscription
+*Mot de passe oublié
+*Vérification de l'E-mail
+*Changer le mot de passe
+*Supprimer définitivement le compte
+*Se déconnecter
+
+
 
 
 
