@@ -7,7 +7,7 @@ import android.util.Log;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.Observer;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -16,21 +16,22 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.Savings;
-import com.sucelloztm.sucelloz.ui.savings.SavingsViewModel;
+import com.sucelloztm.sucelloz.ui.savings.SavingsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BarChartGenerator {
-    private List<Savings> savingsArrayList;
-    private SavingsViewModel savingsViewModel;
+    private List<Savings> currentSavingsArrayList;
 
-    public BarChartGenerator(List<Savings> savingsArrayList, ViewModelProvider viewModelProvider) {
-        this.savingsArrayList = savingsArrayList;
+    public BarChartGenerator(List<Savings> currentSavingsArrayList) {
+        this.currentSavingsArrayList = currentSavingsArrayList;
     }
 
     private BarChart barChart;
+
 
     public BarChart getBarChart() {
         return barChart;
@@ -71,6 +72,18 @@ public class BarChartGenerator {
 
         ArrayList<BarEntry> entries = new ArrayList<>();
 
+        SavingsAdapter adapter = new SavingsAdapter(currentSavingsArrayList);
+
+        final Observer<List<Savings>> entriesObserver =  new Observer<List<Savings>>() {
+            @Override
+            public void onChanged(List<Savings> savingsArrayList) {
+                currentSavingsArrayList.clear();
+                currentSavingsArrayList.addAll(savingsArrayList);
+                adapter.notifyDataSetChanged();
+
+            }
+        };
+
         List<Float> entriesList = generateBarEntry();
 
         for(int i = 0; i<entriesList.size();i++){
@@ -95,9 +108,10 @@ public class BarChartGenerator {
     }
 
     private List<Float> generateBarEntry(){
+
         List<Float> percentageArrayList = new ArrayList<>();
         for (Savings savings:
-             this.savingsArrayList) {
+             this.currentSavingsArrayList) {
             percentageArrayList.add(savings.getPercentage());
 
         }

@@ -2,6 +2,7 @@ package com.sucelloztm.sucelloz.database.DAO;
 
 import static org.junit.Assert.*;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -17,6 +18,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.Matchers.*;
 
@@ -44,7 +47,8 @@ public class CategoriesDaoTest {
     public void insertCategory() throws Exception {
         Categories category = new Categories("test", true);
         categoriesDao.insertCategory(category);
-        List<Categories> categories = categoriesDao.getAllCategories();
+        //using the sync query instead of the asynchronous livedata one for tests
+        List<Categories>categories = categoriesDao.getCategories();
         assertEquals(categories.get(0).getName(), category.getName());
     }
 
@@ -53,7 +57,7 @@ public class CategoriesDaoTest {
         Categories category1 = new Categories("test1", true);
         Categories category2 = new Categories("test2", true);
         categoriesDao.insertCategories(category1, category2);
-        List<Categories> categories = categoriesDao.getAllCategories();
+        List<Categories> categories = categoriesDao.getCategories();
         assertEquals(categories.get(0).getName(), category1.getName());
         assertEquals(categories.get(1).getName(), category2.getName());
     }
@@ -65,7 +69,7 @@ public class CategoriesDaoTest {
         category.setId(insertedId);
         category.setReadOnly(false);
         categoriesDao.updateCategory(category);
-        List<Categories> categories = categoriesDao.getAllCategories();
+        List<Categories> categories = categoriesDao.getCategories();
         assertFalse(categories.get(0).getReadOnly());
     }
 
@@ -79,7 +83,7 @@ public class CategoriesDaoTest {
         category2.setId(insertedId.get(1));
         category2.setReadOnly(false);
         categoriesDao.updateCategories(category1, category2);
-        List<Categories> categories = categoriesDao.getAllCategories();
+        List<Categories> categories = categoriesDao.getCategories();
         assertFalse(categories.get(0).getReadOnly());
         assertFalse(categories.get(1).getReadOnly());
 
@@ -91,7 +95,7 @@ public class CategoriesDaoTest {
         long insertedId = categoriesDao.insertCategory(category);
         category.setId(insertedId);
         categoriesDao.deleteCategory(category);
-        List<Categories> categories = categoriesDao.getAllCategories();
+        List<Categories> categories = categoriesDao.getCategories();
         assertThat(categories.isEmpty(), is(true));
 
     }
@@ -104,11 +108,8 @@ public class CategoriesDaoTest {
         category1.setId(insertedId.get(0));
         category2.setId(insertedId.get(1));
         categoriesDao.deleteCategories(category1, category2);
-        List<Categories> categories = categoriesDao.getAllCategories();
+        List<Categories> categories = categoriesDao.getCategories();
         assertThat(categories.isEmpty(), is(true));
     }
 
-    @Test
-    public void getCategoriesWithSubCategories() {
-    }
 }
