@@ -30,6 +30,7 @@ import com.example.sy43.db.entity.Transaction;
 import com.example.sy43.viewmodels.SubCategoryViewModel;
 import com.example.sy43.viewmodels.TransactionViewModel;
 
+import java.util.Date;
 import java.util.List;
 
 public class SubCategoryAdapter extends ArrayAdapter<SubCategory> {
@@ -69,13 +70,17 @@ public class SubCategoryAdapter extends ArrayAdapter<SubCategory> {
             progressBar.setMax((int) category.getMaxValue());
             progressBar.setProgress((int) category.CurrentValue(), true);
             name.setText(category.getSubCatName());
-            float montant = 0;
             transVM.getTransactionsFromSubCat(category.getSubCatID()).observe(owner, new Observer<List<Transaction>>() {
                 @Override
                 public void onChanged(List<Transaction> receivedTransactions) {
                     float montant = 0;
                     for (Transaction trans : receivedTransactions) {
-                        montant += trans.getValue();
+                        Date transDate = new Date(trans.getDate());
+                        boolean isSameMonth = transDate.getMonth() == new Date().getMonth() && transDate.getYear() == new Date().getYear();
+                        if (isSameMonth) {
+                            montant += trans.getValue();
+
+                        }
                     }
                     price.setText("$" + montant + "/$" + category.getMaxValue());
                     category.setCurrentValue(montant);
