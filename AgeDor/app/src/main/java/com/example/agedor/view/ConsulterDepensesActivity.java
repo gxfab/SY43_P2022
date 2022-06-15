@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.agedor.R;
+import com.example.agedor.data.DBHandler;
 import com.example.agedor.data.StorageDepenses;
 
 import java.util.ArrayList;
@@ -35,6 +36,13 @@ public class ConsulterDepensesActivity extends AppCompatActivity implements Modi
     }
 
     private void setDepenses(){
+
+        DBHandler db = new DBHandler(this);
+
+        this.depenses = db.getDepenses();
+
+
+        // Test avec des valeurs en dur
         this.depenses = new ArrayList<>();
         depenses.add(new StorageDepenses("voiture","14/06/22","name1",(double)25));
         depenses.add(new StorageDepenses("voiture","12/05/22","name2",(double)8));

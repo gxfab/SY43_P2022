@@ -7,19 +7,19 @@
 
     <TextView
         android:id="@+id/nom_depense"
-        android:layout_width="66dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
         android:text="nom" />
 
     <TextView
-        android:id="@+id/date_depense"
-        android:layout_width="72dp"
+        android:id="@+id/categorie_depense"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="date" />
+        android:text="categorie de depense" />
 
     <TextView
-        android:id="@+id/categorie_depense"
-        android:layout_width="98dp"
+        android:id="@+id/date_depense"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="categorie" />
+        android:text="date depense" />
 </LinearLayout>

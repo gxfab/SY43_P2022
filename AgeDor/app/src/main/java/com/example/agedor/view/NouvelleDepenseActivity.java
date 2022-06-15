@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.agedor.MainActivity;
 import com.example.agedor.R;
@@ -65,7 +66,10 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // On récupère les données dans le formulaire
                 extractData();
-                showPopup();
+                String s = nom + " " + categorie + " " + montant + " " + date;
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+                //showPopup();
+                addToDB();
             }
         });
 
@@ -101,11 +105,6 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
         popup.show();
     }
 
-
-
-
-
-
     public void extractData(){
 
         this.sNom = new String(String.valueOf(nom.getText()));
@@ -121,13 +120,14 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
 
         //this.sDate = new String(String.valueOf(calendar.getTime()));
         this.sDate = (day+""+month+""+year);
-
     }
 
+    public void addToDB() {
 
 
 
 
+    }
 
 
 

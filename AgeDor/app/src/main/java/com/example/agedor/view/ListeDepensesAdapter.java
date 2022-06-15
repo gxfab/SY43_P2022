@@ -60,9 +60,10 @@ public class ListeDepensesAdapter extends RecyclerView.Adapter<ListeDepensesAdap
 
         void display(StorageDepenses depense){
 
-            nomDepense.setText((String) depense.nom);
+            nomDepense.setText((String) depense.nom+"  ");
+            categorieDepense.setText(String.valueOf(depense.categorie)+"  ");
             dateDepense.setText((String) depense.date_depense);
-            categorieDepense.setText(String.valueOf(depense.categorie));
+            ;
 
             /*
             nomDepense.setText("test");
