@@ -194,6 +194,18 @@ class ExpenseViewModel(application : Application) : AndroidViewModel(application
     }
 
     /**
+     * Get a sum a of regular expenses for a particular [Category] synchronously
+     *
+     * @param category - [Category] to focus on
+     * @return a list of [ExpenseSumContainer] containing only the [ExpenseSumContainer] linked with [category]
+     */
+    suspend fun getMonthlyExpensesSumForCategorySync(
+        category: Category
+    ) : List<ExpenseSumContainer>? {
+        return repository.getExpensesSumByFrequencyForCategorySync(Frequency.OUNCE_A_MONTH,category)
+    }
+
+    /**
      * Method to delete all the expenses from the database
      * It is executed in a coroutine in [viewModelScope]
      *

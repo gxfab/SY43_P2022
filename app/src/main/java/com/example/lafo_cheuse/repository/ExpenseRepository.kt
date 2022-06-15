@@ -205,4 +205,18 @@ class ExpenseRepository(application: Application) {
     suspend fun wipeExpense() = withContext(Dispatchers.IO) {
         expenseDao.wipeExpense()
     }
+
+    /**
+     * Get a sum a of expenses for a particular [Category] synchronously with a specified [frequency]
+     *
+     * @param frequency - the [Frequency] of the desired expenses
+     * @param category - [Category] to focus on
+     * @return a list of [ExpenseSumContainer] containing only the [ExpenseSumContainer] linked with [category]
+     */
+    suspend fun getExpensesSumByFrequencyForCategorySync(
+        frequency: Frequency,
+        category: Category
+    ): List<ExpenseSumContainer>? {
+        return expenseDao.getExpensesSumByFrequencyForCategorySync(frequency,category.categoryId)
+    }
 }

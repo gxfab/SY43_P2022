@@ -87,4 +87,12 @@ interface ExpenseDao {
 
     @Query("DELETE FROM Expense")
     fun wipeExpense() : Int
+
+    @Query("SELECT category_name,category_emoji," +
+            "SUM(EXP.amount) AS totalAmount " +
+            "FROM Expense EXP " +
+            "WHERE EXP.frequency = :frequency " +
+            "AND EXP.category_categoryId = :categoryID " +
+            "GROUP BY category_categoryId")
+    suspend fun getExpensesSumByFrequencyForCategorySync(frequency: Frequency,categoryID: Long) : List<ExpenseSumContainer>?
 }
