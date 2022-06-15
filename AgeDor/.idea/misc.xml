@@ -6,7 +6,17 @@
         <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/activity_main.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/consulter_depenses.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/dialog_edit_categorie.xml" value="0.16304347826086957" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/dialog_edit_dettes.xml" value="0.22192028985507245" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/dialog_edit_extra.xml" value="0.22192028985507245" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/dialog_edit_factures.xml" value="0.14375" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/dialog_edit_projets.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/dialog_edit_revenus.xml" value="0.22192028985507245" />
         <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/edit_categories.xml" value="0.1" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/edit_dettes.xml" value="0.196048632218845" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/edit_extra.xml" value="0.22192028985507245" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/edit_factures.xml" value="0.1911231884057971" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/edit_projets.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/edit_revenus.xml" value="0.22192028985507245" />
         <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/editer_budget.xml" value="0.4" />
         <entry key="..\:/Users/leovi/AndroidStudioProjects/SY43_P2022/AgeDor/app/src/main/res/layout/nouvelle_depense.xml" value="0.26458333333333334" />
         <entry key="..\:/Users/ugopi/AndroidStudioProjects/AgeDor/app/src/main/res/layout/activity_consulter_depenses.xml" value="0.27291666666666664" />
@@ -23,5 +33,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>
