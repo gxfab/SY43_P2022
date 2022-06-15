@@ -2,6 +2,7 @@ package com.example.sy43.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,8 @@ public class SubCategoryAdapter extends ArrayAdapter<SubCategory> {
                     price.setText("$" + montant + "/$" + category.getMaxValue());
                     category.setCurrentValue(montant);
                     progressBar.setProgress((int) category.CurrentValue(), true);
+                    progressBar.getProgressDrawable().setColorFilter(
+                            category.CurrentValue()<category.getMaxValue()? Color.GREEN:Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
                 }
             });
 

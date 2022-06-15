@@ -2,6 +2,8 @@ package com.example.sy43.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +84,8 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
                     }
                     price.setText("$" + value[0] +"/"+value[1]);
                     progressBar.setProgress((int) value[0] , true);
+                    progressBar.getProgressDrawable().setColorFilter(
+                            value[0]<value[1]?Color.GREEN:Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
                 }
             });
 
@@ -94,6 +98,9 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
                     }
                     price.setText("$" + value[0] +"/"+value[1]);
                     progressBar.setMax((int) value[1]);
+                    progressBar.getProgressDrawable().setColorFilter(
+                            value[0]<value[1]?Color.GREEN:Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
+
                 }
             });
             CardView card = v.findViewById(R.id.categoryCard);
