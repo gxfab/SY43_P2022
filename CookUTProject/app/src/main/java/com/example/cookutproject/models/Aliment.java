@@ -1,4 +1,4 @@
-package com.example.cookutproject;
+package com.example.cookutproject.models;
 
 public abstract class Aliment {
 
