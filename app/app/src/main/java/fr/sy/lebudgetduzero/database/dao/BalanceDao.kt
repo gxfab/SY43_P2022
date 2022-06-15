@@ -30,4 +30,7 @@ interface BalanceDao {
     @Query("SELECT value_for_month FROM TypeItem WHERE id=:idType")
     fun selectBudgetValueType(idType:Int):Int
 
+    @Query("UPDATE TypeItem SET value_for_month=:value WHERE id=:idType")
+    fun updateBudgetType(value:Int, idType:Int)
+
 }

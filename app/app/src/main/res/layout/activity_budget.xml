@@ -25,6 +25,8 @@
         android:text="Entrées d'argent estimée sur le mois :"
         android:textAlignment="center" />
 
+
+
     <EditText
         android:id="@+id/editIncome"
         android:layout_width="match_parent"
@@ -33,8 +35,9 @@
         android:inputType="number" />
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="8"
         android:layout_marginTop="15px">
     <LinearLayout
         android:layout_width="match_parent"
@@ -331,6 +334,13 @@
         </LinearLayout>
     </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="setBudget"
+        android:text="Valider" />
 
 
 </LinearLayout>
