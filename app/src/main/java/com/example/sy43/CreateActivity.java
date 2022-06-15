@@ -30,8 +30,10 @@ import com.example.sy43.db.entity.SubCategory;
 import com.example.sy43.viewmodels.CategoryViewModel;
 import com.example.sy43.viewmodels.SubCategoryViewModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CreateActivity extends AppCompatActivity {
@@ -183,8 +185,10 @@ public class CreateActivity extends AppCompatActivity {
             };
 
     private void showDate(int year, int month, int day) {
-        dateView.setText(new StringBuilder().append(day).append("/")
-                .append(month).append("/").append(year));
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-YY");
+        Date d = new Date(year, month, day);
+        String strDate = dateFormatter.format(d);
+        dateView.setText(strDate);
     }
 
 

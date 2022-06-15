@@ -1,64 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     tools:context=".ObjectiveDetailsActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-        <include
-            android:id="@+id/categoryCard"
-            layout="@layout/category_list_item"
+        <ListView
+            android:id="@+id/objectiveListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="50dp"
-            android:orientation="vertical"   android:layout_weight="2">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Recette"
-                android:textSize="24dp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Veuillez insérer la recette que vous souhaitez effectuer sur l'objectif selectionné :"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="89dp" />
-
-            <EditText
-                android:id="@+id/editMontant"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                tools:layout_editor_absoluteX="-12dp"
-                tools:layout_editor_absoluteY="142dp" />
-
-            <Button
-                android:id="@+id/btnAddTransaction"
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:background="@color/teal_200"
-                android:text="Confirmer"
-                tools:layout_editor_absoluteX="-41dp"
-                tools:layout_editor_absoluteY="201dp" />
-        </LinearLayout>
+            android:layout_height="150dp" />
 
         <Button
             android:id="@+id/obj_delete"
@@ -66,9 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@android:color/holo_red_light"
-            android:text="Supprimer l'objectif seléctionné"
+            android:text="DELETE"
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="638dp" />
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
