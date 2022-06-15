@@ -47,13 +47,19 @@ class MainActivity : AppCompatActivity() {
 
             //Db first settings
             val db=AppDatabase.getDatabase(applicationContext)
+            //First Load
             try{
                 db.balanceDao().insertTypes()
-            }catch (e: Exception) {}
+                this@MainActivity.runOnUiThread{
+                    loadBudgetActivity(null)
+                }
+            }catch (e: Exception) {
+                this@MainActivity.runOnUiThread{
+                    //Affichage de l'overview
+                    setHomeView(null)
+                }
+            }
         }
-
-        //Affichage de l'overview
-        setHomeView(null)
     }
 
     /**
@@ -177,7 +183,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun loadBudgetActivity(view: View){
+    fun loadBudgetActivity(view: View?){
         val intent= Intent(this, BudgetActivity::class.java)
         startActivity(intent)
     }
