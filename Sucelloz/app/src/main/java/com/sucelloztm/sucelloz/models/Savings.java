@@ -6,6 +6,9 @@ import androidx.room.PrimaryKey;
 
 import java.lang.String;
 
+/**
+ * savings entity for the dao
+ */
 @Entity(tableName = "savings")
 public class Savings {
 
@@ -28,10 +31,19 @@ public class Savings {
     @ColumnInfo(name = "percentage")
     private float percentage;
 
+    /**
+     * default constructor
+     */
     // CONSTRUCTOR
     public Savings() {
     }
 
+    /**
+     * custom constructor
+     * @param name n   ame
+     * @param deadline deadline
+     * @param initialAmount initial amount
+     */
     public Savings(String name, String deadline, int initialAmount) {
         this.name = name;
         this.deadline = deadline;
