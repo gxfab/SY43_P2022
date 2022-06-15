@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.database.entities.SubCategory
 
-class TextEditAdapter(private val layoutId: Int, private val category: SubCategory)
+class TextEditAdapter(private val layoutId: Int, private val category: Category)
     : RecyclerView.Adapter<TextEditAdapter.TextEditViewHolder>() {
 
     inner class TextEditViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -1,32 +1,40 @@
 package com.example.sy43_p2022.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import com.example.sy43_p2022.database.entities.Category
-import com.example.sy43_p2022.database.entities.CategoryAndSubCategory
 import com.example.sy43_p2022.database.entities.SubCategory
 
 @Dao
 interface PiggyBankDAO {
-    @Insert
+    @Insert(entity = Category::class, onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCategory(vararg name: Category)
 
-    @Insert
+    @Insert(entity = SubCategory::class, onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertSubCategory(vararg name: SubCategory)
 
     @Transaction
     @Query("SELECT * FROM category")
-    suspend fun getAll(): List<CategoryAndSubCategory>
+    suspend fun getAllCategories(): List<Category>
 
     @Transaction
     @Query("SELECT * FROM category WHERE catid = :id")
-    suspend fun getByCategoryId(id: String): CategoryAndSubCategory
+    suspend fun getCategoryById(id: String): Category
 
     @Transaction
-    @Query("DELETE FROM CATEGORY")
-    fun nukeTable()
+    @Query("SELECT * FROM category WHERE name = :name")
+    suspend fun getCategoryByName(name: String): Category
+
+    @Transaction
+    @Query("SELECT * FROM subcategory WHERE categoryId = :id")
+    suspend fun getSubCategoriesByCategoryId(id: Int): List<SubCategory>
+
+    @Transaction
+    @Query("DELETE FROM category")
+    fun nukeCategoryTable()
+
+    @Transaction
+    @Query("DELETE FROM subcategory")
+    fun nukeSubCategoryTable()
 
 
 }

@@ -8,25 +8,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.database.PiggyBankDatabase
 import com.example.sy43_p2022.database.entities.Category
-import androidx.lifecycle.lifecycleScope
-import com.example.sy43_p2022.database.entities.SubCategory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
 
-class ButtonAdapter(private val layoutId: Int, private val subCategories: List<SubCategory>, private val onClickListener: OnClickListener)
+class ButtonAdapter(
+    private val layoutId: Int,
+    private val categories: List<Category>,
+    private val onClickListener: OnClickListener)
     : RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder>() {
+
     private lateinit var db: PiggyBankDatabase
 
     class OnClickListener(private val recyclerView: RecyclerView, private val layoutType: String) {
-        fun onClick(category: SubCategory) {
+        fun onClick(category: Category) {
             val id: Int = if (layoutType == "white") R.layout.item_sub_white else R.layout.item_sub_gray
             recyclerView.adapter = TextEditAdapter(id, category)
         }
     }
 
     inner class ButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        lateinit var category: Category
         var title: TextView = view.findViewById<TextView>(R.id.subcategory_title)
         var amount: TextView = view.findViewById<TextView>(R.id.subcategory_amount)
     }
@@ -40,27 +39,15 @@ class ButtonAdapter(private val layoutId: Int, private val subCategories: List<S
 
 
     override fun onBindViewHolder(holder: ButtonViewHolder, position: Int) {
-        /*
-        // TODO: should be the following (untested)
-        GlobalScope.launch {
-           val category = db.subcategoryDAO().getSubcategoryById(position)
-            holder.title.text = category.name
-            holder.amount.text = category.amount.toString()
-            holder.itemView.setOnClickListener() {
-                onClickListener.onClick(category)
-            }
-        }
-        // OLD WAY
-        category.getSubCategory(position).let {
+        categories[position].let {
             holder.category = it
-            holder.title.text = it.getName()
-            holder.amount.text = it.getGlobalObjectiveAmount().toString()
+            holder.title.text = it.name
+            holder.amount.text = it.amount.toString()
             holder.itemView.setOnClickListener() {
                 onClickListener.onClick(holder.category)
             }
         }
-        */
     }
 
-    override fun getItemCount(): Int = subCategories.size
+    override fun getItemCount(): Int = categories.size
 }

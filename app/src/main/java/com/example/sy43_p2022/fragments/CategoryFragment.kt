@@ -1,6 +1,8 @@
 package com.example.sy43_p2022.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +15,6 @@ import com.example.sy43_p2022.R
 import com.example.sy43_p2022.adapter.ButtonAdapter
 import com.example.sy43_p2022.database.PiggyBankDatabase
 import com.example.sy43_p2022.database.entities.Category
-import com.example.sy43_p2022.database.entities.SubCategory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 open class CategoryFragment(
@@ -47,23 +46,21 @@ open class CategoryFragment(
         return view
     }
 
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
 
         lifecycleScope.launch {
-            loadSubCategories(view)
+            val categories: List<Category> = db.piggyBankDAO().getAllCategories()
+
+            verticalRecyclerView.adapter = ButtonAdapter(
+                layoutVertical,
+                categories,
+                ButtonAdapter.OnClickListener(verticalRecyclerView, layoutVerticalColor)
+            )
+            Log.d("DB", "Resources loaded" + categories.size.toString())
+            verticalRecyclerView.adapter?.notifyDataSetChanged()
         }
-    }*/
-
-    /*private suspend fun loadSubCategories(view: View) {
-        val parentCategory: Category = db.categoryDAO().getCategoryByName(mainCategoryName)
-        val subCategories: List<SubCategory> = db.subcategoryDAO().getSubCategoriesFromParentId(parentCategory.id)
-
-        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView.adapter = ButtonAdapter(
-            layoutVertical,
-            subCategories,
-            ButtonAdapter.OnClickListener(verticalRecyclerView, layoutVerticalColor)
-        )
-    }*/
+    }
 }
