@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="250dp"
@@ -43,15 +42,16 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/ie_name"
+            android:id="@+id/ie_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="5dp"
+            android:layout_margin="5sp"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/sumName"
-            android:inputType="textPersonName" />
+            android:hint="@string/sumValue"
+            android:inputType="numberDecimal"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -61,14 +61,16 @@
         android:showDividers="none">
 
         <EditText
-            android:id="@+id/ie_value"
+            android:id="@+id/ie_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
-            android:layout_marginStart="16dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:hint="@string/sumValue"
-            android:inputType="numberDecimal" />
+            android:ems="10"
+            android:hint="@string/sumName"
+            android:inputType="textPersonName"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
