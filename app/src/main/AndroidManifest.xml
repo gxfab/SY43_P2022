@@ -29,6 +29,9 @@
         <activity
             android:name=".AddActivity"
             android:exported="true" />
+        <activity
+            android:name=".graphActivity"
+            android:exported="true" />
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
