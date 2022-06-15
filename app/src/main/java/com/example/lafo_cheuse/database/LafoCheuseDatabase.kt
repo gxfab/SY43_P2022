@@ -80,57 +80,112 @@ abstract class LafoCheuseDatabase : RoomDatabase(){
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     Executors.newSingleThreadExecutor().execute {
-                        INSTANCE!!.categoryDao()?.createCategory(
-                            Category("extras","❔")
-                        )
-                        INSTANCE!!.categoryDao()?.createCategory(
-                            Category("Courses","\uD83D\uDED2")
-                        )
-                        INSTANCE!!.categoryDao()?.createCategory(
-                            Category("Bourses","\uD83D\uDCB0")
-                        )
-                        val optionTheme = Option("option_theme",OptionType.RADIOBUTTON)
-                        val optionNotifications = Option("option_notifications",OptionType.CHECKBOX)
-                        val optionNotificationsSum = Option("option_notification_sum",OptionType.TEXT_EDIT)
-                        val optionBudget = Option("option_budget",OptionType.SPINNER)
-                        val optionPopulate = Option("option_populate",OptionType.RADIOBUTTON)
 
-                        INSTANCE!!.optionDao()?.insertOption(optionTheme)
-                        INSTANCE!!.optionDao()?.insertOption(optionNotifications)
-                        INSTANCE!!.optionDao()?.insertOption(optionNotificationsSum)
-                        INSTANCE!!.optionDao()?.insertOption(optionBudget)
-                        INSTANCE!!.optionDao()?.insertOption(optionPopulate)
+                        createCategory()
+                        createOptions()
 
-                        INSTANCE!!.optionFieldDao()?.insertOptionField(
-                            OptionField("light_theme",optionTheme,false)
-                        )
-                        INSTANCE!!.optionFieldDao()?.insertOptionField(
-                            OptionField("dark_theme",optionTheme,false)
-                        )
-                        INSTANCE!!.optionFieldDao()?.insertOptionField(
-                            OptionField("system_theme",optionTheme,true)
-                        )
-
-                        INSTANCE!!.optionFieldDao()?.insertOptionField(
-                            OptionField("next_income_alert",optionNotifications,false)
-                        )
-                        INSTANCE!!.optionFieldDao()?.insertOptionField(
-                            OptionField("below_sum_alert",optionNotifications,false)
-                        )
-                        INSTANCE!!.optionFieldDao()?.insertOptionField(
-                            OptionField("sum_alert",optionNotificationsSum,false)
-                        )
-
-                        INSTANCE!!.optionFieldDao()?.insertOptionField(
-                            OptionField(1.toString(),optionBudget,false)
-                        )
-
-                        INSTANCE!!.optionFieldDao()?.insertOptionField(
-                            OptionField("isPopulated",optionPopulate,false)
-                        )
                     }
                 }
+
+                /**
+                 * Function to create all the categories in the database
+                 *
+                 */
+                private fun createCategory() {
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("extras","❔")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Véhicule","🚗")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Courses","\uD83D\uDED2")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Sorties","🎫")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Taxes","🧾")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Economies","💸")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Soirées","🍻")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Santé","💊")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Streaming","📺")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Bourses","\uD83D\uDCB0")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Habits","👕")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Voyages","🛄")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Investissements","📈")
+                    )
+                    INSTANCE!!.categoryDao()?.createCategory(
+                        Category("Dettes","📉")
+                    )
+
+
+                }
+
+                /**
+                 * Function to create all the options in the database
+                 *
+                 */
+                private fun createOptions() {
+                    val optionTheme = Option("option_theme",OptionType.RADIOBUTTON)
+                    val optionNotifications = Option("option_notifications",OptionType.CHECKBOX)
+                    val optionNotificationsSum = Option("option_notification_sum",OptionType.TEXT_EDIT)
+                    val optionBudget = Option("option_budget",OptionType.SPINNER)
+                    val optionPopulate = Option("option_populate",OptionType.RADIOBUTTON)
+
+                    INSTANCE!!.optionDao()?.insertOption(optionTheme)
+                    INSTANCE!!.optionDao()?.insertOption(optionNotifications)
+                    INSTANCE!!.optionDao()?.insertOption(optionNotificationsSum)
+                    INSTANCE!!.optionDao()?.insertOption(optionBudget)
+                    INSTANCE!!.optionDao()?.insertOption(optionPopulate)
+
+                    INSTANCE!!.optionFieldDao()?.insertOptionField(
+                        OptionField("light_theme",optionTheme,false)
+                    )
+                    INSTANCE!!.optionFieldDao()?.insertOptionField(
+                        OptionField("dark_theme",optionTheme,false)
+                    )
+                    INSTANCE!!.optionFieldDao()?.insertOptionField(
+                        OptionField("system_theme",optionTheme,true)
+                    )
+
+                    INSTANCE!!.optionFieldDao()?.insertOptionField(
+                        OptionField("next_income_alert",optionNotifications,false)
+                    )
+                    INSTANCE!!.optionFieldDao()?.insertOptionField(
+                        OptionField("below_sum_alert",optionNotifications,false)
+                    )
+                    INSTANCE!!.optionFieldDao()?.insertOptionField(
+                        OptionField("sum_alert",optionNotificationsSum,false)
+                    )
+
+                    INSTANCE!!.optionFieldDao()?.insertOptionField(
+                        OptionField(1.toString(),optionBudget,false)
+                    )
+
+                    INSTANCE!!.optionFieldDao()?.insertOptionField(
+                        OptionField("isPopulated",optionPopulate,false)
+                    )
+                }
             }
+
+
         }
     }
 }
