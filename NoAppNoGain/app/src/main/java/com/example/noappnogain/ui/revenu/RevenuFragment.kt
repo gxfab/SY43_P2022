@@ -150,6 +150,7 @@ class RevenuFragment : Fragment() {
                             }
                         }
                     }
+                    mouvementArrayList.reverse()
                     recyclerView.adapter = HomeAdapter(mouvementArrayList)
                 }
             }
@@ -321,6 +322,7 @@ class RevenuFragment : Fragment() {
                             }
                         }
                     }
+                    mouvementArrayList.reverse()
                     recyclerView.adapter = HomeAdapter(mouvementArrayList)
                 }
             }

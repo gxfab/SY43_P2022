@@ -99,9 +99,9 @@ class HomeFragment : Fragment() {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
-                            val sdFormat = SimpleDateFormat("M/yyyy")
+                            val sdFormat = SimpleDateFormat("yyyy/M")
                             val mDate = sdFormat.format(Date())
-                            if(data.date!!.endsWith(mDate)){
+                            if(data.date!!.startsWith(mDate)){
                                 balance += data.amount.toInt()
                             }
                         }
@@ -115,6 +115,7 @@ class HomeFragment : Fragment() {
                         balanceSetResult.text = balance.toString()
                         mouvementArrayList.add(data!!)
                     }
+                    mouvementArrayList.reverse()
                     recyclerView.adapter = HomeAdapter(mouvementArrayList)
                 }
             }

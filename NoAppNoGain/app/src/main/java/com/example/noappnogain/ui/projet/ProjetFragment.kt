@@ -74,6 +74,7 @@ class ProjetFragment : Fragment() {
                         val data = userSnapshot.getValue(Projet::class.java)
                         projetArrayList.add(data!!)
                     }
+                    projetArrayList.reverse()
                     recyclerView.adapter = ProjetAdapter(projetArrayList)
                 }
             }

@@ -16,9 +16,14 @@ NoAppNoGain est une application Android développée dans Android Studio utilisa
 Toi aussi tu veux faire du profit ? Pas besoin de le placer, juste de te gérer. A force d'économiser, tu vas bien rentabiliser !
 Comment ? En téléchargeant NoAppNoGain, impossible de te louper ! Tu gères tes dépenses et tes différents revenus efficacement
 
+### Environnement de développement
+* Logiciel système : Android Studio
+* Langage de programmation : Kotlin
+* Base de données : Authentification et Realtime Database Firebase 
+
 ### Environnement opérationnel
-Version Android : 11.0 ou supérieure
-Connectivité Internet : Obligatoire
+* Version Android : 11.0 ou supérieure
+* Connectivité Internet : Obligatoire
 
 ### Fonctionnalités
 #### Principales caractéristiques
