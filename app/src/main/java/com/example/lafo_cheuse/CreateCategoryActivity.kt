@@ -10,8 +10,14 @@ import androidx.activity.viewModels
 import com.example.lafo_cheuse.models.Category
 import com.example.lafo_cheuse.viewmodels.CategoryViewModel
 
+/**
+ * Simple activity to create a new category.
+ *
+ * @property categoryViewModel - A [categoryViewModel] instance.
+ *
+ */
 class CreateCategoryActivity : AppCompatActivity() {
-    val categoryViewModel : CategoryViewModel by viewModels()
+    private val categoryViewModel : CategoryViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +29,14 @@ class CreateCategoryActivity : AppCompatActivity() {
         }
     }
 
-    fun validateUserEntries() {
+    /**
+     * FUnction to validate the entries from the user :
+     *  - The category name should not be empty
+     *  - The category emoji should not be null
+     * The activity is finished if all criteria are satisfied
+     *
+     */
+    private fun validateUserEntries() {
         val titleEntry : EditText = findViewById<EditText>(R.id.categoryName)
         val emojiEntry : EditText = findViewById<EditText>(R.id.categoryEmoji)
 
