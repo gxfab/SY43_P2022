@@ -27,6 +27,7 @@
         <entry key="app/src/main/res/drawable/lafo-cheuse_icon_background.xml" value="0.3005" />
         <entry key="app/src/main/res/drawable/rectangle_container.xml" value="0.3" />
         <entry key="app/src/main/res/drawable/rectangle_container_darker.xml" value="0.3" />
+        <entry key="app/src/main/res/drawable/toggle_button_background.xml" value="0.299" />
         <entry key="app/src/main/res/drawable/yellow_button_background.xml" value="0.3" />
         <entry key="app/src/main/res/layout/activity_budget_setter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_category_chooser.xml" value="0.3546875" />
