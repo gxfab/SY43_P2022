@@ -166,35 +166,33 @@ class IncomeViewModel(application : Application) : AndroidViewModel(application)
     }
 
     /**
-     * TODO
+     * Method to update an income in the database
+     * It is executed in a coroutine in [viewModelScope]
      *
-     * @param income
-     * @return
+     * @param income - [Income] that will be updated
+     * @return [Unit] Nothing
      */
     fun updateIncome(income : Income) = viewModelScope.launch {
         repository.updateIncome(income)
     }
 
     /**
-     * TODO
+     * Method to delete an income in the database
+     * It is executed in a coroutine in [viewModelScope]
      *
-     * @param income
-     * @return
+     * @param income - [Income] that will be deleted
+     * @return [Unit] Nothing
      */
     fun deleteIncome(income: Income) = viewModelScope.launch {
         repository.deleteIncome(income.moneyChangeId)
     }
 
     /**
-     * TODO
+     * Method to delete all the incomes from the database
+     * It is executed in a coroutine in [viewModelScope]
      *
-     * @param category
-     * @return
+     * @return [Unit] Nothing
      */
-    fun deleteIncomeByCategory(category: Category) = viewModelScope.launch {
-        repository.deleteIncomeByCategory(category.categoryId)
-    }
-
     fun wipeIncome() = viewModelScope.launch {
         repository.wipeIncome()
     }
