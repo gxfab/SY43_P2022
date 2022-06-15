@@ -26,6 +26,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
 
+/**
+ * TODO : Finish documentation
+ *
+ */
 class CreateIncomeExpenseActivity : AppCompatActivity() {
     private val expenseViewModel : ExpenseViewModel by viewModels()
     private val incomeViewModel : IncomeViewModel by viewModels()

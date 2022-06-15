@@ -25,7 +25,8 @@ import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
- * Fragment where the one time expenses are dispalyed and where we can modify them.
+ * TODO : Finish documentation
+ * Fragment where the one time expenses are displayed and where we can modify them.
  * We can also add a regular income/expense by clicking on the Calendar button.
  *
  */
