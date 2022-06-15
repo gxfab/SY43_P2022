@@ -79,5 +79,9 @@ class IncomeRepository(application: Application) {
         return incomeDao.getIncomesByFrequencyAndMonth(frequency,year, month)
     }
 
+    suspend fun wipeIncome() = withContext(Dispatchers.IO) {
+        incomeDao.wipeIncome()
+    }
+
 
 }

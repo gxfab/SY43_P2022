@@ -8,7 +8,9 @@ import com.example.lafo_cheuse.models.Category
 import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.models.Income
 import com.example.lafo_cheuse.repository.IncomeRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * ViewModel of the incomes.
@@ -191,5 +193,9 @@ class IncomeViewModel(application : Application) : AndroidViewModel(application)
      */
     fun deleteIncomeByCategory(category: Category) = viewModelScope.launch {
         repository.deleteIncomeByCategory(category.categoryId)
+    }
+
+    fun wipeIncome() = viewModelScope.launch {
+        repository.wipeIncome()
     }
 }

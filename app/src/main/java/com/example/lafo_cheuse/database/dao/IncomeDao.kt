@@ -50,6 +50,9 @@ interface IncomeDao {
     @Query("DELETE FROM Income WHERE moneyChangeId = :bId")
     fun deleteIncome(bId: Long): Int
 
+    @Query("DELETE FROM Income")
+    fun wipeIncome() : Int
+
     @Query("DELETE FROM Income WHERE category_categoryId = :categoryID")
     fun deleteIncomeByCategory(categoryID : Long) : Int
 
