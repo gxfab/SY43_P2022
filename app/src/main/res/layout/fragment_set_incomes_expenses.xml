@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:outlineProvider="none"
     tools:context="fragment.view.SetIncomesExpensesFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,7 +38,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="85dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,13 +50,18 @@
 
     <ToggleButton
         android:id="@+id/toggleButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="35dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/toggle_button_background"
+        android:letterSpacing="0.1"
         android:text="ToggleButton"
-        android:textColor="#32F91A"
-        android:textOff="Revenu"
-        android:textOn="Dépense"
+        android:textColor="@color/black"
+        android:textOff="Dépense"
+        android:textOn="Revenu"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -46,15 +46,13 @@ class SetIncomesExpensesFragment : Fragment() {
         val recyclerView : RecyclerView = view.findViewById<RecyclerView>(R.id.ie_recycler)
         val toggleButton: ToggleButton = view.findViewById(R.id.toggleButton3)
 
-        initializeRecyclerViewIncome(recyclerView)
+        initializeRecyclerViewExpense(recyclerView)
 
         toggleButton.setOnClickListener{
             if(toggleButton.isChecked) {
-                toggleButton.setTextColor(Color.parseColor("#F91A1A"))
-                initializeRecyclerViewExpense(recyclerView)
-            } else {
-                toggleButton.setTextColor(Color.parseColor("#32F91A"))
                 initializeRecyclerViewIncome(recyclerView)
+            } else {
+                initializeRecyclerViewExpense(recyclerView)
             }
         }
 
