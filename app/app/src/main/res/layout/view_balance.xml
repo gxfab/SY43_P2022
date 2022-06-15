@@ -8,7 +8,7 @@
 
         <include layout="@layout/menu_view"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -16,20 +16,682 @@
             android:layout_weight="10"
             app:cardCornerRadius="8dp"
             >
+
                 <TextView
                     android:id="@+id/balanceTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0px"
+                    android:layout_weight=".5"
+                    android:layout_marginVertical="12dp"
                     android:text="@string/balance"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/DefaultTextStyle"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0px"
+                    app:layout_constraintTop_toTopOf="@id/balanceTitle"
+                    android:layout_weight="10"
+                    android:layout_margin="6px">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/gris_clair"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="9px"
+                            android:paddingVertical="10px">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle1"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux1"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining1"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle2"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux2"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining2"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle3"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux3"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining3"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle4"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux4"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining4"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle5"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux5"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining5"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle6"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux6"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining6"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle7"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux7"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining7"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle8"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux8"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining8"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle9"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux9"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining9"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle10"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux10"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining10"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="6px"
+                                            android:layout_weight="1"
+                                            app:cardBackgroundColor="@color/gris_fonce"
+                                            app:cardCornerRadius="20dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                        <TextView
+                                                            android:id="@+id/typeTitle11"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:text="type"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+                                                        <TextView
+                                                            android:id="@+id/typeTaux11"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="29dp"
+                                                            android:text="70%"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/white"
+                                                            android:theme="@style/DefaultTextStyle"
+                                                            android:textSize="20sp" />
+
+
+                                                        <TextView
+                                                            android:id="@+id/typeRemaining11"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentStart="true"
+                                                            android:layout_alignParentEnd="true"
+                                                            android:layout_marginTop="60dp"
+                                                            android:text="Il vous reste XX€ à dépenser dans cette catégorie"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/gris_clair"
+                                                            android:theme="@style/DefaultTextStyle" />
+
+
+                                                </RelativeLayout>
+                                        </androidx.cardview.widget.CardView>
+
+                                </LinearLayout>
+
+
+                        </LinearLayout>
+                </ScrollView>
+
+                <TextView
+                    android:id="@+id/balanceExplanation"
+                    android:layout_width="match_parent"
+                    android:layout_height="0px"
+                    android:layout_weight=".8"
+                    android:layout_marginVertical="7dp"
+                    android:text="@string/balance"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/DefaultTextStyle"
+                    android:textColor="@color/gris_clair"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -45,7 +707,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/depenses"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textAppearance="@style/DefaultTextStyle"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +731,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/entrees"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textAppearance="@style/DefaultTextStyle"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -103,6 +103,43 @@ class MainActivity : AppCompatActivity() {
      */
     fun setBalanceView(view: View){
         setContentView(R.layout.view_balance)
+
+        val applicationScope = CoroutineScope(SupervisorJob())
+        applicationScope.launch {
+            //Ouverture DB
+            val db = AppDatabase.getDatabase(applicationContext)
+
+            //Mise en place de chaque type
+            for (idType in 1..11) {
+                var taux=0F
+                var restant=0F
+
+                //Requetes
+                val requestInfo = db.balanceDao().selectTypeInfo(idType)
+                val prevision = db.balanceDao().selectBudgetValueType(idType)
+                val real = db.spentDao().getSpentValueBtwByType(startMonthTimestamp,currentTimestamp,idType)
+
+                //Id des text view à remplir
+                val idTitle = resources.getIdentifier(("typeTitle$idType"), "id", packageName)
+                val idTaux = resources.getIdentifier(("typeTaux$idType"), "id", packageName)
+                val idDetails = resources.getIdentifier(("typeRemaining$idType"), "id", packageName)
+
+                //Construction du taux
+                if(prevision!=0 && real!=0F){
+                    taux=real/prevision*100
+                }
+                if(prevision.toFloat()>real){
+                    restant=prevision.toFloat()-real
+                }
+
+                this@MainActivity.runOnUiThread {
+                    (findViewById<TextView>(idTitle)).text=requestInfo.name
+                    (findViewById<TextView>(idTaux)).text= "$taux %"
+                    (findViewById<TextView>(idDetails)).text= "$real€ / $prevision€ \nIl vous reste $restant € à dépenser"
+                }
+
+            }
+        }
     }
 
     /**

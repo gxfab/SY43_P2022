@@ -27,4 +27,7 @@ interface BalanceDao {
     @Query("SELECT * FROM TypeItem WHERE id=:id")
     fun selectTypeInfo(id:Int):TypeItem
 
+    @Query("SELECT value_for_month FROM TypeItem WHERE id=:idType")
+    fun selectBudgetValueType(idType:Int):Int
+
 }
