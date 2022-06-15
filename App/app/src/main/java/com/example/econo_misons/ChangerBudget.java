@@ -17,8 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.example.econo_misons.database.CurrentData;
 import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.econo_misons.database.models.Budget;
 
@@ -28,6 +30,7 @@ public class ChangerBudget extends AppCompatActivity {
 
     Button createBudget;
     private DBViewModel dbViewModel;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,12 +100,16 @@ public class ChangerBudget extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = nameBudget.getText().toString();
-                Log.d("CB", "currentUser: " );
-                dbViewModel.addBudget(new Budget(name),dbViewModel.getCurrentUser().getValue());
+                Log.d("CB", "currentUser: " + CurrentData.getUser());
+                dbViewModel.addBudget(new Budget(name), CurrentData.getUser());
                 popupWindow.dismiss();
             }
         });
 
         annuler.setOnClickListener(v -> popupWindow.dismiss());
+    }
+
+    private void updateCurrentUser(User user){
+        this.currentUser = user;
     }
 }

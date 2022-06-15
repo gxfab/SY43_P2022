@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.econo_misons.database.CurrentData;
 import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
 import com.example.econo_misons.database.models.Budget;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private DBViewModel dbViewModel;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         depense = findViewById(R.id.ajout_dep);
 
         configureViewModel();
+        CurrentData.init();
+
+
 
         depense.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /*String usernameTXT = username.getText().toString();
                 newUser(usernameTXT);*/
-                dbViewModel.setCurrentUser(1, MainActivity.this);
+ /*               dbViewModel.setCurrentUser(1, MainActivity.this);
                 dbViewModel.setCurrentBudget(1, MainActivity.this);
-                dbViewModel.setCurrentPrevBudget(new PrevisionalBudget(1,"2022-06"));
+                dbViewModel.setCurrentPrevBudget(new PrevisionalBudget(1,"2022-06"));*/
             }
         });
 
@@ -135,4 +140,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AjoutDepense.class);
         startActivity(intent);
     }
+
+
 }
