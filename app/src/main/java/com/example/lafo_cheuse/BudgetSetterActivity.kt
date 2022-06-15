@@ -12,7 +12,16 @@ import com.example.lafo_cheuse.viewmodels.CategoryViewModel
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 
-
+/**
+ * Activity where the user will update his/her budget
+ *
+ * @property incomeAdapter - [IncomeSetterAdapter], an adapter of the income [RecyclerView]
+ * @property expenseAdapter - [ExpenseSetterAdapter], an adapter of the expenses [RecyclerView]
+ * @property incomeViewModel - An [IncomeViewModel] instance
+ * @property expenseViewModel - An [ExpenseViewModel] instance
+ * @property categoryViewModel - An [CategoryViewModel] instance
+ *
+ */
 class BudgetSetterActivity : AppCompatActivity() {
     private var incomeAdapter: IncomeSetterAdapter? = null
     private var expenseAdapter: ExpenseSetterAdapter? = null
@@ -55,6 +64,10 @@ class BudgetSetterActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Initialization of the [RecyclerView] of the regular incomes
+     *
+     */
     private fun initializeRecyclerViewIncome() {
         val recyclerViewIncome: RecyclerView = findViewById(R.id.income_list_recycler_view)
         recyclerViewIncome.layoutManager =
@@ -69,6 +82,10 @@ class BudgetSetterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Initialization of the [RecyclerView] of the regular expenses
+     *
+     */
     private fun initializeRecyclerViewExpense() {
         val recyclerViewExpense: RecyclerView = findViewById(R.id.expense_list_recycler_view)
         recyclerViewExpense.layoutManager =
