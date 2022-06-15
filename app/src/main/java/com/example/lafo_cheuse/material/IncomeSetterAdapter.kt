@@ -24,6 +24,12 @@ import com.example.lafo_cheuse.models.Income
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+/**
+ * TODO : Complete documentation
+ *
+ * @property context
+ * @property viewModel
+ */
 class IncomeSetterAdapter(var context : Activity, var viewModel : IncomeViewModel) : RecyclerView.Adapter<IncomeSetterAdapter.ViewHolder>() {
 
     private var defaultCategory : Category? = null

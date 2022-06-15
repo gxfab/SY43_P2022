@@ -13,7 +13,13 @@ import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.models.Income
 import java.util.ArrayList
 
-
+/**
+ * TODO : Complete documentation
+ *
+ * @property context
+ * @property itemClickListener
+ * @property resources
+ */
 class IncomeAdapter (
     var context : Activity,
     val itemClickListener: DeleteButtonClickListener,

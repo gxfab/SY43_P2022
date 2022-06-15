@@ -29,6 +29,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * TODO : Complete documentation
+ *
+ * @property context
+ * @property expensesViewModel
+ * @property incomesViewModel
+ */
 class ExpenseSetterAdapter(
     var context : Activity,
     private val expensesViewModel : ExpenseViewModel,

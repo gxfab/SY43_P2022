@@ -14,6 +14,13 @@ import com.example.lafo_cheuse.models.Expense
 import java.util.*
 import kotlin.math.exp
 
+/**
+ * TODO : Compelte documentation
+ *
+ * @property context
+ * @property itemClickListener
+ * @property resources
+ */
 class ExpenseAdapter (
     var context : Activity,
     private val itemClickListener: DeleteButtonClickListener,
