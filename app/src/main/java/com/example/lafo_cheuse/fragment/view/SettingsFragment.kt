@@ -142,6 +142,11 @@ class SettingsFragment : Fragment() {
         }
     }
 
+    /**
+     * Asynchronous function to insert demo data in database.
+     *
+     * @return [Unit] nothing
+     */
     private suspend fun insertDemoDatabase() = coroutineScope {
         val shoppingCategory : Category = categoryViewModel.getCategorySync("Courses","🛒")!![0]
         val taxesCategory : Category = categoryViewModel.getCategorySync("Taxes","🧾")!![0]
@@ -158,6 +163,10 @@ class SettingsFragment : Fragment() {
 
     }
 
+    /**
+     * Function to delete all data in database.
+     *
+     */
     private fun deleteDemoDatabase() {
         incomeViewModel.wipeIncome()
         expenseViewModel.wipeExpense()
