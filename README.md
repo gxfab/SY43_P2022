@@ -30,6 +30,8 @@ Comment ? En téléchargeant NoAppNoGain, impossible de te louper ! Tu gères te
 * Données sur le revenu (insérer/mettre à jour/supprimer)
 * Données de dépenses (insérer/mettre à jour/supprimer)
 * Vue statistique des dépenses
+* Planification du budget
+* Rapport de dépenses par catégorie avec budget planifié et dépenses réelles
 
 #### Autres caractéristiques
 * Connexion
