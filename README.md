@@ -4,12 +4,12 @@ SY43 GitHub Project Android
 ![Mockup](https://github.com/gxfab/SY43_P2022/blob/HP_lovers/NoAppNoGain.png?raw=true)
 
 ## Participants
-Titouan Burgy
-Ahda Syathirah Binti Mat Yusof
-Thomas Marmol
+* HP Lovers 
+* Titouan Burgy
+* Ahda Syathirah Binti Mat Yusof
+* Thomas Marmol
 
-## Nom projet
-HP Lovers - Appli NoAppNoGain
+## Appli NoAppNoGain
 NoAppNoGain est une application Android développée dans Android Studio utilisant Kotlin et Firebase Realtime Database
 
 ## Notre appli
