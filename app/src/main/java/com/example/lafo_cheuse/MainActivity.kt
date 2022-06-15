@@ -21,7 +21,19 @@ import kotlin.collections.ArrayList
 
 const val EXTRA_MESSAGE = "com.example.test.MESSAGE"
 
-@DelicateCoroutinesApi
+/**
+ * Main activity of our application. This activity owns all the main menu fragments.
+ *
+ * @property optionViewModel - An [OptionViewModel] instance to get the theme of the application
+ * @property navigationView - A [BottomNavigationView] that let the user going through the fragments by clicking on it
+ * @property chartFragment - A [Fragment] that dispose of charts for specific budget
+ * @property homeFragment - A [Fragment] that dispose of charts for the general budget
+ * @property setIncomesExpensesFragment - A [Fragment] that let the user put incomes & expenses in the budget
+ * @property settingsFragment - A [Fragment] that let the user choose some options
+ * @property fragmentsList - A list of all the [Fragment] in the [MainActivity] to switch easily with the [ViewPager2]
+ * @property fragmentsIdList - A list of all the [Fragment] IN in the [MainActivity] to switch easily with the [navigationView]
+ *
+ */
 class MainActivity : AppCompatActivity() {
     private val optionViewModel : OptionViewModel by viewModels()
 
@@ -82,6 +94,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Initialize the theme of the application. It is set on [MODE_NIGHT_FOLLOW_SYSTEM] by default
+     *
+     */
     private fun initTheme() {
         optionViewModel.getOption("option_theme")?.observe(this) { themeOption ->
             if(themeOption != null) {
@@ -110,12 +126,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * function to change the current [Fragment] in the [navigationView] and [ViewPager2]
+     *
+     * @param fragment - the [Fragment] to set on highlight
+     * @return [Unit] nothing
+     */
     fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.container, fragment)
             commit()
         }
 
+    /**
+     * Function to change the application theme
+     *
+     * @param mode - [Int], can have 3 values :
+     *  - [AppCompatDelegate.MODE_NIGHT_YES]
+     *  - [AppCompatDelegate.MODE_NIGHT_NO]
+     *  - [AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM]
+     */
     private fun changeApplicationTheme(mode : Int) {
         AppCompatDelegate.setDefaultNightMode(mode)
         delegate.localNightMode = mode
