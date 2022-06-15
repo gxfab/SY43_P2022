@@ -13,11 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.mikephil.charting.charts.PieChart;
 import com.sucelloztm.sucelloz.databinding.NegativeSpendingsFragmentBinding;
-import com.sucelloztm.sucelloz.databinding.PositiveSpendingsFragmentBinding;
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
-import com.sucelloztm.sucelloz.ui.charts.PieChartGenerator;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSpendingDialogFragment;
 
 import java.util.ArrayList;
@@ -42,11 +39,6 @@ public class NegativeSpendingsFragment extends Fragment {
         spendingsViewModel = new ViewModelProvider(this).get(SpendingsViewModel.class);
         currentNegativeSpendingsList = new ArrayList<>();
         NegativeSpendingsAdapter adapter = new NegativeSpendingsAdapter(currentNegativeSpendingsList);
-
-        PieChartGenerator pieGen = new PieChartGenerator();
-
-        PieChart pieChart = pieGen.createPieChart(getContext(), binding.frameLayoutNegativeSpendings);
-        pieChart.invalidate();
 
         final Observer<List<InfrequentExpensesAndIncome>> negativeSpendingsDataSet = new Observer<List<InfrequentExpensesAndIncome>>() {
             @Override

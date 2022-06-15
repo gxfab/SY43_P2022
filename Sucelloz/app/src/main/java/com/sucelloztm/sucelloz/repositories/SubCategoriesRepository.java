@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import com.sucelloztm.sucelloz.database.DAO.SubCategoriesDao;
 import com.sucelloztm.sucelloz.database.SucellozDatabase;
 import com.sucelloztm.sucelloz.models.SubCategories;
+import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
 
 import java.util.List;
 
@@ -36,5 +37,8 @@ public class SubCategoriesRepository {
 
     public String getSubCategoryNameWithId(long idOfSubCategory){
         return subCategoriesDao.getSubcategoryNameWithId(idOfSubCategory);
+    }
+    public LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithPositiveInfrequentSum(){
+        return subCategoriesDao.getAllSubCategoriesWithPositiveInfrequentSum();
     }
 }

@@ -1,28 +1,24 @@
 package com.sucelloztm.sucelloz.ui.spendings;
 
 import android.app.Application;
-import android.graphics.Color;
-import android.graphics.Typeface;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategories;
+import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
+import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
 import com.sucelloztm.sucelloz.repositories.InfrequentExpensesAndIncomeRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SpendingsViewModel extends AndroidViewModel {
     private InfrequentExpensesAndIncomeRepository spendingsRepository;
     private SubCategoriesRepository subCategoriesRepository;
+    private CategoriesRepository categoriesRepository;
 
     private LiveData<List<InfrequentExpensesAndIncome>> currentPositiveSpendings;
 
@@ -41,6 +37,7 @@ public class SpendingsViewModel extends AndroidViewModel {
         return this.currentPositiveSpendings;
     }
 
+
     public LiveData<List<InfrequentExpensesAndIncome>> getAllNegativeSpendings(){
         if(this.currentNegativeSpendings==null){
             this.currentNegativeSpendings = spendingsRepository.getAllNegativeInfrequent();
@@ -54,6 +51,10 @@ public class SpendingsViewModel extends AndroidViewModel {
 
     public String getSubCategoryNameWithId(long idOfSubCategory){
         return subCategoriesRepository.getSubCategoryNameWithId(idOfSubCategory);
+    }
+
+    public LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithPositiveInfrequentSum(){
+        return subCategoriesRepository.getAllSubCategoriesWithPositiveInfrequentSum();
     }
 
 
