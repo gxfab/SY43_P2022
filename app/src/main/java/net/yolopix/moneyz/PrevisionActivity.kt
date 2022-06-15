@@ -1,6 +1,7 @@
 package net.yolopix.moneyz
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -80,6 +81,7 @@ class PrevisionActivity : AppCompatActivity() {
         stepsViewPager = findViewById(R.id.viewpager_steps)
 
         val endDescriptionTextView: TextView = findViewById(R.id.textview_end_description)
+        val headerLayout: LinearLayout = findViewById(R.id.layout_prevision_header)
 
         // Initialize view pager
         stepsViewPager.adapter = PrevisionStepsAdapter()
@@ -124,6 +126,7 @@ class PrevisionActivity : AppCompatActivity() {
                         }
                     }
                 }
+                headerLayout.visibility = if (currentPageIndex==0) View.GONE else View.VISIBLE
             }
         })
 

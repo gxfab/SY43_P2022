@@ -17,25 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/progress_text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="@string/placeholder_short"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/progress_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/placeholder_short"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
-
             <com.google.android.material.slider.Slider
                 android:id="@+id/slider_salary"
                 android:layout_width="match_parent"
@@ -46,6 +27,26 @@
                 app:trackColorActive="@color/white"
                 app:trackColorInactive="#90FFFFFF"
                 app:trackHeight="16dp" />
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_short"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/progress_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/placeholder_short"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
