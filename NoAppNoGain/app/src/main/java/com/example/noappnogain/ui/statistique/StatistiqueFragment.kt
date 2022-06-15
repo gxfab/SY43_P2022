@@ -212,12 +212,14 @@ class StatistiqueFragment : Fragment() {
         pieChart.setExtraOffsets(100f, 100f, 100f, 0f)
         pieChart.setUsePercentValues(true)
         pieChart.isRotationEnabled = true
-        pieChart.setDrawEntryLabels(true)
+        pieChart.setDrawEntryLabels(false)
         pieChart.setEntryLabelColor(Color.BLACK)
         pieChart.setEntryLabelTextSize(15f)
         pieChart.legend.orientation = Legend.LegendOrientation.VERTICAL
         pieChart.legend.isWordWrapEnabled = true
         pieChart.setHoleColor(Color.WHITE)
+        pieChart.setDrawCenterText(true);
+        pieChart.centerText = "Pourcentage de dépenses par catégorie"
 
     }
 

@@ -40,32 +40,49 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="250dp"
+    <Button
+        android:id="@+id/btn_filtre"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="3dp"
-        android:background="@drawable/spinner"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:text="FILTRE"
+        android:layout_marginTop="-5dp"
+        android:layout_marginBottom="5dp"/>
 
-        <TextView
-            android:id="@+id/textGallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Revenu annuel :"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="261dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextNumberDecimal2"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="247dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_marginRight="10dp"
-            android:inputType="number"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/historique"
             android:gravity="center"
-            android:background="@drawable/input"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Revenu annuel : "
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/budget_plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -77,7 +94,7 @@
 
         <TextView
             android:id="@+id/nom"
-            android:layout_width="95dp"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingLeft="10dp"
@@ -119,7 +136,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent" />
 
 

@@ -61,6 +61,9 @@
 
     <string-array name="annee">
         <item>---</item>
+        <item>2025</item>
+        <item>2024</item>
+        <item>2023</item>
         <item>2022</item>
         <item>2021</item>
         <item>2020</item>
