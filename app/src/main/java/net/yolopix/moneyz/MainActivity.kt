@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import net.yolopix.moneyz.adapters.recyclerview.AccountAdapter
+import net.yolopix.moneyz.fragments.dialog.AddAccountBottomSheet
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.utils.DatabaseFactory
 

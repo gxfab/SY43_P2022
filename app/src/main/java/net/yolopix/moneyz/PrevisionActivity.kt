@@ -16,11 +16,15 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import net.yolopix.moneyz.adapters.pager.PrevisionStepsAdapter
+import net.yolopix.moneyz.adapters.recyclerview.CategoryAdapter
+import net.yolopix.moneyz.fragments.dialog.AddCategoryBottomSheet
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.ExpenseType
 import net.yolopix.moneyz.model.entities.Month
 import net.yolopix.moneyz.utils.DatabaseFactory
 import net.yolopix.moneyz.utils.NumberMaxInputFilter
+import net.yolopix.moneyz.widgets.LockableViewPager
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 

@@ -1,4 +1,4 @@
-package net.yolopix.moneyz
+package net.yolopix.moneyz.widgets
 
 import android.annotation.SuppressLint
 import android.content.Context

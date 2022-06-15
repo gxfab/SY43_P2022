@@ -1,4 +1,4 @@
-package net.yolopix.moneyz
+package net.yolopix.moneyz.fragments.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import net.yolopix.moneyz.PrevisionActivity
+import net.yolopix.moneyz.R
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.ExpenseType
 import net.yolopix.moneyz.model.entities.Category

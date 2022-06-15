@@ -1,10 +1,11 @@
-package net.yolopix.moneyz
+package net.yolopix.moneyz.adapters.recyclerview
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import net.yolopix.moneyz.R
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Month
 import java.time.LocalDate

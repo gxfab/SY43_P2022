@@ -9,6 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
+import net.yolopix.moneyz.adapters.recyclerview.CategoryAdapter
+import net.yolopix.moneyz.fragments.dialog.AddExpenseBottomSheet
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Account
 import net.yolopix.moneyz.model.entities.Month

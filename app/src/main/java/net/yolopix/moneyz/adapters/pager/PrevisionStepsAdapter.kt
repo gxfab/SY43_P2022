@@ -1,8 +1,9 @@
-package net.yolopix.moneyz
+package net.yolopix.moneyz.adapters.pager
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
+import net.yolopix.moneyz.R
 
 class PrevisionStepsAdapter : PagerAdapter() {
 

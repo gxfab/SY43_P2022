@@ -1,4 +1,4 @@
-package net.yolopix.moneyz
+package net.yolopix.moneyz.adapters.recyclerview
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import net.yolopix.moneyz.EXTRA_MESSAGE
+import net.yolopix.moneyz.ExpensesActivity
+import net.yolopix.moneyz.R
 import net.yolopix.moneyz.model.entities.Account
 
 /**
