@@ -2,6 +2,8 @@ package com.example.sy43.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,34 +75,46 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
             progressBar.setProgress((int) category.CurrentValue(), true);
             name.setText(category.getCatName());
 
-            transactionViewModel.getTransactionsFromCat(category.getCatID()).observe(owner, new Observer<List<Transaction>>() {
-                @Override
-                public void onChanged(List<Transaction> receivedTransactions) {
-                    value[0] = 0;
-                    for (Transaction trans : receivedTransactions) {
-                        value[0] += trans.getValue();
-                    }
-                    price.setText("$" + value[0] +"/"+value[1]);
-                    progressBar.setProgress((int) value[0] , true);
-                }
-            });
+            Boolean isObjective = category.getIsObjective();
 
-            subCatViewModel.getSubCategoriesByCatId(category.getCatID()).observe(owner, new Observer<List<SubCategory>>() {
-                @Override
-                public void onChanged(List<SubCategory> subCategories) {
-                    value[1] = 0;
-                    for (SubCategory subCategory : subCategories) {
-                        value[1] += subCategory.getMaxValue();
+            if (isObjective) {
+                price.setText("$0/$"+category.getMaxValue()+" saved");
+
+            } else {
+                transactionViewModel.getTransactionsFromCat(category.getCatID()).observe(owner, new Observer<List<Transaction>>() {
+                    @Override
+                    public void onChanged(List<Transaction> receivedTransactions) {
+                        value[0] = 0;
+                        for (Transaction trans : receivedTransactions) {
+                            value[0] += trans.getValue();
+                        }
+                        price.setText("$" + value[0] + "/" + value[1]);
+                        progressBar.setProgress((int) value[0], true);
+                        progressBar.getProgressDrawable().setColorFilter(
+                                value[0] < value[1] ? Color.GREEN : Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
                     }
-                    price.setText("$" + value[0] +"/"+value[1]);
-                    progressBar.setMax((int) value[1]);
-                }
-            });
+                });
+
+                subCatViewModel.getSubCategoriesByCatId(category.getCatID()).observe(owner, new Observer<List<SubCategory>>() {
+                    @Override
+                    public void onChanged(List<SubCategory> subCategories) {
+                        value[1] = 0;
+                        for (SubCategory subCategory : subCategories) {
+                            value[1] += subCategory.getMaxValue();
+                        }
+                        price.setText("$" + value[0] + "/" + value[1]);
+                        progressBar.setMax((int) value[1]);
+                        progressBar.getProgressDrawable().setColorFilter(
+                                value[0] < value[1] ? Color.GREEN : Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
+
+                    }
+                });
+            }
             CardView card = v.findViewById(R.id.categoryCard);
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Class detailsPage = category.getIsObjective() ? ObjectiveDetailsActivity.class : CategoryDetailsActivity.class;
+                    Class detailsPage = isObjective ? ObjectiveDetailsActivity.class : CategoryDetailsActivity.class;
                     Intent intent = new Intent(v.getContext(), detailsPage);
                     intent.putExtra("categoryId", category.getCatID());
                     v.getContext().startActivity(intent);
