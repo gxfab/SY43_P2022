@@ -9,8 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class CategoryRepository(application: Application) {
-    private var categoryDao : CategoryDao? = null;
-    private var allCategories : LiveData<List<Category>>? = null;
+    private var categoryDao : CategoryDao? = null
+    private var allCategories : LiveData<List<Category>>? = null
 
     init {
         val database : LafoCheuseDatabase? = LafoCheuseDatabase.getInstance(application)
@@ -23,7 +23,7 @@ class CategoryRepository(application: Application) {
     }
 
     suspend fun updateCategory(category : Category) = withContext(Dispatchers.IO) {
-        categoryDao?.updateCategory(category);
+        categoryDao?.updateCategory(category)
     }
 
     suspend fun deleteCategory(bId: Long) = withContext(Dispatchers.IO) {
@@ -35,11 +35,15 @@ class CategoryRepository(application: Application) {
     }
 
     fun getCategories() : LiveData<List<Category>>? {
-        return allCategories;
+        return allCategories
     }
 
     fun getCategory(categoryName : String, categoryEmoji : String) : LiveData<List<Category>>? {
         return categoryDao?.getCategory(categoryName,categoryEmoji)
+    }
+
+    fun getCategorySync(categoryName : String, categoryEmoji : String): List<Category>? {
+        return categoryDao?.getCategorySync(categoryName,categoryEmoji)
     }
 
 

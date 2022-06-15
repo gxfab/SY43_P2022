@@ -18,11 +18,15 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun getCategories() : LiveData<List<Category>>? {
-        return allCategories;
+        return allCategories
     }
 
     fun getCategory(categoryName : String, categoryEmoji : String) : LiveData<List<Category>>? {
         return repository.getCategory(categoryName,categoryEmoji)
+    }
+
+    fun getCategorySync(categoryName : String, categoryEmoji : String): List<Category>? {
+        return repository.getCategorySync(categoryName,categoryEmoji)
     }
 
     fun getDefaultCategory() : LiveData<List<Category>>? {

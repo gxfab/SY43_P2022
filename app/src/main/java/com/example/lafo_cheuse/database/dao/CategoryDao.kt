@@ -15,6 +15,9 @@ interface CategoryDao {
     @Query("SELECT * FROM Category WHERE name = :categoryName AND emoji = :categoryEmoji")
     fun getCategory(categoryName : String, categoryEmoji : String): LiveData<List<Category>>?
 
+    @Query("SELECT * FROM Category WHERE name = :categoryName AND emoji = :categoryEmoji")
+    fun getCategorySync(categoryName : String, categoryEmoji : String): List<Category>?
+
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun createCategory(category: Category)
 
