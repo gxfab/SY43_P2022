@@ -16,14 +16,12 @@ class EnvelopeViewModel(application: Application): AndroidViewModel(application)
 
     val readAllData: LiveData<List<Envelope>>
     private val repository: EnvelopeRepository
-    val sumOfEnvelopes : LiveData<Float>
 
 
     init {
         val envelopeDao = BokudarjanDatabase.getDatabase(application).envelopeDao()
         repository = EnvelopeRepository(envelopeDao)
         readAllData = repository.readAllData
-        sumOfEnvelopes = repository.sumOfEnvelopes
     }
 
     fun addEnvelope(envelope: Envelope){
@@ -34,6 +32,10 @@ class EnvelopeViewModel(application: Application): AndroidViewModel(application)
 
     fun getMonthData(month: Int): LiveData<List<Envelope>> {
         return repository.getMonthData(month);
+    }
+
+    fun getSumOfEnvelopes(month: Int):LiveData<Float>{
+        return repository.getSumOfEnvelopes(month)
     }
 
 }

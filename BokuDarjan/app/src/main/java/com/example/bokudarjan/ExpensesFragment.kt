@@ -94,22 +94,22 @@ class ExpensesFragment : Fragment() {
         var expenses:Float = 0f
         var envelopes:Float = 0f
 
-        expenseViewModel.sumOfNegativeExpenses.observe(viewLifecycleOwner, Observer{
+        expenseViewModel.getSumOfNegativeExpenses(month).observe(viewLifecycleOwner, Observer{
             if(it == null){
                 expenses = 0f;
             }else{
                 expenses = it;
             }
-            view.sumEnveloppes.text = String.format("%.2f",expenses) + "€ de dépenses sur " + String.format("%.2f",envelopes) +"€ de prévues";
+            view.sumEnvelopes.text = String.format("%.2f",expenses) + "€ de dépenses sur " + String.format("%.2f",envelopes) +"€ de prévues";
         })
 
-       envelopeViewModel.sumOfEnvelopes.observe(viewLifecycleOwner, Observer{
+       envelopeViewModel.getSumOfEnvelopes(month).observe(viewLifecycleOwner, Observer{
            if(it == null){
                envelopes = 0f;
            }else{
                envelopes = it;
            }
-           view.sumEnveloppes.text = String.format("%.2f",expenses) + "€ de dépenses sur " + String.format("%.2f",envelopes) +"€ de prévues";
+           view.sumEnvelopes.text = String.format("%.2f",expenses) + "€ de dépenses sur " + String.format("%.2f",envelopes) +"€ de prévues";
        })
 
 
@@ -148,15 +148,6 @@ class ExpensesFragment : Fragment() {
         }
 
 
-
-        //To test, not final
-        /*lay.addView(inflater.inflate(R.layout.expense_card, container, false));
-        lay.addView(inflater.inflate(R.layout.expense_card, container, false));
-        lay.addView(inflater.inflate(R.layout.expense_card, container, false));
-        lay.addView(tv)
-        lay.addView(txt2)
-        lay.addView(inflater.inflate(R.layout.expense_card, container, false));
-        lay.addView(inflater.inflate(R.layout.expense_card, container, false));*/
 
         return view;
     }

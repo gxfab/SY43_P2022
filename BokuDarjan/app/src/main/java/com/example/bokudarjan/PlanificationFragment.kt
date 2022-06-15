@@ -62,17 +62,8 @@ class planificationFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_planification, container, false)
 
-        // Observer to get the sum
 
-
-        /*
-        expenseViewModel.sumOfPositiveExpenses.observe(viewLifecycleOwner, Observer { sumOfPositiveExpenses ->
-            expenseViewModel.sumOfNegativeExpenses.observe(viewLifecycleOwner, Observer { sumOfNegativeExpenses ->
-            })
-        })*/
-
-
-        //RecyclerView for category
+        // RecyclerView for category
         val categoryAdapter = ListAdapterCategory()
         val categoryRecyclerView : RecyclerView = view.recyclerViewCategory
         categoryRecyclerView.tag = 1;
@@ -80,14 +71,20 @@ class planificationFragment : Fragment() {
         categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
-        // Observer for list of category
+        //Display list of category with list of envelopes inside it
         categoryViewModel.readAllData.observe(viewLifecycleOwner, Observer { category ->
             Log.d("[DAO]", "Category data :$category")
             this.list = category;
             categoryAdapter.setData(category)
         })
 
-        envelopeViewModel.sumOfEnvelopes.observe(viewLifecycleOwner, Observer { sumOfEnvelopes ->
+
+        var pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val month = pref.getInt("month", -1)
+
+
+        //Display sum of envelopes on the bottom of the screen
+        envelopeViewModel.getSumOfEnvelopes(month).observe(viewLifecycleOwner, Observer { sumOfEnvelopes ->
             if(sumOfEnvelopes == null){
                 view.sumAmount.text =  "Aucune dépenses ce mois ci"
             }else{
@@ -96,6 +93,7 @@ class planificationFragment : Fragment() {
         })
 
 
+        //== Display and manage small buttons on bottom right
         //Views
         val expandBtn = view.findViewById<FloatingActionButton>(R.id.expandButton);
         val btn1 = view.findViewById<FloatingActionButton>(R.id.addCategoryBtn);

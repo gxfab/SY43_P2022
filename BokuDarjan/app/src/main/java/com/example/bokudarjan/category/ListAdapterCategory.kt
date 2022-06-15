@@ -17,6 +17,7 @@ import com.example.bokudarjan.envelope.EnvelopeViewModel
 import kotlinx.android.synthetic.main.envelope_category_card.view.*
 
 
+//Display list of category in + button of operation fragment
 class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolder>() {
     private var categoryList = emptyList<Category>()
     private lateinit var envelopeViewModel: EnvelopeViewModel
@@ -40,8 +41,6 @@ class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolde
 
         var pref = holder.itemView.context.getSharedPreferences("pref", Context.MODE_PRIVATE)
         val month = pref.getInt("month", -1)
-
-
 
 
         envelopeViewModel.getMonthData(month).observeForever{

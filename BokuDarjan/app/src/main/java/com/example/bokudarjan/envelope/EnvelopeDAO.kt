@@ -18,6 +18,6 @@ interface EnvelopeDAO {
     @Query("SELECT * FROM envelope_table WHERE month = :month ORDER BY name")
     fun getMonthData(month: Int): LiveData<List<Envelope>>;
 
-    @Query("SELECT SUM(amount) FROM envelope_table WHERE categoryName != 'Bénéfices' ")
-    fun getSumOfEnvelopes(): LiveData<Float>;
+    @Query("SELECT SUM(amount) FROM envelope_table WHERE categoryName != 'Bénéfices' AND month = :month ")
+    fun getSumOfEnvelopes(month: Int): LiveData<Float>;
 }

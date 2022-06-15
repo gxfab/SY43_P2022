@@ -4,36 +4,43 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.bokudarjan.expense.Expense
 import com.example.bokudarjan.database.BokudarjanDatabase
-import com.example.bokudarjan.expense.ExpenseRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class
-ExpenseViewModel(application: Application): AndroidViewModel(application) {
+class ExpenseViewModel(application: Application): AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Expense>>
     private val repository: ExpenseRepository
-    val sumOfPositiveExpenses: LiveData<Float>
-    val sumOfNegativeExpenses: LiveData<Float>
 
      init {
         val expenseDao = BokudarjanDatabase.getDatabase(application).expenseDao()
         repository = ExpenseRepository(expenseDao)
         readAllData = repository.readAllData
-         sumOfPositiveExpenses = repository.sumOfPositiveExpenses
-         sumOfNegativeExpenses = repository.sumOfNegativeExpense
     }
 
     fun addExpense(expense: Expense){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addUser(expense)
+            repository.addExpense(expense)
         }
     }
 
     fun getMonthData(month: Int): LiveData<List<Expense>> {
         return repository.getMonthData(month)
     }
+
+
+    fun getSumOfExpenseByCategory(name: String, month: Int):LiveData<Float>{
+            return repository.getSumOfExpenseByCategory(name, month)
+    }
+
+    fun getSumOfPositiveExpenses(month: Int):LiveData<Float>{
+        return repository.getSumOfPositiveExpenses(month)
+    }
+
+    fun getSumOfNegativeExpenses(month: Int):LiveData<Float>{
+        return repository.getSumOfNegativeExpenses(month)
+    }
+
 
 }

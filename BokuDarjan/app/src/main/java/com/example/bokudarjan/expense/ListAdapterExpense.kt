@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.expense_card.view.*
 class ListAdapterExpense: RecyclerView.Adapter<ListAdapterExpense.MyViewHolder>() {
 
     private var expenseList = emptyList<Expense>()
-    private lateinit var categoryViewModel: CategoryViewModel;
+    private lateinit var categoryViewModel: CategoryViewModel
+
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
