@@ -191,7 +191,7 @@
         </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/continue_to_home_btn"
+        android:id="@+id/continue_to_projects_btn"
         android:layout_width="200dp"
         android:layout_height="75dp"
         android:layout_marginBottom="30dp"

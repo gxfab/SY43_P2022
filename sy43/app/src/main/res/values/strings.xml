@@ -16,6 +16,19 @@
         <item>December</item>
     </string-array>
 
+    <string-array name="Priorities_Array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
     <string-array name="Categories_Array">
         <item>Categories</item>
         <item>Clothing</item>
@@ -101,6 +114,7 @@
     <string name="title_activity_home">Home</string>
     <string name="description"><i>Tell us what are your main expenses and set an expected expenditure for each. You can always modify these later in settings!</i></string>
     <string name="description2"><i>Tell us what are your main sources of income and set an expected amount for each. You can always modify these later in settings!</i></string>
+    <string name="description3"><i>The goal of Budget Buddy is to give you full control over your budget. Of course, as a natural human being, you might have plans you wish to accomplish. Tell us what projects you\'d like to do, and set a priority for each on a scale of 1 to 10 and we will dedicate the convenient amount of your budget to your projects! </i></string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

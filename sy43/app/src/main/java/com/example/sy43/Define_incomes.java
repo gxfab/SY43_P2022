@@ -22,7 +22,7 @@ public class Define_incomes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_define_incomes);
 
-        continue_btn = findViewById(R.id.continue_to_home_btn);
+        continue_btn = findViewById(R.id.continue_to_projects_btn);
         et1 = findViewById(R.id.salary_income_et);
         et2 = findViewById(R.id.help_income_et);
         et3 = findViewById(R.id.interest_income_et);
@@ -40,7 +40,7 @@ public class Define_incomes extends AppCompatActivity {
                     }
                 }
                 total_income= Integer.toString(income_sum) + "$";
-                Intent intent = new Intent(Define_incomes.this, Home.class);
+                Intent intent = new Intent(Define_incomes.this, Define_Projects.class);
                 intent.putExtra("total_income_value", total_income);
                 startActivity(intent);
             }

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Define_incomes">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="110dp"
+        android:background="#ff95cc"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Define your Projects"
+        android:textColor="#000000"
+        android:textAllCaps="true"
+        android:layout_gravity="center|top"
+        android:gravity="center"
+        android:textSize="30dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:text="@string/description3"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        android:layout_marginTop="270dp">
+
+        <EditText
+            android:id="@+id/project_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Project Name"
+            android:minHeight="48dp"
+            android:textColorHint="@color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/project_cost"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Project Cost"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:textColorHint="@color/black" />
+            <Spinner
+                android:id="@+id/spinner_priority"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/spinner_shape"
+                android:contentDescription="Priority"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="-55dp"
+                android:layout_gravity="start|center"
+                app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24"/>
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#1b97d5"
+            app:cardCornerRadius="10dp"
+            android:id="@+id/add_project_btn"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Add New Project"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textSize="35sp"
+                android:gravity="center" />
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="470dp"
+        android:id="@+id/projects_recyclerview"
+        />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/continue_to_home_btn"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center|bottom"
+        android:backgroundTint="#ff95cc"
+        android:textSize="25sp"
+        app:cardCornerRadius="35dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#000000"
+            android:text="Continue"
+            android:layout_gravity="center"/>
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

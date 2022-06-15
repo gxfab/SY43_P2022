@@ -3,11 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/drawable/arrow_down.xml" value="0.2635" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/drawable/arrow_up.xml" value="0.2635" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.2635" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/drawable/spinner_shape.xml" value="0.2635" />
         <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/activity_categories.xml" value="0.25" />
         <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/activity_define_categories.xml" value="0.3625" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/activity_define_incomes.xml" value="0.29483695652173914" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/activity_define_projects.xml" value="0.1" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/activity_home.xml" value="0.3625" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/activity_overview.xml" value="0.22" />
         <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/category.xml" value="0.22" />
         <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/each_item.xml" value="0.3625" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/fragment_add_category.xml" value="0.1" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/fragment_add_expense.xml" value="0.1" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/fragment_chart1.xml" value="0.29483695652173914" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/fragment_chart2.xml" value="0.29483695652173914" />
         <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/nested_item.xml" value="0.3625" />
+        <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/project_item.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/app/src/main/res/layout/subcategory.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/sy43/app/src/main/res/layout/activity_categories.xml" value="0.33" />
         <entry key="..\:/Users/Jean-Paul/AndroidStudioProjects/sy43/sy43/app/src/main/res/layout/activity_define_categories.xml" value="0.24355179704016913" />

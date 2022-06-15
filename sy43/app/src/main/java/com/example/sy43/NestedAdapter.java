@@ -2,6 +2,9 @@ package com.example.sy43;
 
 import android.content.ClipData;
 import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,8 +77,10 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.NestedView
 
 
 
+
             DataModel datamodel = ItemAdapter.mList.get(position);
             category = datamodel.getItemText();
+            //btn.setVisibility(View.INVISIBLE);
 
             AppDatabase db = AppDatabase.getInstance(itemView.getContext());
 
@@ -84,7 +89,7 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.NestedView
 //                    Toast.makeText(btn.getContext(),mTv.getText().toString() + "'s expected amount is " + et.getText().toString(), Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(btn.getContext(),mTv.getText().toString() + "'apply btn", Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(btn.getContext(),mTv.getText().toString() + " in " + datamodel.getItemText(), Toast.LENGTH_SHORT).show();
-                    int catID = 0;
+                    /*int catID = 0;
 
                     if (db.categoryDao().findByName(category) == null){
                         db.categoryDao().insertAll(new Category(category));
@@ -92,10 +97,31 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.NestedView
                     catID = db.categoryDao().findByName(category).getId();
                     db.subCategoryDao().insertAll(new SubCategory(mTv.getText().toString(), Double.parseDouble(et.getText().toString()),catID));
 
-                    btn.setVisibility(View.INVISIBLE);
-                    Toast.makeText(btn.getContext(),"Category Saved !", Toast.LENGTH_SHORT).show();
+                    btn.setVisibility(View.INVISIBLE);*/
+                    if(et.isEnabled()){
+                        if(!et.getText().toString().matches("")){
+                            et.setEnabled(false);
+                            int catID = 0;
+
+                            if (db.categoryDao().findByName(category) == null){
+                                db.categoryDao().insertAll(new Category(category));
+                            }
+                            catID = db.categoryDao().findByName(category).getId();
+                            db.subCategoryDao().insertAll(new SubCategory(mTv.getText().toString(), Double.parseDouble(et.getText().toString()),catID));
+
+                            btn.setVisibility(View.INVISIBLE);
+                            Toast.makeText(btn.getContext(),"Envelope Saved !", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    if(!et.isEnabled()){
+                        Toast.makeText(btn.getContext(),"Already Saved !", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
+
         }
 
         @NonNull

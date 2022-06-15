@@ -42,12 +42,10 @@ public class Categories extends AppCompatActivity {
     private CategoryAdapter adapter;
     double sum =0;
     TextView subcategory_name, subcategory_amount;
-    ImageView subcategory_image;
     List<SubCategory> subCategory;
     List<String> subcategories_titles  ;
     List<String> subcategories_enveloppes;
-    List<List<Drawable>> allimgs = new ArrayList<>();
-    List<Drawable> subcategory_imgs;
+    CardView add_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +54,7 @@ public class Categories extends AppCompatActivity {
 
         house_icon= findViewById(R.id.home_icon);
         toHome();
+        toOverview();
         AppDatabase db = AppDatabase.getInstance(this);
         List<Category> categories = db.categoryDao().getAll();
 
@@ -66,10 +65,16 @@ public class Categories extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        add_btn = findViewById(R.id.add_new_subcategory);
+        add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                add_category add_category = new add_category();
+                add_category.show(getSupportFragmentManager(), "List of undefined Sub Categories");
+            }
+        });
 
-
-
-        mList = new ArrayList<>();
+    mList = new ArrayList<>();
         for (int i=0; i<categories.size(); i++){
             sum=0;
             subCategory = db.subCategoryDao().findByCategory(i+1);
@@ -119,6 +124,16 @@ public class Categories extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Categories.this, Home.class));
+            }
+        });
+    }
+
+    private void toOverview(){
+        ImageView overview = findViewById(R.id.overview_icon);
+        overview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Categories.this, Overview.class));
             }
         });
     }

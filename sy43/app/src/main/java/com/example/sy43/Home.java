@@ -51,6 +51,7 @@ public class Home extends AppCompatActivity {
         }
 
         toCategories();
+        toOverview();
         addToPieChart(40,25,15,20);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager2= findViewById(R.id.child_fragment_container);
@@ -97,7 +98,6 @@ public class Home extends AppCompatActivity {
 
         chart.startAnimation();
         chart.setClickable(false);
-
     }
 
     private void toCategories(){
@@ -106,6 +106,16 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Home.this, Categories.class));
+            }
+        });
+    }
+
+    private void toOverview(){
+        ImageView overview = findViewById(R.id.overview_icon);
+        overview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Home.this, Overview.class));
             }
         });
     }

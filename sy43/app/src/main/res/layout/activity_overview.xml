@@ -1,83 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Categories">
+    tools:context=".Overview">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/view2"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/chartTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="100sp"
-        android:layout_marginTop="-10dp"
-        app:cardBackgroundColor="#f87f7f"
-        app:cardCornerRadius="15dp" >
-
-        <TextView
-            android:id="@+id/Title_Cat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:layout_marginTop="30sp"
-            android:text="Categories"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="40sp" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_gravity="top|end"
-        android:layout_marginTop="105dp"
-        android:layout_marginRight="15dp"
-        android:elevation="12dp"
-        app:cardCornerRadius="50dp"
-        android:id="@+id/add_new_subcategory">
+        android:layout_gravity="center|top"
+        app:layout_constraintBottom_toBottomOf="@+id/chartsContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        app:tabGravity="fill"
+        app:tabIndicator="@drawable/tab_indicator"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorGravity="stretch"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-        <ImageView
-            android:id="@+id/add_category"
-            android:layout_width="50dp"
-            android:layout_height="50sp"
-            android:background="#00FF60"
-            android:src="@drawable/add" />
-    </androidx.cardview.widget.CardView>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/chartsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chartTabLayout">
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="150sp"
-        android:dropDownWidth="match_parent"
-        android:entries="@array/Months_Array"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/period"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25sp"
-        android:layout_marginTop="160sp"
-        android:text="Period"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="italic" />
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginTop="200dp">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/main_recyclerview"
-                />
-        </ScrollView>
-
+    </androidx.viewpager2.widget.ViewPager2>
 
 
     <androidx.cardview.widget.CardView
@@ -152,4 +110,4 @@
     </androidx.cardview.widget.CardView>
 
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
