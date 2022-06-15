@@ -28,6 +28,12 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS FACTURES (ID_FACTURES INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
     }
 
+    public void deleteRow(String table, String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(table, "ID = ?", new String[]{id});
+        db.close();
+    }
+
     public void addNewFacture(String nom, double montant){
         // ajoute une nouvelle entrée à la table FACTURES
         SQLiteDatabase db = this.getWritableDatabase();
