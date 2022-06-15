@@ -31,7 +31,7 @@ public abstract class DataBaseFragment extends Fragment {
         Toast.makeText(AppContext.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    public static void redirect(DataBaseFragment f) {MainActivity.getActivity().replaceFragment(f); }
+    public static void redirect(DataBaseFragment f) {MainActivity.getActivity().bottomNavigationRedirect(f.getId()); }
 
     //public abstract int getToolBarID();
 }

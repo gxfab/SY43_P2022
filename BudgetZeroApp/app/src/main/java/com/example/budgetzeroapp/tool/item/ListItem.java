@@ -61,7 +61,7 @@ public class ListItem {
     }
 
     public void redirect(){
-        //DataBaseFragment.redirect(new ViewExpenseFragment(id));
+        DataBaseFragment.redirect(new ViewExpenseFragment(id));
     }
 
     public static List<ListItem> cursorToSimpleList(Cursor rows){

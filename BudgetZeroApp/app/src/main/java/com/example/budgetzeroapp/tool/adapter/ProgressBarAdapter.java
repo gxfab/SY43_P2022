@@ -19,7 +19,7 @@ public class ProgressBarAdapter extends ArrayAdapter<CategoryItem> {
 
         protected int resourceLayout;
         public ProgressBarAdapter(List<CategoryItem> items) {
-            super(AppContext.getContext(), R.layout.progress_bar_cat, items);
+            super(AppContext.getContext(), 0    , items);
             resourceLayout = R.layout.progress_bar_cat;
         }
 
@@ -33,7 +33,9 @@ public class ProgressBarAdapter extends ArrayAdapter<CategoryItem> {
                 vi = LayoutInflater.from(AppContext.getContext());
                 v = vi.inflate(resourceLayout, null);
             }
+
             CategoryItem p = getItem(position);
+
             if (p != null) {
                 TextView catName = (TextView) v.findViewById(R.id.category_name);
                 if (catName != null) catName.setText(p.getName());

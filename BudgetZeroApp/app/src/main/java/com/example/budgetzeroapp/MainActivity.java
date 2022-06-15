@@ -31,32 +31,30 @@ public class MainActivity extends OptionsMenu {
     private ActivityMainBinding binding;
     private static MainActivity activity;
     private LayoutInflater inflater;
+    private BottomNavigationView bottomNavigationView;
+    private NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         activity = this;
 
+
         /**Navigation**/
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.nav_host_fragment);
-        NavController navController = navHostFragment.getNavController();
+        navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+
+
 
     }
 
 
     public void bottomNavigationRedirect(int id){
-        binding.bottomNavigationView.setSelectedItemId(id);
-    }
-
-    public void replaceFragment(DataBaseFragment frag) {
-        FragmentManager fragManager = getSupportFragmentManager();
-        FragmentTransaction fragTransaction = fragManager.beginTransaction();
-        fragTransaction.replace(R.id.frame_layout, frag);
-        fragTransaction.commit();
-        //int id = frag.getToolBarID();
+        bottomNavigationView.setSelectedItemId(id);
     }
 
     public static MainActivity getActivity() {

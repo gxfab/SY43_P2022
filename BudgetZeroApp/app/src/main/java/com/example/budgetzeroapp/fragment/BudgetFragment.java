@@ -22,8 +22,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.budgetzeroapp.tool.ClickableListManager;
+import com.example.budgetzeroapp.tool.adapter.BudgetAdapter;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.tool.adapter.ProgressBarAdapter;
 import com.example.budgetzeroapp.tool.item.CategoryItem;
 
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ import java.util.List;
 
 public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerViewAdapter.ItemClickListener {
     private BudgetRecyclerViewAdapter adapter;
-    private ListView list;
+    private ListView listView;
     private List<CategoryItem> items;
 
     public BudgetFragment() {
@@ -59,11 +61,18 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        list = view.findViewById(R.id.list_view_cat);
-        items = CategoryItem.initCategoryList(database, false);
-        list = ClickableListManager.clickableBudgetList(list, items);
-
         super.onViewCreated(view, savedInstanceState);
+
+        /**Listview**/
+        listView = view.findViewById(R.id.list_view_cat);
+        items = CategoryItem.initCategoryList(database, false);
+        listView = ClickableListManager.clickableBudgetList(listView, items);
+
+        BudgetAdapter budgetAdapter = new BudgetAdapter(items);
+        listView.setAdapter(budgetAdapter);
+
+        listView.setVerticalScrollBarEnabled(false);
+
         /**Sorting RecyclerView Initialization**/
         // data to populate the RecyclerView with
         ArrayList<String> sortingItems = new ArrayList<>();
@@ -103,9 +112,7 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
             }
         });
 
-        /**Setting toolbar title**/
-        Toolbar tool = view.findViewById(R.id.toolbar_budget);
-        tool.setTitle("Budget");
+
     }
 
 

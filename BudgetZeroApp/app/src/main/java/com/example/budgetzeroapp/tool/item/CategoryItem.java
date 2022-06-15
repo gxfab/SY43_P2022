@@ -44,9 +44,9 @@ public class CategoryItem extends ListItem{
         }
     }
 
-    public static List<CategoryItem> initCategoryList(DBHelper database, boolean type){
+    public static ArrayList<CategoryItem> initCategoryList(DBHelper database, boolean type){
         Cursor rows = database.getMainExpCat();
-        List<CategoryItem> list = new ArrayList<>();
+        ArrayList<CategoryItem> list = new ArrayList<>();
         int id;
         float amount, total, perOrBudget;
         total = database.getSumExp();

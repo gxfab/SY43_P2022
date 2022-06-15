@@ -7,39 +7,35 @@
     android:background="@color/light_gray"
     tools:context=".fragment.BudgetFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-                <include
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <include
                     layout="@layout/toolbar_budget" />
-            </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/light_gray"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/sort"
-                    android:textSize="15sp" />
-
-                <include layout="@layout/sorting_budget" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_gray"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/sort"
+                android:textSize="15sp" />
+            <include layout="@layout/sorting_budget" />
 
                 <TextView
                     android:id="@+id/month"
@@ -51,22 +47,19 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <ScrollView
+
+                <ListView
+                    android:id="@+id/list_view_cat"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="50">
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="?attr/actionBarSize"
+                    app:layout_constraintEnd_toStartOf="@+id/appBarLayout"
+                    app:layout_constraintStart_toEndOf="@+id/appBarLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/month"
+                    android:padding="8dp">
 
-                    <ListView
-                        android:id="@+id/list_view_cat"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/light_gray"
-                        android:orientation="vertical">
-
-                    </ListView>
-                </ScrollView>
+                </ListView>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
 </FrameLayout>

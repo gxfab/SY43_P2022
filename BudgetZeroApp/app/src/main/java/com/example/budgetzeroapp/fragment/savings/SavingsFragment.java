@@ -60,9 +60,7 @@ public class SavingsFragment extends DataBaseFragment {
         tabLayout.setupWithViewPager(viewPager);
         if(!defaultTab) selectPage(2);
 
-        /**Setting toolbar title**/
-        Toolbar toolbar = view.findViewById(R.id.toolbar_savings);
-        toolbar.setTitle("Savings");
+
     }
 
     public void selectPage(int pageIndex){
