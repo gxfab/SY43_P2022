@@ -52,7 +52,7 @@ public class ExpenseActivity extends AppCompatActivity {
                     categoryPopup.getCancelButton().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                            //Retour
                             categoryPopup.dismiss();
                         }
                     });
