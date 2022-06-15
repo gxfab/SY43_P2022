@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -16,14 +17,16 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.sucelloztm.sucelloz.models.Savings;
+import com.sucelloztm.sucelloz.ui.savings.SavingsViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BarChartGenerator {
     private List<Savings> savingsArrayList;
+    private SavingsViewModel savingsViewModel;
 
-    public BarChartGenerator(List<Savings> savingsArrayList) {
+    public BarChartGenerator(List<Savings> savingsArrayList, ViewModelProvider viewModelProvider) {
         this.savingsArrayList = savingsArrayList;
     }
 

@@ -69,9 +69,6 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
                 currentSavingsList.clear();
                 currentSavingsList.addAll(savingsList);
                 adapter.notifyDataSetChanged();
-                barGen = new BarChartGenerator(currentSavingsList);
-                barGen.createBarChart(getContext(), binding.frameLayoutSavings);
-                barGen.getBarChart().invalidate();
             }
         };
         savingsViewModel.getAllSavings().observe(getViewLifecycleOwner(), savingsDataSet);
