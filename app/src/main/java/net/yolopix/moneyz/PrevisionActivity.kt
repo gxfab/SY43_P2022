@@ -1,7 +1,6 @@
 package net.yolopix.moneyz
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -108,14 +107,14 @@ class PrevisionActivity : AppCompatActivity() {
                     lastPage = currentPageIndex
                 } else if (currentPageIndex == PrevisionStepsAdapter.viewList.size - 1) {
                     lifecycleScope.launch {
-                        val categorizedAmount = calculateCategorizedAmount()
+                        val categorizedAmount = db.categoryDao()
+                            .calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
                         val totalAmount: Float? = salaryEditText.text.toString().toFloatOrNull()
 
                         if (categorizedAmount == totalAmount) {
                             doneButton.isEnabled = true
                             endDescriptionTextView.text = getString(R.string.section_end_ready)
-                        }
-                        else {
+                        } else {
                             doneButton.isEnabled = false
                             endDescriptionTextView.text = getString(R.string.section_end_wrong)
                         }
@@ -126,7 +125,8 @@ class PrevisionActivity : AppCompatActivity() {
 
         // Set salary value
         lifecycleScope.launch {
-            val categorizedAmount = db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
+            val categorizedAmount =
+                db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
             if (categorizedAmount > 0f) salaryEditText.setText(categorizedAmount.toString())
         }
 
@@ -141,7 +141,11 @@ class PrevisionActivity : AppCompatActivity() {
 
                 salaryTextField.error = when {
                     salaryValue == null -> getString(R.string.error_empty_text)
-                    salaryValue < db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!) -> getString(R.string.error_salary_greater_than_previsions)
+                    salaryValue < db.categoryDao().calculatePredictedAmount(
+                        now.monthValue,
+                        now.year,
+                        accountUid!!
+                    ) -> getString(R.string.error_salary_greater_than_previsions)
                     else -> null
                 }
 
@@ -222,7 +226,7 @@ class PrevisionActivity : AppCompatActivity() {
         }
 
         nextFloatingActionButton.setOnClickListener {
-            stepsViewPager.arrowScroll(View.FOCUS_RIGHT)
+            stepsViewPager.currentItem += 1
         }
 
         // Display the current month in the action bar
@@ -288,7 +292,8 @@ class PrevisionActivity : AppCompatActivity() {
      */
     private suspend fun loadBudgetBar() {
 
-        val categorizedAmount = db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
+        val categorizedAmount =
+            db.categoryDao().calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
         var totalAmount: Float? = salaryEditText.text.toString().toFloatOrNull()
 
         if (totalAmount == null)
@@ -315,8 +320,6 @@ class PrevisionActivity : AppCompatActivity() {
                 getString(R.string.zero_remaining_prevision)
             else getString(R.string.remaining_prevision, String.format("%.2f", remainingAmount))
     }
-
-
 
 
     /**
