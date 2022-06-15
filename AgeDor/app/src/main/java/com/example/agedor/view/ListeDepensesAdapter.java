@@ -62,7 +62,7 @@ public class ListeDepensesAdapter extends RecyclerView.Adapter<ListeDepensesAdap
 
             nomDepense.setText((String) depense.nom);
             dateDepense.setText((String) depense.date_depense);
-            categorieDepense.setText(String.valueOf(depense.id_cat));
+            categorieDepense.setText(String.valueOf(depense.categorie));
 
             /*
             nomDepense.setText("test");

@@ -36,21 +36,21 @@ public class ConsulterDepensesActivity extends AppCompatActivity implements Modi
 
     private void setDepenses(){
         this.depenses = new ArrayList<>();
-        depenses.add(new StorageDepenses(0,"14/06/22","name1",(double)25));
-        depenses.add(new StorageDepenses(0,"12/05/22","name2",(double)8));
-        depenses.add(new StorageDepenses(0,"08/04/22","name3",(double)12));
-        depenses.add(new StorageDepenses(0,"14/06/22","name4",(double)25));
-        depenses.add(new StorageDepenses(0,"12/05/22","name5",(double)8));
-        depenses.add(new StorageDepenses(0,"08/04/22","name6",(double)12));
-        depenses.add(new StorageDepenses(0,"14/06/22","name7",(double)25));
-        depenses.add(new StorageDepenses(0,"12/05/22","name8",(double)8));
-        depenses.add(new StorageDepenses(0,"08/04/22","name9",(double)12));
-        depenses.add(new StorageDepenses(0,"14/06/22","name10",(double)25));
-        depenses.add(new StorageDepenses(0,"12/05/22","name11",(double)8));
-        depenses.add(new StorageDepenses(0,"08/04/22","name12",(double)12));
-        depenses.add(new StorageDepenses(0,"14/06/22","name13",(double)25));
-        depenses.add(new StorageDepenses(0,"12/05/22","name14",(double)8));
-        depenses.add(new StorageDepenses(0,"08/04/22","name15",(double)12));
+        depenses.add(new StorageDepenses("voiture","14/06/22","name1",(double)25));
+        depenses.add(new StorageDepenses("voiture","12/05/22","name2",(double)8));
+        depenses.add(new StorageDepenses("voiture","08/04/22","name3",(double)12));
+        depenses.add(new StorageDepenses("voiture","14/06/22","name4",(double)25));
+        depenses.add(new StorageDepenses("voiture","12/05/22","name5",(double)8));
+        depenses.add(new StorageDepenses("voiture","08/04/22","name6",(double)12));
+        depenses.add(new StorageDepenses("voiture","14/06/22","name7",(double)25));
+        depenses.add(new StorageDepenses("voiture","12/05/22","name8",(double)8));
+        depenses.add(new StorageDepenses("voiture","08/04/22","name9",(double)12));
+        depenses.add(new StorageDepenses("voiture","14/06/22","name10",(double)25));
+        depenses.add(new StorageDepenses("voiture","12/05/22","name11",(double)8));
+        depenses.add(new StorageDepenses("voiture","08/04/22","name12",(double)12));
+        depenses.add(new StorageDepenses("voiture","14/06/22","name13",(double)25));
+        depenses.add(new StorageDepenses("voiture","12/05/22","name14",(double)8));
+        depenses.add(new StorageDepenses("voiture","08/04/22","name15",(double)12));
     }
 
     private void setAdapter(){
