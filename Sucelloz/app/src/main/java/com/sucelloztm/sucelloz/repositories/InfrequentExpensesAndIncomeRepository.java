@@ -10,9 +10,16 @@ import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 
 import java.util.List;
 
+/**
+ * class for the infrequent expenses and income repository
+ */
 public class InfrequentExpensesAndIncomeRepository {
     private InfrequentExpensesAndIncomeDao infrequentExpensesAndIncomeDao;
 
+    /**
+     * custom constructor
+     * @param application current application
+     */
     public InfrequentExpensesAndIncomeRepository(Application application){
         SucellozDatabase database = SucellozDatabase.getInstance(application);
         this.infrequentExpensesAndIncomeDao = database.infrequentExpensesAndIncomeDao();
@@ -22,14 +29,26 @@ public class InfrequentExpensesAndIncomeRepository {
         return infrequentExpensesAndIncomeDao.getAllInfrequent();
     }
 
+    /**
+     * invokes the query to get all infrequents positevely signed
+     * @return livedata of the infrequents
+     */
     public LiveData<List<InfrequentExpensesAndIncome>> getAllPositiveInfrequent(){
         return infrequentExpensesAndIncomeDao.getAllPositiveInfrequent();
     }
 
+    /**
+     * invokes the query to get all infrequents negatively signed
+     * @return livedata of the infrequents
+     */
     public LiveData<List<InfrequentExpensesAndIncome>> getAllNegativeInfrequent(){
         return infrequentExpensesAndIncomeDao.getAllNegativeInfrequent();
     }
 
+    /**
+     * invokes the query to insert an infrequent
+     * @param spending infrequent to insert
+     */
     public void insert(InfrequentExpensesAndIncome spending){
         infrequentExpensesAndIncomeDao.insertInfrequentExpenseAndIncome(spending);
     }
