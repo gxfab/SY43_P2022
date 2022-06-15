@@ -146,7 +146,7 @@ class RevenuFragment : Fragment() {
                         val data: Data? = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
                             if (data.amount > 0) {
-                                mouvementArrayList.add(data!!)
+                                mouvementArrayList.add(data)
                             }
                         }
                     }

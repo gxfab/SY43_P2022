@@ -88,8 +88,8 @@ class DepenseFragment : Fragment() {
             spinnerCat!!.adapter = adapter
         }
 
-        spinnerAnnee?.setSelection(Adapter.NO_SELECTION, true);
-        spinnerAnnee?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spinnerAnnee?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerAnnee?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -99,12 +99,13 @@ class DepenseFragment : Fragment() {
                 annee = spinnerAnnee?.selectedItem.toString().trim { it <= ' ' }
                 posAnnee = position
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 annee = "0"
             }
-        })
-        spinnerMois?.setSelection(Adapter.NO_SELECTION, true);
-        spinnerMois?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        }
+        spinnerMois?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerMois?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -114,12 +115,13 @@ class DepenseFragment : Fragment() {
                 mois = position.toString()
                 posMois = position
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 mois = "0"
             }
-        })
-        spinnerCat?.setSelection(Adapter.NO_SELECTION, true);
-        spinnerCat?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        }
+        spinnerCat?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerCat?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -130,10 +132,11 @@ class DepenseFragment : Fragment() {
                 posCat = position
                 println("cat : " + categorie)
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 categorie = "---"
             }
-        })
+        }
 
         val valueEventListener = mMouvementDatabase?.orderByChild("date")?.addValueEventListener( object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -143,7 +146,7 @@ class DepenseFragment : Fragment() {
                         val data: Data? = userSnapshot.getValue(Data::class.java)
                         if (data != null) {
                             if (data.amount < 0) {
-                                mouvementArrayList.add(data!!)
+                                mouvementArrayList.add(data)
                             }
                         }
                     }
@@ -189,7 +192,7 @@ class DepenseFragment : Fragment() {
             edtCat.adapter = adapter
         }
         var edtType: String? = null
-        edtCat.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        edtCat.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -198,8 +201,9 @@ class DepenseFragment : Fragment() {
             ) {
                 edtType = edtCat.selectedItem.toString()
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
+        }
 
         val edtNote = myviewm.findViewById<EditText>(R.id.nom_edt)
         val edtDate = myviewm.findViewById<DatePicker>(R.id.date_edt)

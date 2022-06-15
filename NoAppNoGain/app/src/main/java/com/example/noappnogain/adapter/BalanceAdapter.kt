@@ -40,9 +40,9 @@ class BalanceAdapter(private var budgetList: ArrayList<Budget>, private var mDat
         var mUser: FirebaseUser? = null
         var mMouvementDatabase: DatabaseReference? = null
         mAuth = FirebaseAuth.getInstance()
-        mUser = mAuth?.currentUser
+        mUser = mAuth.currentUser
 
-        if (mAuth!!.currentUser != null) {
+        if (mAuth.currentUser != null) {
             val uid = mUser!!.uid
             mMouvementDatabase =
                 FirebaseDatabase.getInstance().reference.child("MouvementData").child(uid)
@@ -66,9 +66,9 @@ class BalanceAdapter(private var budgetList: ArrayList<Budget>, private var mDat
                     }
                     val diff = currentitem.montant - amount
                     if(diff < 0){
-                        holder.diff.setTextColor(Color.parseColor("#ff0000"));
+                        holder.diff.setTextColor(Color.parseColor("#ff0000"))
                     }else{
-                        holder.diff.setTextColor(Color.parseColor("#0dff00"));
+                        holder.diff.setTextColor(Color.parseColor("#0dff00"))
                     }
                     holder.depenseReel.text = amount.toString()
                     holder.diff.text = (currentitem.montant - amount).toString()

@@ -95,8 +95,8 @@ class StatistiqueFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerMois!!.adapter = adapter
         }
-        spinnerAnnee?.setSelection(Adapter.NO_SELECTION, true);
-        spinnerAnnee?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spinnerAnnee?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerAnnee?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -106,12 +106,13 @@ class StatistiqueFragment : Fragment() {
                 annee = spinnerAnnee?.selectedItem.toString().trim { it <= ' ' }
                 posAnnee = position
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 annee = "0"
             }
-        })
-        spinnerMois?.setSelection(Adapter.NO_SELECTION, true);
-        spinnerMois?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        }
+        spinnerMois?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerMois?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -121,10 +122,11 @@ class StatistiqueFragment : Fragment() {
                 mois = position.toString()
                 posMois = position
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 mois = "0"
             }
-        })
+        }
 
         initPieChart()
 
@@ -148,7 +150,7 @@ class StatistiqueFragment : Fragment() {
                             }
                         }
                         if(amount != 0){
-                            pieArrayList!!.add(PieEntry(abs(amount).toFloat(), cat))
+                            pieArrayList.add(PieEntry(abs(amount).toFloat(), cat))
                         }
                     }
 
@@ -222,7 +224,7 @@ class StatistiqueFragment : Fragment() {
         pieChart.legend.orientation = Legend.LegendOrientation.VERTICAL
         pieChart.legend.isWordWrapEnabled = true
         pieChart.setHoleColor(Color.WHITE)
-        pieChart.setDrawCenterText(true);
+        pieChart.setDrawCenterText(true)
         pieChart.centerText = "Pourcentage de dépenses par catégorie"
 
     }
@@ -298,7 +300,7 @@ class StatistiqueFragment : Fragment() {
                             }
                         }
                         if(amount != 0){
-                            pieArrayList!!.add(PieEntry(abs(amount).toFloat(), cat))
+                            pieArrayList.add(PieEntry(abs(amount).toFloat(), cat))
                         }
                     }
 

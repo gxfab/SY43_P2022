@@ -44,21 +44,21 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
         val compare = todayDate.compareTo(projetDate)
         when{
             compare < 0 -> {
-                holder.datePicker.setTextColor(Color.parseColor("#0dff00"));
+                holder.datePicker.setTextColor(Color.parseColor("#0dff00"))
             }
             compare < 0 -> {
-                holder.datePicker.setTextColor(Color.parseColor("#ff0000"));
+                holder.datePicker.setTextColor(Color.parseColor("#ff0000"))
             }
             else -> {
-                holder.datePicker.setTextColor(Color.parseColor("#ff0000"));
+                holder.datePicker.setTextColor(Color.parseColor("#ff0000"))
             }
 
         }
 
         if(currentitem.totalAmount > currentitem.actualAmount){
-            holder.totalAmount.setTextColor(Color.parseColor("#ff0000"));
+            holder.totalAmount.setTextColor(Color.parseColor("#ff0000"))
         }else{
-            holder.actualAmount.setTextColor(Color.parseColor("#0dff00"));
+            holder.actualAmount.setTextColor(Color.parseColor("#0dff00"))
         }
 
         holder.datePicker.text = currentitem.date
@@ -71,9 +71,9 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
             var mUser: FirebaseUser? = null
             var mProjetDatabase: DatabaseReference? = null
             mAuth = FirebaseAuth.getInstance()
-            mUser = mAuth?.currentUser
+            mUser = mAuth.currentUser
 
-            if (mAuth!!.currentUser != null) {
+            if (mAuth.currentUser != null) {
                 val uid = mUser!!.uid
                 mProjetDatabase =
                     FirebaseDatabase.getInstance().reference.child("ProjetData").child(uid)
@@ -128,7 +128,7 @@ class ProjetAdapter(private val projetList: ArrayList<Projet>) :
                     Toast.makeText(view.context, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-                if (mAuth?.currentUser != null) {
+                if (mAuth.currentUser != null) {
                     val data = Projet(myActualAmount, myTotalAmount, isFinished, myName, post_key, date)
                     mProjetDatabase?.child(post_key.toString())?.setValue(data)
                     Toast.makeText(view.context, "Enregistrement réussi...", Toast.LENGTH_SHORT).show()

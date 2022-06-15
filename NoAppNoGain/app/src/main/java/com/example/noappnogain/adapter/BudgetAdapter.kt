@@ -41,9 +41,9 @@ class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
             var mUser: FirebaseUser? = null
             var mBudgetDatabase: DatabaseReference? = null
             mAuth = FirebaseAuth.getInstance()
-            mUser = mAuth?.currentUser
+            mUser = mAuth.currentUser
 
-            if (mAuth!!.currentUser != null) {
+            if (mAuth.currentUser != null) {
                 val uid = mUser!!.uid
                 mBudgetDatabase =
                     FirebaseDatabase.getInstance().reference.child("BudgetData").child(uid)
@@ -59,7 +59,7 @@ class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
             val type = budgetList[position].category
             val post_key = budgetList[position].id
             val amount = budgetList[position].montant
-            edtCat.setText(type)
+            edtCat.text = type
             edtAmount.setText(amount.toString())
 
             val btnUpdate = myviewm.findViewById<Button>(R.id.btn_upd_Update)
@@ -72,7 +72,7 @@ class BudgetAdapter(private val budgetList: ArrayList<Budget>) :
                     return@OnClickListener
                 }
                 val myAmount = amount.toInt()
-                if (mAuth?.currentUser != null) {
+                if (mAuth.currentUser != null) {
                     val data = Budget(myAmount, type, post_key)
                     mBudgetDatabase?.child(post_key.toString())?.setValue(data)
                     Toast.makeText(view.context, "Enregistrement réussi...", Toast.LENGTH_SHORT).show()

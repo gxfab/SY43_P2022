@@ -71,7 +71,7 @@ class BalanceMensuel : AppCompatActivity() {
                             }
                         }
                     }
-                    budgetPlanSetResult!!.setText(budgetPlan.toString())
+                    budgetPlanSetResult!!.text = budgetPlan.toString()
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -86,7 +86,7 @@ class BalanceMensuel : AppCompatActivity() {
                     for (userSnapshot in snapshot.children) {
                         val data = userSnapshot.getValue(Budget::class.java)
                         if (data != null) {
-                            budgetArrayList.add(data!!)
+                            budgetArrayList.add(data)
                         }
                     }
                     recyclerView.adapter = BalanceAdapter(budgetArrayList, mDate)

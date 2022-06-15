@@ -99,8 +99,8 @@ class BudgetFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerMois!!.adapter = adapter
         }
-        spinnerAnnee?.setSelection(Adapter.NO_SELECTION, true);
-        spinnerAnnee?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spinnerAnnee?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerAnnee?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -110,12 +110,13 @@ class BudgetFragment : Fragment() {
                 annee = spinnerAnnee?.selectedItem.toString().trim { it <= ' ' }
                 posAnnee = position
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 annee = "0"
             }
-        })
-        spinnerMois?.setSelection(Adapter.NO_SELECTION, true);
-        spinnerMois?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        }
+        spinnerMois?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerMois?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -125,10 +126,11 @@ class BudgetFragment : Fragment() {
                 mois = position.toString()
                 posMois = position
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 mois = "0"
             }
-        })
+        }
 
         val valueEventListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -147,7 +149,7 @@ class BudgetFragment : Fragment() {
                             }
                         }
                     }
-                    budgetPlanSetResult!!.setText(budgetPlan.toString())
+                    budgetPlanSetResult!!.text = budgetPlan.toString()
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -171,11 +173,11 @@ class BudgetFragment : Fragment() {
                     }
                     budgetRest = budgetPlan - budgetRest
                     if(budgetRest < 0) {
-                        budgetRestSetResult!!.setTextColor(Color.parseColor("#ff0000"));
+                        budgetRestSetResult!!.setTextColor(Color.parseColor("#ff0000"))
                     }else{
-                        budgetRestSetResult!!.setTextColor(Color.parseColor("#000000"));
+                        budgetRestSetResult!!.setTextColor(Color.parseColor("#000000"))
                     }
-                    budgetRestSetResult!!.setText(budgetRest.toString())
+                    budgetRestSetResult!!.text = budgetRest.toString()
                     recyclerView.adapter = BudgetAdapter(budgetArrayList)
                 }else{
                     val categorie_depense : Array<String>? = arrayOf("Alimentation", "Animaux", "Cadeaux offerts", "Education", "Enfants",
@@ -235,7 +237,7 @@ class BudgetFragment : Fragment() {
                             budgetRest += data.montant.toInt()
                         }
                     }
-                    budgetPlanSetResult!!.setText(budgetPlan.toString())
+                    budgetPlanSetResult!!.text = budgetPlan.toString()
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -273,12 +275,12 @@ class BudgetFragment : Fragment() {
                     }
                     budgetRest = budgetPlan - budgetRest
                     if(budgetRest < 0) {
-                        budgetRestSetResult!!.setTextColor(Color.parseColor("#ff0000"));
+                        budgetRestSetResult!!.setTextColor(Color.parseColor("#ff0000"))
                     }else{
-                        budgetRestSetResult!!.setTextColor(Color.parseColor("#000000"));
+                        budgetRestSetResult!!.setTextColor(Color.parseColor("#000000"))
                     }
-                    budgetRestSetResult!!.setText(budgetRest.toString())
-                    budgetPlanSetResult!!.setText(budgetPlan.toString())
+                    budgetRestSetResult!!.text = budgetRest.toString()
+                    budgetPlanSetResult!!.text = budgetPlan.toString()
                 }
             }
 

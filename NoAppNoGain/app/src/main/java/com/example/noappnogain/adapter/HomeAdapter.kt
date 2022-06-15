@@ -41,9 +41,9 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
         holder.date.text = currentitem.date
         holder.type.text = currentitem.type
         if(currentitem.amount > 0) {
-            holder.amount.setTextColor(Color.parseColor("#0dff00"));
+            holder.amount.setTextColor(Color.parseColor("#0dff00"))
         }else{
-            holder.amount.setTextColor(Color.parseColor("#ff0000"));
+            holder.amount.setTextColor(Color.parseColor("#ff0000"))
         }
         holder.amount.text = currentitem.amount.toString()
 
@@ -52,9 +52,9 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
             var mUser: FirebaseUser? = null
             var mMouvementDatabase: DatabaseReference? = null
             mAuth = FirebaseAuth.getInstance()
-            mUser = mAuth?.currentUser
+            mUser = mAuth.currentUser
 
-            if (mAuth!!.currentUser != null) {
+            if (mAuth.currentUser != null) {
                 val uid = mUser!!.uid
                 mMouvementDatabase =
                     FirebaseDatabase.getInstance().reference.child("MouvementData").child(uid)
@@ -75,7 +75,7 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
             val amount = dataList[position].amount
             val date = dataList[position].date
 
-            edtCat.setText(type)
+            edtCat.text = type
             edtNote.setText(note)
             edtAmount.setText(amount.toString())
 
@@ -89,7 +89,7 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
                 val month = emonth.toInt() + 1
                 val year = edtDate.year.toString()
                 val mDate = year.plus("/").plus(month).plus("/").plus(day)
-                val note = edtNote.getText().toString().trim { it <= ' ' }
+                val note = edtNote.text.toString().trim { it <= ' ' }
                 if (TextUtils.isEmpty(note)) {
                     edtNote.error
                     Toast.makeText(view.context, "Echec de l'enregistrement...", Toast.LENGTH_SHORT).show()
@@ -102,7 +102,7 @@ class HomeAdapter(private var dataList: ArrayList<Data>) :
                     return@setOnClickListener
                 }
                 val myAmount = mdAmount.toInt()
-                if (mAuth?.currentUser != null) {
+                if (mAuth.currentUser != null) {
                     val data = Data(myAmount, type, note, post_key, mDate)
                     mMouvementDatabase?.child(post_key.toString())?.setValue(data)
                     Toast.makeText(view.context, "Enregistrement réussi...", Toast.LENGTH_SHORT).show()

@@ -76,8 +76,8 @@ class HomeFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerCat!!.adapter = adapter
         }
-        spinnerCat?.setSelection(Adapter.NO_SELECTION, true);
-        spinnerCat?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spinnerCat?.setSelection(Adapter.NO_SELECTION, true)
+        spinnerCat?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View,
@@ -87,8 +87,9 @@ class HomeFragment : Fragment() {
                 edtType = spinnerCat?.selectedItem.toString()
                 println("posCat : $position")
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
+        }
 
         mMouvementDatabase?.orderByChild("date")?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -106,12 +107,12 @@ class HomeFragment : Fragment() {
                         }
                         // vérifier la balance
                         if(balance > 0) {
-                            balanceSetResult.setTextColor(Color.parseColor("#0dff00"));
+                            balanceSetResult.setTextColor(Color.parseColor("#0dff00"))
                         }
                         else{
-                            balanceSetResult.setTextColor(Color.parseColor("#ff0000"));
+                            balanceSetResult.setTextColor(Color.parseColor("#ff0000"))
                         }
-                        balanceSetResult.setText(balance.toString())
+                        balanceSetResult.text = balance.toString()
                         mouvementArrayList.add(data!!)
                     }
                     recyclerView.adapter = HomeAdapter(mouvementArrayList)
