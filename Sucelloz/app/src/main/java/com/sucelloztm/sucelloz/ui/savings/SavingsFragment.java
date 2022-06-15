@@ -60,18 +60,21 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
         View root = binding.getRoot();
         savingsViewModel = new ViewModelProvider(this).get(SavingsViewModel.class);
         currentSavingsList = new ArrayList<>();
+        barGen = new BarChartGenerator(currentSavingsList);
+        barGen.createBarChart(getContext(),binding.frameLayoutSavings);
         SavingsAdapter adapter = new SavingsAdapter(currentSavingsList);
-
-
-        final Observer<List<Savings>> savingsDataSet = new Observer<List<Savings>>() {
+        final Observer<List<Savings>> savingsObserver = new Observer<List<Savings>>() {
             @Override
             public void onChanged(List<Savings> savingsList) {
                 currentSavingsList.clear();
                 currentSavingsList.addAll(savingsList);
                 adapter.notifyDataSetChanged();
+                barGen.getBarChart().clear();
+                barGen.getBarChart().setData(barGen.generateBarData());
+                barGen.getBarChart().invalidate();
             }
         };
-        savingsViewModel.getAllSavings().observe(getViewLifecycleOwner(), savingsDataSet);
+        savingsViewModel.getAllSavings().observe(getViewLifecycleOwner(), savingsObserver);
         recyclerView = binding.savingsRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -83,7 +86,7 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
                 return false;
             }
         });
-
+        barGen.getBarChart().invalidate();
         return root;
     }
 

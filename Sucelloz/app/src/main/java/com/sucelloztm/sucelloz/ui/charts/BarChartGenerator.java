@@ -25,17 +25,18 @@ import java.util.List;
 
 public class BarChartGenerator {
     private List<Savings> currentSavingsArrayList;
+    private BarChart barChart;
 
     public BarChartGenerator(List<Savings> currentSavingsArrayList) {
         this.currentSavingsArrayList = currentSavingsArrayList;
     }
 
-    private BarChart barChart;
 
 
     public BarChart getBarChart() {
         return barChart;
     }
+
 
     public void createBarChart(Context context, FrameLayout parent) {
 
@@ -48,6 +49,7 @@ public class BarChartGenerator {
         barChart.setDrawBarShadow(false);
 
         Typeface tf = Typeface.create((Typeface) null,Typeface.NORMAL);
+
 
         barChart.setData(generateBarData());
 
@@ -66,23 +68,14 @@ public class BarChartGenerator {
 
 
         parent.addView(barChart);
+
+
+
     }
 
-    private BarData generateBarData() {
+    public BarData generateBarData() {
 
         ArrayList<BarEntry> entries = new ArrayList<>();
-
-        SavingsAdapter adapter = new SavingsAdapter(currentSavingsArrayList);
-
-        final Observer<List<Savings>> entriesObserver =  new Observer<List<Savings>>() {
-            @Override
-            public void onChanged(List<Savings> savingsArrayList) {
-                currentSavingsArrayList.clear();
-                currentSavingsArrayList.addAll(savingsArrayList);
-                adapter.notifyDataSetChanged();
-
-            }
-        };
 
         List<Float> entriesList = generateBarEntry();
 
