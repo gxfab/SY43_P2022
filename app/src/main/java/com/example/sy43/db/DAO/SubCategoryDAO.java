@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 
+import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.db.entity.SubCategory;
 import com.google.common.util.concurrent.ListenableFuture;
 
@@ -19,6 +20,9 @@ public interface SubCategoryDAO{
 
     @Query("SELECT * FROM SubCategory WHERE SubCatID LIKE :SubCatID")
     public ListenableFuture<SubCategory> findByID(int SubCatID);
+
+    @Query("SELECT * FROM SubCategory")
+    public ListenableFuture<List<SubCategory>> findAll();
 
     @Query("SELECT CurrentValue FROM SubCategory")
     public ListenableFuture<List<Float>> findValues();

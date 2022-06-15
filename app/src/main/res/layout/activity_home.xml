@@ -60,7 +60,9 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="5dp"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                android:id="@+id/addCard"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"

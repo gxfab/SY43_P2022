@@ -30,6 +30,10 @@ public class SubCategoryViewModel extends ViewModel {
     public void createSubCategory(final SubCategory subCategory) {
         this.subCatRepo.createSubCategory(subCategory);
     }
+    public LiveData<List<SubCategory>> getSubCategories() {
+        return this.subCatRepo.getSubCategories();
+    }
+
 
     public void delSubCategories(int id) {
         this.subCatRepo.deleteSubCategory(id);
