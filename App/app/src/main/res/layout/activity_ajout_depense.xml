@@ -132,12 +132,12 @@
 
     <EditText
         android:id="@+id/date"
-        android:spinnerMode="dialog"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:textSize="25dp"
         android:hint="Choisir date"
-        android:inputType="date"
+        android:inputType="none"
+        android:editable="false"
         android:background="?attr/colorSecondary"
         android:textColor="?attr/colorPrimaryVariant"
         android:layout_marginTop="30dp"

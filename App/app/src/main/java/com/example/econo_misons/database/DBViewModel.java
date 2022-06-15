@@ -78,7 +78,9 @@ public class DBViewModel extends ViewModel {
         this.currentUser.observe();
         executor.execute(() -> budgetDataSource.addBudget(budget, this.currentUser));}*/
 
+    public void deleteBudget(Budget budget) {executor.execute(() -> budgetDataSource.deleteBudget(budget));}
 
+    public void updateBudget(Budget budget) {executor.execute(() -> budgetDataSource.updateBudget(budget));}
 
     public LiveData<List<Budget>> getAllBudgets(){ return budgetDataSource.getAllBudgets();}
 

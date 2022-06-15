@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("MA","debut");
 
 
         username = findViewById(R.id.username);
@@ -53,33 +52,20 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        depense.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeActivity();
-            }
-        });
+        depense.setOnClickListener(v -> changeActivity());
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*String usernameTXT = username.getText().toString();
                 newUser(usernameTXT);*/
- /*               dbViewModel.setCurrentUser(1, MainActivity.this);
+ /*             dbViewModel.setCurrentUser(1, MainActivity.this);
                 dbViewModel.setCurrentBudget(1, MainActivity.this);
                 dbViewModel.setCurrentPrevBudget(new PrevisionalBudget(1,"2022-06"));*/
             }
         });
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("MA","view_click");
-                getAllUsers();
-                Log.d("MA","end_view_click");
-            }
-
-        });
+        view.setOnClickListener(v -> getAllUsers());
 
         //  Bottom Bar controller
         // Initialize and assign variable
@@ -115,22 +101,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getAllUsers() {
-        PrevisionalBudget prevBud = new PrevisionalBudget(1,"2022-06");
-        Log.d("MA","entered");
-        if (this.dbViewModel.getCurrentPrevBudget() != null){
-            this.dbViewModel.getCurrentPrevBudget().observe(this, this::showUserList);
-        }
-
-        Log.d("MA","exit");
-
-
+        showUserList(CurrentData.getUser());
     }
 
     private void newUser(String username) {
         this.dbViewModel.newUser(new User(username));
     }
 
-    private void showUserList(PrevisionalBudget list){
+    private void showUserList(User list){
         Log.d("MA","toast");
         Toast toast = Toast.makeText(getApplicationContext(), list.toString(), Toast.LENGTH_LONG);
         toast.show();
