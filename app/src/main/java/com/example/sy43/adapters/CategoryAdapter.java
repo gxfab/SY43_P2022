@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ import com.example.sy43.CategoryDetailsActivity;
 import com.example.sy43.MainActivity;
 import com.example.sy43.ObjectiveDetailsActivity;
 import com.example.sy43.R;
+import com.example.sy43.TransactionSummary;
 import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.db.entity.SubCategory;
 import com.example.sy43.db.entity.Transaction;
@@ -31,6 +34,9 @@ import com.example.sy43.viewmodels.CategoryViewModel;
 import com.example.sy43.viewmodels.SubCategoryViewModel;
 import com.example.sy43.viewmodels.TransactionViewModel;
 
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 //https://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
@@ -78,20 +84,62 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
             Boolean isObjective = category.getIsObjective();
 
             if (isObjective) {
-                price.setText("$0/$"+category.getMaxValue()+" saved");
+                Date objectiveDate = new Date(category.getDate());
+                final float[] montant = {0};
+/*
+                transactionViewModel.getTransactions().observe(owner, new Observer<List<Transaction>>() {
+                    @Override
+                    public void onChanged(List<Transaction> transactions) {
+                        for (Transaction trans : transactions) {
+                            Date transDate = new Date(trans.getDate());
+                            boolean isSameMonth = transDate.getMonth() == objectiveDate.getMonth() && transDate.getYear() == objectiveDate.getYear();
+                            if (isSameMonth) {
+                                int categoryId = trans.getCategory();
+                            }
+                        }
+                    }
+                });
+*/
+                catViewModel.getCategories().observe(owner, new Observer<List<Categorydb>>() {
+                    @Override
+                    public void onChanged(List<Categorydb> categorydbs) {
+                        for (Categorydb cat : categorydbs) {
+                            float current = cat.CurrentValue();
+                            float max = cat.getMaxValue();
 
+                            if (current <= max) {
+                                float surplus = max - current;
+                                montant[0] += surplus;
+                            }
+                        }
+                    }
+                });
+                catViewModel.getObjectives().observe(owner, new Observer<List<Categorydb>>() {
+                    @Override
+                    public void onChanged(List<Categorydb> categorydbs) {
+                        price.setText("$"+montant[0]/categorydbs.size()+"/$"+category.getMaxValue());
+                    }
+                });
+
+               // price.setText("$"+montant[0]/numberOfObjectives[0] + "/$"+category.getMaxValue() + " saved");
             } else {
                 transactionViewModel.getTransactionsFromCat(category.getCatID()).observe(owner, new Observer<List<Transaction>>() {
                     @Override
                     public void onChanged(List<Transaction> receivedTransactions) {
                         value[0] = 0;
                         for (Transaction trans : receivedTransactions) {
-                            value[0] += trans.getValue();
+                            Date transDate = new Date(trans.getDate());
+                            boolean isSameMonth = transDate.getMonth() == new Date().getMonth() && transDate.getYear() == new Date().getYear();
+                            if (isSameMonth) {
+                                value[0] += trans.getValue();
+                            }
                         }
                         price.setText("$" + value[0] + "/" + value[1]);
                         progressBar.setProgress((int) value[0], true);
                         progressBar.getProgressDrawable().setColorFilter(
                                 value[0] < value[1] ? Color.GREEN : Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
+                        category.setCurrentValue(value[0]);
+                        updateCategory(category);
                     }
                 });
 
@@ -106,7 +154,8 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
                         progressBar.setMax((int) value[1]);
                         progressBar.getProgressDrawable().setColorFilter(
                                 value[0] < value[1] ? Color.GREEN : Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
-
+                        category.setMaxValue(value[1]);
+                        updateCategory(category);
                     }
                 });
             }
@@ -139,6 +188,8 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
 
         return v;
     }
-
+    private void updateCategory(Categorydb cat) {
+        catViewModel.updateCategory(cat);
+    }
 
 }
