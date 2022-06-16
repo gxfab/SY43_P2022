@@ -14,21 +14,24 @@ import com.example.nomoola.database.converter.Converters;
 import com.example.nomoola.database.dao.CategoryDAO;
 import com.example.nomoola.database.dao.InOutComeDAO;
 import com.example.nomoola.database.dao.SubCategoryDAO;
+import com.example.nomoola.database.dao.ProfileDAO;
 import com.example.nomoola.database.entity.Category;
 import com.example.nomoola.database.entity.InOutCome;
 import com.example.nomoola.database.entity.SubCategory;
+import com.example.nomoola.database.entity.Profile;
 
 import java.time.LocalDate;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Category.class, SubCategory.class, InOutCome.class}, version = 1, exportSchema = false)
+@Database(entities = {Category.class, SubCategory.class, InOutCome.class, Profile.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class NomoolaRoomDataBase extends RoomDatabase {
 
     public abstract CategoryDAO categoryDAO();
     public abstract SubCategoryDAO subCategoryDAO();
     public abstract InOutComeDAO inOutComeDAO();
+    public abstract ProfileDAO profileDAO();
 
     private static volatile NomoolaRoomDataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -66,6 +69,7 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
                 populateCategory();
                 populateSubCategory();
                 populateInOutCome();
+                populateProfile();
             });
         }
 
@@ -109,6 +113,13 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
             come = new InOutCome("weekly fuel", 2, 4, 60.00, LocalDate.now());
             dao.insertInOutCome(come);
 
+        }
+
+        private void populateProfile(){
+            ProfileDAO dao = INSTANCE.profileDAO();
+
+            Profile profile = new Profile(1, "John", Profile.userLanguage.ENGLISH, Profile.userCurrency.USDOLLAR);
+            dao.insertProfile(profile);
         }
     };
 

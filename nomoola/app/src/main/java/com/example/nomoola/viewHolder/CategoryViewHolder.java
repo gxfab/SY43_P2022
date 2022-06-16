@@ -16,6 +16,9 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.nomoola.R;
 import com.example.nomoola.database.entity.Category;
+import com.example.nomoola.database.entity.Profile;
+import com.example.nomoola.fragment.CategoryFragment;
+
 import com.example.nomoola.fragment.SubcategoryFragment;
 import com.example.nomoola.fragment.dialog.EditCategoryDialog;
 import com.example.nomoola.viewModel.CategoryViewModel;
@@ -32,6 +35,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     private FragmentManager fragmentManager;
     private Category category;
     private View view;
+
 
     public CategoryViewHolder(View view, FragmentManager fragmentManager, CategoryViewModel categoryViewModel){
         super(view);

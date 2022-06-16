@@ -38,4 +38,5 @@ public interface CategoryDAO {
 
     @Query("SELECT CAT_BUDGET_AMOUNT FROM T_CATEGORY WHERE CAT_ID=:catID")
     LiveData<Double> getBudgetOf(int catID);
+
 }

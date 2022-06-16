@@ -54,4 +54,8 @@ public class CategoryViewModel extends AndroidViewModel {
     public void update(Category category) {
         this.mRepository.update(category);
     }
+
+    public LiveData<String> getUserName(int userID){
+        return this.mRepository.getUserName(userID);
+    }
 }

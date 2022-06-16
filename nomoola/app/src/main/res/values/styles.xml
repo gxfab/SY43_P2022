@@ -13,11 +13,17 @@
         <item name="android:progressDrawable">@drawable/circle</item>
     </style>
 
+    <style name="inputTextWhite">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+
     <style name="SpinnerThemeLight" >
         <item name="android:colorBackground">@color/black</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:textColorSecondary">@color/black</item>
         <item name="android:textColorTertiary">@color/black</item>
         <item name="android:textColorPrimaryDisableOnly">@color/black</item>
+
     </style>
 </resources>

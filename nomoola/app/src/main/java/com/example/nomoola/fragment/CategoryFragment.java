@@ -31,6 +31,7 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d("CREATION", "onCreateView from " + this.getClass().toString() + " started");
         super.onCreateView(inflater, container, savedInstanceState);
+
         this.mCatViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         this.categoryIncomeAdapter = new CategoryAdapter(new CategoryAdapter.CategoryDiff(), this.getParentFragmentManager(), this.mCatViewModel);
         this.categoryOutcomeAdapter = new CategoryAdapter(new CategoryAdapter.CategoryDiff(), this.getParentFragmentManager(), this.mCatViewModel);
