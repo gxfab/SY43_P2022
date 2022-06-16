@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.content.res.AppCompatResources;
 
-import com.example.budgetzeroapp.AppVars;
+import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.item.CategoryItem;
 
@@ -19,7 +19,7 @@ public class BudgetAdapter extends ArrayAdapter<CategoryItem> {
 
     protected int resourceLayout;
     public BudgetAdapter(List<CategoryItem> items) {
-        super(AppVars.getContext(), R.layout.category, items);
+        super(AppContext.getContext(), R.layout.category, items);
         resourceLayout = R.layout.category;
     }
 
@@ -29,7 +29,7 @@ public class BudgetAdapter extends ArrayAdapter<CategoryItem> {
         View v = convertView;
         if (v == null) {
             LayoutInflater vi;
-            vi = LayoutInflater.from(AppVars.getContext());
+            vi = LayoutInflater.from(AppContext.getContext());
             v = vi.inflate(resourceLayout, null);
         }
         CategoryItem p = getItem(position);
@@ -43,7 +43,7 @@ public class BudgetAdapter extends ArrayAdapter<CategoryItem> {
             }
             ImageView icon = v.findViewById(R.id.icon);
             if (icon != null)
-                icon.setImageDrawable(AppCompatResources.getDrawable(AppVars.getContext(), p.getDrawable()));
+                icon.setImageDrawable(AppCompatResources.getDrawable(AppContext.getContext(), p.getDrawable()));
             TextView budget = (TextView) v.findViewById(R.id.budget);
             if (budget != null) {
                 String mess = "Budget : "+p.getBudget() + " €";

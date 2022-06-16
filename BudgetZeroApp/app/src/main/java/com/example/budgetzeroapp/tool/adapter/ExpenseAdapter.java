@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.budgetzeroapp.AppVars;
+import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.item.ExpenseItem;
 
@@ -18,7 +18,7 @@ public class ExpenseAdapter extends ArrayAdapter<ExpenseItem> {
     protected int resourceLayout;
 
     public ExpenseAdapter(List<ExpenseItem> items) {
-        super(AppVars.getContext(), R.layout.expense, items);
+        super(AppContext.getContext(), R.layout.expense, items);
         resourceLayout = R.layout.expense;
     }
 
@@ -28,7 +28,7 @@ public class ExpenseAdapter extends ArrayAdapter<ExpenseItem> {
         View v = convertView;
         if (v == null) {
             LayoutInflater vi;
-            vi = LayoutInflater.from(AppVars.getContext());
+            vi = LayoutInflater.from(AppContext.getContext());
             v = vi.inflate(resourceLayout, null);
         }
         ExpenseItem p = getItem(position);

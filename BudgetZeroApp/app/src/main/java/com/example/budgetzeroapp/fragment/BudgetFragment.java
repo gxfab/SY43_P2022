@@ -127,7 +127,7 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
     @Override
     public void onItemClick(View view, int position) {
         switch(position){
-            case 1 : Collections.sort(items, (categoryItem, t1) -> categoryItem.getId() - t1.getId());
+            case 1 : Collections.sort(items, (categoryItem, t1) -> categoryItem.getName().compareTo(t1.getName()));
                 break;
             case 2 : Collections.sort(items, (categoryItem, t1) -> (int) (t1.getTotal() - categoryItem.getTotal()));
                 break;

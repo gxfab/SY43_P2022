@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.budgetzeroapp.AppVars;
+import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.item.ListItem;
 
@@ -16,7 +16,7 @@ public class SimpleListAdapter extends ArrayAdapter<ListItem> {
 
     protected int resourceLayout;
     public SimpleListAdapter(int resource, List<ListItem> items) {
-        super(AppVars.getContext(), resource, items);
+        super(AppContext.getContext(), resource, items);
         this.resourceLayout = resource;
     }
 
@@ -27,7 +27,7 @@ public class SimpleListAdapter extends ArrayAdapter<ListItem> {
 
         if (v == null) {
             LayoutInflater vi;
-            vi = LayoutInflater.from(AppVars.getContext());
+            vi = LayoutInflater.from(AppContext.getContext());
             v = vi.inflate(resourceLayout, null);
         }
         ListItem p = getItem(position);

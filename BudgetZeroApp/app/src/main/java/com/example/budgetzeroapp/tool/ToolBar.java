@@ -1,7 +1,7 @@
 package com.example.budgetzeroapp.tool;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,10 +11,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.budgetzeroapp.AppVars;
+import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,10 +26,20 @@ public class ToolBar{
     private Date date;
     private Calendar cal;
     private float moneyAmount;
-    private boolean autoMode;
+    private boolean budgetAutoMode, savingsAutoMode;
     private TextView dateText, amountText;
 
+    private static final String PREFS_NAME = "prefsFile";
+
+    private static SharedPreferences settings = AppContext.getContext().getSharedPreferences(PREFS_NAME, 0);
+    private static SharedPreferences.Editor editor = settings.edit();
+
+    private static SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
     private static ToolBar instance = new ToolBar();
+
+    public ToolBar(){
+        initialize();
+    }
 
     private static final NavController navContBudget= Navigation.findNavController(
             MainActivity.getActivity(), R.id.nav_host_fragment);
@@ -36,7 +47,6 @@ public class ToolBar{
     private static AppBarConfiguration appBarConfigBudget =
             new AppBarConfiguration.Builder(R.id.budgetFragment,R.id.addCategoryFragment).build();
 
-    // Getter-Setters
     public static ToolBar getInstance() {
         return instance;
     }
@@ -46,21 +56,27 @@ public class ToolBar{
     }
 
     private void initialize(){
-        date = new Date();
-        autoMode = true;
+        try{
+            date = format.parse(settings.getString("date",format.format(new Date())));
+        }catch(ParseException p) {
+            date = new Date();
+        }
+
+        budgetAutoMode = settings.getBoolean("budgetAutoMode", true);
+        savingsAutoMode = settings.getBoolean("savingsAutoMode", true);
         cal = Calendar.getInstance();
-        updateMoneyAmount(new DBHelper(AppVars.getContext()));
+        updateMoneyAmount(new DBHelper(AppContext.getContext()));
     }
 
     @SuppressLint("NonConstantResourceId")
-    public Toolbar initToolBar(View view, int idToolBar){
+    public void initToolBar(View view, int idToolBar){
         if(date == null) initialize();
         Toolbar toolbar = view.findViewById(idToolBar);
         dateText = view.findViewById(R.id.date);
         amountText = view.findViewById(R.id.amount);
         CharSequence text = Float.toString(moneyAmount)+"€";
         amountText.setText(text);
-        text = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE).format(date);
+        text = getStrDate();
         dateText.setText(text);
         if(idToolBar == R.id.toolbar_budget) {
             NavigationUI.setupWithNavController(
@@ -74,29 +90,44 @@ public class ToolBar{
                     break;
                 case R.id.next_day:
                     incrementDate();
-                    SavingsManager.addStableExpenses(new DBHelper(AppVars.getContext()), date);
-                    CharSequence mess = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE).format(date);
+                    saveDate();
+                    SavingsManager.addStableExpenses(new DBHelper(AppContext.getContext()), date);
+                    CharSequence mess = format.format(date);
                     dateText.setText(mess);
                     //TODO POPUP récapitulant les nouvelles dépenses si il y en a
                     break;
-                case R.id.mode: autoMode = !autoMode;
+                case R.id.mode:
+                    budgetAutoMode = !budgetAutoMode;
+                    saveBudgetMode();
                     break;
             }
             return true;
         });
-        return toolbar;
     }
 
 
     public Date getDate(){ return date; }
 
+    public void saveDate(){
+        editor.putString("date", getStrDate());
+        editor.commit();
+    }
+
+    public void saveBudgetMode(){
+        editor.putBoolean("date", budgetAutoMode);
+        editor.commit();
+    }
+    public void saveSavingsMode(){
+        editor.putBoolean("date", savingsAutoMode);
+        editor.commit();
+    }
     public void incrementDate(){
         cal.setTime(date);
         cal.add(Calendar.DATE, 1);
         date = cal.getTime();
     }
 
-
+    public String getStrDate(){ return format.format(date); }
 
     public float getMoneyAmount(){ return moneyAmount; }
 

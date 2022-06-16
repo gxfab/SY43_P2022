@@ -9,7 +9,7 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.budgetzeroapp.AppVars;
+import com.example.budgetzeroapp.AppContext;
 
 
 @SuppressWarnings({"UnusedDeclaration"})
@@ -309,7 +309,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean exists() {
-        return AppVars.getContext().getDatabasePath(DATABASE_NAME).exists();
+        return AppContext.getContext().getDatabasePath(DATABASE_NAME).exists();
     }
 
     public Cursor getExpenseFromID(int id) {
