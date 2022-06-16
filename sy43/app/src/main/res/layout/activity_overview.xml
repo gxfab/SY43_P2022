@@ -27,7 +27,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/chartsContainer"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="500dp"
         android:layout_gravity="bottom"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_card"

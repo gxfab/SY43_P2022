@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
@@ -23,7 +25,7 @@ import com.example.sy43.database.Category;
 import com.example.sy43.database.Expenses;
 import com.example.sy43.database.Income;
 import com.example.sy43.database.MonthlyRevenue;
-import com.example.sy43.database.SubCategory;
+import com.example.sy43.database.Projects;
 import com.google.android.material.tabs.TabLayout;
 
 import org.eazegraph.lib.charts.PieChart;
@@ -45,6 +47,11 @@ public class Home extends AppCompatActivity {
     private MyFragmentAdapter adapter;
     private Define_incomes define_incomes;
     private Spinner monthSpinner, yearSpinner;
+    private RecyclerView recyclerView;
+    private List<String> l1,l2,l3,l4;
+    private ProjectsDisplayAdapter projectsDisplayAdapter;
+    Double allocation = 0.0;
+
 
     PieChart pieChart;
 
@@ -68,7 +75,7 @@ public class Home extends AppCompatActivity {
         if(extras != null){
             String amount = extras.getString("total_income_value");
             total_income.setText(amount);
-        } else {
+        }else {
             double amount = 0.0;
             for(Income inc : db.incomeDao().getAll()){
                 amount += inc.value;
@@ -79,7 +86,6 @@ public class Home extends AppCompatActivity {
         toCategories();
         toOverview();
 
-        addToPieChart(40,25,15,20);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager2= findViewById(R.id.child_fragment_container);
 
@@ -142,20 +148,20 @@ public class Home extends AppCompatActivity {
         yearSpinner.setAdapter(yearData);
 
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                 @Override
-                                                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {updateExpenseAndBalance(monthsArray, db);}
-                                                 @Override
-                                                 public void onNothingSelected(AdapterView<?> adapterView) {}});
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {updateExpenseAndBalance(monthsArray, db);}
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}});
 
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                @Override
-                                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {updateExpenseAndBalance(monthsArray, db);}
-                                                @Override
-                                                public void onNothingSelected(AdapterView<?> adapterView) {}});
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {updateExpenseAndBalance(monthsArray, db);}
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}});
 
 //        monthSpinner.setSelection(months.indexOf(Month.of(Calendar.getInstance().get(Calendar.MONTH)).getDisplayName(TextStyle.FULL, Locale.ENGLISH)));
 //
-          updateExpenseAndBalance(monthsArray, db);
+        updateExpenseAndBalance(monthsArray, db);
 //        double exp_total=0.0;
 //        int selectedMonth = Arrays.asList(monthsArray).indexOf(monthSpinner.getSelectedItem().toString())+1;
 //        int selectedYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
@@ -167,18 +173,32 @@ public class Home extends AppCompatActivity {
 //        String incomeText = total_income.getText().toString();
 //        total_balance.setText(Double.parseDouble(incomeText.substring(0,incomeText.length()-1))-exp_total+"$");
 
+
+        recyclerView = findViewById(R.id.display_projects_recyclerview);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        l1 = new ArrayList<>();
+        l2 = new ArrayList<>();
+        l3 = new ArrayList<>();
+        l4 = new ArrayList<>();
+
+        List<Projects> projects = db.projectDao().getAll();
+        for(int i=0; i<projects.size();i++){
+
+            allocation = 0.0;
+            String allocationstr = total_balance.getText().toString();
+            allocation+= (Double.parseDouble(allocationstr.substring(0,allocationstr.length()-1))) * (projects.get(i).percentage/100);
+            l1.add(projects.get(i).name);
+            l2.add(Double.toString(projects.get(i).value) + "$");
+            l3.add(Integer.toString((int)projects.get(i).percentage/10) + "/10");
+            l4.add("Allocated : " + Double.toString(allocation) + "$");
+        }
+
+        projectsDisplayAdapter = new ProjectsDisplayAdapter(l1,l2,l3,l4);
+        recyclerView.setAdapter(projectsDisplayAdapter);
+
         //List<Expenses> expensesList = db.expensesDao().findByMonth(monthSpinner.getSelectedItem().toString())
-    }
-
-    private void addToPieChart(int i1, int i2, int i3, int i4){
-        PieChart chart = findViewById(R.id.piechart);
-        chart.addPieSlice(new PieModel("Housing",i1, Color.parseColor("#FFA726")));
-        chart.addPieSlice(new PieModel("Transportation",i2, Color.parseColor("#66BB6A")));
-        chart.addPieSlice(new PieModel("Finance",i3, Color.parseColor("#EF5350")));
-        chart.addPieSlice(new PieModel("Communication",i4, Color.parseColor("#2986F6")));
-
-        chart.startAnimation();
-        chart.setClickable(false);
     }
 
     private void toCategories(){

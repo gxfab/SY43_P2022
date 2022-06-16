@@ -15,7 +15,10 @@ import com.example.sy43.database.AppDatabase;
 import com.example.sy43.database.Income;
 import com.example.sy43.database.MonthlyRevenue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 public class Define_incomes extends AppCompatActivity {
 
@@ -23,7 +26,7 @@ public class Define_incomes extends AppCompatActivity {
     private EditText et1,et2,et3,et4;
     private TextView tv1,tv2,tv3,tv4;
     public String total_income;
-    private static int income_sum = 0;
+    private static double income_sum = 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,31 +42,37 @@ public class Define_incomes extends AppCompatActivity {
         tv3 = findViewById(R.id.interest_income_tv);
         tv4 = findViewById(R.id.money_transfer_tv);
 
+
         EditText[] et = new EditText[]{et1, et2, et3, et4};
+        List<Double> incomes = new ArrayList<>();
+
         TextView[] tv = new TextView[]{tv1, tv2, tv3, tv4};
+        AppDatabase db = AppDatabase.getInstance(this);
 
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppDatabase db = AppDatabase.getInstance(view.getContext());
 
 
                 for (int i=0; i<et.length; i++){
-                    if (!et[i].getText().toString().matches("")|| (!et[i].getText().toString().matches("0"))){
-                        income_sum  += parseInt(et[i].getText().toString());
+                    if (!et[i].getText().toString().matches("")&& (!et[i].getText().toString().matches("0"))){
+                        incomes.add(Double.parseDouble(et[i].getText().toString()));
+                        income_sum  += Double.parseDouble(et[i].getText().toString());
+
                     }
                 }
-                total_income= Integer.toString(income_sum) + "$";
+                total_income= Double.toString(income_sum) + "$";
                 Calendar calendar = Calendar.getInstance();
                 int currentMonth = calendar.get(Calendar.MONTH)+1;
                 int currentYear = calendar.get(Calendar.YEAR);
-                db.monthlyRevenueDao().insertAll(new MonthlyRevenue(Double.valueOf(income_sum), currentMonth, currentYear));
+                db.monthlyRevenueDao().insertAll(new MonthlyRevenue(income_sum, currentMonth, currentYear));
                 int monthID = db.monthlyRevenueDao().findByMonth(currentMonth).id;
-                for (int i=0; i<et.length; i++){
+                for (int i=0; i<incomes.size(); i++)
+                {
                     db.incomeDao().insertAll(new Income(tv[i].getText().toString(),Double.parseDouble(et[i].getText().toString()), monthID ));
                 }
 
-                Intent intent = new Intent(Define_incomes.this, Home.class);
+                Intent intent = new Intent(Define_incomes.this, Define_Projects.class);
                 intent.putExtra("total_income_value", total_income);
                 startActivity(intent);
             }

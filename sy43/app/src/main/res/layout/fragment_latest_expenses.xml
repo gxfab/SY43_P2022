@@ -7,39 +7,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".latest_expenses">
 
-    <androidx.cardview.widget.CardView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="15dp"
-        android:id="@+id/latest_expense_card">
+        android:layout_height="200dp"
+        android:id="@+id/latest_expense_rv"/>
 
-        <TextView
-            android:id="@+id/latest_expense_date"
-            android:layout_width="50dp"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:layout_height="match_parent"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:text="06 June 2022"/>
-        <TextView
-            android:id="@+id/latest_expense_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Sub Category"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/latest_expense_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center"
-            android:layout_marginEnd="10dp"
-            android:text="Amount"
-            android:textSize="18sp"
-            android:textColor="@color/black"/>
-
-    </androidx.cardview.widget.CardView>
 </FrameLayout>

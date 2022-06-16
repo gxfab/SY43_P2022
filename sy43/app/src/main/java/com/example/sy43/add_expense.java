@@ -88,6 +88,7 @@ public class add_expense extends Fragment {
          }
         );
 
+
 //        List<String> subcategories = new ArrayList<String>();
 //        for (SubCategory subcat : db.subCategoryDao().findByCategory(db.categoryDao().findByName(catText).id)) {
 //            subcategories.add(subcat.getName());
@@ -131,7 +132,6 @@ public class add_expense extends Fragment {
 
                 latest_expenses latestExpenses = new latest_expenses();
                 latestExpenses.setArguments(bundle);
-
 
 
 //                TabLayout.Tab tab = tabLayout.getTabAt(1);

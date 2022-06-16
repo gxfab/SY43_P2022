@@ -25,6 +25,7 @@ public class Welcome_Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
 
+        toDefineCategories();
         /*SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE );
 
         String firstTime = sharedPreferences.getString("First Time Install","");
@@ -65,6 +66,7 @@ public class Welcome_Page extends AppCompatActivity {
             intent.putExtra("total_income_value", total_income);
             startActivity(intent);
         }
+
 
     }
 

@@ -5,9 +5,11 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
+        android:background="@color/white"
         android:id="@+id/project_item"
         app:cardCornerRadius="15dp"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        app:cardElevation="15dp">
         <TextView
             android:id="@+id/project_item_name"
             android:layout_width="match_parent"
@@ -15,7 +17,8 @@
             android:text="Project Name"
             android:textSize="20sp"
             android:layout_gravity="center|top"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/black"/>
         <TextView
             android:id="@+id/project_item_cost"
             android:layout_width="150dp"
@@ -23,7 +26,8 @@
             android:text="500$"
             android:textSize="18sp"
             android:layout_gravity="start|bottom"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/black"/>
         <TextView
             android:id="@+id/project_item_priority"
             android:layout_width="150dp"
@@ -31,6 +35,7 @@
             android:textSize="18sp"
             android:text="10/10"
             android:layout_gravity="bottom|end"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/black"/>
 
     </androidx.cardview.widget.CardView>

@@ -14,12 +14,13 @@ import java.util.List;
 
 public class AddExpenseAdapter extends RecyclerView.Adapter<AddExpenseAdapter.ExpenseViewHolder> {
 
-    private List<String> expense_name, expense_amount,dates;
+    private List<String> expense_name, expense_amount,dates,subcategories;
 
-    public AddExpenseAdapter(List<String> dates, List<String> expense_name, List<String> expense_amount){
+    public AddExpenseAdapter(List<String> dates, List<String> expense_name, List<String> expense_amount, List<String> subcategories){
         this.dates=dates;
         this.expense_name=expense_name;
         this.expense_amount=expense_amount;
+        this.subcategories = subcategories;
     }
 
 
@@ -33,8 +34,9 @@ public class AddExpenseAdapter extends RecyclerView.Adapter<AddExpenseAdapter.Ex
     @Override
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
         holder.dtv.setText(dates.get(position));
-        holder.stv.setText(expense_name.get(position));
+        holder.ntv.setText(expense_name.get(position));
         holder.atv.setText(expense_amount.get(position));
+        holder.stv.setText(subcategories.get(position));
     }
 
     @Override
@@ -44,13 +46,14 @@ public class AddExpenseAdapter extends RecyclerView.Adapter<AddExpenseAdapter.Ex
 
     public class ExpenseViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView dtv, stv, atv;
+        private TextView dtv, stv, atv, ntv;
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
 
             dtv= itemView.findViewById(R.id.latest_expense_date);
-            stv= itemView.findViewById(R.id.latest_expense_name);
+            ntv= itemView.findViewById(R.id.latest_expense_name);
             atv= itemView.findViewById(R.id.latest_expense_value);
+            stv = itemView.findViewById(R.id.latest_expense_subcategory);
         }
     }
 }
