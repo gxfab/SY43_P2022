@@ -16,6 +16,8 @@ import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import com.example.lafo_cheuse.material.DatabaseDate
+import com.example.lafo_cheuse.material.ExpenseAdapter
+import com.example.lafo_cheuse.material.IncomeAdapter
 import com.example.lafo_cheuse.models.*
 import com.example.lafo_cheuse.viewmodels.CategoryViewModel
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
@@ -27,8 +29,14 @@ import kotlinx.coroutines.withContext
 import java.util.*
 
 /**
- * TODO : Finish documentation
+ * Activity where the user creates one time incomes/expenses
+ * Before creation of an expense, the budget is checked to see if the expense is within the budget
  *
+ * @property incomeViewModel - an instance of [IncomeViewModel] to manage the DB
+ * @property expenseViewModel - an instance of [ExpenseViewModel] to manage the DB
+ * @property categoryViewModel - an instance of [CategoryViewModel] to manage the DB
+ * @property resultLauncher - an [ActivityResultLauncher] to get the category selected in the CategoryChooserActivity
+ * @property selectedCategory - variable to check the selected category
  */
 class CreateIncomeExpenseActivity : AppCompatActivity() {
     private val expenseViewModel : ExpenseViewModel by viewModels()
@@ -82,6 +90,13 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Method to initialize the ToggleButton that switches between creating an expense or an income
+     *
+     * @param toggleButton - the [ToggleButton] of the activity
+     * @param confirmButton - the [Button] of the activity
+     */
+
     private fun initToggleButton(toggleButton : ToggleButton, confirmButton : Button) {
         toggleButton.setOnClickListener {
             if(toggleButton.isChecked) {
@@ -91,6 +106,15 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
             }
         }
     }
+
+    /**
+     * Method to initialize the Button that confirms the expense or the income
+     *
+     * @param confirmButton - the [Button] of the activity
+     * @param toggleButton - the [ToggleButton] of the activity
+     * @param ieName - the [TextView] of the name of the expense/income
+     * @param ieValue - the [TextView] of the value of the expense/income
+     */
 
     private fun initConfirmButton(
         confirmButton: Button,
@@ -139,6 +163,14 @@ class CreateIncomeExpenseActivity : AppCompatActivity() {
         return DatabaseDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(
             Calendar.DAY_OF_MONTH))
     }
+
+    /**
+     * The fonction that checks if an expense can be added
+     *
+     * @param date - a [DatabaseDate] to add the date to the expense and verify the budget
+     * @param ieName - the [TextView] of the name of the expense/income
+     * @param ieValue - the [TextView] of the value of the expense/income
+     */
 
     private suspend fun addExpense(
         date : DatabaseDate,
