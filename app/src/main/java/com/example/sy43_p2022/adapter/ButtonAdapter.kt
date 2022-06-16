@@ -4,10 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.database.PiggyBankDatabase
 import com.example.sy43_p2022.database.entities.Category
+import com.example.sy43_p2022.database.entities.SubCategory
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 class ButtonAdapter(
     private val layoutId: Int,
@@ -18,9 +23,9 @@ class ButtonAdapter(
     private lateinit var db: PiggyBankDatabase
 
     class OnClickListener(private val recyclerView: RecyclerView, private val layoutType: String) {
-        fun onClick(category: Category) {
+        fun onClick(subCategories: List<SubCategory>) {
             val id: Int = if (layoutType == "white") R.layout.item_sub_white else R.layout.item_sub_gray
-            recyclerView.adapter = TextEditAdapter(id, category)
+            recyclerView.adapter = TextEditAdapter(id, subCategories)
         }
     }
 
@@ -44,7 +49,10 @@ class ButtonAdapter(
             holder.title.text = it.name
             holder.amount.text = it.amount.toString()
             holder.itemView.setOnClickListener() {
-                onClickListener.onClick(holder.category)
+                MainScope().launch {
+                    val subCategories: List<SubCategory> = db.piggyBankDAO().getSubCategoriesByCategoryId(holder.category.catid)
+                    onClickListener.onClick(subCategories)
+                }
             }
         }
     }

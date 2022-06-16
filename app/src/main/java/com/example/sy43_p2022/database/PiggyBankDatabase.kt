@@ -7,9 +7,8 @@ import androidx.room.RoomDatabase
 import androidx.room.Room
 import com.example.sy43_p2022.database.dao.*
 import com.example.sy43_p2022.database.entities.*
-import androidx.lifecycle.lifecycleScope
 
-@Database(entities = [(Category::class), (SubCategory::class)], version = 1)
+@Database(entities = [(Category::class), (SubCategory::class)], version = 2)
 abstract class PiggyBankDatabase : RoomDatabase(){
     // DAO initialization
     abstract fun piggyBankDAO(): PiggyBankDAO
@@ -22,7 +21,7 @@ abstract class PiggyBankDatabase : RoomDatabase(){
                 INSTANCE = Room.databaseBuilder(
                     context.applicationContext,
                     PiggyBankDatabase::class.java,
-                    "PiggyBank.db" // modify this line to force regenerate the db on launch
+                    "PiggyBank.db"
                 )
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()

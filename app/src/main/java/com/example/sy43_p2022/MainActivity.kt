@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sy43_p2022.database.PiggyBankDatabase
 import com.example.sy43_p2022.fragments.HomeFragment
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.example.sy43_p2022.database.entities.Category
 import com.example.sy43_p2022.database.entities.SubCategory
 import kotlinx.coroutines.launch
-import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private lateinit var db: PiggyBankDatabase
@@ -79,20 +77,18 @@ class MainActivity : AppCompatActivity() {
 
             val categories: MutableList<Category> = mutableListOf<Category>()
             val subCategories: MutableList<SubCategory> = mutableListOf<SubCategory>()
-            var subId = 1;
 
             for (categoryName in categoriesNames) {
                 val category = Category(name = categoryName)
                 categories += category
-                for ((index, subCategoriesNames) in categoriesSubCategoriesNames.withIndex()) {
-                    for (subCategoryName in subCategoriesNames) {
-                        val subCategory = SubCategory(name = subCategoryName, categoryId = index + 1)
-                        subCategories += subCategory
-                    }
-                }
             }
 
-            Log.d("test", subCategories.toString())
+            for ((index, subCategoriesNames) in categoriesSubCategoriesNames.withIndex()) {
+                for (subCategoryName in subCategoriesNames) {
+                    val subCategory = SubCategory(name = subCategoryName, categoryId = index + 1)
+                    subCategories += subCategory
+                }
+            }
 
             dao.insertCategory(*categories.toTypedArray())
             dao.insertSubCategory(*subCategories.toTypedArray())
