@@ -244,6 +244,16 @@
                         android:text="@string/done"
                         app:icon="@drawable/ic_outline_check_24" />
 
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:id="@+id/pieChart"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_gravity="center"
+                        />
+
+
                 </LinearLayout>
 
             </net.yolopix.moneyz.widgets.LockableViewPager>

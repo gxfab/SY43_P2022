@@ -1,5 +1,6 @@
 package net.yolopix.moneyz
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -13,6 +14,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
@@ -28,6 +35,7 @@ import net.yolopix.moneyz.utils.NumberMaxInputFilter
 import net.yolopix.moneyz.widgets.LockableViewPager
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+
 
 /**
  * This activity enables the user to make a new prevision for the current month.
@@ -59,6 +67,7 @@ class PrevisionActivity : AppCompatActivity() {
     private lateinit var paydayTextField: com.google.android.material.textfield.TextInputLayout
     private lateinit var doneButton: Button
     private lateinit var stepsViewPager: LockableViewPager
+    private lateinit var pieChart: PieChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +91,7 @@ class PrevisionActivity : AppCompatActivity() {
         paydayTextField = findViewById(R.id.textfield_payday)
         doneButton = findViewById(R.id.button_done)
         stepsViewPager = findViewById(R.id.viewpager_steps)
+        pieChart = findViewById(R.id.pieChart)
 
         val endDescriptionTextView: TextView = findViewById(R.id.textview_end_description)
         val headerLayout: LinearLayout = findViewById(R.id.layout_prevision_header)
@@ -115,7 +125,10 @@ class PrevisionActivity : AppCompatActivity() {
                     }
                     lastPage = currentPageIndex
                 } else if (currentPageIndex == PrevisionStepsAdapter.viewList.size - 1) {
+
+
                     lifecycleScope.launch {
+                        loadPiechartData()
                         val categorizedAmount = db.categoryDao()
                             .calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
                         val totalAmount: Float? = salaryEditText.text.toString().toFloatOrNull()
@@ -343,6 +356,52 @@ class PrevisionActivity : AppCompatActivity() {
         val hasNoErrors = salaryTextField.error == null && paydayTextField.error == null
         nextFloatingActionButton.isEnabled = hasNoErrors
         stepsViewPager.isLocked = !hasNoErrors
+    }
+    private suspend fun loadPiechartData(){
+        val entries = ArrayList<PieEntry>()
+        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.BILLS), "Bills"))
+        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.ENVELOPES), "Envelopes"))
+        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.SINKING_FUNDS), "Sinking funds"))
+        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.EXTRA_DEBT), "extra debt"))
+        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.EXTRA_SAVINGS), "extra savings"))
+        val colors = ArrayList<Int>()
+        colors.add(Color.BLUE)
+        colors.add(Color.RED)
+        colors.add(Color.YELLOW)
+        colors.add(Color.GREEN)
+        colors.add(Color.MAGENTA)
+
+        val dataset = PieDataSet(entries,"")
+        dataset.setDrawValues(false)
+        val data = PieData(dataset)
+        dataset.colors = colors
+        data.setDrawValues(true)
+        data.setValueFormatter(PercentFormatter(pieChart))
+        data.setValueTextSize(12f)
+        data.setValueTextColor(Color.WHITE)
+        pieChart.data = data
+        pieChart.invalidate()
+        pieChart.setUsePercentValues(true)
+        pieChart.setDrawEntryLabels(false)
+        pieChart.setDrawMarkers(false)
+
+
+        pieChart.description.isEnabled = false
+
+        val l: Legend = pieChart.legend // get legend of pie
+
+        l.verticalAlignment =
+            Legend.LegendVerticalAlignment.CENTER // set vertical alignment for legend
+
+        l.horizontalAlignment =
+            Legend.LegendHorizontalAlignment.RIGHT // set horizontal alignment for legend
+
+        l.orientation = Legend.LegendOrientation.VERTICAL // set orientation for legend
+
+        l.setDrawInside(false)
+
+
+
     }
 
 }

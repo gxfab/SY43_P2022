@@ -29,12 +29,12 @@ interface CategoryDao {
         accountUid: Int
     ): Float
 
-    @Query("SELECT predictedAmount FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid AND uid == :uid")
+    @Query("SELECT IFNULL(SUM(predictedAmount),0) FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid AND expenseType ==:expenseType")
     suspend fun retrieveSinglePredictedAmount(
         monthNumber: Int,
         yearNumber: Int,
         accountUid: Int,
-        uid: Int
+        expenseType: ExpenseType
     ): Float
 
     @Query("SELECT uid FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid")
