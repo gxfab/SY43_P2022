@@ -39,7 +39,23 @@ class BudgetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_budget)
 
-        //Calcul des timestamp
+        //Adding listener on change to income
+        findViewById<EditText>(R.id.editIncome).addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(
+                p0: CharSequence?,
+                p1: Int,
+                p2: Int,
+                p3: Int
+            ) {    }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+
+            override fun afterTextChanged(p0: Editable?) {
+                updateRemaining(null)
+            }
+        })
 
 
         //Traitement base de données
@@ -99,9 +115,10 @@ class BudgetActivity : AppCompatActivity() {
                 this@BudgetActivity.startLastMonthTimestamp,
                 this@BudgetActivity.startMonthTimestamp
             )
-            findViewById<EditText>(R.id.editIncome).text = Editable.Factory.getInstance().newEditable(incomeLastMonth.toString())
+            this@BudgetActivity.runOnUiThread {
+                findViewById<EditText>(R.id.editIncome).text = Editable.Factory.getInstance().newEditable(incomeLastMonth.toString())
+            }
         }
-
     }
 
     fun updateRemaining(view:View?){
@@ -109,7 +126,6 @@ class BudgetActivity : AppCompatActivity() {
         //Count of estimated spend global value
         var spend=0
         var income=0F
-        var color="FFFFFF"
         for (idType in 1..11) {
             val idInput = resources.getIdentifier(("valueType$idType"), "id", packageName)
             try {
@@ -119,7 +135,10 @@ class BudgetActivity : AppCompatActivity() {
         }
 
         //Input estimated
-        income=findViewById<EditText>(R.id.editIncome).text.toString().toFloat()
+        if(findViewById<EditText>(R.id.editIncome).text.toString()!=""){
+            income=findViewById<EditText>(R.id.editIncome).text.toString().toFloat()
+        }
+
 
         val budget=income-spend
 
