@@ -11,6 +11,7 @@ import androidx.room.Update;
 
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.StableExpensesAndIncome;
+import com.sucelloztm.sucelloz.models.SubCategories;
 
 import java.util.List;
 
@@ -93,5 +94,8 @@ public interface StableExpensesAndIncomeDao {
      */
     @Query("SELECT * FROM stable_expenses WHERE sign LIKE '+'")
     LiveData<List<StableExpensesAndIncome>> getAllPositiveStable();
+
+    @Query("SELECT * FROM stable_expenses WHERE sub_categories_id=:idOfSubCategory")
+    LiveData<List<StableExpensesAndIncome>> getAllStableFromSubCategory(long idOfSubCategory);
 
 }

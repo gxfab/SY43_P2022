@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "062815b52f264f996bfa1a6b2678587e",
+    "identityHash": "9885bb8b82757a6371303470f354ab56",
     "entities": [
       {
         "tableName": "categories",
@@ -194,7 +194,7 @@
       },
       {
         "tableName": "stable_expenses",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `amount` INTEGER NOT NULL, `sign` INTEGER NOT NULL, `date` INTEGER NOT NULL, `frequency` INTEGER NOT NULL, `sub_categories_id` INTEGER NOT NULL, FOREIGN KEY(`sub_categories_id`) REFERENCES `sub_categories`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `amount` INTEGER NOT NULL, `sign` TEXT, `date` TEXT, `frequency` INTEGER NOT NULL, `sub_categories_id` INTEGER NOT NULL, FOREIGN KEY(`sub_categories_id`) REFERENCES `sub_categories`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -217,14 +217,14 @@
           {
             "fieldPath": "sign",
             "columnName": "sign",
-            "affinity": "INTEGER",
-            "notNull": true
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "date",
             "columnName": "date",
-            "affinity": "INTEGER",
-            "notNull": true
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "frequency",
@@ -332,7 +332,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '062815b52f264f996bfa1a6b2678587e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9885bb8b82757a6371303470f354ab56')"
     ]
   }
 }

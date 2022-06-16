@@ -89,7 +89,7 @@ public class SubCategoriesRepository {
         subCategoriesDao.updateSubCategory(subCategory);
     }
 
-    public SubCategories getCurrentSubCategory() {
+    public static SubCategories getCurrentSubCategory() {
         return currentSubCategory;
     }
 

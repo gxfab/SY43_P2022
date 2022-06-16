@@ -77,18 +77,18 @@ public class ZeroBudgetFragment extends Fragment {
             }
         });
 
-        int zeroBudgetResult = zeroBudgetViewModel.getAllZeroBudgetResult();
-        String strZeroBudgetResult = String.valueOf(zeroBudgetResult);
-
-        zeroBudgetViewModel.setTextView(zeroBudgetTextView,strZeroBudgetResult);
-
-        if(zeroBudgetResult > 0){
-            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-16711936);
-        }else if (zeroBudgetResult == 0){
-            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-16776961);
-        }else{
-            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-65536);
-        }
+//        int zeroBudgetResult = zeroBudgetViewModel.getAllZeroBudgetResult();
+//        String strZeroBudgetResult = String.valueOf(zeroBudgetResult);
+//
+//        zeroBudgetViewModel.setTextView(zeroBudgetTextView,strZeroBudgetResult);
+//
+//        if(zeroBudgetResult > 0){
+//            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-16711936);
+//        }else if (zeroBudgetResult == 0){
+//            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-16776961);
+//        }else{
+//            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-65536);
+//        }
 
 
 

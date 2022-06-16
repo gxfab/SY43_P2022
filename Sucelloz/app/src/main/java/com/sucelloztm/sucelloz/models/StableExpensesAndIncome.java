@@ -27,10 +27,10 @@ public class StableExpensesAndIncome {
     private int amount;
 
     @ColumnInfo(name="sign")
-    private char sign;
+    private String sign;
 
     @ColumnInfo(name="date")
-    private int date;
+    private String date;
 
     @ColumnInfo(name="frequency")
     private int frequency;
@@ -53,7 +53,7 @@ public class StableExpensesAndIncome {
      * @param frequency frequency
      * @param subCategoriesId id of the subcategory
      */
-    public StableExpensesAndIncome(String name, int amount, char sign,int date,int frequency, long subCategoriesId){
+    public StableExpensesAndIncome(String name, int amount, String sign, String date, int frequency, long subCategoriesId){
         this.name=name;
         this.amount=amount;
         this.sign=sign;
@@ -91,7 +91,7 @@ public class StableExpensesAndIncome {
      * getter
      * @return sign
      */
-    public char getSign(){
+    public String getSign(){
         return sign;
     }
 
@@ -99,7 +99,7 @@ public class StableExpensesAndIncome {
      * getter
      * @return date
      */
-    public int getDate(){
+    public String getDate(){
         return date;
     }
 
@@ -148,7 +148,7 @@ public class StableExpensesAndIncome {
      * setter
      * @param sign sign
      */
-    public void setSign(char sign){
+    public void setSign(String sign){
         this.sign=sign;
     }
 
@@ -156,7 +156,7 @@ public class StableExpensesAndIncome {
      * setter
      * @param date date
      */
-    public void setDate(int date){
+    public void setDate(String date){
         this.date=date;
     }
 

@@ -47,12 +47,14 @@ public class StableExpensesAndIncomeRepository {
 
     /**
      * invokes the query to insert an stable
-     * @param spending stable to insert
+     * @param stableExpensesAndIncome stable to insert
      */
-    public void insert(StableExpensesAndIncome spending){
-        stableExpensesAndIncomeDao.insertStableExpensesAndIncome(spending);
+    public void insert(StableExpensesAndIncome stableExpensesAndIncome){
+        stableExpensesAndIncomeDao.insertStableExpensesAndIncome(stableExpensesAndIncome);
     }
 
-
+    public LiveData<List<StableExpensesAndIncome>> getAllStableFromSubCategory(long idOfSubCategory){
+        return this.stableExpensesAndIncomeDao.getAllStableFromSubCategory(idOfSubCategory);
+    }
 
 }

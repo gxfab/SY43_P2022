@@ -46,4 +46,5 @@
     <string name="stable_date_text_view">01/01/00</string>
     <string name="stable_amount_text_view">XXX€</string>
     <string name="sub_zero_budget_name">Sub Zero Budget</string>
+    <string name="amount_stable">Amount</string>
 </resources>
