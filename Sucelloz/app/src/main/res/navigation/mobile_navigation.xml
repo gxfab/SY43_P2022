@@ -31,7 +31,11 @@
         android:id="@+id/navigation_zero_budget"
         android:name="com.sucelloztm.sucelloz.ui.zerobudget.ZeroBudgetFragment"
         android:label="@string/zero_budget_name"
-        tools:layout="@layout/zero_budget_fragment" />
+        tools:layout="@layout/zero_budget_fragment" >
+        <action
+            android:id="@+id/action_navigation_zero_budget_to_navigation_sub_zero_budget"
+            app:destination="@id/navigation_sub_zero_budget" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_categories"
         android:name="com.sucelloztm.sucelloz.ui.categories.CategoriesFragment"
@@ -61,6 +65,15 @@
             app:destination="@id/navigation_categories"
             app:enterAnim="@anim/slide_in_top"
             app:exitAnim="@anim/slide_out_top" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_sub_zero_budget"
+        android:name="com.sucelloztm.sucelloz.ui.subZeroBudget.SubZeroBudgetFragment"
+        android:label="@string/sub_zero_budget_name">
+        <action
+            android:id="@+id/action_navigation_sub_zero_budget_to_navigation_zero_budget"
+            app:destination="@id/navigation_zero_budget" />
     </fragment>
 
 

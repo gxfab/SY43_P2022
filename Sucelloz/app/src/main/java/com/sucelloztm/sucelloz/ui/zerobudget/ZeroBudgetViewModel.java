@@ -13,19 +13,15 @@ import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 public class ZeroBudgetViewModel extends AndroidViewModel {
-    private final MutableLiveData<String> mText;
     private SubCategoriesRepository subCategoriesRepository;
 
     public ZeroBudgetViewModel(Application application) {
         super(application);
         this.subCategoriesRepository = new SubCategoriesRepository(application);
-
-        mText = new MutableLiveData<>();
-        mText.setValue("This is Zero Budget fragment");
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setCurrentSubCategory(SubCategories subCategory){
+        SubCategoriesRepository.setCurrentSubCategory(subCategory);
     }
 
     public SubCategories getSubCategoryByName(String name){

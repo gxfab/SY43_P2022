@@ -7,19 +7,6 @@
     tools:context=".ui.zerobudget.ZeroBudgetFragment">
 
 
-    <TextView
-        android:id="@+id/zero_budget_text_view"
-        android:layout_width="155dp"
-        android:layout_height="95dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="82dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="69dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/zero_budget_recycler_view" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/zero_budget_recycler_view"

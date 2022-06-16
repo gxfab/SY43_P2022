@@ -93,7 +93,7 @@ public class SubCategoriesRepository {
         return currentSubCategory;
     }
 
-    public void setCurrentSubCategory(SubCategories currentSubCategory) {
+    public static void setCurrentSubCategory(SubCategories currentSubCategory) {
         SubCategoriesRepository.currentSubCategory = currentSubCategory;
     }
 }

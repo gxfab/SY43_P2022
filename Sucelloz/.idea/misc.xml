@@ -33,6 +33,7 @@
         <entry key="app/src/main/res/layout/sub_categories_item.xml" value="0.11875" />
         <entry key="app/src/main/res/layout/sub_zero_budget_fragment.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/sub_zero_budget_item.xml" value="0.2552083333333333" />
+        <entry key="app/src/main/res/layout/zero_budget_fragment.xml" value="0.1786833855799373" />
         <entry key="app/src/main/res/menu/categories_context_menu.xml" value="0.3301239013671875" />
         <entry key="app/src/main/res/menu/context_menu.xml" value="0.2552083333333333" />
       </map>
