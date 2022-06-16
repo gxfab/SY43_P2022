@@ -71,9 +71,8 @@ public class DataRepository {
         });
     }
 
-    public LiveData<Category> getCategoryFrom(int catID){
-
-        return this.mCategoryDAO.getCategoryFrom(catID);
+    public LiveData<Double> getBudgetOf(int categoryID){
+        return this.mCategoryDAO.getBudgetOf(categoryID);
     }
 
     /*
@@ -101,6 +100,15 @@ public class DataRepository {
             mSubCategoryDAO.updateSubCategory(catID, subcatName, id);
         });
     }
+
+    public LiveData<List<String>> getAllSubCategoriesNames() {
+        return this.mSubCategoryDAO.getAllSubCategoriesNames();
+    }
+
+    public SubCategory getSubCategoriesNamed(String name) {
+        return this.mSubCategoryDAO.getSubCategoryNamed(name);
+    }
+
 
 
     /*
@@ -151,6 +159,12 @@ public class DataRepository {
         });
     }
 
+    public void update(InOutCome inOutCome){
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mInOutComeDAO.updateInOutCome(inOutCome);
+        });
+    }
+
     /*
         PROFILE
      */
@@ -197,4 +211,7 @@ public class DataRepository {
         return this.mProfileDAO.getUserName(userID);
     }
 
+    public LiveData<Double> getAmountUsedBySubcategory(int m_subcat_id) {
+        return this.mInOutComeDAO.getAmountUsedBySubcategory(m_subcat_id);
+    }
 }

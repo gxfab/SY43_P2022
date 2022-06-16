@@ -39,7 +39,14 @@ public class SubCategory {
         this.m_SUBCAT_NAME = SubCategory;
     }
 
+    /**
+     * METHODS
+     */
 
+    @Override
+    public String toString(){
+        return this.m_SUBCAT_NAME;
+    }
 
     /**
      * GETTER / SETTER

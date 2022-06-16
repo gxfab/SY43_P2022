@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="CircularDeterminateProgressBar">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/circle</item>
     </style>
+
     <style name="inputTextWhite">
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@color/white</item>
+    </style>
+
+    <style name="SpinnerThemeLight" >
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:textColorTertiary">@color/black</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/black</item>
+
     </style>
 </resources>

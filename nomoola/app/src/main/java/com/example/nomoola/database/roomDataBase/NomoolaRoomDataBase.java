@@ -47,6 +47,7 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             NomoolaRoomDataBase.class, "DB_CATEGORY")
                             .addCallback(sRoomDataBaseCallback)
+                            .allowMainThreadQueries()
                             .build();
                 }
             }
@@ -75,28 +76,28 @@ public abstract class NomoolaRoomDataBase extends RoomDatabase {
         private void populateCategory(){
             CategoryDAO dao = INSTANCE.categoryDAO();
 
-            dao.insertCategory(new Category("Food", 150, Category.CategoryType.OUTCOME, LocalDate.now()));
-            dao.insertCategory(new Category("Car", 250, Category.CategoryType.OUTCOME, LocalDate.now()));
-            dao.insertCategory(new Category("Subscription", 50, Category.CategoryType.OUTCOME, LocalDate.now()));
+            dao.insertCategory(new Category("FOOD", 150, Category.CategoryType.OUTCOME, LocalDate.now()));
+            dao.insertCategory(new Category("CAR", 250, Category.CategoryType.OUTCOME, LocalDate.now()));
+            dao.insertCategory(new Category("SUBSCRIPTION", 50, Category.CategoryType.OUTCOME, LocalDate.now()));
 
-            dao.insertCategory(new Category("Salary", 2000, Category.CategoryType.INCOME, LocalDate.now()));
-            dao.insertCategory(new Category("Invests", 500, Category.CategoryType.INCOME, LocalDate.now()));
+            dao.insertCategory(new Category("SALARY", 2000, Category.CategoryType.INCOME, LocalDate.now()));
+            dao.insertCategory(new Category("INVESTS", 500, Category.CategoryType.INCOME, LocalDate.now()));
 
-            dao.insertCategory(new Category("House", 250000, Category.CategoryType.PROJECT, LocalDate.now()));
-            dao.insertCategory(new Category("New Car", 10000, Category.CategoryType.PROJECT, LocalDate.now()));
+            dao.insertCategory(new Category("HOUSE", 250000, Category.CategoryType.PROJECT, LocalDate.now()));
+            dao.insertCategory(new Category("NEW CAR", 10000, Category.CategoryType.PROJECT, LocalDate.now()));
         }
 
         private void populateSubCategory(){
             SubCategoryDAO dao = INSTANCE.subCategoryDAO();
 
-            SubCategory undCat = new SubCategory(1, "Groceries");
+            SubCategory undCat = new SubCategory(1, "GROCERIES");
             dao.insertSubCategory(undCat);
-            undCat = new SubCategory(1, "Restaurants");
+            undCat = new SubCategory(1, "RESTAURANTS");
             dao.insertSubCategory(undCat);
 
-            undCat = new SubCategory(2, "Reparations");
+            undCat = new SubCategory(2, "REPARATION");
             dao.insertSubCategory(undCat);
-            undCat = new SubCategory(2, "Gaz");
+            undCat = new SubCategory(2, "GAZ");
             dao.insertSubCategory(undCat);
         }
 

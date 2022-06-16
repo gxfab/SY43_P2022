@@ -54,8 +54,6 @@ public class CategoryFragment extends Fragment {
             }
         });
 
-
-
         mCatViewModel.getCategoriesOfType(Category.CategoryType.INCOME).observe(getViewLifecycleOwner(), categories -> {
             categoryIncomeAdapter.submitList(categories);
         });

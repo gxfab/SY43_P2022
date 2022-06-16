@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_category" />
     <fragment
         android:id="@+id/historyPage"
-        android:name="com.example.nomoola.fragment.HistoryFragment"
+        android:name="com.example.nomoola.fragment.InOutComeFragment"
         android:label="History"
         tools:layout="@layout/fragment_history" />
     <fragment

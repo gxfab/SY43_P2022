@@ -126,7 +126,7 @@
                 android:orientation="vertical">
 
                 <ProgressBar
-                    android:id="@+id/item_category_progressBar"
+                    android:id="@+id/subcat_cat_progressBar"
                     style="@style/CircularDeterminateProgressBar"
                     android:layout_width="80dp"
                     android:layout_height="80dp"

@@ -40,5 +40,10 @@ public interface SubCategoryDAO {
             "AND SUBCAT_ID=:id")
     void updateSubCategory(int catID, String subcatName, int id);
 
+    @Query("SELECT SUBCAT_NAME " +
+            "FROM T_SUBCATEGORY")
+    LiveData<List<String>> getAllSubCategoriesNames();
 
+    @Query("SELECT * FROM T_SUBCATEGORY WHERE SUBCAT_NAME=:name")
+    SubCategory getSubCategoryNamed(String name);
 }

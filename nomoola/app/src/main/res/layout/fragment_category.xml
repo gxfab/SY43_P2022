@@ -78,7 +78,7 @@
             android:drawableStart="@drawable/ic_add_category"
             android:paddingHorizontal="10dp"
             android:text="@string/add_category_button"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

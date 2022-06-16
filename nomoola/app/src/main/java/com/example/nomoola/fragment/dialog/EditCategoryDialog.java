@@ -1,6 +1,7 @@
 package com.example.nomoola.fragment.dialog;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import com.example.nomoola.viewModel.CategoryViewModel;
 
 public class EditCategoryDialog extends DialogFragment {
 
-    private TextView view_CategoryTitle, view_CategoryName, view_CategoryBudgetAmount;
+    private TextView view_CategoryTitle;
     private EditText edit_CategoryName, edit_CategoryBudgetAmount;
     private ImageButton exitButton, deleteButton, confirmEditButton;
     private Spinner spinner;
@@ -45,15 +46,13 @@ public class EditCategoryDialog extends DialogFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         this.categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         View view = inflater.inflate(R.layout.dialog_category, container, false);
-        this.view_CategoryTitle = view.findViewById(R.id.textViewCategoryTitle);
-        this.view_CategoryName = view.findViewById(R.id.text_view_category_name);
-        this.view_CategoryBudgetAmount = view.findViewById(R.id.textViewCategoryBudget);
-        this.edit_CategoryName = view.findViewById(R.id.editTextCategoryName);
-        this.edit_CategoryBudgetAmount = view.findViewById(R.id.editTextCatBudgetAmount);
-        this.exitButton = view.findViewById(R.id.exitButton);
-        this.deleteButton = view.findViewById(R.id.deleteCategoryButton);
-        this.confirmEditButton = view.findViewById(R.id.confirmEditButton);
-        this.spinner = view.findViewById(R.id.dialog_cat_spinner);
+        this.view_CategoryTitle = view.findViewById(R.id.dialog_cat_title);
+        this.edit_CategoryName = view.findViewById(R.id.dialog_cat_editName);
+        this.edit_CategoryBudgetAmount = view.findViewById(R.id.dialog_cat_editAmount);
+        this.exitButton = view.findViewById(R.id.dialog_cat_exitbutton);
+        this.deleteButton = view.findViewById(R.id.dialog_cat_delete);
+        this.confirmEditButton = view.findViewById(R.id.dialog_cat_confirmEdit);
+        this.spinner = view.findViewById(R.id.dialog_cat_spinnerType);
 
         this.view_CategoryTitle.setText(category.getM_CAT_NAME());
         this.edit_CategoryName.setText(category.getM_CAT_NAME());
@@ -62,6 +61,8 @@ public class EditCategoryDialog extends DialogFragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.category_type ,androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         this.spinner.setAdapter(adapter);
+
+        this.edit_CategoryName.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 
         this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
