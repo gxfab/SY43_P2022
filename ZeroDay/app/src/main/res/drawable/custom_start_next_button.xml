@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/zero_start_next_button_arrow"
+        android:width="40dp"
+        android:height="50dp" />
+</layer-list>
