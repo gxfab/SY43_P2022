@@ -1,8 +1,9 @@
 package com.sucelloztm.sucelloz.ui.zerobudget;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.graphics.Color;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,24 +12,23 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.CalendarContract;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+
 import android.widget.TextView;
 
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.ZeroBudgetFragmentBinding;
-import com.sucelloztm.sucelloz.models.Categories;
+
 import com.sucelloztm.sucelloz.models.SubCategories;
-import com.sucelloztm.sucelloz.ui.categories.CategoriesAdapter;
-import com.sucelloztm.sucelloz.ui.categories.CategoriesFragment;
 import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
 import com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesAdapter;
 
 import java.util.ArrayList;
+
 
 
 public class ZeroBudgetFragment extends Fragment {
@@ -37,6 +37,10 @@ public class ZeroBudgetFragment extends Fragment {
     private ArrayList<SubCategories> zeroBudgetSubCategoriesList;
     private ZeroBudgetViewModel zeroBudgetViewModel;
     private TextView zeroBudgetTextView;
+    private Integer infrequentExpenses = 0;
+    private Integer infrequentIncomes = 0;
+    private Integer stableExpenses = 0;
+    private Integer stableIncomes = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,10 +54,8 @@ public class ZeroBudgetFragment extends Fragment {
         RecyclerView recyclerView = binding.zeroBudgetRecyclerView;
 
         zeroBudgetSubCategoriesList = new ArrayList<>();
-
         String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
                 "Sinking Funds", "Extra debt", "Extra Savings"};
-
         for (String name:zeroBudgetNameList
              ) {
             zeroBudgetSubCategoriesList.add(zeroBudgetViewModel.getSubCategoryByName(name));
@@ -65,19 +67,30 @@ public class ZeroBudgetFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
         recyclerView.setAdapter(subCategoriesAdapter);
 
-        ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-            @Override
-            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                TextView currentZeroBudgetCategoryTextView=(TextView) v.findViewById(R.id.text_view_subcategories);
-                String currentZeroBudgetCategoryName = currentZeroBudgetCategoryTextView.getText().toString();
-                SubCategories currentSubCategory = zeroBudgetViewModel.getSubCategoryByName(currentZeroBudgetCategoryName);
-                zeroBudgetViewModel.setCurrentSubCategory(currentSubCategory);
-                NavHostFragment.findNavController(ZeroBudgetFragment.this).navigate(R.id.action_navigation_zero_budget_to_navigation_sub_zero_budget);
-                //Log.d("CategoriesFragment",currentCategoryName);
-            }
+        ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
+            TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.text_view_subcategories);
+            String currentZeroBudgetCategoryName = currentZeroBudgetCategoryTextView.getText().toString();
+            SubCategories currentSubCategory = zeroBudgetViewModel.getSubCategoryByName(currentZeroBudgetCategoryName);
+            zeroBudgetViewModel.setCurrentSubCategory(currentSubCategory);
+            NavHostFragment.findNavController(ZeroBudgetFragment.this).navigate(R.id.action_navigation_zero_budget_to_navigation_sub_zero_budget);
+            //Log.d("CategoriesFragment",currentCategoryName);
         });
 
-        int zeroBudgetResult = zeroBudgetViewModel.getAllZeroBudgetResult();
+        final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> infrequentExpenses = newInfrequentExpenses;
+
+        final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes -> infrequentIncomes = newInfrequentIncomes;
+
+        final Observer<Integer> stableExpensesObserver= newStableExpenses -> stableExpenses = newStableExpenses;
+
+        final Observer<Integer> stableIncomesObserver= newStableIncomes -> stableIncomes = newStableIncomes;
+
+        zeroBudgetViewModel.getInfrequentExpenses().observe(getViewLifecycleOwner(),infrequentExpensesObserver);
+        zeroBudgetViewModel.getInfrequentIncomes().observe(getViewLifecycleOwner(),infrequentIncomesObserver);
+        zeroBudgetViewModel.getStableExpenses().observe(getViewLifecycleOwner(),stableExpensesObserver);
+        zeroBudgetViewModel.getStableIncomes().observe(getViewLifecycleOwner(),stableIncomesObserver);
+
+        int zeroBudgetResult =(infrequentIncomes + stableIncomes) - (infrequentExpenses + stableExpenses);
+
         String strZeroBudgetResult = String.valueOf(zeroBudgetResult);
 
         zeroBudgetViewModel.setTextView(zeroBudgetTextView,strZeroBudgetResult);
