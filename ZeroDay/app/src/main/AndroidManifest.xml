@@ -29,12 +29,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".views.MainActivity"
-            android:exported="true">
-
-        </activity>
-
 
         <!-- Activité de validation du prénom -->
         <activity

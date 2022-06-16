@@ -1,6 +1,7 @@
 package com.example.zeroday.views
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -46,7 +47,8 @@ class CycleSettingActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.cycle_setting_continue_button).setOnClickListener()
         {
-
+            val intent = Intent(this,StartTotalIncomesActivity::class.java)
+            startActivity(intent)
         }
     }
 

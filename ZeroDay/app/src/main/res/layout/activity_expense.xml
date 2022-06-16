@@ -46,14 +46,21 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
 
+
         android:textColor="@color/zero_subtitle"
         android:hint="Filter categories"
         android:textColorHint="@color/zero_subtitle"
         android:background="@drawable/search_bar"
         android:iconifiedByDefault="false"
+
+        android:inputType="text"
+        android:maxLines="1"
+        android:lines="1"
+        android:singleLine="true"
+
         />
 
-    <ScrollView
+    <FrameLayout
         android:id="@+id/category_grid"
         android:layout_width="match_parent"
         android:layout_height="350dp"
@@ -105,7 +112,8 @@
         android:layout_marginLeft="@dimen/default_left_margin"
         android:layout_marginRight="@dimen/default_left_margin"
 
-        android:backgroundTint="@color/zero_purple"
+        android:background="@drawable/custom_cycle_setting_continue_button"
+        app:backgroundTint="@null"
 
         android:text="Save"
         android:textColor="@color/white"

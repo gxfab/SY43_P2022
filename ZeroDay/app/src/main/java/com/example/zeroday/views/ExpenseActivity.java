@@ -1,12 +1,19 @@
 package com.example.zeroday.views;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.zeroday.R;
+import com.example.zeroday.models.ExpenseCategory;
+import com.example.zeroday.services.ExpenseCategoryService;
 
 public class ExpenseActivity extends AppCompatActivity {
 
@@ -26,7 +33,7 @@ public class ExpenseActivity extends AppCompatActivity {
         TextView subTitle = findViewById(R.id.expenses_subtitle);
 
         Button add = findViewById(R.id.add_category_button);
-
+        Button save = findViewById(R.id.save_button);
 
         //Cas "income"
         if(inputType == false){
@@ -39,12 +46,36 @@ public class ExpenseActivity extends AppCompatActivity {
                     categoryPopup.build();
                 }
             });
+            //Cas premier démarrage application
+            if(outputType==true){
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ExpenseActivity.this,CycleSettingActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+            //Cas régulier
+            else
+            {
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                    }
+                });
+            }
+
         }
         //Cas "expense"
         else
         {
             title.setText("Add Expenses");
             subTitle.setText("Add one or more expenses");
+
+            // loadFragment(new GridFragment());
+
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -59,18 +90,49 @@ public class ExpenseActivity extends AppCompatActivity {
                     categoryPopup.getAddButton().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            // Ajouter la nouvelle cat de Expense à la base de données ICI
+                            //Ajout catégorie de dépense
+                            new ExpenseCategoryService(getApplicationContext()).create(new ExpenseCategory("cat-exp-",categoryPopup.getEditText()));
                             categoryPopup.dismiss();
                         }
                     });
                     categoryPopup.build();
                 }
             });
+
+            //Cas premier démarrage application
+            if(outputType==true){
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ExpenseActivity.this,MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+            }
+            //Cas régulier
+            else
+            {
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        //On sauvegarde les modifications
+                        finish();
+                    }
+                });
+            }
         }
 
 
 
 
+    }
+
+    private void loadFragment(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.category_grid,fragment);
+        transaction.commit();
     }
 
 }

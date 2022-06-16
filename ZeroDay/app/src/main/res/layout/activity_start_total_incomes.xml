@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.StartTotalIncomesActivity">
+    tools:context=".views.StartTotalIncomesActivity"
+    android:background="@color/white">
     
     <RelativeLayout
         android:layout_width="300dp"
@@ -44,15 +45,20 @@
         />
     
     <Button
+        android:id="@+id/total_incomes_continue_button"
         android:layout_width="300dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="50dp"
+        android:layout_marginRight="@dimen/default_left_margin"
+        android:layout_marginLeft="@dimen/default_left_margin"
         android:background="@drawable/custom_cycle_setting_continue_button"
         app:backgroundTint="@null"
         android:text="Continue"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
         android:textSize="15dp"
         />
 

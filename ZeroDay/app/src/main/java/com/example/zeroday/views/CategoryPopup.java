@@ -43,6 +43,8 @@ public class CategoryPopup extends Dialog {
         return this.add;
     }
 
+    public String getEditText(){return this.label.getText().toString();}
+
     public void build(){
         show();
     }

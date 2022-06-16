@@ -1,10 +1,12 @@
 package com.example.zeroday.views;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -45,6 +47,15 @@ public class ChartFragment extends Fragment {
             Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_chart, container, false);
+
+        ImageButton imageButton = view.findViewById(R.id.profil_button);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SettingHomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //Recuperation du PieChart
         pieChart = view.findViewById(R.id.piechart);
@@ -101,6 +112,8 @@ public class ChartFragment extends Fragment {
         currentDataVals.add(new RadarEntry(2));
         currentDataVals.add(new RadarEntry(5));
         currentDataVals.add(new RadarEntry(3));
+        currentDataVals.add(new RadarEntry(3));
+        currentDataVals.add(new RadarEntry(3));
         currentDataVals.add(new RadarEntry(1));
 
         ArrayList<RadarEntry> lastDataVals = new ArrayList<>();
@@ -109,13 +122,15 @@ public class ChartFragment extends Fragment {
         lastDataVals.add(new RadarEntry(3));
         lastDataVals.add(new RadarEntry(4));
         lastDataVals.add(new RadarEntry(6));
+        lastDataVals.add(new RadarEntry(3));
+        lastDataVals.add(new RadarEntry(3));
         lastDataVals.add(new RadarEntry(4));
 
         //Création du premier dataset à partir des entrées ( dépenses actuelles )
         RadarDataSet currentDataSet = new RadarDataSet(currentDataVals, "Current expenses");
 
         //Création du second dataset à partir des entrées ( dépenses dernier cycle )
-        RadarDataSet lastDataSet = new RadarDataSet(lastDataVals, "Last cycle expenses");
+        RadarDataSet lastDataSet = new RadarDataSet(lastDataVals, "Provisional budget");
 
         //Ajout des couleurs
         currentDataSet.setFillColor(ContextCompat.getColor(getContext(), R.color.zero_purple));
@@ -131,7 +146,7 @@ public class ChartFragment extends Fragment {
         data.addDataSet(lastDataSet);
 
         //Labels des données
-        String[] labels = {"Hobbies","Health","Transports","Food","House","Custom"};
+        String[] labels = {"Hobbies","Health","Transports","Food","House","Communications","Extras","Custom"};
         XAxis xAxis = radarChart.getXAxis();
         //Ajout des labels
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
@@ -153,11 +168,13 @@ public class ChartFragment extends Fragment {
     private void loadPieChart(){
 
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(0.2f, "Hobbies"));
+        entries.add(new PieEntry(0.15f, "Hobbies"));
         entries.add(new PieEntry(0.1f, "Health"));
         entries.add(new PieEntry(0.1f, "Transports"));
         entries.add(new PieEntry(0.05f, "Food"));
-        entries.add(new PieEntry(0.15f, "House"));
+        entries.add(new PieEntry(0.10f, "House"));
+        entries.add(new PieEntry(0.05f, "Communications"));
+        entries.add(new PieEntry(0.05f, "Extras"));
         entries.add(new PieEntry(0.4f, "Custom"));
 
 
@@ -166,6 +183,8 @@ public class ChartFragment extends Fragment {
                 ,ContextCompat.getColor(getContext(), R.color.transports_color)
                 ,ContextCompat.getColor(getContext(), R.color.food_color)
                 ,ContextCompat.getColor(getContext(), R.color.house_color)
+                ,ContextCompat.getColor(getContext(), R.color.communications_color)
+                ,ContextCompat.getColor(getContext(), R.color.extras_color)
                 ,ContextCompat.getColor(getContext(), R.color.custom_expense_color)};
 
         //Préparation des couleurs
