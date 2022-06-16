@@ -2,32 +2,28 @@ package com.example.econo_misons;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
+import com.anychart.chart.common.listener.Event;
+import com.anychart.chart.common.listener.ListenersInterface;
 import com.example.econo_misons.database.CurrentData;
 import com.example.econo_misons.database.CustomTreeDataEntry;
 import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
-import com.example.econo_misons.database.models.Budget;
-import com.example.econo_misons.database.models.Category;
-import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
-import com.example.econo_misons.database.models.Transaction;
 import com.example.econo_misons.database.models.TreemapEnv;
 import com.example.econo_misons.database.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -45,14 +41,12 @@ import com.anychart.enums.Orientation;
 import com.anychart.enums.SelectionMode;
 import com.anychart.enums.TreeFillingMethod;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.BlockingDeque;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText username;
-    Button add, view, depense;
+    Button transVoir, depense, catVoir;
+    TextView budgetName;
     private String st = new String();
     private DBViewModel dbViewModel;
     AnyChartView anyChartView;
@@ -65,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*username = findViewById(R.id.username);
-        add = findViewById(R.id.addbutton);
-        view = findViewById(R.id.viewbutton);*/
+        catVoir = findViewById(R.id.voir_cat);
+        budgetName = findViewById(R.id.budget_name);
+        transVoir = findViewById(R.id.voir_trans);
         depense = findViewById(R.id.ajout_dep);
         progessBar = findViewById(R.id.progressBar);
         anyChartView = findViewById(R.id.any_chart_view);
@@ -77,12 +71,13 @@ public class MainActivity extends AppCompatActivity {
         configureViewModel();
         CurrentData.init();
         this.dbViewModel.getAllPrevBudgets().observe(this,this::seeList);
-        Log.e("Main",st);
 
 
         this.dbViewModel.getTreemapList().observe(this, this::updateTreeMap);
 
-        depense.setOnClickListener(v -> changeActivity());
+        catVoir.setOnClickListener(v -> changeActivity(CategoryTransactions.class));
+        transVoir.setOnClickListener(v -> changeActivity(allTransactions.class));
+        depense.setOnClickListener(v -> changeActivity(AjoutDepense.class));
 
 
         this.makeBottomBar();
@@ -95,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
             st += prev.toString();
         }
         this.st = st;
+        
+        budgetName.setText("Budget : "+CurrentData.getBudget().budgetName);
     }
 
     private void makeBottomBar(){
@@ -144,8 +141,8 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
-    private void changeActivity(){
-        Intent intent = new Intent(this, AjoutDepense.class);
+    private void changeActivity(Class cl){
+        Intent intent = new Intent(this, cl);
         startActivity(intent);
     }
 

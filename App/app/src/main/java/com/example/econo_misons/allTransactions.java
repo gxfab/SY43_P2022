@@ -87,7 +87,7 @@ public class allTransactions extends AppCompatActivity implements TransactionAda
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
         // Set selected
-        bottomNavigationView.setSelectedItemId(R.id.BudgetPrev);
+        bottomNavigationView.setSelected(false);
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 

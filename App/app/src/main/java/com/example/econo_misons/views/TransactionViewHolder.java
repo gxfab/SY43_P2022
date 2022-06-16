@@ -29,20 +29,15 @@ public class TransactionViewHolder extends RecyclerView.ViewHolder implements Vi
         binding.transName.setText(transaction.transactionName);
         binding.transDate.setText(transaction.date);
 
-        Drawable drawable = binding.item.getBackground();
-        drawable = DrawableCompat.wrap(drawable);
-        //the color is a direct color int and not a color resource
-        DrawableCompat.setTint(drawable, Color.RED);
         if (transaction.expense){
-            DrawableCompat.setTint(drawable, Color.RED);
+            binding.item.setBackgroundColor(Color.RED);
             binding.transAmount.setText("-" + transaction.amountTransaction);
 
         } else {
-            DrawableCompat.setTint(drawable, Color.GREEN);
+            binding.item.setBackgroundColor(Color.GREEN);
             binding.transAmount.setText("+" + transaction.amountTransaction);
 
         }
-        binding.item.setBackground(drawable);
         binding.modifyTrans.setOnClickListener(this);
         binding.removeTrans.setOnClickListener(this);
         this.callbackWeakRef = new WeakReference<TransactionAdapter.Listener>(callback);

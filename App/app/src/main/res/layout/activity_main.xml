@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/budget_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
@@ -30,37 +31,16 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-<!--    <EditText
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="160dp"
-        android:inputType="text"
-        android:hint="Username"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
     <Button
-        android:id="@+id/addbutton"
-        android:layout_width="match_parent"
+        android:id="@+id/voir_cat"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
-        android:textSize="24dp"
+        android:layout_marginBottom="70dp"
+        android:text="Voir\nCategories"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/any_chart_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
-
-    <Button
-        android:id="@+id/viewbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addbutton" />-->
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <com.anychart.AnyChartView
@@ -97,12 +77,24 @@
 
     <Button
         android:id="@+id/ajout_dep"
-        android:layout_width="215dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="70dp"
-        android:text="Ajouter une depense"
+        android:text="Ajouter une\ntransaction"
+        app:layout_constraintTop_toBottomOf="@id/any_chart_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/voir_trans"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/voir_trans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:text="Voir\ntransactions"
+        app:layout_constraintTop_toBottomOf="@id/any_chart_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/ajout_dep" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

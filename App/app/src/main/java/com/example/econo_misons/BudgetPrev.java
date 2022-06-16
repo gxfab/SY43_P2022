@@ -66,14 +66,6 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         this.makeBottomBar();
     }
 
-    /*public void testCategory(int category){
-        Intent intent = new Intent(this, Categorie.class);
-        Bundle b = new Bundle();
-        b.putInt("key", category); //Your id
-        intent.putExtras(b); //Put your id to your next Intent
-        startActivity(intent);
-    }*/
-
     //Pop up for add category
     public void onButtonShowPopupWindowClick(View view) {
 
