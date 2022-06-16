@@ -14,9 +14,11 @@ public class Epices extends Aliment{
     int id;
     String title;
     int id_aliment;
+
     Epices(int id,int price, String title) {
         super(id,price);
-        this.title=title;
+        this.title=title
+        ;
     }
 
     //GETTER
