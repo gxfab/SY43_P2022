@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 public class Evenement {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int id;
     String type;
     String name;

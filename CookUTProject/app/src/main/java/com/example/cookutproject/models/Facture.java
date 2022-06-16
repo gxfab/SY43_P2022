@@ -13,7 +13,7 @@ import java.util.Date;
         childColumns = "id_event"))
 public class Facture {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private float amount;
     private Date date;

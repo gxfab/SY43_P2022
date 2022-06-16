@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Event"></activity>
-        <activity android:name=".models.Recap"></activity>
+        <activity android:name=".Recap"></activity>
     </application>
 
 </manifest>
