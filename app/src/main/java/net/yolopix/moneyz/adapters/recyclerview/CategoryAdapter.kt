@@ -20,11 +20,15 @@ import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Category
 
 /**
- * Adapter for the category recyclerview
+ * Adapter for the category RecyclerView
+ *
  * @param categoryList List of categories to display
  * @param parentContext Activity context
  * @param expenseMode If true, display only categories with expenses and nest them under each item. If false, display all categories in prevision mode.
  * @param db The database to let each category build its list of expenses
+ * @param monthNumber The month where the category should be added
+ * @param yearNumber The year of the month
+ * @param accountUid The identifier of the account containing the category
  * @param maxAmountWhenEditing The maximum amount the category can handle if it's edited
  */
 class CategoryAdapter(
@@ -52,6 +56,15 @@ class CategoryAdapter(
         val itemDivider: View = itemView.findViewById(R.id.divider_item_category)
     }
 
+    /**
+     * Called by RecyclerView to display the data at the specified position. This method should
+     * update the contents of the ViewHolder.itemView to reflect the item at the given
+     * position.
+     *
+     * @param viewHolder The ViewHolder which should be updated to represent the contents of the
+     * item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
         // Common to both prevision/expenses view
         viewHolder.categoryNameTextView.text = categoryList[position].name
@@ -125,6 +138,11 @@ class CategoryAdapter(
 
     }
 
+    /**
+     * For a single category, load the header bar containing prediction and current sum
+     * Also load the model for the nested recyclerview containing the expenses
+     * @param viewHolder The bound view holder of the category item view
+     */
     private suspend fun loadCategoriesAndExpenses(viewHolder: CategoryViewHolder) {
         val position = viewHolder.adapterPosition
         viewHolder.expensesRecyclerView.adapter = ExpensesAdapter(
@@ -160,10 +178,25 @@ class CategoryAdapter(
         }
     }
 
+    /**
+     * Returns the total number of items in the data set held by the adapter.
+     *
+     * @return The total number of items in this adapter.
+     */
     override fun getItemCount(): Int {
         return categoryList.size
     }
 
+    /**
+     * Called when RecyclerView needs a new ViewHolder of the given type to represent
+     * an item.
+     *
+     * @param parent The ViewGroup into which the new View will be added after it is bound to
+     * an adapter position.
+     * @param viewType The view type of the new View.
+     *
+     * @return A new ViewHolder that holds a View of the given view type.
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view: View = inflater.inflate(R.layout.item_category, parent, false)

@@ -21,9 +21,12 @@ import java.time.format.DateTimeFormatter
 
 /**
  * An adapter to manage display of expenses elements in a RecyclerView
+ *
  * @param expenseList the list of expenses to display
  * @param monthNumber the month to display on the date view
  * @param yearNumber the year to display on the date view
+ * @param db The main database of the app
+ * @param parentContext The parent activity of the RecyclerView
  */
 class ExpensesAdapter(
     private val expenseList: List<Expense>,
@@ -43,12 +46,31 @@ class ExpensesAdapter(
         val textViewAmount: TextView = itemView.findViewById(R.id.text_view_amount)
     }
 
+    /**
+     * Called when RecyclerView needs a new ViewHolder of the given type to represent
+     * an item.
+     *
+     * @param parent The ViewGroup into which the new View will be added after it is bound to
+     * an adapter position.
+     * @param viewType The view type of the new View.
+     *
+     * @return A new ViewHolder that holds a View of the given view type.
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view: View = inflater.inflate(R.layout.item_expense, parent, false)
         return ExpensesViewHolder(view)
     }
 
+    /**
+     * Called by RecyclerView to display the data at the specified position. This method should
+     * update the contents of the ViewHolder.itemView to reflect the item at the given
+     * position.
+     *
+     * @param holder The ViewHolder which should be updated to represent the contents of the
+     * item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
     override fun onBindViewHolder(holder: ExpensesViewHolder, position: Int) {
         val moneyFormat = NumberFormat.getCurrencyInstance()
         moneyFormat.maximumFractionDigits = 2
@@ -81,6 +103,11 @@ class ExpensesAdapter(
         }
     }
 
+    /**
+     * Returns the total number of items in the data set held by the adapter.
+     *
+     * @return The total number of items in this adapter.
+     */
     override fun getItemCount(): Int {
         return expenseList.size
     }

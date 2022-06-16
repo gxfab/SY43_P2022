@@ -5,6 +5,10 @@ import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import net.yolopix.moneyz.R
 
+/**
+ * A simple adapter to show views inside a ViewPager widget as pages
+ * This one is used to display pages for each step of the zero based budget previsions
+ */
 class PrevisionStepsAdapter : PagerAdapter() {
 
     companion object {

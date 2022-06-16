@@ -12,6 +12,7 @@ import net.yolopix.moneyz.model.ExpenseType
  * @param monthNumber Month associated with the category
  * @param yearNumber The year for the month
  * @param accountUid The identifier of the account in which the category has been created
+ * @param expenseType The type of expense in the zero based budget method (bills, envelopes...)
  */
 @Entity
 data class Category(

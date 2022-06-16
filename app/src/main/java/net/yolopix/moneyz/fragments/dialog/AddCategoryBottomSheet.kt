@@ -54,7 +54,9 @@ class AddCategoryBottomSheet(
         return inflater.inflate(R.layout.bottom_sheet_add_prevision, container, false)
     }
 
-
+    /**
+     * This function is called when the bottom sheet is created
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -141,6 +143,9 @@ class AddCategoryBottomSheet(
         dismiss()
     }
 
+    /**
+     * Check if the fields contains errors and prevent the user from continuing if so
+     */
     private fun checkFormErrors() {
         buttonAddCategoryName.isEnabled = categoryNameTextField.error == null
                 && categoryPriceTextField.error == null
