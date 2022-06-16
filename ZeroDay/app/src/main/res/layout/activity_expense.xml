@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.ExpenseActivity"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/default_top_margin"
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:text="Add Expenses"
+        style="@style/TitleDefaultStyle"
+        android:id="@+id/expenses_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expenses_title"
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:text="Add one or more expenses"
+        style="@style/SubtitleDefaultStyle"
+
+        android:id="@+id/expenses_subtitle"/>
+
+    <EditText
+        android:id="@+id/expense_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expenses_subtitle"
+        app:layout_constraintRight_toRightOf="parent"
+
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:layout_marginRight="@dimen/default_left_margin"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+
+        android:textColor="@color/zero_subtitle"
+        android:hint="Filter categories"
+        android:textColorHint="@color/zero_subtitle"
+        android:background="@drawable/search_bar"
+        android:iconifiedByDefault="false"
+        />
+
+    <ScrollView
+        android:id="@+id/category_grid"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+
+        app:layout_constraintTop_toBottomOf="@id/expense_search_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/default_left_margin"
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:background="@color/white"
+        />
+
+    <Button
+
+        android:id="@+id/add_category_button"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/category_grid"
+        app:layout_constraintBottom_toTopOf="@id/save_button"
+
+        android:drawableLeft="@drawable/ic_add"
+        android:drawableTint="@color/black"
+
+
+        android:text="Add New"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textAllCaps="false"
+        android:background="@drawable/add_category_button"
+        app:backgroundTint="@null"
+
+
+        />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_category_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:layout_marginRight="@dimen/default_left_margin"
+
+        android:backgroundTint="@color/zero_purple"
+
+        android:text="Save"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

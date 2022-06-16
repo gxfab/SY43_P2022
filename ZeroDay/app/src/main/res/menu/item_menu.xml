@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/home1"
-        android:title="P"
-        android:icon="@drawable/ic_home"/>
+    <item android:id="@+id/chart"
+        android:title="Charts"
+        android:icon="@drawable/chart_selector"/>
 
-    <item android:id="@+id/home2"
-        android:title="P"
-        android:icon="@drawable/ic_home"/>
+    <item android:id="@+id/add"
+        android:title="Add"
+        android:icon="@drawable/add_selector"/>
 
-    <item android:id="@+id/home3"
-        android:title="P"
-        android:icon="@drawable/ic_home"/>
-
-    <item android:id="@+id/home4"
-        android:title="P"
-        android:icon="@drawable/ic_home"/>
-
+    <item android:id="@+id/piggy"
+        android:title="Expenses"
+        android:icon="@drawable/piggy_selector"/>
 
 </menu>
