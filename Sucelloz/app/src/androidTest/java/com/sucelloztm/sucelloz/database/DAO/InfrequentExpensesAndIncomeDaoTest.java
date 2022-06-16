@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -20,6 +21,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @RunWith(AndroidJUnit4.class)
 public class InfrequentExpensesAndIncomeDaoTest {
@@ -192,5 +194,33 @@ public class InfrequentExpensesAndIncomeDaoTest {
 
         List<InfrequentExpensesAndIncome> infrequents = infrequentExpensesAndIncomeDao.getInfrequent();
         assertThat(infrequents.isEmpty(), is(true));
+    }
+
+    @Test
+    public void getSumOfInfrequentIncomes(){
+        Categories category = new Categories("test", true);
+        long categoriesId = categoriesDao.insertCategory(category);
+        SubCategories subCategory = new SubCategories("test", categoriesId);
+        long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
+        InfrequentExpensesAndIncome infrequent = new InfrequentExpensesAndIncome("test", 20, "+","1990", subCategoriesId);
+        SubCategories subCategory3 = new SubCategories("test3", categoriesId);
+        long subCategoriesId3 = subCategoriesDao.insertSubCategory(subCategory3);
+        InfrequentExpensesAndIncome infrequent2 = new InfrequentExpensesAndIncome("test5", 2, "-","199", subCategoriesId3);
+
+        List<Long> insertedID = infrequentExpensesAndIncomeDao.insertInfrequentExpensesAndIncome(infrequent,infrequent2);
+        infrequent.setId(insertedID.get(0));
+        infrequent2.setId(insertedID.get(1));
+
+        LiveData<Integer> lsum = infrequentExpensesAndIncomeDao.getSumOfInfrequentIncomes();
+        final Integer[] sum = new Integer[1];
+        final Observer<Integer> cringeobs= new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer cringeint) {
+                sum[0] = cringeint;
+            }
+        };
+        Integer expected = 22;
+        List<InfrequentExpensesAndIncome> infrequents = infrequentExpensesAndIncomeDao.getInfrequent();
+        assertEquals(expected,sum[0]);
     }
 }
