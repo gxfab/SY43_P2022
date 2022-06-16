@@ -1,6 +1,7 @@
 package com.example.econo_misons.database.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -9,6 +10,7 @@ import androidx.room.Update;
 
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.Transaction;
+import com.example.econo_misons.database.models.TreemapEnv;
 
 import java.util.List;
 
@@ -31,7 +33,22 @@ public interface transactionDAO {
     @Query("SELECT * FROM `Transaction` WHERE `Transaction`.USER_ID = :userID")
     LiveData<List<Transaction>> getUserTransactions(int userID);
     @Query("Select BUD_ID,PREV_DATE,CAT_ID,SUM(AM_TRANS) AS ENV_SUM FROM `Transaction`" +
-            "WHERE BUD_ID = :BudgetID AND PREV_DATE = :prevDate " +
+            "WHERE BUD_ID = :budgetID AND PREV_DATE = :prevDate " +
             "GROUP BY CAT_ID")
-    LiveData<List<Envelope>> getCurrentBudgetEnvelope(int BudgetID, String prevDate);
+    LiveData<List<Envelope>> getCurrentBudgetEnvelope(int budgetID, String prevDate);
+
+    @Query("Select " +
+            "BUD_ID AS budgetID," +
+            "PREV_DATE AS dateEnv," +
+            "CAT_ID AS categoryID," +
+            "NAME_CAT AS categoryName," +
+            "COLOR_CAT AS categoryColor," +
+            "SUM(AM_TRANS) AS sumEnv " +
+            "FROM `Transaction`" +
+            "INNER JOIN Category ON `Transaction`.CAT_ID = Category.ID " +
+            "WHERE BUD_ID = :budgetID AND PREV_DATE = :prevDate " +
+            "GROUP BY CAT_ID")
+    LiveData<List<TreemapEnv>> getTreemapEnv(int budgetID, String prevDate);
 }
+
+

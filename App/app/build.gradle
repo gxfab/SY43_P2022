@@ -51,4 +51,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.recyclerview:recyclerview:1.2.1"
+
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.4'
 }

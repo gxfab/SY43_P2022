@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
 import com.example.econo_misons.database.CurrentData;
+import com.example.econo_misons.database.CustomTreeDataEntry;
 import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
 import com.example.econo_misons.database.models.Budget;
@@ -23,10 +28,26 @@ import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.Transaction;
+import com.example.econo_misons.database.models.TreemapEnv;
 import com.example.econo_misons.database.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.TreeDataEntry;
+import com.anychart.charts.TreeMap;
+import com.anychart.core.ui.Title;
+import com.anychart.enums.Align;
+import com.anychart.enums.LegendLayout;
+import com.anychart.enums.Orientation;
+import com.anychart.enums.SelectionMode;
+import com.anychart.enums.TreeFillingMethod;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingDeque;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     Button add, view, depense;
     private String st = new String();
     private DBViewModel dbViewModel;
+    AnyChartView anyChartView;
+    ProgressBar progessBar;
 
 
 
@@ -42,10 +65,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        username = findViewById(R.id.username);
+        /*username = findViewById(R.id.username);
         add = findViewById(R.id.addbutton);
-        view = findViewById(R.id.viewbutton);
+        view = findViewById(R.id.viewbutton);*/
         depense = findViewById(R.id.ajout_dep);
+        progessBar = findViewById(R.id.progressBar);
+        anyChartView = findViewById(R.id.any_chart_view);
+        anyChartView.setProgressBar(progessBar);
+        anyChartView.setBackgroundColor("#208383");
 
         configureViewModel();
         CurrentData.init();
@@ -53,20 +80,10 @@ public class MainActivity extends AppCompatActivity {
         Log.e("Main",st);
 
 
+        this.dbViewModel.getTreemapList().observe(this, this::updateTreeMap);
+
         depense.setOnClickListener(v -> changeActivity());
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*String usernameTXT = username.getText().toString();
-                newUser(usernameTXT);*/
- /*             dbViewModel.setCurrentUser(1, MainActivity.this);
-                dbViewModel.setCurrentBudget(1, MainActivity.this);
-                dbViewModel.setCurrentPrevBudget(new PrevisionalBudget(1,"2022-06"));*/
-            }
-        });
-
-        view.setOnClickListener(v -> getAllUsers());
 
         this.makeBottomBar();
     }
@@ -132,5 +149,19 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void updateTreeMap(List<TreemapEnv> envList){
+        dbViewModel.getTreemap(envList).observe(this,this::drawTreemap);
+
+    }
+
+    private void drawTreemap(TreeMap treeMap){
+
+        anyChartView.setChart(treeMap);
+        Toast.makeText(this, "finished", Toast.LENGTH_SHORT).show();
+    }
+
+
 
 }
+
+

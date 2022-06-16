@@ -56,14 +56,4 @@ public class Envelope {
         this.categoryID = categoryID;
         this.sumEnv = 0;
     }
-
-    @Override
-    public String toString() {
-        return "Envelope{" +
-                "dateEnv='" + dateEnv + '\'' +
-                ", budgetID=" + budgetID +
-                ", categoryID=" + categoryID +
-                ", sumEnv=" + sumEnv +
-                '}';
-    }
 }

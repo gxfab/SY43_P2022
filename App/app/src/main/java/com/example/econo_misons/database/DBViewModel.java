@@ -8,12 +8,15 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.anychart.charts.TreeMap;
+import com.anychart.data.Tree;
 import com.example.econo_misons.MainActivity;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.Transaction;
+import com.example.econo_misons.database.models.TreemapEnv;
 import com.example.econo_misons.database.models.User;
 import com.example.econo_misons.database.repositories.BudgetDataRepository;
 import com.example.econo_misons.database.repositories.CategoryDataRepository;
@@ -151,4 +154,13 @@ public class DBViewModel extends ViewModel {
     public LiveData<List<Transaction>> getBudgetPrevTransactions(PrevisionalBudget prevBud) {return transactionDataRepository.getBudgetPrevTransactions(prevBud);}
 
     public LiveData<List<Transaction>> getUserTransactions(int userID) {return transactionDataRepository.getUserTransactions(userID);}
+
+    //TREEMAP
+    public LiveData<List<TreemapEnv>> getTreemapList(){
+        return transactionDataRepository.getTreeMapList();
+    }
+    public LiveData<TreeMap> getTreemap(List<TreemapEnv> listEnv){
+        return transactionDataRepository.getTreemap(listEnv);
+    }
+
 }
