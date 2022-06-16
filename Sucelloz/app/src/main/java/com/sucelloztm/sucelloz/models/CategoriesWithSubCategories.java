@@ -5,6 +5,9 @@ import androidx.room.Relation;
 
 import java.util.List;
 
+/**
+ * link between category and subcategory entities
+ */
 public class CategoriesWithSubCategories {
     @Embedded public Categories categories;
     @Relation(

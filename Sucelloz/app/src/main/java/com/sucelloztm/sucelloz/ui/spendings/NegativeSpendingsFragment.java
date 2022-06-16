@@ -13,11 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.animation.Easing;
 import com.sucelloztm.sucelloz.databinding.NegativeSpendingsFragmentBinding;
-import com.sucelloztm.sucelloz.databinding.PositiveSpendingsFragmentBinding;
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
-import com.sucelloztm.sucelloz.ui.charts.PieChartGenerator;
+import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
+import com.sucelloztm.sucelloz.ui.charts.PieChartSubCategoriesGenerator;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSpendingDialogFragment;
 
 import java.util.ArrayList;
@@ -27,7 +27,9 @@ public class NegativeSpendingsFragment extends Fragment {
     private NegativeSpendingsFragmentBinding binding;
     private SpendingsViewModel spendingsViewModel;
     private List<Spendings> currentNegativeSpendingsList;
+    private List<SubCategoriesWithInfrequentSum> currentSubCategoriesWithInfrequentSumList;
     private RecyclerView recyclerView;
+    private PieChartSubCategoriesGenerator pieGen;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,12 +44,9 @@ public class NegativeSpendingsFragment extends Fragment {
         spendingsViewModel = new ViewModelProvider(this).get(SpendingsViewModel.class);
         currentNegativeSpendingsList = new ArrayList<>();
         NegativeSpendingsAdapter adapter = new NegativeSpendingsAdapter(currentNegativeSpendingsList);
-
-        PieChartGenerator pieGen = new PieChartGenerator();
-
-        PieChart pieChart = pieGen.createPieChart(getContext(), binding.frameLayoutNegativeSpendings);
-        pieChart.invalidate();
-
+        currentSubCategoriesWithInfrequentSumList = new ArrayList<>();
+        pieGen = new PieChartSubCategoriesGenerator(currentSubCategoriesWithInfrequentSumList);
+        pieGen.createPieChart(getContext(),binding.frameLayoutNegativeSpendings);
         final Observer<List<InfrequentExpensesAndIncome>> negativeSpendingsDataSet = new Observer<List<InfrequentExpensesAndIncome>>() {
             @Override
             public void onChanged(List<InfrequentExpensesAndIncome> infrequentExpensesAndIncomes) {
@@ -64,7 +63,22 @@ public class NegativeSpendingsFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         };
+
+        final Observer<List<SubCategoriesWithInfrequentSum>> subCategoriesWithNegativeInfrequentSumObserver = new Observer<List<SubCategoriesWithInfrequentSum>>() {
+            @Override
+            public void onChanged(List<SubCategoriesWithInfrequentSum> subCategoriesWithInfrequentSumList) {
+                currentSubCategoriesWithInfrequentSumList.clear();
+                currentSubCategoriesWithInfrequentSumList.addAll(subCategoriesWithInfrequentSumList);
+
+                pieGen.getPieChart().clear();
+                pieGen.getPieChart().setData(pieGen.generatePieData());
+                pieGen.getPieChart().animateY(1400, Easing.EaseInOutQuad);
+                pieGen.getPieChart().invalidate();
+            }
+        };
+
         spendingsViewModel.getAllNegativeSpendings().observe(getViewLifecycleOwner(),negativeSpendingsDataSet);
+        spendingsViewModel.getAllSubCategoriesWithNegativeInfrequentSum().observe(getViewLifecycleOwner(),subCategoriesWithNegativeInfrequentSumObserver);
         recyclerView = binding.spendingsRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);

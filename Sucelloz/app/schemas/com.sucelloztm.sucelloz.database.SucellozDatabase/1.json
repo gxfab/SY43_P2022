@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "edf3aa01ad57130705302063cbdcc9ac",
+    "identityHash": "062815b52f264f996bfa1a6b2678587e",
     "entities": [
       {
         "tableName": "categories",
@@ -259,12 +259,80 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "sub_categories_infrequent_sum",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sum_of_infrequent` INTEGER NOT NULL, `id_of_category` INTEGER NOT NULL, `nameOfSubCategory` TEXT, `sign` TEXT, `id` INTEGER, `name` TEXT, `categories_id` INTEGER, PRIMARY KEY(`id_of_category`), FOREIGN KEY(`id_of_category`) REFERENCES `categories`(`category_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "sumOfInfrequent",
+            "columnName": "sum_of_infrequent",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idOfCategory",
+            "columnName": "id_of_category",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameOfSubCategory",
+            "columnName": "nameOfSubCategory",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sign",
+            "columnName": "sign",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "subCategory.id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "subCategory.name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "subCategory.categoriesId",
+            "columnName": "categories_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id_of_category"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "categories",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "id_of_category"
+            ],
+            "referencedColumns": [
+              "category_id"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'edf3aa01ad57130705302063cbdcc9ac')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '062815b52f264f996bfa1a6b2678587e')"
     ]
   }
 }

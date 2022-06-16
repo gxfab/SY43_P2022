@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -25,17 +26,18 @@ import java.util.List;
 
 public class BarChartGenerator {
     private List<Savings> currentSavingsArrayList;
+    private BarChart barChart;
 
     public BarChartGenerator(List<Savings> currentSavingsArrayList) {
         this.currentSavingsArrayList = currentSavingsArrayList;
     }
 
-    private BarChart barChart;
 
 
     public BarChart getBarChart() {
         return barChart;
     }
+
 
     public void createBarChart(Context context, FrameLayout parent) {
 
@@ -48,6 +50,7 @@ public class BarChartGenerator {
         barChart.setDrawBarShadow(false);
 
         Typeface tf = Typeface.create((Typeface) null,Typeface.NORMAL);
+
 
         barChart.setData(generateBarData());
 
@@ -63,26 +66,17 @@ public class BarChartGenerator {
 
         XAxis xAxis = barChart.getXAxis();
         xAxis.setEnabled(false);
-
+        barChart.animateY(1400, Easing.EaseInOutQuad);
 
         parent.addView(barChart);
+
+
+
     }
 
-    private BarData generateBarData() {
+    public BarData generateBarData() {
 
         ArrayList<BarEntry> entries = new ArrayList<>();
-
-        SavingsAdapter adapter = new SavingsAdapter(currentSavingsArrayList);
-
-        final Observer<List<Savings>> entriesObserver =  new Observer<List<Savings>>() {
-            @Override
-            public void onChanged(List<Savings> savingsArrayList) {
-                currentSavingsArrayList.clear();
-                currentSavingsArrayList.addAll(savingsArrayList);
-                adapter.notifyDataSetChanged();
-
-            }
-        };
 
         List<Float> entriesList = generateBarEntry();
 
