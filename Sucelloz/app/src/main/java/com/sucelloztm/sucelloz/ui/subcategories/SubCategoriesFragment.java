@@ -1,11 +1,20 @@
 package com.sucelloztm.sucelloz.ui.subcategories;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,9 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.SubCategoriesFragmentBinding;
+import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSubCategoryDialogFragment;
+import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +39,7 @@ public class SubCategoriesFragment extends Fragment {
     private SubCategoriesViewModel subCategoriesViewModel;
     private List<SubCategories> currentSubCategoriesList;
     private RecyclerView recyclerView;
+    private  int itemIndex;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,9 +67,17 @@ public class SubCategoriesFragment extends Fragment {
             }
         };
         subCategoriesViewModel.getSubCategories().observe(getViewLifecycleOwner(),subCategoriesDataSet);
-        RecyclerView recyclerView = binding.innerRecyclerView;
+        recyclerView = binding.innerRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+        registerForContextMenu(recyclerView);
+        ItemClickSupport.addTo(recyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
+                itemIndex=position;
+                return false;
+            }
+        });
 
         return root;
     }
@@ -85,6 +105,50 @@ public class SubCategoriesFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = getActivity().getMenuInflater();
+        menuInflater.inflate(R.menu.context_menu,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.modify_menu_item:
+                dialogForModifySubCategory(getActivity(),currentSubCategoriesList.get(itemIndex).getId(),currentSubCategoriesList.get(itemIndex).getCategoriesId()).show();
+                return true;
+            case R.id.delete_menu_item:
+                subCategoriesViewModel.deleteSubCategory(currentSubCategoriesList.get(itemIndex));
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    public Dialog dialogForModifySubCategory(Activity activity, long idOfSubCategory,long idOfCategory){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        final EditText nameEditText = new EditText(activity);
+
+        builder.setTitle("Change name of subcategory").setMessage("New name").setView(nameEditText);
+        builder.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                final String nameOfSubCategory = nameEditText.getText().toString();
+                final SubCategories subCategoryToModify = new SubCategories(nameOfSubCategory,idOfCategory);
+                subCategoryToModify.setId(idOfSubCategory);
+                subCategoriesViewModel.updateSubCategory(subCategoryToModify);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        return builder.create();
     }
 }
 

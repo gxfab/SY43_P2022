@@ -27,4 +27,12 @@ public class SubCategoriesViewModel extends AndroidViewModel {
         }
         return this.currentSubCategories;
     }
+
+    public void deleteSubCategory(SubCategories subCategory){
+        subCategoriesRepository.deleteSubCategory(subCategory);
+    }
+
+    public void updateSubCategory(SubCategories subCategory){
+        subCategoriesRepository.updateSubCategory(subCategory);
+    }
 }
