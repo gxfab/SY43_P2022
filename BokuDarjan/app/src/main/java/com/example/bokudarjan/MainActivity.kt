@@ -63,6 +63,9 @@ class MainActivity : AppCompatActivity() {
         val drawerView = drawer.findViewById<NavigationView>(R.id.nav).getHeaderView(0);
         val monthRecycler = drawerView.monthRecycler
         val monthAdapter = ListAdapterBMonth()
+        monthRecycler.adapter = monthAdapter
+        monthRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
 
 
         // Display sidebar on click
@@ -88,8 +91,6 @@ class MainActivity : AppCompatActivity() {
         var monthViewModel = ViewModelProvider(this).get(BMonthViewModel::class.java)
 
 
-        monthRecycler.adapter = monthAdapter
-        monthRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
 
         monthViewModel.readAllData.observe(this, Observer {
