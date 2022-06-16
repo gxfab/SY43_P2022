@@ -115,6 +115,15 @@ class MainActivity : AppCompatActivity() {
             //Ouverture DB
             val db = AppDatabase.getDatabase(applicationContext)
 
+            //Setting remaining money to spend
+            val remaining=db.balanceDao().selectBudgetGlobalValue()-db.spentDao().getSpentValue(startMonthTimestamp)
+
+            if(remaining>0){
+                findViewById<TextView>(R.id.balanceExplanation).text="Selon votre budget prévisionnel, il vous rest $remaining€ à dépenser ce mois."
+            }else{
+                findViewById<TextView>(R.id.balanceExplanation).text="Selon votre budget prévisionnel, vous avez effectué la totlité ou plus que vos dépenses ce mois."
+            }
+
             //Mise en place de chaque type
             for (idType in 1..11) {
                 var taux=0F
