@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Space
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,6 +50,13 @@ class CategoryAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
+        // Common to both prevision/expenses view
+        viewHolder.categoryNameTextView.text = categoryList[position].name
+        viewHolder.categoryPriceTextView.text = parentContext.getString(
+            R.string.money_format,
+            String.format("%.2f", categoryList[position].predictedAmount)
+        )
+
         // For expense view
         if (expenseMode) {
             viewHolder.expensesRecyclerView.layoutManager = LinearLayoutManager(parentContext)
@@ -60,6 +68,27 @@ class CategoryAdapter(
                     db,
                     parentContext
                 )
+                // Show an alert if the actual expense for the whole category
+                // is higher than the prevision
+                val totalExpensesForCategory =
+                    db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid)
+                if (categoryList[position].predictedAmount <= totalExpensesForCategory
+                ) {
+                    viewHolder.categoryPriceTextView.text = parentContext.getString(
+                        R.string.money_overflow_format,
+                        String.format("%.2f", categoryList[position].predictedAmount),
+                        String.format(
+                            "%.2f",
+                            totalExpensesForCategory - categoryList[position].predictedAmount
+                        )
+                    )
+                    viewHolder.categoryPriceTextView.setTextColor(
+                        ContextCompat.getColor(
+                            parentContext,
+                            R.color.red
+                        )
+                    )
+                }
             }
             // Expand/collapse the expenses nested under the category
             viewHolder.categoryHeaderLayout.setOnClickListener {
@@ -97,12 +126,6 @@ class CategoryAdapter(
             }
         }
 
-        // Common to both prevision/expenses view
-        viewHolder.categoryNameTextView.text = categoryList[position].name
-        viewHolder.categoryPriceTextView.text = parentContext.getString(
-            R.string.money_format,
-            String.format("%.2f", categoryList[position].predictedAmount)
-        )
     }
 
     override fun getItemCount(): Int {

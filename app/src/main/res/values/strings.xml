@@ -31,8 +31,8 @@
     <string name="section_bills">Étape 2 : Factures </string>
     <string name="section_envelopes">Étape 3 : Enveloppes</string>
     <string name="section_sinking_funds">Étape 4 : Fonds d\'amortissement</string>
-    <string name="section_extra_debt">Étape 5 : Dettes</string>
-    <string name="section_extra_savings">Étape 6 : Économies</string>
+    <string name="section_extra_debt">Étape 5 : Dettes supplémentaires</string>
+    <string name="section_extra_savings">Étape 6 : Économies supplémentaires</string>
     <string name="section_end_title">Vérifier les prévisions</string>
     <string name="section_end_ready">Vous avez terminé de répartir tous vos revenus dans différentes catégories. Si vous êtes satisfait de vos prévisions, vous pouvez commencer le mois !</string>
     <string name="section_end_wrong">Vous n\'avez pas encore tout réparti dans des catégories. Veuillez catégoriser le montant restant.</string>
@@ -40,6 +40,7 @@
     <string name="prevision_progress_format">%1$s€ / %2$s€</string>
     <string name="prevision_subtitle_month">"Pour le mois de %1$s"</string>
     <string name="money_format">%1$s€</string>
+    <string name="money_overflow_format">%1$s€ + %2$s€</string>
     <string name="error_salary_greater_than_previsions">Le salaire doit être supérieur aux budget prévisionnel</string>
     <string name="error_prevision_greater_than_max">Le total des prévisions doit être inférieur au salaire</string>
     <string name="error_empty_text">Vous devez entrer une valeur</string>
