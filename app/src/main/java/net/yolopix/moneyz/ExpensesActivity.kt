@@ -38,6 +38,7 @@ class ExpensesActivity : AppCompatActivity() {
 
     // Widgets
     private lateinit var expensesRecyclerView: RecyclerView
+    private lateinit var makePrevisionButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +66,7 @@ class ExpensesActivity : AppCompatActivity() {
         }
 
         // Open the prevision activity when clicking on the "make previsions" button
-        val makePrevisionButton: Button = findViewById(R.id.button_make_previsions)
+        makePrevisionButton = findViewById(R.id.button_make_previsions)
         makePrevisionButton.setOnClickListener {
             openPrevisions()
         }
@@ -96,8 +97,6 @@ class ExpensesActivity : AppCompatActivity() {
         // (not always matching the current month, switching to the next month
         // should be a manual action triggered by the user)
 
-        val makePrevisionsButton: Button = findViewById(R.id.button_make_previsions)
-
         val monthsForCurrentAccount = db.monthDao().getMonthsForAccountUid(accountUid!!)
 
         // Open the previsions activity if no prevision has ever been done
@@ -117,10 +116,10 @@ class ExpensesActivity : AppCompatActivity() {
             loadExpenses()
 
             // Check if the month is finished and the user can make a new prevision
-            val now: LocalDate = LocalDate.now()
-            if (now.isBefore(monthAsLocalDate)) {// If the month has not ended yet
-                makePrevisionsButton.visibility = View.GONE //TODO check if total expenses reached 0
-            }
+            val currentMonthEndDate =
+                LocalDate.of(currentMonth.yearNumber, currentMonth.monthNumber, currentMonth.payday)
+            makePrevisionButton.visibility =
+                if (LocalDate.now().isBefore(currentMonthEndDate)) View.VISIBLE else View.GONE
 
         }
     }
