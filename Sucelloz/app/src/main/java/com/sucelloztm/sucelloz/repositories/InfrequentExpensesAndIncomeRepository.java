@@ -53,6 +53,22 @@ public class InfrequentExpensesAndIncomeRepository {
         infrequentExpensesAndIncomeDao.insertInfrequentExpenseAndIncome(spending);
     }
 
+    /**
+     * invokes the query to sum all infrequent expenses
+     * @return livedata of the sum
+     */
 
+    public LiveData<Integer> getSumOfInfrequentExpenses(){
+        return infrequentExpensesAndIncomeDao.getSumOfInfrequentExpenses();
+    }
+
+    /**
+     * invokes the query to sum all infrequent incomes
+     * @return livedata of the sum
+     */
+
+    public LiveData<Integer> getSumOfInfrequentIncomes(){
+        return infrequentExpensesAndIncomeDao.getSumOfInfrequentIncomes();
+    }
 
 }

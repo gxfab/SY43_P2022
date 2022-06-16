@@ -56,5 +56,23 @@ public class StableExpensesAndIncomeRepository {
     public LiveData<List<StableExpensesAndIncome>> getAllStableFromSubCategory(long idOfSubCategory){
         return this.stableExpensesAndIncomeDao.getAllStableFromSubCategory(idOfSubCategory);
     }
+    /**
+     * invokes the query to sum all infrequent expenses
+     * @return livedata of the sum
+     */
+
+    public LiveData<Integer> getSumOfStableExpenses(){
+        return stableExpensesAndIncomeDao.getSumOfStableExpenses();
+    }
+
+    /**
+     * invokes the query to sum all infrequent incomes
+     * @return livedata of the sum
+     */
+
+    public LiveData<Integer> getSumOfStableIncomes(){
+        return stableExpensesAndIncomeDao.getSumOfStableIncomes();
+    }
+
 
 }
