@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">ZeroBudBanker</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="title_activity_category">CategoryActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="goto_home">Home</string>
+    <string name="goto_profile">Profile</string>
+    <string name="goto_add">Add</string>
+    <string name="goto_stats">Stats</string>
+    <string name="category_food">Food</string>
+    <string name="category_services">Services</string>
+    <string name="category_car">Car</string>
+    <string name="category_lodging">Lodging</string>
+    <string name="category_social_security">Social Security</string>
+    <string name="category_health">Health</string>
+    <string name="category_hobbies">Hobbies</string>
+    <string name="category_various">Various</string>
+    <string name="category_savings">Savings</string>
+    <string name="category_events">Events</string>
+    <string name="category_holidays">Holidays</string>
+    <string name="category_debts">Debts</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="choice_provisional_budget">Provisional Budget</string>
+    <string name="choice_income">Income</string>
+    <string name="choice_spending">Spending</string>
+    <string name="choice_project">Project</string>
+    <string name="form_amount">Amount</string>
+</resources>
