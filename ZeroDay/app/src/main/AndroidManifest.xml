@@ -12,14 +12,26 @@
 
         <!--Activité de départ -->
         <activity
+            android:name=".views.test.IncomesTest"
+            android:exported="true">
+          
+        <activity
             android:name=".views.StartActivity"
             android:exported="true"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".views.MainActivity"
+            android:exported="true">
+
+        </activity>
+
 
         <!-- Activité de validation du prénom -->
         <activity
