@@ -29,14 +29,19 @@ class HomeFragment: Fragment(){
 
         // fetch amount values
         MainScope().launch {
-            val spending: Int = db.piggyBankDAO().getSpendingAmount()
-            val saving: Int = db.piggyBankDAO().getSavingAmount()
+            var spending: Int? = db.piggyBankDAO().getSpendingAmount()
+            var saving: Int? = db.piggyBankDAO().getSavingAmount()
+
+            if (spending == null || saving == null) {
+                spending = 0
+                saving = 0
+            }
 
             totalAmount.text = button.context.getString(R.string.amount, (saving - spending))
             spendingAmount.text = button.context.getString(R.string.amount, spending)
             savingAmount.text = button.context.getString(R.string.amount, saving)
 
-            progressBar.progress = (spending * 100) / saving
+            progressBar.progress = if (saving > 0) (spending * 100) / saving else 0
         }
 
 
