@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class SubCategoriesRepository {
     private SubCategoriesDao subCategoriesDao;
+    private static SubCategories currentSubCategory;
 
     /**
      * custom constructor
@@ -86,5 +87,13 @@ public class SubCategoriesRepository {
 
     public void updateSubCategory(SubCategories subCategory){
         subCategoriesDao.updateSubCategory(subCategory);
+    }
+
+    public SubCategories getCurrentSubCategory() {
+        return currentSubCategory;
+    }
+
+    public void setCurrentSubCategory(SubCategories currentSubCategory) {
+        SubCategoriesRepository.currentSubCategory = currentSubCategory;
     }
 }
