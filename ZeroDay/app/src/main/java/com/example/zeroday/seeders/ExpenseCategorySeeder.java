@@ -2,6 +2,7 @@ package com.example.zeroday.seeders;
 
 import android.content.Context;
 
+import com.example.zeroday.models.ExpenseCategory;
 import com.example.zeroday.services.ExpenseCategoryService;
 
 public class ExpenseCategorySeeder extends ZeroBaseSeeder<ExpenseCategoryService> {
