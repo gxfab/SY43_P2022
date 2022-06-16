@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZeroDay">
         <activity
+            android:name=".views.SettingHomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.StartActivity"
             android:exported="false" />
         <activity

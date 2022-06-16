@@ -13,15 +13,19 @@
         <entry key="app/src/main/res/drawable/custom_details_income_expense_background.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/custom_name_validation_tick.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/custom_round_rectangle.xml" value="0.164" />
+        <entry key="app/src/main/res/drawable/custom_settings_main_button.xml" value="0.1565" />
+        <entry key="app/src/main/res/drawable/custom_settings_next_button.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/custom_start_next_button.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/custom_start_total_incomes_shape.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/ic_euro.xml" value="0.164" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/item_selector.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/round_corner.xml" value="0.2085" />
-        <entry key="app/src/main/res/layout/activity_cycle_setting.xml" value="0.2328125" />
+        <entry key="app/src/main/res/layout/activity_cycle_setting.xml" value="0.2361111111111111" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_name_validation.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_setting_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_start_total_incomes.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_category_expenses_incomes.xml" value="0.5" />
