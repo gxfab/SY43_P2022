@@ -11,14 +11,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.models.Income
-import java.util.ArrayList
+import java.util.*
 
 /**
- * TODO : Complete documentation
+ * Adapter that handle the RecyclerView in charge of incomes
  *
- * @property context
- * @property itemClickListener
- * @property resources
+ * @property context - the [Activity] in which the RecyclerView is used
+ * @property itemClickListener - an [EventListener] to check if the delete button is clicked
+ * @property resources - a parameter to access the resources
  */
 class IncomeAdapter (
     var context : Activity,
@@ -53,19 +53,33 @@ class IncomeAdapter (
         }
     }
 
+    /**
+     * Function that calls the onDeleteButtonClick function in case of a click on the delete button
+     */
     interface DeleteButtonClickListener {
         fun onDeleteButtonClick(position: Int)
     }
 
+    /**
+     * Function that counts the number of incomes in the DB
+     *
+     * @return the size of the Income list
+     */
     override fun getItemCount(): Int {
         return mIncome.size
     }
 
+    /**
+     * Function that changes an income in the DB
+     */
     fun setIncomes(mIncomes: List<Income>) {
         this.mIncome = mIncomes
         notifyDataSetChanged()
     }
 
+    /**
+     * Function that gets an income in the DB
+     */
     fun getItemAt(position: Int): Income = mIncome[position]
 }
 

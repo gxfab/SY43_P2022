@@ -20,15 +20,21 @@ import com.example.lafo_cheuse.CreateIncomeExpenseActivity
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.material.ExpenseAdapter
 import com.example.lafo_cheuse.material.IncomeAdapter
+import com.example.lafo_cheuse.models.ExpenseSumContainer
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
+import com.github.mikephil.charting.data.BarEntry
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
- * TODO : Finish documentation
- * Fragment where the one time expenses are displayed and where we can modify them.
- * We can also add a regular income/expense by clicking on the Calendar button.
+ * Fragment where the one time expenses and incomes are displayed.
+ * We can add a regular income/expense by clicking on the Calendar button.
+ * We can also add one-time income/expense by clicking on the + button.
  *
+ * @property expenseAdapter - an instance of [ExpenseAdapter] to handle the RecyclerView
+ * @property incomeAdapter - an instance of [IncomeAdapter] to handle the RecyclerView
+ * @property incomeViewModel - an instance of [IncomeViewModel] to manage the DB
+ * @property expenseViewModel - an instance of [ExpenseViewModel] to manage the DB
  */
 class SetIncomesExpensesFragment : Fragment() {
     private var expenseAdapter: ExpenseAdapter? = null
@@ -68,6 +74,12 @@ class SetIncomesExpensesFragment : Fragment() {
         }
         return view
     }
+
+    /**
+     * Method to initialize the RecyclerView of incomes
+     *
+     * @param recyclerView - the [RecylerView] to initialize
+     */
     private fun initializeRecyclerViewIncome(recyclerView: RecyclerView) {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         incomeAdapter = IncomeAdapter(context as Activity, object : IncomeAdapter.DeleteButtonClickListener {
@@ -103,6 +115,11 @@ class SetIncomesExpensesFragment : Fragment() {
         }
     }
 
+    /**
+     * Method to initialize the RecyclerView of expenses
+     *
+     * @param recyclerView - the [RecylerView] to initialize
+     */
     private fun initializeRecyclerViewExpense(recyclerView: RecyclerView) {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         expenseAdapter = ExpenseAdapter(context as Activity, object : ExpenseAdapter.DeleteButtonClickListener {
