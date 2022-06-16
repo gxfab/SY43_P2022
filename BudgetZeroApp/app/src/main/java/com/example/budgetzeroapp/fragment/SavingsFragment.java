@@ -57,8 +57,8 @@ public class SavingsFragment extends DataBaseFragment {
         tabLayout = view.findViewById(R.id.tab_layout);
         viewPager = view.findViewById(R.id.viewPager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new SavingsTabFragment(true), "Savings");
-        adapter.addFragment(new SavingsTabFragment(false), "Debts");
+        adapter.addFragment(new SavingsTabFragment(), "Savings");
+        adapter.addFragment(new SavingsDebtTabFragment(), "Debts");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         if(!defaultTab) selectPage(2);

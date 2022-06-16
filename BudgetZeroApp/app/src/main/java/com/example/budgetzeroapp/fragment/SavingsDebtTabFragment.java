@@ -21,13 +21,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SavingsTabFragment extends DataBaseFragment implements BudgetRecyclerViewAdapter.ItemClickListener {
+public class SavingsDebtTabFragment extends DataBaseFragment implements BudgetRecyclerViewAdapter.ItemClickListener {
     private BudgetRecyclerViewAdapter adapter;
     private ListView categories;
     RecyclerView recyclerView;
     List<SavingsItem> items;
 
-    public SavingsTabFragment() {
+    public SavingsDebtTabFragment() {
         super();
     }
 
@@ -54,12 +54,12 @@ public class SavingsTabFragment extends DataBaseFragment implements BudgetRecycl
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        items = SavingsItem.initSavingsList(database, true);
+        items = SavingsItem.initSavingsList(database, false);
         ClickableListManager.clickableSavingsList(categories, items);
 
         ArrayList<String> sortingItems = new ArrayList<>();
         sortingItems.add("Name");
-        sortingItems.add("%Saved");
+        sortingItems.add("%Paid");
         sortingItems.add("Amount");
 
         // set up the RecyclerView
