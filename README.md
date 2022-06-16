@@ -13,7 +13,7 @@ HP Lovers :
 NoAppNoGain est une application Android développée dans Android Studio utilisant Kotlin et Firebase Realtime Database
 
 ### Notre appli
-Toi aussi tu veux faire du profit ? Pas besoin de le placer, juste de te gérer. A force d'économiser, tu vas bien rentabiliser !
+Toi aussi tu veux faire du profit ? Tu veux gagner beaucoup d'argent ? Pas besoin de le placer, juste de te gérer. A force d'économiser, tu vas bien rentabiliser !
 Comment ? En téléchargeant NoAppNoGain, impossible de te louper ! Tu gères tes dépenses et tes différents revenus efficacement
 
 ### Environnement de développement
