@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey20">
@@ -41,26 +42,26 @@
         app:layout_constraintTop_toBottomOf="@+id/home_page_balance_title" />
 
     <TextView
-        android:id="@+id/home_page_spendings_title"
+        android:id="@+id/home_page_spending_title"
         style="@style/CustomSubTitle1TextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="10dp"
-        android:text="@string/home_page_spendings"
+        android:text="@string/home_page_spending"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
-        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_spendings" />
+        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_spending" />
 
     <TextView
-        android:id="@+id/home_page_spendings_amount"
+        android:id="@+id/home_page_spending_amount"
         style="@style/MoneySubTitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:elevation="10dp"
-        android:text="@string/home_page_spendings_amount"
+        android:text="@string/home_page_spending_amount"
         app:layout_constraintEnd_toStartOf="@+id/vertical_align_end"
-        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_spendings" />
+        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_spending" />
     <TextView
         android:id="@+id/home_page_saving_goals_title"
         style="@style/CustomSubTitle2TextStyle"
@@ -111,7 +112,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/home_fragment_button_spendings"
+        android:id="@+id/home_fragment_button_spending"
         android:layout_width="327sp"
         android:layout_height="104sp"
         android:layout_marginTop="20dp"
@@ -130,11 +131,13 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_fragment_button_spendings" />
+        app:layout_constraintTop_toBottomOf="@+id/home_fragment_button_spending" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

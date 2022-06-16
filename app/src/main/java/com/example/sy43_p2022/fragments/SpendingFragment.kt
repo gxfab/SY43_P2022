@@ -6,5 +6,5 @@ class SpendingFragment() : CategoryFragment(
     "Spending",
     R.layout.item_vertical_gray,
     "gray",
-    R.layout.fragment_spendings
+    R.layout.fragment_spending
 )
