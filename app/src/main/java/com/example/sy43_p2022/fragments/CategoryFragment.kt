@@ -57,7 +57,8 @@ open class CategoryFragment(
             verticalRecyclerView.adapter = ButtonAdapter(
                 layoutVertical,
                 categories,
-                ButtonAdapter.OnClickListener(verticalRecyclerView, layoutVerticalColor)
+                ButtonAdapter.OnClickListener(verticalRecyclerView, layoutVerticalColor),
+                layoutVerticalColor,
             )
             Log.d("DB", "Resources loaded" + categories.size.toString())
             verticalRecyclerView.adapter?.notifyDataSetChanged()

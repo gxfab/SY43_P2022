@@ -37,6 +37,22 @@ interface PiggyBankDAO {
     suspend fun updateSubCategorySpending(id: Int, amount: Int)
 
     @Transaction
+    @Query("UPDATE category SET saving = :amount WHERE catid = :id")
+    suspend fun updateCategorySaving(id: Int, amount: Int)
+
+    @Transaction
+    @Query("UPDATE category SET spending = :amount WHERE catid = :id")
+    suspend fun updateCategorySpending(id: Int, amount: Int)
+
+    @Transaction
+    @Query("SELECT SUM(saving) FROM subcategory WHERE categoryId = :id")
+    suspend fun getCategorySaving(id: Int): Int
+
+    @Transaction
+    @Query("SELECT SUM(spending) FROM subcategory WHERE categoryId = :id")
+    suspend fun getCategorySpending(id: Int): Int
+
+    @Transaction
     @Query("DELETE FROM category")
     fun nukeCategoryTable()
 

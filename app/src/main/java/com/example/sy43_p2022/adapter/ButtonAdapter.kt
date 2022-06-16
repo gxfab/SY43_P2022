@@ -19,6 +19,7 @@ class ButtonAdapter(
     private val layoutId: Int,
     private val categories: List<Category>,
     private val onClickListener: OnClickListener,
+    private val layoutType: String,
 ) : RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder>() {
 
     private lateinit var db: PiggyBankDatabase
@@ -50,7 +51,23 @@ class ButtonAdapter(
         categories[position].let {
             holder.category = it
             holder.title.text = it.name
-            holder.amount.text = it.amount.toString()
+
+            // display registered value
+            holder.amount.text = if (layoutType == "white") it.saving.toString() else it.spending.toString()
+
+            // update value
+            MainScope().launch {
+                if (layoutType == "white") {
+                    holder.amount.text = db.piggyBankDAO().getCategorySaving(holder.category.catid).toString()
+                    db.piggyBankDAO().updateCategorySaving(holder.category.catid,  holder.amount.text.toString().toInt())
+                }
+                else {
+                    holder.amount.text = db.piggyBankDAO().getCategorySpending(holder.category.catid).toString()
+                    db.piggyBankDAO().updateCategorySpending(holder.category.catid,  holder.amount.text.toString().toInt())
+                }
+            }
+
+            // what should happens when we click the button
             holder.button.setOnClickListener() {
                 MainScope().launch {
                     val subCategories: List<SubCategory> = db.piggyBankDAO().getSubCategoriesByCategoryId(holder.category.catid)

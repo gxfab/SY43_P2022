@@ -8,5 +8,6 @@ data class Category(
     @PrimaryKey (autoGenerate = true)
     val catid: Int = 0,
     val name: String,
-    val amount : Int = 0
+    val saving : Int = 0,
+    val spending : Int = 0,
 )
