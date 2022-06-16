@@ -12,13 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 
 
 import com.sucelloztm.sucelloz.databinding.ZeroBudgetFragmentBinding;
 import com.sucelloztm.sucelloz.models.Categories;
+import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.ui.categories.CategoriesAdapter;
+import com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesAdapter;
 
 import java.util.ArrayList;
 
@@ -35,23 +38,23 @@ public class ZeroBudgetFragment extends Fragment {
         binding = ZeroBudgetFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        /*RecyclerView recyclerView = binding.zeroBudgetRecyclerView;
+        RecyclerView recyclerView = binding.zeroBudgetRecyclerView;
 
+        ArrayList<SubCategories> zeroBudgetSubCategoriesList = new ArrayList<>();
 
-        ArrayList<Categories> zeroBudgetCategoriesList = new ArrayList<>();
         String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
                 "Sinking Funds", "Extra debt", "Extra Savings"};
-        for (String name: zeroBudgetNameList
-        ) {
-            Categories currentCat = new Categories(name,true);
-            zeroBudgetCategoriesList.add()
 
+        for (String name:zeroBudgetNameList
+             ) {
+            zeroBudgetSubCategoriesList.add(zeroBudgetViewModel.getSubCategoryByName(name));
         }
 
 
-        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(zeroBudgetCategoriesList);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        recyclerView.setAdapter(categoriesAdapter);*/
+        SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(zeroBudgetSubCategoriesList);
+
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        recyclerView.setAdapter(subCategoriesAdapter);
 
         final TextView textView = binding.zeroBudgetTextView;
         zeroBudgetViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
