@@ -26,10 +26,12 @@ import com.example.sy43.database.Expenses;
 import com.example.sy43.database.SubCategory;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class add_expense extends Fragment {
     protected EditText et_name, et_amount;
@@ -113,7 +115,9 @@ public class add_expense extends Fragment {
                 Spinner yearSpinner = getActivity().findViewById(R.id.spinner4); int selectedYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
                 int monthlyRevenueID = db.monthlyRevenueDao().findByMonthAndYear(selectedMonth,selectedYear).id;
 
-                db.expensesDao().insertAll(new Expenses(et_name.getText().toString(), Double.parseDouble(et_amount.getText().toString()), selectsubCatID, monthlyRevenueID ));
+                String today = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH).format(Calendar.getInstance().getTime());
+
+                db.expensesDao().insertAll(new Expenses(et_name.getText().toString(), Double.parseDouble(et_amount.getText().toString()), today, selectsubCatID, monthlyRevenueID ));
 
                 Toast.makeText(addBtn.getContext(),"Expense Saved !", Toast.LENGTH_SHORT).show();
 

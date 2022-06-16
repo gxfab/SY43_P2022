@@ -17,15 +17,19 @@ public class Expenses {
     @ColumnInfo(name = "e_value")
     public double value;
 
+    @ColumnInfo(name = "e_date")
+    public String date;
+
     @ColumnInfo(name = "e_subcategory")
     public int subcategory;
 
     @ColumnInfo(name = "e_monthlyrevenue")
     public int monthlyrevenue;
 
-    public Expenses(String name, double value, int subcategory, int monthlyrevenue) {
+    public Expenses(String name, double value, String date, int subcategory, int monthlyrevenue) {
         this.name = name;
         this.value = value;
+        this.date = date;
         this.subcategory = subcategory;
         this.monthlyrevenue = monthlyrevenue;
     }

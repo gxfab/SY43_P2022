@@ -20,12 +20,16 @@ import android.widget.TextView;
 import com.example.sy43.database.AppDatabase;
 import com.example.sy43.database.AppDatabase_Impl;
 import com.example.sy43.database.Category;
+import com.example.sy43.database.MonthlyRevenue;
 import com.example.sy43.database.SubCategory;
 
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class Categories extends AppCompatActivity {
 
@@ -52,11 +56,30 @@ public class Categories extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
+        AppDatabase db = AppDatabase.getInstance(this);
+
+        List<Category> categories = db.categoryDao().getAll();
+
+        Spinner period = findViewById(R.id.spinner2);
+        String[] monthsArray = getResources().getStringArray(R.array.Months_Array);
+        List<String> months = new ArrayList<String>();
+        for (MonthlyRevenue mth: db.monthlyRevenueDao().getAll()) {
+            months.add(Month.of(mth.month).getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+            //months.add(mth);
+        }
+        ArrayAdapter<String> monthData = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, months);
+        monthData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        period.setAdapter(monthData);
+
+        period.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {generateList(categories,db);}
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}});
+
         house_icon= findViewById(R.id.home_icon);
         toHome();
         toOverview();
-        AppDatabase db = AppDatabase.getInstance(this);
-        List<Category> categories = db.categoryDao().getAll();
 
         subcategory_name = findViewById(R.id.subcategoryTV);
         subcategory_amount = findViewById(R.id.subcategoryEnveloppe);
@@ -74,7 +97,74 @@ public class Categories extends AppCompatActivity {
             }
         });
 
-    mList = new ArrayList<>();
+        generateList(categories,db);
+
+//        mList = new ArrayList<>();
+//        for (int i=0; i<categories.size(); i++){
+//            sum=0;
+//            subCategory = db.subCategoryDao().findByCategory(i+1);
+//            subcategories_titles= new ArrayList<>();
+//            subcategories_enveloppes= new ArrayList<>();
+//            for (int j=0; j<subCategory.size();j++){
+//                subcategories_titles.add(subCategory.get(j).name);
+//                subcategories_enveloppes.add(Double.toString(subCategory.get(j).envelope));
+//                sum+= subCategory.get(j).envelope;
+//            }
+//
+//            switch (categories.get(i).name) {
+//                case "Clothing" :
+//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.clothing),Double.toString(sum) ));
+//                    break;
+//                case "Communication" :
+//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.phone),Double.toString(sum) ));
+//                    break;
+//                case "Entertainment" :
+//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.entertainment),Double.toString(sum) ));
+//                    break;
+//                case "Finance" :
+//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.finance),Double.toString(sum) ));
+//                    break;
+//                case "Food" :
+//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.food),Double.toString(sum) ));
+//                    break;
+//                case "Health" :
+//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.health),Double.toString(sum) ));
+//                    break;
+//                case "Housing" :
+//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.house),Double.toString(sum) ));
+//                    break;
+//                case "Transport" :
+//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.transport),Double.toString(sum) ));
+//            }
+//        }
+
+        adapter = new CategoryAdapter(mList);
+        recyclerView.setAdapter(adapter);
+
+    }
+
+    private void toHome(){
+        ImageView home_icon = findViewById(R.id.home_icon);
+        home_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Categories.this, Home.class));
+            }
+        });
+    }
+
+    private void toOverview(){
+        ImageView overview = findViewById(R.id.overview_icon);
+        overview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Categories.this, Overview.class));
+            }
+        });
+    }
+
+    private void generateList(List<Category> categories, AppDatabase db){
+        mList = new ArrayList<>();
         for (int i=0; i<categories.size(); i++){
             sum=0;
             subCategory = db.subCategoryDao().findByCategory(i+1);
@@ -112,30 +202,6 @@ public class Categories extends AppCompatActivity {
                     mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.transport),Double.toString(sum) ));
             }
         }
-
-        adapter = new CategoryAdapter(mList);
-        recyclerView.setAdapter(adapter);
-
-    }
-
-    private void toHome(){
-        ImageView home_icon = findViewById(R.id.home_icon);
-        home_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Categories.this, Home.class));
-            }
-        });
-    }
-
-    private void toOverview(){
-        ImageView overview = findViewById(R.id.overview_icon);
-        overview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Categories.this, Overview.class));
-            }
-        });
     }
 }
 

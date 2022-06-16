@@ -3,7 +3,9 @@ package com.example.sy43;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -120,7 +122,6 @@ public class Home extends AppCompatActivity {
             }
         });
 
-
         total_expense = findViewById(R.id.expense_amount);
         total_balance = findViewById(R.id.balance_amount);
         monthSpinner = findViewById(R.id.spinner);
@@ -149,7 +150,16 @@ public class Home extends AppCompatActivity {
 
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {updateExpenseAndBalance(monthsArray, db);}
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                updateExpenseAndBalance(monthsArray, db);
+                Fragment frag = fragmentManager.findFragmentByTag("f"+viewPager2.getCurrentItem());
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.detach(frag);
+                ft.commitNow();
+                ft = fragmentManager.beginTransaction();
+                ft.attach(frag);
+                ft.commitNow();
+            }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}});
 
@@ -162,6 +172,10 @@ public class Home extends AppCompatActivity {
 //        monthSpinner.setSelection(months.indexOf(Month.of(Calendar.getInstance().get(Calendar.MONTH)).getDisplayName(TextStyle.FULL, Locale.ENGLISH)));
 //
         updateExpenseAndBalance(monthsArray, db);
+        String currentMonth = monthsArray[Calendar.getInstance().get(Calendar.MONTH)];
+        int monthPosition = months.indexOf(currentMonth);
+        monthSpinner.setSelection(monthPosition);
+
 //        double exp_total=0.0;
 //        int selectedMonth = Arrays.asList(monthsArray).indexOf(monthSpinner.getSelectedItem().toString())+1;
 //        int selectedYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
@@ -185,7 +199,6 @@ public class Home extends AppCompatActivity {
 
         List<Projects> projects = db.projectDao().getAll();
         for(int i=0; i<projects.size();i++){
-
             allocation = 0.0;
             String allocationstr = total_balance.getText().toString();
             allocation+= (Double.parseDouble(allocationstr.substring(0,allocationstr.length()-1))) * (projects.get(i).percentage/100);
