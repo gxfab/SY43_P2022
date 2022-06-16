@@ -1,18 +1,18 @@
 package com.example.gestimali.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gestimali.AddBudgetActivity
 import com.example.gestimali.NewIncomeFragment
 import com.example.gestimali.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivity ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() ,View.OnClickListener{
 
@@ -37,16 +37,26 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
         if(position==0){
             holder.floatingButton.setOnClickListener(this)
         }
-
-
     }
 
     override fun getItemCount(): Int = 4
 
     override fun onClick(p0: View?) {
+        val fragment: NewIncomeFragment? =
+            NewIncomeFragment.newInstance(intMonth)
+        val fm: FragmentManager = (activity as AppCompatActivity).supportFragmentManager
+        val ft: FragmentTransaction = fm.beginTransaction()
+        if (fragment != null) {
+            ft.replace(R.id.popup_fragment, fragment)
+        }
+        ft.commit()
+
+        /*
         val transaction = activity.supportFragmentManager.beginTransaction()
         transaction.replace(R.id.popup_fragment,NewIncomeFragment())
         transaction.commit()
+
+         */
     }
 
 }

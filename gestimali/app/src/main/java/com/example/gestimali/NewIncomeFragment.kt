@@ -18,6 +18,22 @@ class NewIncomeFragment : Fragment() {
 
     private lateinit var mIncomeViewModel : IncomeViewModel
 
+
+
+    companion object{
+        private val ARGUMENT_MONTH_ID = "ARGUMENT_MONTH_ID"
+        @JvmStatic
+        fun newInstance(monthID: Int): NewIncomeFragment? {
+            val args = Bundle()
+            // Save data here
+            args.putInt(ARGUMENT_MONTH_ID, monthID)
+            val fragment = NewIncomeFragment()
+            fragment.setArguments(args)
+            return fragment
+        }
+
+    }
+
     override fun onCreateView(
         inflater : LayoutInflater, container : ViewGroup?,
         savedInstanceState : Bundle?
@@ -25,6 +41,8 @@ class NewIncomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_new_income,container,false)
 
         mIncomeViewModel = ViewModelProvider(this).get(IncomeViewModel::class.java)
+
+        val monthId = requireArguments().getInt(ARGUMENT_MONTH_ID)
 
         view.findViewById<ImageButton>(R.id.add_btn).setOnClickListener{
             val incomeName = view.findViewById<EditText>(R.id.editIncomeName).text.toString()
@@ -36,7 +54,7 @@ class NewIncomeFragment : Fragment() {
                 val income = Income(
                     0,
                     2022,
-                    1,
+                    monthId,
                     incomeName,
                     incomeValue.toString().toFloat(),
                     0f,
@@ -44,9 +62,12 @@ class NewIncomeFragment : Fragment() {
                     incomeIsFixed
                 )
 
+                //Toast.makeText(requireContext(),"Inside if",Toast.LENGTH_LONG).show()
+
                 mIncomeViewModel.addIncome(income)
 
-                activity?.supportFragmentManager?.popBackStack()}
+                activity?.onBackPressed()
+            }
         }
 
         return view
