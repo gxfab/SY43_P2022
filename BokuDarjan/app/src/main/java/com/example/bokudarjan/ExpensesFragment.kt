@@ -91,6 +91,9 @@ class ExpensesFragment : Fragment() {
             adapter2.setData(cat)
         })
 
+
+
+        // Display envelope and expense at the bottom of the screen
         var expenses:Float = 0f
         var envelopes:Float = 0f
 

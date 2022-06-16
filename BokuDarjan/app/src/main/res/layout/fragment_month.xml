@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txtValue"
+        android:id="@+id/monthSumValue"
         android:layout_width="104dp"
         android:layout_height="60dp"
         android:layout_marginStart="42dp"
@@ -46,7 +46,7 @@
         android:layout_marginEnd="42dp"
         android:layout_marginBottom="42dp"
         android:gravity="center"
-        android:text="XXX€"
+        android:text="\?€"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
@@ -61,7 +61,7 @@
         android:layout_marginTop="99dp"
         android:layout_marginEnd="19dp"
         android:gravity="center"
-        android:text="Restant à classer"
+        android:text="Restant à équilibrer"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="@+id/imageView4" />

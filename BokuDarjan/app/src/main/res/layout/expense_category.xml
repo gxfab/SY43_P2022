@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="@+id/back" />
 
     <TextView
-        android:id="@+id/catSum"
+        android:id="@+id/catSumEnv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -38,4 +38,8 @@ class EnvelopeViewModel(application: Application): AndroidViewModel(application)
         return repository.getSumOfEnvelopes(month)
     }
 
+    fun getSumOfEnvelopeByCategory(name: String, month: Int):LiveData<Float>{
+        return repository.getSumOfEnvelopeByCategory(name, month)
+    }
+
 }

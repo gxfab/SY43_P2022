@@ -23,7 +23,9 @@ private const val ARG_PARAM2 = "param2"
  * Use the [month.newInstance] factory method to
  * create an instance of this fragment.
  */
-class month : Fragment() {
+
+
+class MonthFragment : Fragment() {
 
     private lateinit var categoryViewModel: CategoryViewModel
 

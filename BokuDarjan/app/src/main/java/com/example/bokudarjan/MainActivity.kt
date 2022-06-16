@@ -1,22 +1,20 @@
 package com.example.bokudarjan
 
 import android.annotation.SuppressLint
+import android.content.ClipData
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
 import android.view.MotionEvent
-import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
-import androidx.core.view.forEach
 import androidx.core.view.get
-import androidx.core.view.size
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.*
 import androidx.fragment.app.FragmentContainerView
@@ -25,16 +23,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.slidingpanelayout.widget.SlidingPaneLayout.LOCK_MODE_LOCKED
 import com.example.bokudarjan.bmonth.BMonth
 import com.example.bokudarjan.bmonth.BMonthViewModel
 import com.example.bokudarjan.bmonth.ListAdapterBMonth
-import com.example.bokudarjan.category.CategoryViewModel
 import com.example.bokudarjan.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_side_bar.view.*
 
 
@@ -64,7 +58,6 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController;
 
 
-        val button = findViewById<ImageButton>(R.id.menuButton);
         val drawer = findViewById<DrawerLayout>(R.id.my_drawer_layout);
 
         val drawerView = drawer.findViewById<NavigationView>(R.id.nav).getHeaderView(0);
@@ -72,7 +65,8 @@ class MainActivity : AppCompatActivity() {
         val monthAdapter = ListAdapterBMonth()
 
 
-
+        // Display sidebar on click
+        val button = findViewById<ImageButton>(R.id.menuButton);
         button.setOnClickListener {
             if (drawer.isDrawerOpen(GravityCompat.START)){
                 drawer.closeDrawer(GravityCompat.START);
@@ -82,6 +76,14 @@ class MainActivity : AppCompatActivity() {
             }
             // Code here executes on main thread after user presses button
         }
+
+
+        // Display graph on click
+        drawer.findViewById<NavigationView>(R.id.nav).menu.get(1).setOnMenuItemClickListener {
+            displayChart()
+            true
+        }
+
 
         var monthViewModel = ViewModelProvider(this).get(BMonthViewModel::class.java)
 
@@ -98,6 +100,7 @@ class MainActivity : AppCompatActivity() {
             monthAdapter.setData(it);
         })
 
+        // Add month on click
         drawer.findViewById<NavigationView>(R.id.nav).menu.get(0).setOnMenuItemClickListener {
             Toast.makeText(applicationContext, "Mois ajouté !", Toast.LENGTH_SHORT).show();
             monthViewModel.addMonth(BMonth("new month"))
@@ -107,9 +110,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
         val anim = AnimationUtils.loadAnimation(this, R.anim.fade_out_up);
-
-
 
 
         var fragement = findViewById<FragmentContainerView>(R.id.nav_host_fragment)
@@ -134,6 +137,14 @@ class MainActivity : AppCompatActivity() {
 
         bottom.setupWithNavController(navController);
 
+    }
+
+
+
+    fun displayChart(){
+        val intent = Intent(this, ChartActivity::class.java).apply {
+        }
+        startActivity(intent)
     }
 
 

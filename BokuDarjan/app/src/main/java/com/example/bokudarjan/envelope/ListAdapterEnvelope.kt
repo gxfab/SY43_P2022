@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.R
 import kotlinx.android.synthetic.main.envelope_card.view.*
 
-
 class ListAdapterEnvelope : RecyclerView.Adapter<ListAdapterEnvelope.MyViewHolder>() {
 
     private var envelopeList = emptyList<Envelope>()
