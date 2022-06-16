@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import java.util.List;
 
+import com.aspose.cells.Workbook;
 import com.example.zeroday.R;
 import com.example.zeroday.dao.DbHelper;
 import com.example.zeroday.models.IncomeCategory;
@@ -28,7 +29,17 @@ public class IncomesTest extends AppCompatActivity {
         incomeCategoryService.save(new IncomeCategory("Other", "Other"));
 
         List<IncomeCategory> incomeCategoryList = incomeCategoryService.getAll();
+        Workbook workbook = new Workbook();
 
+// Add value in the cell
+        workbook.getWorksheets().get(0).getCells().get("A1").putValue("Hello World!");
+
+// Save as Excel XLSX file
+        try {
+            workbook.save("Excel.xlsx");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //        Log.i("Test", incomeCategoryList.toString());
 
     }

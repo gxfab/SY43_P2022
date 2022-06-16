@@ -56,7 +56,7 @@ public abstract class ZeroBaseServices<T extends ZeroBaseRepository, M extends Z
         return (M) repository.findOneByCode(code);
     }
 
-    public void save(M zeroBaseModelobject) {
+    public void create(M zeroBaseModelobject) {
         Long id = repository.insert(zeroBaseModelobject);
         zeroBaseModelobject.setId(id);
     }
