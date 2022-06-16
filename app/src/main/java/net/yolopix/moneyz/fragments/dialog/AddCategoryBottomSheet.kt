@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -88,8 +89,15 @@ class AddCategoryBottomSheet(
             checkFormErrors()
         }
 
+        val setMaxButton: Button = view.findViewById(R.id.button_set_max)
+        setMaxButton.setOnClickListener {
+            editTextCategoryprice.setText(maxAmount.toString())
+        }
+
         // If the bottom sheet was opened to edit a category, fill the fields with the clicked item
         if (categoryToEdit != null) {
+            val titleTextView: TextView = view.findViewById(R.id.textview_title_category)
+            titleTextView.text = getString(R.string.title_category_edit)
             editTextCategoryprice.setText(categoryToEdit.predictedAmount.toString())
             editTextCategoryName.setText(categoryToEdit.name)
             buttonAddCategoryName.text = getString(R.string.edit)

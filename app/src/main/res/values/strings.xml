@@ -67,4 +67,7 @@
     <string name="zero_remaining_prevision">Budgetisation terminée !</string>
     <string name="remaining_prevision">Reste %1$s€</string>
     <string name="next">Suivant</string>
+    <string name="set_max_value">Max.</string>
+    <string name="title_category_edit">Modifier la catégorie</string>
+    <string name="add_category">Ajouter une catégorie</string>
 </resources>
