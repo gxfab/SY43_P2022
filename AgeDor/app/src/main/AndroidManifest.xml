@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.agedor">
 
     <application
@@ -41,6 +42,32 @@
             android:name=".view.factures.EditFacturesActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
+        <activity
+            android:name=".view.introduction.IntroActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".view.introduction.Fragment1"
+            android:exported="false"
+            android:parentActivityName=".view.introduction.IntroActivity" />
+        <activity
+            android:name=".view.introduction.Fragment2"
+            android:exported="false"
+            android:parentActivityName=".view.introduction.Fragment1" />
+        <activity
+            android:name=".view.introduction.Fragment3"
+            android:exported="false"
+            android:parentActivityName=".view.introduction.Fragment2" />
+        <activity
+            android:name=".view.introduction.Fragment4"
+            android:exported="false"
+            android:parentActivityName=".view.introduction.Fragment3" />
+        <activity
+            android:name=".view.introduction.Fragment5"
+            android:exported="false"
+            android:parentActivityName=".view.introduction.Fragment4" />
+
+
 
         <activity
             android:name=".MainActivity"

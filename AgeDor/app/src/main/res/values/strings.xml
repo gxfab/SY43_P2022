@@ -14,4 +14,10 @@
     <string name="revenus">Revenus</string>
     <string name="extra">Dépenses exceptionnelles</string>
     <string name="fac">Factures</string>
+    <string name="introduction">Introduction</string>
+    <string name="Bonjour">Bonjour Utilisateur inconnu</string>
+    <string name="textView3Content">Commencez par définir vos revenus mensuels.</string>
+    <string name="textView6Content">Entrez vos factures mensuelles.</string>
+    <string name="textView7Content">Entrez vos dettes.</string>
+    <string name="textView9Content">Aie il te reste de la thune frero</string>
 </resources>
