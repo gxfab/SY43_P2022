@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.budgetzeroapp.tool.ClickableListManager;
+import com.example.budgetzeroapp.tool.ToolBar;
 import com.example.budgetzeroapp.tool.adapter.BudgetAdapter;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
 import com.example.budgetzeroapp.R;
@@ -90,12 +91,14 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
+        ToolBar.getInstance().initToolBar(view, R.id.toolbar_budget);
 
-        /**Navigation**/
-        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+
+        /**Navigation
+         Toolbar toolbar = view.findViewById(R.id.toolbar_budget);
+         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         AppBarConfiguration appBarConfiguration =
                 new AppBarConfiguration.Builder(R.id.budgetFragment,R.id.addCategoryFragment).build();
-        Toolbar toolbar = view.findViewById(R.id.toolbar_budget);
         NavigationUI.setupWithNavController(
                 toolbar, navController, appBarConfiguration);
 
@@ -116,15 +119,13 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
                 }
                 return true;
             }
-        });
+        });**/
 
 
     }
 
-
     @Override
     public void onItemClick(View view, int position) {
-
         switch(position){
             case 1 : Collections.sort(items, (categoryItem, t1) -> categoryItem.getId() - t1.getId());
                 break;

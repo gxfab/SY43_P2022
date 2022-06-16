@@ -53,4 +53,8 @@
     <string name="sort">Sort by :</string>
     <string name="expenses">Expenses</string>
     <string name="earnings">Earnings</string>
+    <string name="budget">Budget</string>
+    <string name="cash_flow">Cash Flow</string>
+    <string name="home">Home</string>
+    <string name="savings">Savings</string>
 </resources>

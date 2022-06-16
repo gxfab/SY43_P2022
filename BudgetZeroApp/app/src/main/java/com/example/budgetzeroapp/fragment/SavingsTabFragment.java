@@ -1,10 +1,9 @@
-package com.example.budgetzeroapp.fragment.savings;
+package com.example.budgetzeroapp.fragment;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,10 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
 import com.example.budgetzeroapp.tool.item.SavingsItem;
@@ -67,7 +64,7 @@ public class SavingsTabFragment extends DataBaseFragment implements BudgetRecycl
 
         ArrayList<String> sortingItems = new ArrayList<>();
         sortingItems.add("Name");
-        if(type) sortingItems.add("%Paid");
+        if(!type) sortingItems.add("%Paid");
         else sortingItems.add("%Saved");
         sortingItems.add("Amount");
 

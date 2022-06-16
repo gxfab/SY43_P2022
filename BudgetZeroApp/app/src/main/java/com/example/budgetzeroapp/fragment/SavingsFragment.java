@@ -1,4 +1,4 @@
-package com.example.budgetzeroapp.fragment.savings;
+package com.example.budgetzeroapp.fragment;
 
 import android.os.Bundle;
 
@@ -7,17 +7,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.DataBaseFragment;
+import com.example.budgetzeroapp.tool.ToolBar;
 import com.example.budgetzeroapp.tool.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -65,7 +63,8 @@ public class SavingsFragment extends DataBaseFragment {
         tabLayout.setupWithViewPager(viewPager);
         if(!defaultTab) selectPage(2);
 
-        /**Navigation**/
+        ToolBar.getInstance().initToolBar(view, R.id.toolbar_savings);
+        /**Navigation
         Toolbar toolbar = view.findViewById(R.id.toolbar_savings);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -78,7 +77,7 @@ public class SavingsFragment extends DataBaseFragment {
                 }
                 return true;
             }
-        });
+        });**/
 
 
     }

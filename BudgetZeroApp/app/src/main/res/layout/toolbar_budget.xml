@@ -21,23 +21,23 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Budget"
+            android:text="@string/budget"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_weight="1"
             android:gravity="left"/>
         <TextView
+            android:id="@+id/amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="0.0€"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:layout_weight="1"
             android:gravity="center"/>
         <TextView
+            android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="14/06/22"
             android:textColor="@color/white"
             android:textSize="13sp"
             android:layout_weight="1"

@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.budgetzeroapp.AppContext;
+import com.example.budgetzeroapp.AppVars;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.MainActivity;
 
@@ -16,7 +16,7 @@ public abstract class DataBaseFragment extends Fragment {
     public DataBaseFragment() { this(0);}
 
     public DataBaseFragment(int id) {
-        database = new DBHelper(AppContext.getContext());
+        database = new DBHelper(AppVars.getContext());
         this.id = id;
     }
 
@@ -28,7 +28,7 @@ public abstract class DataBaseFragment extends Fragment {
     public void setId(int id) {this.id = id;}
 
     public void message(String message) {
-        Toast.makeText(AppContext.getContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(AppVars.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public static void redirect(DataBaseFragment f) {MainActivity.getActivity().bottomNavigationRedirect(f.getId()); }

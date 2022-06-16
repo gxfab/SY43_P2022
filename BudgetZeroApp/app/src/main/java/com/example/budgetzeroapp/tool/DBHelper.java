@@ -1,9 +1,6 @@
 package com.example.budgetzeroapp.tool;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,8 +9,7 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.budgetzeroapp.AppContext;
-import com.example.budgetzeroapp.tool.item.ExpenseItem;
+import com.example.budgetzeroapp.AppVars;
 
 
 @SuppressWarnings({"UnusedDeclaration"})
@@ -117,9 +113,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "create table " + EXP_TABLE_NAME +
                         "(" + EXP_COL_ID + " integer primary key autoincrement, " +
-                        EXP_COL_DAY + " integer default " + DateManager.dateToDay(new Date()) + ", " +
-                        EXP_COL_MONTH + " integer default " + DateManager.dateToMonth(new Date()) + ", " +
-                        EXP_COL_YEAR + " integer default " + DateManager.dateToYear(new Date()) + ", " +
+                        EXP_COL_DAY + " integer not null, " +
+                        EXP_COL_MONTH + " integer not null, " +
+                        EXP_COL_YEAR + " integer not null, " +
                         EXP_COL_AMOUNT + " real not null, " +
                         EXP_COL_LABEL + " text, " +
                         EXP_COL_IS_STABLE + " integer default 0, " +
@@ -140,8 +136,9 @@ public class DBHelper extends SQLiteOpenHelper {
         );
         db.execSQL(
                 "insert into "+EXP_TABLE_NAME+
-                        "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+")"+
-                        " values ('Courses soirée', 120, +"+TYPE_EXP+", 1);"
+                        "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
+                        ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+")"+
+                        " values ('Courses soirée', -120, +"+TYPE_EXP+", 1, 14, 6, 2022);"
         );
     }
 
@@ -312,7 +309,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean exists() {
-        return AppContext.getContext().getDatabasePath(DATABASE_NAME).exists();
+        return AppVars.getContext().getDatabasePath(DATABASE_NAME).exists();
     }
 
     public Cursor getExpenseFromID(int id) {
@@ -332,6 +329,13 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor res = getData("select sum("+EXP_COL_AMOUNT+") as "+REQ_SUM+
                 " from "+EXP_TABLE_NAME+
                 " where " +getCatColName(type)+ " = "+idCat);
+        res.moveToFirst();
+        return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
+    }
+
+    public float getAccountMoneyAmount(){
+        Cursor res = getData("select sum("+EXP_COL_AMOUNT+") as "+
+                REQ_SUM+ " from "+EXP_TABLE_NAME);
         res.moveToFirst();
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
     }
@@ -507,15 +511,15 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getDateExpenses(int year, int month, int day) {
         return getData("select * from " + EXP_TABLE_NAME +
                 " where " + EXP_COL_DAY + " = " + day +
-                "and " + EXP_COL_MONTH + " = " + month +
-                "and " + EXP_COL_YEAR + " = " + year);
+                " and " + EXP_COL_MONTH + " = " + month +
+                " and " + EXP_COL_YEAR + " = " + year);
     }
 
     public Cursor getEndMonthExpenses(int year, int month, int day) {
         return getData("select * from " + EXP_TABLE_NAME +
                 " where " + EXP_COL_DAY + " <= " + day +
-                "and " + EXP_COL_MONTH + " = " + month +
-                "and " + EXP_COL_YEAR + " = " + year);
+                " and " + EXP_COL_MONTH + " = " + month +
+                " and " + EXP_COL_YEAR + " = " + year);
     }
 
     public int numberOfRows() {

@@ -22,6 +22,7 @@ import java.util.List;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.ClickableListManager;
+import com.example.budgetzeroapp.tool.ToolBar;
 import com.example.budgetzeroapp.tool.adapter.ProgressBarAdapter;
 import com.example.budgetzeroapp.tool.item.CategoryItem;
 
@@ -79,7 +80,9 @@ public class HomeFragment extends DataBaseFragment {
         setupPieChart();
         loadPieChartData(items);
 
-        /**Navigation**/
+        ToolBar.getInstance().initToolBar(view, R.id.toolbar_home);
+
+        /**Navigation
         Toolbar toolbar = view.findViewById(R.id.toolbar_home);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -92,7 +95,7 @@ public class HomeFragment extends DataBaseFragment {
                 }
                 return true;
             }
-        });
+        });**/
 
     }
 

@@ -4,16 +4,13 @@ import android.database.Cursor;
 
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.BudgetFragment;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
-import com.example.budgetzeroapp.fragment.savings.SavingsFragment;
+import com.example.budgetzeroapp.fragment.SavingsFragment;
 import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
 import com.example.budgetzeroapp.fragment.view.ViewIncomeCatFragment;
 import com.example.budgetzeroapp.tool.DBHelper;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CategoryItem extends ListItem{
 

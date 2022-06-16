@@ -6,7 +6,7 @@ import java.util.Date;
 @SuppressWarnings({"UnusedDeclaration"})
 public class SavingsManager {
 
-    public void distributeSavings(DBHelper database, float amount, boolean isPercentMode){
+    public static void distributeSavings(DBHelper database, float amount, boolean isPercentMode){
         Date date = new Date();
         Cursor saving;
         int id;
@@ -54,9 +54,8 @@ public class SavingsManager {
         //TODO
     }
 
-    public void addStableExpenses(DBHelper database){
+    public static void addStableExpenses(DBHelper database, Date date){
 
-        Date date = new Date();
         int y = DateManager.dateToYear(date);
         int m = DateManager.dateToMonth(date);
         int dayNB=DateManager.dateToDay(date);

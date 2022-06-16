@@ -1,27 +1,12 @@
 package com.example.budgetzeroapp;
 
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.example.budgetzeroapp.fragment.BudgetFragment;
-import com.example.budgetzeroapp.fragment.DataBaseFragment;
-import com.example.budgetzeroapp.fragment.cashflow.CashFlowFragment;
-import com.example.budgetzeroapp.fragment.HomeFragment;
-import com.example.budgetzeroapp.fragment.savings.SavingsFragment;
 import com.example.budgetzeroapp.tool.OptionsMenu;
 import com.example.budgetzeroapp.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,6 +18,7 @@ public class MainActivity extends OptionsMenu {
     private LayoutInflater inflater;
     private BottomNavigationView bottomNavigationView;
     private NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +37,6 @@ public class MainActivity extends OptionsMenu {
 
 
     }
-
 
     public void bottomNavigationRedirect(int id){
         bottomNavigationView.setSelectedItemId(id);

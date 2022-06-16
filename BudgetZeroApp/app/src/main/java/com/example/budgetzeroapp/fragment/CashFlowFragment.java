@@ -1,14 +1,12 @@
-package com.example.budgetzeroapp.fragment.cashflow;
+package com.example.budgetzeroapp.fragment;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -17,7 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.DataBaseFragment;
+import com.example.budgetzeroapp.fragment.cashflow.CashFlowEvolutionFragment;
+import com.example.budgetzeroapp.fragment.cashflow.CashFlowGeneralFragment;
+import com.example.budgetzeroapp.fragment.cashflow.CashFlowStableFragment;
+import com.example.budgetzeroapp.tool.ToolBar;
 import com.example.budgetzeroapp.tool.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -51,7 +52,8 @@ public class CashFlowFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
         addFragment(view);
 
-        /**Navigation**/
+        ToolBar.getInstance().initToolBar(view, R.id.toolbar_cashflow);
+        /**Navigation
         Toolbar toolbar = view.findViewById(R.id.toolbar_cashflow);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -64,7 +66,7 @@ public class CashFlowFragment extends DataBaseFragment {
                 }
                 return true;
             }
-        });
+        });**/
 
     }
 
