@@ -197,7 +197,12 @@ class PrevisionActivity : AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 lifecycleScope.launch {
                     val categoryList = db.categoryDao()
-                        .getCategoriesForMonth(now.monthValue, now.year, accountUid!!)
+                        .getCategoriesOfTypeForMonth(
+                            now.monthValue,
+                            now.year,
+                            accountUid!!,
+                            getCurrentType()!!
+                        )
                     val position = viewHolder.adapterPosition
                     db.categoryDao().deleteCategory(categoryList[position])
                     loadAll()
