@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fluz.R
 import com.example.fluz.data.AppDatabase
 import com.example.fluz.data.repositories.BudgetItemRepository
@@ -16,6 +17,8 @@ import com.example.fluz.data.repositories.BudgetRepository
 import com.example.fluz.data.repositories.TransactionRepository
 import com.example.fluz.data.repositories.UserRepository
 import com.example.fluz.databinding.FragmentBudgetItemTransactionsBinding
+import com.example.fluz.ui.adapters.CategoriesAdapter
+import com.example.fluz.ui.adapters.TransactionsAdapter
 import com.example.fluz.ui.viewmodels.BudgetItemTransactionsViewModel
 import com.example.fluz.ui.viewmodels.BudgetItemTransactionsViewModelFactory
 import com.example.fluz.ui.viewmodels.ExpensesViewModel
@@ -51,6 +54,11 @@ class BudgetItemTransactions : Fragment() {
         val sharedPref = this.activity!!.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
         val connectedUserId = sharedPref.getLong("connectedUserId", -1)
 
+        val recyclerView = binding.rvListTransactions
+        val adapter = TransactionsAdapter(this)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this.context)
+
         budgetItemTransactionsViewModel.lastBudget.observe(this) { lastBudget ->
             budgetItemTransactionsViewModel.getAllTransactionsForBudgetItem(
                 budgetId = lastBudget.id,
@@ -71,6 +79,10 @@ class BudgetItemTransactions : Fragment() {
             binding.txtLeftForMonthAmount.text = leftForMonth.toString() + " €"
             binding.gaugeTotalMoneySpent.setHighValue((totalTransactions.toFloat() / budgetItemTransactionsViewModel.budgetItemAndCategory.value?.budgetItem?.amount!!) * 100)
             binding.txtMoneySpent.text = "You have spent " + totalTransactions.toString() + "€ on your budget of " + budgetItemTransactionsViewModel.budgetItemAndCategory.value?.budgetItem?.amount!!.toString() + " €"
+        }
+
+        budgetItemTransactionsViewModel.budgetItemTransactions.observe(this) {transactions ->
+            transactions.let { adapter.submitList(it) }
         }
 
         budgetItemTransactionsViewModel.getLastBudget(connectedUserId.toInt())

@@ -11,6 +11,8 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
     fun oneWithCategory(transactionId: Int): Flow<TransactionAndCategory> =
         transactionDao.getWithCategory(transactionId)
 
+    fun allTransactions() : Flow<List<Transaction>> = transactionDao.getAll()
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(transaction: Transaction) {

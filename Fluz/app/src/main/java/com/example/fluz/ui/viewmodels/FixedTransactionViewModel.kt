@@ -54,6 +54,7 @@ class FixedTransactionViewModel(
                     tag = tag,
                     type = type,
                     categoryId = categoryId,
+                    date = null,
                     userId = userId,
                     budgetId = null
                 )

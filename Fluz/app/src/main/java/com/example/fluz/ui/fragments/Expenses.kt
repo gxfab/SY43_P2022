@@ -64,9 +64,12 @@ class Expenses : Fragment() {
             binding.gaugeTotalMoneySpent.setHighValue(((totalTransactions.toFloat() / expensesViewModel.lastBudget.value?.total_amount!!) * 100).toFloat())
         }
 
+        expensesViewModel.allTransactions.observe(this) {transactions ->
+            expensesViewModel.lastBudget.value?.let { expensesViewModel.getAllBudgetItems(it.id) }
+        }
+
         expensesViewModel.lastBudget.observe(this) {lastBudget ->
             expensesViewModel.getTransactions(connectedUserId.toInt(), lastBudget.id)
-            expensesViewModel.lastBudget.value?.let { expensesViewModel.getAllBudgetItems(it.id) }
         }
 
         expensesViewModel.budgetItems.observe(this) {budgetItems ->

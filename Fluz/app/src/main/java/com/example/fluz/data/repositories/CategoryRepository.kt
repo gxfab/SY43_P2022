@@ -31,4 +31,10 @@ class CategoryRepository(private val categoryDao: CategoryDao) {
     suspend fun insert(category: Category) {
         categoryDao.insert(category)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteOne(categoryId: Int) {
+        categoryDao.deleteOne(categoryId)
+    }
 }

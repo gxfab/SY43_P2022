@@ -9,7 +9,7 @@ import com.example.fluz.data.entities.*
 
 @Database(
     entities = [Budget::class, BudgetItem::class, Category::class, SubCategory::class, Transaction::class, User::class, UserCategory::class],
-    version = 5
+    version = 6
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun UserDao(): UserDao
@@ -18,6 +18,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun CategoryDao(): CategoryDao
     abstract fun SubCategoryDao(): SubCategoryDao
     abstract fun TransactionDao(): TransactionDao
+    abstract fun UserCategoryDao(): UserCategoryDao
 
     companion object {
         @Volatile

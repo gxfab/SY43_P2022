@@ -51,11 +51,11 @@ class MainActivity : AppCompatActivity() {
             launch {
                 categoryDao.deleteAll()
 
-                categoryDao.insert(Category(id = 1, title = "Food"))
-                categoryDao.insert(Category(id = 2, title = "Housing"))
-                categoryDao.insert(Category(id = 3, title = "Transportation"))
-                categoryDao.insert(Category(id = 4, title = "Clothing"))
-                categoryDao.insert(Category(id = 5, title = "Savings"))
+                categoryDao.insert(Category(id = 1, title = "Food", type = "Global"))
+                categoryDao.insert(Category(id = 2, title = "Housing", type = "Global"))
+                categoryDao.insert(Category(id = 3, title = "Transportation", type = "Global"))
+                categoryDao.insert(Category(id = 4, title = "Clothing", type = "Global"))
+                categoryDao.insert(Category(id = 5, title = "Savings", type = "Global"))
             }
         }
 

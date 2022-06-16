@@ -22,8 +22,9 @@ class VariableExpensesViewModel(
 ) : ViewModel() {
 
     val allCategories = categoriesRepository.allCategories().asLiveData()
-    val income: MutableLiveData<Int> = MutableLiveData();
-    val expenses: MutableLiveData<Int> = MutableLiveData();
+    val income: MutableLiveData<Int> = MutableLiveData()
+    val expenses: MutableLiveData<Int> = MutableLiveData()
+    val budgets: MutableLiveData<List<Budget>> = MutableLiveData()
 
     val budgetItems: MutableLiveData<List<BudgetItemAndCategory>> = MutableLiveData();
 
@@ -34,6 +35,17 @@ class VariableExpensesViewModel(
         expenses.value = 0;
         budgetItems.value = emptyList()
         errorMessage.value = ""
+    }
+
+    fun getBudgets(userId: Int) = viewModelScope.launch {
+        val localBudgets: MutableList<Budget> = mutableListOf()
+
+        val userWithBudgets = userRepository.oneWithBudgets(userId).first()
+        for (userWithBudget in userWithBudgets.budgets) {
+            localBudgets.add(userWithBudget)
+        }
+
+        budgets.value = localBudgets.toList()
     }
 
     fun createBudget(userId: Int) = viewModelScope.launch {
@@ -65,6 +77,8 @@ class VariableExpensesViewModel(
             newBudgetItem.budgetId = lastBudget.id
             budgetItemRepository.insert(newBudgetItem)
         }
+
+        getBudgets(userId)
     }
 
     fun addBudgetItem(amount: Int, category: Category) {

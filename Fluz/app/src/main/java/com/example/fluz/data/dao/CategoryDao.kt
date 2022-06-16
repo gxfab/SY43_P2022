@@ -36,4 +36,7 @@ interface CategoryDao {
     @Query("DELETE FROM Category")
     suspend fun deleteAll()
 
+    @Query("DELETE FROM Category WHERE id = :categoryId")
+    suspend fun deleteOne(categoryId: Int)
+
 }

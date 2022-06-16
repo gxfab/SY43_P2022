@@ -7,24 +7,6 @@
     tools:context=".ui.fragments.Transaction"
     android:background="@color/background">
 
-    <EditText
-        android:id="@+id/edt_title"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/edit_text_style_no_transparent"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:text="Title"
-        android:textColor="@color/fluz_text"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <!--<EditText
         android:id="@+id/edt_amount"
         android:layout_width="400dp"
@@ -42,6 +24,39 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_title"
         android:paddingLeft="20dp"/>-->
 
+    <ImageButton
+        android:id="@+id/backArrow"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#F8F8F8"
+        android:backgroundTint="#00FFFFFF"
+        android:src="?attr/homeAsUpIndicator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/edt_title"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/edit_text_style_no_transparent"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="@color/fluz_text"
+        android:textColorHint="@color/fluz_text"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/edt_amount_transaction"
         android:layout_width="0dp"
@@ -54,8 +69,8 @@
         android:hint="Amount"
         android:inputType="number"
         android:paddingLeft="70dp"
-        android:text="Amount"
         android:textColor="@color/fluz_text"
+        android:textColorHint="@color/fluz_text"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -70,11 +85,12 @@
         android:layout_marginEnd="100dp"
         android:background="@drawable/edit_text_style_no_transparent"
         android:ems="10"
-        android:hint="Amount"
+        android:focusable="false"
+        android:hint="Category"
         android:inputType="number"
         android:paddingLeft="70dp"
-        android:text="Category"
         android:textColor="@color/fluz_text"
+        android:textColorHint="@color/fluz_text"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -98,7 +114,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/edt_category_transaction"
         app:layout_constraintTop_toTopOf="@+id/edt_category_transaction"
-        app:srcCompat="@drawable/logo_fluz" />
+        app:srcCompat="@drawable/interogation" />
 
     <EditText
         android:id="@+id/edt_date_transaction"
@@ -109,10 +125,12 @@
         android:layout_marginEnd="40dp"
         android:background="@drawable/edit_text_style_no_transparent"
         android:ems="10"
+        android:focusable="false"
+        android:hint="Date"
         android:inputType="date"
         android:paddingLeft="70dp"
-        android:text="Date"
         android:textColor="@color/fluz_text"
+        android:textColorHint="@color/fluz_text"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -126,46 +144,36 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/edt_date_transaction"
         app:layout_constraintTop_toTopOf="@+id/edt_date_transaction"
-        app:srcCompat="@drawable/interogation" />
+        app:srcCompat="@drawable/calendrier" />
 
     <Button
         android:id="@+id/btn_expense"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
-        android:text="Expense"
+        android:text="Add Expense"
         android:textColor="#d60000"
         android:textSize="25dp"
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_revenue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_category_transaction"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/error_txt"
+        app:layout_constraintVertical_bias="0.426"
         app:strokeColor="#d60000"
         app:strokeWidth="2dp" />
 
-    <Button
-        android:id="@+id/btn_revenue"
+    <TextView
+        android:id="@+id/error_txt"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="40dp"
-        android:backgroundTint="@color/white"
-        android:text="Revenue"
-        android:textColor="#356405"
-        android:textSize="25dp"
-        app:cornerRadius="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textColor="#DF3D3D"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_expense"
-        app:layout_constraintTop_toBottomOf="@+id/edt_category_transaction"
-        app:layout_constraintVertical_bias="0.0"
-        app:strokeColor="#356405"
-        app:strokeWidth="2dp" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_category_transaction" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

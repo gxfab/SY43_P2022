@@ -36,7 +36,7 @@ class UserInfo : Fragment() {
     private val registerViewModel: RegisterViewModel by viewModels {
         RegisterViewModelFactory(userRepository)
     }
-
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

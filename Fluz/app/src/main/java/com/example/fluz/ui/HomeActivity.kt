@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.btn_add)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.nav_transaction) {
+            if(destination.id == R.id.nav_transaction || destination.id == R.id.categories) {
 
                 bottomNavigationView.visibility = View.GONE
                 bar.visibility = View.GONE
