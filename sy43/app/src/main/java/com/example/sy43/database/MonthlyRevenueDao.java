@@ -18,6 +18,9 @@ public interface MonthlyRevenueDao {
     @Query("SELECT * FROM MonthlyRevenue WHERE month = :month")
     MonthlyRevenue findByMonth(int month);
 
+    @Query("SELECT * FROM MonthlyRevenue WHERE month = :month AND year = :year")
+    MonthlyRevenue findByMonthAndYear(int month, int year);
+
     @Insert
     void insertAll(MonthlyRevenue... rev);
 

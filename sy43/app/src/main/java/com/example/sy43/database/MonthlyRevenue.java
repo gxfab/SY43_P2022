@@ -21,5 +21,6 @@ public class MonthlyRevenue {
     public MonthlyRevenue(double value, int month, int year) {
         this.value = value;
         this.month = month;
+        this.year = year;
     }
 }

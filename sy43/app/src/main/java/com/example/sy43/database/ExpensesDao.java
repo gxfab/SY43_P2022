@@ -20,8 +20,14 @@ public interface ExpensesDao {
 
     @Query( "SELECT * FROM Expenses " +
             "INNER JOIN SubCategory on SubCategory.id = Expenses.e_subcategory " +
-            "WHERE SubCategory.id = :category")
-    List<Expenses> findBySubCategory(int category);
+            "WHERE SubCategory.id = :subcategory")
+    List<Expenses> findBySubCategory(int subcategory);
+
+    @Query( "SELECT * FROM Expenses " +
+            "INNER JOIN SubCategory on SubCategory.id = Expenses.e_subcategory " +
+            "INNER JOIN Category on Category.id = SubCategory.category " +
+            "WHERE Category.id = :category")
+    List<Expenses> findByCategory(int category);
 
     @Query( "SELECT * FROM Expenses " +
             "INNER JOIN MonthlyRevenue on MonthlyRevenue.id = Expenses.e_monthlyrevenue " +

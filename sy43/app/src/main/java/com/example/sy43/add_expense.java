@@ -88,7 +88,6 @@ public class add_expense extends Fragment {
          }
         );
 
-
 //        List<String> subcategories = new ArrayList<String>();
 //        for (SubCategory subcat : db.subCategoryDao().findByCategory(db.categoryDao().findByName(catText).id)) {
 //            subcategories.add(subcat.getName());
@@ -103,11 +102,15 @@ public class add_expense extends Fragment {
             @Override
             public void onClick(View view) {
                 AppDatabase db = AppDatabase.getInstance(view.getContext());
-                String test = subcatSpinner.getSelectedItem().toString();
-                int selectsubCatID = db.subCategoryDao().findByName(test).id;
+                String subCat = subcatSpinner.getSelectedItem().toString();
+                int selectsubCatID = db.subCategoryDao().findByName(subCat).id;
                 Calendar calendar = Calendar.getInstance();
                 int currentMonth = calendar.get(Calendar.MONTH)+1;
-                int monthlyRevenueID = db.monthlyRevenueDao().findByMonth(currentMonth).id;
+//                int monthlyRevenueID = db.monthlyRevenueDao().findByMonth(currentMonth).id;
+                String[] monthsArray = getResources().getStringArray(R.array.Months_Array);
+                Spinner monthSpinner = getActivity().findViewById(R.id.spinner); int selectedMonth = Arrays.asList(monthsArray).indexOf(monthSpinner.getSelectedItem().toString())+1;
+                Spinner yearSpinner = getActivity().findViewById(R.id.spinner4); int selectedYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
+                int monthlyRevenueID = db.monthlyRevenueDao().findByMonthAndYear(selectedMonth,selectedYear).id;
 
                 db.expensesDao().insertAll(new Expenses(et_name.getText().toString(), Double.parseDouble(et_amount.getText().toString()), selectsubCatID, monthlyRevenueID ));
 
@@ -121,7 +124,6 @@ public class add_expense extends Fragment {
                 String balanceText = total_balance.getText().toString();
                 total_balance.setText(Double.parseDouble(balanceText.substring(0,balanceText.length()-1))-Double.parseDouble(et_amount.getText().toString())+"$" );
 
-
                 Bundle bundle = new Bundle();
                 bundle.putString("Name", et_name.getText().toString());
                 bundle.putString("Amount", et_amount.getText().toString());
@@ -129,6 +131,8 @@ public class add_expense extends Fragment {
 
                 latest_expenses latestExpenses = new latest_expenses();
                 latestExpenses.setArguments(bundle);
+
+
 
 //                TabLayout.Tab tab = tabLayout.getTabAt(1);
 //                tab.select();

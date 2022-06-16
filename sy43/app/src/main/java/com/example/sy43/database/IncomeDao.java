@@ -23,6 +23,9 @@ public interface IncomeDao {
             "WHERE MonthlyRevenue.id = :month")
     List<Income> findByMonth(int month);
 
+    @Query("SELECT SUM(i_value) FROM Income")
+    Double incomeSum();
+
     @Insert
     void insertAll(Income... income);
 

@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -20,7 +21,9 @@ import android.widget.TextView;
 import com.example.sy43.database.AppDatabase;
 import com.example.sy43.database.Category;
 import com.example.sy43.database.Expenses;
+import com.example.sy43.database.Income;
 import com.example.sy43.database.MonthlyRevenue;
+import com.example.sy43.database.SubCategory;
 import com.google.android.material.tabs.TabLayout;
 
 import org.eazegraph.lib.charts.PieChart;
@@ -30,6 +33,7 @@ import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,7 +44,7 @@ public class Home extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private MyFragmentAdapter adapter;
     private Define_incomes define_incomes;
-    private Spinner monthSpinner;
+    private Spinner monthSpinner, yearSpinner;
 
     PieChart pieChart;
 
@@ -58,10 +62,18 @@ public class Home extends AppCompatActivity {
 
         total_income = findViewById(R.id.total_income_amount);
 
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             String amount = extras.getString("total_income_value");
             total_income.setText(amount);
+        } else {
+            double amount = 0.0;
+            for(Income inc : db.incomeDao().getAll()){
+                amount += inc.value;
+            }
+            total_income.setText(String.valueOf(amount)+"$");
         }
 
         toCategories();
@@ -102,11 +114,13 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 
         total_expense = findViewById(R.id.expense_amount);
         total_balance = findViewById(R.id.balance_amount);
         monthSpinner = findViewById(R.id.spinner);
+        yearSpinner = findViewById(R.id.spinner4);
+
+        String[] monthsArray = getResources().getStringArray(R.array.Months_Array);
 
         List<String> months = new ArrayList<String>();
         for (MonthlyRevenue mth: db.monthlyRevenueDao().getAll()) {
@@ -117,7 +131,6 @@ public class Home extends AppCompatActivity {
         monthData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(monthData);
 
-        Spinner yearSpinner = findViewById(R.id.spinner4);
 
         List<String> years = new ArrayList<String>();
         for (MonthlyRevenue mth: db.monthlyRevenueDao().getAll()) {
@@ -128,17 +141,31 @@ public class Home extends AppCompatActivity {
         yearData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSpinner.setAdapter(yearData);
 
-        String[] monthsArray = getResources().getStringArray(R.array.Months_Array);
-        double exp_total=0.0;
-        List<Expenses> monthlyExpenses = db.expensesDao().findByMonth(Arrays.asList(monthsArray).indexOf(monthSpinner.getSelectedItem().toString()));
-        for (Expenses exp : monthlyExpenses) {
-            exp_total+=exp.value;
-        }
-        total_expense.setText(String.valueOf(exp_total)+"$");
-        String incomeText = total_income.getText().toString();
-        total_balance.setText(Double.parseDouble(incomeText.substring(0,incomeText.length()-1))-exp_total+"$");
+        monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                 @Override
+                                                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {updateExpenseAndBalance(monthsArray, db);}
+                                                 @Override
+                                                 public void onNothingSelected(AdapterView<?> adapterView) {}});
 
+        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                @Override
+                                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {updateExpenseAndBalance(monthsArray, db);}
+                                                @Override
+                                                public void onNothingSelected(AdapterView<?> adapterView) {}});
 
+//        monthSpinner.setSelection(months.indexOf(Month.of(Calendar.getInstance().get(Calendar.MONTH)).getDisplayName(TextStyle.FULL, Locale.ENGLISH)));
+//
+          updateExpenseAndBalance(monthsArray, db);
+//        double exp_total=0.0;
+//        int selectedMonth = Arrays.asList(monthsArray).indexOf(monthSpinner.getSelectedItem().toString())+1;
+//        int selectedYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
+//        List<Expenses> monthlyExpenses = db.expensesDao().findByMonth(db.monthlyRevenueDao().findByMonthAndYear(selectedMonth,selectedYear).id);
+//        for (Expenses exp : monthlyExpenses) {
+//            exp_total+=exp.value;
+//        }
+//        total_expense.setText(String.valueOf(exp_total)+"$");
+//        String incomeText = total_income.getText().toString();
+//        total_balance.setText(Double.parseDouble(incomeText.substring(0,incomeText.length()-1))-exp_total+"$");
 
         //List<Expenses> expensesList = db.expensesDao().findByMonth(monthSpinner.getSelectedItem().toString())
     }
@@ -152,7 +179,6 @@ public class Home extends AppCompatActivity {
 
         chart.startAnimation();
         chart.setClickable(false);
-
     }
 
     private void toCategories(){
@@ -173,5 +199,18 @@ public class Home extends AppCompatActivity {
                 startActivity(new Intent(Home.this, Overview.class));
             }
         });
+    }
+
+    private void updateExpenseAndBalance(String[] monthsArray, AppDatabase db){
+        double exp_total=0.0;
+        int selectedMonth = Arrays.asList(monthsArray).indexOf(monthSpinner.getSelectedItem().toString())+1;
+        int selectedYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
+        List<Expenses> monthlyExpenses = db.expensesDao().findByMonth(db.monthlyRevenueDao().findByMonthAndYear(selectedMonth,selectedYear).id);
+        for (Expenses exp : monthlyExpenses) {
+            exp_total+=exp.value;
+        }
+        total_expense.setText(String.valueOf(exp_total)+"$");
+        String incomeText = total_income.getText().toString();
+        total_balance.setText(Double.parseDouble(incomeText.substring(0,incomeText.length()-1))-exp_total+"$");
     }
 }

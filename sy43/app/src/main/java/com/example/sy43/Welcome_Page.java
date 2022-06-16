@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.sy43.database.AppDatabase;
 import com.example.sy43.database.Category;
 import com.example.sy43.database.Income;
+import com.example.sy43.database.MonthlyRevenue;
 
 import java.util.Calendar;
 import java.util.List;
@@ -48,12 +49,18 @@ public class Welcome_Page extends AppCompatActivity {
             double income_sum = 0.0;
             Calendar calendar = Calendar.getInstance();
             int currentMonth = calendar.get(Calendar.MONTH)+1;
-            int month = db.monthlyRevenueDao().findByMonth(currentMonth).id;
-            List<Income> incList = db.incomeDao().findByMonth(month);
-            for(int i = 0; i < incList.size(); i++){
-                income_sum += incList.get(i).value;
+            int currentYear = calendar.get(Calendar.YEAR);
+            MonthlyRevenue mr = db.monthlyRevenueDao().findByMonthAndYear(currentMonth, currentYear);
+            if (mr == null){
+                db.monthlyRevenueDao().insertAll(new MonthlyRevenue(db.incomeDao().incomeSum(), currentMonth, currentYear));
+                mr = db.monthlyRevenueDao().findByMonthAndYear(currentMonth, currentYear);
             }
-            total_income = Double.toString(income_sum) + "$";
+            int month = mr.id;
+//            List<Income> incList = db.incomeDao().findByMonth(month);
+//            for(int i = 0; i < incList.size(); i++){
+//                income_sum += incList.get(i).value;
+//            }
+            total_income = Double.toString(db.incomeDao().incomeSum()) + "$";
             Intent intent = new Intent(Welcome_Page.this, Home.class);
             intent.putExtra("total_income_value", total_income);
             startActivity(intent);
