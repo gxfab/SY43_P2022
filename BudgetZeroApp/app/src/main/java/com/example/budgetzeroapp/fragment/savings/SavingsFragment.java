@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -54,8 +53,8 @@ public class SavingsFragment extends DataBaseFragment {
         tabLayout = view.findViewById(R.id.tab_layout);
         viewPager = view.findViewById(R.id.viewPager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new SavingstTabFragment(), "Savings");
-        adapter.addFragment(new SavingsDebtsTabFragment(), "Debts");
+        adapter.addFragment(new SavingsTabFragment(true), "Savings");
+        adapter.addFragment(new SavingsTabFragment(false), "Debts");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         if(!defaultTab) selectPage(2);

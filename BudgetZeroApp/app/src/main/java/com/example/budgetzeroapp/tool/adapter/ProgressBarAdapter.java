@@ -27,15 +27,12 @@ public class ProgressBarAdapter extends ArrayAdapter<CategoryItem> {
         public View getView(int position, View convertView, ViewGroup parent) {
 
             View v = convertView;
-
             if (v == null) {
                 LayoutInflater vi;
                 vi = LayoutInflater.from(AppContext.getContext());
                 v = vi.inflate(resourceLayout, null);
             }
-
             CategoryItem p = getItem(position);
-
             if (p != null) {
                 TextView catName = (TextView) v.findViewById(R.id.category_name);
                 if (catName != null) catName.setText(p.getName());

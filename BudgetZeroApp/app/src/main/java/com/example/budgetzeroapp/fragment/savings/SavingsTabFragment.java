@@ -11,23 +11,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SeekBar;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.DataBaseFragment;
+import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
+import com.example.budgetzeroapp.tool.item.SavingsItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class SavingstTabFragment extends Fragment implements BudgetRecyclerViewAdapter.ItemClickListener {
+public class SavingsTabFragment extends DataBaseFragment implements BudgetRecyclerViewAdapter.ItemClickListener {
     private BudgetRecyclerViewAdapter adapter;
-    public SavingstTabFragment() {
-        // Required empty public constructor
+    private ListView categories;
+    RecyclerView recyclerView;
+    boolean type;
+    List<SavingsItem> items;
+
+    public SavingsTabFragment() {
+        super();
+        type = true;
+    }
+    public SavingsTabFragment(boolean type) {
+        this.type = type;
     }
 
-    public static SavingstTabFragment newInstance(String param1, String param2) {
-        SavingstTabFragment fragment = new SavingstTabFragment();
-        return fragment;
+    public static SavingsTabFragment newInstance(String param1, String param2) {
+        return new SavingsTabFragment();
     }
 
     @Override
@@ -39,25 +52,26 @@ public class SavingstTabFragment extends Fragment implements BudgetRecyclerViewA
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_savingst_tab, container, false);
+        View view = inflater.inflate(R.layout.fragment_savings_debts_tab, container, false);
+        categories = view.findViewById(R.id.list_view_cat);
+        recyclerView = view.findViewById(R.id.budget_sorting);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /**Seekbar - Not allowing the user to move the cursor**/
-        SeekBar seekbar = view.findViewById(R.id.seekbar_default);
-        seekbar.setEnabled(false);
 
-        /**Sorting RecyclerView Initialization**/
-        // data to populate the RecyclerView with
+        items = SavingsItem.initSavingsList(database, type);
+        ClickableListManager.clickableSavingsList(categories, items);
+
         ArrayList<String> sortingItems = new ArrayList<>();
         sortingItems.add("Name");
-        sortingItems.add("%Saved");
+        if(type) sortingItems.add("%Paid");
+        else sortingItems.add("%Saved");
         sortingItems.add("Amount");
 
         // set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.budget_sorting);
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManager);
@@ -69,7 +83,13 @@ public class SavingstTabFragment extends Fragment implements BudgetRecyclerViewA
 
     @Override
     public void onItemClick(View view, int position) {
-        // USE THIS LISTENER TO DETERMINE WHICH SORTING TO APPLY
-        Toast.makeText(view.getContext(), "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+        switch(position){
+            case 1 : Collections.sort(items, (savingsItem, t1) -> savingsItem.getName().compareTo(t1.getName()));
+                break;
+            case 2 : Collections.sort(items, (savingsItem, t1) -> (savingsItem.getProgress() - t1.getProgress()));
+                break;
+            case 3 : Collections.sort(items, (savingsItem, t1) -> (int) (savingsItem.getObjective()-t1.getObjective()));
+                break;
+        }
     }
 }

@@ -67,7 +67,6 @@ public class CategoryItem extends ListItem{
             amount = database.getSumDebt();
             list.add(new CategoryItem(0, "Debts", amount, (int)(100*amount/total)));
         }
-
         return list;
     }
 

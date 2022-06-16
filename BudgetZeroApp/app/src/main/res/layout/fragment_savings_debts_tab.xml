@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.savings.SavingsDebtsTabFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.savings.SavingsTabFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,16 +23,17 @@
                 android:layout_marginLeft="15dp"/>
             <include
                 layout="@layout/sorting_budget"/>
-            <include
-                layout="@layout/progress_bar_default"/>
-            <include
-                layout="@layout/progress_bar_default"/>
-            <include
-                layout="@layout/progress_bar_default"/>
-            <include
-                layout="@layout/progress_bar_default"/>
-            <include
-                layout="@layout/progress_bar_default"/>
+
+            <ListView
+                android:id="@+id/list_view_cat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="?attr/actionBarSize"
+                app:layout_constraintEnd_toStartOf="@+id/appBarLayout"
+                app:layout_constraintStart_toEndOf="@+id/appBarLayout"
+                app:layout_constraintTop_toBottomOf="@+id/month"
+                android:padding="8dp">
+            </ListView>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

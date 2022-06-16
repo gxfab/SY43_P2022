@@ -2,12 +2,14 @@ package com.example.budgetzeroapp.fragment.cashflow;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
@@ -20,8 +22,11 @@ import java.util.List;
 public class CashFlowStableFragment extends DataBaseFragment {
 
     ListView earnList, expList;
+    TextView expText, earnText;
 
-    public CashFlowStableFragment() { super(); }
+    public CashFlowStableFragment() {
+        super();
+    }
 
 
     @Override
@@ -33,15 +38,30 @@ public class CashFlowStableFragment extends DataBaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_cash_flow_stable, container, false);
+        View view = inflater.inflate(R.layout.fragment_cash_flow_stable, container, false);
+        expText = view.findViewById(R.id.expenses_label);
+        earnText = view.findViewById(R.id.earnings_label);
         expList = view.findViewById(R.id.expenses_list);
         earnList = view.findViewById(R.id.earnings_list);
+
+
+        return view;
+    }
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         List<ExpenseItem> earn = ExpenseItem.ExpensesToList(
                 database.getLastMonthStable(DBHelper.TYPE_INC), database);
         List<ExpenseItem> exp = ExpenseItem.ExpensesToList(
                 database.getLastMonthStable(DBHelper.TYPE_EXP), database);
+
         ClickableListManager.clickableExpenseList(expList, exp);
         ClickableListManager.clickableExpenseList(earnList, earn);
-        return view;
+
+        if(exp.isEmpty()) expText.setText("");
+        if(earn.isEmpty()) earnText.setText("");
+        if(exp.isEmpty() && earn.isEmpty()) {
+            CharSequence text = "No stable expenses";
+            expText.setText(text);
+        }
     }
 }

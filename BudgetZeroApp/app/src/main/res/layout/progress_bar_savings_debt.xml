@@ -8,22 +8,23 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
     <TextView
+        android:id="@+id/category_name"
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
         android:textSize="15sp"
         android:textStyle="bold" />
+
     <TextView
-        android:layout_marginLeft="10dp"
+        android:id="@+id/objective_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Expense"
+        android:layout_marginLeft="320dp"
         android:textSize="12sp"
-        android:textStyle="normal"/>
+        android:textStyle="normal" />
 
     <SeekBar
-        android:id="@+id/seekbar_default"
+        android:id="@+id/seekbar_reached"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="5dp"

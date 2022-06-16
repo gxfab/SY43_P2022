@@ -110,7 +110,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         SAV_CAT_COL_NAME + " text not null, " +
                         SAV_CAT_COL_MAX_AMOUNT + " real default -1, " +
                         SAV_CAT_COL_CURRENT_AMOUNT + " real default 0, " +
-                        SAV_CAT_COL_PERCENTAGE + " integer default null, " +
+                         SAV_CAT_COL_PERCENTAGE + " integer default null, " +
                         SAV_CAT_COL_PRIORITY_ORDER + " integer" +
                         ");"
         );
@@ -163,17 +163,13 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(EXP_COL_YEAR, DateManager.dateToYear(date));
         contentValues.put(EXP_COL_LABEL, label);
         switch (type) {
-            case TYPE_EXP:
-                contentValues.put(EXP_COL_ID_EXP, catID);
+            case TYPE_EXP: contentValues.put(EXP_COL_ID_EXP, catID);
                 break;
-            case TYPE_INC:
-                contentValues.put(EXP_COL_ID_INC, catID);
+            case TYPE_INC: contentValues.put(EXP_COL_ID_INC, catID);
                 break;
-            case TYPE_DEBT:
-                contentValues.put(EXP_COL_ID_DEBT, catID);
+            case TYPE_DEBT: contentValues.put(EXP_COL_ID_DEBT, catID);
                 break;
-            case TYPE_SAV:
-                contentValues.put(EXP_COL_ID_SAV, catID);
+            case TYPE_SAV: contentValues.put(EXP_COL_ID_SAV, catID);
                 break;
             default:
                 type = TYPE_EXP;
@@ -470,6 +466,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getAllSavingsCat() {
         return getData("select * from " + SAV_CAT_TABLE_NAME);
+    }
+
+    public Cursor getAllDebts() {
+        return getData("select * from " + DEBT_TABLE_NAME);
     }
 
     public Cursor getAllExpenses() {

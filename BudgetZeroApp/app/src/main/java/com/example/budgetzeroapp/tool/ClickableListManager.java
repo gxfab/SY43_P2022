@@ -10,10 +10,12 @@ import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.tool.adapter.BudgetAdapter;
 import com.example.budgetzeroapp.tool.adapter.ExpenseAdapter;
 import com.example.budgetzeroapp.tool.adapter.ProgressBarAdapter;
+import com.example.budgetzeroapp.tool.adapter.SavingsAdapter;
 import com.example.budgetzeroapp.tool.adapter.SimpleListAdapter;
 import com.example.budgetzeroapp.tool.item.ExpenseItem;
 import com.example.budgetzeroapp.tool.item.ListItem;
 import com.example.budgetzeroapp.tool.item.CategoryItem;
+import com.example.budgetzeroapp.tool.item.SavingsItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,10 @@ public class ClickableListManager {
 
     public static ListView clickableProgressBarList(ListView list, List<CategoryItem> items){
         return clickableList(list, new ProgressBarAdapter(items));
+    }
+
+    public static ListView clickableSavingsList(ListView list, List<SavingsItem> items){
+        return clickableList(list, new SavingsAdapter(items));
     }
 
     public static ListView clickableExpenseList(ListView list, List<ExpenseItem> items){
