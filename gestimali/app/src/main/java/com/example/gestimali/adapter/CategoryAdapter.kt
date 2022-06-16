@@ -44,8 +44,9 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
     override fun onClick(p0: View?) {
         val fragment: NewIncomeFragment? =
             NewIncomeFragment.newInstance(intMonth)
-        val fm: FragmentManager = (activity as AppCompatActivity).supportFragmentManager
+        val fm: FragmentManager = (activity).supportFragmentManager
         val ft: FragmentTransaction = fm.beginTransaction()
+        ft.addToBackStack("addFragment")
         if (fragment != null) {
             ft.replace(R.id.popup_fragment, fragment)
         }

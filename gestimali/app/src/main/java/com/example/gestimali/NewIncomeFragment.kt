@@ -93,7 +93,8 @@ class NewIncomeFragment : Fragment() {
 
             mIncomeViewModel.addIncome(income)
 
-            activity?.supportFragmentManager?.popBackStack()
+            activity?.supportFragmentManager?.popBackStack("addFragment",0)
+            //activity?.supportFragmentManager?.popBackStack()
         }
     }
 
