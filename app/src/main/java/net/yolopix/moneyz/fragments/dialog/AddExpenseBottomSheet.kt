@@ -57,7 +57,7 @@ class AddExpenseBottomSheet(
     private lateinit var buttonAdd: Button
 
     /**
-     * When the bottom sheet view is created
+     * This function is called when the bottom sheet view is created
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

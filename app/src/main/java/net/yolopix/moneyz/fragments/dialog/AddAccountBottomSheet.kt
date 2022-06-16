@@ -39,7 +39,9 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
     private lateinit var accountNameTextField: TextInputLayout
     private lateinit var buttonAdd: Button
 
-    // When the bottom sheet is created
+    /**
+     * This function is called when the bottom sheet is created
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -70,6 +72,10 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
         }
     }
 
+    /**
+     * Using the details the user has filled in the fields,
+     * create a new account or edit an existing one
+     */
     private fun addAccount() {
         // Fetch the account name in the EditText and add it to the database
         val newAccountName = editTextAccountName.text.toString()
@@ -92,7 +98,7 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
                     val category =
                         Category(
                             0, names, 0.0f, now.monthValue, now.year, accountNumber.toInt(),
-                            ExpenseType.getTypeFromInt(i+1)!!
+                            ExpenseType.getTypeFromInt(i + 1)!!
                         )
                     db.categoryDao().insertCategory(category)
                 }
@@ -105,6 +111,9 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
         dismiss()
     }
 
+    /**
+     * Check if the fields contains errors and prevent the user from continuing if so
+     */
     private fun checkFormErrors() {
         buttonAdd.isEnabled = accountNameTextField.error == null
                 && editTextAccountName.text.isNotBlank()

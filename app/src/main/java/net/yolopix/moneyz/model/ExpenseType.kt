@@ -1,5 +1,9 @@
 package net.yolopix.moneyz.model
 
+/**
+ * This enum represents a type of expense in the zero based budget method
+ * @param stepNumber Used to order each step when making previsions
+ */
 enum class ExpenseType(val stepNumber: Int) {
     BILLS(1),
     ENVELOPES(2),
