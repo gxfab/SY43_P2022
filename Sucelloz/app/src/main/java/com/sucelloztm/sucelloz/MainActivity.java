@@ -21,10 +21,24 @@ import com.sucelloztm.sucelloz.models.SubCategories;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    //PREPOLUTE_DATA
+    private Categories zeroBudgetCat;
+    public String[] zeroBudgetNameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SucellozDatabase database = SucellozDatabase.getInstance(this);
+        zeroBudgetCat = new Categories("Zero Budget",true);
+        zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
+                "Sinking Funds", "Extra debt", "Extra Savings"};
+        if(database.categoriesDao().getCategoryByName("Zero Budget")==null){
+            database.categoriesDao().insertCategory(zeroBudgetCat);
+            long zeroBudgetCatId=database.categoriesDao().getCategoryByName("Zero Budget").getId();
+            for (String subCategoryName:
+                 zeroBudgetNameList) {
+                database.subCategoriesDao().insertSubCategory(new SubCategories(subCategoryName,zeroBudgetCatId));
+            }
+        }
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
