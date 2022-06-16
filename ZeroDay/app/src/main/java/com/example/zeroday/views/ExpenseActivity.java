@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.zeroday.R;
+import com.example.zeroday.models.ExpenseCategory;
+import com.example.zeroday.services.ExpenseCategoryService;
 
 public class ExpenseActivity extends AppCompatActivity {
 
@@ -88,7 +90,8 @@ public class ExpenseActivity extends AppCompatActivity {
                     categoryPopup.getAddButton().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            // Ajouter la nouvelle cat de Expense à la base de données ICI
+                            //Ajout catégorie de dépense
+                            new ExpenseCategoryService(getApplicationContext()).create(new ExpenseCategory("cat-exp-",categoryPopup.getEditText()));
                             categoryPopup.dismiss();
                         }
                     });
