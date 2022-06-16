@@ -3,6 +3,7 @@ package com.example.sy43_p2022.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +35,7 @@ class ButtonAdapter(
         lateinit var category: Category
         var title: TextView = view.findViewById<TextView>(R.id.subcategory_title)
         var amount: TextView = view.findViewById<TextView>(R.id.subcategory_amount)
+        var button: Button = view.findViewById<Button>(R.id.sub_category_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ButtonViewHolder {
@@ -49,7 +51,7 @@ class ButtonAdapter(
             holder.category = it
             holder.title.text = it.name
             holder.amount.text = it.amount.toString()
-            holder.itemView.setOnClickListener() {
+            holder.button.setOnClickListener() {
                 MainScope().launch {
                     val subCategories: List<SubCategory> = db.piggyBankDAO().getSubCategoriesByCategoryId(holder.category.catid)
                     onClickListener.onClick(subCategories)
