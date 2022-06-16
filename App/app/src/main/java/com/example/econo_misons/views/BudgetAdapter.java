@@ -1,20 +1,16 @@
 package com.example.econo_misons.views;
 
 import android.content.Context;
-import android.os.Debug;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.econo_misons.database.CurrentData;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.databinding.ItemBudgetBinding;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,10 +31,8 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetViewHolder> {
 
     @Override
     public BudgetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // CREATE VIEW HOLDER AND INFLATING ITS XML LAYOUT
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        //View view = inflater.inflate(R.layout.item_budget, parent, false);
 
         return new BudgetViewHolder(ItemBudgetBinding.inflate(inflater,parent, false));
     }

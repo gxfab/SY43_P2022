@@ -24,7 +24,6 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:textSize="25dp"
-        android:text="Cout en €"
         android:textColor="?attr/colorPrimary"
         android:popupBackground="@color/back_green"
         android:layout_marginTop="10dp"

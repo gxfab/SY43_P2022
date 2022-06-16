@@ -221,14 +221,13 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         }
 
         Log.e("BP", Boolean.toString(value.isEmpty() && exists));
-        if (!value.isEmpty() && !exists) { //TODO
-            Log.e("SendEnv", CurrentData.getPrevBudget().toString() + " " + cat.id + " " + value);
+        if (!value.isEmpty() && !exists) {
             dbViewModel.addEnvelope(new Envelope(CurrentData.getPrevBudget(), cat.id, Float.parseFloat(value)));
             popupWindow.dismiss();
         } else if (value.isEmpty()) {
-            Toast.makeText(this, "You must enter a value !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vous devez entrer des valeurs !", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "This category is already in the previsionnal budget !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Cette categorie est deja dans le budget previsionnel !", Toast.LENGTH_SHORT).show();
         }
     }
 
