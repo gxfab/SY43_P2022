@@ -5,29 +5,41 @@
       <map>
         <entry key="..\:/Users/folly/OneDrive - Universite De Technologie De Belfort-Montbeliard/INFO 2/SY43/Projet/SY43_P2022/ZeroDay/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/custom_category_icon.xml" value="0.164" />
-        <entry key="app/src/main/res/drawable/custom_category_icon_circle.xml" value="0.164" />
-        <entry key="app/src/main/res/drawable/custom_cycle_setting_continue_button.xml" value="0.164" />
-        <entry key="app/src/main/res/drawable/custom_cycle_setting_cycle_shape.xml" value="0.164" />
-        <entry key="app/src/main/res/drawable/custom_cycle_setting_start_date_shape.xml" value="0.164" />
-        <entry key="app/src/main/res/drawable/custom_details_income_expense_background.xml" value="0.164" />
-        <entry key="app/src/main/res/drawable/custom_name_validation_tick.xml" value="0.164" />
-        <entry key="app/src/main/res/drawable/custom_round_rectangle.xml" value="0.164" />
-        <entry key="app/src/main/res/drawable/custom_start_next_button.xml" value="0.164" />
-        <entry key="app/src/main/res/drawable/custom_start_total_incomes_shape.xml" value="0.164" />
+        <entry key="app/src/main/res/drawable/add_back_button.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/add_category_button.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/add_expense_button.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/add_income_button.xml" value="0.1265" />
+        <entry key="app/src/main/res/drawable/add_selector.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/chart_background.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/chart_selector.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/custom_add_button.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/custom_addexpense_button.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/custom_addincome_button.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/custom_expense_button.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/custom_income_button.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/custom_popup_style.xml" value="0.166" />
         <entry key="app/src/main/res/drawable/ic_euro.xml" value="0.164" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.166" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/item_selector.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/piggy_selector.xml" value="0.166" />
         <entry key="app/src/main/res/drawable/round_corner.xml" value="0.2085" />
-        <entry key="app/src/main/res/layout/activity_cycle_setting.xml" value="0.2328125" />
+        <entry key="app/src/main/res/drawable/search_bar.xml" value="0.166" />
+        <entry key="app/src/main/res/layout/activity_category.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/activity_expense.xml" value="0.21653594970703127" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_name_validation.xml" value="0.246875" />
-        <entry key="app/src/main/res/layout/activity_start.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_start_total_incomes.xml" value="0.246875" />
-        <entry key="app/src/main/res/layout/fragment_category_expenses_incomes.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/fragment_category_your_budget.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_income_expense_details.xml" value="0.24820512820512822" />
-        <entry key="app/src/main/res/menu/item_menu.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_start_total_incomes.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/black_spinner.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/category_popup_template.xml" value="0.18372192382812502" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.10164108752212997" />
+        <entry key="app/src/main/res/layout/fragment_category_expenses_incomes.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/fragment_category_your_budget.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/fragment_chart.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/fragment_income_expense_details.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/fragment_model.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/fragment_piggy.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/item_popup_template.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/menu/item_menu.xml" value="0.1" />
       </map>
     </option>
   </component>
