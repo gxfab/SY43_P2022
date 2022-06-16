@@ -1,5 +1,6 @@
 package com.sucelloztm.sucelloz.database.DAO;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -8,6 +9,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 
+import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.StableExpensesAndIncome;
 
 import java.util.List;
@@ -67,4 +69,29 @@ public interface StableExpensesAndIncomeDao {
      */
     @Query("SELECT * FROM stable_expenses")
     List<StableExpensesAndIncome> getStable();
+
+    /**
+     * query to get negatively signed infrequent elements
+     * @return livedata of all the negatively signed infrequent elements
+     */
+    @Query("SELECT * FROM stable_expenses WHERE sign LIKE '-'")
+    LiveData<List<StableExpensesAndIncome>> getAllNegativeStable();
+
+    /**
+     * query to get all stable elements in a list
+     * @return list of the infrequent elements
+     */
+
+    @Query("SELECT * FROM stable_expenses")
+    LiveData<List<StableExpensesAndIncome>> getAllStable();
+
+
+
+    /**
+     * query to get positively signed stable elements
+     * @return livedata of all the positively signed infrequent elements
+     */
+    @Query("SELECT * FROM stable_expenses WHERE sign LIKE '+'")
+    LiveData<List<StableExpensesAndIncome>> getAllPositiveStable();
+
 }
