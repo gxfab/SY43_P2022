@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views.ChartFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="@drawable/chart_background">
+
+            <ImageButton
+                android:id="@+id/profil_button"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@drawable/profil"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:background="@color/transparent"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                android:layout_marginLeft="@dimen/default_left_margin"
+                android:layout_marginTop="60dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:lines="2"
+                android:maxLines="2"
+                android:text="Hi Jess,\nWelcome on Zero Day"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="25dp"
+
+                app:layout_constraintTop_toBottomOf="@id/profil_button"
+                app:layout_constraintLeft_toLeftOf="parent"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/default_left_margin"
+                android:layout_marginRight="@dimen/default_left_margin"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"/>
+
+        <!-- Radar -->
+        <com.github.mikephil.charting.charts.RadarChart
+            android:id="@+id/radarchart"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="100dp"
+
+            />
+
+    </LinearLayout>
+
+</ScrollView>

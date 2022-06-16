@@ -11,9 +11,26 @@
     <color name="transparent">#00000000</color>
     <color name="red">#FFFF0000</color>
 
+    <!-- Application colors -->
     <color name="zero_title">#FF000000</color>
     <color name="zero_subtitle">#A65C5656</color>
     <color name="zero_purple">#C26E17C5</color>
     <color name="zero_pink0">#FFFFD6D6</color>
     <color name="zero_pink1">#FFFDEEEE</color>
+
+    <!-- Expenses categories colors -->
+    <color name="hobbies_color">#FFFCB000</color>
+    <color name="health_color">#FFFA3324</color>
+    <color name="transports_color">#FF305EFF</color>
+    <color name="food_color">#FF44CD00</color>
+    <color name="house_color">#FFFA5700</color>
+    <color name="custom_expense_color">#FF6800FF</color>
+
+    <!-- Incomes categories colors -->
+    <color name="salary_color">#FFfEDD3F</color>
+    <color name="location_color">#FFfA8230</color>
+    <color name="gifts_color">#FFfB79A7</color>
+    <color name="bonus_color">#FF4fCAFF</color>
+    <color name="custom_income_color">#FFD694FF</color>
+
 </resources>

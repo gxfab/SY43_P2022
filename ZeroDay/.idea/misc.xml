@@ -28,6 +28,12 @@
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/activity_expense.xml" value="0.21653594970703127" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/black_spinner.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/category_popup_template.xml" value="0.18372192382812502" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.10164108752212997" />
+        <entry key="app/src/main/res/layout/fragment_chart.xml" value="0.16304347826086957" />
+=======
         <entry key="app/src/main/res/layout/activity_start_total_incomes.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/black_spinner.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/category_popup_template.xml" value="0.18372192382812502" />
@@ -36,6 +42,7 @@
         <entry key="app/src/main/res/layout/fragment_category_your_budget.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/fragment_chart.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/fragment_income_expense_details.xml" value="0.16304347826086957" />
+>>>>>>> zeroday-main
         <entry key="app/src/main/res/layout/fragment_model.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/fragment_piggy.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/item_popup_template.xml" value="0.16304347826086957" />
