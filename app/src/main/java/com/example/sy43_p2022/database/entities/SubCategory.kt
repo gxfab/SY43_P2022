@@ -21,5 +21,4 @@ data class SubCategory(
     val amount: Int = 0,
     @ColumnInfo(index = true)
     val categoryId: Int
-
 )

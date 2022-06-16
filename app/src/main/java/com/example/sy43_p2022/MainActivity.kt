@@ -79,13 +79,14 @@ class MainActivity : AppCompatActivity() {
 
             val categories: MutableList<Category> = mutableListOf<Category>()
             val subCategories: MutableList<SubCategory> = mutableListOf<SubCategory>()
+            var subId = 1;
 
-            for ((index, categoryName) in categoriesNames.withIndex()) {
-                val category = Category(name = categoryName, catid = index)
+            for (categoryName in categoriesNames) {
+                val category = Category(name = categoryName)
                 categories += category
-                for (subCategoriesNames in categoriesSubCategoriesNames) {
+                for ((index, subCategoriesNames) in categoriesSubCategoriesNames.withIndex()) {
                     for (subCategoryName in subCategoriesNames) {
-                        val subCategory = SubCategory(name = subCategoryName, categoryId = category.catid)
+                        val subCategory = SubCategory(name = subCategoryName, categoryId = index + 1)
                         subCategories += subCategory
                     }
                 }
