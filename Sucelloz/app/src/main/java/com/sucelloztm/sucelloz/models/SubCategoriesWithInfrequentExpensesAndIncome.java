@@ -6,7 +6,9 @@ import androidx.room.Relation;
 import java.util.List;
 
 
-
+/**
+ * link between subcategory and infrequent expenses and income entities
+ */
 public class SubCategoriesWithInfrequentExpensesAndIncome {
     @Embedded public SubCategories subCategories;
     @Relation(

@@ -5,7 +5,9 @@ import androidx.room.Relation;
 import java.util.List;
 
 
-
+/**
+ * link between subcategory and stable expenses and income entities
+ */
 public class SubCategoriesWithStableExpensesAndIncome {
     @Embedded public SubCategories subCategories;
     @Relation(
