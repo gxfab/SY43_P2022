@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
@@ -44,7 +42,6 @@ class ExpenseSetterAdapter(
 
     private var defaultCategory : Category? = null
     private var mExpenses: List<Expense> = ArrayList<Expense>()
-    private var resultLauncher : ActivityResultLauncher<Intent>? = null
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val expenseValueWidget: EditText? = itemView.findViewById(R.id.value)
@@ -136,7 +133,6 @@ class ExpenseSetterAdapter(
                         }
                     }
                 }
-                //(context as BudgetSetterActivity).updateExpenseHolder(expense,holder)
             }
 
             holder.expenseValueWidget?.addTextChangedListener {
