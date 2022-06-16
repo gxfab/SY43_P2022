@@ -23,6 +23,9 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
 
     private NouvelleDepenseActivity activity;
 
+    private final String EXTRAS = "extras";
+
+
     public Button bValider;
     private Button bAbandonner;
     public EditText nom;
@@ -58,11 +61,11 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
         ArrayList<String> cat2 = new ArrayList<>();
         //String[] categories2 = new String[categories.size()];
 
-        for(int i = 0; i < categories.size();i++){
+        for (int i = 0; i < categories.size(); i++) {
             cat2.add(categories.get(i).nom);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,cat2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cat2);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -74,10 +77,17 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // On récupère les données dans le formulaire
                 extractData();
-                Toast.makeText(getApplicationContext(),"Dépense aoutée avec succès !",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Dépense aoutée avec succès !", Toast.LENGTH_SHORT).show();
                 //showPopup();
-                addToDB();
+
+
+                if ((sCategorie).equals(EXTRAS)) { // Si la catégorie est de type dépense exeptionnelle (hors d'une enveloppe)
+                    addExtraToDB();
+                } else {
+                    addToDB();
+                }
             }
+
         });
 
         bAbandonner.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +141,14 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
         DBHandler db = new DBHandler(this);
 
         db.addNewDepense(sCategorie,sDate,sNom,Double.parseDouble(sMontant));
+
+    }
+
+    public void addExtraToDB(){
+
+        DBHandler db = new DBHandler(this);
+
+        db.addNewExtra(sDate,sNom,Double.parseDouble(sMontant));
 
     }
 

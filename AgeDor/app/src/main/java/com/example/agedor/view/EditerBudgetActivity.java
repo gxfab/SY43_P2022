@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.agedor.R;
 import com.example.agedor.view.dettes.EditDettesActivity;
 import com.example.agedor.view.enveloppes.categories.EditCategoriesActivity;
-import com.example.agedor.view.extras.EditExtraActivity;
 import com.example.agedor.view.factures.EditFacturesActivity;
 import com.example.agedor.view.projets.EditProjetsActivity;
 import com.example.agedor.view.revenus.EditRevenusActivity;
@@ -40,13 +39,7 @@ public class EditerBudgetActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EditDettesActivity.class);
         startActivity(intent);
     }
-
-    // Editer les extra
-    public void editExtra(View view){
-        Intent intent = new Intent(this, EditExtraActivity.class);
-        startActivity(intent);
-    }
-
+    
     // Editer les factures
     public void editFactures(View view){
         Intent intent = new Intent(this, EditFacturesActivity.class);

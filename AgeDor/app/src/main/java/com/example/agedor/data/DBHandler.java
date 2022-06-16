@@ -101,7 +101,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addNewExtra(int id_cat, String date_extra, String nom, Double montant) {
+    public void addNewExtra(String date_extra, String nom, Double montant) {
         // ajoute une nouvelle entrée a la table EXTRA
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

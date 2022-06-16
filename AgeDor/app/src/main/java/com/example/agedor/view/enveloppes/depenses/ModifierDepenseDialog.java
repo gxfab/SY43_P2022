@@ -73,14 +73,23 @@ public class ModifierDepenseDialog extends AppCompatDialogFragment {
 
                 dateModifie = new String(day + "/" + s);
 
-                listener.modifier(nomModifie,categorieModifie,dateModifie,montantModifie, valeursInitiale.nom);
+                boolean exeptionnel = false;
+                if(valeursInitiale.categorie == "Dépense exceptionnelle"){
+                    exeptionnel = true;
+                }
+
+                listener.modifier(nomModifie,categorieModifie,dateModifie,montantModifie, valeursInitiale.nom,exeptionnel);
             }
         });
 
         builder.setNeutralButton("Supprimer", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                listener.supprimer(valeursInitiale.nom);
+                boolean exeptionnel = false;
+                if(valeursInitiale.categorie == "Dépense exceptionnelle"){
+                    exeptionnel = true;
+                }
+                listener.supprimer(valeursInitiale.nom,exeptionnel);
             }
         });
 
@@ -137,8 +146,8 @@ public class ModifierDepenseDialog extends AppCompatDialogFragment {
     }
 
     public interface DialogListener{
-        void modifier(String nom, String categorie, String date, String montant, String ancienNom);
+        void modifier(String nom, String categorie, String date, String montant, String ancienNom, boolean exep);
 
-        void supprimer(String name);
+        void supprimer(String name, boolean exep);
     }
 }

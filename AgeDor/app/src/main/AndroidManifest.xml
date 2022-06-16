@@ -38,10 +38,6 @@
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
         <activity
-            android:name=".view.extras.EditExtraActivity"
-            android:exported="false"
-            android:parentActivityName=".view.EditerBudgetActivity" />
-        <activity
             android:name=".view.factures.EditFacturesActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />

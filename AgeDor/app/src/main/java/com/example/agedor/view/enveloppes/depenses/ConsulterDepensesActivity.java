@@ -10,6 +10,7 @@ import android.view.View;
 import com.example.agedor.R;
 import com.example.agedor.data.DBHandler;
 import com.example.agedor.data.StorageDepenses;
+import com.example.agedor.data.StorageExtra;
 
 import java.util.ArrayList;
 
@@ -32,8 +33,20 @@ public class ConsulterDepensesActivity extends AppCompatActivity implements Modi
     }
 
     private void setDepenses(){
+
         DBHandler db = new DBHandler(this);
+
+        ArrayList<StorageExtra> listeExtras = db.getExtra();
+
+        ArrayList<StorageDepenses> extras = new ArrayList<>();
+
+        for(int i = 0;i<listeExtras.size();i++){
+            extras.add(new StorageDepenses("Dépense exeptionnelle",listeExtras.get(i).date_extra,listeExtras.get(i).nom,listeExtras.get(i).montant));
+        }
+        
         this.depenses = db.getDepenses();
+        this.depenses.addAll(extras);
+
 
     }
 
@@ -63,34 +76,62 @@ public class ConsulterDepensesActivity extends AppCompatActivity implements Modi
     }
 
     @Override
-    public void modifier(String nom, String categorie, String date, String montant, String ancienNom) {
-        String s = nom + categorie + date + montant;
-        //Toast.makeText(getApplicationContext(), s,Toast.LENGTH_SHORT).show();
+    public void modifier(String nom, String categorie, String date, String montant, String ancienNom, boolean exep) {
 
-        DBHandler db = new DBHandler(this);
+        if(exep == false) {
+            DBHandler db = new DBHandler(this);
 
-        int index = 0;
-        for(int i = 0; i < depenses.size(); i++){
-            if(depenses.get(i).equals(ancienNom)){
-                index = i;
+            int index = 0;
+            for (int i = 0; i < depenses.size(); i++) {
+                if (depenses.get(i).equals(ancienNom)) {
+                    index = i;
+                }
             }
+
+            db.deleteRow("DEPENSES", ancienNom);
+            db.addNewDepense(categorie, date, nom, Double.parseDouble(montant));
+
+        }
+        else {
+            DBHandler db = new DBHandler(this);
+
+            int index = 0;
+            for (int i = 0; i < db.getExtra().size(); i++) {
+                if (db.getExtra().get(i).equals(ancienNom)) {
+                    index = i;
+                }
+            }
+
+            db.deleteRow("EXTRAS", ancienNom);
+
+            if(categorie.equals("extras")) {
+                db.addNewExtra(date, nom, Double.parseDouble(montant));
+            }
+            else{
+                db.addNewDepense(categorie, date, nom, Double.parseDouble(montant));
+            }
+
         }
 
-        db.deleteRow("DEPENSES",ancienNom);
-        db.addNewDepense(categorie,date,nom,Double.parseDouble(montant));
-
         // Mise à jour graphique
-        depenses = db.getDepenses();
+        setDepenses();
         setAdapter();
+
     }
 
     @Override
-    public void supprimer(String nom){
-        DBHandler db = new DBHandler(this);
-        db.deleteRow("DEPENSES",nom);
+    public void supprimer(String nom, boolean exep) {
+        if (exep == false) {
+            DBHandler db = new DBHandler(this);
+            db.deleteRow("DEPENSES", nom);
+        }
+        else{
+            DBHandler db = new DBHandler(this);
+            db.deleteRow("EXTRAS", nom);
 
+        }
         // Mise à jour graphique
-        depenses = db.getDepenses();
+        setDepenses();
         setAdapter();
     }
 }
