@@ -1,26 +1,37 @@
 package com.example.econo_misons;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 
-import com.example.econo_misons.database.models.User;
+import com.example.econo_misons.database.DBViewModel;
+import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.Category;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class AjoutDepense extends AppCompatActivity {
 
     Button ajoutCat, date, valider, annuler;
-    EditText dateText;
+    EditText dateText, title, cout;
+    Spinner spinner;
+
+    private DBViewModel dbViewModel;
+
+    private List<Category> categoryList;
 
     private int lastSelectedYear;
     private int lastSelectedMonth;
@@ -32,12 +43,16 @@ public class AjoutDepense extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_depense);
 
+        this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
+
         ajoutCat = findViewById(R.id.ajout_cat);
         date = findViewById(R.id.pick_date);
         valider = findViewById(R.id.valider);
         annuler = findViewById(R.id.annuler);
         dateText = findViewById(R.id.date);
-
+        title = findViewById(R.id.title);
+        cout = findViewById(R.id.cout);
+        spinner = findViewById(R.id.categorie);
 
         ajoutCat.setOnClickListener(v -> changeActivity());
 
@@ -48,43 +63,71 @@ public class AjoutDepense extends AppCompatActivity {
 
         date.setOnClickListener(v -> selectDate());
 
-        valider.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO add categorie to database
-                finish();
-            }
-        });
+        valider.setOnClickListener(v -> changeActivity());
 
         annuler.setOnClickListener(v -> finish());
 
+        this.getCategories();
+        //Setup spinner
+        ArrayList<String> categories = new ArrayList<>();
+        for (Category cat : this.categoryList) {
+            categories.add(cat.categoryName);
+            Log.e("AD",cat.categoryName);
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        final Category[] cat = {this.categoryList.get(0)};
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                cat[0] = categoryList.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+        this.makeBottomBar();
+    }
+
+    private void getCategories(){
+        this.dbViewModel.getAllCategories().observe(this, this::catObserver);
+    }
+
+    private void catObserver(List<Category> categoryList){
+        Log.e("GC",this.categoryList.toString());
+        this.categoryList = categoryList;
+    }
+
+    private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
         // Set selected
-        bottomNavigationView.setSelectedItemId(R.id.BudgetPrev);
+        bottomNavigationView.setSelected(false);
         // Perform item selected listener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 
-                switch(item.getItemId())
-                {
-                    case R.id.MainMenu:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.BudgetPrev:
-                        startActivity(new Intent(getApplicationContext(),BudgetPrev.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.ChangeBudget:
-                        startActivity(new Intent(getApplicationContext(),ChangerBudget.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
+            switch(item.getItemId())
+            {
+                case R.id.MainMenu:
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.BudgetPrev:
+                    startActivity(new Intent(getApplicationContext(),BudgetPrev.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.ChangeBudget:
+                    startActivity(new Intent(getApplicationContext(),ChangerBudget.class));
+                    overridePendingTransition(0,0);
+                    return true;
             }
+            return false;
         });
     }
 
@@ -94,36 +137,20 @@ public class AjoutDepense extends AppCompatActivity {
     }
 
     private void selectDate(){
-        final boolean isSpinnerMode = false;
 
         // Date Select Listener.
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
 
-            @Override
-            public void onDateSet(DatePicker view, int year,
-                                  int monthOfYear, int dayOfMonth) {
+            dateText.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
-                dateText.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
-                lastSelectedYear = year;
-                lastSelectedMonth = monthOfYear;
-                lastSelectedDayOfMonth = dayOfMonth;
-            }
+            lastSelectedYear = year;
+            lastSelectedMonth = monthOfYear;
+            lastSelectedDayOfMonth = dayOfMonth;
         };
 
-        DatePickerDialog datePickerDialog = null;
+        DatePickerDialog datePickerDialog;
 
-        if(isSpinnerMode)  {
-            // Create DatePickerDialog:
-            datePickerDialog = new DatePickerDialog(this,
-                    android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
-                    dateSetListener, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
-        }
-        // Calendar Mode (Default):
-        else {
-            datePickerDialog = new DatePickerDialog(this,
-                    dateSetListener, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
-        }
+        datePickerDialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar, dateSetListener, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
 
         // Show
         datePickerDialog.show();

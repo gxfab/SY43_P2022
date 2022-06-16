@@ -1,6 +1,5 @@
 package com.example.econo_misons;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,12 +19,14 @@ import android.widget.Toast;
 import com.example.econo_misons.database.CurrentData;
 import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.utils.ItemClickSupport;
 import com.example.econo_misons.views.BudgetAdapter;
-import com.example.econo_misons.views.BudgetViewHolder;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.econo_misons.database.models.Budget;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Listener{
@@ -49,10 +49,10 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         recyclerView = findViewById(R.id.budget_list);
         this.configureRecyclerView();
         this.getCurrentBudgets();
+        this.searchBudgetPrev();
         this.configureOnClickRecyclerView();
 
         createBudget.setOnClickListener(this::onButtonShowPopupWindowClick);
-        //dbViewModel.setCurrentUser(2);
 
         this.makeBottomBar();
     }
@@ -90,7 +90,7 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
             dbViewModel.addBudget(new Budget(name), CurrentData.getUser());
             popupWindow.dismiss();
         } else {
-            Toast.makeText(this,"Le budget doit avoir un nom !",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"Le budget doit avoir un nom !",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -101,25 +101,22 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         // Set selected
         bottomNavigationView.setSelectedItemId(R.id.ChangeBudget);
         // Perform item selected listener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 
-                switch(item.getItemId())
-                {
-                    case R.id.MainMenu:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.ChangeBudget:
-                        return true;
-                    case R.id.BudgetPrev:
-                        startActivity(new Intent(getApplicationContext(),BudgetPrev.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
+            switch(item.getItemId())
+            {
+                case R.id.MainMenu:
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.ChangeBudget:
+                    return true;
+                case R.id.BudgetPrev:
+                    startActivity(new Intent(getApplicationContext(),BudgetPrev.class));
+                    overridePendingTransition(0,0);
+                    return true;
             }
+            return false;
         });
     }
 
@@ -144,11 +141,11 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
     // making buttons work
     private void configureOnClickRecyclerView(){
         ItemClickSupport.addTo(recyclerView, R.layout.item_budget)
-                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-                    @Override
-                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        Budget budget = adapter.getBudget(position);
+                .setOnItemClickListener((recyclerView, position, v) -> {
+                    Budget budget = adapter.getBudget(position);
+                    if (!(budget == CurrentData.getBudget())) {
                         setBudget(budget);
+                        updatePrevBudget(budget);
                     }
                 });
     }
@@ -156,6 +153,14 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
     private void setBudget(Budget budget){
         CurrentData.setBudget(budget);
         showCurrentBudget(CurrentData.getBudget());
+    }
+
+    private void getAllBudgetPrev(List<PrevisionalBudget> previsionalBudgetList){
+        this.adapter.updatePrevBudgets(previsionalBudgetList);
+    }
+
+    private void searchBudgetPrev(){
+        this.dbViewModel.getAllPrevBudgets().observe(this, this::getAllBudgetPrev);
     }
 
     private void showCurrentBudget(Budget budget){
@@ -171,6 +176,49 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         } else {
             Toast.makeText(this, "You deleted the budget : " + budget.budgetName, Toast.LENGTH_SHORT).show();
             dbViewModel.deleteBudget(budget);
+        }
+    }
+
+    public void updatePrevBudget(Budget budget){
+        int index = 0;
+        List<PrevisionalBudget> toRemove = new ArrayList<>() ;
+        for (PrevisionalBudget budgets : adapter.previsionalBudgets) {
+            if (budgets.budgetID != budget.id){
+                toRemove.add(adapter.previsionalBudgets.get(index));
+            }
+            index++;
+        }
+        adapter.previsionalBudgets.removeAll(toRemove);
+
+        index = 0;
+        int max = -1;
+        int greatestYear = 0;
+        int greatestMonth = 0;
+        int month, year;
+        for (PrevisionalBudget budgets : adapter.previsionalBudgets) {
+            year = Integer.parseInt(budgets.yearMonth.substring(0,3));
+            if (year > greatestYear){
+                max = index;
+                greatestYear = year;
+            } else if (year == greatestYear) {
+                month = Integer.parseInt(budgets.yearMonth.substring(5));
+                if (month > greatestMonth){
+                    greatestMonth = month;
+                    max = index;
+                }
+            }
+            index++;
+        }
+
+        if (max == -1){
+            String date = LocalDate.now().toString();
+            PrevisionalBudget prev = new PrevisionalBudget(CurrentData.getBudget().id, date.substring(0,7));
+            dbViewModel.addPrevBudget(prev);
+            CurrentData.setPrevBudget(prev);
+            this.dbViewModel.getAllPrevBudgets().removeObserver(this::getAllBudgetPrev);
+            this.searchBudgetPrev();
+        } else {
+            CurrentData.setPrevBudget(adapter.previsionalBudgets.get(max));
         }
     }
 }

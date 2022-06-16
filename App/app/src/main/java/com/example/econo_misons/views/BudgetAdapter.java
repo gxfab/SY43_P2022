@@ -1,19 +1,24 @@
 package com.example.econo_misons.views;
 
 import android.content.Context;
+import android.os.Debug;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.econo_misons.database.CurrentData;
 import com.example.econo_misons.database.models.Budget;
+import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.databinding.ItemBudgetBinding;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BudgetAdapter extends RecyclerView.Adapter<BudgetViewHolder    > {
+public class BudgetAdapter extends RecyclerView.Adapter<BudgetViewHolder> {
 
     public interface Listener {
         void onClickDeleteButton(int position);
@@ -21,6 +26,7 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetViewHolder    > {
 
     private final Listener callback;
     private List<Budget> budgets;
+    public List<PrevisionalBudget> previsionalBudgets;
 
     public BudgetAdapter(Listener callback){
         this.budgets = new ArrayList<>();
@@ -51,6 +57,12 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetViewHolder    > {
         this.budgets = budgets;
         this.notifyDataSetChanged();
     }
+
+    public void updatePrevBudgets(List<PrevisionalBudget> budgets){
+        this.previsionalBudgets = budgets;
+        this.notifyDataSetChanged();
+    }
+
     public Budget getBudget(int position){
         return this.budgets.get(position);
     }
