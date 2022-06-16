@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/chartFragment">
+    app:startDestination="@id/planificationFragment">
 
     <fragment
         android:id="@+id/planificationFragment"
@@ -20,10 +20,6 @@
         android:name="com.example.bokudarjan.ExpensesFragment"
         android:label="fragment_expenses"
         tools:layout="@layout/fragment_expenses" />
-    <fragment
-        android:id="@+id/chartFragment"
-        android:name="com.example.bokudarjan.ChartFragment"
-        android:label="fragment_chart"
-        tools:layout="@layout/fragment_chart" />
+
 
 </navigation>

@@ -5,6 +5,7 @@
         android:icon="@drawable/ic_calendar"
         android:title="Ajouter un mois" />
     <item
+        android:id="@+id/chartFragmentItem"
         android:icon="@drawable/ic_chart"
         android:title="Graphiques et Stats" />
     <item

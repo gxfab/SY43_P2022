@@ -17,7 +17,7 @@ import com.example.bokudarjan.envelope.EnvelopeViewModel
 import kotlinx.android.synthetic.main.envelope_category_card.view.*
 
 
-//Display list of category in + button of operation fragment
+//Display category and sum of envelope associated
 class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolder>() {
     private var categoryList = emptyList<Category>()
     private lateinit var envelopeViewModel: EnvelopeViewModel

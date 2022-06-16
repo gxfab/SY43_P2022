@@ -3,6 +3,7 @@ package com.example.bokudarjan.bmonth
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,19 +19,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.ExpensesFragment
 import com.example.bokudarjan.R
 import com.example.bokudarjan.category.CategoryViewModel
+import com.example.bokudarjan.envelope.EnvelopeViewModel
 import com.example.bokudarjan.expense.Expense
+import com.example.bokudarjan.expense.ExpenseViewModel
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.expense_card.view.*
+import kotlinx.android.synthetic.main.expense_category.view.*
 import kotlinx.android.synthetic.main.fragment_month.view.*
 
+
+// Display months on the navbar
 class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() {
 
     private var monthList = emptyList<BMonth>()
+    private lateinit var envelopeViewModel: EnvelopeViewModel
+    private lateinit var expenseViewModel: ExpenseViewModel
+
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        envelopeViewModel = ViewModelProvider(parent.findViewTreeViewModelStoreOwner()!!).get(EnvelopeViewModel::class.java)
+        expenseViewModel = ViewModelProvider(parent.findViewTreeViewModelStoreOwner()!!).get(ExpenseViewModel::class.java)
+
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.fragment_month, parent, false))
     }
 
@@ -42,11 +54,37 @@ class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = monthList[position]
         holder.itemView.txtMonth.text = "Mois n°" + currentItem.id.toString()
-        if(currentItem.id == holder.itemView.context.getSharedPreferences("pref",Context.MODE_PRIVATE).getInt("month", -1)){
+
+        val month = holder.itemView.context.getSharedPreferences("pref",Context.MODE_PRIVATE).getInt("month", -1)
+        if(currentItem.id == month){
             holder.itemView.imageView4.setColorFilter(Color.WHITE)
         }else{
             holder.itemView.imageView4.setColorFilter(Color.TRANSPARENT)
         }
+
+        var sumAmount : Float= 0f
+
+        //Display money sumAmount remaining to balance
+        envelopeViewModel.getSumOfEnvelopes(currentItem.id).observeForever {
+            if(it !=null)
+            {
+                sumAmount += it
+                Log.d("ListAdapterBMonth","sumAmount envelope : "+sumAmount)
+            }
+
+            expenseViewModel.getSumOfNegativeExpenses(currentItem.id).observeForever {
+                if(it !=null)
+                {
+                    sumAmount -= it
+                    holder.itemView.monthSumValue.text = sumAmount.toString() + "€"
+                    Log.d("ListAdapterBMonth","sumAmount expense: "+sumAmount)
+                }
+
+            }
+
+        }
+
+
         holder.itemView.imageView4.setOnClickListener {
             Toast.makeText(holder.itemView.context, "Changement de mois", Toast.LENGTH_SHORT).show()
             holder.itemView.context.getSharedPreferences("pref",Context.MODE_PRIVATE).edit().putInt("month", currentItem.id).apply()

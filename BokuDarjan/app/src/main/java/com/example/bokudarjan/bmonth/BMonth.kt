@@ -8,5 +8,5 @@ class BMonth(name: String) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var name : String = name
-    var sum: Float = 0f;
+    var saving: Float = 0f;
 }

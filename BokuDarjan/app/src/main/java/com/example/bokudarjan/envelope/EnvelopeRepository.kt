@@ -20,4 +20,8 @@ class EnvelopeRepository(private val envelopeDAO: EnvelopeDAO) {
         return envelopeDAO.getSumOfEnvelopes(month)
     }
 
+    fun getSumOfEnvelopeByCategory(name: String, month: Int):LiveData<Float>{
+        return envelopeDAO.getSumOfEnvelopeByCategory(name, month)
+    }
+
 }
