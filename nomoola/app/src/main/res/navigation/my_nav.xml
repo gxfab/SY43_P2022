@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/profilePage">
+    app:startDestination="@id/homePage">
 
     <fragment
         android:id="@+id/homePage"
@@ -19,5 +19,5 @@
         android:id="@+id/profilePage"
         android:name="com.example.nomoola.fragment.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/activity_profile" />
 </navigation>

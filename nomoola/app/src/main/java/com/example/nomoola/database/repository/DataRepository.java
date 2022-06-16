@@ -8,9 +8,11 @@ import androidx.room.Insert;
 import com.example.nomoola.database.dao.CategoryDAO;
 import com.example.nomoola.database.dao.InOutComeDAO;
 import com.example.nomoola.database.dao.SubCategoryDAO;
+import com.example.nomoola.database.dao.ProfileDAO;
 import com.example.nomoola.database.entity.Category;
 import com.example.nomoola.database.entity.InOutCome;
 import com.example.nomoola.database.entity.SubCategory;
+import com.example.nomoola.database.entity.Profile;
 import com.example.nomoola.database.roomDataBase.NomoolaRoomDataBase;
 
 import java.time.LocalDate;
@@ -27,6 +29,9 @@ public class DataRepository {
     private InOutComeDAO mInOutComeDAO;
     private LiveData<List<InOutCome>> mAllInOutCome;
 
+    private ProfileDAO mProfileDAO;
+    private LiveData<Profile> mProfile;
+
     public DataRepository(Application application) {
         Log.d("CREATION", "Instantiation of CategoryRepository");
         NomoolaRoomDataBase db = NomoolaRoomDataBase.getDatabase(application);
@@ -39,6 +44,9 @@ public class DataRepository {
 
         mInOutComeDAO = db.inOutComeDAO();
         mAllInOutCome = mInOutComeDAO.getALlInOutComes();
+
+        mProfileDAO = db.profileDAO();
+        mProfile = mProfileDAO.getProfile();
     }
 
     /*
@@ -143,4 +151,45 @@ public class DataRepository {
             mCategoryDAO.updateCategory(category);
         });
     }
+
+    /*
+        PROFILE
+     */
+
+    public LiveData<Profile> getmProfile() {
+        return mProfile;
+    }
+
+    public void insert(Profile profile) {
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(() -> {
+            mProfileDAO.insertProfile(profile);
+        });
+    }
+    public void delete(Profile profile) {
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mProfileDAO.deleteProfile(profile);
+        });
+    }
+    public void update(int userID, String userName, Profile.userLanguage language, Profile.userCurrency currency) {
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mProfileDAO.updateProfile(userID, userName, language, currency);
+        });
+    }
+
+    public void setLanguage(int userID, Profile.userLanguage language){
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mProfileDAO.setLanguage(userID, language);
+        });
+    }
+
+    public void setCurrency(int userID, Profile.userCurrency currency){
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mProfileDAO.setCurrency(userID, currency);
+        });
+    }
+
+    public LiveData<String> getUserName(int userID){
+        return this.mProfileDAO.getUserName(userID);
+    }
+
 }
