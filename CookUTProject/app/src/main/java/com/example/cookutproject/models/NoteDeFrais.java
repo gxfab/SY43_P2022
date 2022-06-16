@@ -6,11 +6,15 @@ import androidx.room.PrimaryKey;
 
 import java.sql.Date;
 
-@Entity(foreignKeys =
+@Entity(foreignKeys = {
         @ForeignKey(
                 entity = Evenement.class,
                 parentColumns = "id",
-                childColumns = "id_evenement")
+                childColumns = "id_evenement"),
+        @ForeignKey(
+                entity = User.class,
+                parentColumns = "id",
+                childColumns = "id_user")}
 )
 public class NoteDeFrais {
 
@@ -22,14 +26,17 @@ public class NoteDeFrais {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private int id_evenement;
+    private int id_user;
 
-    NoteDeFrais(String nomPersonne,String prenomPersonne,int amount, String title, Date date, int id){
+    NoteDeFrais(String nomPersonne,String prenomPersonne,int amount, String title, Date date, int id, int id_evenement, int id_user){
         this.nomPersonne = nomPersonne;
         this.prenomPersonne = prenomPersonne;
         this.amount = amount;
         this.title=title;
         this.date=date;
         this.id=id;
+        this.id_evenement=id_evenement;
+        this.id_user=id_user;
     }
 
     //GETTER
@@ -60,6 +67,11 @@ public class NoteDeFrais {
     public int getId_evenement() {
         return id_evenement;
     }
+
+    public int getId_user() {
+        return id_user;
+    }
+
     //SETTER
 
     public void setNomPersonne(String nomPersonne) {
@@ -88,5 +100,9 @@ public class NoteDeFrais {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 }

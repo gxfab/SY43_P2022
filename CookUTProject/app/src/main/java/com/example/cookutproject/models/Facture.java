@@ -22,12 +22,13 @@ public class Facture {
     private String title;
 
     //Constructor
-    public Facture (float amount, Date date, int id, String entity, String title){
+    public Facture (float amount, Date date, int id, String entity, String title,int id_event){
         this.amount = amount;
         this.date = date;
         this.id =id;
         this.entity=entity;
         this.title=title;
+        this.id_event=id_event;
     }
 
     //GETTER
