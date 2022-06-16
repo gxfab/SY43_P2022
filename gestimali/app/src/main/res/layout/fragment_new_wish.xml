@@ -25,7 +25,7 @@
         style="@style/add_title"/>
 
     <EditText
-        android:id="@+id/editEnvelopeName"
+        android:id="@+id/editWishName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="7"
@@ -37,7 +37,7 @@
         />
 
     <EditText
-        android:id="@+id/editEnvelopeValue"
+        android:id="@+id/editWishValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="7"
@@ -45,7 +45,7 @@
         android:hint="@string/add_wish_amount"
         app:layout_constraintLeft_toLeftOf="@id/add_wish"
         app:layout_constraintRight_toRightOf="@id/add_wish"
-        app:layout_constraintTop_toBottomOf="@id/editEnvelopeName"
+        app:layout_constraintTop_toBottomOf="@id/editWishName"
         />
 
 
@@ -59,6 +59,7 @@
         />
 
     <ImageButton
+        android:id="@+id/validate_add_wish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_valid"

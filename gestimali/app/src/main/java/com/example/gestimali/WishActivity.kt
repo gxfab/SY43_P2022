@@ -34,7 +34,7 @@ class WishActivity : AppCompatActivity(){
     fun popupAddWish(view: View){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container_wish, NewWishFragment())
-        transaction.addToBackStack(null)
+        transaction.addToBackStack("addWishFragment")
         transaction.commit()
     }
 }
