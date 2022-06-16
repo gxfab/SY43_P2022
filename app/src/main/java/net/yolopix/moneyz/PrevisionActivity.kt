@@ -275,6 +275,8 @@ class PrevisionActivity : AppCompatActivity() {
      */
     private suspend fun loadCategories() {
         val expenseType = getCurrentType()
+        val maxAmount = salaryEditText.text.toString().toFloat() - db.categoryDao()
+            .calculatePredictedAmount(now.monthValue, now.year, accountUid!!)
 
         // If an expense type has been selected, only get categories having this type
         if (expenseType != null) {
@@ -290,7 +292,8 @@ class PrevisionActivity : AppCompatActivity() {
                 db,
                 now.monthValue,
                 now.year,
-                accountUid!!
+                accountUid!!,
+                maxAmount
             )
             recyclerView.adapter = adapter
         }

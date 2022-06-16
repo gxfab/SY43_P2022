@@ -21,6 +21,7 @@ import net.yolopix.moneyz.model.entities.Category
  * @param parentContext Activity context
  * @param expenseMode If true, display only categories with expenses and nest them under each item. If false, display all categories in prevision mode.
  * @param db The database to let each category build its list of expenses
+ * @param maxAmountWhenEditing The maximum amount the category can handle if it's edited
  */
 class CategoryAdapter(
     private val categoryList: List<Category>,
@@ -29,7 +30,8 @@ class CategoryAdapter(
     private val db: AppDatabase,
     private val monthNumber: Int,
     private val yearNumber: Int,
-    private val accountUid: Int = -1
+    private val accountUid: Int = -1,
+    private val maxAmountWhenEditing: Float = Float.MAX_VALUE
 ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
@@ -86,7 +88,7 @@ class CategoryAdapter(
                     monthNumber,
                     yearNumber,
                     accountUid,
-                    Float.MAX_VALUE, //TODO check real max value
+                    maxAmountWhenEditing + categoryList[position].predictedAmount,
                     categoryList[position].expenseType,
                     categoryList[position]
                 ).apply {
