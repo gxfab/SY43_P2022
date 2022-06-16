@@ -8,10 +8,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import net.yolopix.moneyz.R
+import net.yolopix.moneyz.SwipeToDeleteExpense
 import net.yolopix.moneyz.fragments.dialog.AddCategoryBottomSheet
 import net.yolopix.moneyz.model.AppDatabase
 import net.yolopix.moneyz.model.entities.Category
@@ -61,37 +64,7 @@ class CategoryAdapter(
         if (expenseMode) {
             viewHolder.expensesRecyclerView.layoutManager = LinearLayoutManager(parentContext)
             parentContext.lifecycleScope.launch {
-                viewHolder.expensesRecyclerView.adapter = ExpensesAdapter(
-                    db.expenseDao().getExpenseForCategory(categoryList[position].uid),
-                    monthNumber,
-                    yearNumber,
-                    db,
-                    parentContext
-                )
-                // Show an alert if the actual expense for the whole category
-                // is higher than the prevision
-                val totalExpensesForCategory =
-                    db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid)
-                if (categoryList[position].predictedAmount >= totalExpensesForCategory) {
-                    viewHolder.categoryPriceTextView.text = parentContext.getString(
-                        R.string.money_no_overflow_format,
-                        String.format("%.2f", categoryList[position].predictedAmount),
-                        String.format("%.2f", totalExpensesForCategory)
-                    )
-                }
-                else {
-                    viewHolder.categoryPriceTextView.text = parentContext.getString(
-                        R.string.money_overflow_format,
-                        String.format("%.2f", categoryList[position].predictedAmount),
-                        String.format(
-                            "%.2f",
-                            totalExpensesForCategory - categoryList[position].predictedAmount
-                        )
-                    )
-                    viewHolder.categoryPriceTextView.setTextColor(
-                        ContextCompat.getColor(parentContext, R.color.red)
-                    )
-                }
+                loadCategoriesAndExpenses(viewHolder)
             }
             // Expand/collapse the expenses nested under the category
             viewHolder.categoryHeaderLayout.setOnClickListener {
@@ -107,6 +80,27 @@ class CategoryAdapter(
             if (position == categoryList.lastIndex) {
                 viewHolder.bottomSpace.visibility = View.VISIBLE
             }
+
+            // Swipe to delete expense
+            val swipeToDelete = object : SwipeToDeleteExpense() {
+                override fun onSwiped(childViewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    parentContext.lifecycleScope.launch {
+                        val expenseList =
+                            db.expenseDao()
+                                .getExpenseForCategory(categoryList[viewHolder.adapterPosition].uid)
+                        val adapterPosition = childViewHolder.adapterPosition
+                        db.expenseDao().deleteExpense(expenseList[adapterPosition])
+                        loadCategoriesAndExpenses(viewHolder)
+                        Snackbar.make(
+                            viewHolder.expensesRecyclerView,
+                            R.string.info_deleted_expense,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+            val itemTouchHelper = ItemTouchHelper(swipeToDelete)
+            itemTouchHelper.attachToRecyclerView(viewHolder.expensesRecyclerView)
         }
 
         // For prevision view
@@ -129,6 +123,41 @@ class CategoryAdapter(
             }
         }
 
+    }
+
+    private suspend fun loadCategoriesAndExpenses(viewHolder: CategoryViewHolder) {
+        val position = viewHolder.adapterPosition
+        viewHolder.expensesRecyclerView.adapter = ExpensesAdapter(
+            db.expenseDao().getExpenseForCategory(categoryList[position].uid),
+            monthNumber,
+            yearNumber,
+            db,
+            parentContext
+        )
+        // Show an alert if the actual expense for the whole category
+        // is higher than the prevision
+        val totalExpensesForCategory =
+            db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid)
+        if (categoryList[position].predictedAmount >= totalExpensesForCategory) {
+            viewHolder.categoryPriceTextView.text = parentContext.getString(
+                R.string.money_no_overflow_format,
+                String.format("%.2f", categoryList[position].predictedAmount),
+                String.format("%.2f", totalExpensesForCategory)
+            )
+            viewHolder.categoryPriceTextView.setTextColor(viewHolder.categoryNameTextView.currentTextColor)
+        } else {
+            viewHolder.categoryPriceTextView.text = parentContext.getString(
+                R.string.money_overflow_format,
+                String.format("%.2f", categoryList[position].predictedAmount),
+                String.format(
+                    "%.2f",
+                    totalExpensesForCategory - categoryList[position].predictedAmount
+                )
+            )
+            viewHolder.categoryPriceTextView.setTextColor(
+                ContextCompat.getColor(parentContext, R.color.red)
+            )
+        }
     }
 
     override fun getItemCount(): Int {
