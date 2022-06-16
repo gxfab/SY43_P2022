@@ -47,7 +47,7 @@ public class AddFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),ExpenseActivity.class);
                 intent.putExtra("inputType", true); //On lance l'activité en mode expense
-                intent.putExtra("outputType",true);
+                intent.putExtra("outputType",false);
                 startActivity(intent);
             }
         });
