@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.1453125" />
+        <entry key="..\:/Users/driss/Documents/SY43-Project/SY43_P2022/Sucelloz/app/src/main/res/layout/categories_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/driss/Documents/SY43-Project/SY43_P2022/Sucelloz/app/src/main/res/layout/categories_item.xml" value="0.17617753623188406" />
         <entry key="..\:/Users/driss/Documents/SY43-Project/SY43_P2022/Sucelloz/app/src/main/res/layout/negative_spendings_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/driss/Documents/SY43-Project/SY43_P2022/Sucelloz/app/src/main/res/layout/positive_spendings_fragment.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/driss/Documents/SY43-Project/SY43_P2022/Sucelloz/app/src/main/res/layout/savings_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/driss/Documents/SY43-Project/SY43_P2022/Sucelloz/app/src/main/res/layout/zero_budget_categories_item.xml" value="0.136" />
+        <entry key="..\:/Users/driss/Documents/SY43-Project/SY43_P2022/Sucelloz/app/src/main/res/layout/zero_budget_fragment.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/drawable/baseline_bar_chart_white_24dp.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/baseline_delete_forever_grey_500_24dp.xml" value="0.2085" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11875" />

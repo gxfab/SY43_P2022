@@ -33,6 +33,7 @@ public class PieChartGenerator {
         pieChart = new PieChart(context);
         pieChart.getDescription().setEnabled(false);
 
+
         Typeface tf = Typeface.create((Typeface) null,Typeface.NORMAL);
 
         pieChart.setCenterTextTypeface(tf);
@@ -53,6 +54,8 @@ public class PieChartGenerator {
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
 
         l.setDrawInside(false);
+
+
 
         pieChart.setData(generatePieData(tf));
 
