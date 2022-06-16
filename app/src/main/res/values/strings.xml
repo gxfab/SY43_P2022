@@ -1,0 +1,113 @@
+<resources>
+    <string name="app_name">sy43</string>
+
+    <string-array name="Months_Array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="Categories_Array">
+        <item>Categories</item>
+        <item>Clothing</item>
+        <item>Communication</item>
+        <item>Entertainment</item>
+        <item>Finance</item>
+        <item>Food</item>
+        <item>Health</item>
+        <item>Housing</item>
+        <item>Transport</item>
+        <item>Others</item>
+    </string-array>
+
+
+    <string-array name="Clothing_Sub">
+        <item>Accessories</item>
+        <item>Clothes</item>
+        <item>Footwear</item>
+    </string-array>
+
+    <string-array name="Communication_Sub">
+        <item>Internet</item>
+        <item>Telephone</item>
+        <item>TV</item>
+    </string-array>
+
+    <string-array name="Entertainment_Sub">
+        <item>Books</item>
+        <item>Events</item>
+        <item>Gaming</item>
+        <item>Gift</item>
+        <item>Hanging Out</item>
+        <item>Hotel</item>
+        <item>Multimedia</item>
+        <item>Pet</item>
+        <item>Sports</item>
+        <item>Vacation</item>
+    </string-array>
+
+    <string-array name="Finance_Sub">
+        <item>Banking Fees</item>
+        <item>Loan</item>
+        <item>Salary Tax</item>
+    </string-array>
+
+    <string-array name="Food_Sub">
+        <item>Canteen</item>
+        <item>Groceries</item>
+        <item>Restaurant</item>
+    </string-array>
+
+    <string-array name="Health_Sub">
+        <item>Barber</item>
+        <item>Body Care</item>
+        <item>Doctor Visit</item>
+        <item>Life Insurance</item>
+        <item>Pharmacy</item>
+    </string-array>
+
+    <string-array name="Housing_Sub">
+        <item>Cleaning</item>
+        <item>Furniture</item>
+        <item>Garden</item>
+        <item>Insurance</item>
+        <item>Rent</item>
+        <item>Repairs</item>
+        <item>Taxes</item>
+        <item>Utilities</item>
+    </string-array>
+
+    <string-array name="Transport_Sub">
+        <item>Automobile Insurance</item>
+        <item>Automobile Fees</item>
+        <item>Fuel</item>
+        <item>Parking</item>
+        <item>Tolls</item>
+        <item>Transportation</item>
+    </string-array>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_home">Home</string>
+    <string name="description"><i>Tell us what are your main expenses and set an expected expenditure for each. You can always modify these later in settings!</i></string>
+    <string name="description2"><i>Tell us what are your main sources of income and set an expected amount for each. You can always modify these later in settings!</i></string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

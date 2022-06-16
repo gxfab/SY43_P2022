@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Categories">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_marginTop="-10dp"
+        app:cardBackgroundColor="#f87f7f"
+        app:cardCornerRadius="15dp" >
+
+        <TextView
+            android:id="@+id/Title_Cat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="30sp"
+            android:text="Categories"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="40sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="105dp"
+        android:layout_marginRight="15dp"
+        android:elevation="12dp"
+        app:cardCornerRadius="50dp">
+
+        <ImageView
+            android:id="@+id/add_category"
+            android:layout_width="50dp"
+            android:layout_height="50sp"
+            android:background="#00FF60"
+            android:src="@drawable/add" />
+    </androidx.cardview.widget.CardView>
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="150sp"
+        android:dropDownWidth="match_parent"
+        android:entries="@array/Months_Array"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25sp"
+        android:layout_marginTop="160sp"
+        android:text="Period"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/subcategories_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="200dp"/>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:id="@+id/bottom_nav_card"
+        android:layout_marginBottom="-10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_gravity="bottom"
+        app:cardCornerRadius="15dp">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#f87f7f">
+
+            <ImageView
+                android:id="@+id/home_icon"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_gravity="fill_horizontal|left"
+                android:layout_marginLeft="25sp"
+                app:srcCompat="@drawable/home" />
+
+            <ImageView
+                android:id="@+id/overview_icon"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="25sp"
+                app:srcCompat="@drawable/evolution" />
+
+            <TextView
+                android:id="@+id/overview_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginRight="15sp"
+                android:text="Overview"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/categories_icon"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_gravity="center|top"
+                app:srcCompat="@drawable/category" />
+
+            <TextView
+                android:id="@+id/categories_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="Categories"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/home_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:layout_marginLeft="25sp"
+                android:text="Home"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>
