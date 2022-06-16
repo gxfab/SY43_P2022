@@ -73,7 +73,7 @@
             android:layout_alignStart="@+id/textViewExpAmount"
             android:layout_alignTop="@+id/textViewExpAmount"
             android:layout_marginTop="60dp"
-            android:text="@string/exp_type_cat" />
+            android:text="@string/category" />
 
         <Spinner
             android:id="@+id/spinner_cat"

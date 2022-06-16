@@ -94,36 +94,6 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
         recyclerView.setAdapter(adapter);
 
         ToolBar.getInstance().initToolBar(view, R.id.toolbar_budget);
-
-
-        /**Navigation
-         Toolbar toolbar = view.findViewById(R.id.toolbar_budget);
-         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(R.id.budgetFragment,R.id.addCategoryFragment).build();
-        NavigationUI.setupWithNavController(
-                toolbar, navController, appBarConfiguration);
-
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                NavController navController = Navigation.findNavController(view);
-                switch(item.getItemId()){
-                    case R.id.addCategory:
-                        navController.navigate(R.id.navigate_to_addCategory);
-                        break;
-                    case R.id.next_day:
-                        //change day
-                        break;
-                    case R.id.mode:
-                        //change mode (auto/manual)
-                        break;
-                }
-                return true;
-            }
-        });**/
-
-
     }
 
     @Override

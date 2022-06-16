@@ -202,12 +202,12 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public ContentValues expenseCV(Date date, float amount, String label, int type, int catID, boolean isStable) {
+    public ContentValues expenseCV(float amount, String label, int type, int catID, boolean isStable, int day, int month, int year) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(EXP_COL_AMOUNT, amount);
-        contentValues.put(EXP_COL_DAY, DateManager.dateToDay(date));
-        contentValues.put(EXP_COL_MONTH, DateManager.dateToMonth(date));
-        contentValues.put(EXP_COL_YEAR, DateManager.dateToYear(date));
+        contentValues.put(EXP_COL_DAY, day);
+        contentValues.put(EXP_COL_MONTH, month);
+        contentValues.put(EXP_COL_YEAR, year);
         contentValues.put(EXP_COL_LABEL, label);
         switch (type) {
             case TYPE_EXP: contentValues.put(EXP_COL_ID_EXP, catID);
@@ -283,9 +283,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(EXP_CAT_TABLE_NAME, null, expenseCatCV(name, budget, isSub, idParent));
     }
 
-    public void insertExpense(Date date, float amount, String label, int type, int catID, boolean isStable) {
+    public void insertExpense(float amount, String label, int type, int catID,
+                              boolean isStable, int day, int month, int year) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(EXP_TABLE_NAME, null, expenseCV(date, amount, label, type, catID, isStable));
+        db.insert(EXP_TABLE_NAME, null, expenseCV(amount, label, type, catID, isStable, day, month, year));
     }
 
     public void updateDebtCat(int id, String name, int leftMonths, float totalAmount) {
@@ -312,9 +313,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(EXP_CAT_TABLE_NAME, contVal, "id = ? ", new String[]{Integer.toString(id)});
     }
 
-    public void updateExpense(int id, Date date, float amount, String label, int type, int catID, boolean isStable, int dayNB) {
+    public void updateExpense(int id, float amount, String label, int type, int catID, boolean isStable, int day, int month, int year) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contVal = expenseCV(date, amount, label, type, catID, isStable);
+        ContentValues contVal = expenseCV(amount, label, type, catID, isStable, day, month, year);
         db.update(EXP_TABLE_NAME, contVal, "id = ? ", new String[]{Integer.toString(id)});
     }
 
@@ -543,6 +544,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getAllDebts() {
         return getData("select * from " + DEBT_TABLE_NAME);
+    }
+
+    public Cursor getAllIncomeCat() {
+        return getData("select * from " + INC_CAT_TABLE_NAME);
     }
 
     public Cursor getAllExpenses() {

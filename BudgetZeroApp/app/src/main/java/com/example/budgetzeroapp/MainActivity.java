@@ -4,7 +4,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
@@ -15,9 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends OptionsMenu {
-    private ActivityMainBinding binding;
     private static MainActivity activity;
-    private LayoutInflater inflater;
     private BottomNavigationView bottomNavigationView;
     private NavController navController;
 

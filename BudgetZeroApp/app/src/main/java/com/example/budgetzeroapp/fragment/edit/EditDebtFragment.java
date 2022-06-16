@@ -72,7 +72,7 @@ public class EditDebtFragment extends EditDataBaseFragment{
                 return;
             }
             int newMonthLeft = Integer.parseInt(monthLeft.getText().toString());
-            if(newAmount <= 0){
+            if(newMonthLeft <= 0){
                 message("Months left must have a positive value");
                 return;
             }

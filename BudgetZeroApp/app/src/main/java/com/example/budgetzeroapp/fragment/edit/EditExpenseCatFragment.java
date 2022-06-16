@@ -15,10 +15,12 @@ import android.widget.Toast;
 
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.tool.adapter.SimpleListAdapter;
+import com.example.budgetzeroapp.tool.item.ListItem;
 
-//Activer les trucs en com ici?
-public class EditExpenseCatFragment extends EditDataBaseFragment /*implements AdapterView.OnItemSelectedListener*/ {
+import java.util.List;
 
+public class EditExpenseCatFragment extends EditDataBaseFragment {
     private EditText name, budget;
     private CheckBox sub;
     private Spinner parentCat;
@@ -26,6 +28,9 @@ public class EditExpenseCatFragment extends EditDataBaseFragment /*implements Ad
     private String defaultName;
     private float defaultBudget;
     private int defaultSub, defaultParentCat;
+    
+    List<ListItem> list;
+
 
     public EditExpenseCatFragment(){ super(); }
     public EditExpenseCatFragment(int id){ super(id); }
@@ -39,13 +44,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment /*implements Ad
         budget = view.findViewById(R.id.editTextCatBudget);
         sub = view.findViewById(R.id.checkBoxCatSub);
         parentCat = view.findViewById(R.id.spinnerCatParent);
-        //Pas hyper sur de comment ça marche
-        /*
-        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this,R.array.exp_cat_parents,android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        parentCat.setAdapter(adapter);
-        parentCat.setOnItemSelectedListener(this);
-         */
+        list = ListItem.initList(database.getAllExpenseCat());
         return view;
     }
 
@@ -54,7 +53,9 @@ public class EditExpenseCatFragment extends EditDataBaseFragment /*implements Ad
         defaultName = "";
         defaultBudget = 0;
         defaultSub = 0;
-        defaultParentCat = 0;        //existe si sub=false?
+        defaultParentCat = 0;
+        parentCat.setAdapter(new SimpleListAdapter(list));
+
     }
 
     @Override
@@ -68,6 +69,11 @@ public class EditExpenseCatFragment extends EditDataBaseFragment /*implements Ad
             defaultBudget = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));
             defaultSub = cat.getInt(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_IS_SUB));
             defaultParentCat = cat.getInt(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_ID_PARENT));
+            int it = 0;
+            for (ListItem i : list){
+                if(i.getId() == defaultParentCat) parentCat.setSelection(it);
+                it++;
+            }
         }
     }
 
@@ -94,6 +100,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment /*implements Ad
                 message("Name can't be empty");
             }
             boolean isSub = sub.isChecked();
+            int idCat = ((ListItem) parentCat.getSelectedItem()).getId();
 
             //Temp
             int newParentCat = 0;

@@ -55,7 +55,7 @@ public class EditIncomeCatFragment extends EditDataBaseFragment{
                 message("Name can't be empty");
             }
 
-            if(id >= 0) database.insertIncomeCat(newName);
+            if(id == 0) database.insertIncomeCat(newName);
             else database.updateIncomeCat(id, newName);
 
         });

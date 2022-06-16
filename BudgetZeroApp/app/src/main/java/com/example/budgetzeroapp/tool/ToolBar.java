@@ -91,9 +91,15 @@ public class ToolBar{
                     navController.navigate(R.id.navigate_to_addCategory);
                     break;
                 case R.id.next_day:
+                    if(DateManager.isLastMonthDay(date)){
+                        SavingsManager.distributeSavings(moneyAmount);
+                        SavingsManager.updateBudget(date);
+
+                    }
                     incrementDate();
                     saveDate();
-                    SavingsManager.addStableExpenses(new DBHelper(AppContext.getContext()), date);
+                    SavingsManager.addStableExpenses(date);
+
                     CharSequence mess = format.format(date);
                     dateText.setText(mess);
                     //TODO POPUP récapitulant les nouvelles dépenses si il y en a
@@ -116,11 +122,11 @@ public class ToolBar{
     }
 
     public void saveBudgetMode(){
-        editor.putBoolean("date", budgetAutoMode);
+        editor.putBoolean("budgetAutoMode", budgetAutoMode);
         editor.commit();
     }
     public void saveSavingsMode(){
-        editor.putBoolean("date", savingsAutoMode);
+        editor.putBoolean("savingsAutoMode", savingsAutoMode);
         editor.commit();
     }
     public void incrementDate(){

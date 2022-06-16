@@ -56,6 +56,7 @@ public class ClickableListManager {
         });
         return list;
     }
+
     /**
      public static Spinner clickableSpinner(View view, int SpinnerID,int layout,
      List<ListItem> items, DataBaseFragment frag){

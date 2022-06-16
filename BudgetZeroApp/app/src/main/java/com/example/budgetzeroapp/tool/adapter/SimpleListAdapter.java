@@ -15,9 +15,9 @@ import java.util.List;
 public class SimpleListAdapter extends ArrayAdapter<ListItem> {
 
     protected int resourceLayout;
-    public SimpleListAdapter(int resource, List<ListItem> items) {
-        super(AppContext.getContext(), resource, items);
-        this.resourceLayout = resource;
+    public SimpleListAdapter(List<ListItem> items) {
+        super(AppContext.getContext(), R.layout.spinner_element, items);
+        this.resourceLayout = R.layout.spinner_element;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class SimpleListAdapter extends ArrayAdapter<ListItem> {
         ListItem p = getItem(position);
 
         if (p != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.list_view_name);
+            TextView tt1 = (TextView) v.findViewById(R.id.category_name);
             if (tt1 != null) tt1.setText(p.getName());
         }
         return v;
