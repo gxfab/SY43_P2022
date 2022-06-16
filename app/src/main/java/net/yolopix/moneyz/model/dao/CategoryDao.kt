@@ -22,20 +22,20 @@ interface CategoryDao {
         type: ExpenseType
     ): List<Category>
 
-    @Query("SELECT SUM(predictedAmount) FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid")
+    @Query("SELECT IFNULL(SUM(predictedAmount),0) FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid")
     suspend fun calculatePredictedAmount(
         monthNumber: Int,
         yearNumber: Int,
         accountUid: Int
-    ):Float
+    ): Float
 
     @Query("SELECT predictedAmount FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid AND uid == :uid")
     suspend fun retrieveSinglePredictedAmount(
         monthNumber: Int,
         yearNumber: Int,
         accountUid: Int,
-        uid : Int
-    ):Float
+        uid: Int
+    ): Float
 
     @Query("SELECT uid FROM category WHERE monthNumber == :monthNumber AND yearNumber == :yearNumber AND accountUid == :accountUid")
     suspend fun getCategoriesUidsForMonth(
