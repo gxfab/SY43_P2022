@@ -17,16 +17,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lafo_cheuse.CategoryChooserActivity
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.models.Category
+import com.example.lafo_cheuse.models.Expense
 import com.example.lafo_cheuse.models.Frequency
 import com.example.lafo_cheuse.models.Income
 import com.example.lafo_cheuse.viewmodels.IncomeViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
- * TODO : Complete documentation
+ * [RecyclerView.Adapter] for the regular expenses [RecyclerView]
  *
- * @property context
- * @property viewModel
+ * @property context - [Activity] where the [RecyclerView] belong
+ * @property viewModel - An [IncomeViewModel] instance to ask incomes from the database
+ * @property defaultCategory - The default [Category] to set to a freshly created regular [Expense]
+ * @property mIncomes - the list of [Expense] to display
+ *
  */
 class IncomeSetterAdapter(var context : Activity, var viewModel : IncomeViewModel) : RecyclerView.Adapter<IncomeSetterAdapter.ViewHolder>() {
 
@@ -42,10 +46,24 @@ class IncomeSetterAdapter(var context : Activity, var viewModel : IncomeViewMode
         val addButton : ImageButton? = itemView.findViewById(R.id.addRegularIncomeExpense)
     }
 
+    /**
+     * Callback determining which type of layout use for the item at [position] in [mIncomes]
+     *
+     * @param position - [Int] the position of the item in [mIncomes]
+     * @return an [Int] representing the layout id that was chosen.
+     *  It can have 2 values :
+     *   - [R.layout.add_button] if it is the last element
+     *   - [R.layout.budget_setter_item] for any other element
+     */
     override fun getItemViewType(position: Int): Int {
         return if (position == mIncomes.size) R.layout.add_button else R.layout.budget_setter_item
     }
 
+    /**
+     * Callback function called when the [ViewHolder] is created to let it initialized himself correctly
+     *
+     * @return a [ViewHolder] initialized
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
@@ -58,6 +76,13 @@ class IncomeSetterAdapter(var context : Activity, var viewModel : IncomeViewMode
         return ViewHolder(itemView)
     }
 
+    /**
+     * Callback function called when the [holder] is initialized to display data on elements at [position]
+     * This function will initialize all the button and widgets by linking them to the operation they should do
+     *
+     * @param holder - [ViewHolder] holding all the elements
+     * @param position - [Int] containing the index of the [View] in [mIncomes]
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (position == mIncomes.size) {
             holder.addButton?.setOnClickListener {
@@ -139,15 +164,31 @@ class IncomeSetterAdapter(var context : Activity, var viewModel : IncomeViewMode
 
     }
 
+    /**
+     * Callback function which send the number of elements in the [RecyclerView].
+     * - Warning : We added a "+ 1" to take in account the add_button
+     *
+     * @return [Int] - the size of [mIncomes] + 1
+     */
     override fun getItemCount(): Int {
         return mIncomes.size + 1
     }
 
+    /**
+     * Update incomes in the [RecyclerView] by updating [mIncomes]
+     *
+     * @param mIncomes - a list of [Income]
+     */
     fun setIncomes(mIncomes : List<Income>) {
         this.mIncomes = mIncomes
         notifyDataSetChanged()
     }
 
+    /**
+     * Function to keep the default [Category] in the Adapter
+     *
+     * @param defaultCategory - [Category] of the default [Category]
+     */
     fun setDefCategory(defaultCategory : Category) {
         this.defaultCategory = defaultCategory
     }
