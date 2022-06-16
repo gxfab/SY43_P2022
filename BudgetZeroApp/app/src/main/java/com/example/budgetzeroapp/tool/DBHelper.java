@@ -133,12 +133,12 @@ public class DBHelper extends SQLiteOpenHelper {
         //Example expense categories
         db.execSQL(
                 "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+")"+
-                        " values ('Shopping',-400),('Vehicle',-800),('Leisure',-150),('Health',-300),('Miscellaneous',-100),('Bills',-700);"
+                        " values ('Shopping',400),('Vehicle',800),('Leisure',150),('Health',300),('Miscellaneous',100),('Bills',700);"
         );
         //Example expense subcategories
         db.execSQL(
                 "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+","+EXP_CAT_COL_IS_SUB+", "+EXP_CAT_COL_ID_PARENT+")"+
-                        " values ('Food',-200,1,1),('Other',-200,1,1),('Sport',-50,1,3),('Party',-40,1,3),('Other',-60,1,3);"
+                        " values ('Food',200,1,1),('Other',200,1,1),('Sport',50,1,3),('Party',40,1,3),('Other',60,1,3);"
         );
         //Example income category
         db.execSQL(
@@ -179,16 +179,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 "insert into "+EXP_TABLE_NAME+
                         "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
                         ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
-                        " values ('House', 509, 3, 1, 30, 4, 2022,1)," +
-                        "('House', 546, 3, 1, 31, 5, 2022,1);"
+                        " values ('House', -509, 3, 1, 30, 4, 2022,1)," +
+                        "('House', -546, 3, 1, 31, 5, 2022,1);"
         );
         //Example savings
         db.execSQL(
                 "insert into "+EXP_TABLE_NAME+
                         "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
                         ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
-                        " values ('New PC', 33, 4, 1, 31, 5, 2022,0)," +
-                        "('Iceland', 45, 4, 1, 31, 5, 2022,0);"
+                        " values ('New PC', -33, 4, 1, 31, 5, 2022,0)," +
+                        "('Iceland', -45, 4, 1, 31, 5, 2022,0);"
         );
     }
 

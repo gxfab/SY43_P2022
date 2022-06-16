@@ -77,8 +77,6 @@ public class HomeFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
         ArrayList<CategoryItem> items = CategoryItem.initCategoryList(database, true);
         listView = ClickableListManager.clickableProgressBarList(listView, items);
-        adapter = new ProgressBarAdapter(items);
-        listView.setAdapter(adapter);
 
         listView.setVerticalScrollBarEnabled(false);
 

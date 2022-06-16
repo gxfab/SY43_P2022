@@ -16,7 +16,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/objective_amount"
+        android:id="@+id/amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="320dp"
@@ -24,7 +24,7 @@
         android:textStyle="normal" />
 
     <SeekBar
-        android:id="@+id/seekbar_reached"
+        android:id="@+id/seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="5dp"
