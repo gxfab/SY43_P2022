@@ -30,7 +30,7 @@ public class IncomesTest extends AppCompatActivity {
         IncomeCategoryService incomeCategoryService = new IncomeCategoryService(this);
         new IncomeCategorySeeder(this).run();
         new ExpenseCategorySeeder(this).run();
-        new ExpenseCategoryService(this).create(new ExpenseCategory(""));
+//        new ExpenseCategoryService(this).create(new ExpenseCategory(""));
         List<IncomeCategory> incomeCategoryList = incomeCategoryService.getAll();
 //        Workbook workbook = new Workbook();
 
