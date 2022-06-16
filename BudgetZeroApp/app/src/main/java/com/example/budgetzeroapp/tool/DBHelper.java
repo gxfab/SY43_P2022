@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String EXP_COL_AMOUNT = "amount";
     public static final String EXP_COL_LABEL = "name";
     public static final String EXP_COL_TYPE = "type";
-    public static final String EXP_COL_IS_STABLE = "is_stable";
+    public static final String EXP_COL_IS_STABLE = "is_stable"; //Debt: stable, Savings: instable
     public static final String EXP_COL_ID_EXP = "id_expense";
     public static final String EXP_COL_ID_DEBT = "id_debt";
     public static final String EXP_COL_ID_SAV = "id_SAV";
@@ -130,15 +130,65 @@ public class DBHelper extends SQLiteOpenHelper {
                         "foreign key(" + EXP_COL_ID_SAV + ") references " + SAV_CAT_TABLE_NAME + "(id)" +
                         ");"
         );
+        //Example expense categories
         db.execSQL(
-                "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+")"+
-                        " values ('Shopping'),('Vehicle'),('Leisure'),('Health'),('Miscellaneous');"
+                "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+","+EXP_CAT_COL_IS_SUB+")"+
+                        " values ('Shopping',-400,0,null),('Vehicle',-800,0,null),('Leisure',-150,0,null),('Health',-300,0,null),('Bills',-700,0,null),('Miscellaneous',-100,0,null);"
         );
+        //Example expense subcategories
+        db.execSQL(
+                "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+","+EXP_CAT_COL_IS_SUB+")"+
+                        " values ('Food',-200,1,1),('Other',-200,1,1),('Sport',-50,1,3),('Party',-40,1,3),('Other',-60,1,3);"
+        );
+        //Example income category
+        db.execSQL(
+                "insert into "+INC_CAT_TABLE_NAME+"("+INC_CAT_COL_NAME+")"+
+                        " values ('Salary'),('Other');"
+        );
+        //Example debt category
+        db.execSQL(
+                "insert into "+DEBT_TABLE_NAME+"("+DEBT_COL_NAME+","+DEBT_COL_TOTAL_AMOUNT+","+DEBT_COL_MONTH_LEFT+")" +
+                        "values ('House',100000,63);"
+        );
+        //Example savings category
+        db.execSQL(
+                "insert into "+SAV_CAT_TABLE_NAME+"("+SAV_CAT_COL_NAME+","+SAV_CAT_COL_MAX_AMOUNT+","+SAV_CAT_COL_CURRENT_AMOUNT+")" +
+                        "values ('New PC',1200,340),('Trip to Iceland',840,121);"
+        );
+        //Example expenses
         db.execSQL(
                 "insert into "+EXP_TABLE_NAME+
                         "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
-                        ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+")"+
-                        " values ('Courses soirée', -120, +"+TYPE_EXP+", 1, 14, 6, 2022);"
+                        ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
+                        " values ('Party shopping', -120, 1, 8, 14, 6, 2022,0)," +
+                        "('Weekly shopping', -70, 1, 7, 9, 6, 2022,0)," +
+                        "('Weekly shopping', -57, 1, 7, 16, 6, 2022,0)," +
+                        "('Electricity',-307, 1, 5, 1, 6, 2022,0);"
+        );
+        //Example incomes
+        db.execSQL(
+                "insert into "+EXP_TABLE_NAME+
+                        "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
+                        ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
+                        " values ('Salary', 4500, 2, 1, 1, 6, 2022,1)," +
+                        "('Birthday present (grandma)', 100, 2, 2, 13, 6, 2022,0)," +
+                        "('Birthday present (uncle)', 20, 2, 2, 13, 6, 2022,0);"
+        );
+        //Example debt reimbursements
+        db.execSQL(
+                "insert into "+EXP_TABLE_NAME+
+                        "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
+                        ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
+                        " values ('House', 509, 3, 1, 30, 4, 2022,1)," +
+                        "('House', 546, 3, 1, 31, 5, 2022,1);"
+        );
+        //Example savings
+        db.execSQL(
+                "insert into "+EXP_TABLE_NAME+
+                        "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
+                        ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
+                        " values ('New PC', 33, 4, 1, 31, 5, 2022,0)," +
+                        "('Iceland', 45, 4, 1, 31, 5, 2022,0);"
         );
     }
 
