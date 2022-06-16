@@ -4,14 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.database.PiggyBankDatabase
 import com.example.sy43_p2022.database.entities.SubCategory
-import com.example.sy43_p2022.fragments.HomeFragment
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 

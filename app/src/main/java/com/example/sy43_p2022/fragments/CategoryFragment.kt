@@ -6,13 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sy43_p2022.IOnBackPressed
+import com.example.sy43_p2022.MainActivity
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.adapter.ButtonAdapter
 import com.example.sy43_p2022.database.PiggyBankDatabase
@@ -24,7 +22,7 @@ open class CategoryFragment(
     private val layoutVertical: Int,
     private val layoutVerticalColor: String,
     private val layout: Int
-) : Fragment(), IOnBackPressed {
+) : Fragment(), MainActivity.IOnBackPressed {
     private lateinit var db: PiggyBankDatabase
 
     override fun onCreateView(

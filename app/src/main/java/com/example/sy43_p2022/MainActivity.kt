@@ -11,12 +11,12 @@ import com.example.sy43_p2022.fragments.CategoryFragment
 import com.example.sy43_p2022.fragments.HomeFragment
 import kotlinx.coroutines.launch
 
-interface IOnBackPressed {
-    fun onBackPressed(): Boolean
-}
-
 class MainActivity : AppCompatActivity() {
     private lateinit var db: PiggyBankDatabase
+
+    interface IOnBackPressed {
+        fun onBackPressed(): Boolean
+    }
 
     private suspend fun verifyDB(): Boolean {
         db = PiggyBankDatabase.getDatabase(this@MainActivity)
