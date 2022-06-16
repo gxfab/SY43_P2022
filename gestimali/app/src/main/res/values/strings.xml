@@ -58,6 +58,8 @@
     <string name="add_wish_title">Add wish</string>
     <string name="add_wish_amount">Amount needed</string>
 
+    <string name="wish_name">Wish name</string>
+
 
     <!---  Navigation Bar -->
     <string name="navigation_bar_wish">Wish</string>

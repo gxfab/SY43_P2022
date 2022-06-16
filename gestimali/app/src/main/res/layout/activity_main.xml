@@ -73,12 +73,12 @@
 
     <ImageView
         android:id="@+id/optionIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:translationZ="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/homePageButton5"
-        app:layout_constraintStart_toStartOf="@id/homePageButton5"
         app:layout_constraintEnd_toEndOf="@id/homePageButton5"
+        app:layout_constraintStart_toStartOf="@id/homePageButton5"
         app:layout_constraintTop_toTopOf="@+id/homePageButton5"
         app:srcCompat="@drawable/ic_option" />
 
