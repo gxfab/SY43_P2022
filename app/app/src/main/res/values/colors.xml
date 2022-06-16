@@ -14,5 +14,6 @@
     <color name="vert">#7ccd49</color>
     <color name="gris_fonce">#1e1e1e</color>
     <color name="gris_clair">#8b8b8b</color>
+    <color name="Alpha">#00FFFFFF</color>
 
 </resources>

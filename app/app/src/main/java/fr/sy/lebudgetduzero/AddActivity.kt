@@ -1,11 +1,13 @@
 package fr.sy.lebudgetduzero
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
+import androidx.appcompat.app.AppCompatActivity
 import fr.sy.lebudgetduzero.database.AppDatabase
 import fr.sy.lebudgetduzero.item.IncomeItem
 import fr.sy.lebudgetduzero.item.SpentItem
@@ -13,6 +15,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.util.*
+import javax.xml.datatype.DatatypeConstants.MONTHS
+
 
 class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,5 +49,22 @@ class AddActivity : AppCompatActivity() {
             val intent= Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    fun selectDate(view: View){
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+
+        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+            // Display Selected date in textbox
+            findViewById<EditText>(R.id.editDate).setText("" + dayOfMonth + "-" + (monthOfYear+1) + "-" + year)
+
+        }, year, month, day)
+
+        dpd.show()
     }
 }
