@@ -13,7 +13,7 @@ import java.util.List;
 
 
 import com.sucelloztm.sucelloz.models.Categories;
-import com.sucelloztm.sucelloz.models.CategoriesWithSubCategories;
+import com.sucelloztm.sucelloz.models.CategoriesWithSubCategoriesWithInfrequentSum;
 
 /**
  * interface for the categories entity of the database
@@ -78,10 +78,6 @@ public interface CategoriesDao {
     @Query("SELECT * FROM categories")
     List<Categories> getCategories();
 
-    @Transaction
-    @Query("SELECT * FROM categories")
-    List<CategoriesWithSubCategories> getCategoriesWithSubCategories();
-
     /**
      * get categories with a given name
      * @param categoryName name to search for
@@ -89,6 +85,8 @@ public interface CategoriesDao {
      */
     @Query("SELECT * FROM categories WHERE name LIKE :categoryName")
     Categories getCategoryByName(String categoryName);
+
+
 
 }
 

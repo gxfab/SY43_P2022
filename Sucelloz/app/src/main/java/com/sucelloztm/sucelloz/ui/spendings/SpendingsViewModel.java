@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.sucelloztm.sucelloz.models.CategoriesWithSubCategoriesWithInfrequentSum;
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
@@ -57,5 +58,7 @@ public class SpendingsViewModel extends AndroidViewModel {
         return subCategoriesRepository.getAllSubCategoriesWithPositiveInfrequentSum();
     }
 
-
+    public LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithNegativeInfrequentSum(){
+        return subCategoriesRepository.getAllSubCategoriesWithNegativeInfrequentSum();
+    }
 }

@@ -12,19 +12,19 @@ import com.sucelloztm.sucelloz.database.DAO.SavingsDao;
 import com.sucelloztm.sucelloz.database.DAO.StableExpensesAndIncomeDao;
 import com.sucelloztm.sucelloz.database.DAO.SubCategoriesDao;
 import com.sucelloztm.sucelloz.models.Categories;
-import com.sucelloztm.sucelloz.models.CategoriesWithSubCategories;
+import com.sucelloztm.sucelloz.models.CategoriesWithSubCategoriesWithInfrequentSum;
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.Savings;
 import com.sucelloztm.sucelloz.models.StableExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategories;
-import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentExpensesAndIncome;
-import com.sucelloztm.sucelloz.models.SubCategoriesWithStableExpensesAndIncome;
+import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
 
 @Database(entities={Categories.class,
         SubCategories.class,
         InfrequentExpensesAndIncome.class,
         Savings.class,
         StableExpensesAndIncome.class,
+        SubCategoriesWithInfrequentSum.class
         },
         version=1
 )

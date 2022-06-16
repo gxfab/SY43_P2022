@@ -110,6 +110,21 @@ public interface SubCategoriesDao {
     @Query("Select name FROM sub_categories WHERE id=:idOfSubCategory")
     String getSubcategoryNameWithId(long idOfSubCategory);
 
-    @Query("SELECT *,SUM(infrequent_expenses.amount) AS sumOfInfrequent, sub_categories.name AS nameOfSubCategory FROM sub_categories JOIN infrequent_expenses ON sub_categories.id=infrequent_expenses.sub_categories_id WHERE infrequent_expenses.sign LIKE '+' GROUP BY sub_categories.id")
+    @Query("SELECT *,SUM(infrequent_expenses.amount) AS sum_of_infrequent, " +
+            "sub_categories.name AS nameOfSubCategory, " +
+            "sub_categories.categories_id AS id_of_category, " +
+            "infrequent_expenses.sign AS sign  " +
+            "FROM sub_categories JOIN infrequent_expenses ON sub_categories.id=infrequent_expenses.sub_categories_id " +
+            "WHERE infrequent_expenses.sign LIKE '+' " +
+            "GROUP BY sub_categories.id")
     LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithPositiveInfrequentSum();
+
+    @Query("SELECT *,SUM(infrequent_expenses.amount) AS sum_of_infrequent, " +
+            "sub_categories.name AS nameOfSubCategory, " +
+            "sub_categories.categories_id AS id_of_category, " +
+            "infrequent_expenses.sign AS sign  " +
+            "FROM sub_categories JOIN infrequent_expenses ON sub_categories.id=infrequent_expenses.sub_categories_id " +
+            "WHERE infrequent_expenses.sign LIKE '-' " +
+            "GROUP BY sub_categories.id")
+    LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithNegativeInfrequentSum();
 }

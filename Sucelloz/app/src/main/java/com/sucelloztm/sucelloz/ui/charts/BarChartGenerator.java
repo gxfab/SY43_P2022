@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -65,7 +66,7 @@ public class BarChartGenerator {
 
         XAxis xAxis = barChart.getXAxis();
         xAxis.setEnabled(false);
-
+        barChart.animateY(1400, Easing.EaseInOutQuad);
 
         parent.addView(barChart);
 

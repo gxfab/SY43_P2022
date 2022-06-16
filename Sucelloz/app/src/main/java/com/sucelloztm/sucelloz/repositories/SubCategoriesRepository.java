@@ -41,4 +41,8 @@ public class SubCategoriesRepository {
     public LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithPositiveInfrequentSum(){
         return subCategoriesDao.getAllSubCategoriesWithPositiveInfrequentSum();
     }
+
+    public LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithNegativeInfrequentSum(){
+        return subCategoriesDao.getAllSubCategoriesWithNegativeInfrequentSum();
+    }
 }

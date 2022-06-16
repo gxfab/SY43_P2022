@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer;
 import com.sucelloztm.sucelloz.database.DAO.CategoriesDao;
 import com.sucelloztm.sucelloz.database.SucellozDatabase;
 import com.sucelloztm.sucelloz.models.Categories;
+import com.sucelloztm.sucelloz.models.CategoriesWithSubCategoriesWithInfrequentSum;
 import com.sucelloztm.sucelloz.repositories.MainRepository;
 
 import java.util.ArrayList;

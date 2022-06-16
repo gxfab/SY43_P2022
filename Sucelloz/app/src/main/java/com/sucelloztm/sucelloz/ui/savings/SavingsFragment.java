@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.SavingsFragmentBinding;
@@ -71,6 +72,7 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
                 adapter.notifyDataSetChanged();
                 barGen.getBarChart().clear();
                 barGen.getBarChart().setData(barGen.generateBarData());
+                barGen.getBarChart().animateY(1400, Easing.EaseInOutQuad);
                 barGen.getBarChart().invalidate();
             }
         };
