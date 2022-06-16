@@ -13,7 +13,7 @@ data class Income (
     val inc_name : String,
     val inc_planned_amount : Float,
     val inc_real_amount : Float,
-    val inc_day_transaction : Date,
+    val inc_day_transaction : Int,
     val inc_mensually_fixed : Boolean
         ){
 }

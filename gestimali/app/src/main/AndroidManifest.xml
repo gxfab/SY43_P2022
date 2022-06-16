@@ -48,6 +48,15 @@
                 android:value=".MainActivity"/>
         </activity>
 
+        <activity
+            android:name=".AddBudgetActivity"
+            android:exported="false"
+            android:parentActivityName=".MonthOverviewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MonthOverviewActivity"/>
+        </activity>
+
     </application>
 
 </manifest>

@@ -3,7 +3,7 @@ package com.example.gestimali.envelope
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "T_enveloppe")
+@Entity(tableName = "T_envelope")
 data class Envelope (
     @PrimaryKey(autoGenerate = true)
     val env_id : Int,
@@ -11,7 +11,7 @@ data class Envelope (
     val env_month : Int,
     val env_name : String,
     val env_planned_amount : Float,
-    val env_money_used : Float
+    val env_money_used : Float,
     ){
 
 }

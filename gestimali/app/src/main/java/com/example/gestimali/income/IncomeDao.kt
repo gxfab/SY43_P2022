@@ -10,7 +10,7 @@ import com.example.gestimali.fixexpense.FixedExpense
 @Dao
 interface IncomeDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addIncome(income : Income)
+    fun addIncome(income : Income)
 
     @Query("SELECT * FROM T_income ORDER BY inc_id ASC")
     fun readAllData() : LiveData<List<Income>>

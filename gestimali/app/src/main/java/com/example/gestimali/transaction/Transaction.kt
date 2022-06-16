@@ -7,8 +7,7 @@ import java.util.*
 @Entity(tableName = "T_transaction",primaryKeys = ["env_id","tra_id"])
 data class Transaction (
     val env_id : Int,
-    @PrimaryKey(autoGenerate = true)
     val tra_id : Int,
     val tra_amount : Float,
-    val tra_date : Date
+    val tra_date : Int
         ){}

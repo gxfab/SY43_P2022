@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface FixedExpenseDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addFixedExpense(fixedExpense : FixedExpense)
+    fun addFixedExpense(fixedExpense : FixedExpense)
 
     @Query("SELECT * FROM T_fixed_expense ORDER BY exp_id ASC")
     fun readAllData() : LiveData<List<FixedExpense>>

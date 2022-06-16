@@ -28,6 +28,7 @@
     <string name="mon12">December</string>
 
     <string name="plan_button">Plan this month</string>
+    <string name="plan_title">Plan </string>
 
     <!-- Money flow-->
     <string name="category_name">Category Name</string>
@@ -43,6 +44,7 @@
 
     <string name="add_income_title">Add Income</string>
     <string name="add_income_name">Name</string>
+    <string name="add_day">Day</string>
 
     <string name="add_income_value">Income Value</string>
     <string name="monthly_fixed">Monthly Fixed</string>
@@ -60,15 +62,8 @@
     <!---  Navigation Bar -->
     <string name="navigation_bar_wish">Wish</string>
     <string name="navigation_bar_savings">Savings</string>
-
-
-
-
-
-
-
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

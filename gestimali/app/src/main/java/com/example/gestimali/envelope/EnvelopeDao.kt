@@ -3,15 +3,15 @@ package com.example.gestimali.envelope
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy.IGNORE
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
 interface EnvelopeDao {
-    @Insert(onConflict = IGNORE)
-    suspend fun addEnvelope(envelope : Envelope)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun addEnvelope(envelope : Envelope)
 
-    @Query("SELECT * FROM T_enveloppe ORDER BY env_id ASC")
+    @Query("SELECT * FROM T_envelope ORDER BY env_id ASC")
     fun readAllData() : LiveData<List<Envelope>>
 
 }

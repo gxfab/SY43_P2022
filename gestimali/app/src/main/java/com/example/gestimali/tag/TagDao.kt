@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface TagDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addTag(tag : Tag)
+    fun addTag(tag : Tag)
 
     @Query("SELECT * FROM T_tag ORDER BY tag_id ASC")
     fun readAllData() : LiveData<List<Tag>>

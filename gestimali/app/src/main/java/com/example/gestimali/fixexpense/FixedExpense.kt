@@ -13,7 +13,7 @@ data class FixedExpense (
     val exp_name : String,
     val exp_planned_amount : Float,
     val exp_real_amount : Float,
-    val exp_day_transaction : Date,
-    val exp_mensually_fix : Boolean
+    val exp_day_transaction : Int,
+    val exp_mensually_fix : Boolean,
         ){
 }

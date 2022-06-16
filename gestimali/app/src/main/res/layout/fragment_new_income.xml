@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:ems="7"
         android:inputType="textPersonName"
-        android:text="@string/add_income_name"
+        android:hint="@string/add_income_name"
         app:layout_constraintLeft_toLeftOf="@id/add_income"
         app:layout_constraintRight_toRightOf="@id/add_income"
         app:layout_constraintTop_toBottomOf="@id/title_add_income"
@@ -42,14 +42,14 @@
         android:layout_height="wrap_content"
         android:ems="7"
         android:inputType="textPersonName"
-        android:text="@string/add_income_value"
+        android:hint="@string/add_income_value"
         app:layout_constraintLeft_toLeftOf="@id/add_income"
         app:layout_constraintRight_toRightOf="@id/add_income"
         app:layout_constraintTop_toBottomOf="@id/editIncomeName"
         />
 
     <EditText
-        android:id="@+id/editIncomeDate"
+        android:id="@+id/editIncomeDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="7"
@@ -57,7 +57,7 @@
         app:layout_constraintLeft_toLeftOf="@id/add_income"
         app:layout_constraintRight_toRightOf="@id/add_income"
         app:layout_constraintTop_toBottomOf="@id/editIncomeValue"
-        android:text="@string/date"/>
+        android:hint="@string/add_day"/>
 
     <Switch
         android:id="@+id/monthly_fixed_switch"
@@ -66,10 +66,11 @@
         android:text="@string/monthly_fixed"
         app:layout_constraintLeft_toLeftOf="@id/add_income"
         app:layout_constraintRight_toRightOf="@id/add_income"
-        app:layout_constraintTop_toBottomOf="@id/editIncomeDate" />
+        app:layout_constraintTop_toBottomOf="@id/editIncomeDay" />
 
 
     <ImageButton
+        android:id="@+id/quit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_quit"
@@ -78,7 +79,9 @@
         app:layout_constraintTop_toTopOf="@id/add_income"
         />
 
+
     <ImageButton
+        android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_valid"
