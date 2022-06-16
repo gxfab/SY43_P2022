@@ -1,4 +1,4 @@
-package com.example.agedor.view.enveloppes;
+package com.example.agedor.view.enveloppes.depenses;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

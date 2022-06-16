@@ -1,4 +1,4 @@
-package com.example.agedor.view.enveloppes;
+package com.example.agedor.view.enveloppes.depenses;
 
 
 import android.view.LayoutInflater;
@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agedor.R;
 import com.example.agedor.data.StorageDepenses;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

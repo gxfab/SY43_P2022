@@ -1,4 +1,4 @@
-package com.example.agedor.view.dettes;
+package com.example.agedor.view.enveloppes.categories;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,18 +15,16 @@ import android.widget.Toast;
 import com.example.agedor.R;
 import com.example.agedor.data.DBHandler;
 import com.example.agedor.data.StorageCategories;
-import com.example.agedor.data.StorageDettes;
-import com.example.agedor.view.enveloppes.categories.CategoriesAdapter;
-import com.example.agedor.view.enveloppes.categories.EditCategorieDialog;
+import com.example.agedor.view.enveloppes.depenses.ListeDepensesAdapter;
 
 import java.util.ArrayList;
 
-public class EditDettesActivity extends AppCompatActivity implements EditDetteDialog.DialogListener{
+public class EditCategoriesActivity extends AppCompatActivity implements EditCategorieDialog.DialogListener {
 
-    private RecyclerView listeDettes;
-    private ArrayList<StorageDettes> dettes;
-    private DettesAdapter monAdapter;
-    private DettesAdapter.RecyclerViewClickListener listenerRecycler;
+    private RecyclerView listeCategories;
+    private ArrayList<StorageCategories> categories;
+    private CategoriesAdapter monAdapter;
+    private CategoriesAdapter.RecyclerViewClickListener listenerRecycler;
 
     private EditText m_nom;
     private EditText m_montant;
@@ -35,43 +33,43 @@ public class EditDettesActivity extends AppCompatActivity implements EditDetteDi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_dettes);
+        setContentView(R.layout.edit_categories);
         this.m_nom = findViewById(R.id.editTextNom);
         this.m_montant = findViewById(R.id.editTextMontant);
 
-        listeDettes = findViewById(R.id.recycler_dettes);
+        listeCategories = findViewById(R.id.recycler_categories);
         setData();
         setAdapter();
     }
 
     private void setData(){
         DBHandler db = new DBHandler(this);
-        this.dettes = db.getDettes();
+        this.categories = db.getCategories();
 
     }
 
     private void setAdapter(){
 
         setOnClickListener();
-        monAdapter = new DettesAdapter(dettes, listenerRecycler);
-        listeDettes.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        listeDettes.setAdapter(monAdapter);
+        monAdapter = new CategoriesAdapter(categories, listenerRecycler);
+        listeCategories.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        listeCategories.setAdapter(monAdapter);
 
     }
 
     private void setOnClickListener() {
-        listenerRecycler = new DettesAdapter.RecyclerViewClickListener() {
+        listenerRecycler = new CategoriesAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
                 //Toast.makeText(getApplicationContext(), depenses.get(position).nom,Toast.LENGTH_SHORT).show();
-                StorageDettes dette = dettes.get(position);
-                modifierDette(dette);
+                StorageCategories categorie = categories.get(position);
+                modifierCategorie(categorie);
             }
         };
     }
 
-    private void modifierDette(StorageDettes dette){
-        EditDetteDialog dialog = new EditDetteDialog(dette);
+    private void modifierCategorie(StorageCategories categorie){
+        EditCategorieDialog dialog = new EditCategorieDialog(categorie);
         dialog.show(getSupportFragmentManager(),"dialog");
     }
 
@@ -80,9 +78,9 @@ public class EditDettesActivity extends AppCompatActivity implements EditDetteDi
 
         DBHandler db = new DBHandler(this);
 
-        db.deleteRow("DETTES",ancienNom);
-        db.addNewDette(nom,Double.parseDouble(montant));
-        dettes = db.getDettes();
+        db.deleteRow("CATEGORIES",ancienNom);
+        db.addNewCategorie(nom,Double.parseDouble(montant));
+        categories = db.getCategories();
         setAdapter();
 
     }
@@ -90,13 +88,13 @@ public class EditDettesActivity extends AppCompatActivity implements EditDetteDi
     @Override
     public void supprimer(String nom){
         DBHandler db = new DBHandler(this);
-        db.deleteRow("DETTES",nom);
+        db.deleteRow("CATEGORIES",nom);
 
-        dettes = db.getDettes();
+        categories = db.getCategories();
         setAdapter();
     }
 
-    public void addDette(View view) {
+    public void addCategorie(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
 
@@ -118,8 +116,8 @@ public class EditDettesActivity extends AppCompatActivity implements EditDetteDi
 
         builder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
+                        dialog.cancel();
+                    }
         });
 
 
@@ -133,12 +131,11 @@ public class EditDettesActivity extends AppCompatActivity implements EditDetteDi
     void addToDB(String nom, Double montant){
 
         DBHandler db = new DBHandler(this);
-        db.addNewDette(nom,montant);
+        db.addNewCategorie(nom,montant);
 
-        dettes = db.getDettes();
+        categories = db.getCategories();
         setAdapter();
 
     }
-
 
 }

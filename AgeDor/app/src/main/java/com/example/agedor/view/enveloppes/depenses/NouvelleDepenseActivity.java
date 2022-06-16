@@ -1,4 +1,4 @@
-package com.example.agedor.view.enveloppes;
+package com.example.agedor.view.enveloppes.depenses;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.example.agedor.R;
 import com.example.agedor.data.DBHandler;
 import com.example.agedor.data.StorageCategories;
-import com.example.agedor.data.StorageDepenses;
 
 import java.util.ArrayList;
 

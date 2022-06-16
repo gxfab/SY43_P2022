@@ -13,20 +13,16 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".view.enveloppes.NouvelleDepenseActivity"
+            android:name=".view.enveloppes.depenses.NouvelleDepenseActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".view.enveloppes.ConsulterDepensesActivity"
+            android:name=".view.enveloppes.depenses.ConsulterDepensesActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name=".view.enveloppes.EditCategoriesActivity"
-            android:exported="false"
-            android:parentActivityName=".view.EditerBudgetActivity" />
-        <activity
-            android:name=".view.enveloppes.EditDepensesActivity"
+            android:name=".view.enveloppes.categories.EditCategoriesActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
         <activity
@@ -43,6 +39,10 @@
             android:parentActivityName=".view.EditerBudgetActivity" />
         <activity
             android:name=".view.extras.EditExtraActivity"
+            android:exported="false"
+            android:parentActivityName=".view.EditerBudgetActivity" />
+        <activity
+            android:name=".view.factures.EditFacturesActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
 

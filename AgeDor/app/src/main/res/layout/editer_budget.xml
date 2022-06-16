@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:onClick="editExtra"
+        android:onClick="editFactures"
         android:text="@string/fac"
         tools:layout_editor_absoluteX="76dp"
         tools:layout_editor_absoluteY="453dp" />

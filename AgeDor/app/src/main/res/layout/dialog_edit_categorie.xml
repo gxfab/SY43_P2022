@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/nom"
+        android:id="@+id/editTextNom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -12,7 +12,7 @@
         android:layout_marginBottom="4dp"
         android:hint="Nom" />
     <EditText
-        android:id="@+id/montant"
+        android:id="@+id/editTextMontant"
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

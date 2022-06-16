@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
-import com.example.agedor.view.enveloppes.ConsulterDepensesActivity;
+import com.example.agedor.view.enveloppes.depenses.ConsulterDepensesActivity;
 import com.example.agedor.view.EditerBudgetActivity;
-import com.example.agedor.view.enveloppes.NouvelleDepenseActivity;
+import com.example.agedor.view.enveloppes.depenses.NouvelleDepenseActivity;
 
 
 // Page d'accueil de l'application
@@ -20,25 +21,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+        //getActionBar().setTitle("test");
+
+
+
         setContentView(R.layout.activity_main);
     }
 
     public void consulterMesDepenses(View view){
         Intent intent = new Intent(this, ConsulterDepensesActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
     public void nouvelleDepense(View view){
         Intent intent = new Intent(this, NouvelleDepenseActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
     public void editerLeBudget(View view){
         Intent intent = new Intent(this, EditerBudgetActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
     public void parametres(View view){
+
+        Toast.makeText(this,"Implémentation à venir!",Toast.LENGTH_LONG).show();
         /*
 
         DBHandler db = new DBHandler(getApplicationContext());

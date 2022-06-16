@@ -173,7 +173,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             revenusList.add(new StorageRevenus(cursor.getString(1), cursor.getDouble(2)));
             while (cursor.moveToNext()) {
-                revenusList.add(new StorageRevenus(cursor.getString(1), cursor.getDouble(3)));
+                revenusList.add(new StorageRevenus(cursor.getString(1), cursor.getDouble(2)));
             }
         }
         cursor.close();
@@ -188,9 +188,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
-            categoriesList.add(new StorageCategories(cursor.getString(1), Double.parseDouble(cursor.getString(2))));
+            categoriesList.add(new StorageCategories(cursor.getString(1), cursor.getDouble(2)));
             while (cursor.moveToNext()) {
-                categoriesList.add(new StorageCategories(cursor.getString(1), Double.parseDouble(cursor.getString(2))));
+                categoriesList.add(new StorageCategories(cursor.getString(1), cursor.getDouble(2)));
             }
         }
         cursor.close();
@@ -205,9 +205,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
-            Liste.add(new StorageDettes(cursor.getString(1), cursor.getDouble(3)));
+            Liste.add(new StorageDettes(cursor.getString(1), cursor.getDouble(2)));
             while (cursor.moveToNext()) {
-                Liste.add(new StorageDettes(cursor.getString(1), cursor.getDouble(3)));
+                Liste.add(new StorageDettes(cursor.getString(1), cursor.getDouble(2)));
             }
         }
         cursor.close();
@@ -239,9 +239,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
-            Liste.add(new StorageProjets(cursor.getString(2), cursor.getDouble(3)));
+            Liste.add(new StorageProjets(cursor.getString(1), cursor.getDouble(2)));
             while (cursor.moveToNext()) {
-                Liste.add(new StorageProjets(cursor.getString(2), cursor.getDouble(3)));
+                Liste.add(new StorageProjets(cursor.getString(1), cursor.getDouble(2)));
             }
         }
         cursor.close();

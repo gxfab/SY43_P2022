@@ -1,4 +1,4 @@
-package com.example.agedor.view.enveloppes;
+package com.example.agedor.view.enveloppes.depenses;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,14 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.agedor.R;
 import com.example.agedor.data.DBHandler;
 import com.example.agedor.data.StorageDepenses;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 

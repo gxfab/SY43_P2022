@@ -11,7 +11,7 @@
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
 
-    tools:context=".view.enveloppes.EditCategoriesActivity">
+    tools:context=".view.enveloppes.categories.EditCategoriesActivity">
 
 
     <TextView
