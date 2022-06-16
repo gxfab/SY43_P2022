@@ -75,8 +75,4 @@ class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.Vie
     }
 
     override fun getItemCount(): Int = incomeList.size + 2
-
-    interface MonthAdapterListener{
-        fun onPlanningMonth()
-    }
 }

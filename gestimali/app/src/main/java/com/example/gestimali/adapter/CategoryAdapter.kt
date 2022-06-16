@@ -21,6 +21,8 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val categoryTitle = itemView.findViewById<TextView>(R.id.category_name)
         val floatingButton = itemView.findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        val moneyFlowRecyclerView = itemView.findViewById<RecyclerView>(R.id.money_flow_recycler)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder {
@@ -37,6 +39,8 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
         if(position==0){
             holder.floatingButton.setOnClickListener(this)
         }
+
+        holder.moneyFlowRecyclerView.adapter = MoneyFlowAdapter(position)
     }
 
     override fun getItemCount(): Int = 4
