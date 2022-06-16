@@ -8,6 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
@@ -37,12 +47,6 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_view_expense_cat, parent, false);
-        name = view.findViewById(R.id.textViewCatNameEntry);
-        budget = view.findViewById(R.id.textViewCatBudgetEntry);
-        expList = view.findViewById(R.id.listViewCatExpenses);
-        subCatList = view.findViewById(R.id.listViewCatClickSub);
-        getValues();
-        setValues();
         return view;
     }
 
@@ -50,7 +54,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
 
         Cursor cat = database.getCatFromType(id, DBHelper.TYPE_EXP);
         cat.moveToFirst();
-        if (cat.isAfterLast()) redirect(new HomeFragment());
+        if (cat.isAfterLast()) redirect(new HomeFragment(),id);
         else {
             nameVal = cat.getString(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             budgetVal = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));
@@ -65,5 +69,29 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         subCatList = ClickableListManager.clickableBudgetList(expList, subCatVal);
         ClickableListManager.clickableExpenseList(expList, expVal);
 
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        NavController navController = Navigation.findNavController(view);
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(R.id.homeFragment, R.id.viewExpenseCatFragment).build();
+        Toolbar toolbar = view.findViewById(R.id.toolbar_add_category);
+        NavigationUI.setupWithNavController(
+                toolbar, navController, appBarConfiguration);
+
+
+        /**Getting passed id**/
+        id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCat();
+        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+
+        name = view.findViewById(R.id.textViewCatNameEntry);
+        budget = view.findViewById(R.id.textViewCatBudgetEntry);
+        expList = view.findViewById(R.id.listViewCatExpenses);
+        subCatList = view.findViewById(R.id.listViewCatClickSub);
+        getValues();
+        setValues();
     }
 }

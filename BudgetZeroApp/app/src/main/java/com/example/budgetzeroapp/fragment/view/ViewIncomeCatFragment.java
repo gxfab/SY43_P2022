@@ -41,7 +41,7 @@ public class ViewIncomeCatFragment extends DataBaseFragment {
     public void getValues() {
         Cursor inc = database.getCatFromType(id, DBHelper.TYPE_INC);
         inc.moveToFirst();
-        if (inc.isAfterLast()) redirect(new HomeFragment());
+        if (inc.isAfterLast()) redirect(new HomeFragment(),id);
         else {
             nameVal = inc.getString(inc.getColumnIndexOrThrow(DBHelper.INC_CAT_COL_NAME));
             incListVal = ExpenseItem.catExpensesToList(database, id, DBHelper.TYPE_INC);

@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
@@ -34,6 +38,17 @@ public class ViewExpenseFragment extends DataBaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_view_expense, parent, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        /**Getting passed id**/
+        id = ViewExpenseFragmentArgs.fromBundle(getArguments()).getIdExpense();
+        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+
         name = view.findViewById(R.id.textViewExpNameEntry);
         date = view.findViewById(R.id.textViewExpDateEntry);
         amount = view.findViewById(R.id.textViewExpAmountEntry);
@@ -41,13 +56,12 @@ public class ViewExpenseFragment extends DataBaseFragment {
         type = view.findViewById(R.id.textViewExpType);
         getValues();
         setValues();
-        return view;
     }
 
     public void getValues() {
         Cursor exp = database.getExpenseFromID(id);
         exp.moveToFirst();
-        if (exp.isAfterLast()) redirect(new HomeFragment());
+        if (exp.isAfterLast()) redirect(new HomeFragment(),id);
         else {
             nameVal = exp.getString(exp.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             amountVal = exp.getFloat(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_AMOUNT));
@@ -59,6 +73,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
             stableVal = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_AMOUNT));
         }
     }
+
 
     public void setValues() {
         name.setText(nameVal);

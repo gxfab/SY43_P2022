@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.cashflow.CashFlowEvolutionFragment;
 import com.example.budgetzeroapp.fragment.cashflow.CashFlowGeneralFragment;
@@ -80,6 +82,13 @@ public class CashFlowFragment extends DataBaseFragment {
         adapter.addFragment(new CashFlowEvolutionFragment(), "Evolution");
         viewPager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewPager);
+    }
+
+    public static void redirectToViewExpense(int exp_id)
+    {
+        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        NavDirections action = CashFlowFragmentDirections.navigateToViewExpenseFragmentFromCashflow(exp_id);
+        navController.navigate(action);
     }
 
 }

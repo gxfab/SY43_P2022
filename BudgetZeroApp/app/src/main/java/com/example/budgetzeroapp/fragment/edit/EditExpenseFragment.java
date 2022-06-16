@@ -48,7 +48,6 @@ public class EditExpenseFragment extends EditDataBaseFragment {
         save = view.findViewById(R.id.buttonSave);
         cancel = view.findViewById(R.id.buttonCancel);
         name = view.findViewById(R.id.editTextExpName);
-        date = view.findViewById(R.id.editTextExpDate);
         amount = view.findViewById(R.id.editTextExpAmount);
         stable = view.findViewById(R.id.checkBoxExpStable);
         return view;

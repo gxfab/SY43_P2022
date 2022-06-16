@@ -7,7 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.view.LayoutInflater;
@@ -20,7 +23,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
+import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragmentDirections;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.ToolBar;
 import com.example.budgetzeroapp.tool.adapter.ProgressBarAdapter;
@@ -82,6 +88,35 @@ public class HomeFragment extends DataBaseFragment {
 
         ToolBar.getInstance().initToolBar(view, R.id.toolbar_home);
 
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        Toolbar toolbar = view.findViewById(R.id.toolbar_home);
+
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment,R.id.viewExpenseCatFragment).build();
+        NavigationUI.setupWithNavController(
+                toolbar, navController, appBarConfiguration);
+
+        /*toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                NavController navController = Navigation.findNavController(view);
+                switch(item.getItemId()){
+                    case R.id.expense:
+                        navController.navigate(R.id.action_homeFragment_to_addCategoryFragment);
+                        break;
+                }
+                return true;
+            }
+        });*/
+
+        /*view.findViewById(R.id.text_click).setOnClickListener(new View.OnClickListener() {
+            NavController navController = Navigation.findNavController(view);
+            @Override
+            public void onClick(View view) {
+               // NavDirections action = HomeFragmentDirections.navigateToViewExpenseCatFromHome();
+                navController.navigate(R.id.navigate_to_viewExpenseCat_from_home);
+            }
+        });*/
+
         /**Navigation
         Toolbar toolbar = view.findViewById(R.id.toolbar_home);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -138,4 +173,12 @@ public class HomeFragment extends DataBaseFragment {
 
         pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
+
+    public static void redirectToViewExpenseCat(int cat_id)
+    {
+        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        NavDirections action = HomeFragmentDirections.navigateToViewExpenseCatFromHome(cat_id);
+        navController.navigate(action);
+    }
+
 }

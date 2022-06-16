@@ -82,7 +82,7 @@ public class ExpenseItem extends ListItem {
     }
 
     public void redirect(){
-        DataBaseFragment.redirect(new ViewExpenseFragment(id));
+        DataBaseFragment.redirect(new ViewExpenseFragment(),id);
     }
 
     public int getType(){return type;}

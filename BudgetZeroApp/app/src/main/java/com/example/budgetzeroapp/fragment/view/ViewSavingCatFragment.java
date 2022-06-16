@@ -1,11 +1,16 @@
 package com.example.budgetzeroapp.fragment.view;
 
 import android.database.Cursor;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
@@ -33,6 +38,17 @@ public class ViewSavingCatFragment extends DataBaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_view_saving_cat, parent, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        /**Getting passed id**/
+        id = ViewSavingCatFragmentArgs.fromBundle(getArguments()).getIdSavings();
+        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+
         name = view.findViewById(R.id.textViewSaveNameEntry);
         goal = view.findViewById(R.id.textViewSaveGoalEntry);
         current = view.findViewById(R.id.textViewSaveCurrentEntry);
@@ -41,13 +57,12 @@ public class ViewSavingCatFragment extends DataBaseFragment {
         saveList = view.findViewById(R.id.listViewSaveList);
         getValues();
         setValues();
-        return view;
     }
 
     public void getValues() {
         Cursor save = database.getCatFromType(id, DBHelper.TYPE_SAV);
         save.moveToFirst();
-        if (save.isAfterLast()) redirect(new HomeFragment());
+        if (save.isAfterLast()) redirect(new HomeFragment(),id);
         else {
             nameVal = save.getString(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_NAME));
             goalVal = save.getFloat(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_MAX_AMOUNT));

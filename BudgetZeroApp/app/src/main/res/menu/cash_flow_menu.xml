@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:title="option"
+        android:id="@+id/expense"
+        android:title="Add expense"
         app:showAsAction="never"/>
     <item
         android:icon="@drawable/ic_next"

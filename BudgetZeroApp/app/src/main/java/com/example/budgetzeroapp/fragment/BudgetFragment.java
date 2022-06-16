@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.ToolBar;
 import com.example.budgetzeroapp.tool.adapter.BudgetAdapter;
@@ -134,5 +136,12 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
             case 3 : Collections.sort(items, (categoryItem, t1) -> (int) (categoryItem.getBudget()-t1.getBudget()));
                 break;
         }
+    }
+
+    public static void redirectToViewExpenseCat(int cat_id)
+    {
+        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        NavDirections action = BudgetFragmentDirections.navigateToViewExpenseCatFromBudget(cat_id);
+        navController.navigate(action);
     }
 }

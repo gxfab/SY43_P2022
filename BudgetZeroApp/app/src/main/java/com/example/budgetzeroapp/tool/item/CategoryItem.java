@@ -76,10 +76,8 @@ public class CategoryItem extends ListItem{
     public void redirect(int type){
         if(type == DBHelper.TYPE_DEBT || type == DBHelper.TYPE_SAV)
             MainActivity.getActivity().bottomNavigationRedirect(R.id.savingsFragment);
-        if(type == DBHelper.TYPE_DEBT) DataBaseFragment.redirect(new SavingsFragment(false));
-        else if(type == DBHelper.TYPE_SAV) DataBaseFragment.redirect(new SavingsFragment(true));
-        else if(type == DBHelper.TYPE_INC) DataBaseFragment.redirect(new ViewIncomeCatFragment(id));
-        else DataBaseFragment.redirect(new ViewExpenseCatFragment(id));
+        else if(type == DBHelper.TYPE_INC) DataBaseFragment.redirect(new ViewIncomeCatFragment(),id);
+        else DataBaseFragment.redirect(new ViewExpenseCatFragment(),id);
     }
 
     public float getTotal(){ return total; }

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.ToolBar;
 import com.example.budgetzeroapp.tool.adapter.ViewPagerAdapter;
@@ -21,8 +23,8 @@ import com.google.android.material.tabs.TabLayout;
 
 
 public class SavingsFragment extends DataBaseFragment {
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    private static TabLayout tabLayout;
+    private static ViewPager viewPager;
     private boolean defaultTab;
 
     public SavingsFragment() {
@@ -82,8 +84,19 @@ public class SavingsFragment extends DataBaseFragment {
 
     }
 
-    public void selectPage(int pageIndex){
+    public static void selectPage(int pageIndex){
         tabLayout.setScrollPosition(pageIndex,0f,true);
         viewPager.setCurrentItem(pageIndex);
+    }
+
+    public static void redirectToViewSavingCat(int saving_id)
+    {
+        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+
+        NavDirections action = null;
+        if (tabLayout.getSelectedTabPosition() == 0) action = SavingsFragmentDirections.navigateToViewSavingCatFromSavings(saving_id);
+        else if (tabLayout.getSelectedTabPosition() == 1) action = SavingsFragmentDirections.navigateToViewDebtFromSavings(saving_id);
+
+        navController.navigate(action);
     }
 }

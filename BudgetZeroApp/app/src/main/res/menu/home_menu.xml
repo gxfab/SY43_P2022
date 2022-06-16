@@ -5,8 +5,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/option"
-        android:title="option"
+        android:id="@+id/expense"
+        android:title="Add expense"
         app:showAsAction="never"/>
     <item
         android:icon="@drawable/ic_next"

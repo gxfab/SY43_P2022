@@ -1,11 +1,16 @@
 package com.example.budgetzeroapp.fragment.view;
 
 import android.database.Cursor;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
@@ -34,6 +39,17 @@ public class ViewDebtFragment extends DataBaseFragment {
 
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_view_debt, parent, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        /**Getting passed id**/
+        id = ViewDebtFragmentArgs.fromBundle(getArguments()).getIdDebt();
+        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+
         name = view.findViewById(R.id.textViewDebtNameEntry);
         monthLeft = view.findViewById(R.id.textViewDebtMonthEntry);
         totalAmount = view.findViewById(R.id.textViewDebtTotalAmountEntry);
@@ -41,13 +57,12 @@ public class ViewDebtFragment extends DataBaseFragment {
         exp = view.findViewById(R.id.listViewDebtExpenses);
         getValues();
         setValues();
-        return view;
     }
 
     public void getValues() {
         Cursor debt = database.getCatFromType(id, DBHelper.TYPE_DEBT);
         debt.moveToFirst();
-        if (debt.isAfterLast()) redirect(new HomeFragment());
+        if (debt.isAfterLast()) redirect(new HomeFragment(),id);
         else {
             nameVal = debt.getString(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_NAME));
             monthLeftVal=debt.getInt(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_MONTH_LEFT));

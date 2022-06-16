@@ -5,11 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:title="option"
+        android:id="@+id/expense"
+        android:title="Add expense"
         app:showAsAction="never"/>
     <item
         android:icon="@drawable/ic_next"
         android:id="@+id/next_day"
         android:title="Next Day"
+        app:showAsAction="always"/>
+    <item
+        android:icon="@drawable/ic_auto_mode"
+        android:id="@+id/mode"
+        android:title="Mode Auto/Manual"
         app:showAsAction="always"/>
 </menu>

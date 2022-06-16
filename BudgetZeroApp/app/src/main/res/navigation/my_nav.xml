@@ -8,7 +8,11 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.budgetzeroapp.fragment.HomeFragment"
-        android:label="Home" />
+        android:label="Home" >
+        <action
+            android:id="@+id/navigate_to_viewExpenseCat_from_home"
+            app:destination="@id/viewExpenseCatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/budgetFragment"
         android:name="com.example.budgetzeroapp.fragment.BudgetFragment"
@@ -19,17 +23,31 @@
             app:destination="@id/addCategoryFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/navigate_to_viewExpenseCat_from_budget"
+            app:destination="@id/viewExpenseCatFragment" />
     </fragment>
     <fragment
         android:id="@+id/cashFlowFragment"
         android:name="com.example.budgetzeroapp.fragment.CashFlowFragment"
         android:label="Cash Flow"
-        tools:layout="@layout/fragment_cash_flow" />
+        tools:layout="@layout/fragment_cash_flow" >
+        <action
+            android:id="@+id/navigate_to_viewExpenseFragment_from_cashflow"
+            app:destination="@id/viewExpenseFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/savingsFragment"
         android:name="com.example.budgetzeroapp.fragment.SavingsFragment"
         android:label="Savings"
-        tools:layout="@layout/fragment_savings" />
+        tools:layout="@layout/fragment_savings" >
+        <action
+            android:id="@+id/navigate_to_viewSavingCat_from_savings"
+            app:destination="@id/viewSavingCatFragment" />
+        <action
+            android:id="@+id/navigate_to_viewDebt_from_savings"
+            app:destination="@id/viewDebtFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addCategoryFragment"
         android:name="com.example.budgetzeroapp.fragment.AddCategoryFragment"
@@ -40,5 +58,121 @@
             app:destination="@id/budgetFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewExpenseCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment"
+        android:label="Expense per category"
+        tools:layout="@layout/fragment_view_expense_cat" >
+        <action
+            android:id="@+id/navigate_to_home_from_expense_cat"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/navigate_to_budget_from_expense_cat"
+            app:destination="@id/budgetFragment" />
+        <action
+            android:id="@+id/navigate_to_editExpenseCat_from_expense_cat"
+            app:destination="@id/editExpenseCatFragment" />
+        <argument
+            android:name="id_expense_cat"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewExpenseFragment"
+        android:name="com.example.budgetzeroapp.fragment.view.ViewExpenseFragment"
+        android:label="Expenses"
+        tools:layout="@layout/fragment_view_expense" >
+        <action
+            android:id="@+id/navigate_to_cashFlow_from_expense"
+            app:destination="@id/cashFlowFragment" />
+        <action
+            android:id="@+id/navigate_to_editExpense_expense"
+            app:destination="@id/editExpenseFragment" />
+        <argument android:name="id_expense"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewSavingCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.view.ViewSavingCatFragment"
+        android:label="Savings per category"
+        tools:layout="@layout/fragment_view_saving_cat" >
+        <action
+            android:id="@+id/navigate_to_savings_from_savings_cat"
+            app:destination="@id/savingsFragment" />
+        <action
+            android:id="@+id/navigate_to_editSavingCat_from_saving_cat"
+            app:destination="@id/editSavingCatFragment" />
+        <argument
+            android:name="id_savings"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/editExpenseCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.EditExpenseCatFragment"
+        android:label="Edit expense categories"
+        tools:layout="@layout/fragment_edit_expense_cat" >
+        <action
+            android:id="@+id/navigate_to_viewExpenseCat_from_expense_cat"
+            app:destination="@id/viewExpenseCatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editExpenseFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.EditExpenseFragment"
+        android:label="Edit expenses"
+        tools:layout="@layout/fragment_edit_expense" >
+        <action
+            android:id="@+id/navigate_to_viewExpense_from_expense"
+            app:destination="@id/viewExpenseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editSavingCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.EditSavingCatFragment"
+        android:label="Edit saving categories"
+        tools:layout="@layout/fragment_edit_saving_cat" >
+        <action
+            android:id="@+id/navigate_to_viewSavingCat_saving_cat"
+            app:destination="@id/viewSavingCatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewDebtFragment"
+        android:name="com.example.budgetzeroapp.fragment.view.ViewDebtFragment"
+        android:label="Debts"
+        tools:layout="@layout/fragment_view_debt" >
+        <action
+            android:id="@+id/navigate_to_savings_from_debt"
+            app:destination="@id/savingsFragment" />
+        <action
+            android:id="@+id/navigate_to_editDebt_from_debt"
+            app:destination="@id/editDebtFragment" />
+        <argument
+            android:name="id_debt"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/editDebtFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.EditDebtFragment"
+        android:label="Edit debts"
+        tools:layout="@layout/fragment_edit_debt" >
+        <action
+            android:id="@+id/navigate_to_viewDebt_from_debt"
+            app:destination="@id/viewDebtFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewIncomeCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.view.ViewIncomeCatFragment"
+        android:label="Income per category"
+        tools:layout="@layout/fragment_view_income_cat" >
+        <action
+            android:id="@+id/navigate_to_editIncomeCat_from_income_cat"
+            app:destination="@id/editIncomeCatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editIncomeCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.EditIncomeCatFragment"
+        android:label="Edit income per category"
+        tools:layout="@layout/fragment_edit_income_cat" >
+        <action
+            android:id="@+id/navigate_to_viewIncomeCat_from_income_cat"
+            app:destination="@id/viewIncomeCatFragment" />
     </fragment>
 </navigation>

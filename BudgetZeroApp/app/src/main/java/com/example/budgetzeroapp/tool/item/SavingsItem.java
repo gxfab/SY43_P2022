@@ -51,7 +51,7 @@ public class SavingsItem extends ListItem{
     }
 
     public void redirect(){
-        if(type) DataBaseFragment.redirect(new ViewSavingCatFragment(id));
-        else DataBaseFragment.redirect(new ViewDebtFragment(id));
+        if(type) DataBaseFragment.redirect(new ViewSavingCatFragment(),id);
+        else DataBaseFragment.redirect(new ViewDebtFragment(),id);
     }
 }

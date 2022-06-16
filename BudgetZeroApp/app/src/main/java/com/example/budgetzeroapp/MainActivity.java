@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
+import com.example.budgetzeroapp.fragment.SavingsFragment;
 import com.example.budgetzeroapp.tool.OptionsMenu;
 import com.example.budgetzeroapp.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,8 +38,14 @@ public class MainActivity extends OptionsMenu {
 
     }
 
-    public void bottomNavigationRedirect(int id){
+    public void bottomNavigationRedirect(int id)
+    {
         bottomNavigationView.setSelectedItemId(id);
+    }
+
+    public void selectSavingsTab(int tab_id)
+    {
+        SavingsFragment.selectPage(tab_id);
     }
 
     public static MainActivity getActivity() {

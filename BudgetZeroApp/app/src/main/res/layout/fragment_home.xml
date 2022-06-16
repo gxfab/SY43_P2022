@@ -38,6 +38,15 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="20dp" />
 
+                    <!--<TextView
+                        android:id="@+id/text_click"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="text"
+                        android:textSize="50sp"
+                        android:gravity="center"/>-->
+
+
                     <ListView
                         android:id="@+id/list_view_cat"
                         android:layout_width="match_parent"

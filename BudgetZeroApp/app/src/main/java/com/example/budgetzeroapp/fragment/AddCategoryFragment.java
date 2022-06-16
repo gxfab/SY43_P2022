@@ -46,7 +46,7 @@ public class AddCategoryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(navController.getGraph()).build();
+                new AppBarConfiguration.Builder(R.id.budgetFragment,R.id.addCategoryFragment).build();
         Toolbar toolbar = view.findViewById(R.id.toolbar_add_category);
         NavigationUI.setupWithNavController(
                 toolbar, navController, appBarConfiguration);
