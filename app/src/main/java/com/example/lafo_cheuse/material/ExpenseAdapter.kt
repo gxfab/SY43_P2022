@@ -15,11 +15,11 @@ import java.util.*
 import kotlin.math.exp
 
 /**
- * TODO : Compelte documentation
+ * Adapter that handle the RecyclerView in charge of expenses
  *
- * @property context
- * @property itemClickListener
- * @property resources
+ * @property context - the [Activity] in which the RecyclerView is used
+ * @property itemClickListener - an [EventListener] to check if the delete button is clicked
+ * @property resources - a parameter to access the resources
  */
 class ExpenseAdapter (
     var context : Activity,
@@ -55,18 +55,32 @@ class ExpenseAdapter (
         }
     }
 
+    /**
+     * Function that calls the onDeleteButtonClick function in case of a click on the delete button
+     */
     interface DeleteButtonClickListener {
         fun onDeleteButtonClick(position: Int)
     }
 
+    /**
+     * Function that counts the number of expenses in the DB
+     *
+     * @return the size of the Expense list
+     */
     override fun getItemCount(): Int {
         return mExpense.size
     }
 
+    /**
+     * Function that changes an expense in the DB
+     */
     fun setExpenses(mExpenses: List<Expense>) {
         this.mExpense = mExpenses
         notifyDataSetChanged()
     }
 
+    /**
+     * Function that gets an expense in the DB
+     */
     fun getItemAt(position: Int): Expense = mExpense[position]
 }
