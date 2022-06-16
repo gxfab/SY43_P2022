@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="135dp"
-    android:background="@color/grey20">
+    android:layout_height="100dp"
+    android:background="@color/grey20"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/subcategory_title"
         style="@style/CustomSubTitle2TextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:elevation="10dp"
         android:text="@string/editing_goals_category"
         app:layout_constraintBottom_toTopOf="@+id/editText"
@@ -23,41 +24,34 @@
         style="@style/Default2TextStyle"
         android:layout_width="256dp"
         android:layout_height="30dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/editbackground"
-        android:backgroundTint="@color/grey50"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="#2A000000"
         android:hint="@string/editing_goals_amount"
         android:inputType="number"
-        android:paddingLeft="5dp"
+        android:paddingLeft="15dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/validate_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/subcategory_description"
-        style="@style/Default3TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="10dp"
-        android:text="@string/editing_goals_editing"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <Button
         android:id="@+id/validate_button"
         style="@style/CustomSubTitle1TextStyle"
         android:layout_width="70sp"
         android:layout_height="40sp"
-        android:backgroundTint="@color/grey50"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="@color/green"
         android:text="Validate"
         android:textAllCaps="false"
+        android:textColor="#2C2C2C"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText"
         app:layout_constraintTop_toTopOf="@+id/editText" />
 

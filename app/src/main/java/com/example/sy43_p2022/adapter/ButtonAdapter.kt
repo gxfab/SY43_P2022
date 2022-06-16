@@ -4,14 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.database.PiggyBankDatabase
 import com.example.sy43_p2022.database.entities.Category
 import com.example.sy43_p2022.database.entities.SubCategory
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -34,9 +33,10 @@ class ButtonAdapter(
 
     inner class ButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         lateinit var category: Category
-        var title: TextView = view.findViewById<TextView>(R.id.subcategory_title)
-        var amount: TextView = view.findViewById<TextView>(R.id.subcategory_amount)
-        var button: Button = view.findViewById<Button>(R.id.sub_category_button)
+        var title: TextView = view.findViewById(R.id.subcategory_title)
+        var amount: TextView = view.findViewById(R.id.subcategory_amount)
+        var button: Button = view.findViewById(R.id.sub_category_button)
+        var progress: ProgressBar? = view.findViewById(R.id.vertical_align_progress)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ButtonViewHolder {
@@ -57,14 +57,14 @@ class ButtonAdapter(
 
             // update value
             MainScope().launch {
-                if (layoutType == "white") {
-                    holder.amount.text = db.piggyBankDAO().getCategorySaving(holder.category.catid).toString()
-                    db.piggyBankDAO().updateCategorySaving(holder.category.catid,  holder.amount.text.toString().toInt())
-                }
-                else {
-                    holder.amount.text = db.piggyBankDAO().getCategorySpending(holder.category.catid).toString()
-                    db.piggyBankDAO().updateCategorySpending(holder.category.catid,  holder.amount.text.toString().toInt())
-                }
+                val saving = db.piggyBankDAO().getCategorySaving(holder.category.catid)
+                val spending = db.piggyBankDAO().getCategorySpending(holder.category.catid)
+
+                holder.amount.text = holder.button.context.getString(R.string.amount, if (layoutType == "white") saving else spending)
+                if (layoutType != "white") holder.progress?.progress = if (saving > 0) (spending * 100) / saving else 0
+
+                if (layoutType == "white") db.piggyBankDAO().updateCategorySaving(holder.category.catid,  holder.amount.text.toString().replace("€", "").toInt())
+                else db.piggyBankDAO().updateCategorySpending(holder.category.catid,  holder.amount.text.toString().replace("€", "").toInt())
             }
 
             // what should happens when we click the button

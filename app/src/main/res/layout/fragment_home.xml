@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey20">
@@ -12,8 +11,10 @@
         style="@style/CustomTitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/home_page_title"
+        app:layout_constraintBottom_toTopOf="@+id/home_fragment_button_balance"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,9 +24,9 @@
         style="@style/CustomSubTitle1TextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
         android:elevation="10dp"
         android:text="@string/home_page_balance"
-        android:layout_marginTop="45dp"
         app:layout_constraintEnd_toStartOf="@+id/vertical_align_end"
         app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
         app:layout_constraintTop_toTopOf="@+id/home_fragment_button_balance" />
@@ -36,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="10dp"
-        android:text="@string/home_page_balance_amount"
+        android:text="@string/amount"
         app:layout_constraintEnd_toStartOf="@+id/vertical_align_end"
         app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
         app:layout_constraintTop_toBottomOf="@+id/home_page_balance_title" />
@@ -45,10 +46,10 @@
         android:id="@+id/home_page_spending_title"
         style="@style/CustomSubTitle1TextStyle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="30dp"
         android:elevation="10dp"
         android:text="@string/home_page_spending"
-        android:layout_marginTop="30dp"
         app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
         app:layout_constraintTop_toTopOf="@+id/home_fragment_button_spending" />
 
@@ -56,33 +57,45 @@
         android:id="@+id/home_page_spending_amount"
         style="@style/MoneySubTitleTextStyle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="25dp"
         android:elevation="10dp"
-        android:text="@string/home_page_spending_amount"
+        android:text="@string/amount"
         app:layout_constraintEnd_toStartOf="@+id/vertical_align_end"
         app:layout_constraintTop_toTopOf="@+id/home_fragment_button_spending" />
+
     <TextView
         android:id="@+id/home_page_saving_goals_title"
         style="@style/CustomSubTitle2TextStyle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="30dp"
         android:elevation="10dp"
         android:text="@string/home_page_saving_goals"
-        android:layout_marginTop="30dp"
         app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
         app:layout_constraintTop_toTopOf="@+id/home_fragment_button_saving_goals" />
+
+    <TextView
+        android:id="@+id/home_page_saving_amount"
+        style="@style/MoneySubTitleTextStyle2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="25dp"
+        android:elevation="10dp"
+        android:text="@string/amount"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_align_end"
+        app:layout_constraintTop_toTopOf="@+id/home_fragment_button_saving_goals" />
+
 
     <TextView
         android:id="@+id/home_page_saving_goals_description"
         style="@style/DefaultTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:elevation="10dp"
         android:text="@string/home_page_saving_goals_description"
         app:layout_constraintStart_toEndOf="@+id/vertical_align_start"
-        app:layout_constraintTop_toTopOf="@+id/home_page_saving_goals_title" />
+        app:layout_constraintTop_toBottomOf="@+id/home_page_saving_goals_title" />
 
     <View
         android:id="@+id/vertical_align_start"
@@ -100,13 +113,28 @@
         app:layout_constraintEnd_toEndOf="@+id/home_fragment_button_balance"
         app:layout_constraintTop_toTopOf="@+id/home_fragment_button_balance" />
 
+    <ProgressBar
+        android:id="@+id/home_page_spending_progress"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:indeterminate="false"
+        android:progress="75"
+        android:progressTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/home_fragment_button_spending"
+        app:layout_constraintEnd_toEndOf="@+id/home_page_spending_amount"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/home_page_spending_title"
+        app:layout_constraintTop_toBottomOf="@+id/home_page_spending_title" />
+
     <Button
         android:id="@+id/home_fragment_button_balance"
         android:layout_width="327sp"
         android:layout_height="165sp"
         android:layout_marginTop="74dp"
-        android:backgroundTint="@color/grey50"
         android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/grey500"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -117,7 +145,7 @@
         android:layout_height="104sp"
         android:layout_marginTop="20dp"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/grey50"
+        android:backgroundTint="@color/grey500"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_fragment_button_balance" />
@@ -126,18 +154,12 @@
         android:id="@+id/home_fragment_button_saving_goals"
         android:layout_width="327sp"
         android:layout_height="104sp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/white"
-        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_fragment_button_spending" />
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -23,15 +24,21 @@ class HomeFragment: Fragment(){
 
         val totalAmount = button.findViewById<TextView>(R.id.home_page_balance_amount)
         val spendingAmount = button.findViewById<TextView>(R.id.home_page_spending_amount)
+        val savingAmount = button.findViewById<TextView>(R.id.home_page_saving_amount)
+        val progressBar = button.findViewById<ProgressBar>(R.id.home_page_spending_progress)
 
         // fetch amount values
         MainScope().launch {
             val spending: Int = db.piggyBankDAO().getSpendingAmount()
             val saving: Int = db.piggyBankDAO().getSavingAmount()
 
-            totalAmount.text = button.context.getString(R.string.home_page_balance_amount, (saving - spending))
-            spendingAmount.text = button.context.getString(R.string.home_page_spending_amount, spending)
+            totalAmount.text = button.context.getString(R.string.amount, (saving - spending))
+            spendingAmount.text = button.context.getString(R.string.amount, spending)
+            savingAmount.text = button.context.getString(R.string.amount, saving)
+
+            progressBar.progress = (spending * 100) / saving
         }
+
 
         // Construct "spending" Home Fragment button
         val spendingBtn = button.findViewById<Button>(R.id.home_fragment_button_spending)

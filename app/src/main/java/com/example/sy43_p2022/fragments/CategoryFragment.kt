@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +20,7 @@ import com.example.sy43_p2022.database.entities.Category
 import kotlinx.coroutines.launch
 
 open class CategoryFragment(
-    private val mainCategoryName: String,
+    private val pageName: String,
     private val layoutVertical: Int,
     private val layoutVerticalColor: String,
     private val layout: Int
@@ -34,6 +35,9 @@ open class CategoryFragment(
         val view = inflater.inflate(layout, container, false)
 
         db = PiggyBankDatabase.getDatabase(view.context)
+
+        val title: TextView = view.findViewById(R.id.page_title)
+        title.text = pageName
 
         return view
     }

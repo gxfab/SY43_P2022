@@ -1,13 +1,12 @@
 <resources>
     <string name="app_name">PiggyBank</string>
+    <string name="amount">%d€</string>
 
     <!-- Home Page-->
     <string name="home_page_title">DashBoard</string>
     <string name="home_page_graph">My spending</string>
     <string name="home_page_balance">Available balance</string>
-    <string name="home_page_balance_amount">%d€</string>
     <string name="home_page_spending">Spending</string>
-    <string name="home_page_spending_amount">%d€</string>
     <string name="home_page_saving_goals">Saving goals</string>
     <string name="home_page_saving_goals_description">Organize your savings goals by categories</string>
 
@@ -16,13 +15,12 @@
     <string name="saving_goals_editing">Tap to edit</string>
 
     <!-- Editing subGoals Page-->
-    <string name="editing_goals_category">Sub category</string>
+    <string name="editing_goals_category">Sub Category</string>
     <string name="editing_goals_amount">Ex: 10</string>
     <string name="editing_goals_editing">Tap to edit</string>
     <string name="editing_goals_validate">Validate</string>
     
     <!-- Spending Page -->
     <string name="spending_page_subcategory">Subcategory</string>
-    <string name="spending_page_amount">0€</string>
 
 </resources>
