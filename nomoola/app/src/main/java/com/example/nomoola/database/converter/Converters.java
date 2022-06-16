@@ -38,20 +38,4 @@ public class Converters {
     public static String convertToStringFromCatType(Category.CategoryType type){
         return type.toString();
     }
-
-//    @TypeConverter
-//    public static InOutCome.InOutComeType convertToComeTypeFromString(String value){
-//        if(value.equals("INCOME")){
-//            return InOutCome.InOutComeType.INCOME;
-//        }else if(value.equals("OUTCOME")){
-//            return InOutCome.InOutComeType.OUTCOME;
-//        }else{
-//            return null;
-//        }
-//    }
-//
-//    @TypeConverter
-//    public static String convertToStringFromComeType(InOutCome.InOutComeType type){
-//        return type.toString();
-//    }
 }
