@@ -68,7 +68,7 @@ public interface CategoriesDao {
      * query to get all categories in a livedata
      * @return livedata with the list of all categories
      */
-    @Query("SELECT * FROM categories")
+    @Query("SELECT * FROM categories WHERE read_only=0")
     LiveData<List<Categories>> getAllCategories();
 
     /**
