@@ -2,6 +2,7 @@ package com.example.agedor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,11 +17,13 @@ import com.example.agedor.view.enveloppes.depenses.NouvelleDepenseActivity;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        MainActivity.context = getApplicationContext();
 
 
 
@@ -29,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_main);
+    }
+
+    public static Context getContext() {
+        return MainActivity.context;
     }
 
     public void consulterMesDepenses(View view){
