@@ -17,7 +17,7 @@ import java.sql.Date;
                 childColumns = "id_user")}
 )
 public class NoteDeFrais {
-
+    
     private String nomPersonne;
     private String prenomPersonne;
     private float amount;
