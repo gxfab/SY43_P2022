@@ -2,6 +2,7 @@ package com.sucelloztm.sucelloz.ui.zerobudget;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +36,7 @@ public class ZeroBudgetFragment extends Fragment {
     private ZeroBudgetFragmentBinding binding;
     private ArrayList<SubCategories> zeroBudgetSubCategoriesList;
     private ZeroBudgetViewModel zeroBudgetViewModel;
+    private TextView zeroBudgetTextView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,10 +45,11 @@ public class ZeroBudgetFragment extends Fragment {
 
         binding = ZeroBudgetFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        zeroBudgetTextView = binding.zeroBudgetTextView;
 
         RecyclerView recyclerView = binding.zeroBudgetRecyclerView;
 
-         zeroBudgetSubCategoriesList = new ArrayList<>();
+        zeroBudgetSubCategoriesList = new ArrayList<>();
 
         String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
                 "Sinking Funds", "Extra debt", "Extra Savings"};
@@ -72,6 +76,22 @@ public class ZeroBudgetFragment extends Fragment {
                 //Log.d("CategoriesFragment",currentCategoryName);
             }
         });
+
+        int zeroBudgetResult = zeroBudgetViewModel.getAllZeroBudgetResult();
+        String strZeroBudgetResult = String.valueOf(zeroBudgetResult);
+
+        zeroBudgetViewModel.setTextView(zeroBudgetTextView,strZeroBudgetResult);
+
+        if(zeroBudgetResult > 0){
+            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-16711936);
+        }else if (zeroBudgetResult == 0){
+            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-16776961);
+        }else{
+            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-65536);
+        }
+
+
+
         return root;
     }
 
