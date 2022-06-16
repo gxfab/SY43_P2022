@@ -49,17 +49,15 @@ public class EditIncomeCatFragment extends EditDataBaseFragment{
     @Override
     public void setButtons() {
         save.setOnClickListener(v -> {
-            String n = name.getText().toString(), mess;
-            if(!n.equals("")) {
-                if(id ==0) database.insertIncomeCat(n);
-                else database.updateIncomeCat(id, n);
-                DataBaseFragment.redirect(new HomeFragment());
-                redirect(new ViewIncomeCatFragment(id));
-                mess = "Income category '"+n;
-                if(id == 0) mess+=" added";
-                else mess+=" updated";
-                message(mess);
-            }else message("No category name");
+
+            String newName = name.getText().toString();
+            if(newName.equals("")){
+                message("Name can't be empty");
+            }
+
+            if(id >= 0) database.insertIncomeCat(newName);
+            else database.updateIncomeCat(id, newName);
+
         });
         cancel.setOnClickListener(v -> {
             //Cancel

@@ -65,7 +65,25 @@ public class EditDebtFragment extends EditDataBaseFragment{
     @Override
     public void setButtons() {
         save.setOnClickListener(v -> {
-            //Save
+
+            float newAmount = Float.parseFloat(totalAmount.getText().toString());
+            if(newAmount <= 0){
+                message("Amount must have a positive value");
+                return;
+            }
+            int newMonthLeft = Integer.parseInt(monthLeft.getText().toString());
+            if(newAmount <= 0){
+                message("Months left must have a positive value");
+                return;
+            }
+            String newName = name.getText().toString();
+            if(newName.equals("")){
+                message("Name can't be empty");
+            }
+
+            if(id == 0) database.insertDebtCat(newName, newMonthLeft, newAmount);
+            else database.updateDebtCat(id, newName, newMonthLeft, newAmount);
+
         });
         cancel.setOnClickListener(v -> {
             //Cancel

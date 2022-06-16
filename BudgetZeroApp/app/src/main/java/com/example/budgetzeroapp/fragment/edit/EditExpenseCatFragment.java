@@ -23,9 +23,9 @@ public class EditExpenseCatFragment extends EditDataBaseFragment /*implements Ad
     private CheckBox sub;
     private Spinner parentCat;
     private Button save, cancel;
-    private String defaultName, defaultParentCat;
+    private String defaultName;
     private float defaultBudget;
-    private int defaultSub;
+    private int defaultSub, defaultParentCat;
 
     public EditExpenseCatFragment(){ super(); }
     public EditExpenseCatFragment(int id){ super(id); }
@@ -54,7 +54,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment /*implements Ad
         defaultName = "";
         defaultBudget = 0;
         defaultSub = 0;
-        defaultParentCat = "";        //existe si sub=false?
+        defaultParentCat = 0;        //existe si sub=false?
     }
 
     @Override
@@ -67,7 +67,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment /*implements Ad
             defaultName = cat.getString(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             defaultBudget = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));
             defaultSub = cat.getInt(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_IS_SUB));
-            defaultParentCat = cat.getString(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_ID_PARENT));
+            defaultParentCat = cat.getInt(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_ID_PARENT));
         }
     }
 
@@ -76,13 +76,31 @@ public class EditExpenseCatFragment extends EditDataBaseFragment /*implements Ad
         name.setText(defaultName);
         budget.setText(String.valueOf(defaultBudget));
         sub.setChecked(defaultSub!=0);
+        // TODO: Faire fonctionner ce truc
         parentCat.setSelection(0);
     }
 
     @Override
     public void setButtons() {
         save.setOnClickListener(v -> {
-            //Save
+
+            float newBudget = Float.parseFloat(budget.getText().toString());
+            if(newBudget <= 0){
+                message("Budget must have a positive value");
+                return;
+            }
+            String newName = name.getText().toString();
+            if(newName.equals("")){
+                message("Name can't be empty");
+            }
+            boolean isSub = sub.isChecked();
+
+            //Temp
+            int newParentCat = 0;
+
+            if(id == 0) database.insertExpenseCat(newName,newBudget,isSub,newParentCat);
+            else database.updateExpenseCat(id, newName,newBudget,isSub,newParentCat);
+
         });
         cancel.setOnClickListener(v -> {
             //Cancel

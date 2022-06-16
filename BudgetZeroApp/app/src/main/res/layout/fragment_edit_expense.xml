@@ -34,13 +34,16 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewExpName"
             android:layout_alignTop="@+id/textViewExpName"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
             android:text="@string/exp_date" />
 
         <DatePicker
             android:id="@+id/datePicker"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
+            android:layout_alignStart="@id/editTextExpName"
+            android:layout_alignTop="@id/textViewExpDate"
+            android:layout_marginTop="-40dp"
             android:calendarViewShown="false"
             android:datePickerMode="spinner" />
 
@@ -50,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewExpDate"
             android:layout_alignTop="@+id/textViewExpDate"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
             android:text="@string/exp_amount" />
 
         <EditText
@@ -64,12 +67,28 @@
             android:inputType="numberDecimal|number" />
 
         <TextView
-            android:id="@+id/textViewExpStable"
+            android:id="@+id/textViewExpType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewExpAmount"
             android:layout_alignTop="@+id/textViewExpAmount"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/exp_type_cat" />
+
+        <Spinner
+            android:id="@+id/spinner_cat"
+            android:layout_width="209dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/editTextExpAmount"
+            android:layout_alignBottom="@+id/textViewExpType" />
+
+        <TextView
+            android:id="@+id/textViewExpStable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewExpType"
+            android:layout_alignTop="@+id/textViewExpType"
+            android:layout_marginTop="60dp"
             android:text="@string/exp_stable" />
 
         <CheckBox
