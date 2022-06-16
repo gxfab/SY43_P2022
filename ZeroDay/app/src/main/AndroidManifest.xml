@@ -13,7 +13,7 @@
         <!--Activité de départ -->
         <activity
             android:name=".views.test.IncomesTest"
-            android:exported="true">
+            android:exported="true"/>
           
         <activity
             android:name=".views.StartActivity"
