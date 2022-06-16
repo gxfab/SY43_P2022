@@ -22,7 +22,7 @@
     <string name="money_placeholder">0€</string>
     <string name="default_salary">1539</string>
     <string name="default_month">1</string>
-    <string name="payday">Jour de fin de mois</string>
+    <string name="payday">Jour de début de mois</string>
     <string name="salary_amount">Salaire du mois</string>
     <string name="new_category">Nouvelle catégorie</string>
     <string name="done">Terminé</string>

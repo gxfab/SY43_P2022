@@ -59,6 +59,7 @@ class PrevisionActivity : AppCompatActivity() {
     private lateinit var paydayTextField: com.google.android.material.textfield.TextInputLayout
     private lateinit var doneButton: Button
     private lateinit var stepsViewPager: LockableViewPager
+    private lateinit var paydayEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,9 +83,12 @@ class PrevisionActivity : AppCompatActivity() {
         paydayTextField = findViewById(R.id.textfield_payday)
         doneButton = findViewById(R.id.button_done)
         stepsViewPager = findViewById(R.id.viewpager_steps)
+        paydayEditText = findViewById(R.id.edittext_payday)
 
         val endDescriptionTextView: TextView = findViewById(R.id.textview_end_description)
         val headerLayout: LinearLayout = findViewById(R.id.layout_prevision_header)
+
+        paydayEditText.setText(now.dayOfMonth.toString())
 
         // Initialize view pager
         stepsViewPager.adapter = PrevisionStepsAdapter()
@@ -164,7 +168,6 @@ class PrevisionActivity : AppCompatActivity() {
         }
 
         // Restrict day of month input to proper values
-        val paydayEditText: EditText = findViewById(R.id.edittext_payday)
         paydayEditText.filters = arrayOf(NumberMaxInputFilter(now.lengthOfMonth()))
         paydayEditText.addTextChangedListener {
             val paydayValue = it.toString().toIntOrNull()
@@ -175,6 +178,14 @@ class PrevisionActivity : AppCompatActivity() {
                 else -> getString(R.string.error_invalid_day_of_month)
             }
             checkFormErrors()
+
+            // If the beginning of the month has not happened yet,
+            // make the budget for the previous month
+            now = LocalDate.now().minusMonths(
+                if (paydayValue != null && LocalDate.now().dayOfMonth < paydayValue) 1 else 0
+            )
+            loadMonth()
+            loadAll()
         }
 
         // Open the bottom sheet to add a new category when clicking on the "add category" button
@@ -243,12 +254,7 @@ class PrevisionActivity : AppCompatActivity() {
             stepsViewPager.currentItem += 1
         }
 
-        // Display the current month in the action bar
-        setTitle(R.string.previsions_title)
-        val monthFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
-        val formattedMonth: String = now.format(monthFormat)
-        supportActionBar?.subtitle = getString(R.string.prevision_subtitle_month, formattedMonth)
-
+        loadMonth()
     }
 
     /**
@@ -259,6 +265,17 @@ class PrevisionActivity : AppCompatActivity() {
             loadCategories()
             loadBudgetBar()
         }
+    }
+
+    /**
+     * Load the month number depending on the payday and show it to the user in the menu bar
+     */
+    private fun loadMonth() {
+        // Display the current month in the action bar
+        setTitle(R.string.previsions_title)
+        val monthFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+        val formattedMonth: String = now.format(monthFormat)
+        supportActionBar?.subtitle = getString(R.string.prevision_subtitle_month, formattedMonth)
     }
 
     /**
