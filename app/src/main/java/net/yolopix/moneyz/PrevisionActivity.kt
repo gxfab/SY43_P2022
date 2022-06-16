@@ -45,6 +45,9 @@ class PrevisionActivity : AppCompatActivity() {
     /** An object representing the time when the activity has been opened */
     private lateinit var now: LocalDate
 
+    /** The max amount that can still be added to the budget depending of the total income */
+    private var remainingAmount: Float = Float.MAX_VALUE
+
     // Widgets
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressTextView: TextView
@@ -182,7 +185,7 @@ class PrevisionActivity : AppCompatActivity() {
                 now.monthValue,
                 now.year,
                 accountUid!!,
-                salaryEditText.text.toString().toFloatOrNull(),
+                remainingAmount,
                 getCurrentType()!!
             ).apply {
                 show(supportFragmentManager, tag)
@@ -306,7 +309,7 @@ class PrevisionActivity : AppCompatActivity() {
         if (totalAmount == null)
             totalAmount = 0f
 
-        val remainingAmount = totalAmount - categorizedAmount
+        remainingAmount = totalAmount - categorizedAmount
 
         progressTextView.text = getString(
             R.string.prevision_progress_format,

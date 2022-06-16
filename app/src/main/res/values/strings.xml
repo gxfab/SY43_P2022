@@ -41,7 +41,7 @@
     <string name="prevision_subtitle_month">"Pour le mois de %1$s"</string>
     <string name="money_format">%1$s€</string>
     <string name="error_salary_greater_than_previsions">Le salaire doit être supérieur aux budget prévisionnel</string>
-    <string name="error_prevision_greater_than_salary">La prévision doit être inférieure au salaire</string>
+    <string name="error_prevision_greater_than_max">Le total des prévisions doit être inférieur au salaire</string>
     <string name="error_empty_text">Vous devez entrer une valeur</string>
     <string name="error_empty_name">Le nom ne peut pas être vide</string>
     <string name="expenses_subtitle_month">Mois de %1$s</string>

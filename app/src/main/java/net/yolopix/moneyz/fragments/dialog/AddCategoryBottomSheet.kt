@@ -26,7 +26,7 @@ import kotlin.properties.Delegates
  * @param monthNumber The month in which the category will be added
  * @param yearNumber The year of the month in which the category will be added
  * @param accountUid: The identifier of the account in which the category will be added
- * @param incomeAmount The total income amount
+ * @param maxAmount The max amount the newly created category can be (to meet budget constraints)
  * @param type The zero budget type of category to add
  * @param categoryToEdit Edit this category if not null instead of adding another
  */
@@ -35,7 +35,7 @@ class AddCategoryBottomSheet(
     private val monthNumber: Int,
     private val yearNumber: Int,
     private val accountUid: Int,
-    private var incomeAmount: Float? = Float.MAX_VALUE, // Do not limit category max amount if the income value is not valid
+    private var maxAmount: Float? = Float.MAX_VALUE, // Do not limit category max amount if the income value is not valid
     private val type: ExpenseType,
     private val categoryToEdit: Category? = null
 ) : BottomSheetDialogFragment() {
@@ -82,7 +82,7 @@ class AddCategoryBottomSheet(
                 it.toString().toFloatOrNull() == null -> getString(R.string.error_invalid_amount)
                 it.toString().toFloat() == 0f -> getString(R.string.error_amount_zero)
                 it.toString()
-                    .toFloat() > incomeAmount!! -> getString(R.string.error_prevision_greater_than_salary)
+                    .toFloat() > maxAmount!! -> getString(R.string.error_prevision_greater_than_max)
                 else -> null
             }
             checkFormErrors()
