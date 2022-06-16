@@ -16,16 +16,16 @@ public abstract class ZeroBaseSeeder<S extends ZeroBaseServices> {
     public void run(){
         this.seed();
     }
+//
+//    public S getService() {
+//        return service;
+//    }
+//
+//    public void setService(S service) {
+//        this.service = service;
+//    }
 
-    public S getService() {
-        return service;
-    }
-
-    public void setService(S service) {
-        this.service = service;
-    }
-
-    public abstract void seed();
+    protected abstract void seed();
     
 
 }

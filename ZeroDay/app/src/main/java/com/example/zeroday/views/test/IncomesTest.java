@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import java.util.List;
 
-import com.aspose.cells.Workbook;
+//import com.aspose.cells.Workbook;
 import com.example.zeroday.R;
 import com.example.zeroday.dao.DbHelper;
 import com.example.zeroday.models.IncomeCategory;
 import com.example.zeroday.repositories.IncomeCategoryRepository;
+import com.example.zeroday.seeders.ExpenseCategorySeeder;
+import com.example.zeroday.seeders.IncomeCategorySeeder;
 import com.example.zeroday.services.IncomeCategoryService;
 
 public class IncomesTest extends AppCompatActivity {
@@ -24,22 +26,20 @@ public class IncomesTest extends AppCompatActivity {
         setContentView(R.layout.activity_incomes_test);
 
         IncomeCategoryService incomeCategoryService = new IncomeCategoryService(this);
-        incomeCategoryService.save(new IncomeCategory("Salary", "Salary"));
-        incomeCategoryService.save(new IncomeCategory("Bonus", "Bonus"));
-        incomeCategoryService.save(new IncomeCategory("Other", "Other"));
-
+        new IncomeCategorySeeder(this).run();
+        new ExpenseCategorySeeder(this).run();
         List<IncomeCategory> incomeCategoryList = incomeCategoryService.getAll();
-        Workbook workbook = new Workbook();
+//        Workbook workbook = new Workbook();
 
 // Add value in the cell
-        workbook.getWorksheets().get(0).getCells().get("A1").putValue("Hello World!");
+//        workbook.getWorksheets().get(0).getCells().get("A1").putValue("Hello World!");
 
 // Save as Excel XLSX file
-        try {
-            workbook.save("Excel.xlsx");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            workbook.save("Excel.xlsx");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 //        Log.i("Test", incomeCategoryList.toString());
 
     }
