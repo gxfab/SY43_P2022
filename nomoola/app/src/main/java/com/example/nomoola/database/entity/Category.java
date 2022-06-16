@@ -120,4 +120,5 @@ public class Category {
     public void setM_CAT_TYPE(CategoryType m_CAT_TYPE) {
         this.m_CAT_TYPE = m_CAT_TYPE;
     }
+
 }

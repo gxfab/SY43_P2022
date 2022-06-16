@@ -35,6 +35,9 @@ public interface ProfileDAO {
     @Query("UPDATE T_PROFILE SET USERNAME=:userName, CURRENCY=:currency, LANGUAGE=:language WHERE USER_ID=:userID ")
     void updateProfile(int userID, String userName, Profile.userLanguage language, Profile.userCurrency currency);
 
+    @Query("UPDATE T_PROFILE SET USERNAME=:userName WHERE USER_ID=:userID")
+    void setUserName(int userID, String userName);
+
     @Query("UPDATE T_PROFILE SET LANGUAGE=:language WHERE USER_ID=:userID")
     void setLanguage(int userID, Profile.userLanguage language);
 

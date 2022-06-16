@@ -36,6 +36,10 @@ public class ProfileViewModel extends AndroidViewModel {
         mRepository.update(userID, userName, language, currency);
     }
 
+    public void setUsername(int userID, String userName){
+        mRepository.setUsername(userID, userName);
+    }
+
     public void setLanguage(int userID, Profile.userLanguage language){
         mRepository.setLanguage(userID, language);
     }

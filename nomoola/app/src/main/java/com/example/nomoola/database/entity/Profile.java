@@ -18,9 +18,9 @@ public class Profile {
         @Override
         public String toString() {
             if (this == FRENCH) {
-                return "Français";
+                return "Fr";
             } else if (this == ENGLISH) {
-                return "English";
+                return "";
             } else {
                 return super.toString();
             }
@@ -53,6 +53,7 @@ public class Profile {
     @NonNull
     @ColumnInfo(name = "LANGUAGE")
     private userLanguage m_LANGUAGE;
+
 
     @NonNull
     @ColumnInfo(name = "CURRENCY")

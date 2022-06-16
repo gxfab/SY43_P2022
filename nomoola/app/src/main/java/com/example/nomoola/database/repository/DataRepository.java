@@ -3,7 +3,6 @@ package com.example.nomoola.database.repository;
 import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
-import androidx.room.Insert;
 
 import com.example.nomoola.database.dao.CategoryDAO;
 import com.example.nomoola.database.dao.InOutComeDAO;
@@ -185,6 +184,12 @@ public class DataRepository {
     public void setCurrency(int userID, Profile.userCurrency currency){
         NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
             mProfileDAO.setCurrency(userID, currency);
+        });
+    }
+
+    public void setUsername(int userID, String userName){
+        NomoolaRoomDataBase.databaseWriteExecutor.execute(()->{
+            mProfileDAO.setUserName(userID, userName);
         });
     }
 

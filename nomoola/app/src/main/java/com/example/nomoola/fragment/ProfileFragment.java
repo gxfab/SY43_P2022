@@ -1,5 +1,6 @@
 package com.example.nomoola.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nomoola.R;
+import com.example.nomoola.activity.MainActivity;
 import com.example.nomoola.viewHolder.ProfileViewHolder;
 import com.example.nomoola.viewModel.ProfileViewModel;
 
@@ -34,4 +36,5 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
+
 }
