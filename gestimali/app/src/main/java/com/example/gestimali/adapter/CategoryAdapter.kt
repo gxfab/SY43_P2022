@@ -8,13 +8,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestimali.NewIncomeFragment
 import com.example.gestimali.R
+import com.example.gestimali.envelope.EnvelopeViewModel
+import com.example.gestimali.fixexpense.FixedExpenseViewModel
+import com.example.gestimali.income.IncomeViewModel
+import com.example.gestimali.wish.WishViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlin.math.min
 
 
 internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivity ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() ,View.OnClickListener{
+
+    private lateinit var  mIncomeViewModel : IncomeViewModel
+    private lateinit var  mFixedExpenseViewModel : FixedExpenseViewModel
+    private lateinit var  mWishViewModel : WishViewModel
+    private lateinit var  mEnvelopeViewModel : EnvelopeViewModel
 
     private var categoryList = listOf("Income", "Expense", "Wish/Saving", "Envelope")
 
@@ -30,6 +42,13 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
             .from(parent.context)
             .inflate(R.layout.item_plan_category,parent,false)
 
+
+        mIncomeViewModel = ViewModelProvider(activity).get(IncomeViewModel::class.java)
+        mFixedExpenseViewModel = ViewModelProvider(activity).get(FixedExpenseViewModel::class.java)
+        mWishViewModel = ViewModelProvider(activity).get(WishViewModel::class.java)
+        mEnvelopeViewModel = ViewModelProvider(activity).get(EnvelopeViewModel::class.java)
+
+
         return CategoryAdapter.ViewHolder(view)
     }
 
@@ -39,8 +58,21 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
         if(position==0){
             holder.floatingButton.setOnClickListener(this)
         }
+        val moneyFlowAdapter = MoneyFlowAdapter(position)
 
-        holder.moneyFlowRecyclerView.adapter = MoneyFlowAdapter(position)
+        mIncomeViewModel.readAllData.observe(activity,Observer{income ->
+            moneyFlowAdapter.setData(income)
+        })
+        mFixedExpenseViewModel.readAllData.observe(activity,Observer{expense ->
+            moneyFlowAdapter.setData(expense)
+        })
+        mWishViewModel.readAllData.observe(activity,Observer{wish ->
+            moneyFlowAdapter.setData(wish)
+        })
+        mEnvelopeViewModel.readAllData.observe(activity,Observer{envelope ->
+            moneyFlowAdapter.setData(envelope)
+        })
+        holder.moneyFlowRecyclerView.adapter = moneyFlowAdapter
     }
 
     override fun getItemCount(): Int = 4
