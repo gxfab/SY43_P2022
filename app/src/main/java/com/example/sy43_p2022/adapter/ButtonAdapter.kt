@@ -17,15 +17,16 @@ import kotlinx.coroutines.launch
 class ButtonAdapter(
     private val layoutId: Int,
     private val categories: List<Category>,
-    private val onClickListener: OnClickListener)
-    : RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder>() {
+    private val onClickListener: OnClickListener,
+) : RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder>() {
 
     private lateinit var db: PiggyBankDatabase
 
     class OnClickListener(private val recyclerView: RecyclerView, private val layoutType: String) {
         fun onClick(subCategories: List<SubCategory>) {
             val id: Int = if (layoutType == "white") R.layout.item_sub_white else R.layout.item_sub_gray
-            recyclerView.adapter = TextEditAdapter(id, subCategories)
+            val save_or_spend: String = if (layoutType == "white") "saving" else "spending"
+            recyclerView.adapter = TextEditAdapter(id, subCategories, save_or_spend)
         }
     }
 

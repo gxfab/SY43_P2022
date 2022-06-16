@@ -8,7 +8,7 @@ import androidx.room.Room
 import com.example.sy43_p2022.database.dao.*
 import com.example.sy43_p2022.database.entities.*
 
-@Database(entities = [(Category::class), (SubCategory::class)], version = 2)
+@Database(entities = [(Category::class), (SubCategory::class)], version = 1)
 abstract class PiggyBankDatabase : RoomDatabase(){
     // DAO initialization
     abstract fun piggyBankDAO(): PiggyBankDAO

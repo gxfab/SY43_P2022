@@ -18,7 +18,8 @@ data class SubCategory(
     @PrimaryKey(autoGenerate = true)
     val subid: Int = 0,
     val name: String,
-    val amount: Int = 0,
+    val spending: Int = 0,
+    val saving: Int = 0,
     @ColumnInfo(index = true)
     val categoryId: Int
 )
