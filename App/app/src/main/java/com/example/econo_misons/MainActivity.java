@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText username;
     Button add, view, depense;
+    private String st = new String();
     private DBViewModel dbViewModel;
 
 
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         username = findViewById(R.id.username);
         add = findViewById(R.id.addbutton);
         view = findViewById(R.id.viewbutton);
@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         configureViewModel();
         CurrentData.init();
-
+        this.dbViewModel.getAllPrevBudgets().observe(this,this::seeList);
+        Log.e("Main",st);
 
 
         depense.setOnClickListener(v -> changeActivity());
@@ -67,6 +68,19 @@ public class MainActivity extends AppCompatActivity {
 
         view.setOnClickListener(v -> getAllUsers());
 
+        this.makeBottomBar();
+    }
+
+    private void seeList(List<PrevisionalBudget> list){
+        String st = new String();
+
+        for (PrevisionalBudget prev: list) {
+            st += prev.toString();
+        }
+        this.st = st;
+    }
+
+    private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
@@ -93,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     private void configureViewModel(){

@@ -1,8 +1,17 @@
 package com.example.econo_misons;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,56 +19,58 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.econo_misons.database.models.Budget;
+import com.example.econo_misons.database.CurrentData;
+import com.example.econo_misons.database.DBViewModel;
+import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.Category;
+import com.example.econo_misons.database.models.Envelope;
+import com.example.econo_misons.views.BudgetPrevAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BudgetPrev extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-    Button valider,ajoutCat;
+public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.Listener {
+
+    Button valider, ajoutCat;
+    TextView name;
+    RecyclerView recyclerView;
+
+    private DBViewModel dbViewModel;
+    private BudgetPrevAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_prev);
 
+        this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
+
+
         valider = findViewById(R.id.valider);
         ajoutCat = findViewById(R.id.ajout_cat);
+        name = findViewById(R.id.budget_name);
+        recyclerView = findViewById(R.id.envelope_list);
 
+        name.setText(CurrentData.getBudget().budgetName);
         valider.setOnClickListener(v -> finish());
+        ajoutCat.setOnClickListener(this::onButtonShowPopupWindowClick);
 
-        ajoutCat.setOnClickListener(v -> onButtonShowPopupWindowClick(v));
+        this.configureRecyclerView();
+        this.getCurrentPrevBudgets();
 
-        //  Bottom Bar controller
-        // Initialize and assign variable
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
-        // Set selected
-        bottomNavigationView.setSelectedItemId(R.id.BudgetPrev);
-        // Perform item selected listener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch(item.getItemId())
-                {
-                    case R.id.MainMenu:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.BudgetPrev:
-                        return true;
-                    case R.id.ChangeBudget:
-                        startActivity(new Intent(getApplicationContext(),ChangerBudget.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
+        this.makeBottomBar();
     }
 
     //Pop up for add category
@@ -83,16 +94,124 @@ public class BudgetPrev extends AppCompatActivity {
         Button valider = popupView.findViewById(R.id.valider);
         Button annuler = popupView.findViewById(R.id.annuler);
         Button ajoutCat = popupView.findViewById(R.id.ajout_cat);
+        EditText montant = popupView.findViewById(R.id.montant);
 
-        valider.setOnClickListener(v -> popupWindow.dismiss());
+        //working on spinner
+        Spinner spinner = popupView.findViewById(R.id.categorie);
+
+        ArrayList<String> categories = new ArrayList<>();
+        for (Category cat : adapter.categoryList) {
+            categories.add(cat.categoryName);
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        final Category[] cat = {adapter.categoryList.get(0)};
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                cat[0] = adapter.categoryList.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        valider.setOnClickListener(v -> addCategory(popupWindow, montant.getText().toString(), cat[0]));
 
         annuler.setOnClickListener(v -> popupWindow.dismiss());
 
         ajoutCat.setOnClickListener(v -> changeActivity());
     }
 
-    private void changeActivity(){
+    private void changeActivity() {
         Intent intent = new Intent(this, AjoutCategorie.class);
         startActivity(intent);
+    }
+
+    private void makeBottomBar() {
+        //  Bottom Bar controller
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        // Set selected
+        bottomNavigationView.setSelectedItemId(R.id.BudgetPrev);
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.MainMenu:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.ChangeBudget:
+                        startActivity(new Intent(getApplicationContext(), ChangerBudget.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.BudgetPrev:
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    // making buttons work
+
+    @Override
+    public void onClickModifyButton(int position) {
+    }
+
+    // Configure RecyclerView, Adapter, LayoutManager & glue it together
+    private void configureRecyclerView() {
+        // Create adapter passing the list of users
+        this.adapter = new BudgetPrevAdapter(this);
+        // Attach the adapter to the recyclerview to populate items
+        this.recyclerView.setAdapter(this.adapter);
+        // Set layout manager to position the items
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void getCurrentPrevBudgets() {
+        this.dbViewModel.getPrevBudgetEnvelopes(CurrentData.getPrevBudget()).observe(this, this::updateList);
+        this.dbViewModel.getAllCategories().observe(this, this::updateCategoryList);
+    }
+
+    private void updateList(List<Envelope> envelopes) {
+        this.adapter.updateData(envelopes);
+    }
+
+    private void updateCategoryList(List<Category> categories) {
+        this.adapter.updateCategories(categories);
+    }
+
+    private void addCategory(PopupWindow popupWindow, @NonNull String value, Category cat) {
+        boolean exists = false;
+        for (Envelope envelope : adapter.envelopes) {
+            if (cat.id == envelope.categoryID) {
+                exists = true;
+                break;
+            }
+        }
+
+        Log.e("BP", Boolean.toString(value.isEmpty() && exists));
+        if (!value.isEmpty() && !exists) { //TODO
+            Log.e("SendEnv", CurrentData.getPrevBudget().toString() + " " + cat.id + " " + value);
+            dbViewModel.addEnvelope(new Envelope(CurrentData.getPrevBudget(), cat.id, Float.parseFloat(value)));
+            popupWindow.dismiss();
+        } else if (value.isEmpty()) {
+            Toast.makeText(this, "You must enter a value !", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "This category is already in the previsionnal budget !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        this.getCurrentPrevBudgets();
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

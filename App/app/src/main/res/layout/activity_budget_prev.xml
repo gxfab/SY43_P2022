@@ -47,7 +47,6 @@
         />
 
     <ScrollView
-        android:id="@+id/budget_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
@@ -58,9 +57,10 @@
         app:layout_constraintBottom_toTopOf="@+id/ajout_cat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/budget_name">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/envelope_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/budget_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

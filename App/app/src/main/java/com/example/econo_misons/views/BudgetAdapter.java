@@ -2,13 +2,11 @@ package com.example.econo_misons.views;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.econo_misons.R;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.databinding.ItemBudgetBinding;
 

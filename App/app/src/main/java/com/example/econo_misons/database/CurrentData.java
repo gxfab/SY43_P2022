@@ -43,5 +43,14 @@ public class CurrentData {
         }
     }
 
+    public static void init(PrevisionalBudget prevBudget){
+        if ((CurrentData.user == null) && (CurrentData.budget == null) && (CurrentData.prevBudget == null)){
+            CurrentData.user = new User("Suiram");
+            CurrentData.user.id = 1;
+            CurrentData.budget = new Budget("Budget perso");
+            CurrentData.budget.id = 1;
+            CurrentData.prevBudget = new PrevisionalBudget(1,"2022-06");
+        }
+    }
 
 }

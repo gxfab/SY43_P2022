@@ -5,11 +5,16 @@
       <map>
         <entry key="..\:/Users/Suiram24/SY43_P2022/App/app/src/main/res/layout/activity_ajout_categorie.xml" value="0.12182971014492754" />
         <entry key="..\:/Users/Suiram24/SY43_P2022/App/app/src/main/res/layout/activity_budget_prev.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/border.xml" value="0.185" />
         <entry key="app/src/main/res/drawable/selector.xml" value="0.185" />
+        <entry key="app/src/main/res/layout/activity_ajout_categorie.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_ajout_depense.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/activity_budget_prev.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/activity_categorie.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_changer_budget.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/item_budget.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_envelope.xml" value="0.33" />
         <entry key="app/src/main/res/layout/popup_ajout_cat_prev.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/popup_make_budget.xml" value="0.2" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.35" />

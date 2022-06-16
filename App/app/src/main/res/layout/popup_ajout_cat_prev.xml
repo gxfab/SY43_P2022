@@ -47,7 +47,7 @@
         android:layout_marginTop="10dp"/>
 
     <EditText
-        android:id="@+id/text"
+        android:id="@+id/montant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -67,7 +67,7 @@
         android:textColor="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/montant"
         android:layout_marginTop="10dp"/>
     <Button
         android:id="@+id/annuler"

@@ -2,42 +2,60 @@ package com.example.econo_misons;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
+import com.example.econo_misons.database.DBViewModel;
+import com.example.econo_misons.database.ViewModelFactory;
+import com.example.econo_misons.database.models.Category;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AjoutCategorie extends AppCompatActivity {
 
     Button valider, annuler;
+    EditText color, name;
+
+    private DBViewModel dbViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_categorie);
 
+        this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
+
         valider = findViewById(R.id.valider);
         annuler = findViewById(R.id.annuler);
 
-        valider.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO add categorie to database
-                finish();
-            }
-        });
+        color = findViewById(R.id.color);
+        name = findViewById(R.id.cat_nom);
+
+        valider.setOnClickListener(v -> addCategory());
 
         annuler.setOnClickListener(v -> finish());
 
+        this.makeBottomBar();
+    }
+
+    private void addCategory(){
+        if (!(name.getText().toString().isEmpty() && color.getText().toString().isEmpty())) {
+            dbViewModel.addCategory(new Category(name.getText().toString(),color.getText().toString()));
+
+            finish();
+        }
+    }
+
+    private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
         // Set selected
-        bottomNavigationView.setSelectedItemId(R.id.BudgetPrev);
+        bottomNavigationView.setSelected(false);
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -62,5 +80,4 @@ public class AjoutCategorie extends AppCompatActivity {
             }
         });
     }
-
 }

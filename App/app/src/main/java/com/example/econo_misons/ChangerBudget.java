@@ -36,8 +36,6 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
     private DBViewModel dbViewModel;
 
     //for data
-    //private List<Budget> budgets = new ArrayList<>();
-    private BudgetViewHolder budgetViewHolder;
     private BudgetAdapter adapter;
 
     @Override
@@ -88,8 +86,12 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
 
     private void addBudgetToBase(EditText nameBudget, PopupWindow popupWindow){
         String name = nameBudget.getText().toString();
-        dbViewModel.addBudget(new Budget(name), CurrentData.getUser());
-        popupWindow.dismiss();
+        if (!name.isEmpty()) {
+            dbViewModel.addBudget(new Budget(name), CurrentData.getUser());
+            popupWindow.dismiss();
+        } else {
+            Toast.makeText(this,"Le budget doit avoir un nom !",Toast.LENGTH_SHORT);
+        }
     }
 
     private void makeBottomBar(){
@@ -139,11 +141,6 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         this.adapter.updateData(budgets);
     }
 
-    private void updateUI(List<Budget> budgets){
-        budgets.addAll(budgets);
-        adapter.notifyDataSetChanged();
-    }
-
     // making buttons work
     private void configureOnClickRecyclerView(){
         ItemClickSupport.addTo(recyclerView, R.layout.item_budget)
@@ -162,7 +159,7 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
     }
 
     private void showCurrentBudget(Budget budget){
-        Toast toast = Toast.makeText(this, budget.toString(), Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, budget.toString(), Toast.LENGTH_SHORT);
         toast.show();
     }
 

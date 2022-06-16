@@ -1,11 +1,9 @@
 package com.example.econo_misons.views;
 
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.econo_misons.database.CurrentData;
 import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.databinding.ItemBudgetBinding;
 
@@ -27,21 +25,6 @@ public class BudgetViewHolder extends RecyclerView.ViewHolder implements View.On
         this.callbackWeakRef = new WeakReference<BudgetAdapter.Listener>(callback);
     }
 
-    private void setBudget(Budget budget){
-        CurrentData.setBudget(budget);
-        showCurrentBudget(CurrentData.getBudget());
-    }
-
-    private void remove_budget(Budget budget){
-        if (CurrentData.getBudget() != budget){
-            //TODO remove from database
-        }
-    }
-
-    private void showCurrentBudget(Budget budget){
-        Toast toast = Toast.makeText(itemView.getContext(), budget.toString(), Toast.LENGTH_LONG);
-        toast.show();
-    }
 
     @Override
     public void onClick(View view) {

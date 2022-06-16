@@ -44,8 +44,7 @@
         app:menu="@menu/bottom_menu"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/budget_list"
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
@@ -57,7 +56,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
-    </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/budget_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/button"

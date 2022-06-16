@@ -8,26 +8,40 @@
     android:background="@drawable/border">
 
     <TextView
-        android:id="@+id/budget_name"
+        android:id="@+id/envelope_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Budget"
+        android:text="Envelope"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/remove_budget"
+    <TextView
+        android:id="@+id/value_envelope"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:text="Remove"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Value"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/modify_envelope"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/modify_envelope"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="Modify"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
