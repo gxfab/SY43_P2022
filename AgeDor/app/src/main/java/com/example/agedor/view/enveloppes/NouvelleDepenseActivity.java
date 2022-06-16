@@ -1,4 +1,4 @@
-package com.example.agedor.view;
+package com.example.agedor.view.enveloppes;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +13,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.agedor.MainActivity;
 import com.example.agedor.R;
+import com.example.agedor.data.DBHandler;
+import com.example.agedor.data.StorageCategories;
+import com.example.agedor.data.StorageDepenses;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.ArrayList;
 
 public class NouvelleDepenseActivity extends AppCompatActivity {
 
@@ -51,10 +52,18 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
         this.montant = (EditText) findViewById(R.id.montant);
         this.date = (DatePicker) findViewById(R.id.date);
 
+        DBHandler db = new DBHandler(this);
 
-        String[] categories = new String[]{"nourriture","loisirs","voiture"};
+        ArrayList<StorageCategories> categories = db.getCategories();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,categories);
+        ArrayList<String> cat2 = new ArrayList<>();
+        //String[] categories2 = new String[categories.size()];
+
+        for(int i = 0; i < categories.size();i++){
+            cat2.add(categories.get(i).nom);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,cat2);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -66,8 +75,7 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // On récupère les données dans le formulaire
                 extractData();
-                String s = nom + " " + categorie + " " + montant + " " + date;
-                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Dépense aoutée avec succès !",Toast.LENGTH_SHORT).show();
                 //showPopup();
                 addToDB();
             }
@@ -111,21 +119,19 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
         this.sCategorie = new String(String.valueOf(categorie.getSelectedItem()));
         this.sMontant = new String(String.valueOf(montant.getText()));
 
-        int day = date.getDayOfMonth();
-        int month = date.getMonth();
-        int year = date.getYear();
+        String day = String.valueOf(date.getDayOfMonth());
+        int month = date.getMonth()+1;
+        String s = String.valueOf(month);
+        if(month<10){s = "0".concat(String.valueOf(month));}
 
-        //Calendar calendar = Calendar.getInstance();
-        //calendar.set(year,month,day);
-
-        //this.sDate = new String(String.valueOf(calendar.getTime()));
-        this.sDate = (day+""+month+""+year);
+        this.sDate = new String(day + "/" + s);
     }
 
     public void addToDB() {
 
+        DBHandler db = new DBHandler(this);
 
-
+        db.addNewDepense(sCategorie,sDate,sNom,Double.parseDouble(sMontant));
 
     }
 

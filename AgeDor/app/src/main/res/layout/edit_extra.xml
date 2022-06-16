@@ -11,7 +11,7 @@
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
 
-    tools:context=".view.EditExtraActivity">
+    tools:context=".view.extras.EditExtraActivity">
 
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="AFFICHAGE DE LA LISTE DES extra, A FAIRE POUR UGO"
+        android:text="Editer extras"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
@@ -29,22 +29,17 @@
         app:layout_constraintVertical_bias="0.087" />
 
     <Button
-        android:id="@+id/bEditExtra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="changeExtra"
-        android:text="éditer une catégorie"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="213dp" />
-
-    <Button
         android:id="@+id/bAddExtra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="addExtra"
-        android:text="ajouter une catégorie"
+        android:text="ajouter une depense extra"
         tools:layout_editor_absoluteX="142dp"
         tools:layout_editor_absoluteY="213dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_extras"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

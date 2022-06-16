@@ -1,4 +1,4 @@
-package com.example.agedor.view;
+package com.example.agedor.view.extras;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,28 +11,30 @@ import android.widget.EditText;
 
 import com.example.agedor.R;
 
-public class EditDettesActivity extends AppCompatActivity {
+public class EditExtraActivity extends AppCompatActivity {
     public String m_Text = "";
     public Double m_Montant = 0.0;
+    public String m_Date = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_dettes);
+        setContentView(R.layout.edit_extra);
     }
 
 
-    public void changeDette(View view) {
+    public void changeExtra(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.dialog_edit_dettes, null))
+        builder.setView(inflater.inflate(R.layout.dialog_edit_extra, null))
                 // Add action buttons
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         m_Text = ((EditText) ((AlertDialog) dialog).findViewById(R.id.nom)).getText().toString();
                         m_Montant = Double.parseDouble(((EditText) ((AlertDialog) dialog).findViewById(R.id.montant)).getText().toString());
+                        m_Date = ((EditText) ((AlertDialog) dialog).findViewById(R.id.date)).getText().toString();
                     }
                 })
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
@@ -45,17 +47,18 @@ public class EditDettesActivity extends AppCompatActivity {
     }
 
 
-    public void addDette(View view) {
+    public void addExtra(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.dialog_edit_dettes, null))
+        builder.setView(inflater.inflate(R.layout.dialog_edit_extra, null))
                 // Add action buttons
                 .setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         m_Text = ((EditText) ((AlertDialog) dialog).findViewById(R.id.nom)).getText().toString();
                         m_Montant = Double.parseDouble(((EditText) ((AlertDialog) dialog).findViewById(R.id.montant)).getText().toString());
+                        m_Date = ((EditText) ((AlertDialog) dialog).findViewById(R.id.date)).getText().toString();
                     }
                 })
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {

@@ -1,4 +1,4 @@
-package com.example.agedor.view;
+package com.example.agedor.view.revenus;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;

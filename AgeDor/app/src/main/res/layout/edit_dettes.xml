@@ -11,7 +11,7 @@
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
 
-    tools:context=".view.EditDettesActivity">
+    tools:context=".view.dettes.EditDettesActivity">
 
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="AFFICHAGE DE LA LISTE DES DETTES, A FAIRE POUR UGO"
+        android:text="Editer les dettes"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
@@ -27,16 +27,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.087" />
-
-    <Button
-        android:id="@+id/bEditDette"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="changeDette"
-        android:text="éditer une dette"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="213dp" />
 
     <Button
         android:id="@+id/bAddDette"
@@ -47,4 +37,9 @@
         android:text="ajouter une dette"
         tools:layout_editor_absoluteX="142dp"
         tools:layout_editor_absoluteY="213dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_dettes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

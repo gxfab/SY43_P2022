@@ -13,36 +13,36 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".view.NouvelleDepenseActivity"
+            android:name=".view.enveloppes.NouvelleDepenseActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".view.ConsulterDepensesActivity"
+            android:name=".view.enveloppes.ConsulterDepensesActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name=".view.EditCategoriesActivity"
+            android:name=".view.enveloppes.EditCategoriesActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
         <activity
-            android:name=".view.EditDepensesActivity"
+            android:name=".view.enveloppes.EditDepensesActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
         <activity
-            android:name=".view.EditDettesActivity"
+            android:name=".view.dettes.EditDettesActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
         <activity
-            android:name=".view.EditRevenusActivity"
+            android:name=".view.revenus.EditRevenusActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
         <activity
-            android:name=".view.EditProjetsActivity"
+            android:name=".view.projets.EditProjetsActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
         <activity
-            android:name=".view.EditExtraActivity"
+            android:name=".view.extras.EditExtraActivity"
             android:exported="false"
             android:parentActivityName=".view.EditerBudgetActivity" />
 

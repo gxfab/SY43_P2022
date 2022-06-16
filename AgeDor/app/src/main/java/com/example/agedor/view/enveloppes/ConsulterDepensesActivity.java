@@ -1,4 +1,4 @@
-package com.example.agedor.view;
+package com.example.agedor.view.enveloppes;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,11 +11,13 @@ import android.widget.Toast;
 import com.example.agedor.R;
 import com.example.agedor.data.DBHandler;
 import com.example.agedor.data.StorageDepenses;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
 public class ConsulterDepensesActivity extends AppCompatActivity implements ModifierDepenseDialog.DialogListener {
-
 
     private RecyclerView listeDepenses;
     private ArrayList<StorageDepenses> depenses;
@@ -31,34 +33,12 @@ public class ConsulterDepensesActivity extends AppCompatActivity implements Modi
         setDepenses();
         setAdapter();
 
-
-
     }
 
     private void setDepenses(){
-
         DBHandler db = new DBHandler(this);
-
         this.depenses = db.getDepenses();
 
-
-        // Test avec des valeurs en dur
-        this.depenses = new ArrayList<>();
-        depenses.add(new StorageDepenses("voiture","14/06/22","name1",(double)25));
-        depenses.add(new StorageDepenses("voiture","12/05/22","name2",(double)8));
-        depenses.add(new StorageDepenses("voiture","08/04/22","name3",(double)12));
-        depenses.add(new StorageDepenses("voiture","14/06/22","name4",(double)25));
-        depenses.add(new StorageDepenses("voiture","12/05/22","name5",(double)8));
-        depenses.add(new StorageDepenses("voiture","08/04/22","name6",(double)12));
-        depenses.add(new StorageDepenses("voiture","14/06/22","name7",(double)25));
-        depenses.add(new StorageDepenses("voiture","12/05/22","name8",(double)8));
-        depenses.add(new StorageDepenses("voiture","08/04/22","name9",(double)12));
-        depenses.add(new StorageDepenses("voiture","14/06/22","name10",(double)25));
-        depenses.add(new StorageDepenses("voiture","12/05/22","name11",(double)8));
-        depenses.add(new StorageDepenses("voiture","08/04/22","name12",(double)12));
-        depenses.add(new StorageDepenses("voiture","14/06/22","name13",(double)25));
-        depenses.add(new StorageDepenses("voiture","12/05/22","name14",(double)8));
-        depenses.add(new StorageDepenses("voiture","08/04/22","name15",(double)12));
     }
 
     private void setAdapter(){
@@ -87,8 +67,34 @@ public class ConsulterDepensesActivity extends AppCompatActivity implements Modi
     }
 
     @Override
-    public void applyTexts(String nom, String categorie, String date, String montant) {
+    public void modifier(String nom, String categorie, String date, String montant, String ancienNom) {
         String s = nom + categorie + date + montant;
-        Toast.makeText(getApplicationContext(), s,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), s,Toast.LENGTH_SHORT).show();
+
+        DBHandler db = new DBHandler(this);
+
+        int index = 0;
+        for(int i = 0; i < depenses.size(); i++){
+            if(depenses.get(i).equals(ancienNom)){
+                index = i;
+            }
+        }
+
+        db.deleteRow("DEPENSES",ancienNom);
+        db.addNewDepense(categorie,date,nom,Double.parseDouble(montant));
+
+        // Mise à jour graphique
+        depenses = db.getDepenses();
+        setAdapter();
+    }
+
+    @Override
+    public void supprimer(String nom){
+        DBHandler db = new DBHandler(this);
+        db.deleteRow("DEPENSES",nom);
+
+        // Mise à jour graphique
+        depenses = db.getDepenses();
+        setAdapter();
     }
 }

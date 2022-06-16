@@ -1,4 +1,4 @@
-package com.example.agedor.view;
+package com.example.agedor.view.enveloppes;
 
 
 import android.view.LayoutInflater;
@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.agedor.R;
 import com.example.agedor.data.StorageDepenses;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ListeDepensesAdapter extends RecyclerView.Adapter<ListeDepensesAdapter.MyViewHolder> {
 
-    private ArrayList<StorageDepenses> depenses;
+    public ArrayList<StorageDepenses> depenses;
     private RecyclerViewClickListener listener;
 
     ListeDepensesAdapter(ArrayList<StorageDepenses> depenses, RecyclerViewClickListener listener){
@@ -49,27 +51,23 @@ public class ListeDepensesAdapter extends RecyclerView.Adapter<ListeDepensesAdap
         private TextView nomDepense;
         private TextView dateDepense;
         private TextView categorieDepense;
+        private TextView montantDepense;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             nomDepense = (TextView) itemView.findViewById(R.id.nom_depense);
             dateDepense = (TextView) itemView.findViewById(R.id.date_depense);
             categorieDepense = (TextView) itemView.findViewById(R.id.categorie_depense);
+            montantDepense = (TextView) itemView.findViewById(R.id.montant_depense);
             itemView.setOnClickListener(this);
         }
 
         void display(StorageDepenses depense){
 
-            nomDepense.setText((String) depense.nom+"  ");
-            categorieDepense.setText(String.valueOf(depense.categorie)+"  ");
-            dateDepense.setText((String) depense.date_depense);
-            ;
-
-            /*
-            nomDepense.setText("test");
-            dateDepense.setText("toto");
-            categorieDepense.setText("tata");
-            */
+            nomDepense.setText((String) depense.nom+"     ");
+            categorieDepense.setText(String.valueOf(depense.categorie)+"     ");
+            dateDepense.setText((String) depense.date_depense+"     ");
+            montantDepense.setText(String.valueOf(depense.montant)+"     ");
 
         }
 

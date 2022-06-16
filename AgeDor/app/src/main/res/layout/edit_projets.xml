@@ -11,7 +11,7 @@
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
 
-    tools:context=".view.EditProjetsActivity">
+    tools:context=".view.projets.EditProjetsActivity">
 
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="AFFICHAGE DE LA LISTE DES projets, A FAIRE POUR UGO"
+        android:text="Editer les projets"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
@@ -27,16 +27,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.087" />
-
-    <Button
-        android:id="@+id/bEditProjet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="changeProjet"
-        android:text="éditer un Projet"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="213dp" />
 
     <Button
         android:id="@+id/bAddProjet"
@@ -47,4 +37,9 @@
         android:text="ajouter un Projet"
         tools:layout_editor_absoluteX="142dp"
         tools:layout_editor_absoluteY="213dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_factures"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

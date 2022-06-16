@@ -28,6 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.087" />
 
+
     <Button
         android:id="@+id/bCat"
         android:layout_width="wrap_content"
@@ -37,7 +38,6 @@
         android:text="@string/categories"
         tools:layout_editor_absoluteX="142dp"
         tools:layout_editor_absoluteY="213dp" />
-
 
     <Button
         android:id="@+id/bProj"

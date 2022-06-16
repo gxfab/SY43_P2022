@@ -21,17 +21,27 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS CATEGORIES (ID INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
         db.execSQL("CREATE TABLE IF NOT EXISTS DEPENSES (ID_DEPENSES INTEGER PRIMARY KEY AUTOINCREMENT, CAT TEXT, DATE TEXT, NOM TEXT, MONTANT DECIMAL);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS REVENUS (ID_REVENUS INTEGER PRIMARY KEY AUTOINCREMENT, DATE TEXT, NOM TEXT, MONTANT DECIMAL);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS DETTES (ID_DETTES INTEGER PRIMARY KEY AUTOINCREMENT, DATE TEXT, NOM TEXT, MONTANT DECIMAL);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS REVENUS (ID_REVENUS INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS DETTES (ID_DETTES INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
         db.execSQL("CREATE TABLE IF NOT EXISTS EXTRA (ID_EXTRA INTEGER PRIMARY KEY AUTOINCREMENT, DATE TEXT, NOM TEXT, MONTANT DECIMAL);");
         db.execSQL("CREATE TABLE IF NOT EXISTS PROJETS (ID_PROJETS INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
         db.execSQL("CREATE TABLE IF NOT EXISTS FACTURES (ID_FACTURES INTEGER PRIMARY KEY AUTOINCREMENT, NOM TEXT, MONTANT DECIMAL);");
+
+        /*
+        db.execSQL("IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'CATEGORIES') BEGIN PRINT 'Table Exists' END;");
+        db.execSQL("IF OBJECT_ID(N'dbo.Customers', N'U') IS NOT NULL BEGIN PRINT 'Table Exists' END;");
+         */
     }
 
     public void deleteRow(String table, String id) {
+
+        String id2 = String.valueOf(id);
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(table, "ID = ?", new String[]{id});
+
+        db.delete(table, " NOM = ?", new String[]{id});
+
         db.close();
+
     }
 
     public void addNewFacture(String nom, double montant){
@@ -45,11 +55,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addNewRevenus( String date_revenus, String nom, Double montant) {
+    public void addNewRevenus(String nom, Double montant) {
         // ajoute une nouvelle entrée à la table REVENUS
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("DATE", date_revenus);
         values.put("NOM", nom);
         values.put("MONTANT", montant);
 
@@ -68,12 +77,11 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-
-
     public void addNewDepense(String categorie, String date_depenses, String nom, Double montant) {
         // ajoute une nouvelle entrée a la table DEPENSES
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put("CAT",categorie);
         values.put("DATE", date_depenses);
         values.put("NOM", nom);
         values.put("MONTANT", montant);
@@ -82,11 +90,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addNewDette(String date_dette, String nom, Double montant) {
+    public void addNewDette(String nom, Double montant) {
         // ajoute une nouvelle entrée a la table DETTES
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("DATE", date_dette);
         values.put("NOM", nom);
         values.put("MONTANT", montant);
 
@@ -127,6 +134,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
+            factures.add(new StorageFactures(cursor.getString(1), cursor.getDouble(2)));
             while (cursor.moveToNext()) {
                 factures.add(new StorageFactures(cursor.getString(1), cursor.getDouble(2)));
             }
@@ -143,10 +151,14 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
+            depensesList.add(new StorageDepenses(cursor.getString(1), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))));
             while (cursor.moveToNext()) {
                 depensesList.add(new StorageDepenses(cursor.getString(1), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))));
             }
+
         }
+
+
         cursor.close();
         return depensesList;
     }
@@ -159,8 +171,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
+            revenusList.add(new StorageRevenus(cursor.getString(1), cursor.getDouble(2)));
             while (cursor.moveToNext()) {
-                revenusList.add(new StorageRevenus(cursor.getString(1), cursor.getString(2), Double.parseDouble(cursor.getString(3))));
+                revenusList.add(new StorageRevenus(cursor.getString(1), cursor.getDouble(3)));
             }
         }
         cursor.close();
@@ -175,6 +188,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
+            categoriesList.add(new StorageCategories(cursor.getString(1), Double.parseDouble(cursor.getString(2))));
             while (cursor.moveToNext()) {
                 categoriesList.add(new StorageCategories(cursor.getString(1), Double.parseDouble(cursor.getString(2))));
             }
@@ -191,8 +205,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
+            Liste.add(new StorageDettes(cursor.getString(1), cursor.getDouble(3)));
             while (cursor.moveToNext()) {
-                Liste.add(new StorageDettes(cursor.getString(1), cursor.getString(2), cursor.getDouble(3)));
+                Liste.add(new StorageDettes(cursor.getString(1), cursor.getDouble(3)));
             }
         }
         cursor.close();
@@ -207,6 +222,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
+            Liste.add(new StorageExtra(cursor.getString(1), cursor.getString(2), cursor.getDouble(3)));
             while (cursor.moveToNext()) {
                 Liste.add(new StorageExtra(cursor.getString(1), cursor.getString(2), cursor.getDouble(3)));
             }
@@ -223,6 +239,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // moving our cursor to first position.
         if (cursor.moveToFirst()) {
+            Liste.add(new StorageProjets(cursor.getString(2), cursor.getDouble(3)));
             while (cursor.moveToNext()) {
                 Liste.add(new StorageProjets(cursor.getString(2), cursor.getDouble(3)));
             }

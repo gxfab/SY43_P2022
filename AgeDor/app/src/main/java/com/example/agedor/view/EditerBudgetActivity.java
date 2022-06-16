@@ -8,6 +8,12 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.agedor.R;
+import com.example.agedor.view.dettes.EditDettesActivity;
+import com.example.agedor.view.enveloppes.EditCategoriesActivity;
+import com.example.agedor.view.enveloppes.EditDepensesActivity;
+import com.example.agedor.view.extras.EditExtraActivity;
+import com.example.agedor.view.projets.EditProjetsActivity;
+import com.example.agedor.view.revenus.EditRevenusActivity;
 
 public class EditerBudgetActivity extends AppCompatActivity {
 

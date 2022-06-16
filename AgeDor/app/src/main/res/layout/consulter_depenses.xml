@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ConsulterDepensesActivity">
+    tools:context=".view.enveloppes.ConsulterDepensesActivity">
 
     <TextView
         android:id="@+id/titreConsulterDepenses"
@@ -20,7 +20,7 @@
         android:id="@+id/titreConsulterDepenses2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="92dp"
         android:text="Nom"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:id="@+id/titreConsulterDepenses4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="92dp"
         android:text="Categorie"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,9 +40,19 @@
         android:id="@+id/titreConsulterDepenses5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="308dp"
+        android:layout_marginStart="352dp"
         android:layout_marginTop="92dp"
         android:text="Date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titreConsulterDepenses" />
+
+    <TextView
+        android:id="@+id/titreConsulterDepenses3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="92dp"
+        android:text="Montant"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titreConsulterDepenses" />
 

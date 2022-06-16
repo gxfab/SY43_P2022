@@ -18,8 +18,16 @@
         android:text="categorie de depense" />
 
     <TextView
+        android:id="@+id/montant_depense"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="montant" />
+
+    <TextView
         android:id="@+id/date_depense"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="date depense" />
+
+
 </LinearLayout>

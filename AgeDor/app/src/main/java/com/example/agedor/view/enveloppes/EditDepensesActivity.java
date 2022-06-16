@@ -1,4 +1,4 @@
-package com.example.agedor.view;
+package com.example.agedor.view.enveloppes;
 
 
 import androidx.appcompat.app.AppCompatActivity;

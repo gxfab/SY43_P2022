@@ -1,4 +1,4 @@
-package com.example.agedor.view;
+package com.example.agedor.view.projets;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,22 +11,22 @@ import android.widget.EditText;
 
 import com.example.agedor.R;
 
-public class EditFacturesActivity extends AppCompatActivity {
+public class EditProjetsActivity extends AppCompatActivity {
     public String m_Text = "";
     public Double m_Montant = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_factures);
+        setContentView(R.layout.edit_projets);
     }
 
 
-    public void changeFacture(View view) {
+    public void changeProjet(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.dialog_edit_factures, null))
+        builder.setView(inflater.inflate(R.layout.dialog_edit_projets, null))
                 // Add action buttons
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -45,11 +45,11 @@ public class EditFacturesActivity extends AppCompatActivity {
     }
 
 
-    public void addFacture(View view) {
+    public void addProjet(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.dialog_edit_factures, null))
+        builder.setView(inflater.inflate(R.layout.dialog_edit_projets, null))
                 // Add action buttons
                 .setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
                     @Override

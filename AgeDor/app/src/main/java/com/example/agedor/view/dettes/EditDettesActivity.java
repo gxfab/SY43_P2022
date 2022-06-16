@@ -1,35 +1,32 @@
-package com.example.agedor.view;
+package com.example.agedor.view.dettes;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.EditText;
 
 import com.example.agedor.R;
 
-public class EditCategoriesActivity extends AppCompatActivity {
+public class EditDettesActivity extends AppCompatActivity {
     public String m_Text = "";
     public Double m_Montant = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_categories);
+        setContentView(R.layout.edit_dettes);
     }
 
 
-    public void changeCategorie(View view) {
+    public void changeDette(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.dialog_edit_categorie, null))
+        builder.setView(inflater.inflate(R.layout.dialog_edit_dettes, null))
                 // Add action buttons
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -48,13 +45,13 @@ public class EditCategoriesActivity extends AppCompatActivity {
     }
 
 
-    public void addCategorie(View view) {
+    public void addDette(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.dialog_edit_categorie, null))
+        builder.setView(inflater.inflate(R.layout.dialog_edit_dettes, null))
                 // Add action buttons
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         m_Text = ((EditText) ((AlertDialog) dialog).findViewById(R.id.nom)).getText().toString();

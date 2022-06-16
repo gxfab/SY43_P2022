@@ -1,4 +1,4 @@
-package com.example.agedor.view;
+package com.example.agedor.view.enveloppes;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -17,7 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.agedor.R;
+import com.example.agedor.data.DBHandler;
+import com.example.agedor.data.StorageCategories;
 import com.example.agedor.data.StorageDepenses;
+
+import java.util.ArrayList;
 
 public class ModifierDepenseDialog extends AppCompatDialogFragment {
 
@@ -59,22 +63,24 @@ public class ModifierDepenseDialog extends AppCompatDialogFragment {
         builder.setPositiveButton("Modifier", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                nomModifie = editNom.getText().toString();
+                montantModifie = editMontant.getText().toString();
+                categorieModifie = editCategorie.getSelectedItem().toString();
+                int day = editDate.getDayOfMonth();
+                int month = editDate.getMonth();
+                String s = String.valueOf(month);
+                if(month<10){s = "0".concat(String.valueOf(month));}
 
+                dateModifie = new String(day + "/" + s);
+
+                listener.modifier(nomModifie,categorieModifie,dateModifie,montantModifie, valeursInitiale.nom);
             }
         });
 
         builder.setNeutralButton("Supprimer", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                    nomModifie = editNom.getText().toString();
-                    montantModifie = editMontant.getText().toString();
-                    categorieModifie = editCategorie.getSelectedItem().toString();
-                    int day = editDate.getDayOfMonth();
-                    int month = editDate.getMonth();
-                    int year = editDate.getYear();
-                    dateModifie = (day+""+month+""+year);
-
-                    listener.applyTexts(nomModifie,categorieModifie,dateModifie,montantModifie);
+                listener.supprimer(valeursInitiale.nom);
             }
         });
 
@@ -91,14 +97,31 @@ public class ModifierDepenseDialog extends AppCompatDialogFragment {
         editCategorie.setSelection(array_spinner.getPosition(valeursInitiale.));*/
 
 
+        DBHandler db = new DBHandler(getContext());
+        ArrayList<StorageCategories> cat = db.getCategories();
 
-        String[] categories = new String[]{"toto","tata","tutu"};
+        ArrayList<String> cat2 = new ArrayList<>();
+        for(int i = 0; i < cat.size(); i++){
+            cat2.add(cat.get(i).nom);
+        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,categories);
+
+        int index = 0;
+        for(int i = 0; i < cat.size(); i++){
+            if(cat2.get(i).equals(valeursInitiale.categorie)){
+                index = i;
+            }
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,cat2);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         editCategorie.setAdapter(adapter);
 
-        editCategorie.setSelection(2);
+        editCategorie.setSelection(index);
+
+
+
+
         editDate = view.findViewById(R.id.modifierDate);
         editDate.init(2022,06,15,null);
 
@@ -114,6 +137,8 @@ public class ModifierDepenseDialog extends AppCompatDialogFragment {
     }
 
     public interface DialogListener{
-        void applyTexts(String nom, String categorie, String date, String montant);
+        void modifier(String nom, String categorie, String date, String montant, String ancienNom);
+
+        void supprimer(String name);
     }
 }

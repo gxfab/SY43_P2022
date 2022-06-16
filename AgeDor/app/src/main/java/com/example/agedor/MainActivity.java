@@ -4,19 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.example.agedor.data.StorageCategories;
-import com.example.agedor.data.StorageDepenses;
-import com.example.agedor.view.ConsulterDepensesActivity;
+import com.example.agedor.view.enveloppes.ConsulterDepensesActivity;
 import com.example.agedor.view.EditerBudgetActivity;
-import com.example.agedor.view.NouvelleDepenseActivity;
-import com.example.agedor.view.SettingsActivity;
-
-import com.example.agedor.data.DBHandler;
-
-import java.util.ArrayList;
+import com.example.agedor.view.enveloppes.NouvelleDepenseActivity;
 
 
 // Page d'accueil de l'application
