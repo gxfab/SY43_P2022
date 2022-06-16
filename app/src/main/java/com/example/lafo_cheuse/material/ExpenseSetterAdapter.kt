@@ -28,11 +28,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
- * TODO : Complete documentation
+ * [RecyclerView.Adapter] for the regular expenses [RecyclerView]
  *
- * @property context
- * @property expensesViewModel
- * @property incomesViewModel
+ * @property context - [Activity] where the [RecyclerView] belong
+ * @property expensesViewModel - An [ExpenseViewModel] instance to ask expenses from the database
+ * @property incomesViewModel - An [IncomeViewModel] instance to ask income sum from the database
+ * @property defaultCategory - The default [Category] to set to a freshly created regular [Expense]
+ * @property mExpenses - the list of [Expense] to display
+ *
  */
 class ExpenseSetterAdapter(
     var context : Activity,
@@ -43,6 +46,11 @@ class ExpenseSetterAdapter(
     private var defaultCategory : Category? = null
     private var mExpenses: List<Expense> = ArrayList<Expense>()
 
+    /**
+     * Inner class that will hold the widgets of one [RecyclerView] item.
+     *
+     * @param itemView - a [View] representing an item of the layout
+     */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val expenseValueWidget: EditText? = itemView.findViewById(R.id.value)
         val expenseNameWidget: EditText? = itemView.findViewById(R.id.valueName)
@@ -52,10 +60,24 @@ class ExpenseSetterAdapter(
         val addButton : ImageButton? = itemView.findViewById(R.id.addRegularIncomeExpense)
     }
 
+    /**
+     * Callback determining which type of layout use for the item at [position] in [mExpenses]
+     *
+     * @param position - [Int] the position of the item in [mExpenses]
+     * @return an [Int] representing the layout id that was chosen.
+     *  It can have 2 values :
+     *   - [R.layout.add_button] if it is the last element
+     *   - [R.layout.budget_setter_item] for any other element
+     */
     override fun getItemViewType(position: Int): Int {
         return if (position == mExpenses.size) R.layout.add_button else R.layout.budget_setter_item
     }
 
+    /**
+     * Callback function called when the [ViewHolder] is created to let it initialized himself correctly
+     *
+     * @return a [ViewHolder] initialized
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
@@ -68,6 +90,13 @@ class ExpenseSetterAdapter(
         return ViewHolder(itemView)
     }
 
+    /**
+     * Callback function called when the [holder] is initialized to display data on elements at [position]
+     * This function will initialize all the button and widgets by linking them to the operation they should do
+     *
+     * @param holder - [ViewHolder] holding all the elements
+     * @param position - [Int] containing the index of the [View] in [mExpenses]
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (position == mExpenses.size) {
             holder.addButton?.setOnClickListener {
@@ -177,16 +206,32 @@ class ExpenseSetterAdapter(
         }
     }
 
+    /**
+     * Callback function which send the number of elements in the [RecyclerView]
+     * Warning : We added a "+ 1" to take in account the add_button
+     *
+     * @return [Int] - the size of [mExpenses] + 1
+     */
     override fun getItemCount(): Int {
         return mExpenses.size + 1
 
     }
 
+    /**
+     * Update expenses in the [RecyclerView] by updating [mExpenses]
+     *
+     * @param mExpenses - a list of [Expense]
+     */
     fun setExpenses(mExpenses: List<Expense>) {
         this.mExpenses = mExpenses
         notifyDataSetChanged()
     }
 
+    /**
+     * Function to keep the default [Category] in the Adapter
+     *
+     * @param defaultCategory - [Category] of the default [Category]
+     */
     fun setDefCategory(defaultCategory : Category) {
         this.defaultCategory = defaultCategory
     }
