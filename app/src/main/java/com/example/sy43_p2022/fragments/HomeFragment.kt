@@ -19,20 +19,12 @@ class HomeFragment: Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val button = inflater.inflate(R.layout.fragment_home, container, false)
 
-        // Construct "spending" Home Fragment button
-        val spendingBtn = button.findViewById<Button>(R.id.home_fragment_button_spending)
-        spendingBtn.setOnClickListener {
-            val transaction = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, SpendingFragment())
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
-
         db = PiggyBankDatabase.getDatabase(button.context);
 
         val totalAmount = button.findViewById<TextView>(R.id.home_page_balance_amount)
         val spendingAmount = button.findViewById<TextView>(R.id.home_page_spending_amount)
 
+        // fetch amount values
         MainScope().launch {
             val spending: Int = db.piggyBankDAO().getSpendingAmount()
             val saving: Int = db.piggyBankDAO().getSavingAmount()
@@ -41,14 +33,24 @@ class HomeFragment: Fragment(){
             spendingAmount.text = button.context.getString(R.string.home_page_spending_amount, spending)
         }
 
-        // définition action bouton SavingGoals
+        // Construct "spending" Home Fragment button
+        val spendingBtn = button.findViewById<Button>(R.id.home_fragment_button_spending)
+        spendingBtn.setOnClickListener {
+            val transaction = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, SpendingFragment())
+            transaction.addToBackStack("spending")
+            transaction.commit()
+        }
+
+        // Construct "saving" Home Fragment button
         val clickSavingGoals = button.findViewById<Button>(R.id.home_fragment_button_saving_goals)
         clickSavingGoals.setOnClickListener {
             val transaction = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragment_container, SavingGoalsFragments())
-            transaction.addToBackStack(null)
+            transaction.addToBackStack("saving")
             transaction.commit()
         }
+
         return button
     }
 }

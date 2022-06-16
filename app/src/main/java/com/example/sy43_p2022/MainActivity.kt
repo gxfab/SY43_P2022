@@ -1,14 +1,19 @@
 package com.example.sy43_p2022
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.example.sy43_p2022.database.PiggyBankDatabase
-import com.example.sy43_p2022.fragments.HomeFragment
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.sy43_p2022.database.PiggyBankDatabase
 import com.example.sy43_p2022.database.entities.Category
 import com.example.sy43_p2022.database.entities.SubCategory
+import com.example.sy43_p2022.fragments.CategoryFragment
+import com.example.sy43_p2022.fragments.HomeFragment
 import kotlinx.coroutines.launch
+
+interface IOnBackPressed {
+    fun onBackPressed(): Boolean
+}
 
 class MainActivity : AppCompatActivity() {
     private lateinit var db: PiggyBankDatabase
@@ -16,6 +21,17 @@ class MainActivity : AppCompatActivity() {
     private suspend fun verifyDB(): Boolean {
         db = PiggyBankDatabase.getDatabase(this@MainActivity)
         return db.piggyBankDAO().getAllCategories().isNotEmpty()
+    }
+
+    override fun onBackPressed() {
+        val count = supportFragmentManager.backStackEntryCount
+        if (count <= 1) {
+            val transaction = supportFragmentManager.beginTransaction() // mandatory to manipulate fragments
+            transaction.replace(R.id.fragment_container, HomeFragment())
+            transaction.addToBackStack("home")
+            transaction.commit()
+
+        } else supportFragmentManager.popBackStack()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         // We inject the HomeFragment into the fragment container
         val transaction = supportFragmentManager.beginTransaction() // mandatory to manipulate fragments
         transaction.replace(R.id.fragment_container, HomeFragment())
-        transaction.addToBackStack(null) // no returns
+        transaction.addToBackStack("home")
         transaction.commit()
     }
 

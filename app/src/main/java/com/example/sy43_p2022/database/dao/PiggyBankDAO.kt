@@ -53,11 +53,11 @@ interface PiggyBankDAO {
     suspend fun getCategorySpending(id: Int): Int
 
     @Transaction
-    @Query("SELECT SUM(saving) FROM category")
+    @Query("SELECT SUM(saving) FROM subcategory")
     suspend fun getSavingAmount(): Int
 
     @Transaction
-    @Query("SELECT SUM(spending) FROM category")
+    @Query("SELECT SUM(spending) FROM subcategory")
     suspend fun getSpendingAmount(): Int
 
     @Transaction

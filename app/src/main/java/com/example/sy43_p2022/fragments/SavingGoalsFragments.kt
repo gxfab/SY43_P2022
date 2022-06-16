@@ -6,5 +6,5 @@ class SavingGoalsFragments() : CategoryFragment(
     "Saving Goals",
     R.layout.item_vertical_white,
     "white",
-    R.layout.fragment_spending
+    R.layout.fragment_container
 )

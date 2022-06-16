@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sy43_p2022.IOnBackPressed
 import com.example.sy43_p2022.R
 import com.example.sy43_p2022.adapter.ButtonAdapter
 import com.example.sy43_p2022.database.PiggyBankDatabase
@@ -22,7 +23,7 @@ open class CategoryFragment(
     private val layoutVertical: Int,
     private val layoutVerticalColor: String,
     private val layout: Int
-) : Fragment() {
+) : Fragment(), IOnBackPressed {
     private lateinit var db: PiggyBankDatabase
 
     override fun onCreateView(
@@ -34,16 +35,11 @@ open class CategoryFragment(
 
         db = PiggyBankDatabase.getDatabase(view.context)
 
-        // Go back button (left arrow at the top of the screen)
-        view.findViewById<ImageView>(R.id.fragment_return)
-            .setOnClickListener {
-                val transaction = (activity as FragmentActivity).supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.fragment_container, HomeFragment())
-                transaction.addToBackStack(null)
-                transaction.commit()
-            }
-
         return view
+    }
+
+    override fun onBackPressed(): Boolean {
+        return true
     }
 
     @SuppressLint("NotifyDataSetChanged")
