@@ -44,8 +44,7 @@
             android:parentActivityName=".view.EditerBudgetActivity" />
         <activity
             android:name=".view.introduction.IntroActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:exported="false" />
         <activity
             android:name=".view.introduction.Fragment1"
             android:exported="false"

@@ -22,7 +22,7 @@ import java.io.InputStreamReader;
 
 public class Fragment1 extends AppCompatActivity {
 
-    public String nom = ReadTextFile("nom.txt");
+    public String nom = readTextFile("nom.txt");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,13 +55,13 @@ public class Fragment1 extends AppCompatActivity {
     }
 
     public void deleteFichier(String fileName) {
-        File dir = getFilesDir();
+        File dir = MainActivity.context.getFilesDir();
         File file = new File(dir, fileName);
         file.delete();
     }
 
-    public String ReadTextFile(String fileName) {
-        File path = MainActivity.getContext().getFilesDir();
+    public static String readTextFile(String fileName) {
+        File path = MainActivity.context.getFilesDir();
         File readFrom = new File(path, fileName);
         byte[] content = new byte[(int) readFrom.length()];
         try {
@@ -72,7 +72,7 @@ public class Fragment1 extends AppCompatActivity {
             return text;
         } catch (IOException e) {
             e.printStackTrace();
-            return e.toString();
+            return "";
         }
     }
 }

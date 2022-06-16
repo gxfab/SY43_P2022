@@ -43,7 +43,7 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     public void writeToFile(String fileName, String content) {
-        File path = MainActivity.getContext().getFilesDir();
+        File path = MainActivity.context.getFilesDir();
         try {
             // Create file
             FileOutputStream writer = new FileOutputStream(new File(path, fileName));

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,26 +13,32 @@ import com.example.agedor.view.enveloppes.depenses.ConsulterDepensesActivity;
 import com.example.agedor.view.EditerBudgetActivity;
 import com.example.agedor.view.enveloppes.depenses.NouvelleDepenseActivity;
 
+import com.example.agedor.view.introduction.Fragment1;
+import com.example.agedor.view.introduction.IntroActivity;
+
 
 // Page d'accueil de l'application
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public static Context context;
+    public static String nom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         MainActivity.context = getApplicationContext();
-
-
-
-        //getActionBar().setTitle("test");
-
-
-
-        setContentView(R.layout.activity_main);
+        Log.i("MainActivity", "CONTEXT PRINTED");
+        String prenom = Fragment1.readTextFile("nom.txt");
+        if (prenom.equals("")) {
+            Log.i("MainActivity", "OK INTRO");
+            Intent intent = new Intent(this, IntroActivity.class);
+            startActivity(intent);
+        } else {
+            MainActivity.nom = prenom;
+            Log.i("MainActivity", MainActivity.nom);
+            setContentView(R.layout.activity_main);
+        }
     }
 
     public static Context getContext() {
