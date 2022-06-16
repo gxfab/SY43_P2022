@@ -17,6 +17,7 @@
     <color name="zero_purple">#C26E17C5</color>
     <color name="zero_pink0">#FFFFD6D6</color>
     <color name="zero_pink1">#FFFDEEEE</color>
+    <color name="zero_silver">#FFC0C0C0</color>
 
     <!-- Expenses categories colors -->
     <color name="hobbies_color">#FFFCB000</color>
@@ -32,5 +33,4 @@
     <color name="gifts_color">#FFfB79A7</color>
     <color name="bonus_color">#FF4fCAFF</color>
     <color name="custom_income_color">#FFD694FF</color>
-
 </resources>

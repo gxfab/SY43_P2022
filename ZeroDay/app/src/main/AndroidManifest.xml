@@ -16,6 +16,9 @@
             android:exported="true"/>
           
         <activity
+            android:name=".views.SettingHomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.StartActivity"
             android:exported="true"
             android:screenOrientation="portrait">
