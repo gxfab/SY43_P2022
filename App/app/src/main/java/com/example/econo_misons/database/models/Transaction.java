@@ -59,7 +59,18 @@ public class Transaction {
         this.amountTransaction = amountTransaction;
         this.expense = expense;
         this.prevDate = prevDate;
+    }
 
+    public Transaction(int ID, int budgetID, String prevDate, int userID, int categoryID, String transactionName, String date, float amountTransaction, Boolean expense){
+        this.id = ID;
+        this.budgetID = budgetID;
+        this.userID = userID;
+        this.categoryID = categoryID;
+        this.transactionName = transactionName;
+        this.date = date;
+        this.amountTransaction = amountTransaction;
+        this.expense = expense;
+        this.prevDate = prevDate;
     }
 
     @Override

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Economisons">
         <activity
+            android:name=".allTransactions"
+            android:exported="false" />
+        <activity
             android:name=".AjoutCategorie"
             android:exported="false" />
         <activity

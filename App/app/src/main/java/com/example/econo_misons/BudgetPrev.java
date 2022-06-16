@@ -56,7 +56,7 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         name = findViewById(R.id.budget_name);
         recyclerView = findViewById(R.id.envelope_list);
 
-        name.setText(CurrentData.getBudget().budgetName);
+        name.setText(CurrentData.getBudget().budgetName + " - " + CurrentData.getPrevBudget().yearMonth);
         valider.setOnClickListener(v -> finish());
         ajoutCat.setOnClickListener(this::onButtonShowPopupWindowClick);
 
@@ -65,6 +65,14 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         this.configureRecyclerView();
         this.makeBottomBar();
     }
+
+    /*public void testCategory(int category){
+        Intent intent = new Intent(this, Categorie.class);
+        Bundle b = new Bundle();
+        b.putInt("key", category); //Your id
+        intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
+    }*/
 
     //Pop up for add category
     public void onButtonShowPopupWindowClick(View view) {

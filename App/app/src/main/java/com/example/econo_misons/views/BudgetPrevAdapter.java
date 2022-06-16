@@ -33,10 +33,8 @@ public class BudgetPrevAdapter extends RecyclerView.Adapter<BudgetPrevViewHolder
 
     @Override
     public BudgetPrevViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // CREATE VIEW HOLDER AND INFLATING ITS XML LAYOUT
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        //View view = inflater.inflate(R.layout.item_budget, parent, false);
 
         return new BudgetPrevViewHolder(ItemEnvelopeBinding.inflate(inflater,parent, false));
     }

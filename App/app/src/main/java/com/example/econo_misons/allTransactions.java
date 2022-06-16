@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +33,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Categorie extends AppCompatActivity implements TransactionAdapter.Listener {
+public class allTransactions extends AppCompatActivity implements TransactionAdapter.Listener{
 
-    TextView budgetName, catName;
+    TextView budgetName;
     RecyclerView recyclerView;
 
     private DBViewModel dbViewModel;
@@ -46,35 +44,19 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categorie);
+        setContentView(R.layout.activity_all_transactions);
 
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
 
         budgetName = findViewById(R.id.budget_name);
-        catName = findViewById(R.id.cat_name);
         recyclerView = findViewById(R.id.trans_list);
 
-        this.getCategory();
+        this.getData();
         this.configureRecyclerView();
 
         budgetName.setText("Budget : "+ CurrentData.getBudget().budgetName);
 
         this.makeBottomBar();
-    }
-
-    private void getCategory(){
-        Bundle b = getIntent().getExtras();
-        int value = -1; // or other values
-        if(b != null)
-            value = b.getInt("key");
-
-        this.dbViewModel.getCategoryByID(value).observe(this,this::categoryObserver);
-    }
-
-    public void categoryObserver(List<Category> categoryList){
-        adapter.category = categoryList.get(0);
-        catName.setText(adapter.category.categoryName);
-        this.getData();
     }
 
     // Configure RecyclerView, Adapter, LayoutManager & glue it together
@@ -97,7 +79,7 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
     }
 
     private void transactionObserver(List<Transaction> transactionList){
-        adapter.getSomeTransactions(transactionList);
+        adapter.getAllTransactions(transactionList);
     }
 
     private void makeBottomBar(){

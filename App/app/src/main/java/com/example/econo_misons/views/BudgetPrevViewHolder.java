@@ -23,8 +23,6 @@ public class BudgetPrevViewHolder extends RecyclerView.ViewHolder implements Vie
     }
 
     public void initializeItem(List<Category> categoryList, Envelope envelope, BudgetPrevAdapter.Listener callback){
-        Log.e("BPVH",Integer.toString(this.getIndexCategory(categoryList,envelope)));
-        Log.e("BPVH",Integer.toString(categoryList.size()));
         binding.envelopeName.setText(categoryList.get(this.getIndexCategory(categoryList,envelope)).categoryName);
         binding.valueEnvelope.setText(String.valueOf(envelope.sumEnv));
         binding.modifyEnvelope.setOnClickListener(this);
@@ -44,7 +42,6 @@ public class BudgetPrevViewHolder extends RecyclerView.ViewHolder implements Vie
 
     @Override
     public void onClick(View view) {
-        // 5 - When a click happens, we fire our listener.
         BudgetPrevAdapter.Listener callback = callbackWeakRef.get();
         if (callback != null){
             callback.onClickModifyButton(getAdapterPosition());

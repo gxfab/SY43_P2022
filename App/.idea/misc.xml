@@ -11,15 +11,18 @@
         <entry key="app/src/main/res/drawable/style.xml" value="0.185" />
         <entry key="app/src/main/res/layout/activity_ajout_categorie.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_ajout_depense.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_all_transactions.xml" value="0.17760416666666667" />
         <entry key="app/src/main/res/layout/activity_budget_prev.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_categorie.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_changer_budget.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/item_budget.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_envelope.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_transaction.xml" value="0.33" />
         <entry key="app/src/main/res/layout/popup_ajout_cat_prev.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/popup_make_budget.xml" value="0.2" />
         <entry key="app/src/main/res/layout/popup_modify_cat_prev.xml" value="0.1765625" />
+        <entry key="app/src/main/res/layout/popup_modify_trans.xml" value="0.1765625" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.35" />
       </map>
     </option>

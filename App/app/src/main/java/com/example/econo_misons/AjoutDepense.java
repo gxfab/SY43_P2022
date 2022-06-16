@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +20,6 @@ import com.example.econo_misons.database.DBViewModel;
 import com.example.econo_misons.database.ViewModelFactory;
 import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Transaction;
-import com.example.econo_misons.views.BudgetAdapter;
 import com.example.econo_misons.views.DepenseAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -183,12 +181,12 @@ public class AjoutDepense extends AppCompatActivity {
     private void setDate(int year, int monthOfYear, int dayOfMonth){
         String day,month;
         if (dayOfMonth < 10){
-            day = "0"+Integer.toString(dayOfMonth);
+            day = "0"+dayOfMonth;
         } else {
             day = Integer.toString(dayOfMonth);
         }
         if (monthOfYear+1 < 10){
-            month = "0"+Integer.toString(monthOfYear+1);
+            month = "0"+(monthOfYear+1);
         } else {
             month = Integer.toString(monthOfYear+1);
         }

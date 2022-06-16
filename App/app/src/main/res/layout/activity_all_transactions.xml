@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="CATEGORIE"
+            android:text="TRANSACTIONS"
             android:textColor="?attr/colorSecondary"
             android:textSize="30sp" />
 
@@ -46,14 +46,14 @@
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="400dp"
+        android:layout_height="450dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:contentDescription="Lists of all the budgets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cat_name">
+        app:layout_constraintTop_toBottomOf="@+id/budget_name">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/trans_list"
@@ -74,17 +74,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <TextView
-        android:id="@+id/cat_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/categorie_choisie"
-        android:textColor="?attr/colorSecondary"
-        android:textSize="34dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budget_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
