@@ -13,20 +13,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nomoola.R;
-import com.example.nomoola.database.entity.Category;
 import com.example.nomoola.database.entity.SubCategory;
 import com.example.nomoola.fragment.InOutComeFragment;
-import com.example.nomoola.fragment.SubcategoryFragment;
 import com.example.nomoola.fragment.dialog.EditSubCategoryDialog;
 import com.example.nomoola.viewModel.SubcategoryViewModel;
 
 public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView subcatName;
+    private TextView subcatName, subCatBudgetPercentUsedView, subCatBudgetAmountUsedView;
     private ImageButton editSubcatButton;
     private ProgressBar percentBudgetLeft;
     private CardView cardView;
@@ -45,6 +42,8 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
         this.subcatName = view.findViewById(R.id.item_subCat_name);
         this.editSubcatButton = view.findViewById(R.id.item_subCat_editSubCat);
         this.percentBudgetLeft = view.findViewById(R.id.item_subCat_progressBar);
+        this.subCatBudgetPercentUsedView = view.findViewById(R.id.item_subcategory_budgetUsedTextView);
+        this.subCatBudgetAmountUsedView = view.findViewById(R.id.item_subcategory_amountUsed);
         this.cardView = view.findViewById(R.id.item_subCat_cardView);
 
         this.editSubcatButton.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +58,9 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 FragmentTransaction trans = fragmentManager.beginTransaction();
-                trans.replace(R.id.fragment_container, new InOutComeFragment(subCategory));
-                trans.addToBackStack(null);
+                trans.replace(R.id.fragmentContainerView, new InOutComeFragment(subCategory));
+                trans.setReorderingAllowed(true);
+                //trans.addToBackStack(null);
                 trans.commit();
             }
         });
@@ -70,15 +70,25 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
         this.subCategory = subcategory;
         this.subcatName.setText(this.subCategory.getM_SUBCAT_NAME());
 
-        this.subcategoryViewModel.getPercentUsedOf(this.subCategory).observe((LifecycleOwner) view.getContext(), new Observer<Integer>() {
+        this.subcategoryViewModel.getPercentUsedBySubcategory(this.subCategory).observe((LifecycleOwner) view.getContext(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer percentUsed) {
                 if(percentUsed == null){
                     percentUsed = 0;
                 }
                 percentBudgetLeft.setProgress(percentUsed);
+                subCatBudgetPercentUsedView.setText(percentUsed + "%");
             }
         });
+
+        this.subcategoryViewModel.getAmountUsedBySubcategory(this.subCategory).observe((LifecycleOwner) view.getContext(), new Observer<Double>() {
+            @Override
+            public void onChanged(Double amountUsed) {
+                subCatBudgetAmountUsedView.setText(amountUsed + "€");
+            }
+        });
+
+
     }
 
     public static SubcategoryViewHolder create(ViewGroup parent, FragmentManager fragmentManager, SubcategoryViewModel subcategoryViewModel){

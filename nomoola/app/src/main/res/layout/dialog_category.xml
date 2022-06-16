@@ -17,7 +17,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/textViewCategoryTitle"
+            android:id="@+id/dialog_cat_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -27,7 +27,7 @@
             android:gravity="start"/>
 
         <ImageButton
-            android:id="@+id/exitButton"
+            android:id="@+id/dialog_cat_exitbutton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="0"
@@ -54,14 +54,14 @@
             android:textSize="12sp"/>
 
         <EditText
-            android:id="@+id/editTextCategoryName"
+            android:id="@+id/dialog_cat_editName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="6dp"
             android:autofillHints="name"
             android:background="@drawable/edit_text_background"
             android:inputType="textPersonName"
-            android:labelFor="@id/editTextCategoryName"
+            android:labelFor="@id/dialog_cat_editName"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="@string/nomoola_name"
@@ -78,7 +78,7 @@
             android:text="@string/category_budget_amount" />
 
         <EditText
-            android:id="@+id/editTextCatBudgetAmount"
+            android:id="@+id/dialog_cat_editAmount"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="6dp"
@@ -100,10 +100,11 @@
             android:textSize="12sp" />
 
         <Spinner
-            android:id="@+id/dialog_cat_spinner"
+            android:id="@+id/dialog_cat_spinnerType"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/nomoola_red"
+            android:background="@drawable/blue_button"
             android:minHeight="48dp"
             android:spinnerMode="dropdown" />
 
@@ -114,7 +115,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/deleteCategoryButton"
+            android:id="@+id/dialog_cat_delete"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/nomoola_red"
@@ -124,7 +125,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/confirmEditButton"
+            android:id="@+id/dialog_cat_confirmEdit"
             android:layout_width="120dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -16,7 +16,6 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.nomoola.R;
 import com.example.nomoola.database.entity.Category;
-import com.example.nomoola.fragment.CategoryFragment;
 import com.example.nomoola.fragment.SubcategoryFragment;
 import com.example.nomoola.fragment.dialog.EditCategoryDialog;
 import com.example.nomoola.viewModel.CategoryViewModel;
@@ -47,7 +46,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
         this.categoryCardView = view.findViewById(R.id.item_cat_cardView); //CardView of the category
         this.categoryBudgetLeftAmount = view.findViewById(R.id.budgetLeftAmount); //Text view which show the budge left of the category
         this.percent = view.findViewById(R.id.item_category_percentTextView); //Percent textView which show the percent of budget used
-        this.percentProgressBar = view.findViewById(R.id.item_category_progressBar); //ProgressBar which show the percent of budget used
+        this.percentProgressBar = view.findViewById(R.id.subcat_cat_progressBar); //ProgressBar which show the percent of budget used
 
         this.categoryEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +60,9 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 FragmentTransaction trans = fragmentManager.beginTransaction();
-                trans.replace(R.id.fragment_container, new SubcategoryFragment(category));
-                trans.addToBackStack(null);
+                trans.replace(R.id.fragmentContainerView, new SubcategoryFragment(category));
+                trans.setReorderingAllowed(true);
+                //trans.addToBackStack(null);
                 trans.commit();
             }
         });

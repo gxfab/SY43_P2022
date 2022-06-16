@@ -5,12 +5,12 @@
     android:viewportHeight="24"
     android:tint="#FFFFFF"
     android:alpha="0.8">
-  <group android:scaleX="2"
-      android:scaleY="2"
-      android:translateX="-12"
-      android:translateY="-12">
+  <group android:scaleX="1.7142857"
+      android:scaleY="1.7142857"
+      android:translateX="-8.571428"
+      android:translateY="-8.571428">
     <path
         android:fillColor="@android:color/white"
-        android:pathData="M15.41,7.41L14,6l-6,6 6,6 1.41,-1.41L10.83,12z"/>
+        android:pathData="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
   </group>
 </vector>

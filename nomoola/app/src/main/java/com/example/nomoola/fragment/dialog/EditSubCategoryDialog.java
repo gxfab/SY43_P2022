@@ -1,6 +1,7 @@
 package com.example.nomoola.fragment.dialog;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,8 @@ public class EditSubCategoryDialog extends DialogFragment {
 
         this.subCategoryName.setText(this.subCategory.getM_SUBCAT_NAME());
         this.editSubcatName.setText(this.subCategory.getM_SUBCAT_NAME());
+
+        this.editSubcatName.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 
         this.exitButton.setOnClickListener(new View.OnClickListener() {
             @Override

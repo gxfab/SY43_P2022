@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:minWidth="300dp"
-    android:minHeight="300dp"
+    android:minHeight="600dp"
     android:background="@color/nomoola_light_grey_dialog_background">
 
     <LinearLayout
@@ -17,17 +17,17 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/dialog_subcat_SubCategoryTitle"
+            android:id="@+id/dialog_come_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/nomoola_subcategory_newSubCat"
+            android:gravity="start"
+            android:text="@string/nomoola_inoutcome_newInOutCome"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:gravity="start"/>
+            android:textSize="20sp" />
 
         <ImageButton
-            android:id="@+id/dialog_subcat_exitButton"
+            android:id="@+id/dialog_come_exitbutton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="0"
@@ -46,7 +46,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/dialog_subcat_NameText"
+            android:id="@+id/textViewCategoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nomoola_name"
@@ -54,7 +54,7 @@
             android:textSize="12sp"/>
 
         <EditText
-            android:id="@+id/dialog_subcat_editTextSubCategoryName"
+            android:id="@+id/dialog_come_editName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="6dp"
@@ -66,8 +66,57 @@
             android:paddingEnd="10dp"
             android:text="@string/nomoola_name"
             android:textColor="@color/nomoola_grey_editText_preview"
-            tools:ignore="TextContrastCheck"
-            tools:inputType="textCapCharacters" />
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/textViewCategoryBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/nomoola_amount"
+            android:textColor="@color/nomoola_dark_title_dialog"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/dialog_come_editAmount"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:autofillHints="00.0€"
+            android:background="@drawable/edit_text_background"
+            android:inputType="numberDecimal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@string/budget_preview"
+            android:textColor="@color/nomoola_grey_editText_preview"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/nomoola_subcategory"
+            android:textColor="@color/nomoola_dark_title_dialog"
+            android:textSize="12sp" />
+
+        <Spinner
+            android:id="@+id/dialog_come_spinnerType"
+            android:background="@drawable/blue_button"
+            android:spinnerMode="dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginTop="6dp"/>
+
+        <DatePicker
+            android:id="@+id/dialog_come_datePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/blue_button"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner" />
 
     </LinearLayout>
 
@@ -76,7 +125,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/dialog_subcat_deleteSubCategoryButton"
+            android:id="@+id/dialog_come_delete"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/nomoola_red"
@@ -86,7 +135,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/dialog_subcat_confirmEditButton"
+            android:id="@+id/dialog_come_confirmEdit"
             android:layout_width="120dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"

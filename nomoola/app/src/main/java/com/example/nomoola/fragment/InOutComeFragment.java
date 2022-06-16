@@ -14,16 +14,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nomoola.R;
 import com.example.nomoola.adapter.InOutComeAdapter;
 import com.example.nomoola.database.entity.SubCategory;
+import com.example.nomoola.fragment.dialog.AddCategoryDialog;
+import com.example.nomoola.fragment.dialog.AddInOutComeDialog;
 import com.example.nomoola.viewModel.InOutComeViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class InOutComeFragment extends Fragment {
 
     private InOutComeViewModel mInOutViewModel;
     private InOutComeAdapter inOutComeAdapter;
     private SubCategory subCategory;
+    private FloatingActionButton addCome;
 
     private RecyclerView inOutComeRecyclerView;
-    //private TextView subCategory_titleName;
+
+    public InOutComeFragment(){
+        super();
+        this.subCategory = new SubCategory();
+    }
 
     public InOutComeFragment(SubCategory subCategory){
         super();
@@ -41,6 +49,14 @@ public class InOutComeFragment extends Fragment {
         this.inOutComeRecyclerView = view.findViewById(R.id.inOutCome_recyclerView);
         this.inOutComeRecyclerView.setAdapter(this.inOutComeAdapter);
 
+        this.addCome = view.findViewById(R.id.fragment_come_addInOutCome);
+        this.addCome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddInOutComeDialog dialog = new AddInOutComeDialog();
+                dialog.show(getParentFragmentManager(), "inOutCome_dialog");
+            }
+        });
 
         mInOutViewModel.getInOutComeOf(subCategory.getM_SUBCAT_ID()).observe(getViewLifecycleOwner(), subCategories -> {
             inOutComeAdapter.submitList(subCategories);

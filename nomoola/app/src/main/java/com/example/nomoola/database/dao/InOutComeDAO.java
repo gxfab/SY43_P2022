@@ -57,4 +57,9 @@ public interface InOutComeDAO {
             " ON T_INOUTCOME.CAT_ID = T_CATEGORY.CAT_ID " +
             "WHERE T_INOUTCOME.CAT_ID=:categoryID")
     LiveData<Integer> getPercentUsedOfCategory(int categoryID);
+
+    @Query("SELECT SUM(INOUTCOME_AMOUNT) " +
+            "FROM T_INOUTCOME " +
+            "WHERE SUBCAT_ID=:m_subcat_id")
+    LiveData<Double> getAmountUsedBySubcategory(int m_subcat_id);
 }

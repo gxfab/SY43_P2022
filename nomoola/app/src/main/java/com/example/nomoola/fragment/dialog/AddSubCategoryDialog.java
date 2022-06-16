@@ -1,6 +1,7 @@
 package com.example.nomoola.fragment.dialog;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,8 @@ public class AddSubCategoryDialog extends DialogFragment {
         this.confirmButton = view.findViewById(R.id.dialog_subcat_confirmEditButton);
         this.deleteButton = view.findViewById(R.id.dialog_subcat_deleteSubCategoryButton);
         this.deleteButton.setVisibility(View.INVISIBLE);
+
+        this.editSubcatName.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 
         this.exitbutton.setOnClickListener(new View.OnClickListener() {
             @Override

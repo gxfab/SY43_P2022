@@ -43,7 +43,23 @@ public class SubcategoryViewModel extends AndroidViewModel {
         mRepository.update(catID, subcatName, id);
     }
 
-    public LiveData<Integer> getPercentUsedOf(SubCategory subCategory){
+    public LiveData<Integer> getPercentUsedBySubcategory(SubCategory subCategory){
         return this.mRepository.getPercentUsedOf(subCategory.getM_SUBCAT_ID());
+    }
+
+    public LiveData<Integer> getPercentUsedOfCategory(Category category){
+        return this.mRepository.getPercentUsedOfCategory(category.getM_CAT_ID());
+    }
+
+    public LiveData<Double> getCategoryBudget(Category category){
+        return this.mRepository.getBudgetOf(category.getM_CAT_ID());
+    }
+
+    public LiveData<Double> getBudgetLeftOf(Category category) {
+        return this.mRepository.getBudgetLeftOf(category.getM_CAT_ID());
+    }
+
+    public LiveData<Double> getAmountUsedBySubcategory(SubCategory subCategory) {
+        return this.mRepository.getAmountUsedBySubcategory(subCategory.getM_SUBCAT_ID());
     }
 }

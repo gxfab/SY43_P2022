@@ -8,14 +8,39 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(tableName = "T_INOUTCOME")
 public class InOutCome {
 
+//    public enum InOutComeType{
+//        INCOME, OUTCOME;
+//
+//        @Override
+//        public String toString(){
+//            if(this == INCOME){
+//                return "INCOME";
+//            }else if(this == OUTCOME){
+//                return "OUTCOME";
+//            }else{
+//                return super.toString();
+//            }
+//        }
+//
+//        public static List<Category.CategoryType> getAllPossibilities(){
+//            ArrayList<Category.CategoryType> list = new ArrayList<>();
+//            list.add(Category.CategoryType.INCOME);
+//            list.add(Category.CategoryType.OUTCOME);
+//
+//            return list;
+//        }
+//    }
+
+
     /**
      * ATTRIBUTE
      */
-
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "INOUTCOME_ID")
@@ -39,6 +64,8 @@ public class InOutCome {
     @NonNull
     @ColumnInfo(name = "INOUTCOME_DATE")
     private LocalDate m_INOUTCOME_DATE;
+
+
 
     /**
      * Constructor
@@ -111,4 +138,5 @@ public class InOutCome {
     public void setM_INOUTCOME_DATE(@NonNull LocalDate m_INOUTCOME_DATE) {
         this.m_INOUTCOME_DATE = m_INOUTCOME_DATE;
     }
+
 }
