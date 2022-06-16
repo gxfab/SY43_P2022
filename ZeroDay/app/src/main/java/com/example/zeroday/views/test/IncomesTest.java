@@ -9,10 +9,12 @@ import java.util.List;
 //import com.aspose.cells.Workbook;
 import com.example.zeroday.R;
 import com.example.zeroday.dao.DbHelper;
+import com.example.zeroday.models.ExpenseCategory;
 import com.example.zeroday.models.IncomeCategory;
 import com.example.zeroday.repositories.IncomeCategoryRepository;
 import com.example.zeroday.seeders.ExpenseCategorySeeder;
 import com.example.zeroday.seeders.IncomeCategorySeeder;
+import com.example.zeroday.services.ExpenseCategoryService;
 import com.example.zeroday.services.IncomeCategoryService;
 
 public class IncomesTest extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class IncomesTest extends AppCompatActivity {
         IncomeCategoryService incomeCategoryService = new IncomeCategoryService(this);
         new IncomeCategorySeeder(this).run();
         new ExpenseCategorySeeder(this).run();
+        new ExpenseCategoryService(this).create(new ExpenseCategory(""));
         List<IncomeCategory> incomeCategoryList = incomeCategoryService.getAll();
 //        Workbook workbook = new Workbook();
 

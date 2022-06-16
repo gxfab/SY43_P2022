@@ -14,9 +14,9 @@ public class ExpenseCategorySeeder extends ZeroBaseSeeder<ExpenseCategoryService
 
     @Override
     public void seed() {
-        this.service.create(new ExpenseCategory("cat-exp-food","Food"));
+        this.service.create(new ExpenseCategory("cat-exp-foo","Food"));
         this.service.create(new ExpenseCategory("cat-exp-tran","Transport"));
-        this.service.create(new ExpenseCategory("cat-exp-enter","Entertainment"));
+        this.service.create(new ExpenseCategory("cat-exp-ent","Entertainment"));
         this.service.create(new ExpenseCategory("cat-exp-hea","Health"));
         this.service.create(new ExpenseCategory("cat-exp-hou","House"));
         this.service.create(new ExpenseCategory("cat-exp-com","Communication"));

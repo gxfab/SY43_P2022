@@ -15,9 +15,9 @@ public class IncomeCategorySeeder extends ZeroBaseSeeder<IncomeCategoryService>{
 
     @Override
     protected void seed() {
-        this.service.create(new IncomeCategory("cat-inc-salary","Salary"));
-        this.service.create(new IncomeCategory("cat-inc-bonus","Bonus"));
-        this.service.create(new IncomeCategory("cat-inc-gift","Gift"));
+        this.service.create(new IncomeCategory("cat-inc-sal","Salary"));
+        this.service.create(new IncomeCategory("cat-inc-bon","Bonus"));
+        this.service.create(new IncomeCategory("cat-inc-gif","Gift"));
         this.service.create(new IncomeCategory("cat-inc-loc","Location"));
     }
 }
