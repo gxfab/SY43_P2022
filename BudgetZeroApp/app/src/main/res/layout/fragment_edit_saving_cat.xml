@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragment.edit.EditSavingCatFragment" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textViewSaveName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/save_cat_name" />
+
+        <EditText
+            android:id="@+id/editTextSaveName"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_alignBottom="@+id/textViewSaveName"
+            android:layout_marginStart="170dp"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/textViewSaveGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveName"
+            android:layout_alignTop="@+id/textViewSaveName"
+            android:layout_marginTop="40dp"
+            android:text="@string/save_cat_goal" />
+
+        <EditText
+            android:id="@+id/editTextSaveGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/editTextSaveName"
+            android:layout_alignBottom="@+id/textViewSaveGoal"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal" />
+
+        <TextView
+            android:id="@+id/textViewSavePerc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveGoal"
+            android:layout_alignTop="@+id/textViewSaveGoal"
+            android:layout_marginTop="40dp"
+            android:text="@string/save_cat_perc" />
+
+        <EditText
+            android:id="@+id/editTextSavePerc"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/editTextSaveGoal"
+            android:layout_alignBottom="@+id/textViewSavePerc"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal" />
+
+        <TextView
+            android:id="@+id/textViewSavePrio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSavePerc"
+            android:layout_alignTop="@+id/textViewSavePerc"
+            android:layout_marginTop="40dp"
+            android:text="@string/save_cat_prio" />
+
+        <EditText
+            android:id="@+id/editTextSavePrio"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/editTextSavePerc"
+            android:layout_alignBottom="@+id/textViewSavePrio"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <ImageView
+            android:id="@+id/imageDummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/textViewSavePrio"
+            android:layout_marginBottom="-80dp" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignStart="@id/imageDummy"
+            android:layout_marginStart="25dp"
+            android:onClick="run"
+            android:text="@string/save"
+            tools:ignore="UsingOnClickInXml" />
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignEnd="@id/imageDummy"
+            android:layout_marginEnd="25dp"
+            android:onClick="run"
+            android:text="@string/cancel"
+            tools:ignore="UsingOnClickInXml" />
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

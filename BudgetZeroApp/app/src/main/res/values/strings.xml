@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Budget Zero App</string>
+    <string name="type_message">What do you want to add ?</string>
+    <string name="exp_type">Expense</string>
+    <string name="inc_type">Income</string>
+    <string name="debt_type">Debt</string>
+    <string name="sav_type">Savings</string>
+
+    <string name="exp_name">Expense:</string>
+    <string name="exp_date">Date:</string>
+    <string name="exp_amount">Amount:</string>
+    <string name="exp_stable">Is the expense stable ?</string>
+    <string name="exp_type_cat">Type</string>
+
+    <string name="exp_cat_name">Category name:</string>
+    <string name="exp_cat_budget">Budget:</string>
+    <string name="exp_cat_sub">Subcategory:</string>
+    <string name="exp_cat_parent">Parent category:</string>
+    <string-array name="exp_cat_parents">
+        <item>Cat1</item>
+        <item>Cat2</item>
+        <item>Cat3</item>
+        <item>Cat4</item>
+    </string-array>
+    <string name="exp_cat_click_sub">Subcategories:</string>
+    <string name="exp_cat_expenses">Expenses:</string>
+
+    <string name="inc_cat_name">Category name:</string>
+    <string name="inc_cat_list">Incomes list:</string>
+
+    <string name="debt_name">Debt name:</string>
+    <string name="debt_month">Months left:</string>
+    <string name="debt_amount">Total amount:</string>
+    <string name="debt_refunded">Refunded:</string>
+    <string name="debt_expenses">Expenses list:</string>
+
+    <string name="save_cat_name">Category name:</string>
+    <string name="save_cat_goal">Goal amount:</string>
+    <string name="save_cat_current">Current amount:</string>
+    <string name="save_cat_perc">Percentage allocated:</string>
+    <string name="save_cat_prio">Priority order:</string>
+    <string name="save_cat_list">Expenses list:</string>
+
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="toolbar_default">Home</string>
+    <string name="toolbar_default2">Home 2</string>
+    <string name="sort">Sort by :</string>
+    <string name="expenses">Expenses</string>
+    <string name="earnings">Earnings</string>
+    <string name="budget">Budget</string>
+    <string name="cash_flow">Cash Flow</string>
+    <string name="home">Home</string>
+    <string name="savings">Savings</string>
+</resources>

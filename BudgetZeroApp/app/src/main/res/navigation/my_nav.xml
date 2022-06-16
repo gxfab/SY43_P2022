@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.budgetzeroapp.fragment.HomeFragment"
+        android:label="Home" />
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="com.example.budgetzeroapp.fragment.BudgetFragment"
+        android:label="Budget"
+        tools:layout="@layout/fragment_budget" >
+        <action
+            android:id="@+id/navigate_to_addCategory"
+            app:destination="@id/addCategoryFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/cashFlowFragment"
+        android:name="com.example.budgetzeroapp.fragment.CashFlowFragment"
+        android:label="Cash Flow"
+        tools:layout="@layout/fragment_cash_flow" />
+    <fragment
+        android:id="@+id/savingsFragment"
+        android:name="com.example.budgetzeroapp.fragment.SavingsFragment"
+        android:label="Savings"
+        tools:layout="@layout/fragment_savings" />
+    <fragment
+        android:id="@+id/addCategoryFragment"
+        android:name="com.example.budgetzeroapp.fragment.AddCategoryFragment"
+        android:label="Add category"
+        tools:layout="@layout/fragment_add_category" >
+        <action
+            android:id="@+id/navigate_to_budget"
+            app:destination="@id/budgetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+</navigation>

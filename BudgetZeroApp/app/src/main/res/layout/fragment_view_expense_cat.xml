@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.view.ViewExpenseCatFragment" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textViewCatName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/exp_cat_name" />
+
+        <TextView
+            android:id="@+id/textViewCatNameEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewCatName"
+            android:layout_marginStart="140dp" />
+
+        <TextView
+            android:id="@+id/textViewCatBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatName"
+            android:layout_alignTop="@+id/textViewCatName"
+            android:layout_marginTop="40dp"
+            android:text="@string/exp_cat_budget" />
+
+        <TextView
+            android:id="@+id/textViewCatBudgetEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatNameEntry"
+            android:layout_alignBottom="@+id/textViewCatBudget" />
+
+        <TextView
+            android:id="@+id/textViewCatClickSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatBudget"
+            android:layout_alignBottom="@+id/textViewCatBudget"
+            android:layout_marginBottom="-40dp"
+            android:text="@string/exp_cat_click_sub" />
+
+        <ListView
+            android:id="@+id/listViewCatClickSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatBudgetEntry"
+            android:layout_alignTop="@+id/textViewCatClickSub"
+            android:orientation="vertical" >
+
+        </ListView>
+
+        <TextView
+            android:id="@+id/textViewCatExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatClickSub"
+            android:layout_alignTop="@+id/textViewCatClickSub"
+            android:layout_marginTop="40dp"
+            android:text="@string/exp_cat_expenses" />
+
+
+        <ListView
+            android:id="@+id/listViewCatExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/listViewCatClickSub"
+            android:layout_alignTop="@+id/textViewCatExpenses"
+            android:orientation="vertical" >
+
+
+        </ListView>
+
+
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

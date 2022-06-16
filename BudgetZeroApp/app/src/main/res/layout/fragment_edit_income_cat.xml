@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragment.edit.EditIncomeCatFragment" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="370dp">
+
+        <TextView
+            android:id="@+id/textViewIncName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/inc_cat_name" />
+
+        <EditText
+            android:id="@+id/editTextIncName"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_alignBottom="@+id/textViewIncName"
+            android:layout_marginStart="140dp"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/imageDummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/textViewIncName"
+            android:layout_marginBottom="-180dp" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignStart="@id/imageDummy"
+            android:layout_marginStart="25dp"
+            android:onClick="run"
+            android:text="@string/save"
+            tools:ignore="UsingOnClickInXml" />
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignEnd="@id/imageDummy"
+            android:layout_marginEnd="25dp"
+            android:onClick="run"
+            android:text="@string/cancel"
+            tools:ignore="UsingOnClickInXml" />
+
+    </RelativeLayout>
+</ScrollView>
