@@ -4,22 +4,23 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/category_circle"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/custom_category_icon_circle"
-        android:id="@+id/category_circle"
         android:scaleType="centerInside"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="true"
+        android:src="@drawable/custom_expense"/>
 
 
     <TextView
+        android:id="@+id/category_name"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="Bouton"
         android:textAlignment="center"
-        android:textColor="@color/zero_pink0"
+        android:textColor="@color/custom_expense_color"
         android:textSize="20dp"
-        android:id="@+id/category_name"/>
+        />
 
 </FrameLayout>

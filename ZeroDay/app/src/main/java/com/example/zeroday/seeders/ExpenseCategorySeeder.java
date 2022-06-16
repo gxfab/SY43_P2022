@@ -20,5 +20,6 @@ public class ExpenseCategorySeeder extends ZeroBaseSeeder<ExpenseCategoryService
         this.service.create(new ExpenseCategory("cat-exp-hea","Health"));
         this.service.create(new ExpenseCategory("cat-exp-hou","House"));
         this.service.create(new ExpenseCategory("cat-exp-com","Communication"));
+        this.service.create(new ExpenseCategory("cat-exp-ext","Extras"));
     }
 }

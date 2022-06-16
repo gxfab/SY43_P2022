@@ -50,12 +50,13 @@
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_start_total_incomes.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/black_spinner.xml" value="0.16304347826086957" />
-        <entry key="app/src/main/res/layout/category_expenses_incomes_adapter.xml" value="0.10223236083984376" />
+        <entry key="app/src/main/res/layout/category_expenses_incomes_adapter.xml" value="0.1682464599609375" />
         <entry key="app/src/main/res/layout/category_popup_template.xml" value="0.18372192382812502" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_category_expenses_incomes.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/fragment_category_your_budget.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/fragment_chart.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/fragment_grid.xml" value="0.30793724612913265" />
         <entry key="app/src/main/res/layout/fragment_income_expense_details.xml" value="0.2825836181640626" />
         <entry key="app/src/main/res/layout/fragment_model.xml" value="0.16304347826086957" />
         <entry key="app/src/main/res/layout/fragment_piggy.xml" value="0.16304347826086957" />
