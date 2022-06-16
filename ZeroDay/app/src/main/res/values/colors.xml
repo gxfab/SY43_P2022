@@ -25,6 +25,8 @@
     <color name="transports_color">#FF305EFF</color>
     <color name="food_color">#FF44CD00</color>
     <color name="house_color">#FFFA5700</color>
+    <color name="extras_color">#FFFF2F89</color>
+    <color name="communications_color">#FF2FE6FF</color>
     <color name="custom_expense_color">#FF6800FF</color>
 
     <!-- Incomes categories colors -->
