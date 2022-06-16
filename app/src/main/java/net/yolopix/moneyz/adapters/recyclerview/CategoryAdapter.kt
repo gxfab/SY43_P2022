@@ -72,8 +72,14 @@ class CategoryAdapter(
                 // is higher than the prevision
                 val totalExpensesForCategory =
                     db.expenseDao().getExpenseAmountForOneCategory(categoryList[position].uid)
-                if (categoryList[position].predictedAmount <= totalExpensesForCategory
-                ) {
+                if (categoryList[position].predictedAmount > totalExpensesForCategory) {
+                    viewHolder.categoryPriceTextView.text = parentContext.getString(
+                        R.string.money_no_overflow_format,
+                        String.format("%.2f", categoryList[position].predictedAmount),
+                        String.format("%.2f", totalExpensesForCategory)
+                    )
+                }
+                else {
                     viewHolder.categoryPriceTextView.text = parentContext.getString(
                         R.string.money_overflow_format,
                         String.format("%.2f", categoryList[position].predictedAmount),
@@ -83,10 +89,7 @@ class CategoryAdapter(
                         )
                     )
                     viewHolder.categoryPriceTextView.setTextColor(
-                        ContextCompat.getColor(
-                            parentContext,
-                            R.color.red
-                        )
+                        ContextCompat.getColor(parentContext, R.color.red)
                     )
                 }
             }

@@ -9,7 +9,7 @@ interface ExpenseDao {
     suspend fun getExpenseForCategory(categoryUid: Int): List<Expense>
 
     @Query("SELECT COALESCE(SUM(COALESCE(amount,0)), 0) FROM Expense WHERE categoryUid == :categoryUid ")
-    suspend fun getExpenseAmountForOneCategory(categoryUid: Int) : Int
+    suspend fun getExpenseAmountForOneCategory(categoryUid: Int) : Float
 
     @Update
     suspend fun updateExpense(expense: Expense)
