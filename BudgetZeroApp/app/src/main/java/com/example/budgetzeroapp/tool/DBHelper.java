@@ -132,12 +132,12 @@ public class DBHelper extends SQLiteOpenHelper {
         );
         //Example expense categories
         db.execSQL(
-                "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+","+EXP_CAT_COL_IS_SUB+")"+
-                        " values ('Shopping',-400,0,null),('Vehicle',-800,0,null),('Leisure',-150,0,null),('Health',-300,0,null),('Bills',-700,0,null),('Miscellaneous',-100,0,null);"
+                "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+")"+
+                        " values ('Shopping',-400),('Vehicle',-800),('Leisure',-150),('Health',-300),('Miscellaneous',-100),('Bills',-700);"
         );
         //Example expense subcategories
         db.execSQL(
-                "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+","+EXP_CAT_COL_IS_SUB+")"+
+                "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+","+EXP_CAT_COL_IS_SUB+", "+EXP_CAT_COL_ID_PARENT+")"+
                         " values ('Food',-200,1,1),('Other',-200,1,1),('Sport',-50,1,3),('Party',-40,1,3),('Other',-60,1,3);"
         );
         //Example income category
@@ -324,6 +324,12 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(SAV_CAT_TABLE_NAME, contVal, "id = ? ", new String[]{Integer.toString(id)});
     }
+    public void updateExpenseCatBudget(int id, float amount) {
+        ContentValues contVal = new ContentValues();
+        contVal.put(EXP_CAT_COL_BUDGET, amount);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(EXP_CAT_TABLE_NAME, contVal, "id = ? ", new String[]{Integer.toString(id)});
+    }
 
     public boolean decrementDebtMonthLeft(int idCat) {
         Cursor c = getData("select " + DEBT_COL_MONTH_LEFT +
@@ -419,12 +425,21 @@ public class DBHelper extends SQLiteOpenHelper {
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
     }
 
+
     public float getSumCatExp(int idCat) {
         Cursor res = getData("select sum(" + EXP_COL_AMOUNT + ") as " + REQ_SUM +
                 " from " + EXP_TABLE_NAME +
-                " where " + EXP_COL_TYPE + "=" + TYPE_EXP +
-                " and " + EXP_CAT_COL_ID + "=" + idCat);
-        //TODO Add sum of sub categories
+                " where " + EXP_COL_TYPE + "=" + TYPE_EXP + " and " +
+                "(" +
+                    EXP_COL_ID_EXP + "=" + idCat+
+                    " or "+EXP_COL_ID_EXP+ " in " +
+                        "(select "+EXP_CAT_COL_ID+" from "+EXP_CAT_TABLE_NAME+
+                        " where "+EXP_CAT_COL_IS_SUB+" = 1 and "+
+                        EXP_CAT_COL_ID_PARENT+" = "+idCat+
+                        ")"+
+                ")"
+                );
+
         res.moveToFirst();
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
     }
@@ -522,6 +537,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return getData("select * from " + SAV_CAT_TABLE_NAME);
     }
 
+    public Cursor getAllExpenseCat() {
+        return getData("select * from " + EXP_CAT_TABLE_NAME);
+    }
+
     public Cursor getAllDebts() {
         return getData("select * from " + DEBT_TABLE_NAME);
     }
@@ -570,6 +589,25 @@ public class DBHelper extends SQLiteOpenHelper {
                 " where " + EXP_COL_DAY + " <= " + day +
                 " and " + EXP_COL_MONTH + " = " + month +
                 " and " + EXP_COL_YEAR + " = " + year);
+    }
+
+    public float getSumExpCatMonth(int idCat, int month){
+        Cursor res = getData("select sum(" + EXP_COL_AMOUNT + ") as " + REQ_SUM +
+                " from " + EXP_TABLE_NAME +
+                " where " + EXP_COL_TYPE + "=" + TYPE_EXP + " and " +
+                EXP_COL_MONTH+" = " + month + " and "+
+                "(" +
+                    EXP_COL_ID_EXP + "=" + idCat+
+                    " or "+EXP_COL_ID_EXP+ " in " +
+                    "(select "+EXP_CAT_COL_ID+" from "+EXP_CAT_TABLE_NAME+
+                        " where "+EXP_CAT_COL_IS_SUB+" = 1 and "+
+                        EXP_CAT_COL_ID_PARENT+" = "+idCat+
+                    ")"+
+                ")"
+        );
+
+        res.moveToFirst();
+        return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
     }
 
     public int numberOfRows() {
