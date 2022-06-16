@@ -187,11 +187,21 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
+    /**
+     * Load activity permitting to add a transaction
+     *
+     * @param view
+     */
     fun loadAddActivity(view: View){
         val intent= Intent(this, AddActivity::class.java)
         startActivity(intent)
     }
 
+    /**
+     * Load activity permitting to manage your monthly budget
+     *
+     * @param view
+     */
     fun loadBudgetActivity(view: View?){
         val intent= Intent(this, BudgetActivity::class.java)
         startActivity(intent)

@@ -18,13 +18,22 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.xml.datatype.DatatypeConstants.MONTHS
 
-
+/**
+ * Activity permitting to add an operation : spent or income
+ *
+ * @constructor Create Add activity
+ */
 class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
     }
 
+    /**
+     * Process to add a transaction. It redirect the user to the Main Activity after adding.
+     *
+     * @param view
+     */
     fun addTransaction(view: View){
         val editName=findViewById<EditText>(R.id.editNameItem).text.toString()
         val editValue=findViewById<EditText>(R.id.editValue).text.toString().toFloat()
@@ -51,6 +60,11 @@ class AddActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Permite to select a date on a calendar picker and wright this date on a Text Edit
+     *
+     * @param view
+     */
     fun selectDate(view: View){
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)

@@ -19,14 +19,26 @@ import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+/**
+ * Activity to manage the month previsional budget.
+ *
+ * @constructor Create empty Budget activity
+ */
 class BudgetActivity : AppCompatActivity() {
 
+    /**
+     * Start month timestamp
+     */
     private val startMonthTimestamp: Int
         get() = ((SimpleDateFormat("dd-MM-yyyy").parse(
             "01-" + LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("MM-yyyy")
             )
         )).time / 1000).toInt()
+
+    /**
+     * Start last month timestamp
+     */
     private val startLastMonthTimestamp: Int
         get() = ((SimpleDateFormat("dd-MM-yyyy").parse(
             "01-" + LocalDateTime.now().minusMonths(1).format(
@@ -35,6 +47,11 @@ class BudgetActivity : AppCompatActivity() {
         )).time / 1000).toInt()
 
 
+    /**
+     * Create all the activity settings right values to help user to make his budget. It lso add event listener to update budget information when user change datas.
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_budget)
@@ -121,6 +138,11 @@ class BudgetActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Permite to update the remaining budget depending of previsional incomes and spend
+     *
+     * @param view
+     */
     fun updateRemaining(view:View?){
 
         //Count of estimated spend global value
@@ -165,6 +187,11 @@ class BudgetActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * Set the budget as official budget in the database and redirect user to the Main Activity
+     *
+     * @param view
+     */
     fun setBudget(view: View?) {
         val applicationScope = CoroutineScope(SupervisorJob())
         applicationScope.launch {
