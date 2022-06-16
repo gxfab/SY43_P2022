@@ -60,7 +60,15 @@ public class BudgetPrevAdapter extends RecyclerView.Adapter<BudgetPrevViewHolder
         this.envelopes = envelopes;
         this.notifyDataSetChanged();
     }
-    public Envelope getEnvelope(int position){
-        return this.envelopes.get(position);
+
+    public int getIndexCategory(List<Category> categoryList, Envelope envelope){
+        int index = 0;
+        for (Category cat : categoryList) {
+            if (cat.id == envelope.categoryID){
+                break;
+            }
+            index++;
+        }
+        return index;
     }
 }

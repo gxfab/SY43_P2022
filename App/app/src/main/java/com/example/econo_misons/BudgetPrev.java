@@ -1,19 +1,14 @@
 package com.example.econo_misons;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -36,6 +31,8 @@ import com.example.econo_misons.database.models.Category;
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.views.BudgetPrevAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,9 +64,9 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         valider.setOnClickListener(v -> finish());
         ajoutCat.setOnClickListener(this::onButtonShowPopupWindowClick);
 
-        this.configureRecyclerView();
         this.getCurrentPrevBudgets();
 
+        this.configureRecyclerView();
         this.makeBottomBar();
     }
 
@@ -126,6 +123,37 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         ajoutCat.setOnClickListener(v -> changeActivity());
     }
 
+    //Pop up for modify category
+    public void onButtonShowPopupWindowClickModify(View view, Envelope envelope) {
+
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_modify_cat_prev, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window token
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // make buttons work
+        Button valider = popupView.findViewById(R.id.valider);
+        Button annuler = popupView.findViewById(R.id.annuler);
+        TextView categorie = popupView.findViewById(R.id.categorie);
+        EditText montant = popupView.findViewById(R.id.montant);
+
+        categorie.setText(adapter.categoryList.get(adapter.getIndexCategory(adapter.categoryList,envelope)).categoryName);
+        montant.setText(Float.toString(envelope.sumEnv));
+
+        valider.setOnClickListener(v -> modifyEnvelope(popupWindow, montant.getText().toString(), envelope));
+
+        annuler.setOnClickListener(v -> popupWindow.dismiss());
+    }
+
     private void changeActivity() {
         Intent intent = new Intent(this, AjoutCategorie.class);
         startActivity(intent);
@@ -138,24 +166,21 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         // Set selected
         bottomNavigationView.setSelectedItemId(R.id.BudgetPrev);
         // Perform item selected listener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 
-                switch (item.getItemId()) {
-                    case R.id.MainMenu:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.ChangeBudget:
-                        startActivity(new Intent(getApplicationContext(), ChangerBudget.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.BudgetPrev:
-                        return true;
-                }
-                return false;
+            switch (item.getItemId()) {
+                case R.id.MainMenu:
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.ChangeBudget:
+                    startActivity(new Intent(getApplicationContext(), ChangerBudget.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.BudgetPrev:
+                    return true;
             }
+            return false;
         });
     }
 
@@ -163,6 +188,8 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
 
     @Override
     public void onClickModifyButton(int position) {
+        Log.e("BP","Clicked on "+position);
+        this.onButtonShowPopupWindowClickModify(findViewById(R.id.content).getRootView(), adapter.envelopes.get(position));
     }
 
     // Configure RecyclerView, Adapter, LayoutManager & glue it together
@@ -209,9 +236,8 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        this.getCurrentPrevBudgets();
-        super.onActivityResult(requestCode, resultCode, data);
+    private void modifyEnvelope(PopupWindow popupWindow, @NonNull String value, Envelope envelope) {
+        dbViewModel.updateEnvelope(new Envelope(envelope.budgetID, envelope.dateEnv, envelope.categoryID, Float.parseFloat(value)));
+        popupWindow.dismiss();
     }
 }

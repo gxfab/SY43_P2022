@@ -23,8 +23,10 @@ public class BudgetPrevViewHolder extends RecyclerView.ViewHolder implements Vie
     }
 
     public void initializeItem(List<Category> categoryList, Envelope envelope, BudgetPrevAdapter.Listener callback){
+        Log.e("BPVH",Integer.toString(this.getIndexCategory(categoryList,envelope)));
         binding.envelopeName.setText(categoryList.get(this.getIndexCategory(categoryList,envelope)).categoryName);
         binding.valueEnvelope.setText(String.valueOf(envelope.sumEnv));
+        binding.modifyEnvelope.setOnClickListener(this);
         this.callbackWeakRef = new WeakReference<BudgetPrevAdapter.Listener>(callback);
     }
 

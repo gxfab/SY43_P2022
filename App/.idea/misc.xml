@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/item_envelope.xml" value="0.33" />
         <entry key="app/src/main/res/layout/popup_ajout_cat_prev.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/popup_make_budget.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/popup_modify_cat_prev.xml" value="0.1765625" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.35" />
       </map>
     </option>
