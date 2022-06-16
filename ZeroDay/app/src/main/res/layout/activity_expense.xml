@@ -112,7 +112,8 @@
         android:layout_marginLeft="@dimen/default_left_margin"
         android:layout_marginRight="@dimen/default_left_margin"
 
-        android:backgroundTint="@color/zero_purple"
+        android:background="@drawable/custom_cycle_setting_continue_button"
+        app:backgroundTint="@null"
 
         android:text="Save"
         android:textColor="@color/white"

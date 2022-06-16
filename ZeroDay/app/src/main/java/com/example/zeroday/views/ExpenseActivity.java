@@ -1,5 +1,7 @@
 package com.example.zeroday.views;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +28,7 @@ public class ExpenseActivity extends AppCompatActivity {
         TextView subTitle = findViewById(R.id.expenses_subtitle);
 
         Button add = findViewById(R.id.add_category_button);
-
+        Button save = findViewById(R.id.save_button);
 
         //Cas "income"
         if(inputType == false){
@@ -39,6 +41,27 @@ public class ExpenseActivity extends AppCompatActivity {
                     categoryPopup.build();
                 }
             });
+            //Cas premier démarrage application
+            if(outputType==true){
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ExpenseActivity.this,CycleSettingActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+            //Cas régulier
+            else
+            {
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                    }
+                });
+            }
+
         }
         //Cas "expense"
         else
@@ -66,6 +89,30 @@ public class ExpenseActivity extends AppCompatActivity {
                     categoryPopup.build();
                 }
             });
+
+            //Cas premier démarrage application
+            if(outputType==true){
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ExpenseActivity.this,MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+            }
+            //Cas régulier
+            else
+            {
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        //On sauvegarde les modifications
+                        finish();
+                    }
+                });
+            }
         }
 
 

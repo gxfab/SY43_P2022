@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.CycleSettingActivity">
+    tools:context=".views.CycleSettingActivity"
+    android:background="@color/white">
     
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="Set Your Cycle"
-        android:textStyle="bold"
-        android:textSize="30dp"
+        style="@style/TitleDefaultStyle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="@dimen/default_top_margin"
+        android:layout_marginLeft="@dimen/default_left_margin"
         android:id="@+id/cycle_setting_title" />
 
     <TextView
@@ -24,14 +24,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/cycle_setting_title"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
+        android:layout_marginLeft="@dimen/default_left_margin"
+        style="@style/SubtitleDefaultStyle"
         android:text="Choose the type of cycle and when it begins"
         android:id="@+id/cycle_setting_sub_title"/>
 
     <Spinner
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         app:layout_constraintTop_toBottomOf="@id/cycle_setting_sub_title"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -39,10 +38,14 @@
         android:background="@drawable/custom_cycle_setting_cycle_shape"
         android:layout_marginTop="40dp"
         android:spinnerMode="dropdown"
-        android:id="@+id/cycle_setting_cycle"/>
+        android:id="@+id/cycle_setting_cycle"
+
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:layout_marginRight="@dimen/default_left_margin"
+        />
 
     <EditText
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         app:layout_constraintTop_toBottomOf="@id/cycle_setting_cycle"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -56,19 +59,27 @@
         android:focusableInTouchMode="false"
         android:hint="Choose the biginning date"
         android:paddingLeft="10dp"
-        android:id="@+id/cycle_setting_start_date" />
+        android:id="@+id/cycle_setting_start_date"
+
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:layout_marginRight="@dimen/default_left_margin"/>
 
     <Button
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cycle_setting_start_date"
         android:layout_marginTop="40dp"
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:layout_marginRight="@dimen/default_left_margin"
+        android:textColor="@color/white"
         android:text="Continue"
         android:textSize="15dp"
         android:background="@drawable/custom_cycle_setting_continue_button"
         android:id="@+id/cycle_setting_continue_button"
-        app:backgroundTint="@null"/>
+        app:backgroundTint="@null"
+        android:textAllCaps="false"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
