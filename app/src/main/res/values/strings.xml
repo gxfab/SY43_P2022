@@ -56,10 +56,16 @@
     <string name="edit">Modifier</string>
     <string name="title_expense_edit">Modifier la dépense</string>
     <string-array name="default_categories">
+        <item>🚰Eau</item>
+        <item>⚡Electricité</item>
+        <item>🏠Loyer</item>
+        <item>📜Assurances</item>
         <item>🍕Nourriture</item>
         <item>🍺Loisirs</item>
-        <item>🏠Loyer</item>
         <item>🎾Sport</item>
+        <item>🏖️Vacances</item>
+        <item>🏦Emprunts</item>
+        <item>🎂Anniversaires surprise</item>
     </string-array>
     <string name="info_deleted_category">La catégorie a bien été supprimée</string>
     <string name="info_deleted_account">Le compte a bien été supprimé</string>
