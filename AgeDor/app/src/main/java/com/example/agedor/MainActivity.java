@@ -33,46 +33,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void consulterMesDepenses(View view){
         Intent intent = new Intent(this, ConsulterDepensesActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
     public void nouvelleDepense(View view){
         Intent intent = new Intent(this, NouvelleDepenseActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
     public void editerLeBudget(View view){
         Intent intent = new Intent(this, EditerBudgetActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
     public void parametres(View view){
 
         Toast.makeText(this,"Implémentation à venir!",Toast.LENGTH_LONG).show();
-        /*
-
-        DBHandler db = new DBHandler(getApplicationContext());
-
-        ArrayList<StorageDepenses> tab = db.getDepenses();
-
-        for(int i = 0; i <=tab.size();i++) {
-            System.out.println(tab.get(i).id_cat);
-
-        }
-
-        */
-
-        //Intent intent = new Intent(this, SettingsActivity.class);
-        //startActivity(intent);
     }
-
-
-
-
-
-
-
 }

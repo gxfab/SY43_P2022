@@ -2,9 +2,9 @@
     <string name="app_name">AgeDor</string>
     <string name="consulterMesDepenses">Consulter mes dépenses</string>
     <string name="nouvelleDepense">Nouvelle dépense</string>
-    <string name="editerLeBudget">Planifier mon budget</string>
+    <string name="editerLeBudget">Editer le budget prévisionnel</string>
     <string name="parametres">Paramètres</string>
-    <string name="bienvenue">AgeDor</string>
+    <string name="bienvenue">Bienvenue, Jesse</string>
 
     <string name="bvn_editer_budget">Editer les budgets</string>
     <string name="dettes">Dettes</string>
