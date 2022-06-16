@@ -13,7 +13,11 @@
         android:id="@+id/nav_expenses"
         android:name="com.example.fluz.ui.fragments.Expenses"
         android:label="fragment_expenses"
-        tools:layout="@layout/fragment_expenses" />
+        tools:layout="@layout/fragment_expenses" >
+        <action
+            android:id="@+id/action_nav_expenses_to_budgetItemTransactions"
+            app:destination="@id/budgetItemTransactions" />
+    </fragment>
     <fragment
         android:id="@+id/nav_spendingHistory"
         android:name="com.example.fluz.ui.fragments.SpendingHistory"
@@ -29,4 +33,16 @@
         android:name="com.example.fluz.ui.fragments.Transaction"
         android:label="fragment_transaction"
         tools:layout="@layout/fragment_transaction" />
+    <fragment
+        android:id="@+id/budgetItemTransactions"
+        android:name="com.example.fluz.ui.fragments.BudgetItemTransactions"
+        android:label="fragment_budget_item_transactions"
+        tools:layout="@layout/fragment_budget_item_transactions" >
+        <argument
+            android:name="budgetItemId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_budgetItemTransactions_to_nav_expenses"
+            app:destination="@id/nav_expenses" />
+    </fragment>
 </navigation>

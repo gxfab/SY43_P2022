@@ -11,6 +11,9 @@ interface BudgetDao {
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(budget: Budget)
 
+    @Query("SELECT * FROM Budget where id = :budgetId")
+    fun getOne(budgetId: Int): Flow<Budget>
+
     @Transaction
     @Query("SELECT * FROM Budget where id = :budgetId")
     fun getWithBudgetItems(budgetId: Int): Flow<BudgetWithBudgetItems>

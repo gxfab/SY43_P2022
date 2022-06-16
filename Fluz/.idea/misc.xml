@@ -3,40 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/drawable-v24/ic_accounts.xml" value="0.2555" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/drawable/edit_text_expenses.xml" value="0.252" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/drawable/edit_text_revenue.xml" value="0.252" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/drawable/edit_text_style.xml" value="0.2265" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/drawable/edit_text_style_no_transparent.xml" value="0.252" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/attrs.xml" value="0.10989583333333333" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/content_create_budget.xml" value="0.25" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/content_home_main.xml" value="0.1" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/content_main.xml" value="0.2033514492753623" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/create_budget_item.xml" value="0.25" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/demo.xml" value="0.10989583333333333" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_expenses.xml" value="0.22282608695652173" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_first.xml" value="0.23711340206185566" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_fixed_income.xml" value="0.25" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_parameters.xml" value="0.22282608695652173" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_spending_history.xml" value="0.22282608695652173" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_transaction.xml" value="0.2" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/fragment_user_info.xml" value="0.25" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/home.xml" value="0.176" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/login.xml" value="0.264" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/login_or_register.xml" value="0.264" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/main.xml" value="0.1380952380952381" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/layout/register.xml" value="0.25" />
         <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/menu/menu_main.xml" value="0.25" />
-        <entry key="..\:/Projets/SY43_P2022/Fluz/app/src/main/res/menu/menu_nav.xml" value="0.25" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/drawable/edit_text_style.xml" value="0.2708333333333333" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/drawable/regular_spinner_style.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/drawable/rounded_layout.xml" value="0.37604166666666666" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/drawable/spinner_style.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/activity_create_budget.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/activity_home.xml" value="0.28229166666666666" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/activity_main.xml" value="0.2546875" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/activity_user_info.xml" value="0.35435897435897434" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/budget_item.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/content_create_budget.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/content_home_main.xml" value="0.28229166666666666" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/content_main.xml" value="0.2546875" />
@@ -44,15 +31,21 @@
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/demo.xml" value="0.2546875" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/down_bar.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_blank.xml" value="0.35989583333333336" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_budget.xml" value="0.35989583333333336" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_budget_item_transactions.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_create_budget_item.xml" value="0.5" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_expenses.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_fixed_expenses.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_fixed_income.xml" value="0.1" />
-        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_home.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_fixed_income.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_home.xml" value="0.3506224066390041" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_transaction.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_user_info.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/fragment_variable_expenses.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/home.xml" value="0.2546875" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/login.xml" value="0.5" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/login_or_register.xml" value="0.2546875" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/register.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/layout/variable_expense_item.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/Alexis/Desktop/Fluz - Branche Perso/SY43_P2022/Fluz/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2171875" />
       </map>
     </option>
@@ -62,5 +55,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.35989583333333336" />
+      </ProjectState>
+    </option>
   </component>
 </project>

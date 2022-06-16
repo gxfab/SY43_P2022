@@ -14,6 +14,9 @@ class BudgetRepository(private val budgetDao: BudgetDao) {
     fun oneWithTransactions(budgetId: Int): Flow<BudgetWithTransactions> =
         budgetDao.getWithTransactions(budgetId)
 
+    fun one(budgetId: Int): Flow<Budget> =
+        budgetDao.getOne(budgetId)
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(budget: Budget) {
