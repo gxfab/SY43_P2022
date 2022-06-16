@@ -81,6 +81,4 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         return categoriesList.size();
     }
 
-
-
 }

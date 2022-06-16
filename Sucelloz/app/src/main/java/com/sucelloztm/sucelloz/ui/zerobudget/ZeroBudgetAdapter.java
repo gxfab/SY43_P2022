@@ -1,4 +1,18 @@
 package com.sucelloztm.sucelloz.ui.zerobudget;
 
-public class ZeroBudgetAdapter {
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+
+import com.sucelloztm.sucelloz.R;
+import com.sucelloztm.sucelloz.models.Categories;
+
+import java.util.List;
+
+public abstract class ZeroBudgetAdapter extends BaseAdapter {
+
+    private List<Categories> zeroBudgetCategoriesList;
+
 }
+
+
+

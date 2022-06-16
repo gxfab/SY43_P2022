@@ -19,10 +19,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/zero_budget_list_view" />
+        app:layout_constraintTop_toBottomOf="@+id/zero_budget_recycler_view" />
 
-    <ListView
-        android:id="@+id/zero_budget_list_view"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/zero_budget_recycler_view"
         android:layout_width="409dp"
         android:layout_height="486dp"
         android:layout_marginStart="1dp"
