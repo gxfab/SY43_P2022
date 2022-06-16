@@ -115,7 +115,7 @@ public class ChartFragment extends Fragment {
         RadarDataSet currentDataSet = new RadarDataSet(currentDataVals, "Current expenses");
 
         //Création du second dataset à partir des entrées ( dépenses dernier cycle )
-        RadarDataSet lastDataSet = new RadarDataSet(lastDataVals, "Last cycle expenses");
+        RadarDataSet lastDataSet = new RadarDataSet(lastDataVals, "Provisional budget");
 
         //Ajout des couleurs
         currentDataSet.setFillColor(ContextCompat.getColor(getContext(), R.color.zero_purple));
