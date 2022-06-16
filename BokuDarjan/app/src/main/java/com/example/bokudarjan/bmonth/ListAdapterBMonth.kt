@@ -52,7 +52,7 @@ class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() 
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = monthList[position]
+        var currentItem = monthList[position]
         holder.itemView.txtMonth.text = "Mois n°" + currentItem.id.toString()
 
         val month = holder.itemView.context.getSharedPreferences("pref",Context.MODE_PRIVATE).getInt("month", -1)
@@ -69,20 +69,25 @@ class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() 
             if(it !=null)
             {
                 sumAmount += it
-                Log.d("ListAdapterBMonth","sumAmount envelope : "+sumAmount)
+
+
+                Log.d("ListAdapterBMonth","sumAmount envelope : "+sumAmount + " for month " + currentItem.id)
             }
 
             expenseViewModel.getSumOfNegativeExpenses(currentItem.id).observeForever {
                 if(it !=null)
                 {
                     sumAmount -= it
-                    holder.itemView.monthSumValue.text = sumAmount.toString() + "€"
-                    Log.d("ListAdapterBMonth","sumAmount expense: "+sumAmount)
+
+                    Log.d("ListAdapterBMonth","sumAmount expense: "+sumAmount + " for month " + currentItem.id)
                 }
 
             }
 
         }
+
+
+        Log.d("ListAdapterBMonth","Current month : "+ currentItem.id)
 
 
         holder.itemView.imageView4.setOnClickListener {
