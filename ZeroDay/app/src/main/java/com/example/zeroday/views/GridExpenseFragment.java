@@ -13,15 +13,14 @@ import com.example.zeroday.R;
 import com.example.zeroday.models.ExpenseCategory;
 import com.example.zeroday.services.ExpenseCategoryService;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class GridFragment extends Fragment {
+public class GridExpenseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_grid, container, false);
+        View view = inflater.inflate(R.layout.fragment_expense_grid, container, false);
 
         ExpenseCategoryService service = new ExpenseCategoryService(getActivity());
         List<ExpenseCategory> categoriesList = service.getAll();
