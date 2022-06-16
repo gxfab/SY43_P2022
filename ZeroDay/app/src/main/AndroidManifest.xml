@@ -9,20 +9,70 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ZeroDay">
+
+        <!--Activité de départ -->
         <activity
             android:name=".views.test.IncomesTest"
             android:exported="true">
+          
+        <activity
+            android:name=".views.StartActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".views.MainActivity"
             android:exported="true">
 
         </activity>
+
+
+        <!-- Activité de validation du prénom -->
+        <activity
+            android:name=".views.NameValidationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+        <!-- Activité d'ajout de dépenses ou de revenus -->
+        <activity
+            android:name=".views.ExpenseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <!-- Activité de définition du cycle -->
+        <activity
+            android:name=".views.CycleSettingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+
+        <!-- Activité d'affichage du revenu de départ -->
+        <activity
+            android:name=".views.StartTotalIncomesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+
+        <!-- Activité principale avec barre de navigation -->
+        <activity
+            android:name=".views.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
+
+        <!-- Activité d'affichage et d'ajout des items d'une catégorie -->
+        <activity
+            android:name=".views.CategoryActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>
