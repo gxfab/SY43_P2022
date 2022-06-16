@@ -5,3 +5,5 @@ Cook'UT
 
 - Mise en place du background + Ajout de 2 boutons dont un fonctionnel (renvoyant à une nouvelle activité de saisie) (Guillaume)
 - Ajout des boutons avec leurs utilités, ajout d'un bouton Home pour l'acitivité "saisie", ajout d'une barre de saisie (Christian et Sulyvan)
+- Ajout du logo de l'application, réarrangement de l'interface et mise en place d'une liste déroulante (Sulyvan)
+- Mise en place de la base de donnée (Christian)

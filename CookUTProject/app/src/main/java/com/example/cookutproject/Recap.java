@@ -1,4 +1,4 @@
-package com.example.cookutproject.models;
+package com.example.cookutproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.cookutproject.MainActivity;
 import com.example.cookutproject.R;
+import com.example.cookutproject.models.Master;
 
 
 public class Recap extends AppCompatActivity {
