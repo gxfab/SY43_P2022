@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.lafo_cheuse.R
+import com.example.lafo_cheuse.material.DatabaseDate
 import com.example.lafo_cheuse.models.*
 import com.example.lafo_cheuse.viewmodels.CategoryViewModel
 import com.example.lafo_cheuse.viewmodels.ExpenseViewModel
@@ -21,6 +23,7 @@ import com.example.lafo_cheuse.viewmodels.OptionViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 /**
  * Fragment where the options and references are displayed.
@@ -159,7 +162,27 @@ class SettingsFragment : Fragment() {
 
         incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_MONTH,"Parents",grantCategory,150.0))
         incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_MONTH,"Crous",grantCategory,150.0))
-        incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_DAY,"Mamie",grantCategory,20.0,2022,6,6))
+        expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_MONTH,"Courses", shoppingCategory, -100.0))
+        expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_MONTH, "Essence", vehicleCategory, -60.0))
+
+        /**
+         * Small function to convert a calendar date to DatabaseDate object
+         *
+         * @param calendar - a Calendar object from java.utils which one wants to convert
+         * @return a DatabaseDate object with all the [calendar] data
+         */
+        fun convertDateInDatabaseDate(calendar: Calendar) : DatabaseDate {
+            return DatabaseDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(
+                Calendar.DAY_OF_MONTH))
+        }
+
+        val today : DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
+        incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_DAY,"Mamie",grantCategory,20.0,
+                                                    today.year, today.month, today.day))
+        expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_DAY, "Semaine 1", shoppingCategory, -40.0,
+                                                    today.year, today.month, today.day))
+        expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_DAY, "Tournée", partyCategory, -10.0,
+                                                    today.year, today.month, today.day))
 
     }
 
