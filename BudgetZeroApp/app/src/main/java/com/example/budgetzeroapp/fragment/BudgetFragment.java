@@ -102,10 +102,16 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                NavController navController = Navigation.findNavController(view);
                 switch(item.getItemId()){
                     case R.id.addCategory:
-                        NavController navController = Navigation.findNavController(view);
                         navController.navigate(R.id.navigate_to_addCategory);
+                        break;
+                    case R.id.next_day:
+                        //change day
+                        break;
+                    case R.id.mode:
+                        //change mode (auto/manual)
                         break;
                 }
                 return true;

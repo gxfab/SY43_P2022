@@ -4,11 +4,17 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
@@ -58,6 +64,21 @@ public class SavingsFragment extends DataBaseFragment {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         if(!defaultTab) selectPage(2);
+
+        /**Navigation**/
+        Toolbar toolbar = view.findViewById(R.id.toolbar_savings);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                NavController navController = Navigation.findNavController(view);
+                switch(item.getItemId()){
+                    case R.id.next_day:
+                        //change day
+                        break;
+                }
+                return true;
+            }
+        });
 
 
     }

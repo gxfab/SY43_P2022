@@ -5,9 +5,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.view.LayoutInflater;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -75,6 +80,19 @@ public class HomeFragment extends DataBaseFragment {
         loadPieChartData(items);
 
         /**Navigation**/
+        Toolbar toolbar = view.findViewById(R.id.toolbar_home);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                NavController navController = Navigation.findNavController(view);
+                switch(item.getItemId()){
+                    case R.id.next_day:
+                        //change day
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
 

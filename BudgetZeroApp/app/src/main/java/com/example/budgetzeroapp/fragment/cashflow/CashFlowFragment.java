@@ -6,9 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -46,6 +50,21 @@ public class CashFlowFragment extends DataBaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         addFragment(view);
+
+        /**Navigation**/
+        Toolbar toolbar = view.findViewById(R.id.toolbar_cashflow);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                NavController navController = Navigation.findNavController(view);
+                switch(item.getItemId()){
+                    case R.id.next_day:
+                        //change day
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
 
