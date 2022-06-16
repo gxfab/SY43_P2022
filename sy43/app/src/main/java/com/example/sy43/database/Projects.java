@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Projects {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     @ColumnInfo(name = "name")
@@ -18,8 +18,8 @@ public class Projects {
     @ColumnInfo(name = "percentage")
     public double percentage;
 
-    public Projects(int id, String name, double value, double percentage) {
-        this.id = id;
+    public Projects( String name, double value, double percentage) {
+
         this.name = name;
         this.value = value;
         this.percentage = percentage;

@@ -15,7 +15,10 @@ public class MonthlyRevenue {
     @ColumnInfo(name = "month")
     public int month;
 
-    public MonthlyRevenue(double value, int month) {
+    @ColumnInfo(name = "year")
+    public int year;
+
+    public MonthlyRevenue(double value, int month, int year) {
         this.value = value;
         this.month = month;
     }

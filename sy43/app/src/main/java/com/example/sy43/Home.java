@@ -12,21 +12,35 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.sy43.database.AppDatabase;
+import com.example.sy43.database.Category;
+import com.example.sy43.database.Expenses;
+import com.example.sy43.database.MonthlyRevenue;
 import com.google.android.material.tabs.TabLayout;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
+import java.time.Month;
+import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 public class Home extends AppCompatActivity {
 
     private TabLayout tabLayout;
-    private TextView total_income;
+    private TextView total_income, total_expense, total_balance;
     private ViewPager2 viewPager2;
     private MyFragmentAdapter adapter;
     private Define_incomes define_incomes;
+    private Spinner monthSpinner;
 
     PieChart pieChart;
 
@@ -52,6 +66,7 @@ public class Home extends AppCompatActivity {
 
         toCategories();
         toOverview();
+
         addToPieChart(40,25,15,20);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager2= findViewById(R.id.child_fragment_container);
@@ -87,6 +102,45 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+
+        total_expense = findViewById(R.id.expense_amount);
+        total_balance = findViewById(R.id.balance_amount);
+        monthSpinner = findViewById(R.id.spinner);
+
+        List<String> months = new ArrayList<String>();
+        for (MonthlyRevenue mth: db.monthlyRevenueDao().getAll()) {
+            months.add(Month.of(mth.month).getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+            //months.add(mth);
+        }
+        ArrayAdapter<String> monthData = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, months);
+        monthData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        monthSpinner.setAdapter(monthData);
+
+        Spinner yearSpinner = findViewById(R.id.spinner4);
+
+        List<String> years = new ArrayList<String>();
+        for (MonthlyRevenue mth: db.monthlyRevenueDao().getAll()) {
+            years.add(String.valueOf(mth.year));
+            //months.add(mth);
+        }
+        ArrayAdapter<String> yearData = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        yearData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setAdapter(yearData);
+
+        String[] monthsArray = getResources().getStringArray(R.array.Months_Array);
+        double exp_total=0.0;
+        List<Expenses> monthlyExpenses = db.expensesDao().findByMonth(Arrays.asList(monthsArray).indexOf(monthSpinner.getSelectedItem().toString()));
+        for (Expenses exp : monthlyExpenses) {
+            exp_total+=exp.value;
+        }
+        total_expense.setText(String.valueOf(exp_total)+"$");
+        String incomeText = total_income.getText().toString();
+        total_balance.setText(Double.parseDouble(incomeText.substring(0,incomeText.length()-1))-exp_total+"$");
+
+
+
+        //List<Expenses> expensesList = db.expensesDao().findByMonth(monthSpinner.getSelectedItem().toString())
     }
 
     private void addToPieChart(int i1, int i2, int i3, int i4){
@@ -98,6 +152,7 @@ public class Home extends AppCompatActivity {
 
         chart.startAnimation();
         chart.setClickable(false);
+
     }
 
     private void toCategories(){

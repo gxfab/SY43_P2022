@@ -19,6 +19,10 @@ public class SubCategory {
     @ColumnInfo(name = "category")
     public int category;
 
+    public String getName() {
+        return name;
+    }
+
     public SubCategory(String name, double envelope, int category) {
         this.name = name;
         this.envelope = envelope;

@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +26,7 @@ public class Define_Projects extends AppCompatActivity implements AdapterView.On
     private ProjectsAdapter projectsAdapter;
     private EditText t1, t2;
     private Spinner s3;
-    private CardView add_btn;
+    private CardView add_btn, continue_btn;
 
 
     @Override
@@ -33,6 +34,7 @@ public class Define_Projects extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_define_projects);
 
+        toHome();
         recyclerView = findViewById(R.id.projects_recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -66,7 +68,7 @@ public class Define_Projects extends AppCompatActivity implements AdapterView.On
                 l3.add(priority);
                 projectsAdapter.notifyDataSetChanged();
 
-                db.projectDao().insertAll(new Projects(l1.indexOf(name)+1,name,Double.parseDouble(t2.getText().toString()), Double.parseDouble(s3.getSelectedItem().toString())*10));
+                db.projectDao().insertAll(new Projects(name,Double.parseDouble(t2.getText().toString()), Double.parseDouble(s3.getSelectedItem().toString())*10));
             }
         });
 
@@ -81,5 +83,15 @@ public class Define_Projects extends AppCompatActivity implements AdapterView.On
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    private void toHome(){
+        continue_btn = findViewById(R.id.continue_to_home_btn);
+        continue_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Define_Projects.this, Home.class));
+            }
+        });
     }
 }

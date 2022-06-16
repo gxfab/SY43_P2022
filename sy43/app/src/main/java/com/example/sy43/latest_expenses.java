@@ -25,11 +25,14 @@ public class latest_expenses extends Fragment {
     RecyclerView recyclerView;
     CardView cardView;
     private AddExpenseAdapter adapter;
-    private String date, name, value;
+    private String date ="";
+    private String value="";
+    private String name="";
+
     private add_expense add_expense;
     private TextView t1,t2,t3;
 
-
+/*
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -70,5 +73,5 @@ public class latest_expenses extends Fragment {
         recyclerView.addView(cardView);
 
 
-    }
+    }*/
 }

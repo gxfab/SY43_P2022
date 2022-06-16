@@ -15,6 +15,9 @@ public interface CategoryDao {
     @Query("SELECT * FROM Category WHERE id IN (:catID)")
     List<Category> loadAllByIDs(int[] catID);
 
+    @Query("SELECT * FROM Category ORDER BY c_name ")
+    List<Category> getAllOrderedByName();
+
     @Query("SELECT * FROM Category WHERE c_name LIKE :name LIMIT 1")
     Category findByName(String name);
 
