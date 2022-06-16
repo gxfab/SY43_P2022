@@ -10,7 +10,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "AgeDor"
 include ':app'
+include 'MPChartLib'
+//include 'MPAndroidChart-Realm'
+include 'MPChartExample'
+//include ':MPChartLib-Realm'
+//project(':MPChartLib-Realm').projectDir = new File('../MPAndroidChart-Realm/MPChartLib-Realm')
