@@ -46,41 +46,43 @@ class ChartFragment : Fragment() {
         var pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
         val month = pref.getInt("month", -1)
 
-        var sumAmount : Float = 0f
+        var sumAmount : ArrayList<Float> = ArrayList<Float>()
 
 
-
+        val entries: MutableList<BarEntry> = ArrayList()
         //Add sum to barchart
         bMonthViewModel.readAllData.observe(viewLifecycleOwner, Observer {
             for(month in it){
-
+                sumAmount.add(0f)
                 envelopeViewModel.getSumOfEnvelopes(month.id).observe(viewLifecycleOwner, Observer {
                     if (it != null) {
-                        sumAmount += it
+                        sumAmount.set(month.id, sumAmount.get(month.id) + it)
                     }
                     expenseViewModel.getSumOfNegativeExpenses(month.id).observe(viewLifecycleOwner, Observer {
                         if (it != null) {
-                            sumAmount -= it
-                            //holder.itemView.monthSumValue.text = sumAmount.toString() + "€"
-                            Log.d("ChartFragment", "Amount expense: " + sumAmount + " for month " + month.id)
+                            sumAmount.set(month.id, sumAmount.get(month.id) - it)
+
+                            Log.d("ChartFragment", "1:" + (month.id-1).toFloat() + "--2:" + sumAmount.get(month.id))
+                            //entries.add(BarEntry((month.id-1).toFloat(), sumAmount.get(month.id)))
+                            Log.d("ChartFragment", "-sumAmount final: " + sumAmount.get(month.id) + " for month " + month.id)
                         }
                     })
                 })
             }
-
         })
 
 
 
 
-        val entries: MutableList<BarEntry> = ArrayList()
-        entries.add(BarEntry(0f, 30f))
+
+
+        /*entries.add(BarEntry(0f, 30f))
         entries.add(BarEntry(1f, 80f))
         entries.add(BarEntry(2f, 60f))
         entries.add(BarEntry(3f, 50f))
         // gap of 2f
         entries.add(BarEntry(5f, 70f))
-        entries.add(BarEntry(6f, 60f))
+        entries.add(BarEntry(6f, 60f))*/
 
         val set = BarDataSet(entries, "BarDataSet")
 
