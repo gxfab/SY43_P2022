@@ -55,11 +55,25 @@
     <string name="month_history">Historique</string>
     <string name="edit">Modifier</string>
     <string name="title_expense_edit">Modifier la dépense</string>
-    <string-array name="default_categories">
+    <string-array name="default_categories_bills">
+        <item>🚰Eau</item>
+        <item>⚡Electricité</item>
+        <item>🏠Loyer</item>
+        <item>📜Assurances</item>
+    </string-array>
+    <string-array name="default_categories_envelopes">
         <item>🍕Nourriture</item>
         <item>🍺Loisirs</item>
-        <item>🏠Loyer</item>
         <item>🎾Sport</item>
+    </string-array>
+    <string-array name="default_categories_sinking_funds">
+        <item>🏖️Vacances</item>
+    </string-array>
+    <string-array name="default_categories_extra_debt">
+        <item>🏦Emprunts</item>
+    </string-array>
+    <string-array name="default_categories_extra_savings">
+        <item>🎂Anniversaires surprise</item>
     </string-array>
     <string name="info_deleted_category">La catégorie a bien été supprimée</string>
     <string name="info_deleted_account">Le compte a bien été supprimé</string>

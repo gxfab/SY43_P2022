@@ -76,17 +76,26 @@ class AddAccountBottomSheet(private val db: AppDatabase) : BottomSheetDialogFrag
         runBlocking {
 
             val accountNumber = db.accountDao().insertAccount(Account(0, newAccountName))
-            val categoryNames = resources.getStringArray(R.array.default_categories)
+            val categoryResList = listOf(
+                R.array.default_categories_bills,
+                R.array.default_categories_envelopes,
+                R.array.default_categories_sinking_funds,
+                R.array.default_categories_extra_debt,
+                R.array.default_categories_extra_savings
+            )
             val now = LocalDate.now()
 
             // Add default categories to the newly created account
-            for (names in categoryNames) {
-                val category =
-                    Category(
-                        0, names, 0.0f, now.monthValue, now.year, accountNumber.toInt(),
-                        ExpenseType.ENVELOPES
-                    )
-                db.categoryDao().insertCategory(category)
+            for ((i, categoryRes) in categoryResList.withIndex()) {
+                val categoryNames = resources.getStringArray(categoryRes)
+                for (names in categoryNames) {
+                    val category =
+                        Category(
+                            0, names, 0.0f, now.monthValue, now.year, accountNumber.toInt(),
+                            ExpenseType.getTypeFromInt(i+1)!!
+                        )
+                    db.categoryDao().insertCategory(category)
+                }
             }
         }
         lifecycleScope.launch {
