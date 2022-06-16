@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.lafo_cheuse.R
 import com.example.lafo_cheuse.material.DatabaseDate
 import com.example.lafo_cheuse.models.*
@@ -176,13 +175,17 @@ class SettingsFragment : Fragment() {
                 Calendar.DAY_OF_MONTH))
         }
 
+
+
         val today : DatabaseDate = convertDateInDatabaseDate(Calendar.getInstance())
+        val randomDays = List(10) { (0..today.day).random() }
+
         incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_DAY,"Mamie",grantCategory,20.0,
-                                                    today.year, today.month, today.day))
+                                                    today.year, today.month, randomDays[0]))
         expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_DAY, "Semaine 1", shoppingCategory, -40.0,
-                                                    today.year, today.month, today.day))
+                                                    today.year, today.month, randomDays[1]))
         expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_DAY, "Tournée", partyCategory, -10.0,
-                                                    today.year, today.month, today.day))
+                                                    today.year, today.month, randomDays[2]))
 
     }
 
