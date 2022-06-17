@@ -11,3 +11,11 @@ AgeDor alpha 1.1 (03/05/22)
 AgeDor alpha 1.2 (31/05/22)
 	- Finalisation de la base de données
 	- Première version de la GUI
+AgeDor beta 1.0 (15/06/22)
+	- Nouvelle base de donnée
+	- Nouvelle GUI
+AgeDor beta 1.1 (16/06/22)
+	- Ajout d'un suivi automatisé du budget
+AgeDor Release 1.0 (17/06/22)
+	- Finalisation de la GUI
+	- Finalisation des fonctions de budget 0
