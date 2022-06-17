@@ -15,6 +15,7 @@ import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
+    //Constants for the transaction table
     public static final String TRANSACTION_TABLE = "TRANSACTION_TABLE";
     public static final String COLUMN_ID_TRANSACTION = "ID_TRANSACTION";
     public static final String COLUMN_NAME = "NAME";
@@ -29,14 +30,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + TRANSACTION_TABLE + " (" + COLUMN_ID_TRANSACTION + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT, " + COLUMN_AMOUNT + " INT, " + COLUMN_CREATION_DATE + " INT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_CATEGORY + " TEXT)";
+        String createTableStatementTransaction = "CREATE TABLE " + TRANSACTION_TABLE + " (" + COLUMN_ID_TRANSACTION + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT, " + COLUMN_AMOUNT + " INT, " + COLUMN_CREATION_DATE + " INT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_CATEGORY + " TEXT)";
+        db.execSQL(createTableStatementTransaction);
 
-        db.execSQL(createTableStatement);
+        String createTableStatementIncome = "CREATE TABLE ";
+        db.execSQL(createTableStatementIncome);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + TRANSACTION_TABLE);
+        onCreate(db);
     }
 
     public boolean addOne(TransactionModel transactionModel) {
@@ -76,9 +80,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         List<TransactionModel> returnList = new ArrayList<>();
 
         String queryString = "SELECT * FROM " + TRANSACTION_TABLE;
-
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursor = db.rawQuery(queryString, null);
 
         if (cursor.moveToFirst()) {
@@ -100,5 +102,80 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnList;
+    }
+
+    public List<TransactionModel> getByCategory(String category) {
+
+        List<TransactionModel> returnList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + TRANSACTION_TABLE + " WHERE " + COLUMN_CATEGORY + " = '" + category + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int transactionID = cursor.getInt(0);
+                String transactionName = cursor.getString(1);
+                int transactionAmount = cursor.getInt(2);
+                int transactionCreationDate = cursor.getInt(3);
+                String transactionDescription = cursor.getString(4);
+                String transactionCategory = cursor.getString(5);
+
+                TransactionModel newTransaction = new TransactionModel(transactionID, transactionName, transactionAmount, transactionCreationDate, transactionDescription, transactionCategory, 1, 1);
+                returnList.add(newTransaction);
+            } while (cursor.moveToNext());
+        } else {
+            //noting to do
+        }
+
+        cursor.close();
+        db.close();
+        return returnList;
+    }
+
+    public List<TransactionModel> getOnlyThree() {
+
+        List<TransactionModel> returnList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + TRANSACTION_TABLE + " ORDER BY " + COLUMN_ID_TRANSACTION + " DESC LIMIT 3";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int transactionID = cursor.getInt(0);
+                String transactionName = cursor.getString(1);
+                int transactionAmount = cursor.getInt(2);
+                int transactionCreationDate = cursor.getInt(3);
+                String transactionDescription = cursor.getString(4);
+                String transactionCategory = cursor.getString(5);
+
+                TransactionModel newTransaction = new TransactionModel(transactionID, transactionName, transactionAmount, transactionCreationDate, transactionDescription, transactionCategory, 1, 1);
+                returnList.add(newTransaction);
+            } while (cursor.moveToNext());
+        } else {
+            //noting to do
+        }
+
+        cursor.close();
+        db.close();
+        return returnList;
+    }
+
+    public int getTotalAmount() { //Add month condition
+        int amount;
+        String queryString = "SELECT SUM(" + COLUMN_AMOUNT + ") FROM " + TRANSACTION_TABLE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            amount = cursor.getInt(0);
+        } else {
+            amount = -1;
+        }
+
+        cursor.close();
+        db.close();
+        return amount;
     }
 }

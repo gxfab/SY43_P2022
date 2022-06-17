@@ -26,7 +26,7 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     public void goToProfile(View view ) {
-        Intent myIntent = new Intent(this, ProfileActivity.class);
+        Intent myIntent = new Intent(this, ProfileChoiceActivity.class);
         startActivity(myIntent);
     }
 
@@ -41,10 +41,19 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     public void categoryChoice(View view) {
-        Intent myIntent = new Intent(this, AddDetailActivity.class);
+        Intent i2 = getIntent();
+        int value = i2.getIntExtra("MENU",-1);
+
+        Intent myIntent;
         Button b = (Button)view;
+        if (value == 2){
+            myIntent = new Intent(this, ProfileActivity.class);
+        } else {
+            myIntent = new Intent(this, AddDetailActivity.class);
+        }
         String choice = b.getText().toString();
         myIntent.putExtra("CHOICE", choice);
+        myIntent.putExtra("CHOICE_LIST", i2.getStringExtra("LIST"));
         startActivity(myIntent);
     }
 }

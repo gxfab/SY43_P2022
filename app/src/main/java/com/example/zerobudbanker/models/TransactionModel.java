@@ -34,12 +34,11 @@ public class TransactionModel {
     @Override
     public String toString() {
         return "N°" + id_transaction +
-                ", " + name + '\'' +
-                ", " + amount + "€" +
-                ", Month: " + creationDate +
-                ", Description: " + description + '\'' +
-                ", Category: " + category +
-                '}';
+                ", " + name +
+                ", " + amount + "€" + "\n" +
+                "Month: " + creationDate + "\n" +
+                "Description: " + description + "\n" +
+                "Category: " + category;
     }
 
 

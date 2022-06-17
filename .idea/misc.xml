@@ -5,14 +5,15 @@
       <map>
         <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_add.xml" value="0.4" />
         <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_add2.xml" value="0.10484972677595629" />
-        <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_add_detail.xml" value="0.4" />
+        <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_add_detail.xml" value="0.536" />
         <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_category.xml" value="0.4" />
         <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_category2.xml" value="0.190625" />
         <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_display_message.xml" value="0.264" />
-        <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_main.xml" value="0.190625" />
-        <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_profile.xml" value="0.30392156862745096" />
+        <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_profile.xml" value="0.4" />
         <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_profile2.xml" value="0.10484972677595629" />
-        <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_stats.xml" value="0.190625" />
+        <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_profile_choice.xml" value="0.4" />
+        <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/activity_stats.xml" value="0.4" />
         <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/content_category.xml" value="0.190625" />
         <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/fragment_first.xml" value="0.264" />
         <entry key="..\:/Users/mathe/AndroidStudioProjects/MyFirstApp/app/src/main/res/layout/fragment_menu_bar.xml" value="0.190625" />

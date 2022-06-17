@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zerobudbanker.models.TransactionModel;
@@ -19,15 +20,43 @@ public class AddDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_detail);
 
-        Intent i = getIntent();
-        String choice = i.getStringExtra("CHOICE");
-        if (choice == null) {
-            ((Button)findViewById(R.id.buttonCategory)).setText("Choose a category");
+        /*if (savedInstanceState != null) {
+            String savedCategory = savedInstanceState.getString("category_key");
+            ((Button)findViewById(R.id.buttonCategory)).setText(savedCategory);
+
+            String savedChoiceList = savedInstanceState.getString("choice_list_key");
+            ((TextView)findViewById(R.id.textViewList)).setText(savedChoiceList);
         } else {
+            ((Button)findViewById(R.id.buttonCategory)).setText("Choose a category");
+        }*/
+
+        Intent i1 = getIntent();
+        String choice = i1.getStringExtra("CHOICE");
+        if (choice != null) {
             ((Button)findViewById(R.id.buttonCategory)).setText(choice);
+        } /*else {
+            ((Button)findViewById(R.id.buttonCategory)).setText("Choose a category");
+        }*/
+
+        Intent i2 = getIntent();
+        String choiceList = i2.getStringExtra("CHOICE_LIST");
+        if (choiceList != null) {
+            ((TextView)findViewById(R.id.textViewList)).setText(choiceList);
         }
 
     }
+
+    /*@Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        String categoryMessage = ((Button)findViewById(R.id.buttonCategory)).getText().toString();
+        outState.putString("category_key", categoryMessage);
+
+        String choiceListCategory = ((TextView)findViewById(R.id.textViewList)).getText().toString();
+        outState.putString("choice_list_key", choiceListCategory);
+
+    }*/
 
     public void goToAdd(View view ) {
         Intent myIntent = new Intent(this, AddActivity.class);
@@ -35,7 +64,7 @@ public class AddDetailActivity extends AppCompatActivity {
     }
 
     public void goToProfile(View view ) {
-        Intent myIntent = new Intent(this, ProfileActivity.class);
+        Intent myIntent = new Intent(this, ProfileChoiceActivity.class);
         startActivity(myIntent);
     }
 
@@ -51,6 +80,7 @@ public class AddDetailActivity extends AppCompatActivity {
 
     public void goToCategory(View view ) {
         Intent myIntent = new Intent(this, CategoryActivity.class);
+        myIntent.putExtra("LIST", ((TextView)findViewById(R.id.textViewList)).getText());
         startActivity(myIntent);
     }
 
@@ -89,6 +119,6 @@ public class AddDetailActivity extends AppCompatActivity {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(AddDetailActivity.this);
 
         boolean success = dataBaseHelper.addOne(transactionModel);
-        Toast.makeText(this,"Success = " + success,Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"Success = " + success,Toast.LENGTH_LONG).show();
     }
 }

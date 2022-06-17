@@ -5,21 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
-public class StatsActivity extends AppCompatActivity {
-
-    TextView textViewTotal;
+public class ProfileChoiceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stats);
-
-        textViewTotal = findViewById(R.id.textViewTotal);
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(StatsActivity.this);
-        int total = dataBaseHelper.getTotalAmount();
-        textViewTotal.setText("Amount spent so far: " + total + "€");
+        setContentView(R.layout.activity_profile_choice);
     }
 
     public void goToAdd(View view ) {
@@ -39,6 +32,14 @@ public class StatsActivity extends AppCompatActivity {
 
     public void goToHome(View view ) {
         Intent myIntent = new Intent(this, MainActivity.class);
+        startActivity(myIntent);
+    }
+
+    public void goToProfileDetail(View view ) {
+        Intent myIntent = new Intent(this, ProfileActivity.class);
+        Button b = (Button)view;
+        String choice = b.getText().toString();
+        myIntent.putExtra("CHOICE_LIST", choice);
         startActivity(myIntent);
     }
 }

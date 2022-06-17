@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public void goToProfile(View view ) {
-        Intent myIntent = new Intent(this, ProfileActivity.class);
+        Intent myIntent = new Intent(this, ProfileChoiceActivity.class);
         startActivity(myIntent);
     }
 
@@ -36,6 +37,9 @@ public class AddActivity extends AppCompatActivity {
 
     public void goToAddDetail(View view ) {
         Intent myIntent = new Intent(this, AddDetailActivity.class);
+        Button b = (Button)view;
+        String choice = b.getText().toString();
+        myIntent.putExtra("CHOICE_LIST", choice);
         startActivity(myIntent);
     }
 }
