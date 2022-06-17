@@ -5,51 +5,25 @@ import java.util.List;
 
 public class Master {
 
-    private List<Atelier> atelierList = new ArrayList<Atelier>();
-    private List<AutreEvenement> autreEventList = new ArrayList<AutreEvenement>();
-    private List<Materiel> materielList = new ArrayList<Materiel>();
-    private List<Repas> repasList = new ArrayList<Repas>();
+    private List<Evenement> evenementList = new ArrayList<Evenement>();
 
     Master(){ //TODO : initialiser les valeurs en les récupérants dans la bdd
-        atelierList = null;
-        autreEventList = null;
-        materielList = null;
-        repasList = null;
+        evenementList = null;
     }
 
-    public void AddAtelier(Atelier atelier) {
-        this.atelierList.add(atelier);
+    public List<Evenement> getEvenementList() {
+        return evenementList;
     }
 
-    public void AddAutreEvenement(AutreEvenement autreEvenement) {
-        this.autreEventList.add(autreEvenement);
+    public void setEvenementList(List<Evenement> evenementList) {
+        this.evenementList = evenementList;
     }
 
-    public void AddMateriel (Atelier atelier) {
-        this.atelierList.add(atelier);
-    }
-
-    public List<Atelier> getAtelierList() {
-        return atelierList;
-    }
-
-    public List<AutreEvenement> getAutreEventList() {
-        return autreEventList;
-    }
-
-    public List<Materiel> getMaterielList() {
-        return materielList;
-    }
-
-    public List<Repas> getRepasList() {
-        return repasList;
-    }
-
-    public  <T extends Budget> float sumRecetteEvenement(List<T> t){
+    public float sumRecetteEvenement(){
         float sommeRecette = 0;
         int i=0;
-        while (t.get(i)!=null){
-            sommeRecette += t.get(i).getRecette();
+        while (this.evenementList.get(i)!=null){
+            sommeRecette += this.evenementList.get(i).getAmountRecipe();
         }
         return sommeRecette;
     }

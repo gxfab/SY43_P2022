@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">CookUTProject</string>
-    <string name="choseEvent">Type d\'évènement</string>
+    <string name="choseEvent">Choisissez l\'évènement</string>
     <string name="expenseName">Nom de la dépense</string>
     <string name="expenseAmount">Montant de la dépense</string>
+    <string name="choseEntity">Entité qui a acheté</string>
+    <string name="datePurchase">Date de l\'achat</string>
+    <string name="EventExiste">L\'évènement est déjà existant</string>
+    <string name="EventNotExiste">L\'évènement n\'existe pas</string>
+    <string name="choseEventType">Choisissez le type d\'évènement</string>
 </resources>

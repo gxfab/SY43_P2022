@@ -7,21 +7,21 @@ import androidx.room.PrimaryKey;
 @Entity(foreignKeys = @ForeignKey(entity = Facture.class,
 
         parentColumns = "id",
+        childColumns = "idFacture"))
 
-        childColumns = "id_facture"))
 public class Aliment {
     @PrimaryKey(autoGenerate = true)
     int id;
     float price;
-    int id_facture;
+    int idFacture;
     String name;
     String type;
     int quantity;
 
-    public Aliment (int id,int price,int id_facture, String name, String type, int quantity){
+    public Aliment (int id,float price,int idFacture, String name, String type, int quantity){
         this.id=id;
         this.price = price;
-        this.id_facture=id_facture;
+        this.idFacture=idFacture;
         this.name=name;
         this.type=type;
         this.quantity=quantity;
@@ -32,8 +32,8 @@ public class Aliment {
         return price;
     }
 
-    public int getId_facture(){
-        return id_facture;
+    public int getIdFacture(){
+        return idFacture;
     }
 
     public int getId() {
@@ -57,8 +57,8 @@ public class Aliment {
         this.price = price;
     }
 
-    public void setId_facture(int id_facture) {
-        this.id_facture = id_facture;
+    public void setIdFacture(int idFacture) {
+        this.idFacture = idFacture;
     }
 
     public void setType(String type) {

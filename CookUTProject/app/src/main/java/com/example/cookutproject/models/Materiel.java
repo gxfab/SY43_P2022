@@ -11,31 +11,71 @@ import java.util.ArrayList;
         parentColumns = "id",
 
         childColumns = "id_facture"))
-public class Materiel extends Budget{
+public class Materiel {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    private int id_Facture;
-    Materiel(float previsionnel, float depense, float recette, ArrayList<Operation> operation, int id, int id_Facture) {
-        super(previsionnel, depense, recette, operation);
+    int id;
+    float price;
+    int idFacture;
+    String name;
+    String type;
+    int quantity;
+
+    public Materiel (int id,float price,int idFacture, String name, String type, int quantity){
         this.id=id;
-        this.id_Facture=id;
+        this.price = price;
+        this.idFacture=idFacture;
+        this.name=name;
+        this.type=type;
+        this.quantity=quantity;
     }
 
     //GETTER
+    public float getPrice() {
+        return price;
+    }
+
+    public int getIdFacture(){
+        return idFacture;
+    }
+
     public int getId() {
         return id;
     }
 
-    public int getId_Facture() {
-        return id_Facture;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
     }
 
     //SETTER
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public void setIdFacture(int idFacture) {
+        this.idFacture = idFacture;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setId_Facture(int id_Facture) {
-        this.id_Facture = id_Facture;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

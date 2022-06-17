@@ -12,19 +12,19 @@ public class Evenement {
     String type;
     String name;
     Date date;
-    float amount_prev;
-    float amount_depense;
-    float amount_recette;
+    float amountPrevisionnel;
+    float amountExpense;
+    float amountRecipe;
 
     //Constructor
-    public Evenement(int id,String type, String name, Date date, float amount_prev, float amount_depense, float amount_recette){
+    public Evenement(int id,String type, String name, Date date, float amountPrevisionnel, float amountExpense, float amountRecipe){
         this.id=id;
         this.type=type;
         this.name=name;
         this.date=date;
-        this.amount_prev=amount_prev;
-        this.amount_depense=amount_depense;
-        this.amount_recette=amount_recette;
+        this.amountPrevisionnel=amountPrevisionnel;
+        this.amountExpense=amountExpense;
+        this.amountRecipe=amountRecipe;
     }
 
     //GETTER
@@ -45,16 +45,16 @@ public class Evenement {
         return date;
     }
 
-    public float getAmount_depense() {
-        return amount_depense;
+    public float getAmountExpense() {
+        return amountExpense;
     }
 
-    public float getAmount_prev() {
-        return amount_prev;
+    public float getAmountPrevisionnel() {
+        return amountPrevisionnel;
     }
 
-    public float getAmount_recette() {
-        return amount_recette;
+    public float getAmountRecipe() {
+        return amountRecipe;
     }
 
     //SETTER
@@ -66,16 +66,16 @@ public class Evenement {
         this.date = date;
     }
 
-    public void setAmount_depense(float amount_depense) {
-        this.amount_depense = amount_depense;
+    public void setAmountExpense(float amountExpense) {
+        this.amountExpense = amountExpense;
     }
 
-    public void setAmount_prev(float amount_prev) {
-        this.amount_prev = amount_prev;
+    public void setAmountPrevisionnel(float amountPrevisionnel) {
+        this.amountPrevisionnel = amountPrevisionnel;
     }
 
-    public void setAmount_recette(float amount_recette) {
-        this.amount_recette = amount_recette;
+    public void setAmountRecipe(float amountRecipe) {
+        this.amountRecipe = amountRecipe;
     }
 
     public void setName(String name) {
@@ -85,4 +85,5 @@ public class Evenement {
     public void setType(String type) {
         this.type = type;
     }
+
 }

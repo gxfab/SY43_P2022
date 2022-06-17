@@ -22,7 +22,7 @@
         android:onClick="changeActivityMain"
         android:translationX="15dp" />
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:layout_marginRight="100dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="50dp"
                 android:background="@drawable/decorateurs"
                 android:textSize="40dp" />
         </LinearLayout>

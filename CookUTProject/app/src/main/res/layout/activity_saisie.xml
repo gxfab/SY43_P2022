@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,7 @@
     tools:context=".Saisie"
     android:orientation="vertical"
     android:background="@drawable/background">
+
         <ImageButton
             android:id="@+id/imageButton_saisie"
             android:layout_width="65dp"
@@ -20,76 +21,156 @@
             tools:ignore="MissingConstraints"
             android:onClick="changeActivityMain"/>
 
-
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:backgroundTint="@color/gold_CookUT"
-        android:hint="@string/expenseName" />
+        android:layout_marginTop="220dp"
+        android:layout_marginBottom="50dp"
+        android:fillViewport="true">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:background="@color/green_CookUT">
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:allowClickWhenDisabled="false"
-            android:backgroundTint="@color/gold_CookUT"
-            android:hint="@string/choseEvent" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Type d'évènement"
-            android:prompt="@string/choseEvent" />
-
-
-    </RelativeLayout>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/gold_CookUT"
-        android:hint="@string/expenseAmount" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/green_CookUT"
-        android:gravity="center_horizontal">
-
-
-    <Button
-            android:id="@+id/button_valider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp"
-            android:backgroundTint="@color/gold_CookUT"
-            android:text="Valider"/>
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button_annuler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="15dp"
-            android:backgroundTint="@color/gold_CookUT"
-            android:text="Reset"/>
-    </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
 
-</LinearLayout>
+                android:layout_marginRight="50dp"
+                android:backgroundTint="@color/gold_CookUT"
+                android:hint="@string/expenseName" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/EventExiste" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/EventNotExiste" />
+            </RadioGroup>
+
+            <RelativeLayout
+                android:id="@+id/type_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
+                android:background="@color/green_CookUT">
+
+                <EditText
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:allowClickWhenDisabled="false"
+                    android:backgroundTint="@color/gold_CookUT"
+                    android:hint="@string/choseEventType" />
+
+                <Spinner
+                    android:id="@+id/spinner_type_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
+                android:background="@color/green_CookUT">
+
+                <EditText
+                    android:id="@+id/text_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:allowClickWhenDisabled="false"
+                    android:backgroundTint="@color/gold_CookUT"
+                    android:hint="@string/choseEvent" />
+
+                <Spinner
+                    android:id="@+id/spinner_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/choseEvent" />
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/entity_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
+                android:backgroundTint="@color/gold_CookUT"
+                android:hint="@string/choseEntity" />
+
+            <EditText
+                android:id="@+id/amount_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
+                android:backgroundTint="@color/gold_CookUT"
+                android:hint="@string/expenseAmount" />
+
+            <EditText
+                android:id="@+id/date_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
+                android:backgroundTint="@color/gold_CookUT"
+                android:hint="@string/datePurchase" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green_CookUT"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="50dp">
+
+
+                <Button
+                    android:id="@+id/button_valider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="@color/gold_CookUT"
+                    android:text="Valider" />
+
+                <Button
+                    android:id="@+id/button_annuler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/gold_CookUT"
+                    android:text="Reset" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
