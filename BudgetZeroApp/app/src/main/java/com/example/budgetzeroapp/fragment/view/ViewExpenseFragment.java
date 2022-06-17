@@ -12,11 +12,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
+import com.example.budgetzeroapp.fragment.HomeFragmentDirections;
 import com.example.budgetzeroapp.tool.DBHelper;
 
 import java.util.Calendar;
@@ -114,5 +117,12 @@ public class ViewExpenseFragment extends DataBaseFragment {
         }   else    {
             stable.setText("Yes");
         }
+    }
+
+    public static void redirectToEditExpense(int id, int type)
+    {
+        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        NavDirections action = ViewExpenseFragmentDirections.navigateToEditExpenseFromExpense(id, type);
+        navController.navigate(action);
     }
 }

@@ -114,6 +114,9 @@
         <action
             android:id="@+id/navigate_to_viewExpenseCat_from_expense_cat"
             app:destination="@id/viewExpenseCatFragment" />
+        <argument
+            android:name="id_expense_cat"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/editExpenseFragment"
@@ -123,6 +126,11 @@
         <action
             android:id="@+id/navigate_to_viewExpense_from_expense"
             app:destination="@id/viewExpenseFragment" />
+        <argument
+            android:name="id_expense"
+            app:argType="integer" />
+        <argument android:name="type_expense"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/editSavingCatFragment"
@@ -132,6 +140,9 @@
         <action
             android:id="@+id/navigate_to_viewSavingCat_saving_cat"
             app:destination="@id/viewSavingCatFragment" />
+        <argument
+            android:name="id_saving_cat"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/viewDebtFragment"
@@ -156,6 +167,9 @@
         <action
             android:id="@+id/navigate_to_viewDebt_from_debt"
             app:destination="@id/viewDebtFragment" />
+        <argument
+            android:name="id_debt"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/viewIncomeCatFragment"

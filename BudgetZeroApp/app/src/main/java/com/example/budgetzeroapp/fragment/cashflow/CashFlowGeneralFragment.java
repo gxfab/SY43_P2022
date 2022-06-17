@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,12 +54,14 @@ public class CashFlowGeneralFragment extends DataBaseFragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cash_flow_general, container, false);
         listView = view.findViewById(R.id.expense_list);
+
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         /**Listview**/
         items = ExpenseItem.ExpensesToList(database.getAllExpenses());
         listView = ClickableListManager.clickableExpenseList(listView, items);

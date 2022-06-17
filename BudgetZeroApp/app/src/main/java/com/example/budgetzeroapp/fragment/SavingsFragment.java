@@ -92,11 +92,11 @@ public class SavingsFragment extends DataBaseFragment {
     public static void redirectToViewSavingCat(int saving_id)
     {
         NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-
-        NavDirections action = null;
+        NavDirections action = SavingsFragmentDirections.navigateToViewSavingCatFromSavings(saving_id);
+        /*NavDirections action = null;
         if (tabLayout.getSelectedTabPosition() == 0) action = SavingsFragmentDirections.navigateToViewSavingCatFromSavings(saving_id);
         else if (tabLayout.getSelectedTabPosition() == 1) action = SavingsFragmentDirections.navigateToViewDebtFromSavings(saving_id);
-
+        */
         navController.navigate(action);
     }
 }
