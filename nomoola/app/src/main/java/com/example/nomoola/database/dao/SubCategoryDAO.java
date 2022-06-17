@@ -13,6 +13,9 @@ import com.example.nomoola.database.entity.SubCategory;
 
 import java.util.List;
 
+/**
+ * This class provide methods to interact with the entity SubCategory in the Database
+ */
 @Dao
 public interface SubCategoryDAO {
 

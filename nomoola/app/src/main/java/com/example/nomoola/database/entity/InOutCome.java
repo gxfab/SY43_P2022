@@ -11,31 +11,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class define the Table InOutCome in the database
+ */
 @Entity(tableName = "T_INOUTCOME")
 public class InOutCome {
-
-//    public enum InOutComeType{
-//        INCOME, OUTCOME;
-//
-//        @Override
-//        public String toString(){
-//            if(this == INCOME){
-//                return "INCOME";
-//            }else if(this == OUTCOME){
-//                return "OUTCOME";
-//            }else{
-//                return super.toString();
-//            }
-//        }
-//
-//        public static List<Category.CategoryType> getAllPossibilities(){
-//            ArrayList<Category.CategoryType> list = new ArrayList<>();
-//            list.add(Category.CategoryType.INCOME);
-//            list.add(Category.CategoryType.OUTCOME);
-//
-//            return list;
-//        }
-//    }
 
 
     /**

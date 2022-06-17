@@ -12,9 +12,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class define the Table Category in the database
+ */
 @Entity(tableName = "T_CATEGORY")
 public class Category {
 
+    /**
+     * This enum allow us to choose the type of the category when we create one.
+     */
     public enum CategoryType{
         INCOME, OUTCOME, PROJECT;
 

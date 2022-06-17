@@ -14,11 +14,20 @@ import com.example.nomoola.database.entity.SubCategory;
 import com.example.nomoola.viewHolder.SubcategoryViewHolder;
 import com.example.nomoola.viewModel.SubcategoryViewModel;
 
+/***
+ * This is the Adapter for the recyclerView which display the subcategories.
+ */
 public class SubcategoryAdapter extends ListAdapter<SubCategory, SubcategoryViewHolder> {
 
     private FragmentManager fragmentManager;
     private SubcategoryViewModel subcategoryViewModel;
 
+    /***
+     * This is the parametered constructor which provide the fragmentmanager and the viewmodel to itself
+     * @param diffCallback
+     * @param fragmentManager
+     * @param subcategoryViewModel
+     */
     public SubcategoryAdapter(@NonNull DiffUtil.ItemCallback<SubCategory> diffCallback, FragmentManager fragmentManager, SubcategoryViewModel subcategoryViewModel) {
         super(diffCallback);
         this.fragmentManager = fragmentManager;
@@ -36,6 +45,12 @@ public class SubcategoryAdapter extends ListAdapter<SubCategory, SubcategoryView
         return viewHolder;
     }
 
+
+    /***
+     * This methods bind each category with the viewHolder in order to display the right informations according to the subcategory
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull SubcategoryViewHolder holder, int position) {
         Log.d("CREATION", "onBindViewHolder from " + this.getClass().toString() + " started");

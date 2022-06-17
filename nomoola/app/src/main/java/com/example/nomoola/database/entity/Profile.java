@@ -6,6 +6,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * This class define the Table Profile in the database
+ */
 @Entity(tableName = "T_PROFILE")
 public class Profile {
 

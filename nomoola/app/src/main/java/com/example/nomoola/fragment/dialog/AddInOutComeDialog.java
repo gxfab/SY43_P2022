@@ -32,6 +32,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class create the dialog which allow the user to create a new InOutCome.
+ */
 public class AddInOutComeDialog extends DialogFragment {
 
     private ArrayList<String> listSubCatNames;
@@ -45,6 +48,9 @@ public class AddInOutComeDialog extends DialogFragment {
     private InOutComeViewModel inOutComeViewModel;
     private InOutCome inOutCome;
 
+    /**
+     * This constructor create the new InOutCome.
+     */
     public AddInOutComeDialog(){
         this.inOutCome = new InOutCome();
     }
@@ -55,20 +61,21 @@ public class AddInOutComeDialog extends DialogFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         this.inOutComeViewModel = new ViewModelProvider(this).get(InOutComeViewModel.class);
         View view = inflater.inflate(R.layout.dialog_in_out_come, container, false);
-
-        this.view_InOutComeTitle = view.findViewById(R.id.dialog_come_title);
-        this.edit_InOutComeName = view.findViewById(R.id.dialog_come_editName);
-        this.edit_InOutComeAmount = view.findViewById(R.id.dialog_come_editAmount);
-        this.exitButton = view.findViewById(R.id.dialog_come_exitbutton);
-        this.deleteButton = view.findViewById(R.id.dialog_come_delete);
-        this.confirmEditButton = view.findViewById(R.id.dialog_come_confirmEdit);
-        this.spinner = view.findViewById(R.id.dialog_come_spinnerType);
-        this.datePicker = view.findViewById(R.id.dialog_come_datePicker);
-
-        this.view_InOutComeTitle.setText("New InOutCome");
-        this.deleteButton.setVisibility(View.GONE);
-
         this.listSubCatNames = new ArrayList<>();
+
+        setupInOutComeTitle(view);
+        setupSpinnerSubCatChoice(view);
+        setupExitButton(view);
+        setupDeleteButton(view);
+        setupConfirmButton(view);
+
+
+        return view;
+    }
+
+
+    private void setupSpinnerSubCatChoice(View view) {
+        this.spinner = view.findViewById(R.id.dialog_come_spinnerType);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listSubCatNames);
         this.inOutComeViewModel.getAllSubCategoriesNames().observe(this, new Observer<List<String>>() {
             @Override
@@ -79,7 +86,6 @@ public class AddInOutComeDialog extends DialogFragment {
         });
         adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         this.spinner.setAdapter(adapter);
-
         this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -91,14 +97,28 @@ public class AddInOutComeDialog extends DialogFragment {
                 spinner.setSelection(0);
             }
         });
+    }
 
+    private void setupDeleteButton(View view) {
+        this.deleteButton = view.findViewById(R.id.dialog_come_delete);
+        this.deleteButton.setVisibility(View.GONE);
+    }
+
+    private void setupExitButton(View view) {
+        this.exitButton = view.findViewById(R.id.dialog_come_exitbutton);
         this.exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
             }
         });
+    }
 
+    private void setupConfirmButton(View view) {
+        this.confirmEditButton = view.findViewById(R.id.dialog_come_confirmEdit);
+        this.datePicker = view.findViewById(R.id.dialog_come_datePicker);
+        this.edit_InOutComeAmount = view.findViewById(R.id.dialog_come_editAmount);
+        this.edit_InOutComeName = view.findViewById(R.id.dialog_come_editName);
         this.confirmEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,9 +138,10 @@ public class AddInOutComeDialog extends DialogFragment {
                 dismiss();
             }
         });
+    }
 
-
-
-        return view;
+    private void setupInOutComeTitle(View view) {
+        this.view_InOutComeTitle = view.findViewById(R.id.dialog_come_title);
+        this.view_InOutComeTitle.setText("New InOutCome");
     }
 }

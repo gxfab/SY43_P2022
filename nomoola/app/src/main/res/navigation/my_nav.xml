@@ -11,10 +11,10 @@
         android:label="Home"
         tools:layout="@layout/fragment_category" />
     <fragment
-        android:id="@+id/historyPage"
+        android:id="@+id/inOutComePage"
         android:name="com.example.nomoola.fragment.InOutComeFragment"
-        android:label="History"
-        tools:layout="@layout/fragment_history" />
+        android:label="InOutCome"
+        tools:layout="@layout/fragment_in_out_come" />
     <fragment
         android:id="@+id/profilePage"
         android:name="com.example.nomoola.fragment.ProfileFragment"

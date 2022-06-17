@@ -12,6 +12,9 @@ import com.example.nomoola.database.entity.InOutCome;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * This class provide methods to interact with the entity InOutCome in the Database
+ */
 @Dao
 public interface InOutComeDAO {
 

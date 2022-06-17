@@ -12,6 +12,9 @@ import com.example.nomoola.database.entity.Category;
 
 import java.util.List;
 
+/**
+ * This class provide methods to interact with the entity Category in the Database
+ */
 @Dao
 public interface CategoryDAO {
 
