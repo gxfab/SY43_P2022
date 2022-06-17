@@ -2,6 +2,7 @@ package com.example.nomoola.database.entity;
 
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.loader.app.LoaderManager;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

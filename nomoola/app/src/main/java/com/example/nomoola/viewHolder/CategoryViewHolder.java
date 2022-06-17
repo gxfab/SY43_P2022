@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.nomoola.R;
@@ -23,8 +24,11 @@ import com.example.nomoola.fragment.SubcategoryFragment;
 import com.example.nomoola.fragment.dialog.EditCategoryDialog;
 import com.example.nomoola.viewModel.CategoryViewModel;
 
+import org.w3c.dom.Text;
+
 public class CategoryViewHolder extends RecyclerView.ViewHolder {
 
+    private TextView userName;
     private TextView categoryName;
     private TextView categoryBudgetAmount, categoryBudgetLeftAmount, percent;
     private ImageButton categoryEditButton;
@@ -35,6 +39,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     private FragmentManager fragmentManager;
     private Category category;
     private View view;
+
 
 
     public CategoryViewHolder(View view, FragmentManager fragmentManager, CategoryViewModel categoryViewModel){
@@ -80,6 +85,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
         this.category = cat;
         this.categoryName.setText(this.category.getM_CAT_NAME());
         this.categoryBudgetAmount.setText(this.category.getM_CAT_BUDGET_AMOUNT() + "€");
+
 
         this.categoryViewModel.getBudgetLeftOf(this.category).observe((LifecycleOwner) this.view.getContext(), new Observer<Double>() {
             @Override

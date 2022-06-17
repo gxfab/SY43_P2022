@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import com.example.nomoola.database.entity.Category;
+import com.example.nomoola.database.entity.Profile;
 import com.example.nomoola.database.repository.DataRepository;
 import java.util.List;
 
@@ -58,4 +59,5 @@ public class CategoryViewModel extends AndroidViewModel {
     public LiveData<String> getUserName(int userID){
         return this.mRepository.getUserName(userID);
     }
+
 }
