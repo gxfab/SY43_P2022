@@ -84,6 +84,6 @@ public class SavingsTabFragment extends DataBaseFragment implements BudgetRecycl
             case 2 : Collections.sort(items, (savingsItem, t1) -> (int) (savingsItem.getObjective()-t1.getObjective()));
                 break;
         }
-
+        categories.setAdapter(new SavingsAdapter(items));
     }
 }

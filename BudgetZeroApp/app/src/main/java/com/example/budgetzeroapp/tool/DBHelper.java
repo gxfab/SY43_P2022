@@ -172,7 +172,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "insert into "+EXP_TABLE_NAME+
                         "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
                         ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
-                        " values ('Salary', 4500, 2, 1, 1, 6, 2022,1)," +
+                        " values ('Salary', 4500, 2, 1, 3, 6, 2022,1)," +
                         "('Birthday present (grandma)', 100, 2, 2, 13, 6, 2022,0)," +
                         "('Birthday present (uncle)', 20, 2, 2, 13, 6, 2022,0);"
         );
