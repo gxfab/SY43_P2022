@@ -381,12 +381,13 @@ class PrevisionActivity : AppCompatActivity() {
         stepsViewPager.isLocked = !hasNoErrors
     }
     private suspend fun loadPiechartData(){
-        val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.BILLS), "Bills"))
-        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.ENVELOPES), "Envelopes"))
-        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.SINKING_FUNDS), "Sinking funds"))
-        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.EXTRA_DEBT), "extra debt"))
-        entries.add(PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.EXTRA_SAVINGS), "extra savings"))
+        val entries = listOf (
+            PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.BILLS), "Bills"),
+            PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.ENVELOPES), "Envelopes"),
+            PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.SINKING_FUNDS), "Sinking funds"),
+            PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.EXTRA_DEBT), "extra debt"),
+            PieEntry(db.categoryDao().retrieveSinglePredictedAmount(now.monthValue, now.year, accountUid!!,ExpenseType.EXTRA_SAVINGS), "extra savings")
+        )
         val colors = ArrayList<Int>()
         colors.add(Color.BLUE)
         colors.add(Color.RED)
