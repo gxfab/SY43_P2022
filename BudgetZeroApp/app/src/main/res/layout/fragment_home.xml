@@ -22,43 +22,53 @@
                 </com.google.android.material.appbar.AppBarLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/light_gray"
                     android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
-
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/pie_chart"
+                    <LinearLayout
+                        android:id="@+id/linear_layout1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp" />
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
-                    <!--<TextView
-                        android:id="@+id/text_click"
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pie_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="text"
-                        android:textSize="50sp"
-                        android:gravity="center"/>-->
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@color/light_gray"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@id/linear_layout1">
 
 
-                    <ListView
-                        android:id="@+id/list_view_cat"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:layout_constraintEnd_toStartOf="@+id/appBarLayout"
-                        app:layout_constraintStart_toEndOf="@+id/appBarLayout"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                        android:layout_marginBottom="?attr/actionBarSize"
-                        android:divider="@android:color/transparent"
-                        android:dividerHeight="10.0sp"
-                        android:padding="8dp">
-                    </ListView>
+                        <ListView
+                            android:id="@+id/list_view_cat"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="?attr/actionBarSize"
+                            android:layout_weight="100"
+                            android:divider="@android:color/transparent"
+                            android:dividerHeight="10.0sp"
+                            android:padding="8dp"
+                            app:layout_constraintEnd_toStartOf="@+id/appBarLayout"
+                            app:layout_constraintStart_toEndOf="@+id/appBarLayout"
+                            app:layout_constraintTop_toBottomOf="@+id/linearLayout"></ListView>
+                    </LinearLayout>
                 </LinearLayout>
 
 
