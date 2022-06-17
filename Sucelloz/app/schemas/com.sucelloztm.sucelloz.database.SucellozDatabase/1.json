@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9885bb8b82757a6371303470f354ab56",
+    "identityHash": "1536ac2033434f7b6b426244d9d0148a",
     "entities": [
       {
         "tableName": "categories",
@@ -144,7 +144,7 @@
       },
       {
         "tableName": "savings",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`savings_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `date` TEXT, `initial-amount` INTEGER NOT NULL, `reached-amount` INTEGER NOT NULL, `percentage` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`savings_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `date` TEXT, `initial_amount` INTEGER NOT NULL, `reached_amount` INTEGER NOT NULL, `percentage` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -166,13 +166,13 @@
           },
           {
             "fieldPath": "initialAmount",
-            "columnName": "initial-amount",
+            "columnName": "initial_amount",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "reachedAmount",
-            "columnName": "reached-amount",
+            "columnName": "reached_amount",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -332,7 +332,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9885bb8b82757a6371303470f354ab56')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1536ac2033434f7b6b426244d9d0148a')"
     ]
   }
 }

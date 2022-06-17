@@ -22,10 +22,10 @@ public class Savings {
     @ColumnInfo(name = "date")
     private String deadline;
 
-    @ColumnInfo(name = "initial-amount")
+    @ColumnInfo(name = "initial_amount")
     private int initialAmount;
 
-    @ColumnInfo(name = "reached-amount")
+    @ColumnInfo(name = "reached_amount")
     private int reachedAmount;
 
     @ColumnInfo(name = "percentage")

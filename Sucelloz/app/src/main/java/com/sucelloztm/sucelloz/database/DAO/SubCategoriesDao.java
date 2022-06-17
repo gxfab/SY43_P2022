@@ -110,7 +110,7 @@ public interface SubCategoriesDao {
     @Query("Select name FROM sub_categories WHERE id=:idOfSubCategory")
     String getSubcategoryNameWithId(long idOfSubCategory);
 
-    @Query("SELECT *,SUM(infrequent_expenses.amount) AS sum_of_infrequent, " +
+    @Query("SELECT *,CAST(total(infrequent_expenses.amount) AS INTEGER) AS sum_of_infrequent, " +
             "sub_categories.name AS nameOfSubCategory, " +
             "sub_categories.categories_id AS id_of_category, " +
             "infrequent_expenses.sign AS sign  " +
@@ -119,7 +119,7 @@ public interface SubCategoriesDao {
             "GROUP BY sub_categories.id")
     LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithPositiveInfrequentSum();
 
-    @Query("SELECT *,SUM(infrequent_expenses.amount) AS sum_of_infrequent, " +
+    @Query("SELECT *,CAST(total(infrequent_expenses.amount) AS INTEGER) AS sum_of_infrequent, " +
             "sub_categories.name AS nameOfSubCategory, " +
             "sub_categories.categories_id AS id_of_category, " +
             "infrequent_expenses.sign AS sign  " +

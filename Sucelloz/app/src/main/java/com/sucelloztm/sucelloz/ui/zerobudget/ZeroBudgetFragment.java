@@ -71,22 +71,24 @@ public class ZeroBudgetFragment extends Fragment {
             SubCategories currentSubCategory = zeroBudgetViewModel.getSubCategoryByName(currentZeroBudgetCategoryName);
             zeroBudgetViewModel.setCurrentSubCategory(currentSubCategory);
             NavHostFragment.findNavController(ZeroBudgetFragment.this).navigate(R.id.action_navigation_zero_budget_to_navigation_sub_zero_budget);
-            //Log.d("CategoriesFragment",currentCategoryName);
         });
 
 
-        final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> { zeroBudget.setInfrequentExpenses(newInfrequentExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
+        final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> { zeroBudget.setInfrequentExpenses(newInfrequentExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
-        final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes ->{zeroBudget.setInfrequentIncomes(newInfrequentIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
+        final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes ->{zeroBudget.setInfrequentIncomes(newInfrequentIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
-        final Observer<Integer> stableExpensesObserver= newStableExpenses -> {zeroBudget.setStableExpenses(newStableExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
+        final Observer<Integer> stableExpensesObserver= newStableExpenses -> {zeroBudget.setStableExpenses(newStableExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
-        final Observer<Integer> stableIncomesObserver= newStableIncomes -> {zeroBudget.setStableIncomes(newStableIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
+        final Observer<Integer> stableIncomesObserver= newStableIncomes -> {zeroBudget.setStableIncomes(newStableIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
+
+        final Observer<Integer> savingsObserver = newSavings -> {zeroBudget.setSavings(newSavings);zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
         zeroBudgetViewModel.getInfrequentExpenses().observe(getViewLifecycleOwner(),infrequentExpensesObserver);
         zeroBudgetViewModel.getInfrequentIncomes().observe(getViewLifecycleOwner(),infrequentIncomesObserver);
         zeroBudgetViewModel.getStableExpenses().observe(getViewLifecycleOwner(),stableExpensesObserver);
         zeroBudgetViewModel.getStableIncomes().observe(getViewLifecycleOwner(),stableIncomesObserver);
+        //zeroBudgetViewModel.getSavings().observe(getViewLifecycleOwner(),savingsObserver);
 
 
 

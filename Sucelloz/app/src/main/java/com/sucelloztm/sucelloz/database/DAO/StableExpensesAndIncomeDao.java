@@ -102,14 +102,14 @@ public interface StableExpensesAndIncomeDao {
      * query to get the sum of all infrequent expenses
      * @return livedata of all the negatively signed infrequent elements
      */
-    @Query("SELECT SUM(amount) FROM stable_expenses WHERE sign LIKE '-'")
+    @Query("SELECT CAST(total(amount) AS INTEGER) FROM stable_expenses WHERE sign LIKE '-'")
     LiveData<Integer> getSumOfStableExpenses();
 
     /**
      * query to get the sum of all infrequent incomes
      * @return livedata of all the positively signed infrequent elements
      */
-    @Query("SELECT SUM(amount) FROM stable_expenses WHERE sign LIKE '+'")
+    @Query("SELECT CAST(total(amount) AS INTEGER) FROM stable_expenses WHERE sign LIKE '+'")
     LiveData<Integer> getSumOfStableIncomes();
 
     @Query("SELECT * FROM stable_expenses WHERE id=:idOfStable")

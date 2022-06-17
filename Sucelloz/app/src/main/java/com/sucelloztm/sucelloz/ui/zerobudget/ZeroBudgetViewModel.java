@@ -5,32 +5,34 @@ import android.widget.TextView;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.repositories.InfrequentExpensesAndIncomeRepository;
+import com.sucelloztm.sucelloz.repositories.SavingsRepository;
 import com.sucelloztm.sucelloz.repositories.StableExpensesAndIncomeRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
-import java.util.List;
+
 
 public class ZeroBudgetViewModel extends AndroidViewModel {
 
     private SubCategoriesRepository subCategoriesRepository;
 
     private InfrequentExpensesAndIncomeRepository infrequentExpensesAndIncomeRepository;
-
+    private SavingsRepository savingsRepository;
     private StableExpensesAndIncomeRepository stableExpensesAndIncomeRepository;
     private LiveData<Integer> infrequentExpenses;
-    private Integer infrequentIncomes;
-    private Integer stableExpenses;
-    private Integer stableIncomes;
+    private LiveData<Integer> infrequentIncomes;
+    private LiveData<Integer> stableExpenses;
+    private LiveData<Integer> stableIncomes;
+    private LiveData<Integer> savings;
 
     public ZeroBudgetViewModel(Application application) {
         super(application);
         this.subCategoriesRepository = new SubCategoriesRepository(application);
         this.infrequentExpensesAndIncomeRepository = new InfrequentExpensesAndIncomeRepository(application);
         this.stableExpensesAndIncomeRepository = new StableExpensesAndIncomeRepository(application);
+        this.savingsRepository = new SavingsRepository(application);
 
     }
 
@@ -56,13 +58,29 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
         return this.infrequentExpenses;
     }
     public LiveData<Integer> getInfrequentIncomes(){
-        return this.infrequentExpensesAndIncomeRepository.getSumOfInfrequentIncomes();
+        if(this.infrequentIncomes==null){
+            this.infrequentIncomes = this.infrequentExpensesAndIncomeRepository.getSumOfInfrequentIncomes();
+        }
+        return this.infrequentIncomes;
     }
     public LiveData<Integer> getStableExpenses(){
-        return this.stableExpensesAndIncomeRepository.getSumOfStableExpenses();
+        if(this.stableExpenses==null){
+            this.stableExpenses=this.stableExpensesAndIncomeRepository.getSumOfStableExpenses();
+        }
+        return this.stableExpenses;
     }
     public LiveData<Integer> getStableIncomes(){
-        return this.stableExpensesAndIncomeRepository.getSumOfStableIncomes();
+        if(this.stableIncomes==null){
+            this.stableIncomes=this.stableExpensesAndIncomeRepository.getSumOfStableIncomes();
+        }
+        return this.stableIncomes;
+    }
+
+    public LiveData<Integer> getSavings(){
+        if(this.savings==null){
+            this.savings=this.savingsRepository.getSumOfSavings();
+        }
+        return this.savings;
     }
 
 }

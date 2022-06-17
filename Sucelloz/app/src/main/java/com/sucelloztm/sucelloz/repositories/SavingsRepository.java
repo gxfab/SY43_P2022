@@ -63,4 +63,8 @@ public class SavingsRepository {
     public void updateSaving(Savings saving){
         this.savingsDao.updateSaving(saving);
     }
+
+    public LiveData<Integer> getSumOfSavings(){
+        return this.savingsDao.getSumOfSavings();
+    }
 }
