@@ -70,15 +70,26 @@
         />
 
     <ImageButton
+        android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_valid"
         app:layout_constraintRight_toRightOf="@id/add_fixed_expense"
         app:layout_constraintLeft_toLeftOf="@id/add_fixed_expense"
-        app:layout_constraintTop_toBottomOf="@id/editExpenseDate"
+        app:layout_constraintTop_toBottomOf="@id/monthly_fixed_switch"
         app:layout_constraintBottom_toBottomOf="@id/add_fixed_expense"
 
         />
+
+    <Switch
+        android:id="@+id/monthly_fixed_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/monthly_fixed"
+        app:layout_constraintLeft_toLeftOf="@id/add_fixed_expense"
+        app:layout_constraintRight_toRightOf="@id/add_fixed_expense"
+        app:layout_constraintTop_toBottomOf="@id/editExpenseDate" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

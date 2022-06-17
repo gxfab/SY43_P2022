@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gestimali.NewEnvelopeFragment
+import com.example.gestimali.NewFixedExpenseFragment
 import com.example.gestimali.NewIncomeFragment
 import com.example.gestimali.R
 import com.example.gestimali.envelope.EnvelopeViewModel
@@ -21,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlin.math.min
 
 
-internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivity ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() ,View.OnClickListener{
+internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivity ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     private lateinit var  mIncomeViewModel : IncomeViewModel
     private lateinit var  mFixedExpenseViewModel : FixedExpenseViewModel
@@ -56,7 +58,14 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
         holder.categoryTitle.text = categoryList[position]
 
         if(position==0){
-            holder.floatingButton.setOnClickListener(this)
+
+            holder.floatingButton.setOnClickListener{onClickIncome(holder.itemView)}
+        }
+        else if(position == 1 ){
+            holder.floatingButton.setOnClickListener{onClickExpense(holder.itemView)}
+        }
+        else if (position == 3){
+            holder.floatingButton.setOnClickListener{onClickEnvelope(holder.itemView)}
         }
         val moneyFlowAdapter = MoneyFlowAdapter(position)
 
@@ -77,23 +86,41 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
 
     override fun getItemCount(): Int = 4
 
-    override fun onClick(p0: View?) {
+    private fun onClickIncome(p0: View?) {
         val fragment: NewIncomeFragment? =
             NewIncomeFragment.newInstance(intMonth)
         val fm: FragmentManager = (activity).supportFragmentManager
         val ft: FragmentTransaction = fm.beginTransaction()
-        ft.addToBackStack("addFragment")
+        ft.addToBackStack("addIncomeFragment")
         if (fragment != null) {
             ft.replace(R.id.popup_fragment, fragment)
         }
         ft.commit()
+    }
 
-        /*
-        val transaction = activity.supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.popup_fragment,NewIncomeFragment())
-        transaction.commit()
+    private fun onClickExpense(p0: View?) {
+        val fragment: NewFixedExpenseFragment? =
+            NewFixedExpenseFragment.newInstance(intMonth)
+        val fm: FragmentManager = (activity).supportFragmentManager
+        val ft: FragmentTransaction = fm.beginTransaction()
+        ft.addToBackStack("addExpenseFragment")
+        if (fragment != null) {
+            ft.replace(R.id.popup_fragment, fragment)
+        }
+        ft.commit()
+    }
 
-         */
+
+    private fun onClickEnvelope(p0: View?) {
+        val fragment: NewEnvelopeFragment? =
+            NewEnvelopeFragment.newInstance(intMonth)
+        val fm: FragmentManager = (activity).supportFragmentManager
+        val ft: FragmentTransaction = fm.beginTransaction()
+        ft.addToBackStack("addIncomeFragment")
+        if (fragment != null) {
+            ft.replace(R.id.popup_fragment, fragment)
+        }
+        ft.commit()
     }
 
 }

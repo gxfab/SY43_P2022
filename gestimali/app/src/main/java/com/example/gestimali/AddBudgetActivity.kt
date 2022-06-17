@@ -13,7 +13,6 @@ class AddBudgetActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_budget)
 
-
         val categoryRecyclerView = this.findViewById<RecyclerView>(R.id.category_recycler)
         categoryRecyclerView.adapter = CategoryAdapter(intent.getIntExtra(MONTH_VALUE,0),this)
 

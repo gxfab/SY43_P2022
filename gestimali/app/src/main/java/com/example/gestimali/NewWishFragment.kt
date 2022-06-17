@@ -43,7 +43,8 @@ class NewWishFragment: Fragment() {
 
             Toast.makeText(requireContext(),"Wish added !",Toast.LENGTH_LONG).show()
 
-            activity?.supportFragmentManager?.popBackStack("addWishFragment",0)
+            //activity?.supportFragmentManager?.popBackStack("addWishFragment",0)
+            activity?.onBackPressed()
         }else{
             Toast.makeText(requireContext(),"Please fill out all fields!",Toast.LENGTH_LONG).show()
 

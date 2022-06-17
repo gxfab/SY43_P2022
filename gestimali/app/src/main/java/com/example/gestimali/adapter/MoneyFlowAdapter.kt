@@ -48,7 +48,9 @@ class MoneyFlowAdapter (var categoryInt : Int): RecyclerView.Adapter<MoneyFlowAd
             var list = expenseList
             val currentItem = list[position]
             holder.itemView.findViewById<TextView>(R.id.name_flow).text = currentItem.exp_name
-
+            holder.itemView.findViewById<TextView>(R.id.money_flow_date).text = currentItem.exp_day_transaction.toString()+"/"+currentItem.exp_month.toString()+"/"+currentItem.exp_year.toString()
+            holder.itemView.findViewById<TextView>(R.id.plan_amount).text = currentItem.exp_planned_amount.toString()
+            holder.itemView.findViewById<TextView>(R.id.real_amount).text = currentItem.exp_real_amount.toString()
         }
         else if(categoryInt == 2){
             var list = wishList
@@ -56,11 +58,13 @@ class MoneyFlowAdapter (var categoryInt : Int): RecyclerView.Adapter<MoneyFlowAd
             holder.itemView.findViewById<TextView>(R.id.name_flow).text = currentItem.wis_name
 
         }
-        else{
+        else if(categoryInt==3){
             var list = envelopeList
             val currentItem = list[position]
             holder.itemView.findViewById<TextView>(R.id.name_flow).text = currentItem.env_name
-
+            holder.itemView.findViewById<TextView>(R.id.plan_amount).text = currentItem.env_planned_amount.toString()
+            holder.itemView.findViewById<TextView>(R.id.real_amount).text = currentItem.env_money_used.toString()
+            holder.itemView.findViewById<TextView>(R.id.money_flow_date).visibility = View.INVISIBLE
         }
 
     }
@@ -99,7 +103,7 @@ class MoneyFlowAdapter (var categoryInt : Int): RecyclerView.Adapter<MoneyFlowAd
             return wishList.size
         }
         else{
-            return expenseList.size
+            return envelopeList.size
         }
     }
 }

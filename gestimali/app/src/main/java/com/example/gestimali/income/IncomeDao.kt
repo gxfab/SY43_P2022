@@ -14,4 +14,7 @@ interface IncomeDao {
 
     @Query("SELECT * FROM T_income ORDER BY inc_id ASC")
     fun readAllData() : LiveData<List<Income>>
+
+    @Query("SELECT * FROM T_income WHERE inc_month=:month ORDER BY inc_id ASC")
+    fun readAllDataFromMonth(month : Int) : LiveData<List<Income>>
 }

@@ -20,7 +20,10 @@ const val MONTH_VALUE = "com.example.gestimali.MONTH_VALUE"
 class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.ViewHolder>() {
 
 
-    private var incomeList = emptyList<Income>()
+    companion object{
+        @JvmStatic
+        private var monthCount = 0
+    }
     private var monthList = listOf("January", "February", "March", "April","May","June","July","August","September","October","November","December")
     private var containerTitle = listOf("Income", "Expense", "Wish/Saving", "Envelope","Result")
 
@@ -48,7 +51,7 @@ class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.Vie
         val currentMonth = monthList[position]
         holder.monthModel.text = currentMonth
 
-        if(position == incomeList.size){
+        if(position == monthCount){
             holder.incomeContainer.visibility = View.INVISIBLE
             holder.expenseContainer.visibility = View.INVISIBLE
             holder.wishContainer.visibility = View.INVISIBLE
@@ -56,6 +59,7 @@ class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.Vie
             holder.resultContainer.visibility = View.INVISIBLE
 
             holder.planButton.setOnClickListener {
+                monthCount++
                 var strName : String? =null
                 context.startActivity(Intent(context,AddBudgetActivity::class.java).apply {
                     putExtra(MONTH_NAME,monthList[position])
@@ -74,5 +78,5 @@ class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.Vie
         }
     }
 
-    override fun getItemCount(): Int = incomeList.size + 2
+    override fun getItemCount(): Int = monthCount + 1
 }
