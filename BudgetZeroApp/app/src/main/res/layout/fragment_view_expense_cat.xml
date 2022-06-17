@@ -18,19 +18,17 @@
         <include layout="@layout/toolbar_add_category" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical">
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/textViewCatName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="90dp"
             android:text="@string/exp_cat_name" />
 
         <TextView
@@ -92,11 +90,18 @@
             android:layout_alignStart="@+id/listViewCatClickSub"
             android:layout_alignTop="@+id/textViewCatExpenses"
             android:orientation="vertical">
-
-
         </ListView>
 
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/listViewCatExpenses"
+            android:layout_marginBottom="-80dp"
+            android:text="@string/edit" />
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

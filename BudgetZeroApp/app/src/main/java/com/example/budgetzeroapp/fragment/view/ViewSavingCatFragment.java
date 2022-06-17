@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,11 +28,13 @@ import java.util.List;
 public class ViewSavingCatFragment extends DataBaseFragment {
 
     private TextView name, goal, current, prio, perc;
+    private TextView listTextView;
     private ListView saveList;
     private String nameVal;
     private float goalVal, currentVal, percVal;
     private int prioVal;
     private List<ExpenseItem> saveListVal;
+    private Button edit;
 
     public ViewSavingCatFragment(){ super(); }
     public ViewSavingCatFragment(int id){ super(id); }
@@ -55,6 +58,8 @@ public class ViewSavingCatFragment extends DataBaseFragment {
         prio = view.findViewById(R.id.textViewSavePrioEntry);
         perc = view.findViewById(R.id.textViewSavePercEntry);
         saveList = view.findViewById(R.id.listViewSaveList);
+        listTextView = view.findViewById(R.id.textViewSaveList);
+        edit = view.findViewById(R.id.editButton);
         getValues();
         setValues();
     }
@@ -80,5 +85,12 @@ public class ViewSavingCatFragment extends DataBaseFragment {
         prio.setText(String.valueOf(prioVal));
         perc.setText(String.valueOf(percVal));
         ClickableListManager.clickableExpenseList(saveList,saveListVal);
+        if (saveListVal.isEmpty()){
+            listTextView.setVisibility(View.GONE);
+            saveList.setVisibility(View.GONE);
+        } else if(saveList.getVisibility()==View.GONE) {
+            listTextView.setVisibility(View.GONE);
+            saveList.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ListView;
@@ -22,9 +23,11 @@ import java.util.List;
 public class ViewIncomeCatFragment extends DataBaseFragment {
 
     private TextView name;
+    private TextView listTextView;
     private ListView incList;
     private String nameVal;
     private List<ExpenseItem> incListVal;
+    private Button edit;
 
     public ViewIncomeCatFragment(){ super(); }
     public ViewIncomeCatFragment(int id){ super(id); }
@@ -33,6 +36,8 @@ public class ViewIncomeCatFragment extends DataBaseFragment {
         View view= inflater.inflate(R.layout.fragment_view_income_cat, parent, false);
         name = view.findViewById(R.id.textViewIncNameEntry);
         incList = view.findViewById(R.id.listViewCatInc);
+        listTextView = view.findViewById(R.id.textViewCatInc);
+        edit = view.findViewById(R.id.editButton);
         getValues();
         setValues();
         return view;
@@ -51,5 +56,12 @@ public class ViewIncomeCatFragment extends DataBaseFragment {
     public void setValues() {
         name.setText(nameVal);
         ClickableListManager.clickableExpenseList(incList,incListVal);
+        if (incListVal.isEmpty()){
+            incList.setVisibility(View.GONE);
+            listTextView.setVisibility(View.GONE);
+        } else if(incList.getVisibility()==View.GONE) {
+            incList.setVisibility(View.VISIBLE);
+            listTextView.setVisibility(View.GONE);
+        }
     }
 }

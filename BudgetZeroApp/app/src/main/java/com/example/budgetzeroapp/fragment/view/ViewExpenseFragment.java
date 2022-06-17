@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
     private Calendar dateVal;
     private float amountVal;
     private int stableVal, typeVal;
+    private Button edit;
 
     public ViewExpenseFragment(){ super(); }
     public ViewExpenseFragment(int id){ super(id); }
@@ -54,6 +56,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
         amount = view.findViewById(R.id.textViewExpAmountEntry);
         stable = view.findViewById(R.id.textViewExpStableEntry);
         type = view.findViewById(R.id.textViewExpType);
+        edit = view.findViewById(R.id.editButton);
         getValues();
         setValues();
     }

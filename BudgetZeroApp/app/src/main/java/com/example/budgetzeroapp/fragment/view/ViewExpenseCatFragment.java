@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,11 +36,13 @@ import java.util.List;
 public class ViewExpenseCatFragment extends DataBaseFragment {
 
     private TextView name, budget;
+    private TextView subListTextView, expListTextView;
     private ListView subCatList, expList;
     private String nameVal;
     private float budgetVal;
     private List<CategoryItem> subCatVal;
     private List<ExpenseItem> expVal;
+    private Button edit;
 
     public ViewExpenseCatFragment(){ super(); }
     public ViewExpenseCatFragment(int id){ super(id); }
@@ -66,9 +69,22 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
     public void setValues()   {
         name.setText(nameVal);
         budget.setText(String.valueOf(budgetVal));
-        subCatList = ClickableListManager.clickableBudgetList(expList, subCatVal);
+        ClickableListManager.clickableBudgetList(subCatList, subCatVal);
+        if (subCatVal.isEmpty()){
+            subListTextView.setVisibility(View.GONE);
+            subCatList.setVisibility(View.GONE);
+        } else if(subCatList.getVisibility()==View.GONE) {
+            subListTextView.setVisibility(View.VISIBLE);
+            subCatList.setVisibility(View.VISIBLE);
+        }
         ClickableListManager.clickableExpenseList(expList, expVal);
-
+        if (expVal.isEmpty()){
+            expListTextView.setVisibility(View.GONE);
+            expList.setVisibility(View.GONE);
+        } else if(expList.getVisibility()==View.GONE) {
+            expListTextView.setVisibility(View.GONE);
+            expList.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -91,6 +107,9 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         budget = view.findViewById(R.id.textViewCatBudgetEntry);
         expList = view.findViewById(R.id.listViewCatExpenses);
         subCatList = view.findViewById(R.id.listViewCatClickSub);
+        subListTextView = view.findViewById(R.id.textViewCatClickSub);
+        expListTextView = view.findViewById(R.id.textViewCatExpenses);
+        edit = view.findViewById(R.id.editButton);
         getValues();
         setValues();
     }
