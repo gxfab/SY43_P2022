@@ -379,7 +379,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getExpensesFromCat(int idCat, int type){
         return getData("select * from "+EXP_TABLE_NAME+
-                " where " +getCatColName(type)+ " = "+idCat);
+                " where " +getCatColName(type)+ " = "+idCat+" and " +
+                EXP_COL_TYPE +" = "+type);
     }
 
     public float getSumFromCat(int idCat, int type){
