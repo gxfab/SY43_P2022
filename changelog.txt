@@ -1,1 +1,49 @@
+v1.0.0 - Final submission:
+- Added a pie chart on the last page of the prevision screen
 
+2022-06-16:
+- It is now possible to make a budget for the previous month if the current month has not started yet
+- Expenses can be deleted
+- Categories header now shows the sum of expenses and overspendings
+- More default categories added
+- The max amount can now be quickly set by clicking the "max" button
+- Categories can be edited
+
+2022-06-15:
+- Previsions should now be fully budgetized
+- A new page-based prevision screen makes its appearance
+- A snackbar now pops-up when something has been deleted
+
+2022-06-14:
+- Preloaded categories
+- Expenses are now editable
+- Accounts and categories can now be removed
+- New history screen
+
+2022-06-13:
+- Check forms for bad inputs
+
+2022-06-09:
+- The day of an expense can now be picked using a calendar
+
+2022-06-07:
+- Expenses now shows up under each category
+
+2022-06-03:
+- Prevision screen can be opened from the homepage of an account
+
+2022-05-31:
+- Expenses are now displayed as a list
+
+2022-05-29:
+- Previsions can now be added for the current month
+
+2022-05-20:
+- Multiple accounts can be added
+- The app has now a new modern theme
+
+2022-05-17:
+- Accounts are now displayed when launching the app
+
+2022-04-08
+- The very first version of the app. It only contains a blank screen
