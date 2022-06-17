@@ -28,6 +28,14 @@ public class SaisieFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.action_saisieFragment_to_saisieFactureFragment);
         });
 
+        view.findViewById(R.id.button_saisieEvenement).setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_saisieFragment_to_saisieEvenementFragment);
+        });
+
+        view.findViewById(R.id.button_saisieSemestre).setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_saisieFragment_to_saisieSemestreFragment);
+        });
+
         return view;
     }
 }

@@ -9,13 +9,35 @@
 
 
     <Button
-        android:id="@+id/button_saisieFacture"
-        android:layout_width="wrap_content"
+        android:id="@+id/button_saisieSemestre"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="281dp"
-        android:layout_marginEnd="161dp"
+        android:layout_marginTop="286dp"
+        android:layout_marginEnd="135dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:text="Semestre" />
+
+    <Button
+        android:id="@+id/button_saisieEvenement"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="355dp"
+        android:layout_marginEnd="135dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:text="Évènement" />
+
+    <Button
+        android:id="@+id/button_saisieFacture"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="430dp"
+        android:layout_marginEnd="135dp"
         android:backgroundTint="@color/gold_CookUT"
         android:text="Facture" />
 </RelativeLayout>

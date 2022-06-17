@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 
 import com.example.cookutproject.R;
 
-public class SaisieFactureFragment extends Fragment {
+public class saisieEvenementFragment extends Fragment {
 
-    public SaisieFactureFragment() {
+    public saisieEvenementFragment() {
         // Required empty public constructor
     }
 
@@ -21,13 +21,13 @@ public class SaisieFactureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_saisie_facture, container, false);
-
-        view.findViewById(R.id.button_valider).setOnClickListener(view1 -> {
-            Navigation.findNavController(view).navigate(R.id.action_saisieFactureFragment_to_saisieFragment);
+        View view= inflater.inflate(R.layout.fragment_saisie_evenement, container, false);
+        view.findViewById(R.id.button_validerEvenement).setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_saisieEvenementFragment_to_saisieFragment);
         });
-        view.findViewById(R.id.button_annuler).setOnClickListener(view1 -> {
-            Navigation.findNavController(view).navigate(R.id.action_saisieFactureFragment_to_saisieFragment);
+
+        view.findViewById(R.id.button_annulerEvenement).setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_saisieEvenementFragment_to_saisieFragment);
         });
 
         return view;

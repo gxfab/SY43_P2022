@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.SaisieSemestreFragment"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/imageButton_saisie"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:maxWidth="10dp"
+        android:maxHeight="10dp"
+        android:translationX="15dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/home"
+        tools:ignore="MissingConstraints"
+        android:onClick="changeActivityMain"/>
+
+
+    <EditText
+        android:id="@+id/nomEvenement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/typeEvenement"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="22dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:hint="Nom de l'évènement" />
+
+    <EditText
+        android:id="@+id/montantPrevSemestre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nomEvenement"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="390dp"
+        android:layout_marginRight="50dp"
+        android:allowClickWhenDisabled="false"
+        android:backgroundTint="@color/gold_CookUT"
+        android:hint="Montant Prévisionnel"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/typeEvenement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="531dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:hint="Type d'évènement" />
+
+    <EditText
+        android:id="@+id/dateEvenement"
+        android:layout_width="303dp"
+        android:layout_height="41dp"
+        android:layout_alignTop="@+id/nomEvenement"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="223dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="379dp"
+        android:backgroundTint="@color/gold_CookUT"
+        android:hint="Date de l'évènement" />
+
+    <LinearLayout
+        android:layout_width="410dp"
+        android:layout_height="75dp"
+        android:layout_alignTop="@+id/nomEvenement"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="291dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="277dp"
+        android:background="@color/green_CookUT"
+        android:gravity="center_horizontal">
+
+
+        <Button
+            android:id="@+id/button_validerEvenement"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:backgroundTint="@color/gold_CookUT"
+            android:text="Valider" />
+
+        <Button
+            android:id="@+id/button_annulerEvenement"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/gold_CookUT"
+            android:text="Annuler" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_saisieFragment_to_saisieSemestreFragment"
             app:destination="@id/saisieSemestreFragment" />
+        <action
+            android:id="@+id/action_saisieFragment_to_saisieEvenementFragment"
+            app:destination="@id/saisieEvenementFragment" />
     </fragment>
     <fragment
         android:id="@+id/saisieFactureFragment"
@@ -32,6 +35,15 @@
         tools:layout="@layout/fragment_saisie_semestre" >
         <action
             android:id="@+id/action_saisieSemestreFragment_to_saisieFragment"
+            app:destination="@id/saisieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saisieEvenementFragment"
+        android:name="com.example.cookutproject.fragment.saisieEvenementFragment"
+        android:label="fragment_saisie_evenement"
+        tools:layout="@layout/fragment_saisie_evenement" >
+        <action
+            android:id="@+id/action_saisieEvenementFragment_to_saisieFragment"
             app:destination="@id/saisieFragment" />
     </fragment>
 </navigation>
