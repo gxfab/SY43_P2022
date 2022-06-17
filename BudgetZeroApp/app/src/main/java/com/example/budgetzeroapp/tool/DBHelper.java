@@ -165,7 +165,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         "('Weekly shopping', -57, 1, 7, 16, 6, 2022,0)," +
                         "('Electricity',-307, 1, 5, 1, 6, 2022,0)," +
                         "('Loan',-450,1,5,5,6,2022,1)," +
-                        "('Netflix',-20,3,113,6,2022,1);"
+                        "('Netflix',-20,3,1,13,6,2022,1);"
         );
         //Example incomes
         db.execSQL(

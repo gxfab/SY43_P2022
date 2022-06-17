@@ -14,46 +14,39 @@ public class SavingsManager {
         Date date = ToolBar.getInstance().getDate();
         int day = DateManager.dateToDay(date);
         int month = DateManager.dateToDay(date);
-        Cursor saving;
+
         int year = DateManager.dateToDay(date);
         int id;
         float currentAmount, maxAmount, addedAmount, initAmount = amount;
         int percent;
         int currentPriority = 1;
 
-        saving = database.getAllSavingsCat();
+        Cursor saving = database.getAllSavingsCat();
+        saving.moveToFirst();
+        while(amount>0 && !saving.isAfterLast()){
 
-        while(amount>0){
-            if(!saving.isAfterLast()){
-
-                id = saving.getInt(saving.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_ID));
-                maxAmount = saving.getFloat(saving.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_MAX_AMOUNT));
-                currentAmount = saving.getFloat(saving.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_CURRENT_AMOUNT));
-                addedAmount = amount;
-                if(currentPriority == 0 || maxAmount == -1 || maxAmount> currentAmount) {
-                    if(currentPriority==0||maxAmount == -1 || currentAmount+addedAmount <= maxAmount){
-                        database.updateSavingsCurrentAmount(id,currentAmount+addedAmount);
-                    }else{
-                        database.updateSavingsCurrentAmount(id, maxAmount);
-                        addedAmount = maxAmount-currentAmount;
-                    }
-                    amount -= addedAmount;
-                    database.insertExpense(addedAmount, "", DBHelper.TYPE_SAV, id, false,day, month, year);
+            id = saving.getInt(saving.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_ID));
+            maxAmount = saving.getFloat(saving.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_MAX_AMOUNT));
+            currentAmount = saving.getFloat(saving.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_CURRENT_AMOUNT));
+            addedAmount = amount;
+            if(currentPriority == 0 || maxAmount == -1 || maxAmount> currentAmount) {
+                if(currentPriority==0||maxAmount == -1 || currentAmount+addedAmount <= maxAmount){
+                    database.updateSavingsCurrentAmount(id,currentAmount+addedAmount);
+                }else{
+                    database.updateSavingsCurrentAmount(id, maxAmount);
+                    addedAmount = maxAmount-currentAmount;
                 }
-                currentPriority++;
-                saving.moveToNext();
-
-            }else{
-                currentPriority = 0;
-                saving = database.getSavingsFromPriority(currentPriority);
+                amount -= addedAmount;
+                database.insertExpense(-addedAmount, "", DBHelper.TYPE_SAV, id, false,day, month, year);
             }
+            currentPriority++;
+            saving.moveToNext();
         }
-        saving.close();
     }
 
-    public static void updateBudget(Date date){
+    public static void updateBudget(int month){
         float sumExp, budget;
-        int month = DateManager.dateToMonth(date), id;
+        int id;
         Cursor cat = database.getAllExpenseCat();
         cat.moveToFirst();
         while(!cat.isAfterLast()){

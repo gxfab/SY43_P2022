@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.DataBaseFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,6 +36,8 @@ public class ToolBar{
 
     private static SharedPreferences settings = AppContext.getContext().getSharedPreferences(PREFS_NAME, 0);
     private static SharedPreferences.Editor editor = settings.edit();
+
+    private static final DBHelper database = new DBHelper(AppContext.getContext());
 
     private static SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
     private static ToolBar instance = new ToolBar();
@@ -70,7 +73,7 @@ public class ToolBar{
         budgetAutoMode = settings.getBoolean("budgetAutoMode", true);
         savingsAutoMode = settings.getBoolean("savingsAutoMode", true);
         cal = Calendar.getInstance();
-        updateMoneyAmount(new DBHelper(AppContext.getContext()));
+        updateMoneyAmount();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -97,20 +100,37 @@ public class ToolBar{
                     navController.navigate(R.id.navigate_to_addCategory);
                     break;
                 case R.id.next_day:
-                    if(DateManager.isLastMonthDay(date)){
-                        if(savingsAutoMode) SavingsManager.distributeSavings(moneyAmount);
-                        if(budgetAutoMode) SavingsManager.updateBudget(date);
-                    }
+
+
                     incrementDate();
                     saveDate();
+                    if(DateManager.dateToDay(date) == 1){
+                        String message = "Last day of the month";
+                        if(savingsAutoMode) {
+                            SavingsManager.distributeSavings(moneyAmount);
+                            message += "\nSavings updated";
+                        }
+                        if(budgetAutoMode) {
+                            SavingsManager.updateBudget(DateManager.previousMonth(DateManager.dateToMonth(date)));
+                            message += "\nBudget updated";
+                        }
+                        DataBaseFragment.message(message);
+                    }
                     SavingsManager.addStableExpenses(date);
-
                     CharSequence mess = format.format(date);
                     dateText.setText(mess);
+                    updateMoneyAmount();
+                    CharSequence txt = Float.toString(moneyAmount)+"€";
+                    amountText.setText(txt);
                     break;
                 case R.id.mode:
-                    if(idToolBar == R.id.toolbar_budget) budgetAutoMode = !budgetAutoMode;
-                    else saveBudgetMode();
+                    if(idToolBar == R.id.toolbar_budget) {
+                        budgetAutoMode = !budgetAutoMode;
+                        saveBudgetMode();
+                    }else{
+                        savingsAutoMode = !savingsAutoMode;
+                        saveSavingsMode();
+                    }
                     break;
 
             }
@@ -144,7 +164,7 @@ public class ToolBar{
 
     public float getMoneyAmount(){ return moneyAmount; }
 
-    public void updateMoneyAmount(DBHelper database){
+    public void updateMoneyAmount(){
         moneyAmount = database.getAccountMoneyAmount();
     }
 }

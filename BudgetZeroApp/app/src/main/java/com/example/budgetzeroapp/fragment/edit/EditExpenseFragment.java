@@ -73,7 +73,7 @@ public class EditExpenseFragment extends EditDataBaseFragment {
             case DBHelper.TYPE_INC:list = ListItem.initList(database.getAllIncomeCat());
                 break;
         }
-
+        category.setAdapter(new SimpleListAdapter(list));
         return view;
     }
 
@@ -86,7 +86,6 @@ public class EditExpenseFragment extends EditDataBaseFragment {
         year = DateManager.dateToYear(date);
         defaultAmount = 0;
         defaultStable = 0;
-        category.setAdapter(new SimpleListAdapter(list));
     }
 
     @Override
