@@ -18,17 +18,6 @@ public class Event extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        RecyclerView recyclerView = findViewById(R.id.recyclerviewSemestre);
-        SemestreAdapter adapter = new SemestreAdapter();
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        CookUTViewModel cookUTViewModel = new ViewModelProvider(this).get(CookUTViewModel.class);
-
-        cookUTViewModel.getReadAllSemestre().observe(this,s ->{
-            adapter.setSemestreList(s);
-        });
-
     }
     public void changeActivityMain(View view){
         Intent intent = new Intent(this, MainActivity.class);

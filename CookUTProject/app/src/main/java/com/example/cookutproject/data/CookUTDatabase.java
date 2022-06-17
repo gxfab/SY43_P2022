@@ -17,7 +17,7 @@ import com.example.cookutproject.models.User;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Aliment.class, Semestre.class, User.class, Materiel.class, Facture.class, NoteDeFrais.class, Evenement.class},version=1,exportSchema = false)
+@Database(entities = {Aliment.class, Semestre.class, User.class, Materiel.class, Facture.class, NoteDeFrais.class, Evenement.class},version=2,exportSchema = false)
 public abstract class CookUTDatabase extends RoomDatabase {
     //Daos
     public abstract CookUTDao cookUTDao();
@@ -27,6 +27,7 @@ public abstract class CookUTDatabase extends RoomDatabase {
     private static final int NUMBER_OF_THREADS = 4;
     static  final ExecutorService databasWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
+
     public static CookUTDatabase getDatabase(Context context){
         if(INSTANCE !=null){
             return INSTANCE;
@@ -34,7 +35,9 @@ public abstract class CookUTDatabase extends RoomDatabase {
         synchronized (CookUTDatabase.class){
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     CookUTDatabase.class,
-                    "CookooT").build();
+                    "CookooT")
+                    .fallbackToDestructiveMigration()
+                    .build();
             return INSTANCE;
         }
     }

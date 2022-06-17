@@ -7,33 +7,11 @@
     tools:context=".Event"
     android:background="@drawable/background">
 
-    <ImageButton
-        android:id="@+id/imageButton_event"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        android:onClick="changeActivityMain"/>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="129dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewSemestre"
-        android:layout_width="409dp"
-        android:layout_height="441dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="289dp" />
-
+    <fragment
+        android:id="@+id/fragmentContainerView2"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/affichage_nav"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

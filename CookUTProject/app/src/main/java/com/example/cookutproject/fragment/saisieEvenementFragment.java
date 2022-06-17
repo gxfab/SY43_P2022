@@ -41,13 +41,13 @@ public class saisieEvenementFragment extends Fragment implements AdapterView.OnI
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_saisie_evenement, container, false);
         cookUTViewModel = new ViewModelProvider(this).get(CookUTViewModel.class);
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinner_id_semestre);
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinner_type_event);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(),
                 R.array.typeEvent_Array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        Spinner spinner1 = (Spinner) view.findViewById(R.id.spinner_type_event);
+        Spinner spinner1 = (Spinner) view.findViewById(R.id.spinner_id_semestre);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(requireContext(),
                 R.array.idSemestre_Array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -69,11 +69,11 @@ public class saisieEvenementFragment extends Fragment implements AdapterView.OnI
     private void insertDatatoDatabase() {
         String nom = ((EditText) view.findViewById(R.id.nomEvenement)).getText().toString();
         String montantPrev = ((EditText) view.findViewById(R.id.montantPrevEvenement)).getText().toString();
-        String type =((EditText) view.findViewById(R.id.typeEvenement)).getText().toString();
+        String type =((Spinner) view.findViewById(R.id.spinner_type_event)).getSelectedItem().toString();
         String date = ((EditText) view.findViewById(R.id.dateEvenement)).getText().toString();
-        String idSemestre = ((EditText) view.findViewById(R.id.idSemestreEvenement)).getText().toString();
+        String idSemestre = ((Spinner) view.findViewById(R.id.spinner_id_semestre)).getSelectedItem().toString();
         if(inputCheck(nom,montantPrev,type,date,idSemestre)) {
-            Evenement e = new Evenement(type,nom,date,Float.parseFloat(String.valueOf(montantPrev)),0,0);
+            Evenement e = new Evenement(Integer.parseInt(String.valueOf(idSemestre)),type,nom,date,Float.parseFloat(String.valueOf(montantPrev)),0,0);
             cookUTViewModel.addEvenement(e);
             Toast.makeText(requireContext(),"Succesfully added!", Toast.LENGTH_LONG).show();
             Navigation.findNavController(view).navigate(R.id.action_saisieEvenementFragment_to_saisieFragment);

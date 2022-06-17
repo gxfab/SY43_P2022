@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/affichage_nav"
+    app:startDestination="@id/affichageFragment">
+
+    <fragment
+        android:id="@+id/affichageFragment"
+        android:name="com.example.cookutproject.fragment.AffichageFragment"
+        android:label="fragment_affichage"
+        tools:layout="@layout/fragment_affichage" >
+        <action
+            android:id="@+id/action_affichageFragment_to_affichageSemestreFragment"
+            app:destination="@id/affichageSemestreFragment" />
+        <action
+            android:id="@+id/action_affichageFragment_to_affichageEvenementFragment"
+            app:destination="@id/affichageEvenementFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/affichageSemestreFragment"
+        android:name="com.example.cookutproject.fragment.AffichageSemestreFragment"
+        android:label="fragment_affichage_semestre"
+        tools:layout="@layout/fragment_affichage_semestre" >
+        <action
+            android:id="@+id/action_affichageSemestreFragment_to_affichageFragment"
+            app:destination="@id/affichageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/affichageEvenementFragment"
+        android:name="com.example.cookutproject.fragment.AffichageEvenementFragment"
+        android:label="fragment_affichage_evenement"
+        tools:layout="@layout/fragment_affichage_evenement" >
+        <action
+            android:id="@+id/action_affichageEvenementFragment_to_affichageFragment"
+            app:destination="@id/affichageFragment" />
+    </fragment>
+</navigation>
