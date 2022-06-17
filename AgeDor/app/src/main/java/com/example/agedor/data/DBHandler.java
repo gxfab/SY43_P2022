@@ -41,7 +41,19 @@ public class DBHandler extends SQLiteOpenHelper {
         db.delete(table, " NOM = ?", new String[]{id});
 
         db.close();
+    }
 
+    public Double getSum(String table) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT SUM(MONTANT) FROM " + table, null);
+        res.moveToFirst();
+        String sum = res.getString(0);
+        db.close();
+        if (sum == null) {
+            return 0.0;
+        } else {
+            return Double.parseDouble(sum);
+        }
     }
 
     public void addNewFacture(String nom, double montant){
