@@ -16,13 +16,13 @@ public class Facture {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private float amount;
-    private Date date;
+    private String date;
     private int id_event;
     private String entity;
     private String title;
 
     //Constructor
-    public Facture (float amount, Date date, int id, String entity, String title,int id_event){
+    public Facture (float amount, String date, int id, String entity, String title,int id_event){
         this.amount = amount;
         this.date = date;
         this.id =id;
@@ -37,7 +37,7 @@ public class Facture {
         return amount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -64,7 +64,7 @@ public class Facture {
         this.amount = amount;
     }
 
-    public void setDate(Date date){
+    public void setDate(String date){
         this.date = date;
     }
 

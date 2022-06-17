@@ -11,12 +11,12 @@ import androidx.room.PrimaryKey;
 
 public class Aliment {
     @PrimaryKey(autoGenerate = true)
-    int id;
-    float price;
-    int idFacture;
-    String name;
-    String type;
-    int quantity;
+    private int id;
+    private float price;
+    private int idFacture;
+    private String name;
+    private String type;
+    private int quantity;
 
     public Aliment (int id,float price,int idFacture, String name, String type, int quantity){
         this.id=id;

@@ -4,9 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1935" />
+        <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_event.xml" value="0.18541666666666667" />
         <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_main.xml" value="0.33" />
+<<<<<<< Updated upstream
         <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_saisie.xml" value="0.1" />
         <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_second.xml" value="0.5" />
+=======
+        <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_recap.xml" value="0.18541666666666667" />
+        <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_saisie.xml" value="0.33" />
+        <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_second.xml" value="0.5" />
+        <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/fragment_saisie.xml" value="0.3625" />
+        <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/fragment_saisie_facture.xml" value="0.3625" />
+        <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/fragment_saisie_semestre.xml" value="0.33" />
+        <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/semestre_row.xml" value="0.33" />
+>>>>>>> Stashed changes
         <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_saisie.xml" value="0.2" />
         <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/layout/fragment_saisie.xml" value="0.264" />

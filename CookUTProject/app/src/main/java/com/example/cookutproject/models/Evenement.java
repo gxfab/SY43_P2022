@@ -8,16 +8,16 @@ import java.util.Date;
 @Entity
 public class Evenement {
     @PrimaryKey(autoGenerate = true)
-    int id;
-    String type;
-    String name;
-    Date date;
-    float amountPrevisionnel;
-    float amountExpense;
-    float amountRecipe;
+    private int id;
+    private String type;
+    private String name;
+    private String date;
+    private float amountPrevisionnel;
+    private float amountExpense;
+    private float amountRecipe;
 
     //Constructor
-    public Evenement(int id,String type, String name, Date date, float amountPrevisionnel, float amountExpense, float amountRecipe){
+    public Evenement(int id,String type, String name, String date, float amountPrevisionnel, float amountExpense, float amountRecipe){
         this.id=id;
         this.type=type;
         this.name=name;
@@ -41,7 +41,7 @@ public class Evenement {
         return name;
     }
 
-    public Date getDate(){
+    public String getDate(){
         return date;
     }
 
@@ -62,7 +62,7 @@ public class Evenement {
         this.id = id;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

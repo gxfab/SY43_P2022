@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
         parentColumns = "id",
 
-        childColumns = "id_facture"))
+        childColumns = "idFacture"))
 public class Materiel {
     @PrimaryKey(autoGenerate = true)
     int id;

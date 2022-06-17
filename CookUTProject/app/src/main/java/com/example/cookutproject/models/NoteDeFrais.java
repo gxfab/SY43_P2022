@@ -22,13 +22,13 @@ public class NoteDeFrais {
     private String prenomPersonne;
     private float amount;
     private String title;
-    private Date date;
+    private String date;
     @PrimaryKey(autoGenerate = true)
     private int id;
     private int id_evenement;
     private int id_user;
 
-    NoteDeFrais(String nomPersonne,String prenomPersonne,int amount, String title, Date date, int id, int id_evenement, int id_user){
+    public NoteDeFrais(String nomPersonne,String prenomPersonne,int amount, String title, String date, int id, int id_evenement, int id_user){
         this.nomPersonne = nomPersonne;
         this.prenomPersonne = prenomPersonne;
         this.amount = amount;
@@ -60,7 +60,7 @@ public class NoteDeFrais {
         return id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -86,7 +86,7 @@ public class NoteDeFrais {
         this.amount = amount;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
