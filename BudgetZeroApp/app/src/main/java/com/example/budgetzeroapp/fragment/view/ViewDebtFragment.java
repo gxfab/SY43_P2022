@@ -12,8 +12,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.BudgetFragmentDirections;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.tool.ClickableListManager;
@@ -48,6 +53,15 @@ public class ViewDebtFragment extends DataBaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        /**Listener edit button**/
+        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+            NavController navController = Navigation.findNavController(view);
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.navigate_to_editDebt_from_debt);
+            }
+        });
+
 
         /**Getting passed id**/
         id = ViewDebtFragmentArgs.fromBundle(getArguments()).getIdDebt();
