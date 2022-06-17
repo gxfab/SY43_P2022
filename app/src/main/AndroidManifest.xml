@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SY43_P2022">
         <activity
-            android:name="com.example.piggy_bank.MainActivity"
+            android:name="com.sy43_p22.piggy_bank.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.SY43_P2022.NoActionBar">
             <intent-filter>
