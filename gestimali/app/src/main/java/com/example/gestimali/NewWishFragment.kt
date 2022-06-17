@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +28,7 @@ class NewWishFragment: Fragment() {
 
         mWishViewModel = ViewModelProvider(this).get(WishViewModel::class.java)
 
+
         view.findViewById<ImageButton>(R.id.validate_add_wish).setOnClickListener{
             insertDateToDateBase(view)
 
@@ -43,7 +45,6 @@ class NewWishFragment: Fragment() {
 
             Toast.makeText(requireContext(),"Wish added !",Toast.LENGTH_LONG).show()
 
-            //activity?.supportFragmentManager?.popBackStack("addWishFragment",0)
             activity?.onBackPressed()
         }else{
             Toast.makeText(requireContext(),"Please fill out all fields!",Toast.LENGTH_LONG).show()
