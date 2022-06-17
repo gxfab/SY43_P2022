@@ -65,7 +65,7 @@ public class latest_expenses extends Fragment {
         l4 = new ArrayList<>();
 
         for (Expenses exp:expenses) {
-            l1.add("16June2022");
+            l1.add(exp.date);
             l2.add(exp.name);
             l3.add(Double.toString(exp.value) + "$");
             String subcategory = db.subCategoryDao().loadAllByIDs(new int[]{exp.subcategory}).get(0).name;

@@ -19,7 +19,6 @@ public class Projects {
     public double percentage;
 
     public Projects( String name, double value, double percentage) {
-
         this.name = name;
         this.value = value;
         this.percentage = percentage;

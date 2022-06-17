@@ -45,7 +45,8 @@ public class Categories extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<DataModel2> mList;
     private CategoryAdapter adapter;
-    double sum =0;
+    double sumEnvelope =0;
+    double sumExpense =0;
     TextView subcategory_name, subcategory_amount;
     List<SubCategory> subCategory;
     List<String> subcategories_titles  ;
@@ -58,10 +59,10 @@ public class Categories extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
 
         AppDatabase db = AppDatabase.getInstance(this);
+        String[] monthsArray = getResources().getStringArray(R.array.Months_Array);
         List<Category> categories = db.categoryDao().getAll();
 
         Spinner period = findViewById(R.id.spinner2);
-        String[] monthsArray = getResources().getStringArray(R.array.Months_Array);
         List<String> months = new ArrayList<String>();
         for (MonthlyRevenue mth: db.monthlyRevenueDao().getAll()) {
             months.add(Month.of(mth.month).getDisplayName(TextStyle.FULL, Locale.ENGLISH));
@@ -73,7 +74,8 @@ public class Categories extends AppCompatActivity {
 
         period.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {generateList(categories,db);}
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                generateList(categories,db, monthsArray, period.getSelectedItem().toString());}
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}});
 
@@ -99,7 +101,7 @@ public class Categories extends AppCompatActivity {
             }
         });
 
-        generateList(categories,db);
+        generateList(categories,db, monthsArray, period.getSelectedItem().toString());
    /* mList = new ArrayList<>();
         for (int i=0; i<categories.size(); i++){
             sum=0;
@@ -173,44 +175,51 @@ public class Categories extends AppCompatActivity {
 
     }
 
-    private void generateList(List<Category> categories, AppDatabase db){
+    private void generateList(List<Category> categories, AppDatabase db, String[] monthsArray, String month){
         mList = new ArrayList<>();
         for (int i=0; i<categories.size(); i++){
-            sum=0;
+            sumEnvelope=0;
             subCategory = db.subCategoryDao().findByCategory(i+1);
+            int selectedMonth = Arrays.asList(monthsArray).indexOf(month)+1;
+            int monthID = db.monthlyRevenueDao().findByMonth(selectedMonth).id;
+            List<Expenses> expenses = db.expensesDao().findByCategoryAndMonth(categories.get(i).id, monthID);
             subcategories_titles= new ArrayList<>();
             subcategories_enveloppes= new ArrayList<>();
             for (int j=0; j<subCategory.size();j++){
                 subcategories_titles.add(subCategory.get(j).name);
                 subcategories_enveloppes.add(Double.toString(subCategory.get(j).envelope));
-                sum+= subCategory.get(j).envelope;
+                sumEnvelope+= subCategory.get(j).envelope;
+            }
+            for(Expenses exp : expenses) {
+                sumExpense += exp.value;
             }
 
             switch (categories.get(i).name) {
                 case "Clothing" :
-                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.clothing),Double.toString(sum) ));
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.clothing),Double.toString(sumExpense)+" / "+ Double.toString(sumEnvelope)));
                     break;
                 case "Communication" :
-                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.phone),Double.toString(sum) ));
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.phone),Double.toString(sumExpense)+" / "+ Double.toString(sumEnvelope)));
                     break;
                 case "Entertainment" :
-                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.entertainment),Double.toString(sum) ));
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.entertainment),Double.toString(sumExpense)+" / "+ Double.toString(sumEnvelope)));
                     break;
                 case "Finance" :
-                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.finance),Double.toString(sum) ));
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.finance),Double.toString(sumExpense)+" / "+ Double.toString(sumEnvelope)));
                     break;
                 case "Food" :
-                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.food),Double.toString(sum) ));
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.food),Double.toString(sumExpense)+" / "+ Double.toString(sumEnvelope)));
                     break;
                 case "Health" :
-                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.health),Double.toString(sum) ));
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.health),Double.toString(sumExpense)+" / "+ Double.toString(sumEnvelope)));
                     break;
                 case "Housing" :
-                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.house),Double.toString(sum) ));
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.house),Double.toString(sumExpense)+" / "+ Double.toString(sumEnvelope)));
                     break;
                 case "Transport" :
-                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.transport),Double.toString(sum) ));
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.transport),Double.toString(sumExpense)+" / "+ Double.toString(sumEnvelope)));
             }
+            sumExpense = 0;
         }
     }
 }

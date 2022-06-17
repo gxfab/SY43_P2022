@@ -163,9 +163,9 @@ public class Home extends AppCompatActivity {
 //        monthSpinner.setSelection(months.indexOf(Month.of(Calendar.getInstance().get(Calendar.MONTH)).getDisplayName(TextStyle.FULL, Locale.ENGLISH)));
 //
         updateExpenseAndBalance(monthsArray, db);
-        String currentMonth = monthsArray[Calendar.getInstance().get(Calendar.MONTH)];
-        int monthPosition = months.indexOf(currentMonth);
-        monthSpinner.setSelection(monthPosition);
+//        String currentMonth = monthsArray[Calendar.getInstance().get(Calendar.MONTH)];
+//        int monthPosition = months.indexOf(currentMonth);
+//        monthSpinner.setSelection(monthPosition);
 //        double exp_total=0.0;
 //        int selectedMonth = Arrays.asList(monthsArray).indexOf(monthSpinner.getSelectedItem().toString())+1;
 //        int selectedYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());

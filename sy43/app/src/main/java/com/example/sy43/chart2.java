@@ -50,6 +50,7 @@ public class chart2 extends Fragment {
         ArrayList<BarEntry> expenses = new ArrayList<>();
 
         labels = new ArrayList<>();
+        labels.add("");
         for (int i =0 ; i < list.size(); i++ ){
             expensesbysubcat = new ArrayList<>();
             expensesbysubcat = db.expensesDao().findBySubCategory(list.get(i).id);

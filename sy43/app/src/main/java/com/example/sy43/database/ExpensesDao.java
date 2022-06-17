@@ -34,6 +34,13 @@ public interface ExpensesDao {
             "WHERE MonthlyRevenue.id = :month")
     List<Expenses> findByMonth(int month);
 
+    @Query("SELECT * FROM Expenses " +
+            "INNER JOIN SubCategory on SubCategory.id = Expenses.e_subcategory " +
+            "INNER JOIN Category on Category.id = SubCategory.category " +
+            "INNER JOIN MonthlyRevenue on MonthlyRevenue.id = Expenses.e_monthlyrevenue " +
+            "WHERE Category.id = :category AND MonthlyRevenue.id = :month")
+    List<Expenses> findByCategoryAndMonth(int category, int month);
+
     @Insert
     void insertAll(Expenses... exp);
 
