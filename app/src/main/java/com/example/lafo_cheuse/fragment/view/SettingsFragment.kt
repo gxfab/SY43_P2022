@@ -151,18 +151,19 @@ class SettingsFragment : Fragment() {
      */
     private suspend fun insertDemoDatabase() = coroutineScope {
         val shoppingCategory : Category = categoryViewModel.getCategorySync("Courses","🛒")!![0]
-        val taxesCategory : Category = categoryViewModel.getCategorySync("Taxes","🧾")!![0]
-        val outingCategory : Category = categoryViewModel.getCategorySync("Sorties","🎫")!![0]
+        //val taxesCategory : Category = categoryViewModel.getCategorySync("Taxes","🧾")!![0]
+        //val outingCategory : Category = categoryViewModel.getCategorySync("Sorties","🎫")!![0]
         val vehicleCategory : Category = categoryViewModel.getCategorySync("Véhicule","🚗")!![0]
         val partyCategory : Category = categoryViewModel.getCategorySync("Soirées","🍻")!![0]
-        val extras : Category = categoryViewModel.getCategorySync("extras","❔")!![0]
+        //val extras : Category = categoryViewModel.getCategorySync("extras","❔")!![0]
         val grantCategory : Category = categoryViewModel.getCategorySync("Bourses","\uD83D\uDCB0")!![0]
-        val streamingCategory : Category = categoryViewModel.getCategorySync("Streaming","📺")!![0]
+        //val streamingCategory : Category = categoryViewModel.getCategorySync("Streaming","📺")!![0]
 
         incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_MONTH,"Parents",grantCategory,150.0))
         incomeViewModel.insertIncome(Income(Frequency.OUNCE_A_MONTH,"Crous",grantCategory,150.0))
         expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_MONTH,"Courses", shoppingCategory, -100.0))
         expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_MONTH, "Essence", vehicleCategory, -60.0))
+        expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_MONTH,"Soirées", partyCategory, -20.0))
 
         /**
          * Small function to convert a calendar date to DatabaseDate object
@@ -186,6 +187,10 @@ class SettingsFragment : Fragment() {
                                                     today.year, today.month, randomDays[1]))
         expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_DAY, "Tournée", partyCategory, -10.0,
                                                     today.year, today.month, randomDays[2]))
+        expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_DAY, "Demi-plein", vehicleCategory, -60.0,
+                                                    today.year, today.month, randomDays[3]))
+        expenseViewModel.insertExpense(Expense(Frequency.OUNCE_A_DAY, "Chips", shoppingCategory, -3.60,
+                                                    today.year, today.month, randomDays[4]))
 
     }
 
