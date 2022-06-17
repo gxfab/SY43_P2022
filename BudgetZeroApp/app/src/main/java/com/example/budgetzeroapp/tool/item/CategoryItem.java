@@ -2,6 +2,7 @@ package com.example.budgetzeroapp.tool.item;
 
 import android.database.Cursor;
 
+import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 public class CategoryItem extends ListItem{
 
     private float budget, total, percentage;
-    private DataBaseFragment frag;
 
     public CategoryItem(int id, String name, float total, float pOrB){
         super(id, name);
@@ -41,8 +41,7 @@ public class CategoryItem extends ListItem{
         }
     }
 
-    public static ArrayList<CategoryItem> initCategoryList(DBHelper database, boolean type){
-        Cursor rows = database.getMainExpCat();
+    public static ArrayList<CategoryItem> initCategoryList(Cursor rows,boolean type){
         ArrayList<CategoryItem> list = new ArrayList<>();
         int id;
         float amount, total, perOrBudget;

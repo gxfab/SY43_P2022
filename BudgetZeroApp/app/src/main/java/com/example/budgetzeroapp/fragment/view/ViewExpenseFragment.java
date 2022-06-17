@@ -24,6 +24,7 @@ import com.example.budgetzeroapp.tool.item.ExpenseItem;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class ViewExpenseFragment extends DataBaseFragment {
 
@@ -49,7 +50,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
 
         /**Getting passed id**/
         id = ViewExpenseFragmentArgs.fromBundle(getArguments()).getIdExpense();
-        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
         name = view.findViewById(R.id.textViewExpNameEntry);
         date = view.findViewById(R.id.textViewExpDateEntry);
@@ -82,7 +83,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
         name.setText(nameVal);
         amount.setText(String.valueOf(amountVal));
         Date dateString = dateVal.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
         date.setText(dateFormat.format(dateString));
         switch(typeVal) {
             case 1:

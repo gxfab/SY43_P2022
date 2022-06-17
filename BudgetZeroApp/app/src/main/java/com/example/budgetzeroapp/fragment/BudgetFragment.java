@@ -1,5 +1,6 @@
 package com.example.budgetzeroapp.fragment;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -68,7 +69,7 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
 
         /**Listview**/
         listView = view.findViewById(R.id.list_view_cat);
-        items = CategoryItem.initCategoryList(database, false);
+        items = CategoryItem.initCategoryList(database.getMainExpCat(), false);
         listView = ClickableListManager.clickableBudgetList(listView, items);
 
         BudgetAdapter budgetAdapter = new BudgetAdapter(items);

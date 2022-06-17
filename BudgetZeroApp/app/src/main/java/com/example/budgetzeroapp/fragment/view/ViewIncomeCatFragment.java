@@ -49,7 +49,7 @@ public class ViewIncomeCatFragment extends DataBaseFragment {
         if (inc.isAfterLast()) redirect(new HomeFragment(),id);
         else {
             nameVal = inc.getString(inc.getColumnIndexOrThrow(DBHelper.INC_CAT_COL_NAME));
-            incListVal = ExpenseItem.catExpensesToList(database, id, DBHelper.TYPE_INC);
+            incListVal = ExpenseItem.ExpensesToList(database.getExpensesFromCat(id, DBHelper.TYPE_INC));
         }
     }
 

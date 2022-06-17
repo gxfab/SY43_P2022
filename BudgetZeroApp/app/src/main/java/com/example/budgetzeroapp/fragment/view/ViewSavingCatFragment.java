@@ -74,7 +74,7 @@ public class ViewSavingCatFragment extends DataBaseFragment {
             currentVal = save.getFloat(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_CURRENT_AMOUNT));
             prioVal = save.getInt(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_PRIORITY_ORDER));
             percVal = save.getFloat(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_PERCENTAGE));
-            saveListVal = ExpenseItem.catExpensesToList(database, id, DBHelper.TYPE_SAV);
+            saveListVal = ExpenseItem.ExpensesToList(database.getExpensesFromCat(id, DBHelper.TYPE_SAV));
         }
     }
 

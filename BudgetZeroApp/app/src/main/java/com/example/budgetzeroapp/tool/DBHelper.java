@@ -402,6 +402,12 @@ public class DBHelper extends SQLiteOpenHelper {
                 " where id = "+idCat);
     }
 
+    public Cursor getSubCat(int idCat){
+        return getData("select * from "+EXP_CAT_TABLE_NAME+
+                " where "+EXP_CAT_COL_IS_SUB+" = 1 and "+
+                EXP_CAT_COL_ID_PARENT+" = "+idCat);
+    }
+
     public float getSumExp() {
         Cursor res = getData("select sum(" + EXP_COL_AMOUNT + ") as " + REQ_SUM +
                 " from " + EXP_TABLE_NAME+

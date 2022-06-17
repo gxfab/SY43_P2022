@@ -54,9 +54,9 @@ public class CashFlowStableFragment extends DataBaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         /**Listview**/
         List<ExpenseItem> earn = ExpenseItem.ExpensesToList(
-                database.getLastMonthStable(DBHelper.TYPE_INC), database);
+                database.getLastMonthStable(DBHelper.TYPE_INC));
         List<ExpenseItem> exp = ExpenseItem.ExpensesToList(
-                database.getLastMonthStable(DBHelper.TYPE_EXP), database);
+                database.getLastMonthStable(DBHelper.TYPE_EXP));
 
         ClickableListManager.clickableExpenseList(expList, exp);
         ClickableListManager.clickableExpenseList(earnList, earn);

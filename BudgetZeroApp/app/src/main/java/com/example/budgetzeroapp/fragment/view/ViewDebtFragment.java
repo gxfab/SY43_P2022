@@ -73,7 +73,7 @@ public class ViewDebtFragment extends DataBaseFragment {
             monthLeftVal=debt.getInt(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_MONTH_LEFT));
             totalAmountVal=debt.getFloat(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_TOTAL_AMOUNT));
             refundedAmountVal = database.getSumFromCat(id, DBHelper.TYPE_DEBT);
-            expVal = ExpenseItem.catExpensesToList(database, id, DBHelper.TYPE_DEBT);
+            expVal = ExpenseItem.ExpensesToList(database.getExpensesFromCat(id, DBHelper.TYPE_DEBT));
         }
     }
 

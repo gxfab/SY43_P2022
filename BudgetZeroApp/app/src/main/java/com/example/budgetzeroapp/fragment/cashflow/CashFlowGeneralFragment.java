@@ -57,7 +57,7 @@ public class CashFlowGeneralFragment extends DataBaseFragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /**Listview**/
-        items = ExpenseItem.allExpensesToList(database);
+        items = ExpenseItem.ExpensesToList(database.getAllExpenses());
         listView = ClickableListManager.clickableExpenseList(listView, items);
 
         ExpenseAdapter expenseAdapter = new ExpenseAdapter(items);

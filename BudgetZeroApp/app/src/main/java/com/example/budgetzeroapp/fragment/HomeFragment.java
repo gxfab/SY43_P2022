@@ -1,5 +1,6 @@
 package com.example.budgetzeroapp.fragment;
 
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -75,8 +76,8 @@ public class HomeFragment extends DataBaseFragment {
 
         /**Setup listview**/
         super.onViewCreated(view, savedInstanceState);
-        ArrayList<CategoryItem> items = CategoryItem.initCategoryList(database, true);
-        listView = ClickableListManager.clickableProgressBarList(listView, items);
+        ArrayList<CategoryItem> items = CategoryItem.initCategoryList(database.getMainExpCat(), true);
+        ClickableListManager.clickableProgressBarList(listView, items);
 
         listView.setVerticalScrollBarEnabled(false);
 

@@ -1,6 +1,5 @@
 package com.example.budgetzeroapp.fragment.view;
 
-import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -30,9 +28,7 @@ import com.example.budgetzeroapp.tool.item.ExpenseItem;
 
 import java.util.List;
 
-//nom, budget
-//liens cliquables vers sous catégories
-//liste des dépenses de la catégorie
+
 public class ViewExpenseCatFragment extends DataBaseFragment {
 
     private TextView name, budget;
@@ -61,8 +57,8 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         else {
             nameVal = cat.getString(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             budgetVal = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));
-            subCatVal = CategoryItem.initCategoryList(database, false);
-            expVal = ExpenseItem.catExpensesToList(database, id, DBHelper.TYPE_EXP);
+            subCatVal = CategoryItem.initCategoryList(database.getSubCat(id), false);
+            expVal = ExpenseItem.ExpensesToList(database.getExpensesFromCat(id, DBHelper.TYPE_EXP));
         }
     }
 
@@ -101,7 +97,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
 
         /**Getting passed id**/
         id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCat();
-        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
         name = view.findViewById(R.id.textViewCatNameEntry);
         budget = view.findViewById(R.id.textViewCatBudgetEntry);

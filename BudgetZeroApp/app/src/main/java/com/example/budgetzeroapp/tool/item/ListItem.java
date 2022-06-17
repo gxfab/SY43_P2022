@@ -2,6 +2,7 @@ package com.example.budgetzeroapp.tool.item;
 
 import android.database.Cursor;
 
+import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.view.ViewDebtFragment;
 import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
@@ -16,6 +17,8 @@ import java.util.List;
 public class ListItem {
     protected int id;
     protected String name;
+
+    protected static final DBHelper database = new DBHelper(AppContext.getContext());
 
     public ListItem(int id, String name) {
         this.id = id;

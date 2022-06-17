@@ -26,25 +26,17 @@ public class ExpenseItem extends ListItem {
         this.type = type;
     }
 
-    public static List<ExpenseItem> allExpensesToList(DBHelper database){
-        return ExpensesToList(database.getAllExpenses(), database);
-    }
-
-    public static List<ExpenseItem> catExpensesToList(DBHelper database, int idCat, int type){
-        return ExpensesToList(database.getExpensesFromCat(idCat, type), database);
-    }
-
-    public static List<ExpenseItem> ExpensesToList(Cursor row, DBHelper database){
+    public static List<ExpenseItem> ExpensesToList(Cursor row){
         List<ExpenseItem> items = new ArrayList<>();
         row.moveToFirst();
         while(!row.isAfterLast()){
-            items.add(ExpenseToItem(row, database));
+            items.add(ExpenseToItem(row));
             row.moveToNext();
         }
         return items;
     }
 
-    public static ExpenseItem ExpenseToItem(Cursor c, DBHelper database){
+    public static ExpenseItem ExpenseToItem(Cursor c){
         int day, month, year, type, idCat;
 
         type = c.getInt(c.getColumnIndexOrThrow(DBHelper.EXP_COL_ID));
