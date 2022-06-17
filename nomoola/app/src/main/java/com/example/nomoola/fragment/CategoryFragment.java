@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ public class CategoryFragment extends Fragment {
     private RecyclerView categoryIncomeRecyclerView, categoryOutcomeRecyclerView, categoryProjectRecyclerView;
     private CategoryAdapter categoryIncomeAdapter, categoryOutcomeAdapter, categoryProjectAdapter;
     private AppCompatButton addCategoryButton;
+    private TextView userName;
 
     @Nullable
     @Override
@@ -37,6 +39,8 @@ public class CategoryFragment extends Fragment {
         this.categoryOutcomeAdapter = new CategoryAdapter(new CategoryAdapter.CategoryDiff(), this.getParentFragmentManager(), this.mCatViewModel);
         this.categoryProjectAdapter = new CategoryAdapter(new CategoryAdapter.CategoryDiff(), this.getParentFragmentManager(), this.mCatViewModel);
         View view = inflater.inflate(R.layout.fragment_category, container, false);
+
+        this.userName = view.findViewById(R.id.cat_page_name);
 
         this.categoryIncomeRecyclerView = view.findViewById(R.id.category_INCOME_recyclerView);
         this.categoryOutcomeRecyclerView = view.findViewById(R.id.category_OUTCOME_recyclerView);
@@ -64,6 +68,10 @@ public class CategoryFragment extends Fragment {
 
         mCatViewModel.getCategoriesOfType(Category.CategoryType.PROJECT).observe(getViewLifecycleOwner(), categories -> {
             categoryProjectAdapter.submitList(categories);
+        });
+
+        mCatViewModel.getUserName(1).observe(getViewLifecycleOwner(), userName -> {
+            this.userName.setText(userName);
         });
 
         Log.d("CREATION", "onCreateView from " + this.getClass().toString() + " finished");
