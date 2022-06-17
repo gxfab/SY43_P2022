@@ -17,7 +17,7 @@ import com.example.cookutproject.models.User;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Aliment.class, Semestre.class, User.class, Materiel.class, Facture.class, NoteDeFrais.class, Evenement.class},version=0,exportSchema = false)
+@Database(entities = {Aliment.class, Semestre.class, User.class, Materiel.class, Facture.class, NoteDeFrais.class, Evenement.class},version=1,exportSchema = false)
 public abstract class CookUTDatabase extends RoomDatabase {
     //Daos
     public abstract CookUTDao cookUTDao();

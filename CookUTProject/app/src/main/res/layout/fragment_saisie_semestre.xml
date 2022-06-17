@@ -25,7 +25,7 @@
         android:id="@+id/nomSemestre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:inputType="text"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="50dp"
@@ -38,15 +38,15 @@
         android:id="@+id/montantPrevSemestre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/nomSemestre"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="354dp"
+        android:layout_marginTop="-325dp"
         android:layout_marginRight="50dp"
         android:allowClickWhenDisabled="false"
         android:backgroundTint="@color/gold_CookUT"
         android:hint="Montant Prévisionnel"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
 
     <LinearLayout
         android:layout_width="match_parent"
