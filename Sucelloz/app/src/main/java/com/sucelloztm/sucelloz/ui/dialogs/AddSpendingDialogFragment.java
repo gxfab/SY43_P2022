@@ -29,10 +29,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * class to add a spending dialog to a fragment
+ */
 public class AddSpendingDialogFragment extends DialogFragment {
 
     private AddSpendingDialogViewModel addSpendingDialogViewModel;
     private List<String> subCategoriesList;
+
+    /**
+     * on create dialog method
+     * @param savedInstanceState savid instance state
+     * @return dialog
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){

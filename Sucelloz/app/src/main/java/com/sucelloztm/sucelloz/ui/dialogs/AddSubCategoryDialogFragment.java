@@ -14,9 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.models.SubCategories;
 
+/**
+ * class to add a subcategory dialog to a fragment
+ */
 public class AddSubCategoryDialogFragment extends DialogFragment {
     private AddSubCategoryDialogViewModel addSubCategoryDialogViewModel;
 
+    /**
+     * on create dialog method
+     * @param savedInstanceState saved instance state
+     * @return dialog
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
