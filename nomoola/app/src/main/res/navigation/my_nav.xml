@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/homePage">
+
+    <fragment
+        android:id="@+id/homePage"
+        android:name="com.example.nomoola.fragment.CategoryFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/historyPage"
+        android:name="com.example.nomoola.fragment.InOutComeFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/profilePage"
+        android:name="com.example.nomoola.fragment.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/activity_profile" />
+</navigation>

@@ -34,23 +34,15 @@
     <string name="nomoola_nav_back">Navigation Back</string>
     <string name="nomoola_hi">Hi</string>
     <string name="nomoola_percent_preview">100%</string>
-    <string name="nomoola_type">Type</string>
+    <string name="nomoola_type" tools:ignore="ExtraTranslation">Type</string>
     <string name="nomoola_income" >Income</string>
     <string name="nomoola_outcome">Outcome</string>
     <string name="nomoola_project">Project</string>
-    <string name="nomoola_inoutcome_newInOutCome">New InOutCome</string>
-    <string name="nomoola_amount">Amount</string>
-    <string name="nomoola_date">Date</string>
 
     <string-array name="category_type">
         <item>INCOME</item>
         <item>OUTCOME</item>
         <item>PROJECT</item>
-    </string-array>
-
-    <string-array name="inOutCome_type">
-        <item>INCOME</item>
-        <item>OUTCOME</item>
     </string-array>
 
     <!-- Profile page -->
