@@ -41,3 +41,6 @@ Comment ? En téléchargeant NoAppNoGain, impossible de te louper ! Tu gères te
 * Changer le mot de passe
 * Supprimer définitivement le compte
 * Se déconnecter
+
+## Télécharger
+Vous pouvez télécharge cette application [NoAppNoGain.apk] (https://github.com/gxfab/SY43_P2022/blob/HP_lovers/app-debug.apk)
