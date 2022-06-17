@@ -9,39 +9,33 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cookutproject.R;
+import com.example.cookutproject.models.Evenement;
 import com.example.cookutproject.models.Semestre;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
-
-    private List<Semestre> semestreList = new ArrayList<>();
+    private List<Evenement> eventList = new ArrayList<>();
 
     @NonNull
     @Override
     public EventAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.semestre_row,parent,false));
+        return new EventAdapter.MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.semestre_row,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventAdapter.MyViewHolder holder, int position) {
-        Semestre current = semestreList.get(position);
-        TextView tv = holder.itemView.findViewById(R.id.idSemestre_txt);
-        tv.setText(String.valueOf(current.getId()));
-        tv = holder.itemView.findViewById(R.id.montantPrevSemestre_txt);
-        tv.setText(String.valueOf(current.getMontantPrev()));
-        tv = holder.itemView.findViewById(R.id.nomSemestre_txt);
-        tv.setText(String.valueOf(current.getNom()));
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Evenement current = eventList.get(position);
     }
 
     @Override
     public int getItemCount() {
-        return semestreList.size();
+        return eventList.size();
     }
 
-    public void setSemestreList(List<Semestre> semestreList) {
-        this.semestreList = semestreList;
+    public void setEvenementList(List<Evenement> eventList) {
+        this.eventList = eventList;
         notifyDataSetChanged();
     }
 

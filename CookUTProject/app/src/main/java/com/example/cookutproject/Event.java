@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.cookutproject.data.CookUTViewModel;
-import com.example.cookutproject.data.adapters.EventAdapter;
+import com.example.cookutproject.data.adapters.SemestreAdapter;
 
 public class Event extends AppCompatActivity {
 
@@ -19,7 +19,7 @@ public class Event extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         RecyclerView recyclerView = findViewById(R.id.recyclerviewSemestre);
-        EventAdapter adapter = new EventAdapter();
+        SemestreAdapter adapter = new SemestreAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
