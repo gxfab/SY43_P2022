@@ -17,8 +17,7 @@ public class Evenement {
     private float amountRecipe;
 
     //Constructor
-    public Evenement(int id,String type, String name, String date, float amountPrevisionnel, float amountExpense, float amountRecipe){
-        this.id=id;
+    public Evenement(String type, String name, String date, float amountPrevisionnel, float amountExpense, float amountRecipe){
         this.type=type;
         this.name=name;
         this.date=date;

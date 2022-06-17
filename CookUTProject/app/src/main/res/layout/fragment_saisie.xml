@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.SaisieFragment"
     android:orientation="vertical"
-    android:background="@drawable/background">
+    android:gravity="center_horizontal"
+    android:background="@drawable/background"
+    >
 
 
     <Button
         android:id="@+id/button_saisieSemestre"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="286dp"
-        android:layout_marginEnd="135dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="50dp"
         android:backgroundTint="@color/gold_CookUT"
         android:text="Semestre" />
 
     <Button
         android:id="@+id/button_saisieEvenement"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="355dp"
-        android:layout_marginEnd="135dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="50dp"
+
         android:backgroundTint="@color/gold_CookUT"
         android:text="Évènement" />
 
     <Button
         android:id="@+id/button_saisieFacture"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="430dp"
-        android:layout_marginEnd="135dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="50dp"
         android:backgroundTint="@color/gold_CookUT"
         android:text="Facture" />
-</RelativeLayout>
+</LinearLayout>

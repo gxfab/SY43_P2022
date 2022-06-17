@@ -21,101 +21,142 @@
         tools:ignore="MissingConstraints"
         android:onClick="changeActivityMain"/>
 
-
-    <EditText
-        android:id="@+id/nomEvenement"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/typeEvenement"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="22dp"
-        android:backgroundTint="@color/gold_CookUT"
-        android:hint="Nom de l'évènement" />
+        android:layout_marginTop="220dp"
+        android:layout_marginBottom="50dp"
+        android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/montantPrevEvenement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nomEvenement"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="390dp"
-        android:layout_marginRight="50dp"
-        android:allowClickWhenDisabled="false"
-        android:backgroundTint="@color/gold_CookUT"
-        android:hint="Montant Prévisionnel"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/typeEvenement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="531dp"
-        android:backgroundTint="@color/gold_CookUT"
-        android:hint="Type d'évènement" />
-
-    <RelativeLayout
-        android:id="@+id/type_event"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="250dp"
-        android:layout_marginRight="50dp">
-
-        <EditText
-            android:id="@+id/dateEvenement"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/gold_CookUT"
-            android:hint="Date de l'évènement" />
-
-        <Spinner
-            android:id="@+id/spinner_type_event"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="75dp"
-        android:layout_alignTop="@+id/nomEvenement"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="383dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="185dp"
-        android:background="@color/green_CookUT"
-        android:gravity="center_horizontal">
-
-
-        <Button
-            android:id="@+id/button_validerEvenement"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp"
-            android:backgroundTint="@color/gold_CookUT"
-            android:text="Valider" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button_annulerEvenement"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/gold_CookUT"
-            android:text="Annuler" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/nomEvenement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/typeEvenement"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/gold_CookUT"
+                android:hint="Nom de l'évènement" />
+
+            <EditText
+                android:id="@+id/montantPrevEvenement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nomEvenement"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="20dp"
+                android:allowClickWhenDisabled="false"
+                android:backgroundTint="@color/gold_CookUT"
+                android:hint="Montant Prévisionnel"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/dateEvenement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/gold_CookUT"
+                android:hint="Date de l'évènement"
+                android:inputType="date" />
+
+            <RelativeLayout
+                android:id="@+id/layout_id_semestre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+
+                android:layout_marginRight="50dp">
+
+                <EditText
+                    android:id="@+id/text_id_semestre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/gold_CookUT"
+                    android:hint="@string/choseEventType" />
+
+                <Spinner
+                    android:id="@+id/spinner_id_semestre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="1"
+                    android:layout_marginBottom="20dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/type_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+
+                android:layout_marginRight="50dp">
+
+                <EditText
+                    android:id="@+id/idSemestreEvenement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/gold_CookUT"
+                    android:hint="Choisissez l'ID du semestre" />
+
+                <Spinner
+                    android:id="@+id/spinner_type_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="1" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="410dp"
+                android:layout_height="75dp"
+                android:layout_alignTop="@+id/nomEvenement"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="50dp"
+                android:background="@color/green_CookUT"
+                android:gravity="center_horizontal">
+
+
+                <Button
+                    android:id="@+id/button_validerEvenement"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="@color/gold_CookUT"
+                    android:text="Valider" />
+
+                <Button
+                    android:id="@+id/button_annulerEvenement"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/gold_CookUT"
+                    android:text="Annuler" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

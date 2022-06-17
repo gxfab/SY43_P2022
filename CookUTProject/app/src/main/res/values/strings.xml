@@ -19,4 +19,9 @@
         <item>6</item>
         <item>7</item>
     </string-array>
+    <string-array name="typeEvent_Array">
+        <item>Repas</item>
+        <item>Atelier</item>
+        <item>Matériel</item>
+    </string-array>
 </resources>
