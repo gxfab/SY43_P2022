@@ -1,14 +1,13 @@
-package com.example.sy43_p2022
+package com.sy43_p22.piggy_bank
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.sy43_p2022.database.PiggyBankDatabase
-import com.example.sy43_p2022.database.entities.Category
-import com.example.sy43_p2022.database.entities.SubCategory
-import com.example.sy43_p2022.fragments.CategoryFragment
-import com.example.sy43_p2022.fragments.HomeFragment
+import com.sy43_p22.piggy_bank.database.PiggyBankDatabase
+import com.sy43_p22.piggy_bank.database.entities.Category
+import com.sy43_p22.piggy_bank.database.entities.SubCategory
+import com.sy43_p22.piggy_bank.fragments.HomeFragment
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {

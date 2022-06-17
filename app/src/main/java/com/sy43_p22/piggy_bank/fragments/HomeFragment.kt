@@ -1,4 +1,4 @@
-package com.example.sy43_p2022.fragments
+package com.sy43_p22.piggy_bank.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.example.sy43_p2022.R
-import com.example.sy43_p2022.database.PiggyBankDatabase
+import com.sy43_p22.piggy_bank.R
+import com.sy43_p22.piggy_bank.database.PiggyBankDatabase
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 

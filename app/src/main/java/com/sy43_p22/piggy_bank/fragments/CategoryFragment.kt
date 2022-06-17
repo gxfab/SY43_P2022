@@ -1,4 +1,4 @@
-package com.example.sy43_p2022.fragments
+package com.sy43_p22.piggy_bank.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,11 +10,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sy43_p2022.MainActivity
-import com.example.sy43_p2022.R
-import com.example.sy43_p2022.adapter.ButtonAdapter
-import com.example.sy43_p2022.database.PiggyBankDatabase
-import com.example.sy43_p2022.database.entities.Category
+import com.sy43_p22.piggy_bank.MainActivity
+import com.sy43_p22.piggy_bank.R
+import com.sy43_p22.piggy_bank.adapter.ButtonAdapter
+import com.sy43_p22.piggy_bank.database.PiggyBankDatabase
+import com.sy43_p22.piggy_bank.database.entities.Category
 import kotlinx.coroutines.launch
 
 open class CategoryFragment(

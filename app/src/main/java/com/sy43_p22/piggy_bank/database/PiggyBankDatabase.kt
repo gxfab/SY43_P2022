@@ -1,12 +1,12 @@
-package com.example.sy43_p2022.database
+package com.sy43_p22.piggy_bank.database
 
 import android.content.Context
 import android.util.Log
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.Room
-import com.example.sy43_p2022.database.dao.*
-import com.example.sy43_p2022.database.entities.*
+import com.sy43_p22.piggy_bank.database.dao.*
+import com.sy43_p22.piggy_bank.database.entities.*
 
 @Database(entities = [(Category::class), (SubCategory::class)], version = 2)
 abstract class PiggyBankDatabase : RoomDatabase(){

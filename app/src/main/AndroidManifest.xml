@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sy43_p2022">
+    package="com.sy43_p22.piggy_bank">
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SY43_P2022">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.piggy_bank.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.SY43_P2022.NoActionBar">
             <intent-filter>

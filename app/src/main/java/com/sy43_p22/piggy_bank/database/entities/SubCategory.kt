@@ -1,4 +1,4 @@
-package com.example.sy43_p2022.database.entities
+package com.sy43_p22.piggy_bank.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

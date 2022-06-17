@@ -1,4 +1,4 @@
-package com.example.sy43_p2022.adapter
+package com.sy43_p22.piggy_bank.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,10 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sy43_p2022.R
-import com.example.sy43_p2022.database.PiggyBankDatabase
-import com.example.sy43_p2022.database.entities.Category
-import com.example.sy43_p2022.database.entities.SubCategory
+import com.sy43_p22.piggy_bank.R
+import com.sy43_p22.piggy_bank.database.PiggyBankDatabase
+import com.sy43_p22.piggy_bank.database.entities.Category
+import com.sy43_p22.piggy_bank.database.entities.SubCategory
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 

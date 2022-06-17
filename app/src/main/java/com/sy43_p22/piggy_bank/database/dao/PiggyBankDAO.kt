@@ -1,8 +1,8 @@
-package com.example.sy43_p2022.database.dao
+package com.sy43_p22.piggy_bank.database.dao
 
 import androidx.room.*
-import com.example.sy43_p2022.database.entities.Category
-import com.example.sy43_p2022.database.entities.SubCategory
+import com.sy43_p22.piggy_bank.database.entities.Category
+import com.sy43_p22.piggy_bank.database.entities.SubCategory
 
 @Dao
 interface PiggyBankDAO {

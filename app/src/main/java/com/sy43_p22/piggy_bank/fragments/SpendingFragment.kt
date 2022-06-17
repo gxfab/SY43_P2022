@@ -1,6 +1,6 @@
-package com.example.sy43_p2022.fragments
+package com.sy43_p22.piggy_bank.fragments
 
-import com.example.sy43_p2022.R
+import com.sy43_p22.piggy_bank.R
 
 class SpendingFragment() : CategoryFragment(
     "Spending",
