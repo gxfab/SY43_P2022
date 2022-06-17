@@ -21,6 +21,7 @@ public class EditerBudgetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editer_budget);
+        getSupportActionBar().setTitle("Planifier mon budget");
     }
 
     public void editCategories(View view){

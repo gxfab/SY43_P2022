@@ -96,7 +96,7 @@ public class NouvelleDepenseActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        getSupportActionBar().setTitle("Nouvelle dépense");
     }
 
     public void showPopup(){

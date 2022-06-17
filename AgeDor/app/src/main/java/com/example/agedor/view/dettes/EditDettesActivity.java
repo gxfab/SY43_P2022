@@ -42,6 +42,7 @@ public class EditDettesActivity extends AppCompatActivity implements EditDetteDi
         listeDettes = findViewById(R.id.recycler_dettes);
         setData();
         setAdapter();
+        getSupportActionBar().setTitle("Editer les dettes");
     }
 
     private void setData(){

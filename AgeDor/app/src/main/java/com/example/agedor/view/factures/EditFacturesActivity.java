@@ -41,6 +41,7 @@ public class EditFacturesActivity extends AppCompatActivity implements FactureDi
         listeFactures = findViewById(R.id.recycler_factures);
         setData();
         setAdapter();
+        getSupportActionBar().setTitle("Editer les factures");
     }
 
     private void setData(){

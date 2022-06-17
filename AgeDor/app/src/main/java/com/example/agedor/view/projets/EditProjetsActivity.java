@@ -41,6 +41,7 @@ public class EditProjetsActivity extends AppCompatActivity implements ProjetsDia
         listeProjets = findViewById(R.id.recycler_projets);
         setData();
         setAdapter();
+        getSupportActionBar().setTitle("Editer les projets");
     }
 
     private void setData(){

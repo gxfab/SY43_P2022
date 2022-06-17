@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <EditText
+        android:layout_margin="10dp"
         android:id="@+id/modifierNom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,11 +16,13 @@
         android:inputType="textPersonName" />
 
     <Spinner
+        android:layout_margin="10dp"
         android:id="@+id/modifierCategorie"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 
     <EditText
+        android:layout_margin="21dp"
         android:id="@+id/modifierMontant"
         android:layout_width="match_parent"
         android:layout_height="57dp"
@@ -27,6 +30,7 @@
         android:inputType="numberDecimal" />
 
     <DatePicker
+        android:layout_margin="10dp"
         android:id="@+id/modifierDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             showStatus();
 
         }
+        getSupportActionBar().setTitle("Bienvenue");
     }
 
     public void showStatus() {
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         textOK = (TextView) findViewById(R.id.phraseOK);
         String phrase = CalculateurBudget.calculerBudget();
         if (phrase.startsWith("Vous êtes") || phrase.startsWith("Vous dépassez")) {
-            textKO.setText("Bonjour " + nom + ",\n" + phrase);
+            textKO.setText(nom + ",\n" + phrase);
         } else {
             textOK.setText("Bonjour " + nom + ",\n" + phrase);
         }

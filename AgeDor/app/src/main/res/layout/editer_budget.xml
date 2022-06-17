@@ -1,82 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
-    android:paddingTop="60dp"
-    android:paddingRight="20dp"
-    android:paddingBottom="20dp"
-    android:paddingLeft="20dp"
 
     tools:context=".view.EditerBudgetActivity">
 
 
     <TextView
-        android:id="@+id/txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/bvn_editer_budget"
+        android:id="@+id/texteBienvenue5"
+        android:layout_width="353dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="Quelle partie du budget voulez-vous modifier ?"
+        android:textColor="@color/gold"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.087" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bCat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="212dp"
         android:onClick="editCategories"
         android:text="@string/categories"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="213dp" />
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bProj"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         android:onClick="editProjets"
         android:text="@string/projets"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="309dp" />
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bRev" />
 
     <Button
         android:id="@+id/bDet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         android:onClick="editDettes"
         android:text="@string/dettes"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="357dp" />
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bFac" />
 
     <Button
         android:id="@+id/bRev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         android:onClick="editRevenus"
         android:text="@string/revenus"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="405dp" />
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bCat" />
 
     <Button
         android:id="@+id/bFac"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         android:onClick="editFactures"
         android:text="@string/fac"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="453dp" />
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bProj" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

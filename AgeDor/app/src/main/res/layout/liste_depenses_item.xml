@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="30dp"
+    android:background="@color/lightgray"
     android:orientation="horizontal">
 
     <TextView
         android:id="@+id/nom_depense"
-        android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:text="nom" />
+        android:layout_width="53dp"
+        android:layout_height="match_parent"
+        android:text="nom"
+        android:textAllCaps="false"
+        android:textColor="@color/gold"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/categorie_depense"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="categorie de depense" />
+        android:text="categorie de depense"
+        android:textAllCaps="false"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/montant_depense"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="montant" />
+        android:text="montant"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="235dp" />
 
     <TextView
         android:id="@+id/date_depense"
-        android:layout_width="wrap_content"
+        android:layout_width="127dp"
         android:layout_height="match_parent"
-        android:text="date depense" />
+        android:text="date depense"
+        android:layout_marginStart="50dp"
+        android:textAllCaps="false"
+        android:textSize="18sp" />
 
 
 </LinearLayout>

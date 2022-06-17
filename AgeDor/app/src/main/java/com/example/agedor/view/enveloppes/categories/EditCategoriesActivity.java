@@ -40,6 +40,7 @@ public class EditCategoriesActivity extends AppCompatActivity implements EditCat
         listeCategories = findViewById(R.id.recycler_categories);
         setData();
         setAdapter();
+        getSupportActionBar().setTitle("Editer les enveloppes");
     }
 
     private void setData(){

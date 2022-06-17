@@ -29,7 +29,7 @@ public class ConsulterDepensesActivity extends AppCompatActivity implements Modi
         listeDepenses = findViewById(R.id.consulter_depenses);
         setDepenses();
         setAdapter();
-
+        getSupportActionBar().setTitle("Consulter mes dépenses");
     }
 
     private void setDepenses(){

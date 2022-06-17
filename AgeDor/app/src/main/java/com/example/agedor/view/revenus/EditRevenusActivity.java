@@ -42,6 +42,7 @@ public class EditRevenusActivity extends AppCompatActivity implements RevenusDia
         listeRevenus = findViewById(R.id.recycler_revenus);
         setData();
         setAdapter();
+        getSupportActionBar().setTitle("Editer les revenus");
     }
 
     private void setData(){

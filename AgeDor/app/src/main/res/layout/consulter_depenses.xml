@@ -7,62 +7,97 @@
     tools:context=".view.enveloppes.depenses.ConsulterDepensesActivity">
 
     <TextView
-        android:id="@+id/titreConsulterDepenses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/consulterMesDepenses"
+        android:id="@+id/texteBienvenue2"
+        android:layout_width="282dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:text="Mes dépenses récentes"
+        android:textColor="@color/gold"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.124"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/titreConsulterDepenses2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="92dp"
-        android:text="Nom"
+        android:id="@+id/texteBienvenue4"
+        android:layout_width="282dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:text="Mes dépenses récentes"
+        android:textColor="@color/gold"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.124"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titreConsulterDepenses" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/titreConsulterDepenses4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="92dp"
-        android:text="Categorie"
+        android:id="@+id/texteBienvenue3"
+        android:layout_width="203dp"
+        android:layout_height="34dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="68dp"
+        android:text="Appuyez pour modifier"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titreConsulterDepenses" />
-
-    <TextView
-        android:id="@+id/titreConsulterDepenses5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="352dp"
-        android:layout_marginTop="92dp"
-        android:text="Date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titreConsulterDepenses" />
-
-    <TextView
-        android:id="@+id/titreConsulterDepenses3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="92dp"
-        android:text="Montant"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titreConsulterDepenses" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/consulter_depenses"
-        android:layout_width="match_parent"
-        android:layout_height="539dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginBottom="-8dp"
+        android:layout_marginEnd="-8dp"
+        android:layout_width="366dp"
+        android:layout_height="576dp"
+        android:layout_marginTop="172dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="33dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="132dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/money" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="132dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/enveloppe" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="132dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/question" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="132dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/date" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
