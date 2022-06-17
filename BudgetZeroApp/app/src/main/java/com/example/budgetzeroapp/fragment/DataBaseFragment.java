@@ -35,7 +35,7 @@ public abstract class DataBaseFragment extends Fragment {
 
     public void setId(int id) {this.id = id;}
 
-    public void message(String message) {
+    public static void message(String message) {
         Toast.makeText(AppContext.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 

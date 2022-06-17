@@ -55,7 +55,7 @@ public class SavingsTabFragment extends DataBaseFragment implements BudgetRecycl
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        items = SavingsItem.initSavingsList(database, true);
+        items = SavingsItem.initSavingsList(true);
         ClickableListManager.clickableSavingsList(categories, items);
         categories.setAdapter(new SavingsAdapter(items));
 

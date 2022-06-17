@@ -133,7 +133,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Example expense categories
         db.execSQL(
                 "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+")"+
-                        " values ('Shopping',400),('Vehicle',800),('Leisure',150),('Health',300),('Miscellaneous',100),('Bills',700);"
+                        " values ('Shopping',400),('Vehicle',800),('Leisure',150),('Health',300),('Bills',700),('Miscellaneous',100);"
         );
         //Example expense subcategories
         db.execSQL(
@@ -148,12 +148,12 @@ public class DBHelper extends SQLiteOpenHelper {
         //Example debt category
         db.execSQL(
                 "insert into "+DEBT_TABLE_NAME+"("+DEBT_COL_NAME+","+DEBT_COL_TOTAL_AMOUNT+","+DEBT_COL_MONTH_LEFT+")" +
-                        "values ('House',100000,63);"
+                        "values ('House',100000,63),('Presidential Campaign',5000000,34),('Last weeks pizza',7,1);"
         );
         //Example savings category
         db.execSQL(
                 "insert into "+SAV_CAT_TABLE_NAME+"("+SAV_CAT_COL_NAME+","+SAV_CAT_COL_MAX_AMOUNT+","+SAV_CAT_COL_CURRENT_AMOUNT+")" +
-                        "values ('New PC',1200,340),('Trip to Iceland',840,121);"
+                        "values ('New PC',1200,340),('Trip to Iceland',840,121),('Swimming Pool',5000,245),('Spaceship',100000,3739);"
         );
         //Example expenses
         db.execSQL(
@@ -163,7 +163,9 @@ public class DBHelper extends SQLiteOpenHelper {
                         " values ('Party shopping', -120, 1, 8, 14, 6, 2022,0)," +
                         "('Weekly shopping', -70, 1, 7, 9, 6, 2022,0)," +
                         "('Weekly shopping', -57, 1, 7, 16, 6, 2022,0)," +
-                        "('Electricity',-307, 1, 5, 1, 6, 2022,0);"
+                        "('Electricity',-307, 1, 5, 1, 6, 2022,0)," +
+                        "('Loan',-450,1,5,5,6,2022,1)," +
+                        "('Netflix',-20,3,1,13,6,2022,1);"
         );
         //Example incomes
         db.execSQL(

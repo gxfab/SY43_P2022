@@ -96,12 +96,20 @@
             android:layout_marginTop="40dp"
             android:text="@string/debt_expenses" />
 
+        <ImageView
+            android:id="@+id/imageDummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewDebtExpenses"
+            android:layout_alignBottom="@+id/textViewDebtExpenses"
+            android:layout_marginBottom="-10dp" />
+
         <ListView
             android:id="@+id/listViewDebtExpenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewDebtRefundedEntry"
-            android:layout_alignTop="@+id/textViewDebtExpenses"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/imageDummy"
             android:orientation="vertical">
         </ListView>
 

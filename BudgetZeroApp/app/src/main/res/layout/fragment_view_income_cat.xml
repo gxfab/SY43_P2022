@@ -46,12 +46,20 @@
             android:layout_marginBottom="-40dp"
             android:text="@string/inc_cat_list" />
 
+        <ImageView
+            android:id="@+id/imageDummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatInc"
+            android:layout_alignBottom="@+id/textViewCatInc"
+            android:layout_marginBottom="-10dp" />
+
         <ListView
             android:id="@+id/listViewCatInc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewIncNameEntry"
-            android:layout_alignTop="@+id/textViewCatInc"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/imageDummy"
             android:orientation="vertical" >
 
         </ListView>
