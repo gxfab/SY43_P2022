@@ -52,6 +52,9 @@ class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() 
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+        Log.d("ListAdapterBMonth","entering listadapter BMonth")
+
         var currentItem = monthList[position]
         holder.itemView.txtMonth.text = "Mois n°" + currentItem.id.toString()
 
@@ -78,6 +81,7 @@ class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() 
                 if(it !=null)
                 {
                     sumAmount -= it
+                    holder.itemView.monthSumValue.text = sumAmount.toString() + "€"
 
                     Log.d("ListAdapterBMonth","sumAmount expense: "+sumAmount + " for month " + currentItem.id)
                 }
