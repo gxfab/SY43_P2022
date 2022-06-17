@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,9 +21,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.BudgetFragmentDirections;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
+import com.example.budgetzeroapp.fragment.HomeFragmentDirections;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.item.CategoryItem;
@@ -92,6 +90,10 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /**Getting passed id**/
+        id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).get();
+        //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+
         NavController navController = Navigation.findNavController(view);
         AppBarConfiguration appBarConfiguration =
                 new AppBarConfiguration.Builder(R.id.homeFragment, R.id.viewExpenseCatFragment).build();
@@ -112,6 +114,11 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCat();
         //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
+        /**Param to edit**/
+        navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        NavDirections action = com.example.budgetzeroapp.fragment.HomeFragmentDirections.navigateToViewExpenseCatFromHome(cat_id);
+        navController.navigate(action);
+
         name = view.findViewById(R.id.textViewCatNameEntry);
         budget = view.findViewById(R.id.textViewCatBudgetEntry);
         expList = view.findViewById(R.id.listViewCatExpenses);
@@ -123,5 +130,10 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         setValues();
     }
 
-
+    public static void redirectToEditExpense(int id)
+    {
+        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        NavDirections action = ViewExpenseCatFragmentDirections.navigateToEditExpenseCatFromExpenseCat(id);
+        navController.navigate(action);
+    }
 }

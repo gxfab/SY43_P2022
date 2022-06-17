@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +54,7 @@ public class CashFlowStableFragment extends DataBaseFragment {
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         /**Listview**/
         List<ExpenseItem> earn = ExpenseItem.ExpensesToList(
                 database.getLastMonthStable(DBHelper.TYPE_INC));

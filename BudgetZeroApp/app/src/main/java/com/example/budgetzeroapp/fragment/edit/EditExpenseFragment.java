@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.view.ViewExpenseFragmentArgs;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.DateManager;
 import com.example.budgetzeroapp.tool.ToolBar;
@@ -40,7 +41,10 @@ public class EditExpenseFragment extends EditDataBaseFragment {
     private int type, day, month, year, newDay, newMonth, newYear, catID;
     List<ListItem> list;
 
+    public EditExpenseFragment()
+    {
 
+    }
     public EditExpenseFragment(int id){
         super(id);
         type = 0;
@@ -55,6 +59,13 @@ public class EditExpenseFragment extends EditDataBaseFragment {
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_expense, parent, false);
+
+        /**Getting passed id**/
+        id = EditExpenseFragmentArgs.fromBundle(getArguments()).getIdExpense();
+        type = EditExpenseFragmentArgs.fromBundle(getArguments()).getTypeExpense();
+        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+
+
         save = view.findViewById(R.id.buttonSave);
         cancel = view.findViewById(R.id.buttonCancel);
         name = view.findViewById(R.id.editTextExpName);
@@ -73,6 +84,7 @@ public class EditExpenseFragment extends EditDataBaseFragment {
             case DBHelper.TYPE_INC:list = ListItem.initList(database.getAllIncomeCat());
                 break;
         }
+
 
         return view;
     }

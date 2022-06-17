@@ -22,9 +22,9 @@ public class SavingsItem extends ListItem{
 
     public float getObjective() { return objectiveAmount; }
 
-    public int getProgress(){ return (int) (reachedAmount/objectiveAmount);}
+    public int getProgress(){ return (int) ((-reachedAmount)/objectiveAmount);}
 
-    public static ArrayList<SavingsItem> initSavingsList(DBHelper database, boolean type){
+    public static ArrayList<SavingsItem> initSavingsList(boolean type){
         Cursor cat;
         if(type) cat = database.getAllSavingsCat();
         else cat = database.getAllDebts();
