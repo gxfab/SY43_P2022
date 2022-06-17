@@ -61,12 +61,9 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
     @Override
     public void changeDefaultValues() {
         Cursor cat = database.getData("select * from "+DBHelper.EXP_CAT_TABLE_NAME+
-                " where "+DBHelper.EXP_CAT_COL_ID+"="+id);
+                " where "+DBHelper.EXP_CAT_COL_ID+" = "+id);
         cat.moveToFirst();
-        if (cat.isAfterLast()) {
-            message(Integer.toString(id));
-            id = 0;
-        }
+        if (cat.isAfterLast()) id = 0;
         else {
             defaultName = cat.getString(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             defaultBudget = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));

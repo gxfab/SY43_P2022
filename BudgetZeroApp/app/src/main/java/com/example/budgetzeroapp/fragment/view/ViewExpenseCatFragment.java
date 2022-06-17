@@ -58,7 +58,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
             nameVal = cat.getString(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             budgetVal = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));
             subCatVal = CategoryItem.initCategoryList(database.getSubCat(id), false);
-            expVal = ExpenseItem.ExpensesToList(database.getExpensesFromCat(id, DBHelper.TYPE_EXP));
+            expVal = ExpenseItem.ExpensesToList(database.getExpCatExpAndSub(id));
         }
     }
 
