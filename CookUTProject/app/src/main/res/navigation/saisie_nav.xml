@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/saisie_nav"
+    app:startDestination="@id/saisieFragment">
+    <fragment
+        android:id="@+id/saisieFragment"
+        android:name="com.example.cookutproject.fragment.SaisieFragment"
+        android:label="fragment_saisie"
+        tools:layout="@layout/fragment_saisie" >
+        <action
+            android:id="@+id/action_saisieFragment_to_saisieFactureFragment"
+            app:destination="@id/saisieFactureFragment" />
+        <action
+            android:id="@+id/action_saisieFragment_to_saisieSemestreFragment"
+            app:destination="@id/saisieSemestreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saisieFactureFragment"
+        android:name="com.example.cookutproject.fragment.SaisieFactureFragment"
+        android:label="fragment_saisie_facture"
+        tools:layout="@layout/fragment_saisie_facture" >
+        <action
+            android:id="@+id/action_saisieFactureFragment_to_saisieFragment"
+            app:destination="@id/saisieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saisieSemestreFragment"
+        android:name="com.example.cookutproject.fragment.SaisieSemestreFragment"
+        android:label="fragment_saisie_semestre"
+        tools:layout="@layout/fragment_saisie_semestre" >
+        <action
+            android:id="@+id/action_saisieSemestreFragment_to_saisieFragment"
+            app:destination="@id/saisieFragment" />
+    </fragment>
+</navigation>
