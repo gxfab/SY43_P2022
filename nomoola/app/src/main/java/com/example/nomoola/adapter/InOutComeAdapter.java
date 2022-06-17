@@ -10,10 +10,19 @@ import androidx.recyclerview.widget.ListAdapter;
 import com.example.nomoola.database.entity.InOutCome;
 import com.example.nomoola.viewHolder.InOutComeViewHolder;
 
+/***
+ * This is the Adapter for the recyclerView which display the inOutComes.
+ */
 public class InOutComeAdapter extends ListAdapter<InOutCome, InOutComeViewHolder> {
 
     private FragmentManager fragmentManager;
 
+    /***
+     * This is the parametered constructor which provide the fragmentmanager to itself
+     *
+     * @param diffCallback
+     * @param fragmentManager
+     */
     public InOutComeAdapter(@NonNull DiffUtil.ItemCallback<InOutCome> diffCallback, FragmentManager fragmentManager) {
         super(diffCallback);
         this.fragmentManager = fragmentManager;
@@ -28,6 +37,11 @@ public class InOutComeAdapter extends ListAdapter<InOutCome, InOutComeViewHolder
         return InOutComeViewHolder.create(parent, this.fragmentManager);
     }
 
+    /***
+     * This methods bind each category with the viewHolder in order to display the right informations according to the inOutCome
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull InOutComeViewHolder holder, int position) {
         InOutCome currentInOutCome = getItem(position);

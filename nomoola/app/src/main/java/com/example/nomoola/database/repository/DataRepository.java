@@ -17,6 +17,9 @@ import com.example.nomoola.database.roomDataBase.NomoolaRoomDataBase;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * This class contains all DAO and provide methods to interact with them
+ */
 public class DataRepository {
 
     private CategoryDAO mCategoryDAO;

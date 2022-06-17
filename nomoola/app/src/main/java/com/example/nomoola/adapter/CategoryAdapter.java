@@ -22,11 +22,20 @@ import com.example.nomoola.viewModel.CategoryViewModel;
 
 import java.util.ArrayList;
 
+/***
+ * This is the Adapter for the recyclerView which display the categories.
+ */
 public class CategoryAdapter extends ListAdapter<Category, CategoryViewHolder> {
 
     private FragmentManager fragmentManager;
     private CategoryViewModel categoryViewModel;
 
+    /***
+     * This is the parametered constructor which provide the fragmentmanager and the viewmodel to itself
+     * @param diffCallback
+     * @param fragmentManager
+     * @param categoryViewModel
+     */
     public CategoryAdapter(@NonNull DiffUtil.ItemCallback<Category> diffCallback, FragmentManager fragmentManager, CategoryViewModel categoryViewModel) {
         super(diffCallback);
         this.fragmentManager = fragmentManager;
@@ -42,6 +51,11 @@ public class CategoryAdapter extends ListAdapter<Category, CategoryViewHolder> {
         return CategoryViewHolder.create(parent, this.fragmentManager, this.categoryViewModel);
     }
 
+    /***
+     * This methods bind each category with the viewHolder in order to display the right informations according to the category
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Log.d("CREATION", "onBindViewHolder from " + this.getClass().toString() + " started");

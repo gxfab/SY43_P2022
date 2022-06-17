@@ -12,6 +12,9 @@ import com.example.nomoola.database.entity.Profile;
 
 import java.util.List;
 
+/**
+ * This class provide methods to interact with the entity Profile in the Database
+ */
 @Dao
 public interface ProfileDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

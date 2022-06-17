@@ -24,6 +24,9 @@ import java.time.LocalDate;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * This class build the database with all entities inside. It also prepopulate itself.
+ */
 @Database(entities = {Category.class, SubCategory.class, InOutCome.class, Profile.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class NomoolaRoomDataBase extends RoomDatabase {

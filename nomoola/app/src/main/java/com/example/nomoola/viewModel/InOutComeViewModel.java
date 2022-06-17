@@ -55,4 +55,12 @@ public class InOutComeViewModel extends AndroidViewModel {
     public SubCategory getSubCategoriesNamed(String name){
         return this.mRepository.getSubCategoriesNamed(name);
     }
+
+    public LiveData<List<SubCategory>> getAllSubCategories(){
+        return this.mRepository.getAllSubCategories();
+    }
+
+    public LiveData<List<InOutCome>> getAllInOutComes() {
+        return this.mRepository.getmAllInOutCome();
+    }
 }

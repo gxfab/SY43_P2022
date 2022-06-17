@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nomoola.R;
@@ -60,7 +61,7 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
                 FragmentTransaction trans = fragmentManager.beginTransaction();
                 trans.replace(R.id.fragmentContainerView, new InOutComeFragment(subCategory));
                 trans.setReorderingAllowed(true);
-                //trans.addToBackStack(null);
+                trans.addToBackStack(null);
                 trans.commit();
             }
         });

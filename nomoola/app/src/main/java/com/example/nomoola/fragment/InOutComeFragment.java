@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,9 @@ import com.example.nomoola.fragment.dialog.AddInOutComeDialog;
 import com.example.nomoola.viewModel.InOutComeViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InOutComeFragment extends Fragment {
 
     private InOutComeViewModel mInOutViewModel;
@@ -26,16 +30,19 @@ public class InOutComeFragment extends Fragment {
     private SubCategory subCategory;
     private FloatingActionButton addCome;
 
+    private ArrayList<SubCategory> filters;
+
     private RecyclerView inOutComeRecyclerView;
 
     public InOutComeFragment(){
         super();
-        this.subCategory = new SubCategory();
+        this.filters = new ArrayList<>();
     }
 
     public InOutComeFragment(SubCategory subCategory){
         super();
-        this.subCategory = subCategory;
+        this.filters = new ArrayList<>();
+        this.filters.add(subCategory);
     }
 
     @Nullable
@@ -58,9 +65,17 @@ public class InOutComeFragment extends Fragment {
             }
         });
 
-        mInOutViewModel.getInOutComeOf(subCategory.getM_SUBCAT_ID()).observe(getViewLifecycleOwner(), subCategories -> {
-            inOutComeAdapter.submitList(subCategories);
-        });
+        if(filters.isEmpty()){
+            mInOutViewModel.getAllInOutComes().observe(getViewLifecycleOwner(), inOutComes -> {
+                inOutComeAdapter.submitList(inOutComes);
+            });
+        }else {
+            for (SubCategory subCat : this.filters) {
+                mInOutViewModel.getInOutComeOf(subCat.getM_SUBCAT_ID()).observe(getViewLifecycleOwner(), inOutComes -> {
+                    inOutComeAdapter.submitList(inOutComes);
+                });
+            }
+        }
 
         return view;
     }

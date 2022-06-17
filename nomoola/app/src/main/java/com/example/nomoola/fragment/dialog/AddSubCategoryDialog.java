@@ -37,23 +37,24 @@ public class AddSubCategoryDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         this.subcategoryViewModel = new ViewModelProvider(this).get(SubcategoryViewModel.class);
-
         View view = inflater.inflate(R.layout.dialog_subcategory, container, false);
-        this.editSubcatName = view.findViewById(R.id.dialog_subcat_editTextSubCategoryName);
-        this.exitbutton = view.findViewById(R.id.dialog_subcat_exitButton);
-        this.confirmButton = view.findViewById(R.id.dialog_subcat_confirmEditButton);
+
+        setupEditName(view);
+        setupExitButton(view);
+        setupDeleteButton(view);
+        setupConfirmButton(view);
+
+
+        return view;
+    }
+
+    private void setupDeleteButton(View view) {
         this.deleteButton = view.findViewById(R.id.dialog_subcat_deleteSubCategoryButton);
         this.deleteButton.setVisibility(View.INVISIBLE);
+    }
 
-        this.editSubcatName.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
-
-        this.exitbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
-
+    private void setupConfirmButton(View view) {
+        this.confirmButton = view.findViewById(R.id.dialog_subcat_confirmEditButton);
         this.confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +64,20 @@ public class AddSubCategoryDialog extends DialogFragment {
                 dismiss();
             }
         });
+    }
 
-        return view;
+    private void setupExitButton(View view) {
+        this.exitbutton = view.findViewById(R.id.dialog_subcat_exitButton);
+        this.exitbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+    }
+
+    private void setupEditName(View view) {
+        this.editSubcatName = view.findViewById(R.id.dialog_subcat_editTextSubCategoryName);
+        this.editSubcatName.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
     }
 }
