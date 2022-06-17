@@ -9,5 +9,6 @@ public class ExpenseCategoryService extends ZeroBaseServices<ExpenseCategoryRepo
 
     public ExpenseCategoryService(Context context) {
         super(context);
+        this.repository = new ExpenseCategoryRepository(this.sqLiteDatabase);
     }
 }

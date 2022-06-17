@@ -50,7 +50,7 @@ public class IncomeCategoryRepository extends ZeroBaseRepository<IncomeCategory>
                 expenseCategories.add(new IncomeCategory(
                         cursor.getLong(DbHelper.COL_ID_INCOME_CATEGORY_INDEX),
                         cursor.getString(DbHelper.COL_CODE_INCOME_CATEGORY_INDEX),
-                        cursor.getString(DbHelper.COL_LABEL_INCOME_INDEX)
+                        cursor.getString(DbHelper.COL_LABEL_INCOME_CATEGORY_INDEX)
                 ));
             }
             return expenseCategories;
@@ -67,6 +67,18 @@ public class IncomeCategoryRepository extends ZeroBaseRepository<IncomeCategory>
         contentValues.put(DbHelper.KEY_CODE_INCOME_CATEGORY, incomeCategory.getCodeIncomeCategory());
         contentValues.put(DbHelper.KEY_LABEL_INCOME_CATEGORY, incomeCategory.getLabelIncomeCategory());
         return contentValues;
+    }
+
+    @Override
+    public IncomeCategory findOneByCode(String code) {
+        try{
+        String query = "SELECT * FROM " + this.tableName + " WHERE " + DbHelper.KEY_CODE_INCOME_CATEGORY + " = '" + code + "'";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        return fromCursor(cursor).get(0);
+        }catch (Exception e){
+            Log.e("IncomeCategoryRepository", "findOneBycode: ", e);
+            return null;
+        }
     }
 
 

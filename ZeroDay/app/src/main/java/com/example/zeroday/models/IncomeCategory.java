@@ -3,6 +3,8 @@ package com.example.zeroday.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 public class IncomeCategory extends ZeroBaseModel implements Parcelable {
     private String codeIncomeCategory;
     private String labelIncomeCategory;
@@ -72,5 +74,18 @@ public class IncomeCategory extends ZeroBaseModel implements Parcelable {
                 ", labelIncomeCategory='" + labelIncomeCategory + '\'' +
                 ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IncomeCategory that = (IncomeCategory) o;
+        return getCodeIncomeCategory().equals(that.getCodeIncomeCategory()) && getLabelIncomeCategory().equals(that.getLabelIncomeCategory());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCodeIncomeCategory(), getLabelIncomeCategory());
     }
 }

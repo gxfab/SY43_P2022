@@ -17,6 +17,8 @@ public class IncomeRepository extends ZeroBaseRepository<Income> {
 
     public IncomeRepository(SQLiteDatabase sqLiteDatabase) {
         super(sqLiteDatabase);
+        this.tableName = DbHelper.TABLE_INCOME;
+        this.primaryKeyColumn = DbHelper.KEY_ID_INCOME;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class IncomeRepository extends ZeroBaseRepository<Income> {
             return null;
         }
         //verify cursor data integrity
-        if(cursor.getColumnCount() != 5) {
+        if(cursor.getColumnCount() != 6) {
             throw new IllegalStateException("Income table has not 5 columns");
         }
         if(cursor.getColumnIndex(DbHelper.KEY_ID_INCOME) == -1) {
@@ -46,6 +48,9 @@ public class IncomeRepository extends ZeroBaseRepository<Income> {
         if(cursor.getColumnIndex(DbHelper.KEY_FREQUENCY_INCOME) == -1) {
             throw new IllegalStateException("Income table has not frequenceIncome column");
         }
+        if(cursor.getColumnIndex(DbHelper.KEY_FK_ID_BUDJET_INCOME ) == -1) {
+            throw new IllegalStateException("Income table has not fkIdBudgetIncome column");
+        }
         try {
             List<Income> incomes = new ArrayList<>();
             while(cursor.moveToNext()) {
@@ -54,8 +59,8 @@ public class IncomeRepository extends ZeroBaseRepository<Income> {
                         Frequency.valueOf( cursor.getString(DbHelper.COL_FREQUENCY_INCOME_INDEX)),
                         cursor.getLong(DbHelper.COL_AMOUNT_INCOME_INDEX),
                         cursor.getString(DbHelper.COL_LABEL_INCOME_INDEX),
-                        new IncomeCategoryRepository(this.sqLiteDatabase).findOneById(cursor.getLong(DbHelper.COL_ID_INCOME_CATEGORY_INDEX))
-                        
+                        new IncomeCategoryRepository(this.sqLiteDatabase).findOneById(cursor.getLong(DbHelper.COL_ID_INCOME_CATEGORY_INDEX)),
+                        new BudgetRepository(this.sqLiteDatabase).findOneById(cursor.getLong(DbHelper.COL_FK_ID_BUDJET_INCOME_INDEX))
                 ));
             }
             return incomes;
@@ -73,7 +78,8 @@ public class IncomeRepository extends ZeroBaseRepository<Income> {
             contentValues.put(DbHelper.KEY_LABEL_INCOME, income.getLabelIncome());
             contentValues.put(DbHelper.KEY_AMOUNT_INCOME, income.getAmountIncome());
             contentValues.put(DbHelper.KEY_ID_INCOME_CATEGORY, income.getIncomeCategories().getId());
-            contentValues.put(DbHelper.KEY_FREQUENCY_INCOME, income.getFrequenceIncome().toString());
+            contentValues.put(DbHelper.KEY_FREQUENCY_INCOME, income.getFrequencyIncome().toString());
+            contentValues.put(DbHelper.KEY_FK_ID_BUDJET_INCOME, income.getBudget().getId());
             return contentValues;
         } catch (Exception e) {
             Log.e("IncomeRepository", "toContentValues: ", e);

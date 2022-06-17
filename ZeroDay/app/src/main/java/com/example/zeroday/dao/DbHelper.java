@@ -10,7 +10,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     // Database object
     // Database Version
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
 
     // Database Name
     private static final String DATABASE_NAME = "ZERO_DAY_DB";
@@ -42,12 +42,14 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String KEY_END_DATE_BUDGET = "END_DATE_BUDGET";
     public static final String KEY_FREQUENCY_BUDGET = "FREQUENCY_BUDGET";
 
+
     //INCOME Table - column names
     public static final String KEY_ID_INCOME = "ID";
     public static final String KEY_LABEL_INCOME = "LABEL_INCOME";
     public static final String KEY_AMOUNT_INCOME = "AMOUNT_INCOME";
     public static final String KEY_FREQUENCY_INCOME = "FREQUENCY_INCOME";
     public static final String KEY_FK_ID_INCOME_CATEGORY = "ID_INCOME_CATEGORY";
+    public static final String KEY_FK_ID_BUDJET_INCOME = "ID_BUDJET_INCOME";
 
     //EXPENSE Table - column names
     public static final String KEY_ID_EXPENSE = "ID";
@@ -94,6 +96,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final int COL_AMOUNT_INCOME_INDEX = 2;
     public static final int COL_FREQUENCY_INCOME_INDEX = 3;
     public static final int COL_FK_ID_INCOME_CATEGORY_INDEX = 4;
+    public static final int COL_FK_ID_BUDJET_INCOME_INDEX = 5;
 
     public static final int COL_ID_EXPENSE_INDEX = 0;
     public static final int COL_LABEL_EXPENSE_INDEX = 1;
@@ -137,7 +140,7 @@ public class DbHelper extends SQLiteOpenHelper {
     // INCOME table create statement
     private static final String CREATE_TABLE_INCOME = "CREATE TABLE "
             + TABLE_INCOME + "(" + KEY_ID_INCOME + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_LABEL_INCOME
-            + " TEXT," + KEY_AMOUNT_INCOME + " TEXT," + KEY_FREQUENCY_INCOME + " TEXT," + KEY_FK_ID_INCOME_CATEGORY + " INTEGER" + ")";
+            + " TEXT," + KEY_AMOUNT_INCOME + " TEXT," + KEY_FREQUENCY_INCOME + " TEXT," + KEY_FK_ID_INCOME_CATEGORY + " INTEGER," + KEY_FK_ID_BUDJET_INCOME + " INTEGER" + ")";
 
     // EXPENSE table create statement
     private static final String CREATE_TABLE_EXPENSE = "CREATE TABLE "

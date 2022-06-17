@@ -76,4 +76,17 @@ public class ExpenseCategoryRepository extends ZeroBaseRepository<ExpenseCategor
         }
     }
 
+    @Override
+    public ExpenseCategory findOneByCode(String code){
+        try {
+            String query = "SELECT * FROM " + this.tableName + " WHERE " + DbHelper.KEY_CODE_EXPENSE_CATEGORY + " = '" + code + "'";
+            Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+            return fromCursor(cursor).get(0);
+        } catch (Exception e) {
+            Log.e("ExpenseCategoryRepository", "findOneByCode: ", e);
+            return null;
+        }
+    }
+
+
 }

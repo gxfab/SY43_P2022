@@ -83,5 +83,18 @@ public class BudgetRepository extends ZeroBaseRepository<Budget> {
         }
     }
 
+    @Override
+    public Budget findOneByCode(String code) {
+        try {
+            String query = "SELECT * FROM " + this.tableName + " WHERE " + DbHelper.KEY_CODE_BUDGET + " = '" + code + "'";
+            Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+            return fromCursor(cursor).get(0);
+        } catch (Exception e) {
+            Log.e("BudgetRepository", "findOneByCode: ", e);
+            return null;
+        }
+
+    }
+
 
 }

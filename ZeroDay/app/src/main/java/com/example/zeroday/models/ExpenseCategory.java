@@ -67,4 +67,26 @@ public class ExpenseCategory extends ZeroBaseModel implements Parcelable {
     public void setLabelExpenseCategory(String labelExpenseCategory) {
         this.labelExpenseCategory = labelExpenseCategory;
     }
+
+    @Override
+    public String toString() {
+        return "ExpenseCategory{" +
+                "codeExpenseCategory='" + codeExpenseCategory + '\'' +
+                ", labelExpenseCategory='" + labelExpenseCategory + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExpenseCategory that = (ExpenseCategory) o;
+        return getCodeExpenseCategory().equals(that.getCodeExpenseCategory()) && getLabelExpenseCategory().equals(that.getLabelExpenseCategory());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCodeExpenseCategory(), getLabelExpenseCategory());
+    }
 }

@@ -3,6 +3,8 @@ package com.example.zeroday.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 public class Budget extends ZeroBaseModel implements Parcelable {
     
     private String codeBudget;
@@ -88,5 +90,29 @@ public class Budget extends ZeroBaseModel implements Parcelable {
         parcel.writeString(codeBudget);
         parcel.writeString(startDateBuget);
         parcel.writeString(endDateBuget);
+    }
+
+    @Override
+    public String toString() {
+        return "Budget{" +
+                "codeBudget='" + codeBudget + '\'' +
+                ", startDateBuget='" + startDateBuget + '\'' +
+                ", endDateBuget='" + endDateBuget + '\'' +
+                ", frequency=" + frequency +
+                ", id=" + id +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Budget budget = (Budget) o;
+        return getCodeBudget().equals(budget.getCodeBudget()) && getStartDateBuget().equals(budget.getStartDateBuget()) && getEndDateBuget().equals(budget.getEndDateBuget()) && frequency == budget.frequency;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCodeBudget(), getStartDateBuget(), getEndDateBuget(), frequency);
     }
 }

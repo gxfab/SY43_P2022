@@ -57,12 +57,12 @@ public abstract class ZeroBaseServices<T extends ZeroBaseRepository, M extends Z
     }
 
     public void create(M zeroBaseModelobject) {
-        Long id = repository.insert(zeroBaseModelobject);
+        Long id = this.repository.insert(zeroBaseModelobject);
         zeroBaseModelobject.setId(id);
     }
 
     public void update(M zeroBaseModelobject) {
-        Long id = repository.update(zeroBaseModelobject);
+        Long id = this.repository.update(zeroBaseModelobject);
         zeroBaseModelobject.setId(id);
     }
 
