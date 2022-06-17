@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.sy43.database.AppDatabase;
 import com.example.sy43.database.AppDatabase_Impl;
 import com.example.sy43.database.Category;
+import com.example.sy43.database.Expenses;
 import com.example.sy43.database.MonthlyRevenue;
 import com.example.sy43.database.SubCategory;
 
@@ -57,7 +58,6 @@ public class Categories extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
 
         AppDatabase db = AppDatabase.getInstance(this);
-
         List<Category> categories = db.categoryDao().getAll();
 
         Spinner period = findViewById(R.id.spinner2);
@@ -81,6 +81,8 @@ public class Categories extends AppCompatActivity {
         toHome();
         toOverview();
 
+
+
         subcategory_name = findViewById(R.id.subcategoryTV);
         subcategory_amount = findViewById(R.id.subcategoryEnveloppe);
 
@@ -98,45 +100,51 @@ public class Categories extends AppCompatActivity {
         });
 
         generateList(categories,db);
+   /* mList = new ArrayList<>();
+        for (int i=0; i<categories.size(); i++){
+            sum=0;
+            subCategory = db.subCategoryDao().findByCategory(categories.get(i).id);
+            subcategories_titles= new ArrayList<>();
+            subcategories_enveloppes= new ArrayList<>();
+            for (SubCategory sub : subCategory){
+                expensesList = new ArrayList<>();
+                expensesList = db.expensesDao().findBySubCategory(sub.id);
+                for (int k=0; k<expensesList.size();k++){
+                    expensesum+= expensesList.get(k).value;
+                }
+                subcategories_titles.add(sub.name);
+                subcategories_enveloppes.add(expensesum+"/"+Double.toString(sub.envelope)+" $");
+                sum+= sub.envelope;
+                expensesum=0.0;
 
-//        mList = new ArrayList<>();
-//        for (int i=0; i<categories.size(); i++){
-//            sum=0;
-//            subCategory = db.subCategoryDao().findByCategory(i+1);
-//            subcategories_titles= new ArrayList<>();
-//            subcategories_enveloppes= new ArrayList<>();
-//            for (int j=0; j<subCategory.size();j++){
-//                subcategories_titles.add(subCategory.get(j).name);
-//                subcategories_enveloppes.add(Double.toString(subCategory.get(j).envelope));
-//                sum+= subCategory.get(j).envelope;
-//            }
-//
-//            switch (categories.get(i).name) {
-//                case "Clothing" :
-//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.clothing),Double.toString(sum) ));
-//                    break;
-//                case "Communication" :
-//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.phone),Double.toString(sum) ));
-//                    break;
-//                case "Entertainment" :
-//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.entertainment),Double.toString(sum) ));
-//                    break;
-//                case "Finance" :
-//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.finance),Double.toString(sum) ));
-//                    break;
-//                case "Food" :
-//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.food),Double.toString(sum) ));
-//                    break;
-//                case "Health" :
-//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.health),Double.toString(sum) ));
-//                    break;
-//                case "Housing" :
-//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.house),Double.toString(sum) ));
-//                    break;
-//                case "Transport" :
-//                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.transport),Double.toString(sum) ));
-//            }
-//        }
+            }
+
+            switch (categories.get(i).name) {
+                case "Clothing" :
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.clothing),Double.toString(sum) ));
+                    break;
+                case "Communication" :
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.phone),Double.toString(sum) ));
+                    break;
+                case "Entertainment" :
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.entertainment),Double.toString(sum) ));
+                    break;
+                case "Finance" :
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.finance),Double.toString(sum) ));
+                    break;
+                case "Food" :
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.food),Double.toString(sum) ));
+                    break;
+                case "Health" :
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.health),Double.toString(sum) ));
+                    break;
+                case "Housing" :
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.house),Double.toString(sum) ));
+                    break;
+                case "Transport" :
+                    mList.add(new DataModel2(subcategories_titles, subcategories_enveloppes,categories.get(i).name,  ContextCompat.getDrawable(this,R.drawable.transport),Double.toString(sum) ));
+            }
+        }*/
 
         adapter = new CategoryAdapter(mList);
         recyclerView.setAdapter(adapter);
@@ -161,6 +169,8 @@ public class Categories extends AppCompatActivity {
                 startActivity(new Intent(Categories.this, Overview.class));
             }
         });
+
+
     }
 
     private void generateList(List<Category> categories, AppDatabase db){
@@ -266,77 +276,3 @@ public class Categories extends AppCompatActivity {
 
             }
         });*/
-
-
-
-
-
-
-
-/*
-        List<Drawable> clothingimg = new ArrayList<>();
-        clothingimg.add(ContextCompat.getDrawable(this,R.drawable.accessories));
-        clothingimg.add(ContextCompat.getDrawable(this,R.drawable.clothes));
-        clothingimg.add(ContextCompat.getDrawable(this,R.drawable.footwear));
-        allimgs.add(clothingimg);
-
-        List<Drawable> communicationimg= new ArrayList<>();
-        communicationimg.add(ContextCompat.getDrawable(this, R.drawable.internet));
-        communicationimg.add(ContextCompat.getDrawable(this, R.drawable.phone));
-        communicationimg.add(ContextCompat.getDrawable(this, R.drawable.tv));
-        allimgs.add(communicationimg);
-
-
-        List<Drawable> entertainmentimg = new ArrayList<>();
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.books));
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.events));
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.gaming));
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.gift));
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.hangout));
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.hotel));
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.multimedia));
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.pet));
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.sports));
-        entertainmentimg.add(ContextCompat.getDrawable(this,R.drawable.vacation));
-        allimgs.add(entertainmentimg);
-
-        List<Drawable> financeimg = new ArrayList<>();
-        financeimg.add(ContextCompat.getDrawable(this,R.drawable.banking));
-        financeimg.add(ContextCompat.getDrawable(this,R.drawable.loan));
-        financeimg.add(ContextCompat.getDrawable(this,R.drawable.salarytax));
-        allimgs.add(financeimg);
-
-        List<Drawable> foodimg = new ArrayList<>();
-        foodimg.add(ContextCompat.getDrawable(this,R.drawable.canteen));
-        foodimg.add(ContextCompat.getDrawable(this,R.drawable.groceries));
-        foodimg.add(ContextCompat.getDrawable(this,R.drawable.restaurant));
-        allimgs.add(foodimg);
-
-        List<Drawable> healthimg = new ArrayList<>();
-        healthimg.add(ContextCompat.getDrawable(this, R.drawable.barber));
-        healthimg.add(ContextCompat.getDrawable(this,R.drawable.bodycare));
-        healthimg.add(ContextCompat.getDrawable(this,R.drawable.doctor));
-        healthimg.add(ContextCompat.getDrawable(this,R.drawable.life_insurance));
-        healthimg.add(ContextCompat.getDrawable(this,R.drawable.pharmacy));
-        allimgs.add(healthimg);
-
-        List<Drawable> housingimg = new ArrayList<>();
-        housingimg.add(ContextCompat.getDrawable(this, R.drawable.cleaning));
-        housingimg.add(ContextCompat.getDrawable(this, R.drawable.furniture));
-        housingimg.add(ContextCompat.getDrawable(this, R.drawable.garden));
-        housingimg.add(ContextCompat.getDrawable(this, R.drawable.house_insurance));
-        housingimg.add(ContextCompat.getDrawable(this, R.drawable.rent));
-        housingimg.add(ContextCompat.getDrawable(this, R.drawable.repairs));
-        housingimg.add(ContextCompat.getDrawable(this, R.drawable.taxes));
-        housingimg.add(ContextCompat.getDrawable(this, R.drawable.utilities));
-        allimgs.add(housingimg);
-
-        List<Drawable> transportimg = new ArrayList<>();
-        transportimg.add(ContextCompat.getDrawable(this,R.drawable.car_insurance));
-        transportimg.add(ContextCompat.getDrawable(this,R.drawable.car_fees));
-        transportimg.add(ContextCompat.getDrawable(this,R.drawable.fuel));
-        transportimg.add(ContextCompat.getDrawable(this,R.drawable.parking));
-        transportimg.add(ContextCompat.getDrawable(this,R.drawable.tolls));
-        transportimg.add(ContextCompat.getDrawable(this,R.drawable.transportation));
-        allimgs.add(transportimg);
-*/

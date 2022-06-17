@@ -14,11 +14,11 @@ public class Expenses {
     @ColumnInfo(name = "e_name")
     public String name;
 
-    @ColumnInfo(name = "e_value")
-    public double value;
-
     @ColumnInfo(name = "e_date")
     public String date;
+
+    @ColumnInfo(name = "e_value")
+    public double value;
 
     @ColumnInfo(name = "e_subcategory")
     public int subcategory;

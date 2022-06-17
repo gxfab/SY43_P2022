@@ -76,7 +76,7 @@ public class add_expense extends Fragment {
                  String catText = catSpinner.getSelectedItem().toString();
                  List<String> subcategories = new ArrayList<String>();
                  for (SubCategory subcat : db.subCategoryDao().findByCategory(db.categoryDao().findByName(catText).id)) {
-                     subcategories.add(subcat.getName());
+                     subcategories.add(subcat.name);
                  }
                  ArrayAdapter<String> subcatData = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, subcategories);
                  subcatData.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -118,7 +118,6 @@ public class add_expense extends Fragment {
                 String today = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH).format(Calendar.getInstance().getTime());
 
                 db.expensesDao().insertAll(new Expenses(et_name.getText().toString(), Double.parseDouble(et_amount.getText().toString()), today, selectsubCatID, monthlyRevenueID ));
-
                 Toast.makeText(addBtn.getContext(),"Expense Saved !", Toast.LENGTH_SHORT).show();
 
                 total_expense = getActivity().findViewById(R.id.expense_amount);
@@ -138,8 +137,8 @@ public class add_expense extends Fragment {
                 latestExpenses.setArguments(bundle);
 
 
-//                TabLayout.Tab tab = tabLayout.getTabAt(1);
-//                tab.select();
+               //TabLayout.Tab tab = tabLayout.getTabAt(1);
+                //tab.select();
 
 
             }

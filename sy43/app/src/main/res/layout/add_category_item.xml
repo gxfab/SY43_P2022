@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    app:cardElevation="1dp"
+    android:layout_margin="15dp"
+    android:backgroundTint="#ff95cc"
+    app:cardCornerRadius="20dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_category_name"
+        android:text="Sub Category"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center|top"/>
+    <EditText
+        android:id="@+id/add_category_amount"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:hint="Amount"
+        android:layout_gravity="start|center"
+        android:inputType="number"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/add_category_btn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Apply"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="18sp"/>
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.cardview.widget.CardView>

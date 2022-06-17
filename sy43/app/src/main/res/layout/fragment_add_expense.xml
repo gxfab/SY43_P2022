@@ -13,7 +13,7 @@
         android:layout_height="48dp"
         android:layout_gravity="center|top|left"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="35dp"
         android:dropDownWidth="match_parent"/>
     <Spinner
         android:id="@+id/add_expense_subcategory"
@@ -21,7 +21,7 @@
         android:layout_height="48dp"
         android:layout_gravity="center|top|right"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginEnd="35dp"
         android:dropDownWidth="match_parent"/>
 
     <EditText
@@ -30,7 +30,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center|top|left"
         android:layout_marginTop="70dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="35dp"
         android:gravity="center"
         android:hint="Expense name"
         android:inputType="text" />
@@ -40,7 +40,7 @@
         android:layout_width="145dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top|right"
-        android:layout_marginEnd="45dp"
+        android:layout_marginEnd="35dp"
         android:layout_marginTop="70dp"
         android:gravity="center"
         android:hint="Expense Amount"
@@ -48,10 +48,10 @@
         android:minHeight="48dp" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="25dp"
         app:cardBackgroundColor="#1b97d5">
         <Button

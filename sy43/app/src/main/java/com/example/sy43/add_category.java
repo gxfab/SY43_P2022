@@ -155,14 +155,14 @@ public class add_category extends DialogFragment {
 
 
         List<String> housing = new ArrayList<>();
-        addToList("Cleaning",health);
-        addToList("Furniture",health);
-        addToList("Garden",health);
-        addToList("Insurance",health);
-        addToList("Rent",health);
-        addToList("Repairs",health);
-        addToList("Taxes",health);
-        addToList("Utilities",health);
+        addToList("Cleaning",housing);
+        addToList("Furniture",housing);
+        addToList("Garden",housing);
+        addToList("Insurance",housing);
+        addToList("Rent",housing);
+        addToList("Repairs",housing);
+        addToList("Taxes",housing);
+        addToList("Utilities",housing);
 
         List<CardView> housingbtns = new ArrayList<>();
         for(int i=0; i<housing.size();i++) {
@@ -176,12 +176,12 @@ public class add_category extends DialogFragment {
 
 
         List<String> transport = new ArrayList<>();
-        addToList("Automobile Insurance",health);
-        addToList("Automobile Fees",health);
-        addToList("Fuel",health);
-        addToList("Parking",health);
-        addToList("Tolls",health);
-        addToList("Transportation",health);
+        addToList("Automobile Insurance",transport);
+        addToList("Automobile Fees",transport);
+        addToList("Fuel",transport);
+        addToList("Parking",transport);
+        addToList("Tolls",transport);
+        addToList("Transportation",transport);
 
         List<CardView> transportbtns = new ArrayList<>();
         for(int i=0; i<transport.size();i++) {

@@ -68,6 +68,9 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.NestedView
             btn = itemView.findViewById(R.id.apply_subcategory);
             et = itemView.findViewById(R.id.expected_expense);
 
+
+
+
             DataModel datamodel = ItemAdapter.mList.get(position);
             category = datamodel.getItemText();
             //btn.setVisibility(View.INVISIBLE);
@@ -104,13 +107,16 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.NestedView
                         }
 
                     }
+
                     if(!et.isEnabled()){
                         Toast.makeText(btn.getContext(),"Already Saved !", Toast.LENGTH_SHORT).show();
 
                     }
                 }
             });
+
         }
+
         @NonNull
         public Lifecycle getLifecycle() {
             return null;

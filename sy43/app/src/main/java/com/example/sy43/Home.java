@@ -47,22 +47,12 @@ public class Home extends AppCompatActivity {
     private TextView total_income, total_expense, total_balance;
     private ViewPager2 viewPager2;
     private MyFragmentAdapter adapter;
-    private Define_incomes define_incomes;
     private Spinner monthSpinner, yearSpinner;
     private RecyclerView recyclerView;
     private List<String> l1,l2,l3,l4;
     private ProjectsDisplayAdapter projectsDisplayAdapter;
     Double allocation = 0.0;
 
-
-    PieChart pieChart;
-
-    //TODO lezm e3mel nafes l chi michen popups l subcategories
-    // w zabit l subcategories ma3 l icons,
-    // w zabit l switch ben categories w home,
-    // w chakel l home mech zabit l scroll w l tabs
-
-    //Lezm chouf lech l spinners ma 3am ye2ro l data.. check l arraylist adapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +112,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
+
         total_expense = findViewById(R.id.expense_amount);
         total_balance = findViewById(R.id.balance_amount);
         monthSpinner = findViewById(R.id.spinner);
@@ -175,7 +166,6 @@ public class Home extends AppCompatActivity {
         String currentMonth = monthsArray[Calendar.getInstance().get(Calendar.MONTH)];
         int monthPosition = months.indexOf(currentMonth);
         monthSpinner.setSelection(monthPosition);
-
 //        double exp_total=0.0;
 //        int selectedMonth = Arrays.asList(monthsArray).indexOf(monthSpinner.getSelectedItem().toString())+1;
 //        int selectedYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
@@ -199,6 +189,7 @@ public class Home extends AppCompatActivity {
 
         List<Projects> projects = db.projectDao().getAll();
         for(int i=0; i<projects.size();i++){
+
             allocation = 0.0;
             String allocationstr = total_balance.getText().toString();
             allocation+= (Double.parseDouble(allocationstr.substring(0,allocationstr.length()-1))) * (projects.get(i).percentage/100);

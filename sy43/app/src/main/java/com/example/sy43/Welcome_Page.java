@@ -75,7 +75,7 @@ public class Welcome_Page extends AppCompatActivity {
         get_started.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+                //                AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 //                List<Category> cat = db.categoryDao().getAll();
 //                List<Income> inc = db.incomeDao().getAll();
 //                if (cat.isEmpty() && inc.isEmpty()){
@@ -83,9 +83,7 @@ public class Welcome_Page extends AppCompatActivity {
 //                    intent.putExtra("total_income_value", Double.toString(db.incomeDao().incomeSum()) + "$");
 //                    startActivity(intent);
 //                } else {
-                    startActivity(new Intent(Welcome_Page.this, Define_categories.class));
-
-//                }
+                startActivity(new Intent(Welcome_Page.this, Define_categories.class));
             }
         });
     }

@@ -41,7 +41,7 @@ public class AddSubcategoryAdapter extends RecyclerView.Adapter<AddSubcategoryAd
     @NonNull
     @Override
     public NestedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.nested_item , parent , false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_category_item , parent , false);
         return new NestedViewHolder(view);
     }
 
@@ -64,9 +64,9 @@ public class AddSubcategoryAdapter extends RecyclerView.Adapter<AddSubcategoryAd
         private String category;
         public NestedViewHolder(@NonNull View itemView) {
             super(itemView);
-            mTv = itemView.findViewById(R.id.nestedItemTv);
-            btn = itemView.findViewById(R.id.apply_subcategory);
-            et = itemView.findViewById(R.id.expected_expense);
+            mTv = itemView.findViewById(R.id.add_category_name);
+            btn = itemView.findViewById(R.id.add_category_btn);
+            et = itemView.findViewById(R.id.add_category_amount);
 
 
 

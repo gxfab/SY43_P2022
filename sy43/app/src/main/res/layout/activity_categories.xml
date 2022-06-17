@@ -67,16 +67,13 @@
         android:textStyle="italic" />
 
 
-        <ScrollView
+
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:layout_marginTop="200dp">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/main_recyclerview"
-                />
-        </ScrollView>
+            android:id="@+id/main_recyclerview"
+            android:layout_marginTop="200dp"/>
+
 
 
 
