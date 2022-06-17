@@ -74,5 +74,15 @@ public class StableExpensesAndIncomeRepository {
         return stableExpensesAndIncomeDao.getSumOfStableIncomes();
     }
 
+    public StableExpensesAndIncome getStableById(long idOfStable){
+        return stableExpensesAndIncomeDao.getStableById(idOfStable);
+    }
 
+    public void updateStable(StableExpensesAndIncome stableExpensesAndIncome){
+        stableExpensesAndIncomeDao.updateStableExpenseOrIncome(stableExpensesAndIncome);
+    }
+
+    public void deleteStable(StableExpensesAndIncome stableExpensesAndIncome){
+        stableExpensesAndIncomeDao.deleteStableExpenseOrIncome(stableExpensesAndIncome);
+    }
 }

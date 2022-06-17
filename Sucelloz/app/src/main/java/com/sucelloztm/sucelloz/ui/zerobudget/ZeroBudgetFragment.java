@@ -64,7 +64,7 @@ public class ZeroBudgetFragment extends Fragment {
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
         recyclerView.setAdapter(subCategoriesAdapter);
-
+        registerForContextMenu(recyclerView);
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
             TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.text_view_subcategories);
             String currentZeroBudgetCategoryName = currentZeroBudgetCategoryTextView.getText().toString();
@@ -73,6 +73,7 @@ public class ZeroBudgetFragment extends Fragment {
             NavHostFragment.findNavController(ZeroBudgetFragment.this).navigate(R.id.action_navigation_zero_budget_to_navigation_sub_zero_budget);
             //Log.d("CategoriesFragment",currentCategoryName);
         });
+
 
         final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> { zeroBudget.setInfrequentExpenses(newInfrequentExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
 

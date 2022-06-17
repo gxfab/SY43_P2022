@@ -27,4 +27,17 @@ public class SubZeroBudgetViewModel extends AndroidViewModel {
         }
         return this.currentStableList;
     }
+
+    public StableExpensesAndIncome getStableById(long idOfStable){
+        return this.stableExpensesAndIncomeRepository.getStableById(idOfStable);
+    }
+
+    public void updateStable(StableExpensesAndIncome stableExpensesAndIncome){
+        stableExpensesAndIncomeRepository.updateStable(stableExpensesAndIncome);
+    }
+
+    public void deleteStable(StableExpensesAndIncome stableExpensesAndIncome){
+        stableExpensesAndIncomeRepository.deleteStable(stableExpensesAndIncome);
+    }
 }
+

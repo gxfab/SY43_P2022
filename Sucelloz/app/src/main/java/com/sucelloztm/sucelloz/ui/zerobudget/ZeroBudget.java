@@ -56,6 +56,6 @@ public class ZeroBudget {
         }else{
             textView.setTextColor(-65536);
         }
-        textView.setText(String.valueOf(this.resultBudgetZero));
+        textView.setText(this.resultBudgetZero+"€");
     }
 }

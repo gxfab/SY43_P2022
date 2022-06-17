@@ -112,4 +112,7 @@ public interface StableExpensesAndIncomeDao {
     @Query("SELECT SUM(amount) FROM stable_expenses WHERE sign LIKE '+'")
     LiveData<Integer> getSumOfStableIncomes();
 
+    @Query("SELECT * FROM stable_expenses WHERE id=:idOfStable")
+    StableExpensesAndIncome getStableById(long idOfStable);
+
 }
