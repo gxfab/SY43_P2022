@@ -7,7 +7,7 @@
 
 ## Votre comptable directement dans la poche !
 
-##### <font color=#F5B041> Économisez votre argent grâce à notre application révolutionnaire sur le marché des applications de gestion bancaire !
+##### <font color=#F5B041> Gérez plus facilement votre argent grâce à notre application révolutionnaire sur le marché des applications de gestion bancaire !
 
 </font>
 
