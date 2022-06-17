@@ -44,6 +44,12 @@ public class AddSpendingDialogFragment extends DialogFragment {
         builder.setView(view);
         Spinner spinnerSpendings = (Spinner) view.findViewById(R.id.spinner_spendings);
         subCategoriesList = addSpendingDialogViewModel.getSubCategoriesNames();
+        subCategoriesList.remove("Incomes");
+        subCategoriesList.remove("Bills");
+        subCategoriesList.remove("Envelopes");
+        subCategoriesList.remove("Sinking Funds");
+        subCategoriesList.remove("Extra Debt");
+        subCategoriesList.remove("Extra Savings");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item, subCategoriesList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSpendings.setAdapter(arrayAdapter);
