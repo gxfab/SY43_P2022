@@ -29,6 +29,8 @@ class ChartFragment : Fragment() {
     private lateinit var expenseViewModel: ExpenseViewModel
     private lateinit var bMonthViewModel: BMonthViewModel
 
+    private var test : Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,6 +54,9 @@ class ChartFragment : Fragment() {
         val entries: MutableList<BarEntry> = ArrayList()
         //Add sum to barchart
         bMonthViewModel.readAllData.observe(viewLifecycleOwner, Observer {
+            var lastMonthId : Int = 0
+            for(month in it)
+                lastMonthId = month.id
             for(month in it){
                 sumAmount.add(0f)
                 envelopeViewModel.getSumOfEnvelopes(month.id).observe(viewLifecycleOwner, Observer {
@@ -61,16 +66,31 @@ class ChartFragment : Fragment() {
                     expenseViewModel.getSumOfNegativeExpenses(month.id).observe(viewLifecycleOwner, Observer {
                         if (it != null) {
                             sumAmount.set(month.id, sumAmount.get(month.id) - it)
-
+                            test++
                             Log.d("ChartFragment", "1:" + (month.id-1).toFloat() + "--2:" + sumAmount.get(month.id))
-                            //entries.add(BarEntry((month.id-1).toFloat(), sumAmount.get(month.id)))
+                            entries.add(BarEntry((month.id-1).toFloat(), sumAmount.get(month.id)))
                             Log.d("ChartFragment", "-sumAmount final: " + sumAmount.get(month.id) + " for month " + month.id)
+                        }
+
+                        // If we are at the last month, generate graph
+                        if(month.id == lastMonthId){
+
+                            Log.d("ChartFragment", "generate graph")
+
+                            val set = BarDataSet(entries, "Différence entre enveloppe et dépense")
+
+                            val data = BarData(set)
+                            data.barWidth = 0.9f // set custom bar width
+
+                            chart.data = data
+                            chart.setFitBars(true) // make the x-axis fit exactly all bars
+
+                            chart.invalidate() // refresh
                         }
                     })
                 })
             }
         })
-
 
 
 
@@ -84,15 +104,7 @@ class ChartFragment : Fragment() {
         entries.add(BarEntry(5f, 70f))
         entries.add(BarEntry(6f, 60f))*/
 
-        val set = BarDataSet(entries, "BarDataSet")
 
-        val data = BarData(set)
-        data.barWidth = 0.9f // set custom bar width
-
-        chart.data = data
-        chart.setFitBars(true) // make the x-axis fit exactly all bars
-
-        chart.invalidate() // refresh
 
         Log.d("ChartFragment", "exiting chart fragment")
 
