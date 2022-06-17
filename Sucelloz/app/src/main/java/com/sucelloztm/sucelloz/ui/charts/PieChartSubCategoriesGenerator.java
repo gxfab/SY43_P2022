@@ -24,20 +24,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PieChartSubCategoriesGenerator {
+/**
+ * class to generate pie charts for the subcategories fragment
+ */
+public class  PieChartSubCategoriesGenerator {
 
     private PieChart pieChart;
     private List<SubCategoriesWithInfrequentSum> subCategoriesWithInfrequentSumList;
 
 
+    /**
+     * custom constructor
+     * @param subCategoriesWithInfrequentSumList list of subcategories
+     */
     public PieChartSubCategoriesGenerator(List<SubCategoriesWithInfrequentSum> subCategoriesWithInfrequentSumList){
         this.subCategoriesWithInfrequentSumList = subCategoriesWithInfrequentSumList;
     }
 
+    /**
+     * getter
+     * @return pie chart
+     */
     public PieChart getPieChart() {
         return pieChart;
     }
 
+    /**
+     * creates a pie chart
+     * @param context context
+     * @param parent frame layout
+     * @return created pie chart
+     */
     public PieChart createPieChart(Context context, FrameLayout parent)
     {
 
@@ -89,7 +106,10 @@ public class PieChartSubCategoriesGenerator {
     }
 
 
-
+    /**
+     * generates data for the pie chart
+     * @return pie data
+     */
     public PieData generatePieData() {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         Map<String,Integer> subCategoriesWithInfrequentSumMap= generatePieEntry();
@@ -118,6 +138,11 @@ public class PieChartSubCategoriesGenerator {
         s.setSpan(new ForegroundColorSpan(Color.GRAY), 8, s.length(), 0);
         return s;
     }
+
+    /**
+     * generates a pie chart entry
+     * @return map of the entries
+     */
     public Map<String,Integer> generatePieEntry(){
         Map<String,Integer> subCategoriesWithInfrequentSumMap = new HashMap<>();
         for (SubCategoriesWithInfrequentSum subCategory:
