@@ -21,13 +21,17 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
     private InfrequentExpensesAndIncomeRepository infrequentExpensesAndIncomeRepository;
 
     private StableExpensesAndIncomeRepository stableExpensesAndIncomeRepository;
-
+    private LiveData<Integer> infrequentExpenses;
+    private Integer infrequentIncomes;
+    private Integer stableExpenses;
+    private Integer stableIncomes;
 
     public ZeroBudgetViewModel(Application application) {
         super(application);
         this.subCategoriesRepository = new SubCategoriesRepository(application);
         this.infrequentExpensesAndIncomeRepository = new InfrequentExpensesAndIncomeRepository(application);
         this.stableExpensesAndIncomeRepository = new StableExpensesAndIncomeRepository(application);
+
     }
 
     public void setCurrentSubCategory(SubCategories subCategory){
@@ -46,7 +50,10 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
     }
 
     public LiveData<Integer> getInfrequentExpenses(){
-        return this.infrequentExpensesAndIncomeRepository.getSumOfInfrequentExpenses();
+        if(this.infrequentExpenses==null){
+            this.infrequentExpenses = this.infrequentExpensesAndIncomeRepository.getSumOfInfrequentExpenses();
+        }
+        return this.infrequentExpenses;
     }
     public LiveData<Integer> getInfrequentIncomes(){
         return this.infrequentExpensesAndIncomeRepository.getSumOfInfrequentIncomes();

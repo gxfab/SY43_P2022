@@ -1,5 +1,6 @@
 package com.sucelloztm.sucelloz.ui.zerobudget;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,23 +39,19 @@ public class ZeroBudgetFragment extends Fragment {
     private ArrayList<SubCategories> zeroBudgetSubCategoriesList;
     private ZeroBudgetViewModel zeroBudgetViewModel;
     private TextView zeroBudgetTextView;
-    private Integer infrequentExpenses = 0;
-    private Integer infrequentIncomes = 0;
-    private Integer stableExpenses = 0;
-    private Integer stableIncomes = 0;
+    private ZeroBudget zeroBudget;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         zeroBudgetViewModel =
                 new ViewModelProvider(this).get(ZeroBudgetViewModel.class);
-
         binding = ZeroBudgetFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         zeroBudgetTextView = binding.zeroBudgetTextView;
-
+        zeroBudget = new ZeroBudget();
         RecyclerView recyclerView = binding.zeroBudgetRecyclerView;
-
         zeroBudgetSubCategoriesList = new ArrayList<>();
+        zeroBudgetTextView = binding.zeroBudgetTextView;
         String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
                 "Sinking Funds", "Extra debt", "Extra Savings"};
         for (String name:zeroBudgetNameList
@@ -76,36 +74,32 @@ public class ZeroBudgetFragment extends Fragment {
             //Log.d("CategoriesFragment",currentCategoryName);
         });
 
-        final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> infrequentExpenses = newInfrequentExpenses;
+        final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> { zeroBudget.setInfrequentExpenses(newInfrequentExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
 
-        final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes -> infrequentIncomes = newInfrequentIncomes;
+        final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes ->{zeroBudget.setInfrequentIncomes(newInfrequentIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
 
-        final Observer<Integer> stableExpensesObserver= newStableExpenses -> stableExpenses = newStableExpenses;
+        final Observer<Integer> stableExpensesObserver= newStableExpenses -> {zeroBudget.setStableExpenses(newStableExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
 
-        final Observer<Integer> stableIncomesObserver= newStableIncomes -> stableIncomes = newStableIncomes;
+        final Observer<Integer> stableIncomesObserver= newStableIncomes -> {zeroBudget.setStableIncomes(newStableIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
 
         zeroBudgetViewModel.getInfrequentExpenses().observe(getViewLifecycleOwner(),infrequentExpensesObserver);
         zeroBudgetViewModel.getInfrequentIncomes().observe(getViewLifecycleOwner(),infrequentIncomesObserver);
         zeroBudgetViewModel.getStableExpenses().observe(getViewLifecycleOwner(),stableExpensesObserver);
         zeroBudgetViewModel.getStableIncomes().observe(getViewLifecycleOwner(),stableIncomesObserver);
 
-        int zeroBudgetResult =(infrequentIncomes + stableIncomes) - (infrequentExpenses + stableExpenses);
 
-        String strZeroBudgetResult = String.valueOf(zeroBudgetResult);
 
-        zeroBudgetViewModel.setTextView(zeroBudgetTextView,strZeroBudgetResult);
 
-        if(zeroBudgetResult > 0){
-            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-16711936);
-        }else if (zeroBudgetResult == 0){
-            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-16776961);
-        }else{
-            zeroBudgetViewModel.setTextViewColor(zeroBudgetTextView,-65536);
-        }
 
 
 
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     @Override
