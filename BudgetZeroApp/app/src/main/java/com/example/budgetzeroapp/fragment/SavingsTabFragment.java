@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
+import com.example.budgetzeroapp.tool.adapter.SavingsAdapter;
 import com.example.budgetzeroapp.tool.item.SavingsItem;
 
 import java.util.ArrayList;
@@ -75,12 +76,13 @@ public class SavingsTabFragment extends DataBaseFragment implements BudgetRecycl
     @Override
     public void onItemClick(View view, int position) {
         switch(position){
-            case 1 : Collections.sort(items, (savingsItem, t1) -> savingsItem.getName().compareTo(t1.getName()));
+            case 0 : Collections.sort(items, (savingsItem, t1) -> savingsItem.getId() - t1.getId());
                 break;
-            case 2 : Collections.sort(items, (savingsItem, t1) -> (savingsItem.getProgress() - t1.getProgress()));
+            case 1 : Collections.sort(items, (savingsItem, t1) -> (savingsItem.getProgress() - t1.getProgress()));
                 break;
-            case 3 : Collections.sort(items, (savingsItem, t1) -> (int) (savingsItem.getObjective()-t1.getObjective()));
+            case 2 : Collections.sort(items, (savingsItem, t1) -> (int) (savingsItem.getObjective()-t1.getObjective()));
                 break;
         }
+        categories.setAdapter(new SavingsAdapter(items));
     }
 }

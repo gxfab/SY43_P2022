@@ -66,7 +66,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
     public void setValues()   {
         name.setText(nameVal);
         budget.setText(String.valueOf(budgetVal));
-        subCatList = ClickableListManager.clickableBudgetList(expList, subCatVal);
+        ClickableListManager.clickableBudgetList(subCatList, subCatVal);
         ClickableListManager.clickableExpenseList(expList, expVal);
 
     }

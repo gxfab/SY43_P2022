@@ -89,12 +89,13 @@ public class SavingsDebtTabFragment extends DataBaseFragment implements BudgetRe
     @Override
     public void onItemClick(View view, int position) {
         switch(position){
-            case 1 : Collections.sort(items, (savingsItem, t1) -> savingsItem.getName().compareTo(t1.getName()));
+            case 0 : Collections.sort(items, (savingsItem, t1) -> savingsItem.getName().compareTo(t1.getName()));
                 break;
-            case 2 : Collections.sort(items, (savingsItem, t1) -> (savingsItem.getProgress() - t1.getProgress()));
+            case 1 : Collections.sort(items, (savingsItem, t1) -> (savingsItem.getProgress() - t1.getProgress()));
                 break;
-            case 3 : Collections.sort(items, (savingsItem, t1) -> (int) (savingsItem.getObjective()-t1.getObjective()));
+            case 2 : Collections.sort(items, (savingsItem, t1) -> (int) (savingsItem.getObjective()-t1.getObjective()));
                 break;
         }
+        categories.setAdapter(new SavingsAdapter(items));
     }
 }
