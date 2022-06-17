@@ -133,7 +133,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Example expense categories
         db.execSQL(
                 "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+")"+
-                        " values ('Shopping',400),('Vehicle',800),('Leisure',150),('Health',300),('Miscellaneous',100),('Bills',700);"
+                        " values ('Shopping',400),('Vehicle',800),('Leisure',150),('Health',300),('Bills',700),('Miscellaneous',100);"
         );
         //Example expense subcategories
         db.execSQL(
@@ -163,7 +163,9 @@ public class DBHelper extends SQLiteOpenHelper {
                         " values ('Party shopping', -120, 1, 8, 14, 6, 2022,0)," +
                         "('Weekly shopping', -70, 1, 7, 9, 6, 2022,0)," +
                         "('Weekly shopping', -57, 1, 7, 16, 6, 2022,0)," +
-                        "('Electricity',-307, 1, 5, 1, 6, 2022,0);"
+                        "('Electricity',-307, 1, 5, 1, 6, 2022,0)," +
+                        "('Loan',-450,1,5,5,6,2022,1)," +
+                        "('Netflix',-20,3,113,6,2022,1);"
         );
         //Example incomes
         db.execSQL(
