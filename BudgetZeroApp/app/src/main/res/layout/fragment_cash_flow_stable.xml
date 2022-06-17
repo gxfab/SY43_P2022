@@ -6,9 +6,6 @@
     android:backgroundTint="@color/light_gray"
     tools:context=".fragment.cashflow.CashFlowStableFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,6 +47,5 @@
                 android:background="@color/light_gray">
             </ListView>
         </LinearLayout>
-    </ScrollView>
 
 </FrameLayout>

@@ -14,7 +14,10 @@ import android.widget.ListView;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.ClickableListManager;
+import com.example.budgetzeroapp.tool.adapter.BudgetAdapter;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
+import com.example.budgetzeroapp.tool.adapter.SavingsAdapter;
+import com.example.budgetzeroapp.tool.item.CategoryItem;
 import com.example.budgetzeroapp.tool.item.SavingsItem;
 
 import java.util.ArrayList;
@@ -54,9 +57,20 @@ public class SavingsDebtTabFragment extends DataBaseFragment implements BudgetRe
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /**Listview**/
+        categories = view.findViewById(R.id.list_view_cat);
         items = SavingsItem.initSavingsList(database, false);
         ClickableListManager.clickableSavingsList(categories, items);
 
+        SavingsAdapter savingsAdapter = new SavingsAdapter(items);
+        categories.setAdapter(savingsAdapter);
+
+        categories.setVerticalScrollBarEnabled(false);
+
+
+
+
+        /**Sorting**/
         ArrayList<String> sortingItems = new ArrayList<>();
         sortingItems.add("Name");
         sortingItems.add("%Paid");
@@ -75,12 +89,13 @@ public class SavingsDebtTabFragment extends DataBaseFragment implements BudgetRe
     @Override
     public void onItemClick(View view, int position) {
         switch(position){
-            case 1 : Collections.sort(items, (savingsItem, t1) -> savingsItem.getName().compareTo(t1.getName()));
+            case 0 : Collections.sort(items, (savingsItem, t1) -> savingsItem.getName().compareTo(t1.getName()));
                 break;
-            case 2 : Collections.sort(items, (savingsItem, t1) -> (savingsItem.getProgress() - t1.getProgress()));
+            case 1 : Collections.sort(items, (savingsItem, t1) -> (savingsItem.getProgress() - t1.getProgress()));
                 break;
-            case 3 : Collections.sort(items, (savingsItem, t1) -> (int) (savingsItem.getObjective()-t1.getObjective()));
+            case 2 : Collections.sort(items, (savingsItem, t1) -> (int) (savingsItem.getObjective()-t1.getObjective()));
                 break;
         }
+        categories.setAdapter(new SavingsAdapter(items));
     }
 }

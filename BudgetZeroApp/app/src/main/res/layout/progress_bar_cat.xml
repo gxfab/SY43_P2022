@@ -6,8 +6,7 @@
     android:background="@color/white"
     android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    >
+    android:layout_marginRight="10dp">
     <TextView
         android:id="@+id/category_name"
         android:layout_marginLeft="10dp"

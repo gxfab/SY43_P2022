@@ -79,7 +79,7 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
         /**Sorting RecyclerView Initialization**/
         // data to populate the RecyclerView with
         ArrayList<String> sortingItems = new ArrayList<>();
-        sortingItems.add("Category");
+        sortingItems.add("Name");
         sortingItems.add("Spent");
         sortingItems.add("Budget");
 
@@ -99,13 +99,14 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
     @Override
     public void onItemClick(View view, int position) {
         switch(position){
-            case 1 : Collections.sort(items, (categoryItem, t1) -> categoryItem.getName().compareTo(t1.getName()));
+            case 0 : Collections.sort(items, (categoryItem, t1) -> categoryItem.getName().compareTo(t1.getName()));
                 break;
-            case 2 : Collections.sort(items, (categoryItem, t1) -> (int) (t1.getTotal() - categoryItem.getTotal()));
+            case 1 : Collections.sort(items, (categoryItem, t1) -> (int) (categoryItem.getTotal() - t1.getTotal()));
                 break;
-            case 3 : Collections.sort(items, (categoryItem, t1) -> (int) (categoryItem.getBudget()-t1.getBudget()));
+            case 2 : Collections.sort(items, (categoryItem, t1) -> (int) (t1.getBudget()-categoryItem.getBudget()));
                 break;
         }
+        listView.setAdapter(new BudgetAdapter(items));
     }
 
     public static void redirectToViewExpenseCat(int cat_id)

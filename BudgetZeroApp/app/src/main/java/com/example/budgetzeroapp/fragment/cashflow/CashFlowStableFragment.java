@@ -15,7 +15,10 @@ import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.DBHelper;
+import com.example.budgetzeroapp.tool.adapter.ExpenseAdapter;
+import com.example.budgetzeroapp.tool.adapter.SavingsAdapter;
 import com.example.budgetzeroapp.tool.item.ExpenseItem;
+import com.example.budgetzeroapp.tool.item.SavingsItem;
 
 import java.util.List;
 
@@ -49,6 +52,7 @@ public class CashFlowStableFragment extends DataBaseFragment {
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        /**Listview**/
         List<ExpenseItem> earn = ExpenseItem.ExpensesToList(
                 database.getLastMonthStable(DBHelper.TYPE_INC), database);
         List<ExpenseItem> exp = ExpenseItem.ExpensesToList(
@@ -56,6 +60,13 @@ public class CashFlowStableFragment extends DataBaseFragment {
 
         ClickableListManager.clickableExpenseList(expList, exp);
         ClickableListManager.clickableExpenseList(earnList, earn);
+
+        ExpenseAdapter expenseAdapter = new ExpenseAdapter(earn);
+        earnList.setAdapter(expenseAdapter);
+        expList.setAdapter(expenseAdapter);
+
+        earnList.setEnabled(false);
+        expList.setEnabled(false);
 
         if(exp.isEmpty()) expText.setText("");
         if(earn.isEmpty()) earnText.setText("");
