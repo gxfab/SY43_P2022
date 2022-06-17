@@ -88,7 +88,7 @@ public class ZeroBudgetFragment extends Fragment {
         zeroBudgetViewModel.getInfrequentIncomes().observe(getViewLifecycleOwner(),infrequentIncomesObserver);
         zeroBudgetViewModel.getStableExpenses().observe(getViewLifecycleOwner(),stableExpensesObserver);
         zeroBudgetViewModel.getStableIncomes().observe(getViewLifecycleOwner(),stableIncomesObserver);
-        //zeroBudgetViewModel.getSavings().observe(getViewLifecycleOwner(),savingsObserver);
+        zeroBudgetViewModel.getSavings().observe(getViewLifecycleOwner(),savingsObserver);
 
 
 
