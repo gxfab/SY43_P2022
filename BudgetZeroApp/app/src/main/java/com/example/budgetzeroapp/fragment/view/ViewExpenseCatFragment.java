@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,11 +16,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.BudgetFragmentDirections;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.tool.ClickableListManager;
@@ -114,7 +119,26 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         subListTextView = view.findViewById(R.id.textViewCatClickSub);
         expListTextView = view.findViewById(R.id.textViewCatExpenses);
         edit = view.findViewById(R.id.editButton);
+        /*
+        subCatList.setAdapter(new ArrayAdapter<CategoryItem>(this.getContext(),R.layout.fragment_view_expense_cat));
+        subCatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //truc
+            }
+        });
+
+         */
         getValues();
         setValues();
     }
+    /*
+    public static void redirectToSubCat(int cat_id)
+    {
+        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        NavDirections action = com.example.budgetzeroapp.fragment.BudgetFragmentDirections.navigateToViewExpenseCatFromBudget(cat_id);
+        navController.navigate(action);
+    }
+
+     */
 }

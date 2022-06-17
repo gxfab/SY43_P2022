@@ -64,12 +64,21 @@
             android:layout_marginBottom="-40dp"
             android:text="@string/exp_cat_click_sub" />
 
+        <ImageView
+            android:id="@+id/imageDummy1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatClickSub"
+            android:layout_alignBottom="@+id/textViewCatClickSub"
+            android:layout_marginBottom="-10dp" />
+
         <ListView
             android:id="@+id/listViewCatClickSub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewCatBudgetEntry"
-            android:layout_alignTop="@+id/textViewCatClickSub"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/imageDummy1"
+            android:clickable="true"
             android:orientation="vertical">
 
         </ListView>
@@ -79,18 +88,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewCatClickSub"
-            android:layout_alignTop="@+id/textViewCatClickSub"
-            android:layout_marginTop="40dp"
+            android:layout_alignBottom="@+id/listViewCatClickSub"
+            android:layout_marginBottom="-50dp"
             android:text="@string/exp_cat_expenses" />
 
+        <ImageView
+            android:id="@+id/imageDummy2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatExpenses"
+            android:layout_alignBottom="@+id/textViewCatExpenses"
+            android:layout_marginBottom="-10dp" />
 
         <ListView
             android:id="@+id/listViewCatExpenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/listViewCatClickSub"
-            android:layout_alignTop="@+id/textViewCatExpenses"
-            android:orientation="vertical"></ListView>
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/imageDummy2"
+            android:orientation="vertical">
+        </ListView>
 
         <Button
             android:id="@+id/editButton"

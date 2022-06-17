@@ -111,12 +111,20 @@
             android:layout_marginBottom="-40dp"
             android:text="@string/save_cat_list" />
 
+        <ImageView
+            android:id="@+id/imageDummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveList"
+            android:layout_alignBottom="@+id/textViewSaveList"
+            android:layout_marginBottom="-10dp" />
+
         <ListView
             android:id="@+id/listViewSaveList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewSavePercEntry"
-            android:layout_alignTop="@+id/textViewSaveList"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/imageDummy"
             android:orientation="vertical" >
 
         </ListView>

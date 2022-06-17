@@ -73,6 +73,9 @@
         <action
             android:id="@+id/navigate_to_editExpenseCat_from_expense_cat"
             app:destination="@id/editExpenseCatFragment" />
+        <action
+            android:id="@+id/navigate_to_subCategory"
+            app:destination="@+id/viewExpenseCatFragment" />
         <argument
             android:name="id_expense_cat"
             app:argType="integer" />

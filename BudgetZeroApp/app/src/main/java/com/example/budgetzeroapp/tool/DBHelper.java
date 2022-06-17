@@ -148,12 +148,12 @@ public class DBHelper extends SQLiteOpenHelper {
         //Example debt category
         db.execSQL(
                 "insert into "+DEBT_TABLE_NAME+"("+DEBT_COL_NAME+","+DEBT_COL_TOTAL_AMOUNT+","+DEBT_COL_MONTH_LEFT+")" +
-                        "values ('House',100000,63);"
+                        "values ('House',100000,63),('Presidential Campaign',5000000,34),('Last weeks pizza',7,1);"
         );
         //Example savings category
         db.execSQL(
                 "insert into "+SAV_CAT_TABLE_NAME+"("+SAV_CAT_COL_NAME+","+SAV_CAT_COL_MAX_AMOUNT+","+SAV_CAT_COL_CURRENT_AMOUNT+")" +
-                        "values ('New PC',1200,340),('Trip to Iceland',840,121);"
+                        "values ('New PC',1200,340),('Trip to Iceland',840,121),('Swimming Pool',5000,245),('Spaceship',100000,3739);"
         );
         //Example expenses
         db.execSQL(
