@@ -51,5 +51,5 @@ Notre logo affichera la cité d'or qui n'a de ressemble que le nom mais qui aspi
 * Création d'enveloppes de gestion monétaire
 * Cotisation pour les projets futurs
 
-## <font color=#F5B041> <p style="text-align: center;"> Qu'attendez vous pour télécharger Âge D'or et prendre votre économoie en main ?
+## <font color=#F5B041> <p style="text-align: center;"> Qu'attendez vous pour télécharger Âge D'or et prendre votre économie en main ?
 </font> <p>
