@@ -94,12 +94,20 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         NavigationUI.setupWithNavController(
                 toolbar, navController, appBarConfiguration);
 
+        /**Listener edit button**/
+        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+            NavController navController = Navigation.findNavController(view);
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.navigate_to_editExpenseCat_from_expense_cat);
+            }
+        });
 
         /**Getting passed id**/
         id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCat();
         //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
-        name = view.findViewById(R.id.textViewCatNameEntry);
+        /*name = view.findViewById(R.id.textViewCatNameEntry);
         budget = view.findViewById(R.id.textViewCatBudgetEntry);
         expList = view.findViewById(R.id.listViewCatExpenses);
         subCatList = view.findViewById(R.id.listViewCatClickSub);
@@ -107,6 +115,6 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         expListTextView = view.findViewById(R.id.textViewCatExpenses);
         edit = view.findViewById(R.id.editButton);
         getValues();
-        setValues();
+        setValues();*/
     }
 }

@@ -1,6 +1,7 @@
 package com.example.budgetzeroapp.fragment.view;
 
 import android.database.Cursor;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ListView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
@@ -41,6 +47,20 @@ public class ViewIncomeCatFragment extends DataBaseFragment {
         getValues();
         setValues();
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        /**Listener edit button**/
+        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+            NavController navController = Navigation.findNavController(view);
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.navigate_to_editIncomeCat_from_income_cat);
+            }
+        });
     }
 
     public void getValues() {

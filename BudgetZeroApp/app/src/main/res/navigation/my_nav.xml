@@ -86,7 +86,7 @@
             android:id="@+id/navigate_to_cashFlow_from_expense"
             app:destination="@id/cashFlowFragment" />
         <action
-            android:id="@+id/navigate_to_editExpense_expense"
+            android:id="@+id/navigate_to_editExpense_from_expense"
             app:destination="@id/editExpenseFragment" />
         <argument android:name="id_expense"
             app:argType="integer" />

@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
@@ -47,6 +49,15 @@ public class ViewSavingCatFragment extends DataBaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        /**Listener edit button**/
+        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+            NavController navController = Navigation.findNavController(view);
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.navigate_to_editSavingCat_from_saving_cat);
+            }
+        });
 
         /**Getting passed id**/
         id = ViewSavingCatFragmentArgs.fromBundle(getArguments()).getIdSavings();
