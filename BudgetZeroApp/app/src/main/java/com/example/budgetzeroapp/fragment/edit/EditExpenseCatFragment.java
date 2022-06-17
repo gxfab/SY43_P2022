@@ -61,7 +61,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
     @Override
     public void changeDefaultValues() {
         Cursor cat = database.getData("select * from "+DBHelper.EXP_CAT_TABLE_NAME+
-                " where "+DBHelper.EXP_CAT_COL_ID+"="+id);
+                " where "+DBHelper.EXP_CAT_COL_ID+" = "+id);
         cat.moveToFirst();
         if (cat.isAfterLast()) id = 0;
         else {
@@ -102,11 +102,8 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
             boolean isSub = sub.isChecked();
             int idCat = ((ListItem) parentCat.getSelectedItem()).getId();
 
-            //Temp
-            int newParentCat = 0;
-
-            if(id == 0) database.insertExpenseCat(newName,newBudget,isSub,newParentCat);
-            else database.updateExpenseCat(id, newName,newBudget,isSub,newParentCat);
+            if(id == 0) database.insertExpenseCat(newName,newBudget,isSub,idCat);
+            else database.updateExpenseCat(id, newName,newBudget,isSub, idCat);
 
         });
         cancel.setOnClickListener(v -> {

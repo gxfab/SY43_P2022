@@ -76,11 +76,12 @@
 
         <Spinner
             android:id="@+id/spinnerCatParent"
+            android:spinnerMode="dialog"
             android:layout_width="209dp"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/checkBoxCatSub"
-            android:layout_alignBottom="@+id/textViewCatParent" />
-
+            android:layout_alignBottom="@+id/textViewCatParent"
+        />
         <ImageView
             android:id="@+id/imageDummy"
             android:layout_width="wrap_content"

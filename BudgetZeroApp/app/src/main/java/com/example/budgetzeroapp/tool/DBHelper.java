@@ -379,7 +379,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getExpensesFromCat(int idCat, int type){
         return getData("select * from "+EXP_TABLE_NAME+
-                " where " +getCatColName(type)+ " = "+idCat);
+                " where " +getCatColName(type)+ " = "+idCat+" and " +
+                EXP_COL_TYPE +" = "+type);
     }
 
     public float getSumFromCat(int idCat, int type){
@@ -432,20 +433,36 @@ public class DBHelper extends SQLiteOpenHelper {
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
     }
 
-
-    public float getSumCatExp(int idCat) {
-        Cursor res = getData("select sum(" + EXP_COL_AMOUNT + ") as " + REQ_SUM +
+    public Cursor getExpCatExpAndSub(int idCat) {
+        return getData("select * "+
                 " from " + EXP_TABLE_NAME +
                 " where " + EXP_COL_TYPE + "=" + TYPE_EXP + " and " +
                 "(" +
-                    EXP_COL_ID_EXP + "=" + idCat+
-                    " or "+EXP_COL_ID_EXP+ " in " +
-                        "(select "+EXP_CAT_COL_ID+" from "+EXP_CAT_TABLE_NAME+
-                        " where "+EXP_CAT_COL_IS_SUB+" = 1 and "+
-                        EXP_CAT_COL_ID_PARENT+" = "+idCat+
-                        ")"+
+                EXP_COL_ID_EXP + "=" + idCat +
+                " or " + EXP_COL_ID_EXP + " in " +
+                "(select " + EXP_CAT_COL_ID + " from " + EXP_CAT_TABLE_NAME +
+                " where " + EXP_CAT_COL_IS_SUB + " = 1 and " +
+                EXP_CAT_COL_ID_PARENT + " = " + idCat +
+                ")" +
                 ")"
-                );
+        );
+    }
+
+
+
+    public float getSumCatExp(int idCat) {
+    Cursor res = getData("select sum(" + EXP_COL_AMOUNT + ") as " + REQ_SUM +
+            " from " + EXP_TABLE_NAME +
+            " where " + EXP_COL_TYPE + "=" + TYPE_EXP + " and " +
+            "(" +
+                EXP_COL_ID_EXP + "=" + idCat+
+                " or "+EXP_COL_ID_EXP+ " in " +
+                    "(select "+EXP_CAT_COL_ID+" from "+EXP_CAT_TABLE_NAME+
+                    " where "+EXP_CAT_COL_IS_SUB+" = 1 and "+
+                    EXP_CAT_COL_ID_PARENT+" = "+idCat+
+                    ")"+
+            ")"
+            );
 
         res.moveToFirst();
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));

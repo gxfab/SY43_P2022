@@ -43,11 +43,14 @@ public class ToolBar{
         initialize();
     }
 
-    private static final NavController navContBudget= Navigation.findNavController(
+    private static final NavController navController= Navigation.findNavController(
             MainActivity.getActivity(), R.id.nav_host_fragment);
 
     private static AppBarConfiguration appBarConfigBudget =
             new AppBarConfiguration.Builder(R.id.budgetFragment,R.id.addCategoryFragment).build();
+
+    private static AppBarConfiguration appBarConfigSavings =
+            new AppBarConfiguration.Builder(R.id.savingsFragment,R.id.addCategoryFragment).build();
 
     public static ToolBar getInstance() {
         return instance;
@@ -82,7 +85,10 @@ public class ToolBar{
         dateText.setText(text);
         if(idToolBar == R.id.toolbar_budget) {
             NavigationUI.setupWithNavController(
-                toolbar, navContBudget, appBarConfigBudget);
+                    toolbar, navController, appBarConfigBudget);
+        }else if(idToolBar == R.id.toolbar_savings){
+            NavigationUI.setupWithNavController(
+                    toolbar, navController, appBarConfigSavings);
         }
         toolbar.setOnMenuItemClickListener(item -> {
             NavController navController = Navigation.findNavController(view);
@@ -92,9 +98,8 @@ public class ToolBar{
                     break;
                 case R.id.next_day:
                     if(DateManager.isLastMonthDay(date)){
-                        SavingsManager.distributeSavings(moneyAmount);
-                        SavingsManager.updateBudget(date);
-
+                        if(savingsAutoMode) SavingsManager.distributeSavings(moneyAmount);
+                        if(budgetAutoMode) SavingsManager.updateBudget(date);
                     }
                     incrementDate();
                     saveDate();
@@ -102,12 +107,12 @@ public class ToolBar{
 
                     CharSequence mess = format.format(date);
                     dateText.setText(mess);
-                    //TODO POPUP récapitulant les nouvelles dépenses si il y en a
                     break;
                 case R.id.mode:
-                    budgetAutoMode = !budgetAutoMode;
-                    saveBudgetMode();
+                    if(idToolBar == R.id.toolbar_budget) budgetAutoMode = !budgetAutoMode;
+                    else saveBudgetMode();
                     break;
+
             }
             return true;
         });

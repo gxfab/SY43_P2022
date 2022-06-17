@@ -58,7 +58,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
             nameVal = cat.getString(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             budgetVal = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));
             subCatVal = CategoryItem.initCategoryList(database.getSubCat(id), false);
-            expVal = ExpenseItem.ExpensesToList(database.getExpensesFromCat(id, DBHelper.TYPE_EXP));
+            expVal = ExpenseItem.ExpensesToList(database.getExpCatExpAndSub(id));
         }
     }
 
@@ -107,7 +107,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCat();
         //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
-        /*name = view.findViewById(R.id.textViewCatNameEntry);
+        name = view.findViewById(R.id.textViewCatNameEntry);
         budget = view.findViewById(R.id.textViewCatBudgetEntry);
         expList = view.findViewById(R.id.listViewCatExpenses);
         subCatList = view.findViewById(R.id.listViewCatClickSub);
@@ -115,6 +115,6 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         expListTextView = view.findViewById(R.id.textViewCatExpenses);
         edit = view.findViewById(R.id.editButton);
         getValues();
-        setValues();*/
+        setValues();
     }
 }
