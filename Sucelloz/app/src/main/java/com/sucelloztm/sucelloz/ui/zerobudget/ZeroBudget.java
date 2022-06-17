@@ -2,6 +2,9 @@ package com.sucelloztm.sucelloz.ui.zerobudget;
 
 import android.widget.TextView;
 
+/**
+ * class for the zero budget
+ */
 public class ZeroBudget {
     private int infrequentExpenses;
     private int infrequentIncomes;
@@ -15,6 +18,10 @@ public class ZeroBudget {
         return infrequentExpenses;
     }
 
+    /**
+     * setter
+     * @param infrequentExpenses infrequent
+     */
     public void setInfrequentExpenses(int infrequentExpenses) {
         this.infrequentExpenses = infrequentExpenses;
     }
@@ -23,6 +30,10 @@ public class ZeroBudget {
         return infrequentIncomes;
     }
 
+    /**
+     * setter
+     * @param infrequentIncomes infrequent
+     */
     public void setInfrequentIncomes(int infrequentIncomes) {
         this.infrequentIncomes = infrequentIncomes;
     }
@@ -31,6 +42,10 @@ public class ZeroBudget {
         return stableExpenses;
     }
 
+    /**
+     * setter
+     * @param stableExpenses stable
+     */
     public void setStableExpenses(int stableExpenses) {
         this.stableExpenses = stableExpenses;
     }
@@ -39,14 +54,26 @@ public class ZeroBudget {
         return stableIncomes;
     }
 
+    /**
+     * setter
+     * @param stableIncomes stable
+     */
     public void setStableIncomes(int stableIncomes) {
         this.stableIncomes = stableIncomes;
     }
 
+    /**
+     * getter
+     * @return result budget zero
+     */
     public int getResultBudgetZero() {
         return resultBudgetZero;
     }
 
+    /**
+     * setter
+     * @param textView text
+     */
     public void setResultBudgetZero(TextView textView) {
         this.resultBudgetZero = (this.infrequentIncomes + this.stableIncomes) - (this.infrequentExpenses +this.stableExpenses);
         if(this.resultBudgetZero > 0){

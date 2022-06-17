@@ -8,6 +8,9 @@ import com.sucelloztm.sucelloz.models.Categories;
 
 import java.util.List;
 
+/**
+ * adapter for the zero budget
+ */
 public abstract class ZeroBudgetAdapter extends BaseAdapter {
 
     private List<Categories> zeroBudgetCategoriesList;

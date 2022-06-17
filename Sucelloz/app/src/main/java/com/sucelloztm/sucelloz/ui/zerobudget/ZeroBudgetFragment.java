@@ -32,7 +32,9 @@ import com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesAdapter;
 import java.util.ArrayList;
 
 
-
+/**
+ * fragment for the zero budget
+ */
 public class ZeroBudgetFragment extends Fragment {
 
     private ZeroBudgetFragmentBinding binding;
@@ -41,6 +43,13 @@ public class ZeroBudgetFragment extends Fragment {
     private TextView zeroBudgetTextView;
     private ZeroBudget zeroBudget;
 
+    /**
+     * on create view method
+     * @param inflater inflater
+     * @param container container
+     * @param savedInstanceState saved instance state
+     * @return view
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         zeroBudgetViewModel =
@@ -97,12 +106,20 @@ public class ZeroBudgetFragment extends Fragment {
         return root;
     }
 
+    /**
+     * on view created method
+     * @param view view
+     * @param savedInstanceState saved instance state
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
 
+    /**
+     * on destroy view method
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
