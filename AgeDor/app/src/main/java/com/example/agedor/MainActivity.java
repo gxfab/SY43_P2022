@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agedor.view.enveloppes.depenses.ConsulterDepensesActivity;
@@ -15,7 +17,7 @@ import com.example.agedor.view.enveloppes.depenses.NouvelleDepenseActivity;
 
 import com.example.agedor.view.introduction.Fragment1;
 import com.example.agedor.view.introduction.IntroActivity;
-
+import com.example.agedor.CalculateurBudget;
 
 // Page d'accueil de l'application
 public class MainActivity extends AppCompatActivity {
@@ -23,21 +25,36 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public static Context context;
     public static String nom;
+    TextView textKO;
+    TextView textOK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         MainActivity.context = getApplicationContext();
-        Log.i("MainActivity", "CONTEXT PRINTED");
         String prenom = Fragment1.readTextFile("nom.txt");
         if (prenom.equals("")) {
-            Log.i("MainActivity", "OK INTRO");
             Intent intent = new Intent(this, IntroActivity.class);
             startActivity(intent);
         } else {
             MainActivity.nom = prenom;
-            Log.i("MainActivity", MainActivity.nom);
             setContentView(R.layout.activity_main);
+            showStatus();
+
+        }
+    }
+
+    public void showStatus() {
+        textKO = (TextView) findViewById(R.id.phraseStatus);
+        textOK = (TextView) findViewById(R.id.phraseOK);
+        String phrase = CalculateurBudget.calculerBudget();
+        if (phrase.startsWith("Vous êtes")) {
+            Log.i("MainActivity", "phrase : " + phrase);
+            textKO.setText("Bonjour " + nom + ",\n" + phrase);
+        } else {
+            Log.i("MainActivity", "phrase : " + phrase);
+            textOK.setText("Bonjour " + nom + ",\n" + phrase);
         }
     }
 
