@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.DBHelper;
@@ -28,6 +29,12 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_saving_cat, parent, false);
+
+        /**Getting passed id**/
+        id = EditSavingCatFragmentArgs.fromBundle(getArguments()).getIdSavingCat();
+        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+
+
         save = view.findViewById(R.id.buttonSave);
         cancel = view.findViewById(R.id.buttonCancel);
         name = view.findViewById(R.id.editTextSaveName);

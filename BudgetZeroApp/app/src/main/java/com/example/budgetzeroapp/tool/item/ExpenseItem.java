@@ -1,6 +1,7 @@
 package com.example.budgetzeroapp.tool.item;
 
 import android.database.Cursor;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -87,14 +88,13 @@ public class ExpenseItem extends ListItem {
 
     public void redirect(){
         NavController navController = Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-
         NavDestination current_dest = navController.getCurrentDestination();
         int id_dest = current_dest.getId();
-        if (id_dest == R.id.viewDebtFragment) ViewDebtFragment.redirectToViewExpenseCat(id);
+
+        if (id_dest == R.id.viewDebtFragment) ViewDebtFragment.redirectToEditDebt(id);
         else if (id_dest == R.id.viewExpenseCatFragment) ViewExpenseCatFragment.redirectToEditExpense(id);
         else if (id_dest == R.id.viewExpenseFragment) ViewExpenseFragment.redirectToEditExpense(id, type);
-        else if (id_dest == R.id.viewIncomeCatFragment) ViewIncomeCatFragment.redirectToViewSavingCat(id);
-        else if (id_dest == R.id.viewSavingCatFragment) ViewSavingCatFragment.redirectToViewSavingCat(id);
+        else if (id_dest == R.id.viewSavingCatFragment) ViewSavingCatFragment.redirectToEditSavingCat(id);
     }
 
     public int getType(){return type;}

@@ -129,14 +129,14 @@
 
         </ListView>
 
-        <Button
+        <!--<Button
             android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignBottom="@+id/listViewSaveList"
             android:layout_marginBottom="-80dp"
-            android:text="@string/edit" />
+            android:text="@string/edit" />-->
 
     </RelativeLayout>
 

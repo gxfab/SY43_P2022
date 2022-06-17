@@ -54,13 +54,13 @@ public class ViewDebtFragment extends DataBaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /**Listener edit button**/
-        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+        /*view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
             NavController navController = Navigation.findNavController(view);
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.navigate_to_editDebt_from_debt);
             }
-        });
+        });*/
 
 
         /**Getting passed id**/
@@ -104,6 +104,13 @@ public class ViewDebtFragment extends DataBaseFragment {
             listTextView.setVisibility(View.VISIBLE);
             exp.setVisibility(View.VISIBLE);
         }
+    }
+
+    public static void redirectToEditDebt(int id)
+    {
+        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        NavDirections action = ViewDebtFragmentDirections.navigateToEditDebtFromDebt(id);
+        navController.navigate(action);
     }
 
 

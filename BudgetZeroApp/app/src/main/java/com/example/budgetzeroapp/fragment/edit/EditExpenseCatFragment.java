@@ -40,8 +40,8 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
         View view= inflater.inflate(R.layout.fragment_edit_expense_cat, parent, false);
 
         /**Getting passed id**/
-        id = EditExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCat();
-        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
+        //id = EditExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCatEdit();
+        //wToast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
 
         save = view.findViewById(R.id.buttonSave);

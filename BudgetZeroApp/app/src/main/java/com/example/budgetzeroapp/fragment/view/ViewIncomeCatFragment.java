@@ -54,13 +54,13 @@ public class ViewIncomeCatFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         /**Listener edit button**/
-        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+       /* view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
             NavController navController = Navigation.findNavController(view);
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.navigate_to_editIncomeCat_from_income_cat);
             }
-        });
+        });*/
     }
 
     public void getValues() {

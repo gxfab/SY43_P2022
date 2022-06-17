@@ -61,9 +61,8 @@ public class EditExpenseFragment extends EditDataBaseFragment {
         View view= inflater.inflate(R.layout.fragment_edit_expense, parent, false);
 
         /**Getting passed id**/
-        id = EditExpenseFragmentArgs.fromBundle(getArguments()).getIdExpense();
+        id = EditExpenseFragmentArgs.fromBundle(getArguments()).getIdExpenseEdit();
         type = EditExpenseFragmentArgs.fromBundle(getArguments()).getTypeExpense();
-        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
 
         save = view.findViewById(R.id.buttonSave);

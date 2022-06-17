@@ -13,8 +13,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
@@ -51,13 +53,13 @@ public class ViewSavingCatFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         /**Listener edit button**/
-        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+        /*view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
             NavController navController = Navigation.findNavController(view);
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.navigate_to_editSavingCat_from_saving_cat);
             }
-        });
+        });*/
 
         /**Getting passed id**/
         id = ViewSavingCatFragmentArgs.fromBundle(getArguments()).getIdSavings();
@@ -103,5 +105,12 @@ public class ViewSavingCatFragment extends DataBaseFragment {
             listTextView.setVisibility(View.GONE);
             saveList.setVisibility(View.VISIBLE);
         }
+    }
+
+    public static void redirectToEditSavingCat(int id)
+    {
+        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        NavDirections action = ViewSavingCatFragmentDirections.navigateToEditSavingCatFromSavingCat(id);
+        navController.navigate(action);
     }
 }

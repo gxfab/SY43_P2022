@@ -50,13 +50,13 @@ public class ViewExpenseFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         /**Listener edit button**/
-        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+        /*view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
             NavController navController = Navigation.findNavController(view);
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.navigate_to_editExpense_from_expense);
             }
-        });
+        });*/
 
         /**Getting passed id**/
         id = ViewExpenseFragmentArgs.fromBundle(getArguments()).getIdExpense();

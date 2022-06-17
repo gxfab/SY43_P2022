@@ -91,7 +91,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         /**Getting passed id**/
-        id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).get();
+        id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCat();
         //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
         NavController navController = Navigation.findNavController(view);
@@ -102,22 +102,17 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
                 toolbar, navController, appBarConfiguration);
 
         /**Listener edit button**/
-        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+        /*view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
             NavController navController = Navigation.findNavController(view);
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.navigate_to_editExpenseCat_from_expense_cat);
             }
-        });
+        });*/
 
         /**Getting passed id**/
         id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCat();
         //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
-
-        /**Param to edit**/
-        navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-        NavDirections action = com.example.budgetzeroapp.fragment.HomeFragmentDirections.navigateToViewExpenseCatFromHome(cat_id);
-        navController.navigate(action);
 
         name = view.findViewById(R.id.textViewCatNameEntry);
         budget = view.findViewById(R.id.textViewCatBudgetEntry);
