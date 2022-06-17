@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.item.ExpenseItem;
+import com.example.budgetzeroapp.tool.DateManager;
 
 import java.util.List;
 
@@ -37,6 +38,10 @@ public class ExpenseAdapter extends ArrayAdapter<ExpenseItem> {
             if (label != null) label.setText(p.getName());
             TextView catName = v.findViewById(R.id.category_name);
             if (catName != null) catName.setText(p.getCategoryName());
+            TextView date = v.findViewById(R.id.date);
+            if (date != null)   {
+                date.setText(DateManager.intDateToString(p.getDate()));
+            }
             TextView amount = v.findViewById(R.id.amount);
             if (amount != null) {
                 String mess = p.getAmount() + " €";

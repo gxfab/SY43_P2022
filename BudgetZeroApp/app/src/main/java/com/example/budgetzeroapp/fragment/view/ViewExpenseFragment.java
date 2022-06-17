@@ -63,7 +63,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
         date = view.findViewById(R.id.textViewExpDateEntry);
         amount = view.findViewById(R.id.textViewExpAmountEntry);
         stable = view.findViewById(R.id.textViewExpStableEntry);
-        type = view.findViewById(R.id.textViewExpType);
+        type = view.findViewById(R.id.textViewExpTypeEntry);
         edit = view.findViewById(R.id.editButton);
         getValues();
         setValues();

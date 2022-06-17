@@ -130,27 +130,27 @@ public class DBHelper extends SQLiteOpenHelper {
                         "foreign key(" + EXP_COL_ID_SAV + ") references " + SAV_CAT_TABLE_NAME + "(id)" +
                         ");"
         );
-        //Example expense categories
+        //Example expense categories - id 1->6
         db.execSQL(
                 "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+")"+
                         " values ('Shopping',400),('Vehicle',800),('Leisure',150),('Health',300),('Bills',700),('Miscellaneous',100);"
         );
-        //Example expense subcategories
+        //Example expense subcategories - id 7->11
         db.execSQL(
                 "insert into "+EXP_CAT_TABLE_NAME+"("+EXP_CAT_COL_NAME+","+EXP_CAT_COL_BUDGET+","+EXP_CAT_COL_IS_SUB+", "+EXP_CAT_COL_ID_PARENT+")"+
                         " values ('Food',200,1,1),('Other',200,1,1),('Sport',50,1,3),('Party',40,1,3),('Other',60,1,3);"
         );
-        //Example income category
+        //Example income category - id 12->13
         db.execSQL(
                 "insert into "+INC_CAT_TABLE_NAME+"("+INC_CAT_COL_NAME+")"+
                         " values ('Salary'),('Other');"
         );
-        //Example debt category
+        //Example debt category - id 14->16
         db.execSQL(
                 "insert into "+DEBT_TABLE_NAME+"("+DEBT_COL_NAME+","+DEBT_COL_TOTAL_AMOUNT+","+DEBT_COL_MONTH_LEFT+")" +
                         "values ('House',100000,63),('Presidential Campaign',5000000,34),('Last weeks pizza',7,1);"
         );
-        //Example savings category
+        //Example savings category - id 17->20
         db.execSQL(
                 "insert into "+SAV_CAT_TABLE_NAME+"("+SAV_CAT_COL_NAME+","+SAV_CAT_COL_MAX_AMOUNT+","+SAV_CAT_COL_CURRENT_AMOUNT+")" +
                         "values ('New PC',1200,340),('Trip to Iceland',840,121),('Swimming Pool',5000,245),('Spaceship',100000,3739);"
@@ -165,32 +165,32 @@ public class DBHelper extends SQLiteOpenHelper {
                         "('Weekly shopping', -57, 1, 7, 16, 6, 2022,0)," +
                         "('Electricity',-307, 1, 5, 1, 6, 2022,0)," +
                         "('Loan',-450,1,5,5,6,2022,1)," +
-                        "('Netflix',-20,3,113,6,2022,1);"
+                        "('Netflix',-20,1,3,5,6,2022,1);"
         );
         //Example incomes
         db.execSQL(
                 "insert into "+EXP_TABLE_NAME+
                         "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
                         ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
-                        " values ('Salary', 4500, 2, 1, 1, 6, 2022,1)," +
-                        "('Birthday present (grandma)', 100, 2, 2, 13, 6, 2022,0)," +
-                        "('Birthday present (uncle)', 20, 2, 2, 13, 6, 2022,0);"
+                        " values ('Salary', 4500, 2, 12, 1, 6, 2022,1)," +
+                        "('Birthday present (grandma)', 100, 2, 13, 13, 6, 2022,0)," +
+                        "('Birthday present (uncle)', 20, 2, 13, 13, 6, 2022,0);"
         );
         //Example debt reimbursements
         db.execSQL(
                 "insert into "+EXP_TABLE_NAME+
                         "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
                         ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
-                        " values ('House', -509, 3, 1, 30, 4, 2022,1)," +
-                        "('House', -546, 3, 1, 31, 5, 2022,1);"
+                        " values ('House', -509, 3, 14, 30, 4, 2022,1)," +
+                        "('House', -546, 3, 14, 31, 5, 2022,1);"
         );
         //Example savings
         db.execSQL(
                 "insert into "+EXP_TABLE_NAME+
                         "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
                         ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
-                        " values ('New PC', -33, 4, 1, 31, 5, 2022,0)," +
-                        "('Iceland', -45, 4, 1, 31, 5, 2022,0);"
+                        " values ('New PC', -33, 4, 17, 31, 5, 2022,0)," +
+                        "('Iceland', -45, 4, 18, 31, 5, 2022,0);"
         );
     }
 
