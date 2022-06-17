@@ -8,6 +8,7 @@ import com.sy43_p22.piggy_bank.database.PiggyBankDatabase
 import com.sy43_p22.piggy_bank.database.entities.Category
 import com.sy43_p22.piggy_bank.database.entities.SubCategory
 import com.sy43_p22.piggy_bank.fragments.HomeFragment
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        lifecycleScope.launch {
+        MainScope().launch {
             Log.d("APP", "Test if populated")
             if (!verifyDB()) populateDB()
             // populateDB() // force it
