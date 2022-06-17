@@ -1,6 +1,5 @@
 # SY43_P2022 - Piggy Bank
 SY43 GitHub Project
-
 Contributors: Brice VAN AKEN & Julien CONSTANT
 
 ### Welcome to the piggy-bank project (SY43)
@@ -13,4 +12,4 @@ The aim is to reach 0 on the available balance at the end of the month.
 
 ## Name choice
 
-Pggy Bank is a small container, sometimes in the shape of a pig, that is used by children for saving money. That's the reason why we have chosen this name, and the picture of the app related to it.
+"Piggy Bank" is a small container, sometimes in the shape of a pig, that is used by children for saving money. That's the reason why we have chosen this name, and the picture of the app related to it.
