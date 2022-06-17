@@ -17,9 +17,11 @@ import android.widget.Toast;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.tool.ClickableListManager;
+import com.example.budgetzeroapp.tool.adapter.BudgetAdapter;
 import com.example.budgetzeroapp.tool.adapter.BudgetRecyclerViewAdapter;
 import com.example.budgetzeroapp.tool.adapter.ExpenseAdapter;
 import com.example.budgetzeroapp.tool.adapter.SavingsAdapter;
+import com.example.budgetzeroapp.tool.item.CategoryItem;
 import com.example.budgetzeroapp.tool.item.ExpenseItem;
 import com.example.budgetzeroapp.tool.item.SavingsItem;
 
@@ -62,6 +64,6 @@ public class CashFlowGeneralFragment extends DataBaseFragment{
 
         ExpenseAdapter expenseAdapter = new ExpenseAdapter(items);
         listView.setAdapter(expenseAdapter);
-        listView.setEnabled(false);
+
     }
 }

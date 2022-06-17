@@ -65,9 +65,6 @@ public class CashFlowStableFragment extends DataBaseFragment {
         earnList.setAdapter(expenseAdapter);
         expList.setAdapter(expenseAdapter);
 
-        earnList.setEnabled(false);
-        expList.setEnabled(false);
-
         if(exp.isEmpty()) expText.setText("");
         if(earn.isEmpty()) earnText.setText("");
         if(exp.isEmpty() && earn.isEmpty()) {

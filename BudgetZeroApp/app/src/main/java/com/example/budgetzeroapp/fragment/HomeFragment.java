@@ -150,7 +150,8 @@ public class HomeFragment extends DataBaseFragment {
         ArrayList<PieEntry> entries = new ArrayList<>();
 
         for(CategoryItem i : list)
-            entries.add(new PieEntry(i.getPercent()/100, i.getName()));
+            if (i.getPercent() != 0.0)
+                entries.add(new PieEntry(i.getPercent()/100, i.getName()));
 
         ArrayList<Integer> colors = new ArrayList<>();
         for (int color : ColorTemplate.MATERIAL_COLORS) colors.add(color);

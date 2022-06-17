@@ -59,15 +59,10 @@ public class SavingsDebtTabFragment extends DataBaseFragment implements BudgetRe
 
         /**Listview**/
         categories = view.findViewById(R.id.list_view_cat);
-        items = SavingsItem.initSavingsList(database, false);
+        items = SavingsItem.initSavingsList(database, true);
         ClickableListManager.clickableSavingsList(categories, items);
-
         SavingsAdapter savingsAdapter = new SavingsAdapter(items);
         categories.setAdapter(savingsAdapter);
-
-        categories.setVerticalScrollBarEnabled(false);
-
-
 
 
         /**Sorting**/
