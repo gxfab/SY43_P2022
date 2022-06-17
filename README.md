@@ -1,5 +1,6 @@
 # SY43_P2022 - Piggy Bank
 SY43 GitHub Project
+
 Contributors: Brice VAN AKEN & Julien CONSTANT
 
 ### Welcome to the piggy-bank project (SY43)
