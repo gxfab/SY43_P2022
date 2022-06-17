@@ -16,6 +16,9 @@ import com.sucelloztm.sucelloz.models.Savings;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * adapter for the savings
+ */
 public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHolder> {
 
     private List<Savings> savingsList;
@@ -40,18 +43,34 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
             progressBar = view.findViewById(R.id.savings_progress_bar);
         }
 
+        /**
+         * getter
+         * @return name
+         */
         public TextView getNameTextView() {
             return nameTextView;
         }
 
+        /**
+         * getter
+         * @return deadline
+         */
         public TextView getDeadlineTextView() {
             return deadlineTextView;
         }
 
+        /**
+         * getter
+         * @return goal
+         */
         public TextView getGoalTextView() {
             return goalTextView;
         }
 
+        /**
+         * getter
+         * @return progress bar
+         */
         public ProgressBar getProgressBar() {
             return progressBar;
         }
@@ -67,7 +86,13 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         this.savingsList = dataSet;
     }
 
-    // Create new views (invoked by the layout manager)
+
+    /**
+     * Create new views (invoked by the layout manager)
+     * @param viewGroup view group
+     * @param viewType view type
+     * @return created view holder of the desired group and type
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -78,7 +103,12 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         return new ViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+
+    /**
+     * Replace the contents of a view (invoked by the layout manager)
+     * @param viewHolder view holder
+     * @param position position
+     */
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         // Get element from your dataset at this position and replace the
@@ -92,7 +122,12 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+
+    /**
+     * Return the size of your dataset (invoked by the layout manager)
+     * getter
+     * @return item count
+     */
     @Override
     public int getItemCount() {
         return savingsList.size();
