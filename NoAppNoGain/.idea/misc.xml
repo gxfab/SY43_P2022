@@ -16,31 +16,38 @@
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/drawable/simple_spinner_item.xml" value="0.19" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/drawable/spinner_itel.xml" value="0.19" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_balance_annuel.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_balance_mensuel.xml" value="0.536" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_balance_mensuel.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_bienvenue.xml" value="0.36594202898550726" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_changer_mdp.xml" value="0.36594202898550726" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_reinitialiser_mdp.xml" value="0.22" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_sidentifier.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/activity_sinscrire.xml" value="0.22" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/ajouter_budget.xml" value="0.2462962962962963" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/ajouter_depense.xml" value="0.26773049645390073" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/ajouter_depense.xml" value="0.22" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/ajouter_projet.xml" value="0.18617021276595744" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/ajouter_revenu.xml" value="0.26773049645390073" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/balance_recycler_view.xml" value="0.6" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/budget_recycler_view.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/app_bar_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/balance_recycler_view.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/budget_recycler_view.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/categorie_recycler_view.xml" value="0.18617021276595744" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/content_main.xml" value="0.5505208333333333" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/content_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/depense_recycler_view.xml" value="0.18617021276595744" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_budget.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_depense.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_home.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_profil.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_projet.xml" value="0.2462962962962963" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_revenu.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_statistique.xml" value="0.2462962962962963" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/home_recycler_view.xml" value="0.2462962962962963" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_budget.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_depense.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_profil.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_projet.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_revenu.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/fragment_statistique.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/home_recycler_view.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/modifier_budget.xml" value="0.23981481481481481" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/modifier_depense.xml" value="0.2462962962962963" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/modifier_mouvement.xml" value="0.26773049645390073" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/modifier_projet.xml" value="0.2462962962962963" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/modifier_projet.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/modifier_revenu.xml" value="0.2462962962962963" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/nav_header_main.xml" value="0.2462962962962963" />
-        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/projet_recycler_view.xml" value="0.5" />
+        <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/projet_recycler_view.xml" value="0.22" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/layout/revenu_recycler_view.xml" value="0.2462962962962963" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/menu/activity_main_drawer.xml" value="0.47384615384615386" />
         <entry key="..\:/Users/Ahda/Documents/GitHub/SY43_P2022/NoAppNoGain/app/src/main/res/menu/bottommenu.xml" value="0.362962962962963" />

@@ -154,7 +154,7 @@ class HomeFragment : Fragment() {
             val SDFormat = SimpleDateFormat("yyyy/M/d")
             val mDate = SDFormat.format(Date())
             val data = Data(ouramountinte, type, note, id, mDate)
-            if (id != null) {
+            if (id != null && !error) {
                 mMouvementDatabase?.child(id)?.setValue(data)
                 Toast.makeText(activity, "Enregistrement réussi..", Toast.LENGTH_SHORT).show()
             }else{

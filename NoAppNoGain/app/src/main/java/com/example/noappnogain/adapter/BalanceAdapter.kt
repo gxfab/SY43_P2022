@@ -67,7 +67,8 @@ class BalanceAdapter(private var budgetList: ArrayList<Budget>, private var mDat
                     val diff = currentitem.montant - amount
                     if(diff < 0){
                         holder.diff.setTextColor(Color.parseColor("#ff0000"))
-                    }else{
+                    }
+                    if(diff > 0){
                         holder.diff.setTextColor(Color.parseColor("#0dff00"))
                     }
                     holder.depenseReel.text = amount.toString()
