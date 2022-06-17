@@ -49,11 +49,9 @@ public class MainActivity extends AppCompatActivity {
         textKO = (TextView) findViewById(R.id.phraseStatus);
         textOK = (TextView) findViewById(R.id.phraseOK);
         String phrase = CalculateurBudget.calculerBudget();
-        if (phrase.startsWith("Vous êtes")) {
-            Log.i("MainActivity", "phrase : " + phrase);
+        if (phrase.startsWith("Vous êtes") || phrase.startsWith("Vous dépassez")) {
             textKO.setText("Bonjour " + nom + ",\n" + phrase);
         } else {
-            Log.i("MainActivity", "phrase : " + phrase);
             textOK.setText("Bonjour " + nom + ",\n" + phrase);
         }
     }

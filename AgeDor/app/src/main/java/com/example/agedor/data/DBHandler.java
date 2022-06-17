@@ -167,10 +167,24 @@ public class DBHandler extends SQLiteOpenHelper {
             while (cursor.moveToNext()) {
                 depensesList.add(new StorageDepenses(cursor.getString(1), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))));
             }
-
         }
+        cursor.close();
+        return depensesList;
+    }
 
+    public ArrayList<StorageDepenses> getDepenses(String where) {
+        // Retourne une liste d'objets représentat une ligne de la table DEPENSES
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * FROM DEPENSES " + where + ";", null);
+        ArrayList<StorageDepenses> depensesList = new ArrayList<>();
 
+        // moving our cursor to first position.
+        if (cursor.moveToFirst()) {
+            depensesList.add(new StorageDepenses(cursor.getString(1), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))));
+            while (cursor.moveToNext()) {
+                depensesList.add(new StorageDepenses(cursor.getString(1), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))));
+            }
+        }
         cursor.close();
         return depensesList;
     }
