@@ -12,7 +12,6 @@ class Expense {
     var name : String = ""
     var amount : Float = 0F
     var date : String = ""
-    var moneyIncoming : Boolean = false
 
     constructor()
     constructor(categoryName: String){
@@ -25,13 +24,11 @@ class Expense {
         amount: Float,
         date: String,
         month: Int,
-        moneyIncoming: Boolean
     ) {
         this.categoryName = categoryName
         this.name = name
         this.amount = amount
         this.date = date
-        this.moneyIncoming = moneyIncoming
         this.month = month
     }
 

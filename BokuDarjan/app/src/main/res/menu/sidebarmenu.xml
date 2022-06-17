@@ -8,7 +8,4 @@
         android:id="@+id/chartFragmentItem"
         android:icon="@drawable/ic_chart"
         android:title="Graphiques et Stats" />
-    <item
-        android:icon="@drawable/ic_baseline_info_24"
-        android:title="À Propos" />
 </menu>

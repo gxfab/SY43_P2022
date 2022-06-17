@@ -72,17 +72,16 @@ class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() 
             if(it !=null)
             {
                 sumAmount += it
-
-
                 Log.d("ListAdapterBMonth","sumAmount envelope : "+sumAmount + " for month " + currentItem.id)
             }
 
             expenseViewModel.getSumOfNegativeExpenses(currentItem.id).observeForever {
+                holder.itemView.monthSumValue.text = "?€"
+
                 if(it !=null)
                 {
                     sumAmount -= it
                     holder.itemView.monthSumValue.text = sumAmount.toString() + "€"
-
                     Log.d("ListAdapterBMonth","sumAmount expense: "+sumAmount + " for month " + currentItem.id)
                 }
 

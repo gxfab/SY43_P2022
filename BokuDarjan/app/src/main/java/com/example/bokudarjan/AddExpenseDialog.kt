@@ -75,9 +75,8 @@ class AddExpenseDialog(cat:String) : DialogFragment() {
             amount = addExpenseAmount?.text.toString().toFloat()
         }
         val date = addExpenseDay?.value
-        val moneyIncoming: Boolean? = toggleExpenseIncome?.isChecked
 
-        val expense = Expense(category, name, amount, date.toString(),month, moneyIncoming!!)
+        val expense = Expense(category, name, amount, date.toString(),month)
 
 
         //If the input is ok, we add the expense to the database
