@@ -8,6 +8,9 @@ import androidx.room.Query
 import com.example.bokudarjan.category.Category
 
 @Dao
+/**
+ * DAO Interface of [BMonth]
+ */
 interface BMonthDAO {
      @Query("SELECT * FROM month ORDER BY id")
      fun readAllData(): LiveData<List<BMonth>>

@@ -13,6 +13,7 @@ plugins {
 }
 
 dokkaHtml.configure {
+    moduleName.set("Bokudarjan")
     suppressInheritedMembers.set(true)
     dokkaSourceSets {
         named("main") {

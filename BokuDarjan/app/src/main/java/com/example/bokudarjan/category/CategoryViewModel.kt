@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
+import com.example.bokudarjan.bmonth.BMonthDAO
 import com.example.bokudarjan.database.BokudarjanDatabase
 import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.category.CategoryRepository
@@ -13,7 +14,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-
+/**
+ * ViewModel class for the [CategoryRepository]
+ */
 class CategoryViewModel(application: Application): AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Category>>

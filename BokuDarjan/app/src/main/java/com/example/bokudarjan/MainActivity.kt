@@ -31,17 +31,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.fragment_side_bar.view.*
 
-
+/**
+ * Main activity of the app
+ */
 class MainActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //Setup the binding
-        val binding : ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-
-        val host = findViewById<ConstraintLayout>(R.id.main_layout);
 
         val pref = getSharedPreferences("pref" ,Context.MODE_PRIVATE)
         val month = pref.getInt("month", -1)
@@ -140,7 +138,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
+    /**
+     * Starts the charts activity
+     */
     fun displayChart(){
         val intent = Intent(this, ChartActivity::class.java).apply {
         }

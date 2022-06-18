@@ -1,9 +1,13 @@
 package com.example.bokudarjan.envelope
 
 import androidx.lifecycle.LiveData
+import com.example.bokudarjan.category.CategoryDAO
 import com.example.bokudarjan.expense.Expense
 import com.example.bokudarjan.expense.ExpenseDAO
 
+/**
+ * Repository of [EnvelopeDAO]
+ */
 class EnvelopeRepository(private val envelopeDAO: EnvelopeDAO) {
 
     val readAllData: LiveData<List<Envelope>> = envelopeDAO.readAllData()

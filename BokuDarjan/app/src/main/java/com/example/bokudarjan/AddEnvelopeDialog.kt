@@ -15,12 +15,19 @@ import com.example.bokudarjan.envelope.Envelope
 import com.example.bokudarjan.envelope.EnvelopeViewModel
 import java.util.*
 
+/**
+ * A simple [Dialog] allowing the user to add a new enveloppe
+ */
 class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
 
 
     private lateinit var envelopeViewModel: EnvelopeViewModel
     private var list: List<Category> = list
 
+
+    /**
+     * Setting up the interface
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
@@ -46,6 +53,9 @@ class AddEnvelopeDialog(list: List<Category>) : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+    /**
+     * Setting up the color of the button
+     */
     override fun onStart() {
         super.onStart()
         (dialog as AlertDialog)!!.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4CAF50"))

@@ -5,8 +5,12 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.bokudarjan.category.Category
 
 @Dao
+/**
+ * DAO Interface of [Expense]
+ */
 interface ExpenseDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
      fun addExpense(expense: Expense);

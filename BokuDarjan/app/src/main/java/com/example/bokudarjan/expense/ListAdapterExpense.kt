@@ -9,9 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.R
+import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.category.CategoryViewModel
 import kotlinx.android.synthetic.main.expense_card.view.*
 
+/**
+ * first ListAdapter of the [Expense], allowing compatibility with recyclerViews.
+ */
 class ListAdapterExpense: RecyclerView.Adapter<ListAdapterExpense.MyViewHolder>() {
 
     private var expenseList = emptyList<Expense>()
@@ -19,7 +23,9 @@ class ListAdapterExpense: RecyclerView.Adapter<ListAdapterExpense.MyViewHolder>(
 
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
-
+    /**
+     * Inflate the expense_card layout in the recyclerView and returns the view
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         categoryViewModel = ViewModelProvider(parent.findViewTreeViewModelStoreOwner()!!).get(CategoryViewModel::class.java)
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.expense_card, parent, false))
@@ -30,6 +36,9 @@ class ListAdapterExpense: RecyclerView.Adapter<ListAdapterExpense.MyViewHolder>(
     }
 
     @SuppressLint("SetTextI18n")
+    /**
+     * Setup the content of the previously inflated view to reflect an entry in the list
+     */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = expenseList[position]
         holder.itemView.savingName.text = currentItem.name
@@ -42,7 +51,9 @@ class ListAdapterExpense: RecyclerView.Adapter<ListAdapterExpense.MyViewHolder>(
 
 
     }
-
+    /**
+     * Set up the list of [Expense] that will be use to generate the recyclerView
+     */
     fun setData(expense: List<Expense>){
         this.expenseList = expense
         notifyDataSetChanged()

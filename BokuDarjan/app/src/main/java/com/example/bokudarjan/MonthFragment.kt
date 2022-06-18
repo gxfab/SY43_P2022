@@ -19,16 +19,19 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
- * Use the [month.newInstance] factory method to
+ * A [Fragment] subclass, used to display the month scrollview in the hamburger menu.
+ * It contains a Recyclerview to display all months registered in th DB.
+ * Use the [ExpensesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-
 
 class MonthFragment : Fragment() {
 
     private lateinit var categoryViewModel: CategoryViewModel
 
+    /**
+     * Initializing the fragment (setting up recyclerView, onClickListener, ...)
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

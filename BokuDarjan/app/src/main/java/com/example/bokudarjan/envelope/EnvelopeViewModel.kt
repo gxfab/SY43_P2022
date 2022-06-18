@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.bokudarjan.category.CategoryRepository
 import com.example.bokudarjan.database.BokudarjanDatabase
 import com.example.bokudarjan.envelope.Envelope
 import com.example.bokudarjan.envelope.EnvelopeRepository
@@ -12,6 +13,9 @@ import kotlinx.coroutines.launch
 import java.time.Month
 
 
+/**
+ * ViewModel class for the [EnvelopeRepository]
+ */
 class EnvelopeViewModel(application: Application): AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Envelope>>

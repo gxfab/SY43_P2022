@@ -29,7 +29,9 @@ import kotlinx.android.synthetic.main.expense_category.view.*
 import kotlinx.android.synthetic.main.fragment_month.view.*
 
 
-// Display months on the navbar
+/**
+ * ListAdapter of the [BMonth], allowing compatibility with recyclerViews.
+ */
 class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() {
 
     private var monthList = emptyList<BMonth>()
@@ -39,6 +41,9 @@ class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() 
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
+    /**
+     * Inflate the fragment_month layout in the recyclerView and returns the view
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         envelopeViewModel = ViewModelProvider(parent.findViewTreeViewModelStoreOwner()!!).get(EnvelopeViewModel::class.java)
         expenseViewModel = ViewModelProvider(parent.findViewTreeViewModelStoreOwner()!!).get(ExpenseViewModel::class.java)
@@ -51,6 +56,9 @@ class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() 
     }
 
     @SuppressLint("SetTextI18n")
+    /**
+     * Setup the content of the previously inflated view to reflect an entry in the list
+     */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         var currentItem = monthList[position]
         holder.itemView.txtMonth.text = "Mois n°" + currentItem.id.toString()
@@ -110,6 +118,9 @@ class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() 
 
     }
 
+    /**
+     * Set up the list of [BMonth] that will be use to generate the recyclerView
+     */
     fun setData(month: List<BMonth>){
         this.monthList = month
         notifyDataSetChanged()

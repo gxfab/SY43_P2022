@@ -28,7 +28,8 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
+ * A [Fragment] subclass, used to display the Expenses section on the main activity of the app.
+ * It contains a Recyclerview to display monthly expenses as well as a button to add one.
  * Use the [ExpensesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
@@ -38,6 +39,9 @@ class ExpensesFragment : Fragment() {
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var envelopeViewModel: EnvelopeViewModel
 
+    /**
+     * Initializing the fragment (setting up recyclerView, onClickListener, ...)
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

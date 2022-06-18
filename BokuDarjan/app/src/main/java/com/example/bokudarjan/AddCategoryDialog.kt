@@ -14,11 +14,22 @@ import com.example.bokudarjan.category.CategoryViewModel
 import vadiole.colorpicker.ColorModel
 import vadiole.colorpicker.ColorPickerDialog
 
+/**
+ * A simple [Dialog] allowing the user to add a new category
+ */
 class AddCategoryDialog() : DialogFragment() {
 
     private lateinit var categoryViewModel: CategoryViewModel;
+
+    /**
+     * Selected color of the category, stored as hex string. Default to #F44336 (red)
+     */
     var catColor : String = "#F44336"
 
+
+    /**
+     * Setting up the interface
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
@@ -43,7 +54,7 @@ class AddCategoryDialog() : DialogFragment() {
     }
 
     /**
-     * Ceci est un test !
+     * Setting up the color picker and the color of the buttons
      */
     override fun onStart() {
         val res = super.onStart()
