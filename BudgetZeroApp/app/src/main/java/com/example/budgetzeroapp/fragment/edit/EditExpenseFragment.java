@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.budgetzeroapp.fragment.CashFlowFragmentDirections;
 import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
@@ -171,7 +172,8 @@ public class EditExpenseFragment extends EditDataBaseFragment {
             else database.updateExpense(id, newAmount, newName, type, idCat, isStable, newDay, newMonth, newYear);
 
             NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-            navController.navigate(EditExpenseFragmentDirections.navigateToViewExpenseFromExpense(id));
+            navController.navigate(EditExpenseFragmentDirections.actionEditExpenseFragmentToCashFlowFragment(id));
+            navController.navigate(CashFlowFragmentDirections.navigateToViewExpenseFragmentFromCashflow(id));
         });
     }
 

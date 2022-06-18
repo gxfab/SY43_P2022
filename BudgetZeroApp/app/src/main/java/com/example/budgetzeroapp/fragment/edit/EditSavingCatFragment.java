@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.SavingsFragmentDirections;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.item.ListItem;
 
@@ -85,7 +86,8 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
             else database.updateSavingsCat(id, newName,newBudget);
 
             NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-            navController.navigate(EditSavingCatFragmentDirections.navigateToViewSavingCatSavingCat(id));
+            navController.navigate(EditSavingCatFragmentDirections.actionEditSavingCatFragmentToSavingsFragment());
+            navController.navigate(SavingsFragmentDirections.navigateToViewSavingCatFromSavings(id));
         });
     }
 }

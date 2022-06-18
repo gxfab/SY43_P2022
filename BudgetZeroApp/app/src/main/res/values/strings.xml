@@ -60,4 +60,6 @@
     <string name="category">Category</string>
     <string name="add_expense">Add movement</string>
     <string name="add_category">Add category</string>
+    <string name="add_savings_cat">Add savings category</string>
+    <string name="add_debt">Add debt</string>
 </resources>

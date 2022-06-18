@@ -9,8 +9,12 @@
         android:title="@string/add_expense"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/addCategory"
-        android:title="@string/add_category"
+        android:id="@+id/addSavingsCat"
+        android:title="@string/add_savings_cat"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/addDebt"
+        android:title="@string/add_debt"
         app:showAsAction="never"/>
     <item
         android:icon="@drawable/ic_next"

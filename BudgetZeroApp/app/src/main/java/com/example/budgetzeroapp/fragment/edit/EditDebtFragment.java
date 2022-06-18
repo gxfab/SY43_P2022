@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.SavingsFragmentDirections;
 import com.example.budgetzeroapp.tool.DBHelper;
 
 // Champs à éditer : name (string), month_left(int) et total_amount (float)
@@ -92,7 +93,8 @@ public class EditDebtFragment extends EditDataBaseFragment{
             else database.updateDebtCat(id, newName, newMonthLeft, newAmount);
 
             NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-            navController.navigate(EditDebtFragmentDirections.navigateToViewDebtFromDebt(id));
+            navController.navigate(EditDebtFragmentDirections.actionEditDebtFragmentToSavingsFragment());
+            navController.navigate(SavingsFragmentDirections.navigateToViewDebtFromSavings(id));
         });
     }
 }

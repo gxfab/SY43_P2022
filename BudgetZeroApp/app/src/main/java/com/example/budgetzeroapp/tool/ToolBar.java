@@ -89,22 +89,18 @@ public class ToolBar{
             NavigationUI.setupWithNavController(
                     toolbar, navController, appBarConfigSavings);
         }
-
         toolbar.setOnMenuItemClickListener(item -> {
             NavController navController = Navigation.findNavController(view);
             switch(item.getItemId()){
                 case R.id.addCategory:
                     int idDest = navController.getCurrentDestination().getId();
-                    if(idDest == R.id.savingsFragment) {
-                        if(1==1) // selectedTab == Savings
-                            navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToEditSavingCatFragment());
-                        else
-                            navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToEditDebtFragment());
-                    }
-                    else if(idDest == R.id.budgetFragment) navController.navigate(BudgetFragmentDirections.actionBudgetFragmentToEditExpenseCatFragment(0));
+                    if(idDest == R.id.budgetFragment) navController.navigate(BudgetFragmentDirections.actionBudgetFragmentToEditExpenseCatFragment(0));
                     else if(idDest == R.id.homeFragment) navController.navigate(HomeFragmentDirections.actionHomeFragmentToEditExpenseCatFragment(0));
                     break;
-
+                case R.id.addSavingsCat: navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToEditSavingCatFragment());
+                    break;
+                case R.id.addDebt: navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToEditDebtFragment());
+                    break;
                 case R.id.expense:
                     int idDest2 = navController.getCurrentDestination().getId();
 

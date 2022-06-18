@@ -3,4 +3,5 @@
     <item name="ListItemName" type="id" />
     <item name="list_view_name" type="id" />
     <item name="spinner_cat" type="id" />
+    <item name="addSavingsCat" type="id"/>
 </resources>

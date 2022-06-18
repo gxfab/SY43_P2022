@@ -113,34 +113,34 @@
             android:name="id_expense_cat_edit"
             app:argType="integer" />
         <action
-            android:id="@+id/action_editExpenseCatFragment_to_viewExpenseCatFragment"
-            app:destination="@id/viewExpenseCatFragment" />
+            android:id="@+id/action_editExpenseCatFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/editExpenseFragment"
         android:name="com.example.budgetzeroapp.fragment.edit.EditExpenseFragment"
         android:label="Edit expenses"
         tools:layout="@layout/fragment_edit_expense" >
-        <action
-            android:id="@+id/navigate_to_viewExpense_from_expense"
-            app:destination="@id/viewExpenseFragment" />
         <argument
             android:name="id_expense_edit"
             app:argType="integer" />
         <argument android:name="type_expense"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editExpenseFragment_to_cashFlowFragment"
+            app:destination="@id/cashFlowFragment" />
     </fragment>
     <fragment
         android:id="@+id/editSavingCatFragment"
         android:name="com.example.budgetzeroapp.fragment.edit.EditSavingCatFragment"
         android:label="Edit saving categories"
         tools:layout="@layout/fragment_edit_saving_cat" >
-        <action
-            android:id="@+id/navigate_to_viewSavingCat_saving_cat"
-            app:destination="@id/viewSavingCatFragment" />
         <argument
             android:name="id_saving_cat"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editSavingCatFragment_to_savingsFragment"
+            app:destination="@id/savingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewDebtFragment"
@@ -165,12 +165,12 @@
         android:name="com.example.budgetzeroapp.fragment.edit.EditDebtFragment"
         android:label="Edit debts"
         tools:layout="@layout/fragment_edit_debt" >
-        <action
-            android:id="@+id/navigate_to_viewDebt_from_debt"
-            app:destination="@id/viewDebtFragment" />
         <argument
             android:name="id_debt_edit"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editDebtFragment_to_savingsFragment"
+            app:destination="@id/savingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectExpenseTypeFragment"
