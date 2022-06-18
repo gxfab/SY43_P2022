@@ -99,21 +99,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/imageDummy"
-            android:layout_alignStart="@id/imageDummy"
-            android:layout_marginStart="25dp"
+            android:layout_centerHorizontal="true"
             android:onClick="run"
             android:text="@string/save"
-            tools:ignore="UsingOnClickInXml" />
-
-        <Button
-            android:id="@+id/buttonCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imageDummy"
-            android:layout_alignEnd="@id/imageDummy"
-            android:layout_marginEnd="25dp"
-            android:onClick="run"
-            android:text="@string/cancel"
             tools:ignore="UsingOnClickInXml" />
 
 

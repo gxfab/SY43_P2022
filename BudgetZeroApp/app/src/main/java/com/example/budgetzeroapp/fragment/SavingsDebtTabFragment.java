@@ -46,7 +46,6 @@ public class SavingsDebtTabFragment extends DataBaseFragment implements BudgetRe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_savings_debts_tab, container, false);
         categories = view.findViewById(R.id.list_view_cat);
         recyclerView = view.findViewById(R.id.budget_sorting);

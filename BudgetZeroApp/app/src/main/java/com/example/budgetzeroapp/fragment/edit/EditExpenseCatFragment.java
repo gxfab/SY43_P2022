@@ -24,7 +24,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
     private EditText name, budget;
     private CheckBox sub;
     private Spinner parentCat;
-    private Button save, cancel;
+    private Button save;
     private String defaultName;
     private float defaultBudget;
     private int defaultSub, defaultParentCat;
@@ -40,12 +40,11 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
         View view= inflater.inflate(R.layout.fragment_edit_expense_cat, parent, false);
 
         /**Getting passed id**/
-        //id = EditExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCatEdit();
+        id = EditExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCatEdit();
         //wToast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
 
         save = view.findViewById(R.id.buttonSave);
-        cancel = view.findViewById(R.id.buttonCancel);
         name = view.findViewById(R.id.editTextCatName);
         budget = view.findViewById(R.id.editTextCatBudget);
         sub = view.findViewById(R.id.checkBoxCatSub);
@@ -111,22 +110,8 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
             if(id == 0) database.insertExpenseCat(newName,newBudget,isSub,idCat);
             else database.updateExpenseCat(id, newName,newBudget,isSub, idCat);
 
-        });
-        cancel.setOnClickListener(v -> {
-            //Cancel
+            message("Database updated");
         });
     }
-    /*
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String selectedParentCat = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(this, selectedParentCat,Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-
-     */
 }

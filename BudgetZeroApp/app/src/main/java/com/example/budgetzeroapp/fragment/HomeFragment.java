@@ -1,6 +1,5 @@
 package com.example.budgetzeroapp.fragment;
 
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -8,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -16,19 +14,15 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.view.LayoutInflater;
 
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
-import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragmentDirections;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.ToolBar;
 import com.example.budgetzeroapp.tool.adapter.ProgressBarAdapter;
@@ -174,12 +168,4 @@ public class HomeFragment extends DataBaseFragment {
 
         pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
-
-    public static void redirectToViewExpenseCat(int cat_id)
-    {
-        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-        NavDirections action = HomeFragmentDirections.navigateToViewExpenseCatFromHome(cat_id);
-        navController.navigate(action);
-    }
-
 }

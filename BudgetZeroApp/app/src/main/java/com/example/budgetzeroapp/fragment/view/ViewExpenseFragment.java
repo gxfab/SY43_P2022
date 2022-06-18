@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +18,6 @@ import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
-import com.example.budgetzeroapp.fragment.HomeFragmentDirections;
 import com.example.budgetzeroapp.tool.DBHelper;
 
 import java.util.Calendar;
@@ -50,13 +48,13 @@ public class ViewExpenseFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         /**Listener edit button**/
-        /*view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
             NavController navController = Navigation.findNavController(view);
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.navigate_to_editExpense_from_expense);
             }
-        });*/
+        });
 
         /**Getting passed id**/
         id = ViewExpenseFragmentArgs.fromBundle(getArguments()).getIdExpense();
@@ -75,8 +73,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
     public void getValues() {
         Cursor exp = database.getExpenseFromID(id);
         exp.moveToFirst();
-        if (exp.isAfterLast()) redirect(new HomeFragment(),id);
-        else {
+        if (!exp.isAfterLast()){
             nameVal = exp.getString(exp.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             amountVal = exp.getFloat(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_AMOUNT));
             dateVal = Calendar.getInstance();

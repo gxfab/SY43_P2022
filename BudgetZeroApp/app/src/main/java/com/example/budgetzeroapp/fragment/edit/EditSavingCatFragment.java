@@ -12,16 +12,16 @@ import android.widget.Toast;
 
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.DBHelper;
+import com.example.budgetzeroapp.tool.item.ListItem;
 
 // name, max amount, current amount
 //liste des expenses associées
 public class EditSavingCatFragment extends EditDataBaseFragment{
 
-    private EditText name, goal, percentage, priority;
-    private Button save, cancel;
+    private EditText name, goal;
+    private Button save;
     private String defaultName;
-    private float defaultGoal, defaultPercentage;
-    private int defaultPriority;
+    private float defaultGoal;
 
     public EditSavingCatFragment(){ super(); }
     public EditSavingCatFragment(int id){ super(id); }
@@ -36,11 +36,8 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
 
 
         save = view.findViewById(R.id.buttonSave);
-        cancel = view.findViewById(R.id.buttonCancel);
         name = view.findViewById(R.id.editTextSaveName);
         goal = view.findViewById(R.id.editTextSaveGoal);
-        percentage = view.findViewById(R.id.editTextSavePerc);
-        priority = view.findViewById(R.id.editTextSavePrio);
         return view;
     }
 
@@ -48,8 +45,6 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
     public void initDefaultValues() {
         defaultName = "";
         defaultGoal = 0;
-        defaultPercentage = 0;
-        defaultPriority = 0;
     }
 
     @Override
@@ -61,8 +56,6 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
         else {
             defaultName = cat.getString(cat.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_NAME));
             defaultGoal = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_MAX_AMOUNT));
-            defaultPercentage = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_PERCENTAGE));
-            defaultPriority = cat.getInt(cat.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_PRIORITY_ORDER));
         }
     }
 
@@ -70,17 +63,26 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
     public void setDefaultValues() {
         name.setText(defaultName);
         goal.setText(String.valueOf(defaultGoal));
-        percentage.setText(String.valueOf((defaultPercentage)));
-        priority.setText(String.valueOf((defaultPriority)));
     }
 
     @Override
     public void setButtons() {
         save.setOnClickListener(v -> {
-            //Save
-        });
-        cancel.setOnClickListener(v -> {
-            //Cancel
+
+            float newBudget = Float.parseFloat(goal.getText().toString());
+            if(newBudget <= 0){
+                message("Objective must have a positive value");
+                return;
+            }
+            String newName = name.getText().toString();
+            if(newName.equals("")){
+                message("Name can't be empty");
+            }
+
+            if(id == 0) database.insertSavingsCat(newName,newBudget);
+            else database.updateSavingsCat(id, newName,newBudget);
+
+            message("Database updated");
         });
     }
 }

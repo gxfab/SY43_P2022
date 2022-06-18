@@ -2,7 +2,14 @@ package com.example.budgetzeroapp.tool.item;
 
 import android.database.Cursor;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import com.example.budgetzeroapp.MainActivity;
+import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.CashFlowFragmentDirections;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
+import com.example.budgetzeroapp.fragment.SavingsFragmentDirections;
 import com.example.budgetzeroapp.fragment.view.ViewDebtFragment;
 import com.example.budgetzeroapp.fragment.view.ViewSavingCatFragment;
 import com.example.budgetzeroapp.tool.DBHelper;
@@ -44,14 +51,15 @@ public class SavingsItem extends ListItem{
         }
         return list;
     }
+
+    public void redirect(){
+        NavController navController = Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        if(type) navController.navigate(SavingsFragmentDirections.navigateToViewSavingCatFromSavings(id));
+        else navController.navigate(SavingsFragmentDirections.navigateToViewDebtFromSavings(id));
+    }
     
     public static int getType(boolean type){
         if(!type) return DBHelper.TYPE_DEBT;
         else return DBHelper.TYPE_SAV;
-    }
-
-    public void redirect(){
-        if(type) DataBaseFragment.redirect(new ViewSavingCatFragment(),id);
-        else DataBaseFragment.redirect(new ViewDebtFragment(),id);
     }
 }

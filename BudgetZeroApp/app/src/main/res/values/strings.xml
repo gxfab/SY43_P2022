@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Budget Zero App</string>
-    <string name="type_message">What do you want to add ?</string>
+    <string name="type_message">Type of movement to add :</string>
     <string name="exp_type">Expense</string>
     <string name="inc_type">Income</string>
     <string name="debt_type">Debt</string>

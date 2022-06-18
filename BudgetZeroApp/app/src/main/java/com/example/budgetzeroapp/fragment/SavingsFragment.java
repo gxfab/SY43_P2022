@@ -66,21 +66,6 @@ public class SavingsFragment extends DataBaseFragment {
         if(!defaultTab) selectPage(2);
 
         ToolBar.getInstance().initToolBar(view, R.id.toolbar_savings);
-        /**Navigation
-        Toolbar toolbar = view.findViewById(R.id.toolbar_savings);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                NavController navController = Navigation.findNavController(view);
-                switch(item.getItemId()){
-                    case R.id.next_day:
-                        //change day
-                        break;
-                }
-                return true;
-            }
-        });**/
-
 
     }
 

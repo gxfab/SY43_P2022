@@ -2,13 +2,14 @@ package com.example.budgetzeroapp.tool.item;
 
 import android.database.Cursor;
 
-import com.example.budgetzeroapp.AppContext;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.DataBaseFragment;
-import com.example.budgetzeroapp.fragment.SavingsFragment;
-import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
-import com.example.budgetzeroapp.fragment.view.ViewIncomeCatFragment;
+import com.example.budgetzeroapp.fragment.BudgetFragmentDirections;
+import com.example.budgetzeroapp.fragment.HomeFragmentDirections;
+import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragmentDirections;
 import com.example.budgetzeroapp.tool.DBHelper;
 
 import java.util.ArrayList;
@@ -67,16 +68,12 @@ public class CategoryItem extends ListItem{
     }
 
     public void redirect(){
-        if(id == 0) redirect(DBHelper.TYPE_DEBT);
-        else if(id == -1) redirect(DBHelper.TYPE_SAV);
-        else redirect(DBHelper.TYPE_EXP);
-
-    }
-    public void redirect(int type){
-        if(type == DBHelper.TYPE_DEBT || type == DBHelper.TYPE_SAV)
-            MainActivity.getActivity().bottomNavigationRedirect(R.id.savingsFragment);
-        else if(type == DBHelper.TYPE_INC) DataBaseFragment.redirect(new ViewIncomeCatFragment(),id);
-        else DataBaseFragment.redirect(new ViewExpenseCatFragment(),id);
+        NavController navController = Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+        int idDest = navController.getCurrentDestination().getId();
+        if(id <= 0) MainActivity.getActivity().bottomNavigationRedirect(R.id.savingsFragment);
+        else if(idDest == R.id.homeFragment) navController.navigate(HomeFragmentDirections.actionHomeFragmentToViewExpenseCatFragment(id));
+        else if(idDest == R.id.budgetFragment) navController.navigate(BudgetFragmentDirections.actionBudgetFragmentToViewExpenseCatFragment(id));
+        else if(idDest == R.id.viewExpenseCatFragment) navController.navigate(ViewExpenseCatFragmentDirections.actionViewExpenseCatFragmentSelf(id));
     }
 
     public float getTotal(){ return total; }

@@ -15,8 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/toolbar_add_category" />
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -55,13 +55,22 @@
             android:layout_alignStart="@+id/textViewCatNameEntry"
             android:layout_alignBottom="@+id/textViewCatBudget" />
 
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewCatBudget"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/edit" />
+
         <TextView
             android:id="@+id/textViewCatClickSub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewCatBudget"
-            android:layout_alignBottom="@+id/textViewCatBudget"
-            android:layout_marginBottom="-40dp"
+            android:layout_alignBottom="@+id/editButton"
+            android:layout_marginBottom="-30dp"
             android:text="@string/exp_cat_click_sub" />
 
         <ImageView
@@ -109,14 +118,6 @@
             android:orientation="vertical">
         </ListView>
 
-        <!--<Button
-            android:id="@+id/editButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/listViewCatExpenses"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="-80dp"
-            android:text="@string/edit" />-->
 
 
     </RelativeLayout>

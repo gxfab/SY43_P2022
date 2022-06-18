@@ -36,12 +36,8 @@ public class ExpenseAdapter extends ArrayAdapter<ExpenseItem> {
         if (p != null) {
             TextView label = v.findViewById(R.id.label);
             if (label != null) label.setText(p.getName());
-            TextView catName = v.findViewById(R.id.category_name);
-            if (catName != null) catName.setText(p.getCategoryName());
             TextView date = v.findViewById(R.id.date);
-            if (date != null)   {
-                date.setText(DateManager.intDateToString(p.getDate()));
-            }
+            if (date != null)  date.setText(DateManager.intDateToString(p.getDate()));
             TextView amount = v.findViewById(R.id.amount);
             if (amount != null) {
                 String mess = p.getAmount() + " €";

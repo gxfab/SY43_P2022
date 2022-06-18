@@ -16,7 +16,11 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.budgetzeroapp.AppContext;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
+import com.example.budgetzeroapp.fragment.BudgetFragmentDirections;
+import com.example.budgetzeroapp.fragment.CashFlowFragmentDirections;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
+import com.example.budgetzeroapp.fragment.HomeFragmentDirections;
+import com.example.budgetzeroapp.fragment.SavingsFragmentDirections;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,11 +54,13 @@ public class ToolBar{
             MainActivity.getActivity(), R.id.nav_host_fragment);
 
     private static AppBarConfiguration appBarConfigBudget =
-            new AppBarConfiguration.Builder(R.id.budgetFragment,R.id.addCategoryFragment).build();
-
+            new AppBarConfiguration.Builder(R.id.budgetFragment,R.id.editExpenseCatFragment).build();
     private static AppBarConfiguration appBarConfigSavings =
-            new AppBarConfiguration.Builder(R.id.savingsFragment,R.id.addCategoryFragment).build();
-
+            new AppBarConfiguration.Builder(R.id.savingsFragment,R.id.editSavingCatFragment).build();
+    private static AppBarConfiguration appBarConfigExpCat =
+            new AppBarConfiguration.Builder(R.id.homeFragment,R.id.editExpenseCatFragment).build();
+    private static AppBarConfiguration appBarConfigDebt =
+            new AppBarConfiguration.Builder(R.id.savingsFragment,R.id.editDebtFragment).build();
     public static ToolBar getInstance() {
         return instance;
     }
@@ -93,15 +99,27 @@ public class ToolBar{
             NavigationUI.setupWithNavController(
                     toolbar, navController, appBarConfigSavings);
         }
+
         toolbar.setOnMenuItemClickListener(item -> {
             NavController navController = Navigation.findNavController(view);
             switch(item.getItemId()){
                 case R.id.addCategory:
-                    navController.navigate(R.id.navigate_to_addCategory);
+                    int idDest = navController.getCurrentDestination().getId();
+                    if(idDest == R.id.savingsFragment) navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToEditSavingCatFragment());
+                    else if(idDest == R.id.budgetFragment) navController.navigate(BudgetFragmentDirections.actionBudgetFragmentToEditExpenseCatFragment(0));
+                    else if(idDest == R.id.homeFragment) navController.navigate(HomeFragmentDirections.actionHomeFragmentToEditExpenseCatFragment(0));
                     break;
+
+                /**case R.id.addExpense:
+                    int idDest2 = navController.getCurrentDestination().getId();
+
+                    if(idDest2 == R.id.savingsFragment) navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToSelectExpenseTypeFragment2(0));
+                    else if(idDest2 == R.id.budgetFragment) navController.navigate(BudgetFragmentDirections.actionBudgetFragmentToSelectExpenseTypeFragment2(0));
+                    else if(idDest2 == R.id.homeFragment) navController.navigate(HomeFragmentDirections.actionHomeFragmentToSelectExpenseTypeFragment2(0));
+                    else if(idDest2 == R.id.cashFlowFragment) navController.navigate(CashFlowFragmentDirections.actionCashFlowFragmentToSelectExpenseTypeFragment2(0));
+
+                    break;**/
                 case R.id.next_day:
-
-
                     incrementDate();
                     saveDate();
                     if(DateManager.dateToDay(date) == 1){

@@ -176,9 +176,6 @@ public class EditExpenseFragment extends EditDataBaseFragment {
             else database.updateExpense(id, newAmount, newName, type, idCat, isStable, newDay, newMonth, newYear);
 
         });
-        cancel.setOnClickListener(v -> {
-            //Cancel
-        });
     }
 
 

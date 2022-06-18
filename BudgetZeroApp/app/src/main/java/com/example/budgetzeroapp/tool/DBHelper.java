@@ -53,8 +53,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SAV_CAT_COL_NAME = "name";
     public static final String SAV_CAT_COL_MAX_AMOUNT = "max_amount";
     public static final String SAV_CAT_COL_CURRENT_AMOUNT = "current_amount";
-    public static final String SAV_CAT_COL_PERCENTAGE = "percentage";
-    public static final String SAV_CAT_COL_PRIORITY_ORDER = "priority_order";
 
 
     public static final String REQ_SUM = "sum";
@@ -105,9 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         "(" + SAV_CAT_COL_ID + " integer primary key autoincrement, " +
                         SAV_CAT_COL_NAME + " text not null, " +
                         SAV_CAT_COL_MAX_AMOUNT + " real default -1, " +
-                        SAV_CAT_COL_CURRENT_AMOUNT + " real default 0, " +
-                         SAV_CAT_COL_PERCENTAGE + " integer default null, " +
-                        SAV_CAT_COL_PRIORITY_ORDER + " integer" +
+                        SAV_CAT_COL_CURRENT_AMOUNT + " real default 0 " +
                         ");"
         );
         db.execSQL(
@@ -248,12 +244,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return contentValues;
     }
 
-    public ContentValues savingsCatCV(String name, float maxAmount, int percentage, int priorityOrder) {
+    public ContentValues savingsCatCV(String name, float maxAmount) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SAV_CAT_COL_NAME, name);
         contentValues.put(SAV_CAT_COL_MAX_AMOUNT, maxAmount);
-        contentValues.put(SAV_CAT_COL_PERCENTAGE, percentage);
-        contentValues.put(SAV_CAT_COL_PRIORITY_ORDER, priorityOrder);
         return contentValues;
     }
 
@@ -275,9 +269,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(INC_CAT_TABLE_NAME, null, incomeCatCV(name));
     }
 
-    public void insertSavingsCat(String name, float maxAmount, int percentage, int priorityOrder) {
+    public void insertSavingsCat(String name, float maxAmount) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(SAV_CAT_TABLE_NAME, null, savingsCatCV(name, maxAmount, percentage, priorityOrder));
+        db.insert(SAV_CAT_TABLE_NAME, null, savingsCatCV(name, maxAmount));
     }
 
     public void insertExpenseCat(String name, float budget, boolean isSub, int idParent) {
@@ -303,9 +297,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(INC_CAT_TABLE_NAME, contVal, "id = ? ", new String[]{Integer.toString(id)});
     }
 
-    public void updateSavingsCat(int id, String name, float maxAmount, int percentage, int priorityOrder) {
+    public void updateSavingsCat(int id, String name, float maxAmount) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contVal = savingsCatCV(name, maxAmount, percentage, priorityOrder);
+        ContentValues contVal = savingsCatCV(name, maxAmount);
         db.update(SAV_CAT_TABLE_NAME, contVal, "id = ? ", new String[]{Integer.toString(id)});
     }
 
@@ -551,12 +545,6 @@ public class DBHelper extends SQLiteOpenHelper {
         if (!exp.isAfterLast())
             return exp.getString(exp.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
         return "";
-    }
-
-    public Cursor getSavingsFromPriority(int priority) {
-        return getData(
-                "select * from " + SAV_CAT_TABLE_NAME +
-                        " where " + SAV_CAT_COL_PRIORITY_ORDER + "=" + priority);
     }
 
     public Cursor getAllSavingsCat() {

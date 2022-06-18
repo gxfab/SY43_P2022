@@ -39,16 +39,4 @@ public abstract class DataBaseFragment extends Fragment {
         Toast.makeText(AppContext.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    public static void redirect(DataBaseFragment f, int id)
-    {
-        NavController navController = Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-
-        NavDestination current_dest = navController.getCurrentDestination();
-        int id_dest = current_dest.getId();
-        if (id_dest == R.id.homeFragment) HomeFragment.redirectToViewExpenseCat(id);
-        else if (id_dest == R.id.budgetFragment) BudgetFragment.redirectToViewExpenseCat(id);
-        else if (id_dest == R.id.cashFlowFragment) CashFlowFragment.redirectToViewExpense(id);
-        else if (id_dest == R.id.savingsFragment) SavingsFragment.redirectToViewSavingCat(id);
-     }
-
 }

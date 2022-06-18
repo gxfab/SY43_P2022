@@ -43,9 +43,10 @@ public class ViewSavingCatFragment extends DataBaseFragment {
     public ViewSavingCatFragment(){ super(); }
     public ViewSavingCatFragment(int id){ super(id); }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent) {
-        View view= inflater.inflate(R.layout.fragment_view_saving_cat, parent, false);
-        return view;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_view_saving_cat, parent, false);
     }
 
     @Override
@@ -53,23 +54,20 @@ public class ViewSavingCatFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         /**Listener edit button**/
-        /*view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
             NavController navController = Navigation.findNavController(view);
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.navigate_to_editSavingCat_from_saving_cat);
+                navController.navigate(ViewSavingCatFragmentDirections.navigateToEditSavingCatFromSavingCat(id));
             }
-        });*/
+        });
 
         /**Getting passed id**/
         id = ViewSavingCatFragmentArgs.fromBundle(getArguments()).getIdSavings();
-        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
         name = view.findViewById(R.id.textViewSaveNameEntry);
         goal = view.findViewById(R.id.textViewSaveGoalEntry);
         current = view.findViewById(R.id.textViewSaveCurrentEntry);
-        prio = view.findViewById(R.id.textViewSavePrioEntry);
-        perc = view.findViewById(R.id.textViewSavePercEntry);
         saveList = view.findViewById(R.id.listViewSaveList);
         listTextView = view.findViewById(R.id.textViewSaveList);
         edit = view.findViewById(R.id.editButton);
@@ -80,13 +78,10 @@ public class ViewSavingCatFragment extends DataBaseFragment {
     public void getValues() {
         Cursor save = database.getCatFromType(id, DBHelper.TYPE_SAV);
         save.moveToFirst();
-        if (save.isAfterLast()) redirect(new HomeFragment(),id);
-        else {
+        if (!save.isAfterLast()){
             nameVal = save.getString(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_NAME));
             goalVal = save.getFloat(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_MAX_AMOUNT));
             currentVal = save.getFloat(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_CURRENT_AMOUNT));
-            prioVal = save.getInt(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_PRIORITY_ORDER));
-            percVal = save.getFloat(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_PERCENTAGE));
             saveListVal = ExpenseItem.ExpensesToList(database.getExpensesFromCat(id, DBHelper.TYPE_SAV));
         }
     }
@@ -95,8 +90,6 @@ public class ViewSavingCatFragment extends DataBaseFragment {
         name.setText(nameVal);
         goal.setText(String.valueOf(goalVal));
         current.setText(String.valueOf(currentVal));
-        prio.setText(String.valueOf(prioVal));
-        perc.setText(String.valueOf(percVal));
         ClickableListManager.clickableExpenseList(saveList,saveListVal);
         if (saveListVal.isEmpty()){
             listTextView.setVisibility(View.GONE);
@@ -105,12 +98,5 @@ public class ViewSavingCatFragment extends DataBaseFragment {
             listTextView.setVisibility(View.GONE);
             saveList.setVisibility(View.VISIBLE);
         }
-    }
-
-    public static void redirectToEditSavingCat(int id)
-    {
-        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-        NavDirections action = ViewSavingCatFragmentDirections.navigateToEditSavingCatFromSavingCat(id);
-        navController.navigate(action);
     }
 }

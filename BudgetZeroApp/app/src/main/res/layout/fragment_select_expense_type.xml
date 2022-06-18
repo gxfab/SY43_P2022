@@ -27,9 +27,6 @@
         tools:layout_editor_absoluteX="-7dp"
         tools:layout_editor_absoluteY="119dp">
 
-        <!-- In RadioGroup create the 1 Radio Button-->
-        <!-- like this we will add some more Radio Button-->
-
         <RadioButton
             android:id="@+id/type_sav"
             android:layout_width="fill_parent"
@@ -43,13 +40,6 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/exp_type"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/type_inc"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/inc_type"
             android:textSize="20sp" />
 
         <RadioButton

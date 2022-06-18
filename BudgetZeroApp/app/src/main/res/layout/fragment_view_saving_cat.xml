@@ -70,44 +70,13 @@
             android:layout_alignStart="@+id/textViewSaveGoalEntry"
             android:layout_alignBottom="@+id/textViewSaveCurrent" />
 
-        <TextView
-            android:id="@+id/textViewSavePrio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewSaveCurrent"
-            android:layout_alignBottom="@+id/textViewSaveCurrent"
-            android:layout_marginBottom="-40dp"
-            android:text="@string/save_cat_prio" />
-
-        <TextView
-            android:id="@+id/textViewSavePrioEntry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewSaveCurrentEntry"
-            android:layout_alignBottom="@+id/textViewSavePrio" />
-
-        <TextView
-            android:id="@+id/textViewSavePerc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewSavePrio"
-            android:layout_alignBottom="@+id/textViewSavePrio"
-            android:layout_marginBottom="-40dp"
-            android:text="@string/save_cat_perc" />
-
-        <TextView
-            android:id="@+id/textViewSavePercEntry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewSavePrioEntry"
-            android:layout_alignBottom="@+id/textViewSavePerc" />
 
         <TextView
             android:id="@+id/textViewSaveList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewSavePerc"
-            android:layout_alignBottom="@+id/textViewSavePerc"
+            android:layout_alignStart="@+id/textViewSaveCurrentEntry"
+            android:layout_alignBottom="@+id/textViewSaveCurrentEntry"
             android:layout_marginBottom="-40dp"
             android:text="@string/save_cat_list" />
 
@@ -129,14 +98,14 @@
 
         </ListView>
 
-        <!--<Button
+        <Button
             android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignBottom="@+id/listViewSaveList"
             android:layout_marginBottom="-80dp"
-            android:text="@string/edit" />-->
+            android:text="@string/edit" />
 
     </RelativeLayout>
 

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +22,6 @@ import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
-import com.example.budgetzeroapp.fragment.HomeFragmentDirections;
 import com.example.budgetzeroapp.tool.ClickableListManager;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.item.CategoryItem;
@@ -56,8 +54,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
 
         Cursor cat = database.getCatFromType(id, DBHelper.TYPE_EXP);
         cat.moveToFirst();
-        if (cat.isAfterLast()) redirect(new HomeFragment(),id);
-        else {
+        if (!cat.isAfterLast()){
             nameVal = cat.getString(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             budgetVal = cat.getFloat(cat.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_BUDGET));
             subCatVal = CategoryItem.initCategoryList(database.getSubCat(id), false);
@@ -95,24 +92,9 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
         NavController navController = Navigation.findNavController(view);
-        AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(R.id.homeFragment, R.id.viewExpenseCatFragment).build();
-        Toolbar toolbar = view.findViewById(R.id.toolbar_add_category);
-        NavigationUI.setupWithNavController(
-                toolbar, navController, appBarConfiguration);
-
-        /**Listener edit button**/
-        /*view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
-            NavController navController = Navigation.findNavController(view);
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.navigate_to_editExpenseCat_from_expense_cat);
-            }
-        });*/
 
         /**Getting passed id**/
         id = ViewExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCat();
-        //Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
         name = view.findViewById(R.id.textViewCatNameEntry);
         budget = view.findViewById(R.id.textViewCatBudgetEntry);
@@ -121,14 +103,14 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         subListTextView = view.findViewById(R.id.textViewCatClickSub);
         expListTextView = view.findViewById(R.id.textViewCatExpenses);
         edit = view.findViewById(R.id.editButton);
+
+        if(edit != null){
+            edit.setOnClickListener(view1 -> {
+                navController.navigate(ViewExpenseCatFragmentDirections.actionViewExpenseCatFragmentToEditExpenseCatFragment(id));
+            });
+        }
+
         getValues();
         setValues();
-    }
-
-    public static void redirectToEditExpense(int id)
-    {
-        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-        NavDirections action = ViewExpenseCatFragmentDirections.navigateToEditExpenseCatFromExpenseCat(id);
-        navController.navigate(action);
     }
 }

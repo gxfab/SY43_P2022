@@ -109,11 +109,4 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
         }
         listView.setAdapter(new BudgetAdapter(items));
     }
-
-    public static void redirectToViewExpenseCat(int cat_id)
-    {
-        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-        NavDirections action = BudgetFragmentDirections.navigateToViewExpenseCatFromBudget(cat_id);
-        navController.navigate(action);
-    }
 }

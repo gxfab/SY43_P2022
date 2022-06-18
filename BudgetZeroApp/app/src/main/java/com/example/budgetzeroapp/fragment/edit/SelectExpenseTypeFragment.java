@@ -32,7 +32,6 @@ public class SelectExpenseTypeFragment extends Fragment {
             int selectedId = radioGroup.getCheckedRadioButtonId();
             int type;
             if(selectedId == R.id.type_exp) type = DBHelper.TYPE_EXP;
-            else if(selectedId == R.id.type_inc) type = DBHelper.TYPE_INC;
             else if(selectedId == R.id.type_debt) type = DBHelper.TYPE_DEBT;
             else type = DBHelper.TYPE_SAV;
 

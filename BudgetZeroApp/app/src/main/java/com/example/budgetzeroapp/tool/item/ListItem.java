@@ -2,7 +2,13 @@ package com.example.budgetzeroapp.tool.item;
 
 import android.database.Cursor;
 
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+
 import com.example.budgetzeroapp.AppContext;
+import com.example.budgetzeroapp.MainActivity;
+import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.view.ViewDebtFragment;
 import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
@@ -45,20 +51,7 @@ public class ListItem {
         return list;
     }
 
-    public DataBaseFragment getFrag(int type){
-        switch(type){
-            case DBHelper.TYPE_EXP: return new ViewExpenseCatFragment(id);
-            case DBHelper.TYPE_DEBT: return new ViewDebtFragment(id);
-            case DBHelper.TYPE_INC: return new ViewIncomeCatFragment(id);
-            case DBHelper.TYPE_SAV: return new ViewSavingCatFragment(id);
-            default:
-            case DBHelper.TYPE_CASH_FLOW: return new ViewExpenseFragment(id);
-        }
-    }
-
-    public void redirect(){
-        DataBaseFragment.redirect(new ViewExpenseFragment(),id);
-    }
+    public void redirect(){}
 
     public static List<ListItem> cursorToSimpleList(Cursor rows){
         List<ListItem> list = new ArrayList<>();

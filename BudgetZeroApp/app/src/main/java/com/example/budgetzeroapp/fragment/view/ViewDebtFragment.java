@@ -18,7 +18,6 @@ import androidx.navigation.Navigation;
 
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.BudgetFragmentDirections;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.tool.ClickableListManager;
@@ -45,27 +44,11 @@ public class ViewDebtFragment extends DataBaseFragment {
     public ViewDebtFragment(int id){ super(id); }
 
 
-    public View initView(LayoutInflater inflater, ViewGroup parent) {
-        View view= inflater.inflate(R.layout.fragment_view_debt, parent, false);
-        return view;
-    }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        /**Listener edit button**/
-        /*view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
-            NavController navController = Navigation.findNavController(view);
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.navigate_to_editDebt_from_debt);
-            }
-        });*/
-
-
-        /**Getting passed id**/
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+        View view= inflater.inflate(R.layout.fragment_view_debt, parent, false);
         id = ViewDebtFragmentArgs.fromBundle(getArguments()).getIdDebt();
-        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
         name = view.findViewById(R.id.textViewDebtNameEntry);
         monthLeft = view.findViewById(R.id.textViewDebtMonthEntry);
@@ -74,6 +57,20 @@ public class ViewDebtFragment extends DataBaseFragment {
         exp = view.findViewById(R.id.listViewDebtExpenses);
         listTextView = view.findViewById(R.id.textViewDebtExpenses);
         edit = view.findViewById(R.id.editButton);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        /**Listener edit button**/
+        edit.setOnClickListener(new View.OnClickListener() {
+            NavController navController = Navigation.findNavController(view);
+            @Override
+            public void onClick(View view) {
+                navController.navigate(ViewDebtFragmentDirections.navigateToEditDebtFromDebt(id));
+            }
+        });
         getValues();
         setValues();
     }
@@ -81,8 +78,7 @@ public class ViewDebtFragment extends DataBaseFragment {
     public void getValues() {
         Cursor debt = database.getCatFromType(id, DBHelper.TYPE_DEBT);
         debt.moveToFirst();
-        if (debt.isAfterLast()) redirect(new HomeFragment(),id);
-        else {
+        if (!debt.isAfterLast()){
             nameVal = debt.getString(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_NAME));
             monthLeftVal=debt.getInt(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_MONTH_LEFT));
             totalAmountVal=debt.getFloat(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_TOTAL_AMOUNT));
@@ -105,14 +101,4 @@ public class ViewDebtFragment extends DataBaseFragment {
             exp.setVisibility(View.VISIBLE);
         }
     }
-
-    public static void redirectToEditDebt(int id)
-    {
-        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-        NavDirections action = ViewDebtFragmentDirections.navigateToEditDebtFromDebt(id);
-        navController.navigate(action);
-    }
-
-
-
 }

@@ -91,8 +91,5 @@ public class EditDebtFragment extends EditDataBaseFragment{
             else database.updateDebtCat(id, newName, newMonthLeft, newAmount);
 
         });
-        cancel.setOnClickListener(v -> {
-            //Cancel
-        });
     }
 }
