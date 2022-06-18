@@ -13,7 +13,9 @@ import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.ui.subZeroBudget.SubZeroBudgetAdapter;
 
 import java.util.List;
-
+/**
+ * adapter for the zero budget
+ */
 public class ZeroBudgetAdapter extends RecyclerView.Adapter<ZeroBudgetAdapter.ViewHolder> {
 
     private List<SubCategories> subCategoriesList;
@@ -69,6 +71,3 @@ public class ZeroBudgetAdapter extends RecyclerView.Adapter<ZeroBudgetAdapter.Vi
     }
 
 }
-
-
-

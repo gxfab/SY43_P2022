@@ -16,10 +16,20 @@ import com.sucelloztm.sucelloz.databinding.HomeFragmentBinding;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSavingsDialogFragment;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSpendingDialogFragment;
 
+/**
+ * class for the home fragment
+ */
 public class HomeFragment extends Fragment {
 
     private HomeFragmentBinding binding;
 
+    /**
+     * on create view method
+     * @param inflater inflater
+     * @param container container
+     * @param savedInstanceState saved instance state
+     * @return view
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -28,6 +38,11 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * on view created method
+     * @param view view
+     * @param savedInstanceState saved instance state
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
@@ -50,6 +65,10 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * on destroy view method
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

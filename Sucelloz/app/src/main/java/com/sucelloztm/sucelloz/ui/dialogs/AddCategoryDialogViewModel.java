@@ -17,12 +17,20 @@ public class AddCategoryDialogViewModel extends AndroidViewModel {
     private CategoriesRepository categoriesRepository;
     private ExecutorService executor;
 
+    /**
+     * custom constructor
+     * @param application application
+     */
     public AddCategoryDialogViewModel(@NonNull Application application) {
         super(application);
         this.categoriesRepository= new CategoriesRepository(application);
         executor = Executors.newSingleThreadExecutor();
     }
 
+    /**
+     * invokes the query to insert a category
+     * @param category category
+     */
     public void insert(Categories category){
         executor.execute(new Runnable() {
             @Override

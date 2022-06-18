@@ -24,10 +24,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * class to add a stable dialog to a fragment
+ */
 public class AddStableDialogFragment extends DialogFragment {
     private AddStableDialogViewModel addStableDialogViewModel;
     private AddStableDialogFragmentBinding binding;
 
+    /**
+     * on create dialog method
+     * @param savedInstanceState saved instance state
+     * @return dialog
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

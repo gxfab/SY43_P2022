@@ -19,9 +19,17 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * class to add a savings dialog to a fragment
+ */
 public class AddSavingsDialogFragment extends DialogFragment {
     private AddSavingsDialogViewModel addSavingsDialogViewModel;
 
+    /**
+     * on create dialog method
+     * @param savedInstanceState saved instance state
+     * @return dialog
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){

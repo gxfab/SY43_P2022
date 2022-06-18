@@ -14,6 +14,9 @@ import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 
 
+/**
+ * view model for the zero budget
+ */
 public class ZeroBudgetViewModel extends AndroidViewModel {
 
     private SubCategoriesRepository subCategoriesRepository;
@@ -27,6 +30,10 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
     private LiveData<Integer> stableIncomes;
     private LiveData<Integer> savings;
 
+    /**
+     * custom constructor
+     * @param application application
+     */
     public ZeroBudgetViewModel(Application application) {
         super(application);
         this.subCategoriesRepository = new SubCategoriesRepository(application);
@@ -36,10 +43,19 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
 
     }
 
+    /**
+     * setter
+     * @param subCategory subcategory
+     */
     public void setCurrentSubCategory(SubCategories subCategory){
         SubCategoriesRepository.setCurrentSubCategory(subCategory);
     }
 
+    /**
+     * invokes the query to get a subcategory thanks to its name
+     * @param name name
+     * @return subcategory
+     */
     public SubCategories getSubCategoryByName(String name){
         return this.subCategoriesRepository.getSubCategoryWithName(name);
     }
@@ -51,24 +67,43 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
         textView.setTextColor(color);
     }
 
+    /**
+     * getter
+     * @return livedata of integers
+     */
     public LiveData<Integer> getInfrequentExpenses(){
         if(this.infrequentExpenses==null){
             this.infrequentExpenses = this.infrequentExpensesAndIncomeRepository.getSumOfInfrequentExpenses();
         }
         return this.infrequentExpenses;
     }
+
+    /**
+     * getter
+     * @return livedata of integers
+     */
     public LiveData<Integer> getInfrequentIncomes(){
         if(this.infrequentIncomes==null){
             this.infrequentIncomes = this.infrequentExpensesAndIncomeRepository.getSumOfInfrequentIncomes();
         }
         return this.infrequentIncomes;
     }
+
+    /**
+     * getter
+     * @return livedata of integers
+     */
     public LiveData<Integer> getStableExpenses(){
         if(this.stableExpenses==null){
             this.stableExpenses=this.stableExpensesAndIncomeRepository.getSumOfStableExpenses();
         }
         return this.stableExpenses;
     }
+
+    /**
+     * getter
+     * @return livedata of integers
+     */
     public LiveData<Integer> getStableIncomes(){
         if(this.stableIncomes==null){
             this.stableIncomes=this.stableExpensesAndIncomeRepository.getSumOfStableIncomes();
