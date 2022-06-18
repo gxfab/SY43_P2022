@@ -22,7 +22,7 @@
         <EditText
             android:id="@+id/editTextSaveName"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textViewSaveName"
             android:layout_marginStart="170dp"
             android:layout_marginBottom="-10dp"
@@ -35,33 +35,25 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewSaveName"
             android:layout_alignTop="@+id/textViewSaveName"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:text="@string/save_cat_goal" />
 
         <EditText
             android:id="@+id/editTextSaveGoal"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/editTextSaveName"
             android:layout_alignBottom="@+id/textViewSaveGoal"
             android:layout_marginBottom="-10dp"
             android:ems="10"
             android:inputType="number|numberDecimal" />
 
-
-        <ImageView
-            android:id="@+id/imageDummy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignBottom="@+id/editTextSaveGoal"
-            android:layout_marginBottom="-80dp" />
-
         <Button
             android:id="@+id/buttonSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignBottom="@+id/editTextSaveGoal"
+            android:layout_marginBottom="-80dp"
             android:layout_centerHorizontal="true"
             android:onClick="run"
             android:text="@string/save"
