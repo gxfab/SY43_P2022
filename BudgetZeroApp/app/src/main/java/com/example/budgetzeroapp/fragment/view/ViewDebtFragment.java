@@ -1,5 +1,7 @@
 package com.example.budgetzeroapp.fragment.view;
 
+import static java.lang.Math.abs;
+
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -82,7 +84,7 @@ public class ViewDebtFragment extends DataBaseFragment {
             nameVal = debt.getString(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_NAME));
             monthLeftVal=debt.getInt(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_MONTH_LEFT));
             totalAmountVal=debt.getFloat(debt.getColumnIndexOrThrow(DBHelper.DEBT_COL_TOTAL_AMOUNT));
-            refundedAmountVal = database.getSumFromCat(id, DBHelper.TYPE_DEBT);
+            refundedAmountVal = abs(database.getSumFromCat(id, DBHelper.TYPE_DEBT));
             expVal = ExpenseItem.ExpensesToList(database.getExpensesFromCat(id, DBHelper.TYPE_DEBT));
         }
     }
@@ -95,7 +97,6 @@ public class ViewDebtFragment extends DataBaseFragment {
         ClickableListManager.clickableExpenseList(exp, expVal);
         if (expVal.isEmpty()){
             listTextView.setVisibility(View.GONE);
-            //exp.setVisibility(View.GONE);
         } else if(exp.getVisibility()==View.GONE) {
             listTextView.setVisibility(View.VISIBLE);
             exp.setVisibility(View.VISIBLE);

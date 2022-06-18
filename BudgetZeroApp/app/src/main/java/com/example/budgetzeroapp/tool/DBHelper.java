@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.budgetzeroapp.AppContext;
+import com.example.budgetzeroapp.fragment.DataBaseFragment;
 
 
 @SuppressWarnings({"UnusedDeclaration"})
@@ -157,7 +158,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         "('Weekly shopping', -70, 1, 7, 9, 6, 2022,0)," +
                         "('Weekly shopping', -57, 1, 7, 16, 6, 2022,0)," +
                         "('Electricity',-307, 1, 5, 1, 6, 2022,0)," +
-                        "('Loan',-450,1,5,5,6,2022,1)," +
+                        "('Loan',-450,1,5,27,5,2022,1)," +
                         "('Netflix',-20,1,3,5,6,2022,1);"
         );
         //Example incomes
@@ -218,7 +219,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 contentValues.put(EXP_COL_ID_EXP, catID);
         }
         contentValues.put(EXP_COL_TYPE, type);
-
         contentValues.put(EXP_COL_ID_DEBT, catID);
         contentValues.put(EXP_COL_ID_INC, catID);
         contentValues.put(EXP_COL_ID_SAV, catID);
@@ -373,7 +373,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public float getSumFromCat(int idCat, int type){
         Cursor res = getData("select sum("+EXP_COL_AMOUNT+") as "+REQ_SUM+
                 " from "+EXP_TABLE_NAME+
-                " where " +getCatColName(type)+ " = "+idCat);
+                " where " +EXP_COL_TYPE + " = "+type+ " and "+
+                getCatColName(type)+ " = "+idCat);
         res.moveToFirst();
         return res.getFloat(res.getColumnIndexOrThrow(REQ_SUM));
     }
@@ -567,8 +568,9 @@ public class DBHelper extends SQLiteOpenHelper {
         else operator = " <> ";
         return getData("select * from "+EXP_TABLE_NAME+
                 " where "+EXP_COL_IS_STABLE+"= 1 and "+
-                EXP_COL_TYPE +operator+TYPE_INC+
-                " and " +isLastMonthReq());
+                EXP_COL_TYPE +operator+TYPE_INC+ " and " +
+                isLastMonthReq()
+        );
     }
 
     public String isLastMonthReq(){
@@ -586,9 +588,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 " and "+EXP_COL_YEAR+" = "+year+"))";
     }
 
-    public Cursor getDateExpenses(int year, int month, int day) {
+    public Cursor getDateStableExpenses(int year, int month, int day) {
         return getData("select * from " + EXP_TABLE_NAME +
-                " where " + EXP_COL_DAY + " = " + day +
+                " where "+ EXP_COL_IS_STABLE + " = 1 "+
+                " and "+ EXP_COL_DAY + " = " + day +
                 " and " + EXP_COL_MONTH + " = " + month +
                 " and " + EXP_COL_YEAR + " = " + year);
     }

@@ -37,7 +37,6 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
         /**Getting passed id**/
         id = EditSavingCatFragmentArgs.fromBundle(getArguments()).getIdSavingCat();
 
-
         save = view.findViewById(R.id.buttonSave);
         name = view.findViewById(R.id.editTextSaveName);
         goal = view.findViewById(R.id.editTextSaveGoal);

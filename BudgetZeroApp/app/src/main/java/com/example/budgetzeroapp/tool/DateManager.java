@@ -28,11 +28,11 @@ public class DateManager {
     }
 
     public static int previousMonthYear(int year, int month){
-        if(month==12) return year;
-        else return year-1;
+        if(month==1) return year-1;
+        else return year;
     }
 
-    public static int previousMonth(int month){return (month+1)%12;}
+    public static int previousMonth(int month){return 1+(month-2)%12;}
 
     public static boolean isLastMonthDay(int year, int month, int day){
         Calendar cal = Calendar.getInstance();

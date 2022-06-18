@@ -1,49 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/light_gray"
-    tools:context=".fragment.cashflow.CashFlowStableFragment">
-
-        <LinearLayout
+    tools:context=".fragment.cashflow.CashFlowStableFragment" >
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/light_gray">
-            <TextView
-                android:id="@+id/expenses_label"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/expenses"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+            tools:ignore="MissingConstraints">
 
-            <ListView
-                android:id="@+id/expenses_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="98dp">
-            </ListView>
 
-            <TextView
-                android:id="@+id/earnings_label"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/earnings"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/expenses_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/expenses"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
 
-            <ListView
-                android:id="@+id/earnings_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="98dp">
-            </ListView>
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/imageDummy1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/expenses_label"
+            android:layout_alignBottom="@+id/expenses_label"
+            android:layout_marginBottom="-10dp" />
 
-</FrameLayout>
+        <ListView
+            android:id="@+id/expenses_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/imageDummy1"
+            android:clickable="true"
+            android:orientation="vertical">
+
+        </ListView>
+
+        <TextView
+            android:id="@+id/earnings_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/expenses_label"
+            android:layout_alignBottom="@+id/expenses_list"
+            android:layout_marginBottom="-50dp"
+            android:text="@string/earnings"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/imageDummy2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/earnings_label"
+            android:layout_alignBottom="@+id/earnings_label"
+            android:layout_marginBottom="-10dp" />
+
+        <ListView
+            android:id="@+id/earnings_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/imageDummy2"
+            android:orientation="vertical">
+        </ListView>
+        </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

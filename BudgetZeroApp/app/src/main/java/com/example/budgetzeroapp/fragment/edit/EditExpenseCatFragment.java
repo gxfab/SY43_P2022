@@ -113,7 +113,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
             boolean isSub = sub.isChecked();
             int idCat = ((ListItem) parentCat.getSelectedItem()).getId();
 
-            if(id == 0) database.insertExpenseCat(newName,newBudget,isSub,idCat);
+            if(id == 0) id = database.insertExpenseCat(newName,newBudget,isSub,idCat);
             else database.updateExpenseCat(id, newName,newBudget,isSub, idCat);
 
             NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);

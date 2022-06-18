@@ -1,5 +1,7 @@
 package com.example.budgetzeroapp.tool.item;
 
+import static java.lang.Math.abs;
+
 import android.database.Cursor;
 
 import androidx.navigation.NavController;
@@ -29,7 +31,7 @@ public class SavingsItem extends ListItem{
 
     public float getObjective() { return objectiveAmount; }
 
-    public int getProgress(){ return (int) ((-reachedAmount)/objectiveAmount);}
+    public int getProgress(){ return (int) abs(100*(reachedAmount)/objectiveAmount);}
 
     public static ArrayList<SavingsItem> initSavingsList(boolean type){
         Cursor cat;

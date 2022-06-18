@@ -34,7 +34,6 @@ public class EditDebtFragment extends EditDataBaseFragment{
 
         /**Getting passed id**/
         id = EditDebtFragmentArgs.fromBundle(getArguments()).getIdDebtEdit();
-        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
         save = view.findViewById(R.id.buttonSave);
         name = view.findViewById(R.id.editTextDebtName);

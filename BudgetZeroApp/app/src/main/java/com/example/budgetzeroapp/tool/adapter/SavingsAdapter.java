@@ -1,5 +1,7 @@
 package com.example.budgetzeroapp.tool.adapter;
 
+import static java.lang.Math.abs;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

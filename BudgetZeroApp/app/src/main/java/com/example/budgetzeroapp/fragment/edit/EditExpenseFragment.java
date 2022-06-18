@@ -1,5 +1,7 @@
 package com.example.budgetzeroapp.fragment.edit;
 
+import static java.lang.Math.abs;
+
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.budgetzeroapp.fragment.CashFlowFragmentDirections;
+import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
@@ -123,7 +126,7 @@ public class EditExpenseFragment extends EditDataBaseFragment {
                 it++;
             }
 
-            defaultAmount = exp.getFloat(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_AMOUNT));
+            defaultAmount = abs(exp.getFloat(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_AMOUNT)));
             defaultStable = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_IS_STABLE));
 
         }
@@ -132,12 +135,15 @@ public class EditExpenseFragment extends EditDataBaseFragment {
     @Override
     public void setDefaultValues() {
         name.setText(defaultName);
-        date.init( year, month , day, new DatePicker.OnDateChangedListener() {
+        newYear = year;
+        newMonth = month;
+        newDay = day;
+        date.init( year, month-1, day, new DatePicker.OnDateChangedListener() {
             @Override
-            public void onDateChanged(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                newYear = year;
-                newDay = day;
-                newMonth = month;
+            public void onDateChanged(DatePicker datePicker, int y, int m, int dayOfMonth) {
+                newYear = y;
+                newDay = dayOfMonth;
+                newMonth = m+1;
             }
         });
         amount.setText(String.valueOf(defaultAmount));
@@ -167,7 +173,6 @@ public class EditExpenseFragment extends EditDataBaseFragment {
             int idCat = ((ListItem) category.getSelectedItem()).getId();
 
             boolean isStable = stable.isChecked();
-
             if(id == 0) id = database.insertExpense(newAmount, newName, type, idCat, isStable, newDay, newMonth, newYear);
             else database.updateExpense(id, newAmount, newName, type, idCat, isStable, newDay, newMonth, newYear);
 

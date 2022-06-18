@@ -19,6 +19,7 @@ import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.DataBaseFragment;
 import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.tool.DBHelper;
+import com.example.budgetzeroapp.tool.DateManager;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -31,7 +32,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
     private String nameVal;
     private Calendar dateVal;
     private float amountVal;
-    private int stableVal, typeVal;
+    private int stableVal, typeVal, day, month, year;
     private Button edit;
 
     public ViewExpenseFragment(){ super(); }
@@ -78,12 +79,11 @@ public class ViewExpenseFragment extends DataBaseFragment {
             nameVal = exp.getString(exp.getColumnIndexOrThrow(DBHelper.EXP_CAT_COL_NAME));
             amountVal = exp.getFloat(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_AMOUNT));
             dateVal = Calendar.getInstance();
-            dateVal.set(Calendar.DATE, exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_DAY)));
-            dateVal.set(Calendar.MONTH, exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_MONTH)));
-            dateVal.set(Calendar.YEAR, exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_YEAR)));
+            day = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_DAY));
+            month = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_MONTH));
+            year = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_YEAR));
             typeVal = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_TYPE));
             stableVal = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_IS_STABLE));
-
         }
     }
 
@@ -91,9 +91,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
     public void setValues() {
         name.setText(nameVal);
         amount.setText(String.valueOf(amountVal)+" €");
-        Date dateString = dateVal.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-        date.setText(dateFormat.format(dateString));
+        date.setText(DateManager.intDateToString(DateManager.dateToInt(year, month, day)));
         switch(typeVal) {
             case 1:
                 type.setText("Expense");

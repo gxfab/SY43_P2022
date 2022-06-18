@@ -22,6 +22,7 @@ import com.example.budgetzeroapp.tool.adapter.SavingsAdapter;
 import com.example.budgetzeroapp.tool.item.ExpenseItem;
 import com.example.budgetzeroapp.tool.item.SavingsItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CashFlowStableFragment extends DataBaseFragment {
@@ -45,8 +46,9 @@ public class CashFlowStableFragment extends DataBaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cash_flow_stable, container, false);
         expText = view.findViewById(R.id.expenses_label);
-        earnText = view.findViewById(R.id.earnings_label);
         expList = view.findViewById(R.id.expenses_list);
+
+        earnText = view.findViewById(R.id.earnings_label);
         earnList = view.findViewById(R.id.earnings_list);
 
 
@@ -64,13 +66,13 @@ public class CashFlowStableFragment extends DataBaseFragment {
         ClickableListManager.clickableExpenseList(expList, exp);
         ClickableListManager.clickableExpenseList(earnList, earn);
 
-        ExpenseAdapter expenseAdapter = new ExpenseAdapter(earn);
-        earnList.setAdapter(expenseAdapter);
-        expList.setAdapter(expenseAdapter);
 
-        if(exp.isEmpty()) expText.setText("");
-        if(earn.isEmpty()) earnText.setText("");
+        if(exp.isEmpty()) expText.setVisibility(View.GONE);
+        else expText.setVisibility(View.VISIBLE);
+        if(earn.isEmpty()) earnText.setVisibility(View.GONE);
+        else earnText.setVisibility(View.VISIBLE);
         if(exp.isEmpty() && earn.isEmpty()) {
+            expText.setVisibility(View.VISIBLE);
             CharSequence text = "No stable expenses";
             expText.setText(text);
         }

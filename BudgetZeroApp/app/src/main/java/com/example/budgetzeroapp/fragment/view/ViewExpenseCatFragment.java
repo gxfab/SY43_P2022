@@ -42,7 +42,6 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
     private Button edit;
 
     public ViewExpenseCatFragment(){ super(); }
-    public ViewExpenseCatFragment(int id){ super(id); }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -76,10 +75,8 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         ClickableListManager.clickableExpenseList(expList, expVal);
         if (expVal.isEmpty()){
             expListTextView.setVisibility(View.GONE);
-            //expList.setVisibility(View.GONE);
         } else if(expList.getVisibility()==View.GONE) {
-            expListTextView.setVisibility(View.GONE);
-            expList.setVisibility(View.VISIBLE);
+            expListTextView.setVisibility(View.VISIBLE);
         }
     }
 
