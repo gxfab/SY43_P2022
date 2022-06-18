@@ -84,12 +84,4 @@ public class CashFlowFragment extends DataBaseFragment {
         viewPager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewPager);
     }
-
-    public static void redirectToViewExpense(int exp_id)
-    {
-        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-        NavDirections action = CashFlowFragmentDirections.navigateToViewExpenseFragmentFromCashflow(exp_id);
-        navController.navigate(action);
-    }
-
 }

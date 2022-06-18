@@ -44,7 +44,6 @@ public class EditExpenseFragment extends EditDataBaseFragment {
     private int defaultStable;
     private int type, day, month, year, newDay, newMonth, newYear, catID;
     private List<ListItem> list;
-    private NavController navController;
 
 
     public EditExpenseFragment()
@@ -55,7 +54,6 @@ public class EditExpenseFragment extends EditDataBaseFragment {
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_expense, parent, false);
-        navController = Navigation.findNavController(view);
 
         /**Getting passed id**/
         id = EditExpenseFragmentArgs.fromBundle(getArguments()).getIdExpenseEdit();
@@ -171,6 +169,8 @@ public class EditExpenseFragment extends EditDataBaseFragment {
 
             if(id == 0) id = database.insertExpense(newAmount, newName, type, idCat, isStable, newDay, newMonth, newYear);
             else database.updateExpense(id, newAmount, newName, type, idCat, isStable, newDay, newMonth, newYear);
+
+            NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
             navController.navigate(EditExpenseFragmentDirections.navigateToViewExpenseFromExpense(id));
         });
     }

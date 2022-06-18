@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.DBHelper;
 
@@ -23,14 +24,12 @@ public class EditDebtFragment extends EditDataBaseFragment{
     private int defaultMonthLeft;
     private float defaultTotalAmount;
     private EditText name, monthLeft, totalAmount;
-    private NavController navController;
 
     public EditDebtFragment(){ super(); }
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_debt, parent, false);
-        navController = Navigation.findNavController(view);
 
         /**Getting passed id**/
         id = EditDebtFragmentArgs.fromBundle(getArguments()).getIdDebtEdit();
@@ -91,8 +90,9 @@ public class EditDebtFragment extends EditDataBaseFragment{
 
             if(id == 0) id = database.insertDebtCat(newName, newMonthLeft, newAmount);
             else database.updateDebtCat(id, newName, newMonthLeft, newAmount);
-            navController.navigate(EditDebtFragmentDirections.navigateToViewDebtFromDebt(id));
 
+            NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
+            navController.navigate(EditDebtFragmentDirections.navigateToViewDebtFromDebt(id));
         });
     }
 }

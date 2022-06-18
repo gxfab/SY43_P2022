@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.item.ListItem;
@@ -25,14 +26,12 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
     private Button save;
     private String defaultName;
     private float defaultGoal;
-    private NavController navController;
 
     public EditSavingCatFragment(){ super(); }
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_saving_cat, parent, false);
-        navController = Navigation.findNavController(view);
 
         /**Getting passed id**/
         id = EditSavingCatFragmentArgs.fromBundle(getArguments()).getIdSavingCat();
@@ -84,6 +83,8 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
 
             if(id == 0) id = database.insertSavingsCat(newName,newBudget);
             else database.updateSavingsCat(id, newName,newBudget);
+
+            NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
             navController.navigate(EditSavingCatFragmentDirections.navigateToViewSavingCatSavingCat(id));
         });
     }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.adapter.SimpleListAdapter;
@@ -31,7 +32,6 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
     private String defaultName;
     private float defaultBudget;
     private int defaultSub, defaultParentCat;
-    private NavController navController;
 
     List<ListItem> list;
 
@@ -41,7 +41,6 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_expense_cat, parent, false);
-        navController = Navigation.findNavController(view);
 
         /**Getting passed id**/
         id = EditExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCatEdit();
@@ -116,6 +115,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
             if(id == 0) database.insertExpenseCat(newName,newBudget,isSub,idCat);
             else database.updateExpenseCat(id, newName,newBudget,isSub, idCat);
 
+            NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
             navController.navigate(EditExpenseCatFragmentDirections.actionEditExpenseCatFragmentToViewExpenseCatFragment(id));
         });
     }
