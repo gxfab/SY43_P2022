@@ -1,4 +1,4 @@
-package com.example.bokudarjan
+package com.example.bokudarjan.dialog
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -14,6 +14,7 @@ import android.widget.Switch
 import android.widget.Toast
 import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
+import com.example.bokudarjan.R
 import com.example.bokudarjan.expense.Expense
 import com.example.bokudarjan.expense.ExpenseViewModel
 

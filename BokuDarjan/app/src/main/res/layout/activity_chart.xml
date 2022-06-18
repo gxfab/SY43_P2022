@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChartActivity">
+    tools:context=".chart.ChartActivity">
 
     <androidx.fragment.app.FragmentContainerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.bokudarjan.ChartFragment" />
+        android:name="com.example.bokudarjan.chart.ChartFragment" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.bokudarjan.category.ListAdapterCategory
-import com.example.bokudarjan.envelope.EnvelopeViewModel
+import com.example.bokudarjan.dialog.AddSavingDialog
 import com.example.bokudarjan.saving.ListAdapterSaving
 import com.example.bokudarjan.saving.Saving
 import com.example.bokudarjan.saving.SavingViewModel

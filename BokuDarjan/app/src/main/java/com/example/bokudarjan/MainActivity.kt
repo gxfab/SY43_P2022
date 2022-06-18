@@ -1,7 +1,6 @@
 package com.example.bokudarjan
 
 import android.annotation.SuppressLint
-import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +11,6 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
@@ -23,16 +21,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.bmonth.BMonth
 import com.example.bokudarjan.bmonth.BMonthViewModel
 import com.example.bokudarjan.bmonth.ListAdapterBMonth
-import com.example.bokudarjan.databinding.ActivityMainBinding
+import com.example.bokudarjan.chart.ChartActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.fragment_side_bar.view.*
 
 /**
- * Main activity of the app
+ * Main activity of the app.
  */
 class MainActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
@@ -51,18 +50,14 @@ class MainActivity : AppCompatActivity() {
 
         val handler = Handler();
 
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController;
 
 
         val drawer = findViewById<DrawerLayout>(R.id.my_drawer_layout);
-
         val drawerView = drawer.findViewById<NavigationView>(R.id.nav).getHeaderView(0);
         val monthRecycler = drawerView.monthRecycler
-        val monthAdapter = ListAdapterBMonth()
-        monthRecycler.adapter = monthAdapter
-        monthRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
 
 
         // Display sidebar on click
@@ -78,33 +73,15 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        // Display months
+        displayMonths(drawer, monthRecycler)
+
         // Display graph on click
         drawer.findViewById<NavigationView>(R.id.nav).menu.get(1).setOnMenuItemClickListener {
             displayChart()
             true
         }
 
-
-        var monthViewModel = ViewModelProvider(this).get(BMonthViewModel::class.java)
-
-
-
-
-        monthViewModel.readAllData.observe(this, Observer {
-            if (it.isEmpty()){
-                monthViewModel.addMonth(BMonth("Premier mois"))
-                pref.edit().putInt("month", 1).apply();
-            }
-            monthAdapter.setData(it);
-        })
-
-        // Add month on click
-        drawer.findViewById<NavigationView>(R.id.nav).menu.get(0).setOnMenuItemClickListener {
-            Toast.makeText(applicationContext, "Mois ajouté !", Toast.LENGTH_SHORT).show();
-            monthViewModel.addMonth(BMonth("new month"))
-            monthRecycler.smoothScrollToPosition(pref.getInt("month", 1) - 1)
-            true
-        }
 
 
 
@@ -145,6 +122,37 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ChartActivity::class.java).apply {
         }
         startActivity(intent)
+    }
+
+    /**
+     * Display the list of months on the sidebar
+     */
+    fun displayMonths(drawer : DrawerLayout, monthRecycler : RecyclerView){
+
+        // Display months
+        val pref = getSharedPreferences("pref" ,Context.MODE_PRIVATE)
+        val monthAdapter = ListAdapterBMonth()
+        monthRecycler.adapter = monthAdapter
+        monthRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        var monthViewModel = ViewModelProvider(this).get(BMonthViewModel::class.java)
+
+
+        monthViewModel.readAllData.observe(this, Observer {
+            if (it.isEmpty()){
+                monthViewModel.addMonth(BMonth("Premier mois"))
+                pref.edit().putInt("month", 1).apply();
+            }
+            monthAdapter.setData(it);
+        })
+
+        // Add month on click
+        drawer.findViewById<NavigationView>(R.id.nav).menu.get(0).setOnMenuItemClickListener {
+            Toast.makeText(applicationContext, "Mois ajouté !", Toast.LENGTH_SHORT).show();
+            monthViewModel.addMonth(BMonth("new month"))
+            monthRecycler.smoothScrollToPosition(pref.getInt("month", 1) - 1)
+            true
+        }
+
     }
 
 

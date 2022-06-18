@@ -1,4 +1,4 @@
-package com.example.bokudarjan
+package com.example.bokudarjan.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -6,10 +6,9 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.EditText
-import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.bokudarjan.expense.ExpenseViewModel
+import com.example.bokudarjan.R
 import com.example.bokudarjan.saving.Saving
 import com.example.bokudarjan.saving.SavingViewModel
 

@@ -30,8 +30,6 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A [Fragment] subclass, used to display the Expenses section on the main activity of the app.
  * It contains a Recyclerview to display monthly expenses as well as a button to add one.
- * Use the [ExpensesFragment.newInstance] factory method to
- * create an instance of this fragment.
  */
 class ExpensesFragment : Fragment() {
 
@@ -82,7 +80,7 @@ class ExpensesFragment : Fragment() {
 
 
 
-        // ExpenseViewModel
+        // Get expenses and categories in ViewModels
         expenseViewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
         envelopeViewModel = ViewModelProvider(this).get(EnvelopeViewModel::class.java)
 
@@ -120,7 +118,18 @@ class ExpensesFragment : Fragment() {
        })
 
 
+        //
+        setUpButtons(view)
 
+
+        return view;
+    }
+
+
+    /**
+     * Set up animation and onClickListeners for expenses buttons
+     */
+    fun setUpButtons(view : View){
         val expandBtn2 = view.findViewById<FloatingActionButton>(R.id.expandButton2);
         val catR = view.findViewById<RecyclerView>(R.id.catRecycler);
         val darken2 = view.findViewById<ImageView>(R.id.darken2);
@@ -133,31 +142,27 @@ class ExpensesFragment : Fragment() {
 
         expandBtn2.setOnClickListener {
 
-           if (catR.visibility == View.VISIBLE){
-               expandBtn2.startAnimation(rot)
-               expandBtn2.rotation = 0F;
-               catR.startAnimation(fadeOut)
-               catR.visibility = View.INVISIBLE
-               darken2.startAnimation(fadeOut)
-               darken2.visibility = View.INVISIBLE
-               catText.startAnimation(fadeOut)
-               catText.visibility = View.INVISIBLE
-           }else{
-               expandBtn2.startAnimation(rot)
-               expandBtn2.rotation = 45F;
-               catR.startAnimation(fadeIn)
-               catR.visibility = View.VISIBLE
-               darken2.startAnimation(fadeIn)
-               darken2.visibility = View.VISIBLE
-               catText.startAnimation(fadeIn)
-               catText.visibility = View.VISIBLE
-           }
+            if (catR.visibility == View.VISIBLE){
+                expandBtn2.startAnimation(rot)
+                expandBtn2.rotation = 0F;
+                catR.startAnimation(fadeOut)
+                catR.visibility = View.INVISIBLE
+                darken2.startAnimation(fadeOut)
+                darken2.visibility = View.INVISIBLE
+                catText.startAnimation(fadeOut)
+                catText.visibility = View.INVISIBLE
+            }else{
+                expandBtn2.startAnimation(rot)
+                expandBtn2.rotation = 45F;
+                catR.startAnimation(fadeIn)
+                catR.visibility = View.VISIBLE
+                darken2.startAnimation(fadeIn)
+                darken2.visibility = View.VISIBLE
+                catText.startAnimation(fadeIn)
+                catText.visibility = View.VISIBLE
+            }
         }
 
-
-
-        return view;
     }
-
 
 }

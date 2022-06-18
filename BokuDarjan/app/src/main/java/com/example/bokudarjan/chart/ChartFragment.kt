@@ -1,4 +1,4 @@
-package com.example.bokudarjan
+package com.example.bokudarjan.chart
 
 
 import android.content.Context
@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.bokudarjan.R
 import com.example.bokudarjan.bmonth.BMonthViewModel
 import com.example.bokudarjan.envelope.EnvelopeViewModel
 import com.example.bokudarjan.expense.ExpenseViewModel
@@ -19,8 +20,6 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import kotlinx.coroutines.awaitAll
-import java.lang.Thread.sleep
 
 
 class ChartFragment : Fragment() {
@@ -38,6 +37,16 @@ class ChartFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_chart, container, false)
 
+        getDataForChart() // Also call the displayGraph function
+
+        return view
+    }
+
+    /**
+     * Get data through observables
+     * Call function generateGraph to display them
+     */
+    fun getDataForChart(){
         expenseViewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
         envelopeViewModel = ViewModelProvider(this).get(EnvelopeViewModel::class.java)
         bMonthViewModel = ViewModelProvider(this).get(BMonthViewModel::class.java)
@@ -45,11 +54,8 @@ class ChartFragment : Fragment() {
         var pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
         val month = pref.getInt("month", -1)
 
-
-
         var sumAmount : ArrayList<Float> = ArrayList<Float>() // List of sum per month
         val entries: MutableList<BarEntry> = ArrayList() // Chart entries
-        var sharedMonthIdCounter : Int = 1 // Usefull to order observable
 
         //Add sum to barchart and display barchart
         bMonthViewModel.readAllData.observe(viewLifecycleOwner, Observer {
@@ -67,7 +73,6 @@ class ChartFragment : Fragment() {
 
                     // If we are at the last month, generate graph
                     if(month.id == lastMonthId){
-
                         val set = BarDataSet(entries, "Somme des envelopes")
                         generateGraph(set)
 
@@ -77,15 +82,10 @@ class ChartFragment : Fragment() {
 
             }
         })
-
-
-        Log.d("ChartFragment", "exiting chart fragment")
-
-        return view
     }
-
-
-    // Generate graph with the provided BarDataSet
+    /**
+     *      Generate graph with the provided BarDataSet
+     */
     private fun generateGraph(barDataSet: BarDataSet) {
 
         val chart = view?.findViewById(R.id.chart) as BarChart

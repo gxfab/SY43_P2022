@@ -5,18 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bokudarjan.EditSavingDialog
+import com.example.bokudarjan.dialog.EditSavingDialog
 import com.example.bokudarjan.R
-import com.example.bokudarjan.category.Category
-import com.example.bokudarjan.category.ListAdapterCategory
-import com.example.bokudarjan.envelope.EnvelopeViewModel
 import kotlinx.android.synthetic.main.saving_card.view.*
 
 /**
  * first ListAdapter of the [Saving], allowing compatibility with recyclerViews.
+ * Display savings in savings fragment.
  */
 class ListAdapterSaving : RecyclerView.Adapter<ListAdapterSaving.MyViewHolder>() {
 
@@ -24,14 +20,14 @@ class ListAdapterSaving : RecyclerView.Adapter<ListAdapterSaving.MyViewHolder>()
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
     /**
-     * Inflate the saving_card layout in the recyclerView and returns the view
+     * Inflate the saving_card layout in the recyclerView and returns the view.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(parent.context).inflate( R.layout.saving_card , parent, false))
     }
 
     /**
-     * Setup the content of the previously inflated view to reflect an entry in the list
+     * Setup the content of the previously inflated view to reflect an entry in the list.
      */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 

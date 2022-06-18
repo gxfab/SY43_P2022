@@ -26,10 +26,16 @@ class ExpenseRepository(private val expenseDao: ExpenseDAO) {
         return expenseDao.getSumOfExpenseByCategory(name, month)
     }
 
+    /**
+     * The positive expenses are the "Bénéfices"
+     */
     fun getSumOfPositiveExpenses(month: Int):LiveData<Float>{
         return expenseDao.getSumOfPositiveExpenses(month)
     }
 
+    /**
+     * The negative expenses are all the others expenses
+     */
     fun getSumOfNegativeExpenses(month: Int):LiveData<Float>{
         return expenseDao.getSumOfNegativeExpenses(month)
     }

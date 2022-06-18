@@ -1,8 +1,9 @@
-package com.example.bokudarjan
+package com.example.bokudarjan.chart
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.bokudarjan.R
 
 class ChartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -10,16 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bokudarjan.AddExpenseDialog
+import com.example.bokudarjan.dialog.AddExpenseDialog
 import com.example.bokudarjan.R
-import com.example.bokudarjan.database.BokudarjanDatabase
 import com.example.bokudarjan.envelope.EnvelopeViewModel
-import com.example.bokudarjan.expense.ExpenseRepository
 import com.example.bokudarjan.expense.ExpenseViewModel
-import com.example.bokudarjan.MonthFragment
-import kotlinx.android.synthetic.main.envelope_category_card.view.*
 import kotlinx.android.synthetic.main.expense_category.view.*
-import kotlinx.android.synthetic.main.fragment_expenses.view.*
 
 /**
  * second ListAdapter of the [Category], allowing compatibility with recyclerViews.
@@ -43,6 +38,7 @@ class ListAdapterCategory2 : RecyclerView.Adapter<ListAdapterCategory2.MyViewHol
 
     /**
      * Setup the content of the previously inflated view to reflect an entry in the list
+     * Display categories when clicking on + button in planification fragment
      */
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

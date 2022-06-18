@@ -1,4 +1,4 @@
-package com.example.bokudarjan
+package com.example.bokudarjan.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.*
 import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
+import com.example.bokudarjan.R
 import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.category.CategoryViewModel
 import vadiole.colorpicker.ColorModel

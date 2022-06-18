@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.envelope_category_card.view.*
 
 /**
  * first ListAdapter of the [Category], allowing compatibility with recyclerViews.
+ * Display categories in expenses fragment
  */
 class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolder>() {
     private var categoryList = emptyList<Category>()

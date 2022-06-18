@@ -31,6 +31,7 @@ import kotlinx.android.synthetic.main.fragment_month.view.*
 
 /**
  * ListAdapter of the [BMonth], allowing compatibility with recyclerViews.
+ * Display months horizontally in the sidenav
  */
 class ListAdapterBMonth: RecyclerView.Adapter<ListAdapterBMonth.MyViewHolder>() {
 

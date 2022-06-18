@@ -11,15 +11,15 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.distinctUntilChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.category.CategoryViewModel
 import com.example.bokudarjan.category.ListAdapterCategory
+import com.example.bokudarjan.dialog.AddCategoryDialog
+import com.example.bokudarjan.dialog.AddEnvelopeDialog
 import com.example.bokudarjan.envelope.EnvelopeViewModel
 import com.example.bokudarjan.expense.ExpenseViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,9 +36,7 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A [Fragment] subclass, used to display the planification section on the main activity of the app.
- * It contains a Recyclerview to display categories and enveloppes conatined within it as well as a button to add categories or enveloppes.
- * Use the [ExpensesFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * It contains a Recyclerview to display categories and envelopes contained within it as well as a button to add categories or envelopes.
  */
 class planificationFragment : Fragment() {
 
@@ -66,6 +64,9 @@ class planificationFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_planification, container, false)
 
+        // Get month current value
+        var pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val month = pref.getInt("month", -1)
 
         // RecyclerView for category
         val categoryAdapter = ListAdapterCategory()
@@ -73,6 +74,7 @@ class planificationFragment : Fragment() {
         categoryRecyclerView.tag = 1;
         categoryRecyclerView.adapter = categoryAdapter
         categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
 
 
         //Display list of category with list of envelopes inside it
@@ -83,9 +85,8 @@ class planificationFragment : Fragment() {
         })
 
 
-        var pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
-        val month = pref.getInt("month", -1)
-
+        //
+        setUpButtons(view)
 
         //Display sum of envelopes on the bottom of the screen
         envelopeViewModel.getSumOfEnvelopes(month).observe(viewLifecycleOwner, Observer { sumOfEnvelopes ->
@@ -96,6 +97,14 @@ class planificationFragment : Fragment() {
             }
         })
 
+        return view;
+    }
+
+
+    /**
+     * Set up animation and onClickListeners for planification buttons.
+     */
+    fun setUpButtons(view : View){
 
         //== Display and manage small buttons on bottom right
         //Views
@@ -159,8 +168,6 @@ class planificationFragment : Fragment() {
                 lbl2.visibility = View.VISIBLE
             }
         }
-
-        return view;
     }
 
 }
