@@ -42,6 +42,9 @@ class AddCategoryDialog() : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+    /**
+     * Ceci est un test !
+     */
     override fun onStart() {
         val res = super.onStart()
         (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4CAF50"))
