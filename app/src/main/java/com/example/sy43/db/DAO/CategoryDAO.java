@@ -10,7 +10,6 @@ import androidx.room.Update;
 import com.example.sy43.db.entity.Categorydb;
 import com.google.common.util.concurrent.ListenableFuture;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

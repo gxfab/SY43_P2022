@@ -7,8 +7,9 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+/**
+ * Table contenant toutes les dépenses faites par l'utilisateur depuis le début, ainsi que la date de ces dépenses, leur montant et leurs catégories
+ */
 
 @Entity(tableName = "transaction",
         indices = {@Index(value = {"TransactionID"})},

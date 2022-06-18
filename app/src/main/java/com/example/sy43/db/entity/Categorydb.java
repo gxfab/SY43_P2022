@@ -5,6 +5,11 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+
+/**
+ *Table les catégories leurs valeurs maximal voulu, leurs valeurs actuel, la date d'expiration, et le booleen permettant de savoir is c'ets une catégorie ou un objectif
+ * les deux sont sur la meme table car ils partagent de nombreux trait en commum et que cela était plus simple d'utilisé un booléen plutot que de  recreer une table
+ */
 @Entity(tableName = "Categorydb", indices =
 {@Index(value = {"CatName"},unique=true)})
 

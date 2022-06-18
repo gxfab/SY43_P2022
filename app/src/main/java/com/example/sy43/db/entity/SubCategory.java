@@ -6,6 +6,10 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+
+/**
+ *Table les sous-catégories leurs valeurs maximal voulu, leurs valeurs actuel et la catégorie à laquelle elle appartient
+ */
 @Entity(tableName = "SubCategory",indices ={
 @Index(value = {"SubCatID"}, unique = true)},
 foreignKeys ={@ForeignKey(entity = Categorydb.class, parentColumns ="CatID", childColumns = "Category",onDelete = ForeignKey.CASCADE)})

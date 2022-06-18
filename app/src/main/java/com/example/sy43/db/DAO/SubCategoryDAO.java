@@ -5,8 +5,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-
-import com.example.sy43.db.entity.Categorydb;
 import com.example.sy43.db.entity.SubCategory;
 import com.google.common.util.concurrent.ListenableFuture;
 
