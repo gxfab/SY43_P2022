@@ -30,7 +30,7 @@ import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
 import com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesAdapter;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 /**
  * fragment for the zero budget
@@ -38,7 +38,7 @@ import java.util.ArrayList;
 public class ZeroBudgetFragment extends Fragment {
 
     private ZeroBudgetFragmentBinding binding;
-    private ArrayList<SubCategories> zeroBudgetSubCategoriesList;
+    private List<SubCategories> zeroBudgetSubCategoriesList;
     private ZeroBudgetViewModel zeroBudgetViewModel;
     private TextView zeroBudgetTextView;
     private ZeroBudget zeroBudget;
@@ -62,40 +62,42 @@ public class ZeroBudgetFragment extends Fragment {
         zeroBudgetSubCategoriesList = new ArrayList<>();
         zeroBudgetTextView = binding.zeroBudgetTextView;
         String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
-                "Sinking Funds", "Extra debt", "Extra Savings"};
+                "Sinking Funds", "Extra Debt", "Extra Savings"};
         for (String name:zeroBudgetNameList
              ) {
             zeroBudgetSubCategoriesList.add(zeroBudgetViewModel.getSubCategoryByName(name));
         }
 
 
-        SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(zeroBudgetSubCategoriesList);
+        ZeroBudgetAdapter zeroBudgetAdapter = new ZeroBudgetAdapter(zeroBudgetSubCategoriesList);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
-        recyclerView.setAdapter(subCategoriesAdapter);
+        recyclerView.setAdapter(zeroBudgetAdapter);
         registerForContextMenu(recyclerView);
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
-            TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.text_view_subcategories);
+            TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.zero_budget_text_view);
             String currentZeroBudgetCategoryName = currentZeroBudgetCategoryTextView.getText().toString();
             SubCategories currentSubCategory = zeroBudgetViewModel.getSubCategoryByName(currentZeroBudgetCategoryName);
             zeroBudgetViewModel.setCurrentSubCategory(currentSubCategory);
             NavHostFragment.findNavController(ZeroBudgetFragment.this).navigate(R.id.action_navigation_zero_budget_to_navigation_sub_zero_budget);
-            //Log.d("CategoriesFragment",currentCategoryName);
         });
 
 
-        final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> { zeroBudget.setInfrequentExpenses(newInfrequentExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
+        final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> { zeroBudget.setInfrequentExpenses(newInfrequentExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
-        final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes ->{zeroBudget.setInfrequentIncomes(newInfrequentIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
+        final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes ->{zeroBudget.setInfrequentIncomes(newInfrequentIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
-        final Observer<Integer> stableExpensesObserver= newStableExpenses -> {zeroBudget.setStableExpenses(newStableExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
+        final Observer<Integer> stableExpensesObserver= newStableExpenses -> {zeroBudget.setStableExpenses(newStableExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
-        final Observer<Integer> stableIncomesObserver= newStableIncomes -> {zeroBudget.setStableIncomes(newStableIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView); Log.d("DEBUG",String.valueOf(zeroBudget.getResultBudgetZero()));};
+        final Observer<Integer> stableIncomesObserver= newStableIncomes -> {zeroBudget.setStableIncomes(newStableIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
+
+        final Observer<Integer> savingsObserver = newSavings -> {zeroBudget.setSavings(newSavings);zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
         zeroBudgetViewModel.getInfrequentExpenses().observe(getViewLifecycleOwner(),infrequentExpensesObserver);
         zeroBudgetViewModel.getInfrequentIncomes().observe(getViewLifecycleOwner(),infrequentIncomesObserver);
         zeroBudgetViewModel.getStableExpenses().observe(getViewLifecycleOwner(),stableExpensesObserver);
         zeroBudgetViewModel.getStableIncomes().observe(getViewLifecycleOwner(),stableIncomesObserver);
+        zeroBudgetViewModel.getSavings().observe(getViewLifecycleOwner(),savingsObserver);
 
 
 

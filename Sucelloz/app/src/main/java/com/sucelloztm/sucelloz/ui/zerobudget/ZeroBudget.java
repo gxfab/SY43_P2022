@@ -6,11 +6,12 @@ import android.widget.TextView;
  * class for the zero budget
  */
 public class ZeroBudget {
-    private int infrequentExpenses;
-    private int infrequentIncomes;
-    private int stableExpenses;
-    private int stableIncomes;
-    private int resultBudgetZero;
+    private int infrequentExpenses=0;
+    private int infrequentIncomes=0;
+    private int stableExpenses=0;
+    private int stableIncomes=0;
+    private int savings=0;
+    private int resultBudgetZero=0;
     public ZeroBudget() {
     }
 
@@ -62,10 +63,19 @@ public class ZeroBudget {
         this.stableIncomes = stableIncomes;
     }
 
-    /**
-     * getter
-     * @return result budget zero
-     */
+
+    public int getSavings() {
+        return savings;
+    }
+
+    public void setSavings(int savings) {
+        this.savings = savings;
+    }
+
+  /**
+   * getter
+   * @return result budget zero
+   */
     public int getResultBudgetZero() {
         return resultBudgetZero;
     }
@@ -75,7 +85,7 @@ public class ZeroBudget {
      * @param textView text
      */
     public void setResultBudgetZero(TextView textView) {
-        this.resultBudgetZero = (this.infrequentIncomes + this.stableIncomes) - (this.infrequentExpenses +this.stableExpenses);
+        this.resultBudgetZero = (this.infrequentIncomes + this.stableIncomes) - (this.infrequentExpenses +this.stableExpenses + this.savings);
         if(this.resultBudgetZero > 0){
             textView.setTextColor(-16711936);
         }else if (this.resultBudgetZero == 0){

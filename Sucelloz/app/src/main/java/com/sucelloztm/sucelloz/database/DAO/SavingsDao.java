@@ -82,4 +82,7 @@ public interface SavingsDao {
      */
     @Query("SELECT * FROM savings WHERE savings_id=:idOfSaving")
     Savings getSavingById(long idOfSaving);
+
+    @Query("SELECT CAST(total(reached_amount) AS INTEGER) FROM savings")
+    LiveData<Integer> getSumOfSavings();
 }

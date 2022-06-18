@@ -93,13 +93,13 @@ public interface InfrequentExpensesAndIncomeDao {
      * query to get the sum of all infrequent expenses
      * @return livedata of all the negatively signed infrequent elements
      */
-    @Query("SELECT SUM(amount) FROM infrequent_expenses WHERE sign LIKE '-'")
+    @Query("SELECT CAST(total(amount) AS INTEGER) FROM infrequent_expenses WHERE sign LIKE '-'")
     LiveData<Integer> getSumOfInfrequentExpenses();
 
     /**
      * query to get the sum of all infrequent incomes
      * @return livedata of all the positively signed infrequent elements
      */
-    @Query("SELECT SUM(amount) FROM infrequent_expenses WHERE sign LIKE '+'")
+    @Query("SELECT CAST(total(amount) AS INTEGER) FROM infrequent_expenses WHERE sign LIKE '+'")
     LiveData<Integer> getSumOfInfrequentIncomes();
 }
