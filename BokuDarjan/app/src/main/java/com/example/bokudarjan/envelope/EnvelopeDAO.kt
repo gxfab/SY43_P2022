@@ -5,9 +5,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.bokudarjan.category.Category
 import com.example.bokudarjan.envelope.Envelope
 
 @Dao
+/**
+ * DAO Interface of [Envelope]
+ */
 interface EnvelopeDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addEnvelope(Envelope: Envelope);

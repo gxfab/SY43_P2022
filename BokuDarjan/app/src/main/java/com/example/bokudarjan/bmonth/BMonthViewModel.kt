@@ -9,6 +9,9 @@ import com.example.bokudarjan.expense.Expense
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel class for the [BMonthDAO]
+ */
 class BMonthViewModel(application: Application): AndroidViewModel(application) {
     val dao : BMonthDAO
     val readAllData: LiveData<List<BMonth>>

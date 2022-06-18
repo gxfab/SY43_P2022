@@ -13,10 +13,16 @@ import com.example.bokudarjan.expense.ExpenseViewModel
 import com.example.bokudarjan.saving.Saving
 import com.example.bokudarjan.saving.SavingViewModel
 
+/**
+ * A simple [Dialog] allowing the user to add a new saving project
+ */
 class AddSavingDialog() : DialogFragment()  {
 
     private lateinit var savingViewModel: SavingViewModel
 
+    /**
+     * Setting up the interface
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
@@ -40,6 +46,9 @@ class AddSavingDialog() : DialogFragment()  {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+    /**
+     * Setting up the color of the button
+     */
     override fun onStart() {
         super.onStart()
         (dialog as AlertDialog)!!.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4CAF50"))

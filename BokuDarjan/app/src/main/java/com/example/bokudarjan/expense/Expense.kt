@@ -4,6 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "expense_table")
+/**
+ * A database entity class used to represent expense.
+ */
 class Expense {
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0

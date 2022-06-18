@@ -21,8 +21,9 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
- * Use the [SavingsFragment.newInstance] factory method to
+ * A [Fragment] subclass, used to display the saving section on the main activity of the app.
+ * It contains a Recyclerview to display saving projects as well as a button to add one.
+ * Use the [ExpensesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 class SavingsFragment : Fragment() {
@@ -41,6 +42,9 @@ class SavingsFragment : Fragment() {
         savingViewModel = ViewModelProvider(this).get(SavingViewModel::class.java)
     }
 
+    /**
+     * Initializing the fragment (setting up recyclerView, onClickListener, ...)
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,25 +68,5 @@ class SavingsFragment : Fragment() {
         }
 
         return view;
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SavingsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SavingsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

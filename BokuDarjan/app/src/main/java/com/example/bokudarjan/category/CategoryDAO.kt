@@ -5,9 +5,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.bokudarjan.bmonth.BMonth
 import com.example.bokudarjan.category.Category
 
 @Dao
+/**
+ * DAO Interface of [Category]
+ */
 interface CategoryDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addCategory(Category: Category);

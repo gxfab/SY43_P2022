@@ -17,11 +17,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.bokudarjan.expense.Expense
 import com.example.bokudarjan.expense.ExpenseViewModel
 
+/**
+ * A simple [Dialog] allowing the user to add a new expense
+ */
 class AddExpenseDialog(cat:String) : DialogFragment() {
 
     private lateinit var expenseViewModel: ExpenseViewModel
     var category : String = cat
 
+    /**
+     * Setting up the interface
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
@@ -45,6 +51,9 @@ class AddExpenseDialog(cat:String) : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+    /**
+     * Setting up the color of the button and the spinning number selector
+     */
     override fun onStart() {
         val res = super.onStart()
         val addExpenseDay = this.dialog!!.findViewById<NumberPicker>(R.id.addExpenseDay);

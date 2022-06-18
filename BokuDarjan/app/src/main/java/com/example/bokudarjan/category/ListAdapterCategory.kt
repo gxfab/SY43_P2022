@@ -13,17 +13,23 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bokudarjan.R
+import com.example.bokudarjan.bmonth.BMonth
 import com.example.bokudarjan.envelope.EnvelopeViewModel
 import kotlinx.android.synthetic.main.envelope_category_card.view.*
 
 
-//Display category and sum of envelope associated
+/**
+ * first ListAdapter of the [Category], allowing compatibility with recyclerViews.
+ */
 class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolder>() {
     private var categoryList = emptyList<Category>()
     private lateinit var envelopeViewModel: EnvelopeViewModel
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
+    /**
+     * Inflate the envelope_category_card layout in the recyclerView and returns the view
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         envelopeViewModel = ViewModelProvider(parent.findViewTreeViewModelStoreOwner()!!).get(EnvelopeViewModel::class.java)
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.envelope_category_card, parent, false))
@@ -31,6 +37,9 @@ class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolde
 
 
     @SuppressLint("SetTextI18n")
+    /**
+     * Setup the content of the previously inflated view to reflect an entry in the list
+     */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = categoryList[position]
         holder.itemView.nameCategory.text = currentItem.categoryName
@@ -68,7 +77,9 @@ class ListAdapterCategory : RecyclerView.Adapter<ListAdapterCategory.MyViewHolde
         return categoryList.size
     }
 
-
+    /**
+     * Set up the list of [Category] that will be use to generate the recyclerView
+     */
     fun setData(category: List<Category>){
         this.categoryList = category
         notifyDataSetChanged()

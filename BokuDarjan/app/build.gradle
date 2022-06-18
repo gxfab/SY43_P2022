@@ -1,9 +1,27 @@
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.6.21")
+    }
+}
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-
+    id("org.jetbrains.dokka")
 }
+
+dokkaHtml.configure {
+    moduleName.set("Bokudarjan")
+    suppressInheritedMembers.set(true)
+    dokkaSourceSets {
+        named("main") {
+            noAndroidSdkLink.set(false)
+        }
+    }
+}
+
 
 android {
     compileSdk 32
@@ -87,6 +105,7 @@ dependencies {
 
     //Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
 
 
 

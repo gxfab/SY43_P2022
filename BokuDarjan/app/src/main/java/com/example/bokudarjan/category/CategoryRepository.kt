@@ -5,6 +5,10 @@ import androidx.lifecycle.Observer
 import com.example.bokudarjan.expense.Expense
 import com.example.bokudarjan.expense.ExpenseDAO
 
+
+/**
+ * Repository of [CategoryDAO]
+ */
 class CategoryRepository(private val categoryDAO: CategoryDAO) {
 
     val readAllData: LiveData<List<Category>> = categoryDAO.readAllData()

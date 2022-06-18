@@ -21,7 +21,10 @@ import kotlinx.android.synthetic.main.envelope_category_card.view.*
 import kotlinx.android.synthetic.main.expense_category.view.*
 import kotlinx.android.synthetic.main.fragment_expenses.view.*
 
-//Display list of category in + button of expense fragment
+/**
+ * second ListAdapter of the [Category], allowing compatibility with recyclerViews.
+ * It uses a different layout
+ */
 class ListAdapterCategory2 : RecyclerView.Adapter<ListAdapterCategory2.MyViewHolder>() {
     private var categoryList = emptyList<Category>()
     private lateinit var expenseViewModel: ExpenseViewModel
@@ -29,14 +32,18 @@ class ListAdapterCategory2 : RecyclerView.Adapter<ListAdapterCategory2.MyViewHol
 
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
-
+    /**
+     * Inflate the expense_category layout in the recyclerView and returns the view
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         expenseViewModel = ViewModelProvider(parent.findViewTreeViewModelStoreOwner()!!).get(ExpenseViewModel::class.java)
         envelopeViewModel = ViewModelProvider(parent.findViewTreeViewModelStoreOwner()!!).get(EnvelopeViewModel::class.java)
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.expense_category, parent, false))
     }
 
-
+    /**
+     * Setup the content of the previously inflated view to reflect an entry in the list
+     */
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
@@ -80,6 +87,9 @@ class ListAdapterCategory2 : RecyclerView.Adapter<ListAdapterCategory2.MyViewHol
         return categoryList.size
     }
 
+    /**
+     * Set up the list of [Category] that will be use to generate the recyclerView
+     */
     fun setData(category: List<Category>){
         this.categoryList = category
         notifyDataSetChanged()

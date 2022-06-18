@@ -35,8 +35,9 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
- * Use the [planificationFragment.newInstance] factory method to
+ * A [Fragment] subclass, used to display the planification section on the main activity of the app.
+ * It contains a Recyclerview to display categories and enveloppes conatined within it as well as a button to add categories or enveloppes.
+ * Use the [ExpensesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 class planificationFragment : Fragment() {
@@ -46,6 +47,9 @@ class planificationFragment : Fragment() {
     private lateinit var envelopeViewModel: EnvelopeViewModel
     var list: List<Category> = emptyList()
 
+    /**
+     * Initializing the fragment (setting up recyclerView, onClickListener, ...)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         categoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)

@@ -1,9 +1,12 @@
 package com.example.bokudarjan.expense
 
 import androidx.lifecycle.LiveData
+import com.example.bokudarjan.category.CategoryDAO
 
 
-
+/**
+ * Repository of [ExpenseDAO]
+ */
 class ExpenseRepository(private val expenseDao: ExpenseDAO) {
 
     val readAllData: LiveData<List<Expense>> = expenseDao.readAllData()

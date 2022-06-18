@@ -3,6 +3,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "envelope_table")
+/**
+ * A database entity class used to represent envelopes.
+ */
 class Envelope{
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0
