@@ -1,0 +1,51 @@
+- Added documentation
+- Added commentaries and moved filed to packages
+- Merge branch 'BokuDarjan' of https://github.com/gxfab/SY43_P2022 into BokuDarjan
+- added documentation to main function and files
+- Merge branch 'BokuDarjan' of github.com:gxfab/SY43_P2022 into BokuDarjan
+- installed dokka on the project for documentation generation
+- Minor UX changes Removed slider button on expense creation Removed expense boolean in DAO
+- Display sum per month on the drawer
+- Made graph display sum of envelopes Added some cool style on graph
+- Linked the graph to the database
+- Merge branch 'BokuDarjan_monthlySums' into BokuDarjan Merge branch 'BokuDarjan_chart' into BokuDarjan
+- Tried to display data dynamically on graph Can get the data and draw a graph but not link both
+- Added Log.d to debug ListAdapterBMonth
+- Added ChartActivity and link to it Linked ChartFragment to ChartActivity Started to make the sum to display on the chart
+- Added ChartActivity and link to it Linked ChartFragment to ChartActivity Started to make the sum to display on the chart
+- Merge branch 'sumOfExpensesOnCategory' into BokuDarjan Also displayed sum of expense and envelope on the bottom bar of the screen
+- Added sum of expense per category Also added chart with static data
+- Added month system
+- Merge branch 'BokuDarjan' of github.com:gxfab/SY43_P2022 into BokuDarjan
+- Added permamnent income category + added possibility to fund a project in saavings tab
+- Solved bugs on planification sum and category add Changed "dépense" to "enveloppe" in text fields of fragment_planification Made the sum of expense and envelope correct
+- Solved a small bug
+- Implemented sum of expenses and envelopes
+- Merge branch 'BokuDarjan' of https://github.com/gxfab/SY43_P2022 into BokuDarjan
+- Started to implement the total sum query in DAO
+- finished expenses section
+- finished plannification segment
+- finshed display of envelopes in categories
+- Merge branch 'BokuDarjan' of github.com:gxfab/SY43_P2022 into BokuDarjan
+- Added expsenses and enveloppe dialogue + finished a functional GUI for expenses section
+- Tried to display envelope and category on PlanificationFragment
+- Implemented ListView of envelope and expense Changed a fiew names Added ListAdapter files
+- Merge branch 'BokuDarjan' of https://github.com/gxfab/SY43_P2022 into BokuDarjan
+- Merge branch 'roomDatabaseSetup' into BokuDarjan
+- DAO for Envelope and Category
+- Added expense adding dialog + started expenses fragment
+- Merge branch 'BokuDarjan' of github.com:gxfab/SY43_P2022 into BokuDarjan
+- added bottom of plannification fragment
+- Merge branch 'BokuDarjan' of https://github.com/gxfab/SY43_P2022 into BokuDarjan
+- fixed bug where touch event wouldn't be dispateched to the fragment view
+- Room database setup with Expense
+- fixed a the no main activity found bug + added icons to side drawer menu
+- fixed bug caused by the side drawer + added animations for months
+- Added sidebar with scrollview for months
+- Added bottom navbar
+- removed project
+- Init project
+- Merge branch 'BokuDarjan' of https://github.com/gxfab/SY43_P2022 into BokuDarjan
+- Added logo and proper README.md
+- added changelog
+- Initial commit
