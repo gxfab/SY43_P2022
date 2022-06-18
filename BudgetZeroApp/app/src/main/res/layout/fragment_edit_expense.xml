@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="370dp">
+        android:layout_height="390dp">
         <TextView
             android:id="@+id/textViewExpName"
             android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
         <EditText
             android:id="@+id/editTextExpName"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
 
             android:layout_alignBottom="@+id/textViewExpName"
             android:layout_marginStart="140dp"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewExpName"
             android:layout_alignTop="@+id/textViewExpName"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="70dp"
             android:text="@string/exp_date" />
 
         <DatePicker
@@ -53,13 +53,13 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewExpDate"
             android:layout_alignTop="@+id/textViewExpDate"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="70dp"
             android:text="@string/exp_amount" />
 
         <EditText
             android:id="@+id/editTextExpAmount"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/editTextExpName"
             android:layout_alignBottom="@+id/textViewExpAmount"
             android:layout_marginBottom="-10dp"
@@ -100,19 +100,12 @@
             android:layout_marginStart="0dp"
             android:layout_marginBottom="-12dp" />
 
-        <ImageView
-            android:id="@+id/imageDummy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignBottom="@+id/textViewExpStable"
-            android:layout_marginBottom="-80dp" />
-
         <Button
             android:id="@+id/buttonSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignBottom="@+id/textViewExpStable"
+            android:layout_marginBottom="-80dp"
             android:layout_centerHorizontal="true"
             android:text="@string/save"
             tools:ignore="UsingOnClickInXml" />

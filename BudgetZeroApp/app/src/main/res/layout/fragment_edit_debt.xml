@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewDebtName"
             android:layout_alignTop="@+id/textViewDebtName"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:text="@string/debt_month" />
 
         <EditText
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewDebtMonth"
             android:layout_alignTop="@+id/textViewDebtMonth"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:text="@string/debt_amount" />
 
         <EditText
@@ -67,19 +67,12 @@
             android:ems="10"
             android:inputType="number|numberDecimal" />
 
-        <ImageView
-            android:id="@+id/imageDummy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignBottom="@+id/textViewDebtAmount"
-            android:layout_marginBottom="-80dp" />
-
         <Button
             android:id="@+id/buttonSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignBottom="@+id/textViewDebtAmount"
+            android:layout_marginBottom="-80dp"
             android:layout_centerHorizontal="true"
             android:text="@string/save"
             tools:ignore="UsingOnClickInXml" />

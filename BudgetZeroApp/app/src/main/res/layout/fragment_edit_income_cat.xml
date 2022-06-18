@@ -21,28 +21,20 @@
         <EditText
             android:id="@+id/editTextIncName"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textViewIncName"
             android:layout_marginStart="140dp"
             android:layout_marginBottom="-10dp"
             android:ems="10"
             android:inputType="text" />
 
-        <ImageView
-            android:id="@+id/imageDummy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignBottom="@+id/textViewIncName"
-            android:layout_marginBottom="-180dp" />
-
         <Button
             android:id="@+id/buttonSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imageDummy"
-            android:layout_alignStart="@id/imageDummy"
-            android:layout_marginStart="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/textViewIncName"
+            android:layout_marginBottom="-180dp"
             android:text="@string/save"
             tools:ignore="UsingOnClickInXml" />
 

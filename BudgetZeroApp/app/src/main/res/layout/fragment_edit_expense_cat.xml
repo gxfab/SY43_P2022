@@ -20,8 +20,7 @@
         <EditText
             android:id="@+id/editTextCatName"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textViewCatName"
             android:layout_marginStart="140dp"
             android:layout_marginBottom="-10dp"
@@ -34,13 +33,13 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewCatName"
             android:layout_alignTop="@+id/textViewCatName"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:text="@string/exp_cat_budget" />
 
         <EditText
             android:id="@+id/editTextCatBudget"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/editTextCatName"
             android:layout_alignBottom="@+id/textViewCatBudget"
             android:layout_marginBottom="-10dp"
@@ -53,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewCatBudget"
             android:layout_alignTop="@+id/textViewCatBudget"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:text="@string/exp_cat_sub" />
 
         <CheckBox
@@ -82,18 +81,13 @@
             android:layout_alignStart="@+id/checkBoxCatSub"
             android:layout_alignBottom="@+id/textViewCatParent"
         />
-        <ImageView
-            android:id="@+id/imageDummy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textViewCatParent"
-            android:layout_marginBottom="-80dp" />
 
         <Button
             android:id="@+id/buttonSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imageDummy"
+            android:layout_alignBottom="@+id/textViewCatParent"
+            android:layout_marginBottom="-80dp"
             android:layout_centerHorizontal="true"
             android:onClick="run"
             android:text="@string/save"
