@@ -1,26 +1,29 @@
 package com.sucelloztm.sucelloz.ui.categories;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
+import com.google.common.util.concurrent.ListenableFuture;
 import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CategoriesViewModel extends AndroidViewModel {
     private CategoriesRepository categoriesRepository;
 
     private LiveData<List<Categories>> currentCategories;
+    private ExecutorService executor;
 
     public CategoriesViewModel(Application application) {
         super(application);
         this.categoriesRepository = new CategoriesRepository(application);
+        executor = Executors.newSingleThreadExecutor();
     }
 
     public LiveData<List<Categories>> getAllCategories() {
@@ -30,7 +33,7 @@ public class CategoriesViewModel extends AndroidViewModel {
         return this.currentCategories;
     }
 
-    public Categories getCategoryByName(String categoryName){
+    public LiveData<Categories> getCategoryByName(String categoryName){
         return this.categoriesRepository.getCategoryByName(categoryName);
     }
 
@@ -39,10 +42,20 @@ public class CategoriesViewModel extends AndroidViewModel {
     }
 
     public void deleteCategory(Categories category){
-        this.categoriesRepository.deleteCategory(category);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                categoriesRepository.deleteCategory(category);
+            }
+        });
     }
 
     public void updateCategory(Categories category){
-        this.categoriesRepository.updateCategory(category);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                categoriesRepository.updateCategory(category);
+            }
+        });
     }
 }

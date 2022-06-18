@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -33,6 +34,8 @@ import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CategoriesFragment extends Fragment implements LifecycleOwner {
 
@@ -40,7 +43,11 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
     private CategoriesViewModel categoriesViewModel;
     private List<Categories> currentCategoriesList;
     private RecyclerView recyclerView;
+    private Categories currentCategory;
+    String currentCategoryName;
     private int itemIndex;
+
+
 
 
 
@@ -62,26 +69,29 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         currentCategoriesList = new ArrayList<>();
         CategoriesAdapter adapter=new CategoriesAdapter(currentCategoriesList);
 
-        final Observer<List<Categories>> categoriesDataSet= new Observer<List<Categories>>() {
-            @Override
-            public void onChanged(List<Categories> categoriesList) {
-                currentCategoriesList.clear();
-                currentCategoriesList.addAll(categoriesList);
-                adapter.notifyDataSetChanged();
-            }
+        final Observer<List<Categories>> categoriesDataSet= categoriesList -> {
+            currentCategoriesList.clear();
+            currentCategoriesList.addAll(categoriesList);
+            adapter.notifyDataSetChanged();
         };
         categoriesViewModel.getAllCategories().observe(getViewLifecycleOwner(),categoriesDataSet);
         recyclerView = binding.outerRecyclerView;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.setAdapter(adapter);
         registerForContextMenu(recyclerView);
+
+
+
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 TextView currentCategoryTextView=(TextView) v.findViewById(R.id.text_view_categories);
-                String currentCategoryName = currentCategoryTextView.getText().toString();
-                Categories currentCategory = categoriesViewModel.getCategoryByName(currentCategoryName);
-                categoriesViewModel.setCurrentCategory(currentCategory);
+                currentCategoryName = currentCategoryTextView.getText().toString();
+                final Observer<Categories> currentCategoryObserver= category ->{
+                    currentCategory=category;
+                    categoriesViewModel.setCurrentCategory(currentCategory);
+                };
+                categoriesViewModel.getCategoryByName(currentCategoryName).observe(getViewLifecycleOwner(),currentCategoryObserver);
                 NavHostFragment.findNavController(CategoriesFragment.this).navigate(R.id.action_navigation_categories_to_navigation_sub_categories);
                 //Log.d("CategoriesFragment",currentCategoryName);
             }
@@ -93,6 +103,8 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
                 return false;
             }
         });
+
+
 
         return root;
     }

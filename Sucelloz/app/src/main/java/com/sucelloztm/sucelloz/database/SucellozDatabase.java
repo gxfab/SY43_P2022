@@ -49,7 +49,6 @@ public abstract class SucellozDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             SucellozDatabase.class, "SucellozDatabase.db")
-                            .allowMainThreadQueries()
                             .build();
                 }
             }
