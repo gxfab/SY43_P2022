@@ -44,11 +44,7 @@ public class ToolBar{
     private static final DBHelper database = new DBHelper(AppContext.getContext());
 
     private static SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
-    private static ToolBar instance = new ToolBar();
 
-    public ToolBar(){
-        initialize();
-    }
 
     private static final NavController navController= Navigation.findNavController(
             MainActivity.getActivity(), R.id.nav_host_fragment);
@@ -59,14 +55,9 @@ public class ToolBar{
             new AppBarConfiguration.Builder(R.id.savingsFragment,R.id.editSavingCatFragment).build();
     private static AppBarConfiguration appBarConfigExpCat =
             new AppBarConfiguration.Builder(R.id.homeFragment,R.id.editExpenseCatFragment).build();
-    private static AppBarConfiguration appBarConfigDebt =
-            new AppBarConfiguration.Builder(R.id.savingsFragment,R.id.editDebtFragment).build();
-    public static ToolBar getInstance() {
-        return instance;
-    }
 
-    public static void setInstance(ToolBar instance) {
-        ToolBar.instance = instance;
+    public ToolBar(){
+        initialize();
     }
 
     private void initialize(){
@@ -75,7 +66,6 @@ public class ToolBar{
         }catch(ParseException p) {
             date = new Date();
         }
-
         budgetAutoMode = settings.getBoolean("budgetAutoMode", true);
         savingsAutoMode = settings.getBoolean("savingsAutoMode", true);
         cal = Calendar.getInstance();
@@ -105,27 +95,32 @@ public class ToolBar{
             switch(item.getItemId()){
                 case R.id.addCategory:
                     int idDest = navController.getCurrentDestination().getId();
-                    if(idDest == R.id.savingsFragment) navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToEditSavingCatFragment());
+                    if(idDest == R.id.savingsFragment) {
+                        if(1==1) // selectedTab == Savings
+                            navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToEditSavingCatFragment());
+                        else
+                            navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToEditDebtFragment());
+                    }
                     else if(idDest == R.id.budgetFragment) navController.navigate(BudgetFragmentDirections.actionBudgetFragmentToEditExpenseCatFragment(0));
                     else if(idDest == R.id.homeFragment) navController.navigate(HomeFragmentDirections.actionHomeFragmentToEditExpenseCatFragment(0));
                     break;
 
-                /**case R.id.addExpense:
+                case R.id.expense:
                     int idDest2 = navController.getCurrentDestination().getId();
 
-                    if(idDest2 == R.id.savingsFragment) navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToSelectExpenseTypeFragment2(0));
-                    else if(idDest2 == R.id.budgetFragment) navController.navigate(BudgetFragmentDirections.actionBudgetFragmentToSelectExpenseTypeFragment2(0));
-                    else if(idDest2 == R.id.homeFragment) navController.navigate(HomeFragmentDirections.actionHomeFragmentToSelectExpenseTypeFragment2(0));
-                    else if(idDest2 == R.id.cashFlowFragment) navController.navigate(CashFlowFragmentDirections.actionCashFlowFragmentToSelectExpenseTypeFragment2(0));
+                    if(idDest2 == R.id.savingsFragment) navController.navigate(SavingsFragmentDirections.actionSavingsFragmentToSelectExpenseTypeFragment2());
+                    else if(idDest2 == R.id.budgetFragment) navController.navigate(BudgetFragmentDirections.actionBudgetFragmentToSelectExpenseTypeFragment2());
+                    else if(idDest2 == R.id.homeFragment) navController.navigate(HomeFragmentDirections.actionHomeFragmentToSelectExpenseTypeFragment2());
+                    else if(idDest2 == R.id.cashFlowFragment) navController.navigate(CashFlowFragmentDirections.actionCashFlowFragmentToSelectExpenseTypeFragment2());
+                    break;
 
-                    break;**/
                 case R.id.next_day:
                     incrementDate();
                     saveDate();
                     if(DateManager.dateToDay(date) == 1){
                         String message = "Last day of the month";
                         if(savingsAutoMode) {
-                            SavingsManager.distributeSavings(moneyAmount);
+                            SavingsManager.distributeSavings(date, moneyAmount);
                             message += "\nSavings updated";
                         }
                         if(budgetAutoMode) {
@@ -157,7 +152,13 @@ public class ToolBar{
     }
 
 
-    public Date getDate(){ return date; }
+    public static Date getDate(){
+        try{
+            return format.parse(settings.getString("date",format.format(new Date())));
+        }catch(ParseException p) {
+                return new Date();
+        }
+    }
 
     public void saveDate(){
         editor.putString("date", getStrDate());

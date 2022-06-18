@@ -95,7 +95,7 @@ public class ViewDebtFragment extends DataBaseFragment {
         ClickableListManager.clickableExpenseList(exp, expVal);
         if (expVal.isEmpty()){
             listTextView.setVisibility(View.GONE);
-            exp.setVisibility(View.GONE);
+            //exp.setVisibility(View.GONE);
         } else if(exp.getVisibility()==View.GONE) {
             listTextView.setVisibility(View.VISIBLE);
             exp.setVisibility(View.VISIBLE);

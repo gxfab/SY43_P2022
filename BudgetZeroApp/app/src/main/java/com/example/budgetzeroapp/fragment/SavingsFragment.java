@@ -65,21 +65,12 @@ public class SavingsFragment extends DataBaseFragment {
         tabLayout.setupWithViewPager(viewPager);
         if(!defaultTab) selectPage(2);
 
-        ToolBar.getInstance().initToolBar(view, R.id.toolbar_savings);
+        new ToolBar().initToolBar(view, R.id.toolbar_savings);
 
     }
 
     public static void selectPage(int pageIndex){
         tabLayout.setScrollPosition(pageIndex,0f,true);
         viewPager.setCurrentItem(pageIndex);
-    }
-
-    public static void redirectToViewSavingCat(int saving_id)
-    {
-        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-        NavDirections action = null;
-        if (tabLayout.getSelectedTabPosition() == 0) action = SavingsFragmentDirections.navigateToViewSavingCatFromSavings(saving_id);
-        else if (tabLayout.getSelectedTabPosition() == 1) action = SavingsFragmentDirections.navigateToViewDebtFromSavings(saving_id);
-        navController.navigate(action);
     }
 }

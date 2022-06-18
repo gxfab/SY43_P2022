@@ -68,7 +68,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         ClickableListManager.clickableBudgetList(subCatList, subCatVal);
         if (subCatVal.isEmpty()){
             subListTextView.setVisibility(View.GONE);
-            subCatList.setVisibility(View.GONE);
+            //subCatList.setVisibility(View.GONE);
         } else if(subCatList.getVisibility()==View.GONE) {
             subListTextView.setVisibility(View.VISIBLE);
             subCatList.setVisibility(View.VISIBLE);
@@ -76,7 +76,7 @@ public class ViewExpenseCatFragment extends DataBaseFragment {
         ClickableListManager.clickableExpenseList(expList, expVal);
         if (expVal.isEmpty()){
             expListTextView.setVisibility(View.GONE);
-            expList.setVisibility(View.GONE);
+            //expList.setVisibility(View.GONE);
         } else if(expList.getVisibility()==View.GONE) {
             expListTextView.setVisibility(View.GONE);
             expList.setVisibility(View.VISIBLE);

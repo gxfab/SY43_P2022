@@ -100,6 +100,9 @@
         <argument
             android:name="id_savings"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_viewSavingCatFragment_to_viewExpenseFragment"
+            app:destination="@id/viewExpenseFragment" />
     </fragment>
     <fragment
         android:id="@+id/editExpenseCatFragment"
@@ -153,6 +156,9 @@
         <argument
             android:name="id_debt"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_viewDebtFragment_to_viewExpenseFragment"
+            app:destination="@id/viewExpenseFragment" />
     </fragment>
     <fragment
         android:id="@+id/editDebtFragment"

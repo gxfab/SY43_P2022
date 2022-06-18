@@ -94,7 +94,7 @@ public class BudgetFragment extends DataBaseFragment implements BudgetRecyclerVi
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
-        ToolBar.getInstance().initToolBar(view, R.id.toolbar_budget);
+        new ToolBar().initToolBar(view, R.id.toolbar_budget);
     }
 
     @Override

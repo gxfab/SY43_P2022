@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.item.ListItem;
@@ -22,17 +25,17 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
     private Button save;
     private String defaultName;
     private float defaultGoal;
+    private NavController navController;
 
     public EditSavingCatFragment(){ super(); }
-    public EditSavingCatFragment(int id){ super(id); }
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_saving_cat, parent, false);
+        navController = Navigation.findNavController(view);
 
         /**Getting passed id**/
         id = EditSavingCatFragmentArgs.fromBundle(getArguments()).getIdSavingCat();
-        Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
 
         save = view.findViewById(R.id.buttonSave);
@@ -79,10 +82,9 @@ public class EditSavingCatFragment extends EditDataBaseFragment{
                 message("Name can't be empty");
             }
 
-            if(id == 0) database.insertSavingsCat(newName,newBudget);
+            if(id == 0) id = database.insertSavingsCat(newName,newBudget);
             else database.updateSavingsCat(id, newName,newBudget);
-
-            message("Database updated");
+            navController.navigate(EditSavingCatFragmentDirections.navigateToViewSavingCatSavingCat(id));
         });
     }
 }

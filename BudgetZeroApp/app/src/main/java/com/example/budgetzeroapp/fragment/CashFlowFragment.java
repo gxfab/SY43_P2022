@@ -54,7 +54,7 @@ public class CashFlowFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
         addFragment(view);
 
-        ToolBar.getInstance().initToolBar(view, R.id.toolbar_cashflow);
+        new ToolBar().initToolBar(view, R.id.toolbar_cashflow);
 
         /**Navigation
         Toolbar toolbar = view.findViewById(R.id.toolbar_cashflow);

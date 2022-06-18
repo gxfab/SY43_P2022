@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textViewDebtExpenses"
-            android:layout_alignBottom="@+id/textViewDebtExpenses"
+            android:layout_alignBottom="@+id/textViewDebtRefunded"
             android:layout_marginBottom="-10dp" />
 
         <ListView

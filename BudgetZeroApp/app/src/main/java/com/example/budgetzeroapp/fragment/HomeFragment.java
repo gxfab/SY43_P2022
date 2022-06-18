@@ -80,54 +80,15 @@ public class HomeFragment extends DataBaseFragment {
         setupPieChart();
         loadPieChartData(items);
 
-        ToolBar.getInstance().initToolBar(view, R.id.toolbar_home);
+        new ToolBar().initToolBar(view, R.id.toolbar_home);
 
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         Toolbar toolbar = view.findViewById(R.id.toolbar_home);
 
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment,R.id.viewExpenseCatFragment).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.viewExpenseCatFragment).build();
         NavigationUI.setupWithNavController(
                 toolbar, navController, appBarConfiguration);
-
-        /*toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                NavController navController = Navigation.findNavController(view);
-                switch(item.getItemId()){
-                    case R.id.expense:
-                        navController.navigate(R.id.action_homeFragment_to_addCategoryFragment);
-                        break;
-                }
-                return true;
-            }
-        });*/
-
-        /*view.findViewById(R.id.text_click).setOnClickListener(new View.OnClickListener() {
-            NavController navController = Navigation.findNavController(view);
-            @Override
-            public void onClick(View view) {
-               // NavDirections action = HomeFragmentDirections.navigateToViewExpenseCatFromHome();
-                navController.navigate(R.id.navigate_to_viewExpenseCat_from_home);
-            }
-        });*/
-
-        /**Navigation
-        Toolbar toolbar = view.findViewById(R.id.toolbar_home);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                NavController navController = Navigation.findNavController(view);
-                switch(item.getItemId()){
-                    case R.id.next_day:
-                        //change day
-                        break;
-                }
-                return true;
-            }
-        });**/
-
     }
-
 
     private void setupPieChart(){
         pieChart.setDrawHoleEnabled(true);

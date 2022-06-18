@@ -43,6 +43,13 @@
             android:textSize="20sp" />
 
         <RadioButton
+            android:id="@+id/type_inc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/inc_type"
+            android:textSize="20sp" />
+        <RadioButton
             android:id="@+id/type_debt"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

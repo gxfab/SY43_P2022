@@ -20,7 +20,7 @@
         <EditText
             android:id="@+id/editTextCatName"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="50dp"
 
             android:layout_alignBottom="@+id/textViewCatName"
             android:layout_marginStart="140dp"
@@ -40,7 +40,7 @@
         <EditText
             android:id="@+id/editTextCatBudget"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="50dp"
             android:layout_alignStart="@+id/editTextCatName"
             android:layout_alignBottom="@+id/textViewCatBudget"
             android:layout_marginBottom="-10dp"

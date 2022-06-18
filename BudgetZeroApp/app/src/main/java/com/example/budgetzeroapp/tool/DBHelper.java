@@ -52,8 +52,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SAV_CAT_COL_ID = "id";
     public static final String SAV_CAT_COL_NAME = "name";
     public static final String SAV_CAT_COL_MAX_AMOUNT = "max_amount";
-    public static final String SAV_CAT_COL_CURRENT_AMOUNT = "current_amount";
-
 
     public static final String REQ_SUM = "sum";
     public static final String REQ_CAT_NAME = "cat_name";
@@ -102,8 +100,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table " + SAV_CAT_TABLE_NAME +
                         "(" + SAV_CAT_COL_ID + " integer primary key autoincrement, " +
                         SAV_CAT_COL_NAME + " text not null, " +
-                        SAV_CAT_COL_MAX_AMOUNT + " real default -1, " +
-                        SAV_CAT_COL_CURRENT_AMOUNT + " real default 0 " +
+                        SAV_CAT_COL_MAX_AMOUNT + " real default -1" +
                         ");"
         );
         db.execSQL(
@@ -139,17 +136,17 @@ public class DBHelper extends SQLiteOpenHelper {
         //Example income category - id 12->13
         db.execSQL(
                 "insert into "+INC_CAT_TABLE_NAME+"("+INC_CAT_COL_NAME+")"+
-                        " values ('Salary'),('Other');"
+                        " values ('Default');"
         );
         //Example debt category - id 14->16
         db.execSQL(
                 "insert into "+DEBT_TABLE_NAME+"("+DEBT_COL_NAME+","+DEBT_COL_TOTAL_AMOUNT+","+DEBT_COL_MONTH_LEFT+")" +
-                        "values ('House',100000,63),('Presidential Campaign',5000000,34),('Last weeks pizza',7,1);"
+                        "values ('House',100000,1055),('Presidential Campaign',5000000,0),('Last weeks pizza',7,0);"
         );
         //Example savings category - id 17->20
         db.execSQL(
-                "insert into "+SAV_CAT_TABLE_NAME+"("+SAV_CAT_COL_NAME+","+SAV_CAT_COL_MAX_AMOUNT+","+SAV_CAT_COL_CURRENT_AMOUNT+")" +
-                        "values ('New PC',1200,340),('Trip to Iceland',840,121),('Swimming Pool',5000,245),('Spaceship',100000,3739);"
+                "insert into "+SAV_CAT_TABLE_NAME+"("+SAV_CAT_COL_NAME+","+SAV_CAT_COL_MAX_AMOUNT+")" +
+                        "values ('New PC',1200),('Trip to Iceland',840),('Swimming Pool',5000),('Spaceship',100000);"
         );
         //Example expenses
         db.execSQL(
@@ -177,16 +174,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 "insert into "+EXP_TABLE_NAME+
                         "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
                         ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
-                        " values ('House', -509, 3, 14, 30, 4, 2022,1)," +
-                        "('House', -546, 3, 14, 31, 5, 2022,1);"
+                        " values ('Debt to House', -509, 3, 14, 30, 4, 2022,0)," +
+                        "('Debt to House', -546, 3, 14, 31, 5, 2022,0);"
         );
         //Example savings
         db.execSQL(
                 "insert into "+EXP_TABLE_NAME+
-                        "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_EXP+
+                        "("+EXP_COL_LABEL+","+EXP_COL_AMOUNT+","+EXP_COL_TYPE+","+EXP_COL_ID_SAV+
                         ", "+EXP_COL_DAY+", "+EXP_COL_MONTH+", "+EXP_COL_YEAR+","+EXP_COL_IS_STABLE+")"+
-                        " values ('New PC', -33, 4, 17, 31, 5, 2022,0)," +
-                        "('Iceland', -45, 4, 18, 31, 5, 2022,0);"
+                        " values ('Savings to New PC', -33, 4, 17, 31, 5, 2022,0)," +
+                        "('Savings to Iceland', -45, 4, 18, 31, 5, 2022,0);"
         );
     }
 
@@ -259,30 +256,30 @@ public class DBHelper extends SQLiteOpenHelper {
         return contentValues;
     }
 
-    public void insertDebtCat(String name, int leftMonths, float totalAmount) {
+    public int insertDebtCat(String name, int leftMonths, float totalAmount) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(DEBT_TABLE_NAME, null, debtCV(name, leftMonths, totalAmount));
+        return (int) db.insert(DEBT_TABLE_NAME, null, debtCV(name, leftMonths, totalAmount));
     }
 
-    public void insertIncomeCat(String name) {
+    public int insertIncomeCat(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(INC_CAT_TABLE_NAME, null, incomeCatCV(name));
+        return (int) db.insert(INC_CAT_TABLE_NAME, null, incomeCatCV(name));
     }
 
-    public void insertSavingsCat(String name, float maxAmount) {
+    public int insertSavingsCat(String name, float maxAmount) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(SAV_CAT_TABLE_NAME, null, savingsCatCV(name, maxAmount));
+        return (int) db.insert(SAV_CAT_TABLE_NAME, null, savingsCatCV(name, maxAmount));
     }
 
-    public void insertExpenseCat(String name, float budget, boolean isSub, int idParent) {
+    public int insertExpenseCat(String name, float budget, boolean isSub, int idParent) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(EXP_CAT_TABLE_NAME, null, expenseCatCV(name, budget, isSub, idParent));
+        return (int) db.insert(EXP_CAT_TABLE_NAME, null, expenseCatCV(name, budget, isSub, idParent));
     }
 
-    public void insertExpense(float amount, String label, int type, int catID,
+    public int insertExpense(float amount, String label, int type, int catID,
                               boolean isStable, int day, int month, int year) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(EXP_TABLE_NAME, null, expenseCV(amount, label, type, catID, isStable, day, month, year));
+        return (int) db.insert(EXP_TABLE_NAME, null, expenseCV(amount, label, type, catID, isStable, day, month, year));
     }
 
     public void updateDebtCat(int id, String name, int leftMonths, float totalAmount) {
@@ -315,12 +312,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(EXP_TABLE_NAME, contVal, "id = ? ", new String[]{Integer.toString(id)});
     }
 
-    public void updateSavingsCurrentAmount(int id, float amount) {
-        ContentValues contVal = new ContentValues();
-        contVal.put(SAV_CAT_COL_CURRENT_AMOUNT, amount);
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.update(SAV_CAT_TABLE_NAME, contVal, "id = ? ", new String[]{Integer.toString(id)});
-    }
     public void updateExpenseCatBudget(int id, float amount) {
         ContentValues contVal = new ContentValues();
         contVal.put(EXP_CAT_COL_BUDGET, amount);

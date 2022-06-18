@@ -12,10 +12,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.example.budgetzeroapp.fragment.HomeFragment;
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.fragment.view.ViewExpenseFragmentArgs;
+import com.example.budgetzeroapp.fragment.view.ViewExpenseFragmentDirections;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.DateManager;
 import com.example.budgetzeroapp.tool.ToolBar;
@@ -30,7 +34,7 @@ import java.util.Locale;
 
 public class EditExpenseFragment extends EditDataBaseFragment {
 
-    private Button save, cancel;
+    private Button save;
     private EditText name, amount;
     private DatePicker date;
     private CheckBox stable;
@@ -39,26 +43,19 @@ public class EditExpenseFragment extends EditDataBaseFragment {
     private float defaultAmount;
     private int defaultStable;
     private int type, day, month, year, newDay, newMonth, newYear, catID;
-    List<ListItem> list;
+    private List<ListItem> list;
+    private NavController navController;
+
 
     public EditExpenseFragment()
     {
 
     }
-    public EditExpenseFragment(int id){
-        super(id);
-        type = 0;
-    }
-
-
-    public EditExpenseFragment(int id, int type){
-        super(id);
-        this.type=type;
-    }
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_expense, parent, false);
+        navController = Navigation.findNavController(view);
 
         /**Getting passed id**/
         id = EditExpenseFragmentArgs.fromBundle(getArguments()).getIdExpenseEdit();
@@ -66,7 +63,6 @@ public class EditExpenseFragment extends EditDataBaseFragment {
 
 
         save = view.findViewById(R.id.buttonSave);
-        cancel = view.findViewById(R.id.buttonCancel);
         name = view.findViewById(R.id.editTextExpName);
         date = view.findViewById(R.id.datePicker);
         category = view.findViewById(R.id.spinner_cat);
@@ -91,7 +87,7 @@ public class EditExpenseFragment extends EditDataBaseFragment {
     @Override
     public void initDefaultValues() {
         defaultName = "";
-        Date date = ToolBar.getInstance().getDate();
+        Date date = ToolBar.getDate();
         day = DateManager.dateToDay(date);
         month = DateManager.dateToMonth(date);
         year = DateManager.dateToYear(date);
@@ -151,6 +147,7 @@ public class EditExpenseFragment extends EditDataBaseFragment {
 
     @Override
     public void setButtons() {
+
         save.setOnClickListener(v -> {
 
             float newAmount = Float.parseFloat(amount.getText().toString());
@@ -172,9 +169,9 @@ public class EditExpenseFragment extends EditDataBaseFragment {
 
             boolean isStable = stable.isChecked();
 
-            if(id == 0) database.insertExpense(newAmount, newName, type, idCat, isStable, newDay, newMonth, newYear);
+            if(id == 0) id = database.insertExpense(newAmount, newName, type, idCat, isStable, newDay, newMonth, newYear);
             else database.updateExpense(id, newAmount, newName, type, idCat, isStable, newDay, newMonth, newYear);
-
+            navController.navigate(EditExpenseFragmentDirections.navigateToViewExpenseFromExpense(id));
         });
     }
 

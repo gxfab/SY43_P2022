@@ -31,12 +31,11 @@ import java.util.List;
 //liste des savings associés
 public class ViewSavingCatFragment extends DataBaseFragment {
 
-    private TextView name, goal, current, prio, perc;
+    private TextView name, goal, current;
     private TextView listTextView;
     private ListView saveList;
     private String nameVal;
-    private float goalVal, currentVal, percVal;
-    private int prioVal;
+    private float goalVal, currentVal;
     private List<ExpenseItem> saveListVal;
     private Button edit;
 
@@ -81,7 +80,7 @@ public class ViewSavingCatFragment extends DataBaseFragment {
         if (!save.isAfterLast()){
             nameVal = save.getString(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_NAME));
             goalVal = save.getFloat(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_MAX_AMOUNT));
-            currentVal = save.getFloat(save.getColumnIndexOrThrow(DBHelper.SAV_CAT_COL_CURRENT_AMOUNT));
+            currentVal = -database.getSumFromCat(id, DBHelper.TYPE_SAV);
             saveListVal = ExpenseItem.ExpensesToList(database.getExpensesFromCat(id, DBHelper.TYPE_SAV));
         }
     }
@@ -93,7 +92,7 @@ public class ViewSavingCatFragment extends DataBaseFragment {
         ClickableListManager.clickableExpenseList(saveList,saveListVal);
         if (saveListVal.isEmpty()){
             listTextView.setVisibility(View.GONE);
-            saveList.setVisibility(View.GONE);
+            //saveList.setVisibility(View.GONE);
         } else if(saveList.getVisibility()==View.GONE) {
             listTextView.setVisibility(View.GONE);
             saveList.setVisibility(View.VISIBLE);

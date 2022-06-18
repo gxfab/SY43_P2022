@@ -13,6 +13,9 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.adapter.SimpleListAdapter;
@@ -28,20 +31,20 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
     private String defaultName;
     private float defaultBudget;
     private int defaultSub, defaultParentCat;
-    
+    private NavController navController;
+
     List<ListItem> list;
 
 
     public EditExpenseCatFragment(){ super(); }
-    public EditExpenseCatFragment(int id){ super(id); }
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_expense_cat, parent, false);
+        navController = Navigation.findNavController(view);
 
         /**Getting passed id**/
         id = EditExpenseCatFragmentArgs.fromBundle(getArguments()).getIdExpenseCatEdit();
-        //wToast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
 
         save = view.findViewById(R.id.buttonSave);
@@ -50,6 +53,8 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
         sub = view.findViewById(R.id.checkBoxCatSub);
         parentCat = view.findViewById(R.id.spinnerCatParent);
         list = ListItem.initList(database.getAllExpenseCat());
+
+        sub.setOnClickListener(view1 -> parentCat.setEnabled(sub.isChecked()));
         return view;
     }
 
@@ -79,6 +84,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
                 if(i.getId() == defaultParentCat) parentCat.setSelection(it);
                 it++;
             }
+            parentCat.setEnabled(sub.isChecked());
         }
     }
 
@@ -87,7 +93,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
         name.setText(defaultName);
         budget.setText(String.valueOf(defaultBudget));
         sub.setChecked(defaultSub!=0);
-        // TODO: Faire fonctionner ce truc
+        parentCat.setEnabled(sub.isChecked());
         parentCat.setSelection(0);
     }
 
@@ -110,7 +116,7 @@ public class EditExpenseCatFragment extends EditDataBaseFragment {
             if(id == 0) database.insertExpenseCat(newName,newBudget,isSub,idCat);
             else database.updateExpenseCat(id, newName,newBudget,isSub, idCat);
 
-            message("Database updated");
+            navController.navigate(EditExpenseCatFragmentDirections.actionEditExpenseCatFragmentToViewExpenseCatFragment(id));
         });
     }
 

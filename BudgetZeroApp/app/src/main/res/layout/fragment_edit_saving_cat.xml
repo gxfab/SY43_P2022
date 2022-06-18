@@ -22,7 +22,7 @@
         <EditText
             android:id="@+id/editTextSaveName"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="50dp"
             android:layout_alignBottom="@+id/textViewSaveName"
             android:layout_marginStart="170dp"
             android:layout_marginBottom="-10dp"
@@ -41,57 +41,20 @@
         <EditText
             android:id="@+id/editTextSaveGoal"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="50dp"
             android:layout_alignStart="@+id/editTextSaveName"
             android:layout_alignBottom="@+id/textViewSaveGoal"
             android:layout_marginBottom="-10dp"
             android:ems="10"
             android:inputType="number|numberDecimal" />
 
-        <TextView
-            android:id="@+id/textViewSavePerc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewSaveGoal"
-            android:layout_alignTop="@+id/textViewSaveGoal"
-            android:layout_marginTop="40dp"
-            android:text="@string/save_cat_perc" />
-
-        <EditText
-            android:id="@+id/editTextSavePerc"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignStart="@+id/editTextSaveGoal"
-            android:layout_alignBottom="@+id/textViewSavePerc"
-            android:layout_marginBottom="-10dp"
-            android:ems="10"
-            android:inputType="number|numberDecimal" />
-
-        <TextView
-            android:id="@+id/textViewSavePrio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewSavePerc"
-            android:layout_alignTop="@+id/textViewSavePerc"
-            android:layout_marginTop="40dp"
-            android:text="@string/save_cat_prio" />
-
-        <EditText
-            android:id="@+id/editTextSavePrio"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignStart="@+id/editTextSavePerc"
-            android:layout_alignBottom="@+id/textViewSavePrio"
-            android:layout_marginBottom="-10dp"
-            android:ems="10"
-            android:inputType="number" />
 
         <ImageView
             android:id="@+id/imageDummy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_alignBottom="@+id/textViewSavePrio"
+            android:layout_alignBottom="@+id/editTextSaveGoal"
             android:layout_marginBottom="-80dp" />
 
         <Button

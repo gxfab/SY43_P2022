@@ -1,27 +1,15 @@
 package com.example.budgetzeroapp.tool.item;
 
 import android.database.Cursor;
-import android.widget.Toast;
 
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
 import com.example.budgetzeroapp.MainActivity;
 import com.example.budgetzeroapp.R;
-import com.example.budgetzeroapp.fragment.BudgetFragment;
-import com.example.budgetzeroapp.fragment.CashFlowFragment;
 import com.example.budgetzeroapp.fragment.CashFlowFragmentDirections;
-import com.example.budgetzeroapp.fragment.DataBaseFragment;
-import com.example.budgetzeroapp.fragment.HomeFragment;
-import com.example.budgetzeroapp.fragment.HomeFragmentDirections;
-import com.example.budgetzeroapp.fragment.SavingsFragment;
-import com.example.budgetzeroapp.fragment.view.ViewDebtFragment;
-import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment;
 import com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragmentDirections;
-import com.example.budgetzeroapp.fragment.view.ViewExpenseFragment;
-import com.example.budgetzeroapp.fragment.view.ViewIncomeCatFragment;
-import com.example.budgetzeroapp.fragment.view.ViewSavingCatFragment;
+import com.example.budgetzeroapp.fragment.view.ViewSavingCatFragmentDirections;
 import com.example.budgetzeroapp.tool.DBHelper;
 import com.example.budgetzeroapp.tool.DateManager;
 
@@ -94,6 +82,8 @@ public class ExpenseItem extends ListItem {
         int idDest = navController.getCurrentDestination().getId();
         if(idDest == R.id.viewExpenseCatFragment) navController.navigate(ViewExpenseCatFragmentDirections.actionViewExpenseCatFragmentToViewExpenseFragment(id));
         else if(idDest == R.id.cashFlowFragment) navController.navigate(CashFlowFragmentDirections.navigateToViewExpenseFragmentFromCashflow(id));
+        else if(idDest == R.id.viewDebtFragment) navController.navigate(com.example.budgetzeroapp.fragment.view.ViewDebtFragmentDirections.actionViewDebtFragmentToViewExpenseFragment(id));
+        else if(idDest == R.id.viewSavingCatFragment) navController.navigate(ViewSavingCatFragmentDirections.actionViewSavingCatFragmentToViewExpenseFragment(id));
     }
 
     public int getType(){return type;}

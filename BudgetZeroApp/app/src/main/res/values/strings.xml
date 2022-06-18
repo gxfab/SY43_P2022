@@ -9,7 +9,7 @@
     <string name="exp_name">Expense:</string>
     <string name="exp_date">Date:</string>
     <string name="exp_amount">Amount:</string>
-    <string name="exp_stable">Is the expense stable ?</string>
+    <string name="exp_stable">Stable movement :</string>
     <string name="exp_type_cat">Type</string>
 
     <string name="exp_cat_name">Category name:</string>
@@ -22,7 +22,7 @@
         <item>Cat3</item>
         <item>Cat4</item>
     </string-array>
-    <string name="exp_cat_click_sub">Subcategories:</string>
+    <string name="exp_cat_click_sub">Sub-categories:</string>
     <string name="exp_cat_expenses">Expenses:</string>
 
     <string name="inc_cat_name">Category name:</string>
@@ -58,4 +58,6 @@
     <string name="home">Home</string>
     <string name="savings">Savings</string>
     <string name="category">Category</string>
+    <string name="add_expense">Add movement</string>
+    <string name="add_category">Add category</string>
 </resources>

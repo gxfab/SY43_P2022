@@ -48,13 +48,6 @@ public class ViewExpenseFragment extends DataBaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         /**Listener edit button**/
-        view.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
-            NavController navController = Navigation.findNavController(view);
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.navigate_to_editExpense_from_expense);
-            }
-        });
 
         /**Getting passed id**/
         id = ViewExpenseFragmentArgs.fromBundle(getArguments()).getIdExpense();
@@ -66,8 +59,16 @@ public class ViewExpenseFragment extends DataBaseFragment {
         stable = view.findViewById(R.id.textViewExpStableEntry);
         type = view.findViewById(R.id.textViewExpTypeEntry);
         edit = view.findViewById(R.id.editButton);
+
         getValues();
         setValues();
+        edit.setOnClickListener(new View.OnClickListener() {
+            NavController navController = Navigation.findNavController(view);
+            @Override
+            public void onClick(View view) {
+                navController.navigate(ViewExpenseFragmentDirections.navigateToEditExpenseFromExpense(id, typeVal));
+            }
+        });
     }
 
     public void getValues() {
@@ -81,14 +82,15 @@ public class ViewExpenseFragment extends DataBaseFragment {
             dateVal.set(Calendar.MONTH, exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_MONTH)));
             dateVal.set(Calendar.YEAR, exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_YEAR)));
             typeVal = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_TYPE));
-            stableVal = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_AMOUNT));
+            stableVal = exp.getInt(exp.getColumnIndexOrThrow(DBHelper.EXP_COL_IS_STABLE));
+
         }
     }
 
 
     public void setValues() {
         name.setText(nameVal);
-        amount.setText(String.valueOf(amountVal));
+        amount.setText(String.valueOf(amountVal)+" €");
         Date dateString = dateVal.getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
         date.setText(dateFormat.format(dateString));
@@ -109,17 +111,7 @@ public class ViewExpenseFragment extends DataBaseFragment {
                 type.setText("Unknown type");
                 break;
         }
-        if (stableVal==0)   {
-            stable.setText("No");
-        }   else    {
-            stable.setText("Yes");
-        }
-    }
-
-    public static void redirectToEditExpense(int id, int type)
-    {
-        NavController navController= Navigation.findNavController(MainActivity.getActivity(), R.id.nav_host_fragment);
-        NavDirections action = ViewExpenseFragmentDirections.navigateToEditExpenseFromExpense(id, type);
-        navController.navigate(action);
+        if (stableVal==0) stable.setText("No");
+        else stable.setText("Yes");
     }
 }

@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.database.Cursor;
 import android.widget.Toast;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.example.budgetzeroapp.R;
 import com.example.budgetzeroapp.tool.DBHelper;
 
@@ -15,26 +18,25 @@ import com.example.budgetzeroapp.tool.DBHelper;
 //bouton save
 public class EditDebtFragment extends EditDataBaseFragment{
 
-    private Button save, cancel;
+    private Button save;
     private String defaultName;
     private int defaultMonthLeft;
     private float defaultTotalAmount;
     private EditText name, monthLeft, totalAmount;
+    private NavController navController;
 
     public EditDebtFragment(){ super(); }
-    public EditDebtFragment(int id){ super(id); }
-
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup parent) {
         View view= inflater.inflate(R.layout.fragment_edit_debt, parent, false);
+        navController = Navigation.findNavController(view);
 
         /**Getting passed id**/
         id = EditDebtFragmentArgs.fromBundle(getArguments()).getIdDebtEdit();
         Toast.makeText(getActivity(),"id : " + id,Toast.LENGTH_SHORT).show();
 
         save = view.findViewById(R.id.buttonSave);
-        cancel = view.findViewById(R.id.buttonCancel);
         name = view.findViewById(R.id.editTextDebtName);
         monthLeft = view.findViewById(R.id.editTextDebtMonth);
         totalAmount = view.findViewById(R.id.editTextDebtAmount);
@@ -87,8 +89,9 @@ public class EditDebtFragment extends EditDataBaseFragment{
                 message("Name can't be empty");
             }
 
-            if(id == 0) database.insertDebtCat(newName, newMonthLeft, newAmount);
+            if(id == 0) id = database.insertDebtCat(newName, newMonthLeft, newAmount);
             else database.updateDebtCat(id, newName, newMonthLeft, newAmount);
+            navController.navigate(EditDebtFragmentDirections.navigateToViewDebtFromDebt(id));
 
         });
     }
