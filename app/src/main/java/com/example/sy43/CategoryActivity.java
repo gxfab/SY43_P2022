@@ -30,6 +30,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Affiche l'ensemble des catégories et objetifs créés par l'utilisateur
+ * L'affichage inclu le montant des dépenses respectivement fixées et faites dans chaque catégorie
+ * L'affichage inclu le montant des économies respectivement fixées et faites dans chaque objectif
+ */
 
 public class CategoryActivity extends AppCompatActivity {
     private CategoryViewModel categoryViewModel;
@@ -67,6 +72,11 @@ public class CategoryActivity extends AppCompatActivity {
 
         LifecycleOwner owner = this;
         categoryViewModel.getCategories().observe(this, new Observer<List<Categorydb>>() {
+
+            /**
+             *
+             * @param receivedCategories les nouvelles catégories à ajouter
+             */
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {
                 // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
@@ -86,6 +96,11 @@ public class CategoryActivity extends AppCompatActivity {
         });
 
         categoryViewModel.getObjectives().observe(this, new Observer<List<Categorydb>>() {
+
+            /**
+             *
+             * @param receivedObjectives les nouveaux objectifs à ajouter
+             */
             @Override
             public void onChanged(List<Categorydb> receivedObjectives) {
                 // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist

@@ -24,7 +24,9 @@ import com.example.sy43.viewmodels.TransactionViewModel;
 
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * Sommaire des dépenses par catégorie, mensuellement
+ */
 public class TransactionSummary extends AppCompatActivity {
 
     private TransactionViewModel transVM;
@@ -49,6 +51,11 @@ public class TransactionSummary extends AppCompatActivity {
         LifecycleOwner owner = this;
 
         transVM.getTransactions().observe(this, new Observer<List<Transaction>>() {
+
+            /**
+             *
+             * @param receivedTransactions les transactions ( dépenses par sous-catégorie ) à afficher
+             */
             @Override
             public void onChanged(List<Transaction> receivedTransactions) {
                 // https://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist

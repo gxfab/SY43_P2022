@@ -34,6 +34,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Gérer les dépenses liées aux sous-catégories d'une catégorie en particulier
+ */
+
 public class CategoryDetailsActivity extends AppCompatActivity {
 
     @Override
@@ -57,6 +61,11 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         int categoryId = b.getInt("categoryId");
         categoryViewModel.getCategoryById(categoryId).observe(this, new Observer<Categorydb>() {
+
+            /**
+             *
+             * @param receivedCategory la catégorie à mettre à jour
+             */
             @Override
             public void onChanged(Categorydb receivedCategory) {
                 /*
@@ -93,6 +102,10 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         Button btnAddTransaction = (Button) findViewById(R.id.btnAddTransaction);
 
         subCategoryViewModel.getSubCategoriesByCatId(categoryId).observe(this, new Observer<List<SubCategory>>() {
+            /**
+             *
+             * @param subCategories la sous-catégorie à mettre à jour
+             */
             @Override
             public void onChanged(List<SubCategory> subCategories) {
                 // Affichage en forme de card

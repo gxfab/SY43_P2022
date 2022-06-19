@@ -29,6 +29,10 @@ import com.example.sy43.viewmodels.TransactionViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Plus d'informations sur l'objectif avec possibilité de le supprimer
+ */
+
 public class ObjectiveDetailsActivity extends AppCompatActivity {
 
     @Override

@@ -32,6 +32,9 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Affichage du graphe des catégories ordonnées par le montant de leurs dépenses
+ */
 public class graphActivity extends AppCompatActivity{
 
     @Override
@@ -51,6 +54,11 @@ public class graphActivity extends AppCompatActivity{
 
         LifecycleOwner owner = this;
         categoryViewModel.getCategories().observe(this, new Observer<List<Categorydb>>() {
+
+            /**
+             *
+             * @param receivedCategories les catégories disponibles à afficher
+             */
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {
                 for (int i = 0; i < receivedCategories.size(); i++) {

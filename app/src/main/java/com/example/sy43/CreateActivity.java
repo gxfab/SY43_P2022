@@ -36,6 +36,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Création d'une nouvelle catégorie, sous-catégorie, ou d'un nouvel objectif
+ */
+
 public class CreateActivity extends AppCompatActivity {
 
     private DatePicker datePicker;
@@ -62,6 +66,11 @@ public class CreateActivity extends AppCompatActivity {
 
         Spinner spinnerChooseCategory = (Spinner) findViewById(R.id.spinnerChooseCategory);
         categoryViewModel.getCategories().observe(this, new Observer<List<Categorydb>>() {
+
+            /**
+             *
+             * @param receivedCategories catégorie à créer
+             */
             @Override
             public void onChanged(List<Categorydb> receivedCategories) {
                 final List<String> list = new ArrayList<String>();
@@ -154,6 +163,10 @@ public class CreateActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     * création de la sous-catégorie
+     */
     public void visibilitySubcategoryFields(int visibility) {
         EditText editText = (EditText) findViewById(R.id.editMontant);
         Spinner spinner = (Spinner) findViewById(R.id.spinnerChooseCategory);
@@ -194,6 +207,13 @@ public class CreateActivity extends AppCompatActivity {
                 }
             };
 
+    /**
+     *
+     * @param year année de l'objectif
+     * @param month mois de l'objectif
+     * @param day jour de l'objectif
+     * @return la date de l'objectif
+     */
     private Date showDate(int year, int month, int day) {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-YY");
         Date d = new Date(year, month, day);

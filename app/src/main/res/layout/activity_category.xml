@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Mon Compte"
+            android:text="My account"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="16dp" />
 
@@ -40,7 +40,7 @@
             android:textStyle="bold"
             android:textSize="24dp"
 
-            android:text="Catégories"/>
+            android:text="Categories"/>
         <ListView
             android:id="@+id/categoryListView"
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="24dp"
-            android:text="Objectifs"/>
+            android:text="Objectives"/>
         <ListView
             android:id="@+id/objectiveListView"
             android:layout_width="match_parent"

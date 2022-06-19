@@ -1,6 +1,18 @@
 package com.example.sy43.models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.PrimaryKey;
+
+/**
+ * Structure d'une catégorie de dépense
+ */
 public class Category {
+    /**
+     *
+     * @param name nom de la catégorie
+     * @param currentValue dépense actuelle au niveau de la catégorie
+     * @param maxValue montant maximal à associer à la catégorie
+     */
     public Category(String name, float currentValue, float maxValue) {
         this.setCatName(name);
         this.setCurrentValue(currentValue);
@@ -14,12 +26,19 @@ public class Category {
         this.setMaxValue(maxValue);
         this.isObjective = isObjective;
     }
+    @PrimaryKey(autoGenerate = true)
     private int CatID;
+
+    @ColumnInfo( name = "isObjective")
     public boolean isObjective;
+
+    @ColumnInfo( name = "CatName")
     private String CatName;
 
+    @ColumnInfo( name = "MaxValue")
     private float MaxValue;
 
+    @ColumnInfo( name = "CurrentValue")
     private float CurrentValue;
 
     public int getCatID(){

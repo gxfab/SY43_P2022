@@ -17,7 +17,7 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="24dp"
-            android:text="Résumé"/>
+            android:text="Summary"/>
         <ListView
             android:id="@+id/categoryListView"
             android:layout_width="match_parent"

@@ -26,6 +26,9 @@ import com.example.sy43.viewmodels.TransactionViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Permet à l'utilisateur d'ajouter une dépense dans une sous-catégorie précédemment créée
+ */
 public class AddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class AddActivity extends AppCompatActivity {
         subCategoryViewModel.init();
 
         LifecycleOwner owner = this;
+
 
         subCategoryViewModel.getSubCategories().observe(this, new Observer<List<SubCategory>>() {
             @Override

@@ -5,6 +5,9 @@ import com.example.sy43.repositories.CategoryRepository;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Gestion du calendrier mensuel
+ */
 public class DateManager {
     private static DateManager instance;
     private Date currentDate;
