@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -99,8 +100,7 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
                 TextView currentCategoryTextView=(TextView) v.findViewById(R.id.text_view_categories);
                 currentCategoryName = currentCategoryTextView.getText().toString();
                 final Observer<Categories> currentCategoryObserver= category ->{
-                    currentCategory=category;
-                    categoriesViewModel.setCurrentCategory(currentCategory);
+                    categoriesViewModel.setCurrentCategory(category);
                 };
                 categoriesViewModel.getCategoryByName(currentCategoryName).observe(getViewLifecycleOwner(),currentCategoryObserver);
                 NavHostFragment.findNavController(CategoriesFragment.this).navigate(R.id.action_navigation_categories_to_navigation_sub_categories);

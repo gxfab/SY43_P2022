@@ -42,7 +42,7 @@ public class AddSpendingDialogViewModel extends AndroidViewModel {
      * invokes the query to get all subcategories names
      * @return list of names
      */
-    public List<String> getSubCategoriesNames(){
+    public LiveData<List<String>> getSubCategoriesNames(){
         return this.subCategoriesRepository.getSubCategoriesNames();
     }
 

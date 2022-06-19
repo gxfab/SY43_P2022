@@ -77,7 +77,7 @@ public interface SubCategoriesDao {
      * @return list of the names of the subcategories
      */
     @Query("SELECT name FROM sub_categories")
-    List<String> getSubCategoriesNames();
+    LiveData<List<String>> getSubCategoriesNames();
 
     @Transaction
     @Query("SELECT * FROM sub_categories")

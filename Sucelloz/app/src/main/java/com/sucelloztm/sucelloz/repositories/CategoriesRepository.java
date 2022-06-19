@@ -59,7 +59,7 @@ public class CategoriesRepository {
      * @return current category
      */
     public static Categories getCurrentCategory() {
-        return currentCategory;
+        return CategoriesRepository.currentCategory;
     }
 
     /**
