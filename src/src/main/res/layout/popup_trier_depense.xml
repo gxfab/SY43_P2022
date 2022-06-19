@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popTrierDepense_rdGrp">
+
+        <Button
+            android:id="@+id/popTrierDepense_btn_annuler"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:text="Annuler"
+            android:textColor="#000000"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/popTrierDepense_btn_valider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:text="Valider"
+            android:textColor="@color/black"
+            app:strokeWidth="2dp" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/popTrierDepense_rdGrp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/popTrierDepense_rd_plusRecent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Les plus récents" />
+
+        <RadioButton
+            android:id="@+id/popTrierDepense_rd_moinsRecent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Les moins récents" />
+
+        <RadioButton
+            android:id="@+id/popTrierDepense_rd_plusChere"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Les plus chères" />
+
+        <RadioButton
+            android:id="@+id/popTrierDepense_rd_moinsChere"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Les moins chères" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/popTrierDepense_tv_choix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Choix critère"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/popTrierDepense_rdGrp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

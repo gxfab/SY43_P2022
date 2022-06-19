@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="47dp"
+    tools:layout_editor_absoluteY="0dp">
+
+    <Button
+        android:id="@+id/frgmAjoutBudget_btn_ajouterCategorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Nouvelle catégorie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAjoutBudget_tv_categorie" />
+
+    <TextView
+        android:id="@+id/frgmAjoutBudget_tv_categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="76dp"
+        android:layout_weight="0"
+        android:text="Choisir une catégorie"
+        android:textColor="#E503E1"
+
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAjoutBudget_tv_Categorie" />
+
+    <Spinner
+        android:id="@+id/frgmAjoutBudget_spnr_categories"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="92dp"
+        android:layout_weight="1"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/frgmAjoutBudget_tv_categorie"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAjoutBudget_tv_Categorie" />
+
+    <Button
+        android:id="@+id/frgmAjoutBudget_btn_annuler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="28dp"
+        android:text="Annuler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toEndOf="@+id/frgmAjoutBudget_btn_ajouter"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAjoutBudget_et_montant" />
+
+    <Button
+        android:id="@+id/frgmAjoutBudget_btn_ajouter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="88dp"
+        android:text="Ajouter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAjoutBudget_et_montant" />
+
+    <TextView
+        android:id="@+id/frgmAjoutBudget_tv_Categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:accessibilityHeading="false"
+        android:fontFamily="@font/allan"
+        android:text="Ajouter votre budget"
+        android:textSize="36sp"
+        android:textColor="#E503E1"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/frgmAjoutBudget_et_montant"
+        android:layout_width="250dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="80dp"
+        android:digits="0123456789"
+        android:hint="Montant..."
+        android:inputType="number"
+        android:textColor="#E503E1"
+        android:textColorHint="#AA00FF"
+        android:backgroundTint="#E503E1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAjoutBudget_btn_ajouterCategorie" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

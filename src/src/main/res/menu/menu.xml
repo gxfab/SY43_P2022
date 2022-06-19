@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_budget"
+        android:icon="@drawable/ic_baseline_account_balance_24"
+        android:title="Budgetisation" />
+    <item
+        android:id="@+id/menu_depense"
+        android:icon="@drawable/ic_baseline_attach_money_24"
+        android:title="Dépenses" />
+    <item
+        android:id="@+id/menu_ajoutDepense"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="Ajout dépense" />
+    <item
+        android:id="@+id/menu_analyse"
+        android:icon="@drawable/ic_baseline_analytics_24"
+        android:title="Analyse" />
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/settings"
+        android:title="Paramètres" />
+
+</menu>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.analyse.Analyse_Fragment_alpha">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/frgmAnalyse_lyt_boutons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAnalyse_tv_analyse">
+
+        <Button
+            android:id="@+id/frgmAnalyse_btn_budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:text="Répartition Budget"
+            android:textColor="#AA00FF"
+            app:strokeColor="#E503E1"
+            app:strokeWidth="2dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/frgmAnalyse_btn_depense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:text="Répartition Dépense"
+            android:textColor="#AA00FF"
+            app:strokeColor="#E503E1"
+            app:strokeWidth="2dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/frgmAnalyse_tv_analyse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:accessibilityHeading="false"
+        android:fontFamily="@font/allan"
+        android:text="ANALYSE"
+        android:textColor="#E503E1"
+
+        android:textSize="36sp"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAnalyse_lyt_mois" />
+
+    <ImageButton
+        android:id="@+id/frgmAnalyse_imgBtn_mois"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:src="@drawable/fleche"
+        android:tint="#AA00FF"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toEndOf="@+id/frgmAnalyse_lyt_mois"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <LinearLayout
+        android:id="@+id/frgmAnalyse_lyt_mois"
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/frgmAnalyse_tv_mois"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Juin"
+            android:textColor="#AA00FF"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/frgmAnalyse_tv_carreBlanc1"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/frgmAnalyse_tv_annee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2022"
+            android:textColor="#AA00FF"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+    <com.anychart.AnyChartView
+        android:id="@+id/frgmAnalyse_graphBudget"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAnalyse_lyt_boutons" />
+
+    <com.anychart.AnyChartView
+        android:id="@+id/frgmAnalyse_graphDepense"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frgmAnalyse_lyt_boutons" >
+
+    </com.anychart.AnyChartView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
