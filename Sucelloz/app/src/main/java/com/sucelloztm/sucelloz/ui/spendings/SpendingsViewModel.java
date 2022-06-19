@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.sucelloztm.sucelloz.models.CategoriesWithSubCategoriesWithInfrequentSum;
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
@@ -61,7 +60,7 @@ public class SpendingsViewModel extends AndroidViewModel {
         return  this.currentNegativeSpendings;
     }
 
-    public SubCategories getSubCategoryByName(String nameOfSubCategory){
+    public LiveData<SubCategories> getSubCategoryByName(String nameOfSubCategory){
         return this.subCategoriesRepository.getSubCategoryWithName(nameOfSubCategory);
     }
 
@@ -70,7 +69,7 @@ public class SpendingsViewModel extends AndroidViewModel {
      * @param idOfSubCategory id of the subcategory
      * @return name of the subcategory
      */
-    public String getSubCategoryNameWithId(long idOfSubCategory){
+    public LiveData<String> getSubCategoryNameWithId(long idOfSubCategory){
         return subCategoriesRepository.getSubCategoryNameWithId(idOfSubCategory);
     }
 

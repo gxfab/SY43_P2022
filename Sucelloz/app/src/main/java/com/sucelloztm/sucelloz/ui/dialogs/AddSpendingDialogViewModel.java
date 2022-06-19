@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategories;
@@ -50,7 +51,7 @@ public class AddSpendingDialogViewModel extends AndroidViewModel {
      * @param nameOfSubCategory name of the subcategory
      * @return subcategory
      */
-    public SubCategories getSubCategoryWithName(String nameOfSubCategory){
+    public LiveData<SubCategories> getSubCategoryWithName(String nameOfSubCategory){
         return this.subCategoriesRepository.getSubCategoryWithName(nameOfSubCategory);
     }
 }

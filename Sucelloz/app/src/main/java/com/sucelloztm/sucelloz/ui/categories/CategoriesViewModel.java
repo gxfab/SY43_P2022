@@ -43,14 +43,12 @@ public class CategoriesViewModel extends AndroidViewModel {
         }
         return this.currentCategories;
     }
-
-    public LiveData<Categories> getCategoryByName(String categoryName){
     /**
      * invokes the query to get a category by its name
      * @param categoryName name of the category
      * @return searched category
      */
-    public Categories getCategoryByName(String categoryName){
+    public LiveData<Categories> getCategoryByName(String categoryName) {
         return this.categoriesRepository.getCategoryByName(categoryName);
     }
 

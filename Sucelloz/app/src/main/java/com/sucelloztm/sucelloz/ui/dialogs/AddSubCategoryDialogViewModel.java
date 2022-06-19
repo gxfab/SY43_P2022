@@ -9,11 +9,15 @@ import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * class to add a subcategory dialog to a view model
  */
 public class AddSubCategoryDialogViewModel extends AndroidViewModel {
     private SubCategoriesRepository subCategoriesRepository;
+    private ExecutorService executor;
 
     /**
      * custom constructor
@@ -22,6 +26,7 @@ public class AddSubCategoryDialogViewModel extends AndroidViewModel {
     public AddSubCategoryDialogViewModel(@NonNull Application application) {
         super(application);
         this.subCategoriesRepository = new SubCategoriesRepository(application);
+        executor= Executors.newSingleThreadExecutor();
     }
 
     /**
@@ -29,7 +34,12 @@ public class AddSubCategoryDialogViewModel extends AndroidViewModel {
      * @param subCategory subcategory
      */
     public void insert(SubCategories subCategory){
-        this.subCategoriesRepository.insert(subCategory);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                subCategoriesRepository.insert(subCategory);
+            }
+        });
     }
 
     /**

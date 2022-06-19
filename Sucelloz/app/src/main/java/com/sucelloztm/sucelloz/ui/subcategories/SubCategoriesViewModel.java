@@ -10,6 +10,8 @@ import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * view model for the subcategories
@@ -18,6 +20,7 @@ public class SubCategoriesViewModel extends AndroidViewModel {
     private SubCategoriesRepository subCategoriesRepository;
 
     private LiveData<List<SubCategories>> currentSubCategories;
+    private ExecutorService executor;
 
     /**
      * custom constructor
@@ -26,6 +29,7 @@ public class SubCategoriesViewModel extends AndroidViewModel {
     public SubCategoriesViewModel(@NonNull Application application) {
         super(application);
         this.subCategoriesRepository= new SubCategoriesRepository(application);
+        executor = Executors.newSingleThreadExecutor();
     }
 
     /**
@@ -34,7 +38,7 @@ public class SubCategoriesViewModel extends AndroidViewModel {
      */
     public LiveData<List<SubCategories>> getSubCategories(){
         if (this.currentSubCategories == null){
-            this.currentSubCategories = subCategoriesRepository.getSubCategoriesFromCurrentCategoryId();
+            this.currentSubCategories = subCategoriesRepository.getSubCategoriesFromCurrentCategory();
         }
         return this.currentSubCategories;
     }
@@ -44,7 +48,12 @@ public class SubCategoriesViewModel extends AndroidViewModel {
      * @param subCategory subcategory
      */
     public void deleteSubCategory(SubCategories subCategory){
-        subCategoriesRepository.deleteSubCategory(subCategory);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                subCategoriesRepository.deleteSubCategory(subCategory);
+            }
+        });
     }
 
     /**
@@ -52,6 +61,11 @@ public class SubCategoriesViewModel extends AndroidViewModel {
      * @param subCategory subcategory
      */
     public void updateSubCategory(SubCategories subCategory){
-        subCategoriesRepository.updateSubCategory(subCategory);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                subCategoriesRepository.updateSubCategory(subCategory);
+            }
+        });
     }
 }

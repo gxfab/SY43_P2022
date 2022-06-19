@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.sucelloztm.sucelloz.R;
@@ -71,7 +72,7 @@ public class AddSpendingDialogFragment extends DialogFragment {
                         int amountOfSpending;
                         String signOfSpending;
                         String dateOfSpending;
-                        long idOfSubCategoryOfSpending;
+
 
                         EditText nameEditText = AddSpendingDialogFragment.this.getDialog().findViewById(R.id.name_spending);
                         nameOfSpending = nameEditText.getText().toString();
@@ -93,9 +94,15 @@ public class AddSpendingDialogFragment extends DialogFragment {
                         dateOfSpending = dateFormat.format(date);
 
                         String subCategoryNameOfSpending = spinnerSpendings.getSelectedItem().toString();
-                        idOfSubCategoryOfSpending = addSpendingDialogViewModel.getSubCategoryWithName(subCategoryNameOfSpending).getId();
-                        InfrequentExpensesAndIncome subCategoryToInsert = new InfrequentExpensesAndIncome(nameOfSpending,amountOfSpending,signOfSpending,dateOfSpending,idOfSubCategoryOfSpending);
-                        addSpendingDialogViewModel.insert(subCategoryToInsert);
+                        final Observer<SubCategories> subCategoriesObserver = new Observer<SubCategories>() {
+                            @Override
+                            public void onChanged(SubCategories subCategories) {
+                                long idOfSubCategoryOfSpending = subCategories.getId();
+                                InfrequentExpensesAndIncome subCategoryToInsert = new InfrequentExpensesAndIncome(nameOfSpending,amountOfSpending,signOfSpending,dateOfSpending,idOfSubCategoryOfSpending);
+                                addSpendingDialogViewModel.insert(subCategoryToInsert);
+                            }
+                        };
+                        addSpendingDialogViewModel.getSubCategoryWithName(subCategoryNameOfSpending).observe(getViewLifecycleOwner(),subCategoriesObserver);
                     }
                 })
                 .setNegativeButton(R.string.cancel_spending, new DialogInterface.OnClickListener() {

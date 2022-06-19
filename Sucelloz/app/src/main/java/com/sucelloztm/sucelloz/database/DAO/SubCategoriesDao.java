@@ -10,6 +10,7 @@ import androidx.room.Transaction;
 import androidx.room.Query;
 import java.util.List;
 
+import com.google.common.util.concurrent.ListenableFuture;
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
@@ -26,7 +27,7 @@ public interface SubCategoriesDao {
      * @return id of the inserted subcategory
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insertSubCategory(SubCategories subCategory);
+    ListenableFuture<Void> insertSubCategory(SubCategories subCategory);
 
     /**
      * inserts a list of subcategories
@@ -41,7 +42,7 @@ public interface SubCategoriesDao {
      * @param subCategory subcategory to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateSubCategory(SubCategories subCategory);
+    ListenableFuture<Void> updateSubCategory(SubCategories subCategory);
 
     /**
      * updates a list of subcategories
@@ -55,7 +56,7 @@ public interface SubCategoriesDao {
      * @param subCategory subcategory to delete
      */
     @Delete
-    void deleteSubCategory(SubCategories subCategory);
+    ListenableFuture<Void> deleteSubCategory(SubCategories subCategory);
 
     /**
      * deletes a list of subcategories
@@ -100,7 +101,7 @@ public interface SubCategoriesDao {
      * @return searched subcategory
      */
     @Query("SELECT * FROM sub_categories WHERE name=:nameOfSubCategory")
-    SubCategories getSubCategoryWithName(String nameOfSubCategory);
+    LiveData<SubCategories> getSubCategoryWithName(String nameOfSubCategory);
 
     /**
      * query to get a name of a subcategory thanks to its id
@@ -108,7 +109,7 @@ public interface SubCategoriesDao {
      * @return searched name
      */
     @Query("Select name FROM sub_categories WHERE id=:idOfSubCategory")
-    String getSubcategoryNameWithId(long idOfSubCategory);
+    LiveData<String> getSubcategoryNameWithId(long idOfSubCategory);
 
     @Query("SELECT *,CAST(total(infrequent_expenses.amount) AS INTEGER) AS sum_of_infrequent, " +
             "sub_categories.name AS nameOfSubCategory, " +

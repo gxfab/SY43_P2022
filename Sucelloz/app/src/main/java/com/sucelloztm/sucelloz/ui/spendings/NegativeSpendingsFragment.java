@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +34,7 @@ public class NegativeSpendingsFragment extends Fragment {
     private List<SubCategoriesWithInfrequentSum> currentSubCategoriesWithInfrequentSumList;
     private RecyclerView recyclerView;
     private PieChartSubCategoriesGenerator pieGen;
+    private String subCategoryName;
 
     /**
      * on create method
@@ -66,13 +68,18 @@ public class NegativeSpendingsFragment extends Fragment {
             public void onChanged(List<InfrequentExpensesAndIncome> infrequentExpensesAndIncomes) {
                 currentNegativeSpendingsList.clear();
                 infrequentExpensesAndIncomes.forEach(spending -> {
-                    String subCategoryName = spendingsViewModel.getSubCategoryNameWithId(spending.getSubCategoriesId());
-                    currentNegativeSpendingsList.add(new Spendings(spending.getName(),
-                                    spending.getAmount(),
-                                    spending.getDate(),
-                                    subCategoryName
-                            )
-                    );
+                    final Observer<String> subCategoryNameObserver = new Observer<String>() {
+                        @Override
+                        public void onChanged(String s) {
+                            subCategoryName = s;
+                            currentNegativeSpendingsList.add(new Spendings(spending.getName(),
+                                            spending.getAmount(),
+                                            spending.getDate(),
+                                            subCategoryName
+                                    )
+                            );
+                        }
+                    };
                 });
                 adapter.notifyDataSetChanged();
             }
