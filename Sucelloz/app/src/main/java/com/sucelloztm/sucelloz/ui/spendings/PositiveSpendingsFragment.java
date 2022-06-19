@@ -37,7 +37,6 @@ public class PositiveSpendingsFragment extends Fragment {
     private List<SubCategoriesWithInfrequentSum> currentSubCategoriesWithInfrequentSumList;
     private RecyclerView recyclerView;
     private PieChartSubCategoriesGenerator pieGen;
-    private String subCategoryName;
 
     /**
      * on create method
