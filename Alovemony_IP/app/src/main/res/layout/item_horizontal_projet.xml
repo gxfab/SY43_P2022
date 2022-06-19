@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="120dp"
+    android:layout_height="140dp"
+    android:layout_marginLeft="10dp"
+    android:elevation="7dp"
+    android:background="@drawable/background_horizontal_recycler">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_banque" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/name_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name texte"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        tools:ignore="InvalidId" />
+
+
+    <ProgressBar
+        android:id="@+id/progressBarProjet"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="7dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="5dp"
+        android:progress="50"
+        android:progressDrawable="@drawable/color_progressbar"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/description_item"
+        app:layout_constraintTop_toBottomOf="@+id/name_item" />
+
+    <TextView
+        android:id="@+id/description_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/item_projet_description"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarProjet" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

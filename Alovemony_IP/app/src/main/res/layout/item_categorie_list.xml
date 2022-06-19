@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@drawable/background_layout_popup_depense_details"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <!-- Texte Nom -->
+    <TextView
+        android:id="@+id/name_categorie"
+        style="@style/SubtitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_projet_nom"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <!-- Texte Montant -->
+    <TextView
+        android:id="@+id/montant_categorie"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:layout_marginLeft="50dp"
+        android:text="10"
+        app:layout_constraintStart_toEndOf="@+id/name_categorie"
+        app:layout_constraintTop_toTopOf="@+id/name_categorie" />
+
+    <!-- Texte Montant -->
+    <TextView
+        android:id="@+id/categorie_slash_separation"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="  /  "
+        app:layout_constraintStart_toEndOf="@+id/montant_categorie"
+        app:layout_constraintTop_toTopOf="@+id/name_categorie" />
+
+    <TextView
+        android:id="@+id/montant_prev_categorie"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="100"
+        app:layout_constraintStart_toEndOf="@+id/categorie_slash_separation"
+        app:layout_constraintTop_toTopOf="@+id/name_categorie" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

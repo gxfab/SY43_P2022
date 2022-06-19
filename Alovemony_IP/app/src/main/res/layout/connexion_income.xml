@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="172dp">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/welcome_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maintenant dites-nous quel est votres salaire ? "
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+    <EditText
+        android:id="@+id/account_income"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:hint="Votre salaire ? (en Euro) "
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:inputType="number"
+        android:background="@drawable/corner_rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_title" />
+
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quand êtes vous prélevés? "
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_income" />
+
+    <EditText
+        android:id="@+id/account_date_income"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:hint="The date"
+        android:inputType="date"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/corner_rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question_text" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/account_next_button_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:background="@drawable/drawable_button_next_connexion"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_prelevement" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/account_back_button_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/drawable_button_next_connexion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_prelevement" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

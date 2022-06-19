@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_projet"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Ajouter"
+        android:layout_marginLeft="250dp"
+        android:background="@drawable/background_layout_popup_depense_details"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vos projets du mois"
+        android:layout_marginTop="-15dp"
+        android:layout_marginLeft="@dimen/default_margin"
+        style="@style/SubtitleTextStyle"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/projet_mois_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vos projets globaux"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/default_margin"
+        style="@style/SubtitleTextStyle"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/projet_globaux_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vos dettes"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/default_margin"
+        style="@style/SubtitleTextStyle"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dette_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="70dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</LinearLayout>

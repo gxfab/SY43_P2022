@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <!-- Image -->
+        <ImageView
+            android:id="@+id/image_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_banque" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Barre du milieu permettant le designe de ce layout -->
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/green"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Texte Nom -->
+    <TextView
+        android:id="@+id/name_item"
+        style="@style/SubtitleTextStyle"
+        android:layout_width="123dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/item_margin"
+        android:text="@string/item_projet_nom"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/cardView" />
+
+    <!-- Texte Description -->
+    <TextView
+        android:id="@+id/description_item"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_projet_description"
+        app:layout_constraintStart_toStartOf="@+id/name_item"
+        app:layout_constraintTop_toBottomOf="@+id/name_item" />
+
+    <!-- Texte Categorie -->
+    <TextView
+        android:id="@+id/categorie_item"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categorie "
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"/>
+
+    <!-- Texte Montant -->
+    <TextView
+        android:id="@+id/montant_item"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/default_margin"
+        android:text="@string/item_projet_montant"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/description_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Alovemony</string>
+    
+    <!-- Navigation bar -->
+    <string name="bottom_acceuil_item">Acceuil</string>
+    <string name="bottom_projet_item">Projets</string>
+    <string name="bottom_Depenses_item">Dépenses</string>
+
+    <!-- Page d'accueil -->
+    <string name="page_accueil_titre">Accueil</string>
+    <string name="page_accueil_argent_restant">Argent Restant</string>
+    <string name="page_accueil_barre">Progression des dépenses</string>
+    <string name="page_accueil_titre_depense">Dernières dépenses:</string>
+    <string name="page_accueil_nom_depense">Nom</string>
+    <string name="page_accueil_montant_depense">Montant</string>
+    <!-- Page dépenses -->
+    <string name="page_depense_titre">Dépenses</string>
+    <string name="page_liste_depense_tire">Liste dépenses</string>
+    <string name="page_add_depense_tirre">Add dépenses</string>
+    <!-- Page project -->
+    <string name="page_projet_titre">Vos Projets</string>
+    <string name="item_projet_nom">Nom du projet</string>
+    <string name="item_projet_description">Description du projet</string>
+    <string name="item_projet_montant">1000/2000</string>
+
+    <string name="popup_projet_name">Nom Projet</string>
+    <string name="popup_projet_description_title">Description</string>
+    <string name="popup_projet_desrcription_subtitle">Petite description</string>
+    <string name="popup_projet_montant_title">Montant</string>
+    <string name="popup_projet_montant_subtitle">0/2000</string>
+    
+
+
+    <string-array name="source_money">
+        <item>Rental income</item>
+        <item>Divided income</item>
+        <item>Interest income</item>
+        <item>Royality income</item>
+        <item>Residual income</item>
+    </string-array>
+    <string-array name="type_project">
+        <item>ProjetMensuel</item>
+        <item>ProjetGlobal</item>
+        <item>Dette</item>
+    </string-array>
+
+
+
+    <!-- Page de création de compte -->
+    <string name="page_account_titre">Votre compte</string>
+    <string name="item_account_nom">Nom utilisateur</string>
+    <string name="item_account_prenom">Prénom utilisateur</string>
+    <string name="item_account_nextBtn">Suivant</string>
+
+    <!-- Page de création de prélèvements -->
+    <string name="page_prelevements_titre">Prélèvements mensuels</string>
+    <string name="item_prelevement_montant">Montant prélevé (€)</string>
+    <string name="item_prelevement_question">Avez-vous des prélèvements (en €) mensuels à indiquer ?\n Si nul, inscrire 0.</string>
+    <string name="item_prelevement_finish_btn">Terminer</string>
+    <string name="item_prelevement_return_btn">Retour</string>
+
+    <!-- Page de création de salaire -->
+    <string name="page_salaire_titre">Salaire mensuel</string>
+    <string name="item_salaire_montant">Salaire mensuel (€)</string>
+    <string name="item_salaire_question">Quel est votre salaire mensuel (en €)?\n Si nul, inscrire 0.</string>
+    <string name="item_salaire_nextBtn">Suivant</string>
+    <string name="item_salaire_return_btn">Retour</string>
+    <!--
+    <string-array name="add_plant_page_grow_spinner_input">
+        <item>Croissance : Lente</item>
+        <item>Croissance : Moyenne</item>
+        <item>Croissance : Rapide</item>
+    </string-array>
+    -->
+</resources>

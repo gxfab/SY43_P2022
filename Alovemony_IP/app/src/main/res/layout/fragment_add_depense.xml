@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ceedce">
+
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/upload_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="20dp"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        android:text="Image"
+        android:background="@drawable/drawable_button_next_connexion"/>
+
+    <ImageView
+        android:id="@+id/popup_add_preview"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_change"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+    <TextView
+        android:id="@+id/connexion_prev_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_image" />
+
+
+    <EditText
+        android:id="@+id/popup_add_name_edit"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:hint=" Name"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/corner_rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connexion_prev_name" />
+
+
+    <TextView
+        android:id="@+id/connexion_prev_montant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Montant"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_add_name_edit" />
+
+    <EditText
+        android:id="@+id/popup_add_montant_edit"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:hint=" The cost"
+        android:inputType="number"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/corner_rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connexion_prev_montant" />
+
+    <TextView
+        android:id="@+id/connexion_prev_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_add_montant_edit" />
+
+    <EditText
+        android:id="@+id/popup_add_date_edit"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:hint="The Date"
+        android:inputType="date"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/corner_rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connexion_prev_date" />
+
+    <TextView
+        android:id="@+id/connexion_prev_categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_add_date_edit" />
+
+    <Spinner
+        android:id="@+id/popup_add_categorie_spinner"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/corner_rounded_shape"
+        style="@style/DefaultTextStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connexion_prev_categorie" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/popup_add_depense_finishbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/drawable_button_next_connexion"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/popup_add_categorie_spinner" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/popup_add_depense_backbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/drawable_button_next_connexion"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/popup_add_categorie_spinner" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

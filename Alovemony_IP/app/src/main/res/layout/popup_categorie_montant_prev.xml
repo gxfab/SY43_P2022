@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="350dp"
+    android:padding="@dimen/item_margin"
+    android:background="#ceedce"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/popup_categorie_modif_close_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="@dimen/default_margin"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/popup_add_categorie_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Name of the category"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/popup_add_categorie_montant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Amount wanted"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_add_categorie_name"/>
+
+    <EditText
+        android:id="@+id/popup_add_categorie_montant_edit"
+        style="@style/DefaultTextStyle"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:inputType="number"
+        android:hint="Amount"
+        android:background="@drawable/corner_rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_add_categorie_montant" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" (in €)"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/popup_add_categorie_montant_edit"
+        app:layout_constraintTop_toTopOf="@+id/popup_add_categorie_montant_edit" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/popup_connexion_add_categorie_finishbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/drawable_button_next_connexion"
+        android:text="Finish"
+        app:layout_constraintEnd_toEndOf="@+id/popup_add_categorie_montant_edit"
+        app:layout_constraintTop_toBottomOf="@+id/popup_add_categorie_montant_edit" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "61713305182",
+    "firebase_url": "https://alovemony-52ad2-default-rtdb.firebaseio.com",
+    "project_id": "alovemony-52ad2",
+    "storage_bucket": "alovemony-52ad2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61713305182:android:2e0ed887c830e36454eecf",
+        "android_client_info": {
+          "package_name": "com.example.alovemony_ip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61713305182-vc2n66apfei9629r8rf16nr0gtcbk127.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF7MXkZ9ybNuK3tbC3GkGcncPb4wtyK8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61713305182-vc2n66apfei9629r8rf16nr0gtcbk127.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

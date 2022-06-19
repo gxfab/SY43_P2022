@@ -1,0 +1,49 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Alovemony" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.Alovemony.WhiteAccent">
+        <item name="colorAccent">@color/white</item>
+    </style>
+    <style name="Button.White" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@android:color/white</item>
+    </style>
+    <!-- Creer le composant titre par defaut -->
+    <style name="DefaultTextStyle">
+        <item name="android:textColor">@color/lightGray</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/kanit</item>
+    </style>
+
+    <!-- Creer le composant sous titre par defaut -->
+    <style name="SubtitleTextStyle">
+        <item name="android:textColor">@color/darkGray</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/kanit</item>
+    </style>
+
+    <!-- Creer le composant sous titre par defaut -->
+    <style name="TitleTextStyle">
+        <item name="android:textColor">@color/darkGray</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/kanit</item>
+
+
+    </style>
+    <!-- Créer un style pour la bar de navigation -->
+    <style name="bottomNavigationTheme" parent="Widget.Design.BottomNavigationView">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/kanit</item>
+    </style>
+</resources>

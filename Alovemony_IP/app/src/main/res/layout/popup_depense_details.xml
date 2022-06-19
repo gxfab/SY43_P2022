@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="400dp"
+    android:padding="@dimen/item_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_banque" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/popup_depense_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom dépense"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toTopOf="@+id/cardView2"
+        android:layout_marginLeft="@dimen/default_margin"
+        style="@style/TitleTextStyle"/>
+
+    <ImageView
+        android:id="@+id/popup_depense_close_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_close"
+        android:layout_marginRight="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardView2" />
+
+    <TextView
+        android:id="@+id/popup_depense_description_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="Categorie"
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        style="@style/TitleTextStyle"/>
+
+    <TextView
+        android:id="@+id/popup_depense_desrcription_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom categorie"
+        app:layout_constraintStart_toStartOf="@+id/popup_depense_description_title"
+        app:layout_constraintTop_toBottomOf="@+id/popup_depense_description_title"
+        style="@style/DefaultTextStyle"/>
+
+    <TextView
+        android:id="@+id/popup_depense_montant_title"
+        style="@style/TitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/popup_projet_montant_title"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="@+id/popup_depense_desrcription_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/popup_depense_desrcription_subtitle" />
+
+    <TextView
+        android:id="@+id/popup_depense_montant_subtitle"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/popup_projet_montant_subtitle"
+        app:layout_constraintStart_toStartOf="@+id/popup_depense_montant_title"
+        app:layout_constraintTop_toBottomOf="@+id/popup_depense_montant_title" />
+
+
+    <ImageView
+        android:id="@+id/popup_depense_delete_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="52dp"
+        android:src="@drawable/ic_trash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_depense_montant_subtitle" />
+
+    <ImageView
+        android:id="@+id/popup_depense_modif_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="52dp"
+        android:src="@drawable/ic_change"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_depense_montant_subtitle" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
