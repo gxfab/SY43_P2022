@@ -15,9 +15,6 @@
             android:name=".TransactionSummary"
             android:exported="false" />
         <activity
-            android:name=".MonthlyReportActivity"
-            android:exported="false" />
-        <activity
             android:name=".ObjectiveDetailsActivity"
             android:exported="true" />
         <activity
