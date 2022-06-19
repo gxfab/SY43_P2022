@@ -52,7 +52,7 @@ Just like on the other pages, you can sort the different categories according to
 
 ##### Creating your own categories and expenses
 
-By using the button at the top right of the screen, you can add expenses and categories. By being on the debt screen, you can also add a new debt.
+By using the button at the top right of the screen, you can add expenses and categories. By being on the debt/savings screen, you can also add a new debt or a new saving category.
 The process of filling in the informations is fairly easy as everything is labelled.</br></br></br>
 
 We now hope you will be able to reach the end of your month without entering "survival mode".
