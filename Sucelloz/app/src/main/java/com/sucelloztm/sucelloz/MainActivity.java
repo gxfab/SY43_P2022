@@ -11,13 +11,11 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sucelloztm.sucelloz.database.DAO.SubCategoriesDao_Impl;
 import com.sucelloztm.sucelloz.database.SucellozDatabase;
 import com.sucelloztm.sucelloz.databinding.ActivityMainBinding;
 import com.sucelloztm.sucelloz.models.Categories;
-
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.sucelloztm.sucelloz.models.SubCategories;
 
 
 /**
@@ -40,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
         zeroBudgetCat = new Categories("Zero Budget",true);
         zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
                 "Sinking Funds", "Extra Debt", "Extra Savings"};
-//        if(database.categoriesDao().getCategoryByName("Zero Budget")==null){
-//            database.categoriesDao().insertCategory(zeroBudgetCat);
-//            long zeroBudgetCatId=database.categoriesDao().getCategoryByName("Zero Budget").getId();
-//            for (String subCategoryName:
-//                 zeroBudgetNameList) {
-//                database.subCategoriesDao().insertSubCategory(new SubCategories(subCategoryName,zeroBudgetCatId));
-//            }
-//        }
+        if(database.categoriesDao().getCategoryByName("Zero Budget")==null){
+            database.categoriesDao().insertCategory(zeroBudgetCat);
+            long zeroBudgetCatId=database.categoriesDao().getCategoryByName("Zero Budget").getId();
+            for (String subCategoryName:
+                 zeroBudgetNameList) {
+                database.subCategoriesDao().insertSubCategory(new SubCategories(subCategoryName,zeroBudgetCatId));
+            }
+        }
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);

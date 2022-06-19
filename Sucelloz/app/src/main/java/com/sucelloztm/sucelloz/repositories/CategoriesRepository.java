@@ -1,14 +1,18 @@
 package com.sucelloztm.sucelloz.repositories;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
-import com.google.common.util.concurrent.ListenableFuture;
 import com.sucelloztm.sucelloz.database.DAO.CategoriesDao;
 import com.sucelloztm.sucelloz.database.SucellozDatabase;
 import com.sucelloztm.sucelloz.models.Categories;
+import com.sucelloztm.sucelloz.models.CategoriesWithSubCategoriesWithInfrequentSum;
+import com.sucelloztm.sucelloz.repositories.MainRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,19 +42,19 @@ public class CategoriesRepository {
 
     /**
      * invokes the query to insert a category
-     * @param category category to insert
+     * @param category categiry to insert
      */
-    public ListenableFuture<Void> insert(Categories category){
-        return this.categoriesDao.insertCategory(category);
+    public void insert(Categories category){
+        categoriesDao.insertCategory(category);
     }
 
 
     /**
      * invokes a query to get a category thanks to its name
      * @param categoryName name of the category
-     * @return category
+     * @return categiry
      */
-    public LiveData<Categories> getCategoryByName(String categoryName) {
+    public Categories getCategoryByName(String categoryName) {
        return this.categoriesDao.getCategoryByName(categoryName);
     }
 
@@ -74,16 +78,16 @@ public class CategoriesRepository {
      * invokes the query to delete a category
      * @param category category to delete
      */
-    public ListenableFuture<Void> deleteCategory(Categories category){
-        return this.categoriesDao.deleteCategory(category);
+    public void deleteCategory(Categories category){
+        this.categoriesDao.deleteCategory(category);
     }
 
     /**
      * invokes the query to update a category
      * @param category category to update
      */
-    public ListenableFuture<Void> updateCategory(Categories category){
-        return this.categoriesDao.updateCategory(category);
+    public void updateCategory(Categories category){
+        this.categoriesDao.updateCategory(category);
     }
 
 }
