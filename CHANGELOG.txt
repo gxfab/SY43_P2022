@@ -3,3 +3,6 @@
 
 [0.1] - 03/06/2022
 -merge of the DAO and interface branches to the main app
+
+[0.2] - 19/06/2022
+-post presentation fixes for a stable build and javadoc addition
