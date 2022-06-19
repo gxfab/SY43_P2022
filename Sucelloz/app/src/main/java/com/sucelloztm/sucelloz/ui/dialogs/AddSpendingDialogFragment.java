@@ -53,26 +53,16 @@ public class AddSpendingDialogFragment extends DialogFragment {
         final View view = inflater.inflate(R.layout.add_spending_dialog_fragment,null);
         builder.setView(view);
         Spinner spinnerSpendings = (Spinner) view.findViewById(R.id.spinner_spendings);
-        subCategoriesList = new ArrayList<>();
-        final Observer<List<String>> subCategoriesListObserver = new Observer<List<String>>() {
-            @Override
-            public void onChanged(List<String> subCategories) {
-                subCategoriesList.clear();
-                subCategoriesList.addAll(subCategories);
-                subCategoriesList.remove("Incomes");
-                subCategoriesList.remove("Bills");
-                subCategoriesList.remove("Envelopes");
-                subCategoriesList.remove("Sinking Funds");
-                subCategoriesList.remove("Extra Debt");
-                subCategoriesList.remove("Extra Savings");
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, subCategoriesList);
-
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerSpendings.setAdapter(arrayAdapter);            }
-        };
-        addSpendingDialogViewModel.getSubCategoriesNames().observe(this,subCategoriesListObserver);
-
-
+        subCategoriesList = addSpendingDialogViewModel.getSubCategoriesNames();
+        subCategoriesList.remove("Incomes");
+        subCategoriesList.remove("Bills");
+        subCategoriesList.remove("Envelopes");
+        subCategoriesList.remove("Sinking Funds");
+        subCategoriesList.remove("Extra Debt");
+        subCategoriesList.remove("Extra Savings");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item, subCategoriesList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSpendings.setAdapter(arrayAdapter);
 
         builder.setTitle(R.string.title_spending)
                 .setPositiveButton(R.string.ok_spending, new DialogInterface.OnClickListener() {

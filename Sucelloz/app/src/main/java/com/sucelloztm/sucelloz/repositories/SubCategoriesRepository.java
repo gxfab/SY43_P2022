@@ -42,7 +42,7 @@ public class SubCategoriesRepository {
      * invokes a query to get the names of the subcategories
      * @return list of the names of the subcatories
      */
-    public LiveData<List<String>> getSubCategoriesNames(){
+    public List<String> getSubCategoriesNames(){
         return subCategoriesDao.getSubCategoriesNames();
     }
 
