@@ -72,19 +72,25 @@ public class SubCategoriesFragment extends Fragment {
         currentSubCategoriesList = new ArrayList<>();
         SubCategoriesAdapter adapter = new SubCategoriesAdapter(currentSubCategoriesList);
 
-        final Observer<List<SubCategories>> subCategoriesDataSet = subCategories -> {
-            currentSubCategoriesList.clear();
-            currentSubCategoriesList.addAll(subCategories);
-            adapter.notifyDataSetChanged();
+        final Observer<List<SubCategories>> subCategoriesDataSet = new Observer<List<SubCategories>>() {
+            @Override
+            public void onChanged(List<SubCategories> subCategories) {
+                currentSubCategoriesList.clear();
+                currentSubCategoriesList.addAll(subCategories);
+                adapter.notifyDataSetChanged();
+            }
         };
         subCategoriesViewModel.getSubCategories().observe(getViewLifecycleOwner(),subCategoriesDataSet);
         recyclerView = binding.innerRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         registerForContextMenu(recyclerView);
-        ItemClickSupport.addTo(recyclerView).setOnItemLongClickListener((recyclerView, position, v) -> {
-            itemIndex=position;
-            return false;
+        ItemClickSupport.addTo(recyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
+                itemIndex=position;
+                return false;
+            }
         });
 
         return root;

@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -73,18 +72,13 @@ public class PositiveSpendingsFragment extends Fragment {
             public void onChanged(List<InfrequentExpensesAndIncome> infrequentExpensesAndIncomes) {
                 currentPositiveSpendingsList.clear();
                 infrequentExpensesAndIncomes.forEach(spending -> {
-                    final Observer<String> subCategoryNameObserver = new Observer<String>() {
-                        @Override
-                        public void onChanged(String s) {
-                            subCategoryName=s;
-                            currentPositiveSpendingsList.add(new Spendings(spending.getName(),
-                                            spending.getAmount(),
-                                            spending.getDate(),
-                                            subCategoryName
-                                    )
-                            );
-                        }
-                    };
+                    String subCategoryName = spendingsViewModel.getSubCategoryNameWithId(spending.getSubCategoriesId());
+                    currentPositiveSpendingsList.add(new Spendings(spending.getName(),
+                            spending.getAmount(),
+                            spending.getDate(),
+                            subCategoryName
+                            )
+                    );
                 });
                 adapter.notifyDataSetChanged();
             }
