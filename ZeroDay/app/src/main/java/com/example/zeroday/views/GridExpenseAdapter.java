@@ -56,15 +56,15 @@ public class GridExpenseAdapter extends BaseAdapter {
 
         switch (code)
         {
-            case "cat-exp-food":
-            itemPicture.setImageResource(R.drawable.food);
-            itemLabel.setTextColor(ContextCompat.getColor(inflater.getContext(), R.color.food_color));
+            case "cat-exp-foo":
+                itemPicture.setImageResource(R.drawable.food);
+                itemLabel.setTextColor(ContextCompat.getColor(inflater.getContext(), R.color.food_color));
                 break;
             case "cat-exp-tran":
                 itemPicture.setImageResource(R.drawable.transport);
                 itemLabel.setTextColor(ContextCompat.getColor(inflater.getContext(), R.color.transports_color));
                 break;
-            case "cat-exp-enter":
+            case "cat-exp-ent":
                 itemPicture.setImageResource(R.drawable.hobby);
                 itemLabel.setTextColor(ContextCompat.getColor(inflater.getContext(), R.color.hobbies_color));
                 break;

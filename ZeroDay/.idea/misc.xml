@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/folly/codes/SY43_P2022/ZeroDay/app/src/main/res/layout/activity_expense.xml" value="0.2391304347826087" />
+        <entry key="..\:/Users/folly/codes/SY43_P2022/ZeroDay/app/src/main/res/layout/fragment_expense_grid.xml" value="0.2391304347826087" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

@@ -74,7 +74,7 @@ public class ExpenseActivity extends AppCompatActivity {
             title.setText("Add Expenses");
             subTitle.setText("Add one or more expenses");
 
-            // loadFragment(new GridFragment());
+             loadFragment(new GridExpenseFragment());
 
             add.setOnClickListener(new View.OnClickListener() {
                 @Override

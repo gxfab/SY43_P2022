@@ -50,7 +50,7 @@ public class IncomesTest extends AppCompatActivity {
         budgetService.create(new Budget("budget-001", "18-06-2022", "18-07-2022", Frequency.MONTHLY));
         Budget myBudget = budgetService.findOneByCode("budget-001");
 
-        budgetService.addIncome(myBudget.getCodeBudget(), new Income(Frequency.MONTHLY, (long) 500.0, "Salaire", incomeCategoryService.findOneByCode("cat-inc-sal")));
+//        budgetService.addIncome(myBudget.getCodeBudget(), new Income(Frequency.MONTHLY, (long) 500.0, "Salaire", incomeCategoryService.findOneByCode("cat-inc-sal")));
         
 
 // Add value in the cell
@@ -65,7 +65,7 @@ public class IncomesTest extends AppCompatActivity {
         Log.i("Test", incomeCategoryList.toString());
         Log.i("Test", expenseCategories.toString());
         Log.i("Test", budgetService.getAll().toString());
-        Log.i("Test", new IncomeService(this).getAll().toString());
+//        Log.i("Test", new IncomeService(this).getAll().toString());
         Log.i("Test", myBudget.toString());
 
     }
