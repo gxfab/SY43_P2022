@@ -38,6 +38,21 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
     private CategoryViewModel catVM;
     private LifecycleOwner owner;
 
+
+    /**
+     * Constructeur de l'adapteur de catégorie
+     * Cette classe sert à remplir l'objet "ListView" via un layout personnalisé
+     *
+     * @param context Le context de l'application
+     * @param owner Le parent de la lifecycle
+     * @param resource La ressource pour pouvoir créer l'adapter
+     * @param trans Liste des transactions
+     * @param catVM Viewmodel de la catégorie
+     * @param transViewModel Viewmodel de la transaction
+     * @param subcatVM Viewmodel de la sous catégorie
+     */
+
+
     public TransactionAdapter(@NonNull Context context, LifecycleOwner owner, int resource, List<Transaction> trans, TransactionViewModel transViewModel, CategoryViewModel catVM, SubCategoryViewModel subcatVM) {
         super(context, resource, trans);
         this.context = context;
@@ -48,7 +63,14 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
         this.owner = owner;
     }
 
-
+    /**
+     * Méthode appelée pour chaque élement de la liste
+     *
+     * @param position Position de la transaction dans la liste
+     * @param convertView Vue convertie
+     * @param parent Le groupe de la vue parente
+     * @return View nouvelle vue
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

@@ -40,6 +40,19 @@ public class SubCategoryAdapter extends ArrayAdapter<SubCategory> {
     private TransactionViewModel transVM;
     private LifecycleOwner owner;
 
+
+    /**
+     * Constructeur de l'adapteur de la sous catégorie
+     * Cette classe sert à remplir l'objet "ListView" via un layout personnalisé
+     *
+     * @param context Le context de l'application
+     * @param owner Le parent de la lifecycle
+     * @param resource La ressource pour pouvoir créer l'adapter
+     * @param categories Liste des catégories
+     * @param transVM Viewmodel de la transaction
+     * @param subCatVM Viewmodel de la sous catégorie
+     */
+
     public SubCategoryAdapter(@NonNull Context context, LifecycleOwner owner, int resource, List<SubCategory> categories, SubCategoryViewModel subCatVM, TransactionViewModel transVM) {
         super(context, resource, categories);
         this.resourceLayout = resource;
@@ -49,7 +62,14 @@ public class SubCategoryAdapter extends ArrayAdapter<SubCategory> {
         this.owner = owner;
     }
 
-
+    /**
+     * Méthode appelée pour chaque élement de la liste
+     *
+     * @param position Position de la sous catégorie dans la liste
+     * @param convertView Vue convertie
+     * @param parent Le groupe de la vue parente
+     * @return View nouvelle vue
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

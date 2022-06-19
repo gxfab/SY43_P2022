@@ -24,15 +24,29 @@ public class CategoryRepository {
     private DB db;
     private DBexec databaseExecutor;
 
+
+    /**
+     * Renvoi l'instance de CategoryRepository
+     *
+     * @return l'instance de CategoryRepository
+     */
     public static CategoryRepository getInstance() {
         if (instance == null) instance = new CategoryRepository();
         return instance;
     }
 
+
     CategoryRepository() {
         db = DB.getAppDatabase(MainActivity.getAppContext());
         databaseExecutor = DBexec.getExecutor();
     }
+
+
+    /**
+     * Met à jour une catégoie dans la BDD via la DAO
+     *
+     * @param category la catégorie modifiée
+     */
     public void updateCategory(Categorydb category) {
         Futures.addCallback(
                 db.CategoryDAO().update(category),
@@ -48,6 +62,13 @@ public class CategoryRepository {
                 databaseExecutor
         );
     }
+
+
+    /**
+     * Retourne une catégorie via son id
+     *
+     * @param categoryId id de la catégorie sous forme d'int
+     */
     public MutableLiveData<Categorydb> getCategoryById(int id) {
         MutableLiveData<Categorydb> data = new MutableLiveData<>();
 
@@ -66,6 +87,13 @@ public class CategoryRepository {
         );
         return data;
     }
+
+
+    /**
+     * Retourne toutes les catégories de la BDD
+     *
+     * @return  MutableLiveData<List<Categorydb>> liste des catégories
+     */
     public MutableLiveData<List<Categorydb>> getCategories() {
         MutableLiveData<List<Categorydb>> data = new MutableLiveData<>();
 
@@ -87,6 +115,12 @@ public class CategoryRepository {
         return data;
     }
 
+    /**
+     * Retourne tous les objectifs de la BDD
+     * Dans le programme, un objectif est traitée comme une catégorie.
+     *
+     * @return  MutableLiveData<List<Categorydb>> liste des objectifs
+     */
     public MutableLiveData<List<Categorydb>> getObjectives() {
         MutableLiveData<List<Categorydb>> data = new MutableLiveData<>();
 
@@ -106,7 +140,11 @@ public class CategoryRepository {
         return data;
     }
 
-
+    /**
+     * Crée une nouvelle catégorie.
+     *
+     * @param Categorydb catégorie à créer
+     */
     public void createCategory(Categorydb cat) {
         Futures.addCallback(
                 db.CategoryDAO().insert(cat),
@@ -121,7 +159,11 @@ public class CategoryRepository {
                 databaseExecutor
         );
     }
-
+    /**
+     * Delete une catégorie
+     *
+     * @param id id de la sub catégorie à delete
+     */
     public void deleteCategory(int id){
         Futures.addCallback(
                 db.CategoryDAO().delByID(id),

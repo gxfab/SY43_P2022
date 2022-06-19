@@ -21,7 +21,11 @@ public class TransactionRepository {
     private static TransactionRepository instance;
     private DB db;
     private DBexec databaseExecutor;
-
+    /**
+     * Renvoi l'instance de TransactionRepository
+     *
+     * @return l'instance de TransactionRepository
+     */
     public static TransactionRepository getInstance() {
         if (instance == null) instance = new TransactionRepository();
         return instance;
@@ -32,6 +36,12 @@ public class TransactionRepository {
         databaseExecutor = DBexec.getExecutor();
     }
 
+
+    /**
+     * Retourne toutes les transactions de la sub catégorie avec l'id passée en paramètre
+     * @param id id de la sub catégorie
+     * @return MutableLiveData<List<Transaction>> Liste des sous transactions trouvées
+     */
 
     public MutableLiveData<List<Transaction>> getTransactionsFromSubCat(int id) {
         MutableLiveData<List<Transaction>> data = new MutableLiveData<>();
@@ -50,7 +60,12 @@ public class TransactionRepository {
         );
         return data;
     }
-
+    /**
+     * Retourne toutes les transactions de la catégorie avec l'id passée en paramètre
+     *
+     * @param id id de la catégorie
+     * @return MutableLiveData<List<Transaction>> Liste des sous transactions trouvées
+     */
     public MutableLiveData<List<Transaction>> getTransactionsFromCat(int id) {
         MutableLiveData<List<Transaction>> data = new MutableLiveData<>();
 
@@ -69,6 +84,11 @@ public class TransactionRepository {
         return data;
     }
 
+    /**
+     * Retourne toutes les transactions de la BDD
+     *
+     * @return  MutableLiveData<List<Transaction>> liste des transactions
+     */
     public MutableLiveData<List<Transaction>> getTransactions() {
         MutableLiveData<List<Transaction>> data = new MutableLiveData<>();
 
@@ -87,7 +107,11 @@ public class TransactionRepository {
         );
         return data;
     }
-
+    /**
+     * Crée une nouvelle transaction.
+     *
+     * @param Transaction Transaction à créer
+     */
     public void createTransaction(Transaction trans) {
         Futures.addCallback(
                 db.TransactionDAO().insert(trans),

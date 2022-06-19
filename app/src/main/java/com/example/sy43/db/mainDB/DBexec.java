@@ -7,12 +7,12 @@ public class DBexec implements Executor {
     private static volatile DBexec INSTANCE;
     private DBexec(){}
 
+
     /**
-     * création d'un nouvel executor afin de ne pas passer dnas le mainThread
-     * cela évite des freeze ou des "app is not responding" dans le cas de grosses requetes
-     * on y retrouve a nouveau un pattern singleton car il ne sert à rien de créer plusieurs executor pour nos requetes
+     * Renvoi l'instance de la DBExec
+     * cette instance est utilisée pour ne pas passer par le main thread.
      *
-     * @return l'instance de l'executor
+     * @return l'instance de la DBExec
      */
     public static DBexec getExecutor(){
         if (INSTANCE == null){
@@ -25,6 +25,12 @@ public class DBexec implements Executor {
         return INSTANCE;
     }
 
+    /**
+     * Execute la runnable passée en paramètre
+
+     * @param runnable
+     * @return l'instance de la DBExec
+     */
     @Override
     public void execute(Runnable runnable) {
         runnable.run();

@@ -21,6 +21,13 @@ public class SubCategoryRepository {
     private DB db;
     private DBexec databaseExecutor;
 
+
+    /**
+     * Renvoi l'instance de SubCategoryRepository
+     *
+     * @return l'instance de SubCategoryRepository
+     */
+
     public static SubCategoryRepository getInstance() {
         if (instance == null) instance = new SubCategoryRepository();
         return instance;
@@ -30,7 +37,11 @@ public class SubCategoryRepository {
         db = DB.getAppDatabase(MainActivity.getAppContext());
         databaseExecutor = DBexec.getExecutor();
     }
-
+    /**
+     * Retourne toutes les sous catégories de la BDD
+     *
+     * @return  MutableLiveData<List<SubCategory>> liste des sous catégories
+     */
     public MutableLiveData<List<SubCategory>> getSubCategories() {
         MutableLiveData<List<SubCategory>> data = new MutableLiveData<>();
 
@@ -51,7 +62,11 @@ public class SubCategoryRepository {
         return data;
     }
 
-
+    /**
+     * Retourne une sous catégorie via son id
+     *
+     * @param id id de la sub catégorie sous forme d'int
+     */
     public MutableLiveData<SubCategory> getSubCategoryById(int id) {
         MutableLiveData<SubCategory> data = new MutableLiveData<>();
 
@@ -70,6 +85,15 @@ public class SubCategoryRepository {
         );
         return data;
     }
+
+
+    /**
+     * Retourne tous les sous objectifs de la catégorie avec l'id passée en paramètre
+     *
+     * @param id id de la catégorie
+     * @return MutableLiveData<List<SubCategory>> Liste des sous catégories trouvées
+     */
+
     public MutableLiveData<List<SubCategory>> getSubCategoriesByCatId(int id) {
         MutableLiveData<List<SubCategory>> data = new MutableLiveData<>();
 
@@ -89,6 +113,12 @@ public class SubCategoryRepository {
         return data;
     }
 
+    /**
+     * Crée une nouvelle sub catégorie.
+     *
+     * @param SubCategory sub catégorie à créer
+     */
+
     public void createSubCategory(SubCategory subCategory) {
         Futures.addCallback(
                 db.SubCategoryDAO().insert(subCategory),
@@ -103,7 +133,11 @@ public class SubCategoryRepository {
                 databaseExecutor
         );
     }
-
+    /**
+     * Delete une catégorie
+     *
+     * @param id id de la catégorie à delete
+     */
     public void deleteSubCategory(int id){
         Futures.addCallback(
                 db.SubCategoryDAO().delSubByID(id),

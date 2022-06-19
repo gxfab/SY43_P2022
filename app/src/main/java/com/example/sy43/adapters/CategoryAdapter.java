@@ -48,6 +48,20 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
     private TransactionViewModel transactionViewModel;
     private LifecycleOwner owner;
 
+
+    /**
+     * Constructeur de l'adapteur de catégorie
+     * Cette classe sert à remplir l'objet "ListView" via un layout personnalisé
+     *
+     * @param context Le context de l'application
+     * @param owner Le parent de la lifecycle
+     * @param resource La ressource pour pouvoir créer l'adapter
+     * @param categories Liste des catégories
+     * @param categoryViewModel Viewmodel de la catégorie
+     * @param transactionViewModel Viewmodel de la transaction
+     * @param subCategoryViewModel Viewmodel de la sous catégorie
+     */
+
     public CategoryAdapter(@NonNull Context context, LifecycleOwner owner, int resource, List<Categorydb> categories, CategoryViewModel categoryViewModel, TransactionViewModel transactionViewModel, SubCategoryViewModel subCategoryViewModel) {
         super(context, resource, categories);
         this.resourceLayout = resource;
@@ -57,6 +71,15 @@ public class CategoryAdapter extends ArrayAdapter<Categorydb> {
         this.subCatViewModel = subCategoryViewModel;
         this.owner = owner;
     }
+
+    /**
+     * Méthode appelée pour chaque élement de la liste
+     *
+     * @param position Position de la catégorie dans la liste
+     * @param convertView Vue convertie
+     * @param parent Le groupe de la vue parente
+     * @return View nouvelle vue
+     */
 
     @NonNull
     @Override
