@@ -12,9 +12,6 @@ import com.sucelloztm.sucelloz.repositories.SavingsRepository;
 import com.sucelloztm.sucelloz.repositories.StableExpensesAndIncomeRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 /**
@@ -32,7 +29,6 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
     private LiveData<Integer> stableExpenses;
     private LiveData<Integer> stableIncomes;
     private LiveData<Integer> savings;
-    private ExecutorService executor;
 
     /**
      * custom constructor
@@ -44,7 +40,6 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
         this.infrequentExpensesAndIncomeRepository = new InfrequentExpensesAndIncomeRepository(application);
         this.stableExpensesAndIncomeRepository = new StableExpensesAndIncomeRepository(application);
         this.savingsRepository = new SavingsRepository(application);
-        this.executor = Executors.newSingleThreadExecutor();
 
     }
 
@@ -61,7 +56,7 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
      * @param name name
      * @return subcategory
      */
-    public LiveData<SubCategories> getSubCategoryByName(String name){
+    public SubCategories getSubCategoryByName(String name){
         return this.subCategoriesRepository.getSubCategoryWithName(name);
     }
 
@@ -123,8 +118,5 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
         return this.savings;
     }
 
-    public LiveData<List<SubCategories>> getSubCategoriesWithCategoryId(long id){
-        return subCategoriesRepository.getSubCategoriesWithCategoryId(id);
-    }
 }
 

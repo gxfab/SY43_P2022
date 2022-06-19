@@ -1,7 +1,6 @@
 package com.sucelloztm.sucelloz.ui.zerobudget;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +27,7 @@ import com.sucelloztm.sucelloz.databinding.ZeroBudgetFragmentBinding;
 
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
+import com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class ZeroBudgetFragment extends Fragment {
     private ZeroBudgetViewModel zeroBudgetViewModel;
     private TextView zeroBudgetTextView;
     private ZeroBudget zeroBudget;
+
     /**
      * on create view method
      * @param inflater inflater
@@ -59,34 +61,24 @@ public class ZeroBudgetFragment extends Fragment {
         RecyclerView recyclerView = binding.zeroBudgetRecyclerView;
         zeroBudgetSubCategoriesList = new ArrayList<>();
         zeroBudgetTextView = binding.zeroBudgetTextView;
-        ZeroBudgetAdapter adapter = new ZeroBudgetAdapter(zeroBudgetSubCategoriesList);
-        final Observer<List<SubCategories>> subCategoriesListObserver = new Observer<List<SubCategories>>() {
-            @Override
-            public void onChanged(List<SubCategories> subCategories) {
-                zeroBudgetSubCategoriesList.clear();
-                zeroBudgetSubCategoriesList.addAll(subCategories);
-                adapter.notifyDataSetChanged();
-            }
-        };
-        zeroBudgetViewModel.getSubCategoriesWithCategoryId(1).observe(getViewLifecycleOwner(),subCategoriesListObserver);
+        String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
+                "Sinking Funds", "Extra Debt", "Extra Savings"};
+        for (String name:zeroBudgetNameList
+             ) {
+            zeroBudgetSubCategoriesList.add(zeroBudgetViewModel.getSubCategoryByName(name));
+        }
 
 
-
+        ZeroBudgetAdapter zeroBudgetAdapter = new ZeroBudgetAdapter(zeroBudgetSubCategoriesList);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(zeroBudgetAdapter);
         registerForContextMenu(recyclerView);
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
             TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.zero_budget_text_view);
             String currentZeroBudgetCategoryName = currentZeroBudgetCategoryTextView.getText().toString();
-            final Observer<SubCategories> currentSubCategoryObserver = new Observer<SubCategories>() {
-                @Override
-                public void onChanged(SubCategories subCategories) {
-                    zeroBudgetViewModel.setCurrentSubCategory(subCategories);
-                }
-            };
-            zeroBudgetViewModel.getSubCategoryByName(currentZeroBudgetCategoryName).observe(getViewLifecycleOwner(),currentSubCategoryObserver);
-
+            SubCategories currentSubCategory = zeroBudgetViewModel.getSubCategoryByName(currentZeroBudgetCategoryName);
+            zeroBudgetViewModel.setCurrentSubCategory(currentSubCategory);
             NavHostFragment.findNavController(ZeroBudgetFragment.this).navigate(R.id.action_navigation_zero_budget_to_navigation_sub_zero_budget);
         });
 
