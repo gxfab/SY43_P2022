@@ -21,7 +21,6 @@ import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.Transaction;
 import com.example.econo_misons.database.models.User;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 @Database(entities = {User.class, Budget.class, Budget_User.class, Category.class, Envelope.class, PrevisionalBudget.class, Transaction.class}, version = 1)
