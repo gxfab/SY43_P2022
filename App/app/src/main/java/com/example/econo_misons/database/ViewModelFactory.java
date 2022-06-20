@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+//Public class that generate the DBViewmodel
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
     private final UserDataRepository userDataSource;

@@ -63,9 +63,9 @@ public class TransactionDataRepository {
         treeMap.background().enabled(false);
         treeMap.draw(true);
         treeMap.margin("15");
-        MutableLiveData<TreeMap> mutuable = new MutableLiveData<TreeMap>();
-        mutuable.setValue(treeMap);
-        return mutuable;
+        MutableLiveData<TreeMap> mutable = new MutableLiveData<TreeMap>();
+        mutable.setValue(treeMap);
+        return mutable;
     }
 
 }

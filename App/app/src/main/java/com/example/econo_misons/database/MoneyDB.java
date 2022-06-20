@@ -46,7 +46,7 @@ public abstract class MoneyDB extends RoomDatabase {
             synchronized (MoneyDB.class) {
 
                 if (INSTANCE == null) {
-
+                    //If the database doesn't exist, create it
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
 
                                     MoneyDB.class, "MyDatabase.db")
@@ -63,12 +63,13 @@ public abstract class MoneyDB extends RoomDatabase {
 
     }
 
+    //Add basic data in the database
     private static Callback prepopulateDatabase() {
         return new Callback() {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
-                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.userdao().newUser(new User("Suiram")));
+                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.userdao().newUser(new User("Default User")));
                 Executors.newSingleThreadExecutor().execute(() -> {
                     INSTANCE.budgetdao().addBudget(new Budget("Budget perso"));
                     INSTANCE.budgetdao().linkBudgetUser(new Budget_User(1,1));
