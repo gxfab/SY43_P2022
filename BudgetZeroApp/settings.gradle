@@ -4,6 +4,8 @@ pluginManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        jcenter()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
     }
 
 
@@ -14,6 +16,8 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        jcenter()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
     }
 }
 rootProject.name = "Budget Zero App"
