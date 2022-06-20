@@ -13,11 +13,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    /**
+     * function that allows to start month activity
+     */
     fun seeMonthOverview(view : View){
         val intent = Intent(this,MonthOverviewActivity::class.java)
         startActivity(intent)
     }
 
+    /**
+     * function that allows to start wishes activity
+     */
     fun seeWishOverview(view : View){
         val intent = Intent(this,WishActivity::class.java)
         startActivity(intent)

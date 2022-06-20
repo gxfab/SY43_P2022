@@ -22,9 +22,6 @@ class WishAdapter: RecyclerView.Adapter<WishAdapter.ViewHolder>() {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_wish,parent,false))
     }
 
-
-
-
     override fun onBindViewHolder(holder: WishAdapter.ViewHolder, position: Int) {
         val currentItem = wishList[position]
         holder.itemView.findViewById<TextView>(R.id.wish_name).text = currentItem.wis_name.toString()

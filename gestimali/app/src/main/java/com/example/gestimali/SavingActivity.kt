@@ -14,6 +14,9 @@ class SavingActivity : AppCompatActivity(){
         setContentView(R.layout.activity_saving)
     }
 
+    /**
+     * Function to see savings activity
+     */
     fun seeWishOverview(view : View){
         val intent = Intent(this,WishActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
