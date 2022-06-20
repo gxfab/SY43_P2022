@@ -16,13 +16,13 @@ import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.ui.categories.CategoriesViewModel;
 
 /**
- * class to add a category dialog to a fragment
+ * Class to add a category dialog to a fragment
  */
 public class AddCategoryDialogFragment extends DialogFragment {
     private AddCategoryDialogViewModel addCategoryDialogViewModel;
 
     /**
-     * on create dialog method
+     * On create dialog method
      * @param savedInstanceState saved instance state
      * @return dialog
      */

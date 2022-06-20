@@ -13,14 +13,14 @@ import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 import java.util.List;
 
 /**
- * class to add a spending dialog to a view model
+ * Class to add a spending dialog to a view model
  */
 public class AddSpendingDialogViewModel extends AndroidViewModel {
     private InfrequentExpensesAndIncomeRepository spendingRepository;
     private SubCategoriesRepository subCategoriesRepository;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application application
      */
     public AddSpendingDialogViewModel(@NonNull Application application) {
@@ -30,7 +30,7 @@ public class AddSpendingDialogViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the insert spending query
+     * Invokes the insert spending query
      * @param spending spending
      */
     public void insert(InfrequentExpensesAndIncome spending){
@@ -38,7 +38,7 @@ public class AddSpendingDialogViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the query to get all subcategories names
+     * Invokes the query to get all subcategories names
      * @return list of names
      */
     public List<String> getSubCategoriesNames(){
@@ -46,7 +46,7 @@ public class AddSpendingDialogViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the query to get a subcategory by its name
+     * Invokes the query to get a subcategory by its name
      * @param nameOfSubCategory name of the subcategory
      * @return subcategory
      */

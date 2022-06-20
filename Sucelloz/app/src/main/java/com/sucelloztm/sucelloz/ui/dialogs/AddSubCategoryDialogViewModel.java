@@ -10,13 +10,13 @@ import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 /**
- * class to add a subcategory dialog to a view model
+ * Class to add a subcategory dialog to a view model
  */
 public class AddSubCategoryDialogViewModel extends AndroidViewModel {
     private SubCategoriesRepository subCategoriesRepository;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application application
      */
     public AddSubCategoryDialogViewModel(@NonNull Application application) {
@@ -25,7 +25,7 @@ public class AddSubCategoryDialogViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the insert subcategory query
+     * Invokes the insert subcategory query
      * @param subCategory subcategory
      */
     public void insert(SubCategories subCategory){
@@ -33,7 +33,7 @@ public class AddSubCategoryDialogViewModel extends AndroidViewModel {
     }
 
     /**
-     * getter
+     * Get sub-category id
      * @return subcategory id
      */
     public long getCurrentCategoryId(){
