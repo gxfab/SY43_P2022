@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:id="@+id/project_item"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="10dp"
+        app:cardElevation="15dp">
+        <TextView
+            android:id="@+id/project_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Project Name"
+            android:textSize="20sp"
+            android:layout_gravity="center|top"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/project_item_cost"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="500$"
+            android:textSize="18sp"
+            android:layout_gravity="start|bottom"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/project_item_priority"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="10/10"
+            android:layout_gravity="bottom|end"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+
+    </androidx.cardview.widget.CardView>

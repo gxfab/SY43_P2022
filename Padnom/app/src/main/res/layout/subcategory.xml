@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/subcategoryCardView"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    app:cardElevation="1dp"
+    android:layout_margin="8dp"
+    android:backgroundTint="#ff95cc"
+    app:cardCornerRadius="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/subcategoryTV"
+        android:text="Sub Category"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center|top"/>
+    <TextView
+        android:id="@+id/subcategoryEnveloppe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="500/800$"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="25dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(Expense/Envelope)"
+        android:textSize="18sp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/white"/>
+</androidx.cardview.widget.CardView>
