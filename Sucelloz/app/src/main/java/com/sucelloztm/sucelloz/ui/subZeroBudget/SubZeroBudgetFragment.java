@@ -51,7 +51,7 @@ public class SubZeroBudgetFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = SubZeroBudgetFragmentBinding.inflate(inflater,container,false);
+        binding = SubZeroBudgetFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         subZeroBudgetViewModel = new ViewModelProvider(this).get(SubZeroBudgetViewModel.class);
         currentStableList = new ArrayList<>();
@@ -65,7 +65,7 @@ public class SubZeroBudgetFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         };
-        subZeroBudgetViewModel.getAllStableFromSubCategory(SubCategoriesRepository.getCurrentSubCategory().getId()).observe(getViewLifecycleOwner(),subZeroBudgetListObserver);
+        subZeroBudgetViewModel.getAllStableFromSubCategory(SubCategoriesRepository.getCurrentSubCategory().getId()).observe(getViewLifecycleOwner(), subZeroBudgetListObserver);
         recyclerView = binding.subzerobudgetRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -95,7 +95,7 @@ public class SubZeroBudgetFragment extends Fragment {
         binding.addStableButtonSubzerobudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddStableDialogFragment().show(getChildFragmentManager(),AddStableDialogFragment.TAG);
+                new AddStableDialogFragment().show(getChildFragmentManager(), AddStableDialogFragment.TAG);
             }
         });
     }
@@ -103,21 +103,21 @@ public class SubZeroBudgetFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding =null;
+        binding = null;
     }
 
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater menuInflater = getActivity().getMenuInflater();
-        menuInflater.inflate(R.menu.context_menu,menu);
+        menuInflater.inflate(R.menu.context_menu, menu);
     }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.modify_menu_item:
-                dialogForModifyStable(getActivity(),currentStableList.get(itemIndex).getId()).show();
+                dialogForModifyStable(getActivity(), currentStableList.get(itemIndex).getId()).show();
                 return true;
             case R.id.delete_menu_item:
                 subZeroBudgetViewModel.deleteStable(currentStableList.get(itemIndex));
@@ -129,11 +129,12 @@ public class SubZeroBudgetFragment extends Fragment {
 
     /**
      * Dialog to modify selected Stable element
-     * @param activity activity
+     *
+     * @param activity   activity
      * @param idOfStable id of the stable
      * @return dialog
      */
-    public Dialog dialogForModifyStable(Activity activity, long idOfStable){
+    public Dialog dialogForModifyStable(Activity activity, long idOfStable) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         final EditText amountEditText = new EditText(activity);
 

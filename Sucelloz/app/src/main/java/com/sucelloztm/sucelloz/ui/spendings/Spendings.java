@@ -11,9 +11,10 @@ public class Spendings {
 
     /**
      * Custom constructor
-     * @param name name
-     * @param amount amount
-     * @param date date
+     *
+     * @param name        name
+     * @param amount      amount
+     * @param date        date
      * @param subCategory subcategory
      */
     public Spendings(String name, int amount, String date, String subCategory) {
@@ -25,6 +26,7 @@ public class Spendings {
 
     /**
      * Getter
+     *
      * @return name
      */
     public String getName() {
@@ -32,7 +34,8 @@ public class Spendings {
     }
 
     /**
-     *Getter
+     * Getter
+     *
      * @param name name
      */
     public void setName(String name) {
@@ -41,6 +44,7 @@ public class Spendings {
 
     /**
      * Getter
+     *
      * @return amount
      */
     public int getAmount() {
@@ -49,6 +53,7 @@ public class Spendings {
 
     /**
      * Setter
+     *
      * @param amount amount
      */
     public void setAmount(int amount) {
@@ -57,6 +62,7 @@ public class Spendings {
 
     /**
      * Getter
+     *
      * @return date
      */
     public String getDate() {
@@ -65,6 +71,7 @@ public class Spendings {
 
     /**
      * Setter
+     *
      * @param date date
      */
     public void setDate(String date) {
@@ -73,6 +80,7 @@ public class Spendings {
 
     /**
      * getter
+     *
      * @return subcategory
      */
     public String getSubCategory() {
@@ -81,6 +89,7 @@ public class Spendings {
 
     /**
      * setter
+     *
      * @param subCategory subcategory
      */
     public void setSubCategory(String subCategory) {

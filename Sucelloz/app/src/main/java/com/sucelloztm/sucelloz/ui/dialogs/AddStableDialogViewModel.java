@@ -18,6 +18,7 @@ public class AddStableDialogViewModel extends AndroidViewModel {
 
     /**
      * Custom constructor
+     *
      * @param application application
      */
     public AddStableDialogViewModel(@NonNull Application application) {
@@ -27,17 +28,19 @@ public class AddStableDialogViewModel extends AndroidViewModel {
 
     /**
      * Invokes the insert stable query
+     *
      * @param stableExpensesAndIncome stable
      */
-    public void insert(StableExpensesAndIncome stableExpensesAndIncome){
+    public void insert(StableExpensesAndIncome stableExpensesAndIncome) {
         this.stableExpensesAndIncomeRepository.insert(stableExpensesAndIncome);
     }
 
     /**
      * Get current sub-category
+     *
      * @return subcategory
      */
-    public SubCategories getCurrentSubCategory(){
+    public SubCategories getCurrentSubCategory() {
         return SubCategoriesRepository.getCurrentSubCategory();
     }
 }

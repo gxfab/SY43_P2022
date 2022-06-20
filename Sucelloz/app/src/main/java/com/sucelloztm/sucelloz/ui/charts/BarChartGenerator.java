@@ -3,11 +3,7 @@ package com.sucelloztm.sucelloz.ui.charts;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.widget.FrameLayout;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -17,9 +13,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.Savings;
-import com.sucelloztm.sucelloz.ui.savings.SavingsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +27,7 @@ public class BarChartGenerator {
 
     /**
      * Custom constructor
+     *
      * @param currentSavingsArrayList list of the current savings
      */
     public BarChartGenerator(List<Savings> currentSavingsArrayList) {
@@ -42,6 +37,7 @@ public class BarChartGenerator {
 
     /**
      * Get bar chart
+     *
      * @return barChart
      */
     public BarChart getBarChart() {
@@ -51,8 +47,9 @@ public class BarChartGenerator {
 
     /**
      * Create a bar chart
+     *
      * @param context context
-     * @param parent frame layout
+     * @param parent  frame layout
      */
     public void createBarChart(Context context, FrameLayout parent) {
         /*
@@ -74,7 +71,7 @@ public class BarChartGenerator {
         /*
             Instantiate a type face
          */
-        Typeface tf = Typeface.create((Typeface) null,Typeface.NORMAL);
+        Typeface tf = Typeface.create((Typeface) null, Typeface.NORMAL);
 
         /*
             Set data to represent
@@ -116,6 +113,7 @@ public class BarChartGenerator {
 
     /**
      * Generates the data for the bar chart
+     *
      * @return barChartData
      */
     public BarData generateBarData() {
@@ -126,20 +124,20 @@ public class BarChartGenerator {
         /*
             Assign Float data as bar chart entries
          */
-        for(int i = 0; i<entriesList.size();i++){
-            entries.add(new BarEntry(i,entriesList.get(i)));
+        for (int i = 0; i < entriesList.size(); i++) {
+            entries.add(new BarEntry(i, entriesList.get(i)));
         }
 
         /*
             Set entries
          */
-        BarDataSet set = new BarDataSet(entries,"Savings");
+        BarDataSet set = new BarDataSet(entries, "Savings");
 
         /*
             Set text color, size and dependency to axis
          */
         set.setColor(Color.rgb(0, 150, 255));
-        set.setValueTextColor(Color.rgb(0,0,0));
+        set.setValueTextColor(Color.rgb(0, 0, 0));
         set.setValueTextSize(10f);
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
 
@@ -156,13 +154,14 @@ public class BarChartGenerator {
 
     /**
      * Generates an entry for the bar chart
+     *
      * @return list of the bar chart entries
      */
-    private List<Float> generateBarEntry(){
+    private List<Float> generateBarEntry() {
 
         List<Float> percentageArrayList = new ArrayList<>();
-        for (Savings savings:
-             this.currentSavingsArrayList) {
+        for (Savings savings :
+                this.currentSavingsArrayList) {
             percentageArrayList.add(savings.getPercentage());
 
         }

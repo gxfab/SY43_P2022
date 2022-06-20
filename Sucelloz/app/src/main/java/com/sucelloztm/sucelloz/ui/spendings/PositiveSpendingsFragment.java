@@ -1,7 +1,6 @@
 package com.sucelloztm.sucelloz.ui.spendings;
 
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
 import com.sucelloztm.sucelloz.ui.charts.PieChartSubCategoriesGenerator;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSpendingDialogFragment;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +44,7 @@ public class PositiveSpendingsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding=PositiveSpendingsFragmentBinding.inflate(inflater,container,false);
+        binding = PositiveSpendingsFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         spendingsViewModel = new ViewModelProvider(this).get(SpendingsViewModel.class);
         currentPositiveSpendingsList = new ArrayList<>();
@@ -61,9 +59,9 @@ public class PositiveSpendingsFragment extends Fragment {
                 infrequentExpensesAndIncomes.forEach(spending -> {
                     String subCategoryName = spendingsViewModel.getSubCategoryNameWithId(spending.getSubCategoriesId());
                     currentPositiveSpendingsList.add(new Spendings(spending.getName(),
-                            spending.getAmount(),
-                            spending.getDate(),
-                            subCategoryName
+                                    spending.getAmount(),
+                                    spending.getDate(),
+                                    subCategoryName
                             )
                     );
                 });
@@ -84,12 +82,11 @@ public class PositiveSpendingsFragment extends Fragment {
         };
 
 
-        spendingsViewModel.getAllPositiveSpendings().observe(getViewLifecycleOwner(),positiveSpendingsDataSet);
-        spendingsViewModel.getAllSubCategoriesWithPositiveInfrequentSum().observe(getViewLifecycleOwner(),subCategoriesWithPositiveInfrequentSumObserver);
+        spendingsViewModel.getAllPositiveSpendings().observe(getViewLifecycleOwner(), positiveSpendingsDataSet);
+        spendingsViewModel.getAllSubCategoriesWithPositiveInfrequentSum().observe(getViewLifecycleOwner(), subCategoriesWithPositiveInfrequentSumObserver);
         recyclerView = binding.spendingsRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-
 
 
         return root;
@@ -102,7 +99,7 @@ public class PositiveSpendingsFragment extends Fragment {
         binding.addSpendingButtonSpendings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddSpendingDialogFragment().show(getChildFragmentManager(),AddSpendingDialogFragment.TAG);
+                new AddSpendingDialogFragment().show(getChildFragmentManager(), AddSpendingDialogFragment.TAG);
             }
         });
     }
@@ -112,5 +109,5 @@ public class PositiveSpendingsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-    
+
 }

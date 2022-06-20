@@ -20,8 +20,9 @@ public class SpendingsTabsFragmentAdapter extends FragmentStateAdapter {
 
     /**
      * Custom constructor
+     *
      * @param fragmentManager fragment manager
-     * @param lifecycle life cycle
+     * @param lifecycle       life cycle
      */
     public SpendingsTabsFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);

@@ -21,6 +21,7 @@ public class AddSpendingDialogViewModel extends AndroidViewModel {
 
     /**
      * Custom constructor
+     *
      * @param application application
      */
     public AddSpendingDialogViewModel(@NonNull Application application) {
@@ -31,26 +32,29 @@ public class AddSpendingDialogViewModel extends AndroidViewModel {
 
     /**
      * Invokes the insert spending query
+     *
      * @param spending spending
      */
-    public void insert(InfrequentExpensesAndIncome spending){
+    public void insert(InfrequentExpensesAndIncome spending) {
         this.spendingRepository.insert(spending);
     }
 
     /**
      * Invokes the query to get all subcategories names
+     *
      * @return list of names
      */
-    public List<String> getSubCategoriesNames(){
+    public List<String> getSubCategoriesNames() {
         return this.subCategoriesRepository.getSubCategoriesNames();
     }
 
     /**
      * Invokes the query to get a subcategory by its name
+     *
      * @param nameOfSubCategory name of the subcategory
      * @return subcategory
      */
-    public SubCategories getSubCategoryWithName(String nameOfSubCategory){
+    public SubCategories getSubCategoryWithName(String nameOfSubCategory) {
         return this.subCategoriesRepository.getSubCategoryWithName(nameOfSubCategory);
     }
 }

@@ -1,29 +1,22 @@
 package com.sucelloztm.sucelloz.ui.zerobudget;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
-
-
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.ZeroBudgetFragmentBinding;
-
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
 import com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesAdapter;
@@ -86,8 +79,8 @@ public class ZeroBudgetFragment extends Fragment {
          */
         String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
                 "Sinking Funds", "Extra debt", "Extra Savings"};
-        for (String name:zeroBudgetNameList
-             ) {
+        for (String name : zeroBudgetNameList
+        ) {
             zeroBudgetSubCategoriesList.add(zeroBudgetViewModel.getSubCategoryByName(name));
         }
 
@@ -99,7 +92,7 @@ public class ZeroBudgetFragment extends Fragment {
         /*
           Set layout manager and adapter of recycler view
          */
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         recyclerView.setAdapter(subCategoriesAdapter);
 
         registerForContextMenu(recyclerView);
@@ -108,7 +101,7 @@ public class ZeroBudgetFragment extends Fragment {
           Navigation into sub-categories fragment on click
          */
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
-            TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.text_view_subcategories);
+            TextView currentZeroBudgetCategoryTextView = v.findViewById(R.id.text_view_subcategories);
             String currentZeroBudgetCategoryName = currentZeroBudgetCategoryTextView.getText().toString();
             SubCategories currentSubCategory = zeroBudgetViewModel.getSubCategoryByName(currentZeroBudgetCategoryName);
             zeroBudgetViewModel.setCurrentSubCategory(currentSubCategory);
@@ -119,24 +112,39 @@ public class ZeroBudgetFragment extends Fragment {
         /*
           Set of observers to retrieve results of queries concerning expenses, incomes and savings
          */
-        final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> { zeroBudget.setInfrequentExpenses(newInfrequentExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
+        final Observer<Integer> infrequentExpensesObserver = newInfrequentExpenses -> {
+            zeroBudget.setInfrequentExpenses(newInfrequentExpenses);
+            zeroBudget.setResultBudgetZero(zeroBudgetTextView);
+        };
 
-        final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes ->{zeroBudget.setInfrequentIncomes(newInfrequentIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
+        final Observer<Integer> infrequentIncomesObserver = newInfrequentIncomes -> {
+            zeroBudget.setInfrequentIncomes(newInfrequentIncomes);
+            zeroBudget.setResultBudgetZero(zeroBudgetTextView);
+        };
 
-        final Observer<Integer> stableExpensesObserver= newStableExpenses -> {zeroBudget.setStableExpenses(newStableExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
+        final Observer<Integer> stableExpensesObserver = newStableExpenses -> {
+            zeroBudget.setStableExpenses(newStableExpenses);
+            zeroBudget.setResultBudgetZero(zeroBudgetTextView);
+        };
 
-        final Observer<Integer> stableIncomesObserver= newStableIncomes -> {zeroBudget.setStableIncomes(newStableIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
+        final Observer<Integer> stableIncomesObserver = newStableIncomes -> {
+            zeroBudget.setStableIncomes(newStableIncomes);
+            zeroBudget.setResultBudgetZero(zeroBudgetTextView);
+        };
 
-        final Observer<Integer> savingsObserver = newSavings -> {zeroBudget.setSavings(newSavings);zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
+        final Observer<Integer> savingsObserver = newSavings -> {
+            zeroBudget.setSavings(newSavings);
+            zeroBudget.setResultBudgetZero(zeroBudgetTextView);
+        };
 
         /*
           Observing expenses, incomes and savings
          */
-        zeroBudgetViewModel.getInfrequentExpenses().observe(getViewLifecycleOwner(),infrequentExpensesObserver);
-        zeroBudgetViewModel.getInfrequentIncomes().observe(getViewLifecycleOwner(),infrequentIncomesObserver);
-        zeroBudgetViewModel.getStableExpenses().observe(getViewLifecycleOwner(),stableExpensesObserver);
-        zeroBudgetViewModel.getStableIncomes().observe(getViewLifecycleOwner(),stableIncomesObserver);
-        zeroBudgetViewModel.getSavings().observe(getViewLifecycleOwner(),savingsObserver);
+        zeroBudgetViewModel.getInfrequentExpenses().observe(getViewLifecycleOwner(), infrequentExpensesObserver);
+        zeroBudgetViewModel.getInfrequentIncomes().observe(getViewLifecycleOwner(), infrequentIncomesObserver);
+        zeroBudgetViewModel.getStableExpenses().observe(getViewLifecycleOwner(), stableExpensesObserver);
+        zeroBudgetViewModel.getStableIncomes().observe(getViewLifecycleOwner(), stableIncomesObserver);
+        zeroBudgetViewModel.getSavings().observe(getViewLifecycleOwner(), savingsObserver);
 
         return root;
     }

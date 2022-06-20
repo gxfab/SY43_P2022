@@ -52,6 +52,7 @@ public class ItemClickSupport {
 
     /**
      * custom constructor
+     *
      * @param recyclerView recycler view
      */
     private ItemClickSupport(RecyclerView recyclerView) {
@@ -62,6 +63,7 @@ public class ItemClickSupport {
 
     /**
      * adds the item click support to a recycler view
+     *
      * @param view recycler view
      * @return item click support instance
      */
@@ -83,6 +85,7 @@ public class ItemClickSupport {
 
     /**
      * setter
+     *
      * @param listener on item click listener
      * @return item click support instance
      */
@@ -93,6 +96,7 @@ public class ItemClickSupport {
 
     /**
      * setter
+     *
      * @param listener on item long click listener
      * @return item click support instance
      */
@@ -103,6 +107,7 @@ public class ItemClickSupport {
 
     /**
      * detaches item click support instances from a recycler view
+     *
      * @param view view
      */
     private void detach(RecyclerView view) {
@@ -117,9 +122,10 @@ public class ItemClickSupport {
 
         /**
          * on item clicked method
+         *
          * @param recyclerView recycler view
-         * @param position position
-         * @param v view
+         * @param position     position
+         * @param v            view
          */
         void onItemClicked(RecyclerView recyclerView, int position, View v);
     }
@@ -131,9 +137,10 @@ public class ItemClickSupport {
 
         /**
          * on item long clicked method
+         *
          * @param recyclerView recycler view
-         * @param position position
-         * @param v view
+         * @param position     position
+         * @param v            view
          */
         boolean onItemLongClicked(RecyclerView recyclerView, int position, View v);
     }

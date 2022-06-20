@@ -1,6 +1,5 @@
 package com.sucelloztm.sucelloz.ui.dialogs;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -17,14 +16,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.sucelloztm.sucelloz.R;
-import com.sucelloztm.sucelloz.databinding.AddSpendingDialogFragmentBinding;
 import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
-import com.sucelloztm.sucelloz.models.SubCategories;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -39,17 +34,18 @@ public class AddSpendingDialogFragment extends DialogFragment {
 
     /**
      * On create dialog method
+     *
      * @param savedInstanceState savid instance state
      * @return dialog
      */
     @NonNull
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         super.onCreateDialog(savedInstanceState);
         addSpendingDialogViewModel = new ViewModelProvider(this).get(AddSpendingDialogViewModel.class);
-        AlertDialog.Builder builder= new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = this.getLayoutInflater();
-        final View view = inflater.inflate(R.layout.add_spending_dialog_fragment,null);
+        final View view = inflater.inflate(R.layout.add_spending_dialog_fragment, null);
         builder.setView(view);
         Spinner spinnerSpendings = (Spinner) view.findViewById(R.id.spinner_spendings);
         subCategoriesList = addSpendingDialogViewModel.getSubCategoriesNames();
@@ -81,11 +77,10 @@ public class AddSpendingDialogFragment extends DialogFragment {
 
                         CheckBox signCheckBox = AddSpendingDialogFragment.this.getDialog().findViewById(R.id.check_box_spending);
                         boolean checked = signCheckBox.isChecked();
-                        if (checked){
-                            signOfSpending="+";
-                        }
-                        else{
-                            signOfSpending="-";
+                        if (checked) {
+                            signOfSpending = "+";
+                        } else {
+                            signOfSpending = "-";
                         }
 
                         Date date = Calendar.getInstance().getTime();
@@ -94,7 +89,7 @@ public class AddSpendingDialogFragment extends DialogFragment {
 
                         String subCategoryNameOfSpending = spinnerSpendings.getSelectedItem().toString();
                         idOfSubCategoryOfSpending = addSpendingDialogViewModel.getSubCategoryWithName(subCategoryNameOfSpending).getId();
-                        InfrequentExpensesAndIncome subCategoryToInsert = new InfrequentExpensesAndIncome(nameOfSpending,amountOfSpending,signOfSpending,dateOfSpending,idOfSubCategoryOfSpending);
+                        InfrequentExpensesAndIncome subCategoryToInsert = new InfrequentExpensesAndIncome(nameOfSpending, amountOfSpending, signOfSpending, dateOfSpending, idOfSubCategoryOfSpending);
                         addSpendingDialogViewModel.insert(subCategoryToInsert);
                     }
                 })
@@ -106,5 +101,6 @@ public class AddSpendingDialogFragment extends DialogFragment {
                 });
         return builder.create();
     }
+
     public static String TAG = "AddSpendingDialog";
 }

@@ -19,6 +19,7 @@ import java.util.List;
 public interface SavingsDao {
     /**
      * Inserts a saving
+     *
      * @param savings saving to insert
      * @return id of the inserted saving
      */
@@ -27,6 +28,7 @@ public interface SavingsDao {
 
     /**
      * Inserts a list of savings
+     *
      * @param savings list fo savings to insert
      * @return ids of the inserted savings
      */
@@ -35,6 +37,7 @@ public interface SavingsDao {
 
     /**
      * Updates a saving
+     *
      * @param saving saving to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -42,6 +45,7 @@ public interface SavingsDao {
 
     /**
      * Updates a list of savings
+     *
      * @param savings list of savings to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -49,6 +53,7 @@ public interface SavingsDao {
 
     /**
      * Deletes a saving
+     *
      * @param saving saving to delete
      */
     @Delete
@@ -56,6 +61,7 @@ public interface SavingsDao {
 
     /**
      * Deletes a list of savings
+     *
      * @param savings list of savings to delete
      */
     @Delete
@@ -63,6 +69,7 @@ public interface SavingsDao {
 
     /**
      * Query to get all savings
+     *
      * @return livedata of all savings
      */
     @Query("SELECT * FROM savings")
@@ -70,6 +77,7 @@ public interface SavingsDao {
 
     /**
      * Query to get all savings in a list
+     *
      * @return list of all savings
      */
     @Query("SELECT * FROM savings")
@@ -77,6 +85,7 @@ public interface SavingsDao {
 
     /**
      * Query to get a saving with a specific id
+     *
      * @param idOfSaving id searched
      * @return the searched saving
      */
@@ -85,6 +94,7 @@ public interface SavingsDao {
 
     /**
      * Query to get the Sum of all savings
+     *
      * @return livedata of resulting sum
      */
     @Query("SELECT CAST(total(reached_amount) AS INTEGER) FROM savings")

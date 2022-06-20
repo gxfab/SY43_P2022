@@ -9,7 +9,8 @@ import java.util.List;
  * Link between category and subcategory entities
  */
 public class CategoriesWithSubCategories {
-    @Embedded public Categories categories;
+    @Embedded
+    public Categories categories;
     @Relation(
             parentColumn = "category_id",
             entityColumn = "categories_id"

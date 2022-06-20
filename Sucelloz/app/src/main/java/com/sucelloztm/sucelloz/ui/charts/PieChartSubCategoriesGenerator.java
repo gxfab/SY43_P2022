@@ -8,7 +8,6 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.widget.FrameLayout;
 
-
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -27,7 +26,7 @@ import java.util.Map;
 /**
  * Class to generate pie charts for the subcategories fragment
  */
-public class  PieChartSubCategoriesGenerator {
+public class PieChartSubCategoriesGenerator {
 
     private PieChart pieChart;
     private List<SubCategoriesWithInfrequentSum> subCategoriesWithInfrequentSumList;
@@ -35,14 +34,16 @@ public class  PieChartSubCategoriesGenerator {
 
     /**
      * Custom constructor
+     *
      * @param subCategoriesWithInfrequentSumList list of subcategories
      */
-    public PieChartSubCategoriesGenerator(List<SubCategoriesWithInfrequentSum> subCategoriesWithInfrequentSumList){
+    public PieChartSubCategoriesGenerator(List<SubCategoriesWithInfrequentSum> subCategoriesWithInfrequentSumList) {
         this.subCategoriesWithInfrequentSumList = subCategoriesWithInfrequentSumList;
     }
 
     /**
      * Get pie chart
+     *
      * @return pie chart
      */
     public PieChart getPieChart() {
@@ -51,17 +52,17 @@ public class  PieChartSubCategoriesGenerator {
 
     /**
      * Create pie chart
+     *
      * @param context context
-     * @param parent frame layout
+     * @param parent  frame layout
      * @return created pie chart
      */
-    public PieChart createPieChart(Context context, FrameLayout parent)
-    {
+    public PieChart createPieChart(Context context, FrameLayout parent) {
 
         pieChart = new PieChart(context);
         pieChart.getDescription().setEnabled(false);
 
-        Typeface tf = Typeface.create((Typeface) null,Typeface.NORMAL);
+        Typeface tf = Typeface.create((Typeface) null, Typeface.NORMAL);
 
         pieChart.setCenterTextTypeface(tf);
         //pieChart.setCenterText(generateCenterText());
@@ -108,18 +109,19 @@ public class  PieChartSubCategoriesGenerator {
 
     /**
      * Generates data for the pie chart
+     *
      * @return pie data
      */
     public PieData generatePieData() {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
-        Map<String,Integer> subCategoriesWithInfrequentSumMap= generatePieEntry();
-        String label ="type";
+        Map<String, Integer> subCategoriesWithInfrequentSumMap = generatePieEntry();
+        String label = "type";
 
-        for (String type: subCategoriesWithInfrequentSumMap.keySet()) {
-            pieEntries.add(new PieEntry(subCategoriesWithInfrequentSumMap.get(type).intValue(),type));
+        for (String type : subCategoriesWithInfrequentSumMap.keySet()) {
+            pieEntries.add(new PieEntry(subCategoriesWithInfrequentSumMap.get(type).intValue(), type));
         }
 
-        PieDataSet pieDataSet = new PieDataSet(pieEntries,label);
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, label);
         pieDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         pieDataSet.setSliceSpace(2f);
         pieDataSet.setValueTextColor(Color.WHITE);
@@ -141,13 +143,14 @@ public class  PieChartSubCategoriesGenerator {
 
     /**
      * Generates a pie chart entry
+     *
      * @return map of the entries
      */
-    public Map<String,Integer> generatePieEntry(){
-        Map<String,Integer> subCategoriesWithInfrequentSumMap = new HashMap<>();
-        for (SubCategoriesWithInfrequentSum subCategory:
-             this.subCategoriesWithInfrequentSumList) {
-                subCategoriesWithInfrequentSumMap.put(subCategory.getNameOfSubCategory(),subCategory.getSumOfInfrequent());
+    public Map<String, Integer> generatePieEntry() {
+        Map<String, Integer> subCategoriesWithInfrequentSumMap = new HashMap<>();
+        for (SubCategoriesWithInfrequentSum subCategory :
+                this.subCategoriesWithInfrequentSumList) {
+            subCategoriesWithInfrequentSumMap.put(subCategory.getNameOfSubCategory(), subCategory.getSumOfInfrequent());
         }
         return subCategoriesWithInfrequentSumMap;
     }

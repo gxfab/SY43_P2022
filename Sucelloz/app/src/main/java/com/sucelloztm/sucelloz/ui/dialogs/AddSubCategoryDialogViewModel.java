@@ -17,6 +17,7 @@ public class AddSubCategoryDialogViewModel extends AndroidViewModel {
 
     /**
      * Custom constructor
+     *
      * @param application application
      */
     public AddSubCategoryDialogViewModel(@NonNull Application application) {
@@ -26,17 +27,19 @@ public class AddSubCategoryDialogViewModel extends AndroidViewModel {
 
     /**
      * Invokes the insert subcategory query
+     *
      * @param subCategory subcategory
      */
-    public void insert(SubCategories subCategory){
+    public void insert(SubCategories subCategory) {
         this.subCategoriesRepository.insert(subCategory);
     }
 
     /**
      * Get sub-category id
+     *
      * @return subcategory id
      */
-    public long getCurrentCategoryId(){
+    public long getCurrentCategoryId() {
         return CategoriesRepository.getCurrentCategory().getId();
     }
 }

@@ -18,56 +18,62 @@ public class InfrequentExpensesAndIncomeRepository {
 
     /**
      * Custom constructor
+     *
      * @param application current application
      */
-    public InfrequentExpensesAndIncomeRepository(Application application){
+    public InfrequentExpensesAndIncomeRepository(Application application) {
         SucellozDatabase database = SucellozDatabase.getInstance(application);
         this.infrequentExpensesAndIncomeDao = database.infrequentExpensesAndIncomeDao();
     }
 
-    public LiveData<List<InfrequentExpensesAndIncome>> getAllInfrequent(){
+    public LiveData<List<InfrequentExpensesAndIncome>> getAllInfrequent() {
         return infrequentExpensesAndIncomeDao.getAllInfrequent();
     }
 
     /**
      * Invokes the query to get all infrequents positevely signed
+     *
      * @return livedata of the infrequents
      */
-    public LiveData<List<InfrequentExpensesAndIncome>> getAllPositiveInfrequent(){
+    public LiveData<List<InfrequentExpensesAndIncome>> getAllPositiveInfrequent() {
         return infrequentExpensesAndIncomeDao.getAllPositiveInfrequent();
     }
 
     /**
      * Invokes the query to get all infrequents negatively signed
+     *
      * @return livedata of the infrequents
      */
-    public LiveData<List<InfrequentExpensesAndIncome>> getAllNegativeInfrequent(){
+    public LiveData<List<InfrequentExpensesAndIncome>> getAllNegativeInfrequent() {
         return infrequentExpensesAndIncomeDao.getAllNegativeInfrequent();
     }
 
     /**
      * Invokes the query to insert an infrequent
+     *
      * @param spending infrequent to insert
      */
-    public void insert(InfrequentExpensesAndIncome spending){
+    public void insert(InfrequentExpensesAndIncome spending) {
         infrequentExpensesAndIncomeDao.insertInfrequentExpenseAndIncome(spending);
     }
 
     /**
      * Invokes the query to sum all infrequent expenses
+     *
      * @return livedata of the sum
      */
 
-    public LiveData<Integer> getSumOfInfrequentExpenses(){
+    public LiveData<Integer> getSumOfInfrequentExpenses() {
         return infrequentExpensesAndIncomeDao.getSumOfInfrequentExpenses();
     }
 
     /**
      * Invokes the query to sum all infrequent incomes
+     *
      * @return livedata of the sum
      */
 
-    public LiveData<Integer> getSumOfInfrequentIncomes(){
+    public LiveData<Integer> getSumOfInfrequentIncomes() {
         return infrequentExpensesAndIncomeDao.getSumOfInfrequentIncomes();
     }
 

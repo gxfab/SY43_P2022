@@ -20,7 +20,7 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
 
     private List<Spendings> negativeSpendingsList;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameTextView;
         private final TextView dateTextView;
         private final TextView subCategoryTextView;
@@ -29,15 +29,16 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
         public ViewHolder(@NonNull View view) {
             super(view);
 
-            nameTextView=view.findViewById(R.id.spendings_name_text_view);
-            dateTextView=view.findViewById(R.id.spendings_date_text_view);
-            subCategoryTextView=view.findViewById(R.id.spendings_subcategory_text_view);
-            amountTextView=view.findViewById(R.id.spendings_amount_text_view);
+            nameTextView = view.findViewById(R.id.spendings_name_text_view);
+            dateTextView = view.findViewById(R.id.spendings_date_text_view);
+            subCategoryTextView = view.findViewById(R.id.spendings_subcategory_text_view);
+            amountTextView = view.findViewById(R.id.spendings_amount_text_view);
             amountTextView.setTextColor(Color.parseColor("#FF4444"));
         }
 
         /**
          * Getter
+         *
          * @return name
          */
         public TextView getNameTextView() {
@@ -46,6 +47,7 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
 
         /**
          * Getter
+         *
          * @return date
          */
         public TextView getDateTextView() {
@@ -54,6 +56,7 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
 
         /**
          * Getter
+         *
          * @return subcategory name
          */
         public TextView getSubCategoryTextView() {
@@ -62,6 +65,7 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
 
         /**
          * Getter
+         *
          * @return amount
          */
         public TextView getAmountTextView() {
@@ -71,9 +75,12 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
 
     /**
      * Custom constructor
+     *
      * @param dataSet list of spendings
      */
-    public NegativeSpendingsAdapter(List<Spendings> dataSet) { this.negativeSpendingsList = dataSet; }
+    public NegativeSpendingsAdapter(List<Spendings> dataSet) {
+        this.negativeSpendingsList = dataSet;
+    }
 
     @NonNull
     @Override

@@ -46,7 +46,6 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
     private int itemIndex;
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +60,7 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         /*
           Get binding from CategoriesFragmentViewBinding
          */
-        binding = CategoriesFragmentBinding.inflate(inflater,container,false);
+        binding = CategoriesFragmentBinding.inflate(inflater, container, false);
 
         /*
           Get outermost view in the associated layout file
@@ -81,12 +80,12 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         /*
           Create Adapter for Categories recycler view
          */
-        CategoriesAdapter adapter=new CategoriesAdapter(currentCategoriesList);
+        CategoriesAdapter adapter = new CategoriesAdapter(currentCategoriesList);
 
         /*
             Observer retrieving changed values of currentCategoriesList
          */
-        final Observer<List<Categories>> categoriesDataSet= new Observer<List<Categories>>() {
+        final Observer<List<Categories>> categoriesDataSet = new Observer<List<Categories>>() {
             @Override
             public void onChanged(List<Categories> categoriesList) {
                 currentCategoriesList.clear();
@@ -98,7 +97,7 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         /*
             Observing categories
          */
-        categoriesViewModel.getAllCategories().observe(getViewLifecycleOwner(),categoriesDataSet);
+        categoriesViewModel.getAllCategories().observe(getViewLifecycleOwner(), categoriesDataSet);
 
         /*
           Get recyclerView from binding
@@ -108,7 +107,7 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         /*
           Set layout manager and adapter of recycler view
          */
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(adapter);
 
         /*
@@ -118,7 +117,7 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                TextView currentCategoryTextView=(TextView) v.findViewById(R.id.text_view_categories);
+                TextView currentCategoryTextView = (TextView) v.findViewById(R.id.text_view_categories);
                 String currentCategoryName = currentCategoryTextView.getText().toString();
                 Categories currentCategory = categoriesViewModel.getCategoryByName(currentCategoryName);
                 categoriesViewModel.setCurrentCategory(currentCategory);
@@ -139,9 +138,8 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
     }
 
 
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
-        super.onViewCreated(view,savedInstanceState);
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         binding.returnHomeButtonCategories.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,11 +150,10 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         binding.addCategoryButtonCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddCategoryDialogFragment().show(getChildFragmentManager(),AddCategoryDialogFragment.TAG);
+                new AddCategoryDialogFragment().show(getChildFragmentManager(), AddCategoryDialogFragment.TAG);
             }
         });
     }
-
 
 
     @Override
@@ -175,9 +172,9 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.modify_menu_item:
-                dialogForModifyCategory(getActivity(),currentCategoriesList.get(itemIndex).getId()).show();
+                dialogForModifyCategory(getActivity(), currentCategoriesList.get(itemIndex).getId()).show();
                 return true;
             case R.id.delete_menu_item:
                 categoriesViewModel.deleteCategory(currentCategoriesList.get(itemIndex));
@@ -189,11 +186,12 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
 
     /**
      * Return dialog to render when the user needs to modify a category
-     * @param activity current activity
+     *
+     * @param activity     current activity
      * @param idOfCategory category to modify
      * @return alertDialog AlertDialog generated
      */
-    public Dialog dialogForModifyCategory(Activity activity, long idOfCategory){
+    public Dialog dialogForModifyCategory(Activity activity, long idOfCategory) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         final EditText nameEditText = new EditText(activity);
 
@@ -208,10 +206,10 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         builder.setPositiveButton("Change", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                 final String nameOfCategory = nameEditText.getText().toString();
-                 final Categories categoryToModify = new Categories(nameOfCategory,false);
-                 categoryToModify.setId(idOfCategory);
-                 categoriesViewModel.updateCategory(categoryToModify);
+                final String nameOfCategory = nameEditText.getText().toString();
+                final Categories categoryToModify = new Categories(nameOfCategory, false);
+                categoryToModify.setId(idOfCategory);
+                categoriesViewModel.updateCategory(categoryToModify);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

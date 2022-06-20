@@ -1,9 +1,6 @@
 package com.sucelloztm.sucelloz.models;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 
 import java.util.List;
@@ -24,6 +21,7 @@ public class CategoriesWithSubCategoriesWithInfrequentSum {
 
     /**
      * Getter
+     *
      * @return category
      */
     public Categories getCategory() {
@@ -32,6 +30,7 @@ public class CategoriesWithSubCategoriesWithInfrequentSum {
 
     /**
      * Getter
+     *
      * @return sum of the sub-category
      */
     public int getSumOfSubCategory() {
@@ -40,6 +39,7 @@ public class CategoriesWithSubCategoriesWithInfrequentSum {
 
     /**
      * Getter
+     *
      * @return get name of the Category
      */
     public String getNameOfCategory() {

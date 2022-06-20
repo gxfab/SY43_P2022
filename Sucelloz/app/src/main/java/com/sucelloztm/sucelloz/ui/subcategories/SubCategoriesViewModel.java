@@ -21,19 +21,21 @@ public class SubCategoriesViewModel extends AndroidViewModel {
 
     /**
      * Custom constructor
+     *
      * @param application application
      */
     public SubCategoriesViewModel(@NonNull Application application) {
         super(application);
-        this.subCategoriesRepository= new SubCategoriesRepository(application);
+        this.subCategoriesRepository = new SubCategoriesRepository(application);
     }
 
     /**
      * Invokes the getSubCategories Method from SubCategoriesRepository
+     *
      * @return livedata of the list of all subcategories
      */
-    public LiveData<List<SubCategories>> getSubCategories(){
-        if (this.currentSubCategories == null){
+    public LiveData<List<SubCategories>> getSubCategories() {
+        if (this.currentSubCategories == null) {
             this.currentSubCategories = subCategoriesRepository.getSubCategoriesFromCurrentCategoryId();
         }
         return this.currentSubCategories;
@@ -41,17 +43,19 @@ public class SubCategoriesViewModel extends AndroidViewModel {
 
     /**
      * invokes the deleteSubCategory Method from SubCategoriesRepository
+     *
      * @param subCategory subcategory to delete
      */
-    public void deleteSubCategory(SubCategories subCategory){
+    public void deleteSubCategory(SubCategories subCategory) {
         subCategoriesRepository.deleteSubCategory(subCategory);
     }
 
     /**
      * invokes the updateSubCategory Method from SubCategoriesRepository
+     *
      * @param subCategory subcategory to delete
      */
-    public void updateSubCategory(SubCategories subCategory){
+    public void updateSubCategory(SubCategories subCategory) {
         subCategoriesRepository.updateSubCategory(subCategory);
     }
 }

@@ -16,18 +16,20 @@ public class AddCategoryDialogViewModel extends AndroidViewModel {
 
     /**
      * Custom constructor
+     *
      * @param application application
      */
     public AddCategoryDialogViewModel(@NonNull Application application) {
         super(application);
-        this.categoriesRepository= new CategoriesRepository(application);
+        this.categoriesRepository = new CategoriesRepository(application);
     }
 
     /**
      * Invokes the query to insert a category
+     *
      * @param category category
      */
-    public void insert(Categories category){
+    public void insert(Categories category) {
         this.categoriesRepository.insert(category);
     }
 }

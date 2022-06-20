@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "sub_categories_infrequent_sum",
         foreignKeys = {@ForeignKey(entity = Categories.class,
-        parentColumns = "category_id",
-        childColumns = "id_of_category",
-        onDelete = ForeignKey.CASCADE)}
+                parentColumns = "category_id",
+                childColumns = "id_of_category",
+                onDelete = ForeignKey.CASCADE)}
 )
 /**
  *  Subcategory with infrequent sum Entity the DAO
@@ -31,9 +31,9 @@ public class SubCategoriesWithInfrequentSum {
     public String sign;
 
 
-
     /**
      * Getter
+     *
      * @return subcategory
      */
     public SubCategories getSubCategory() {
@@ -42,6 +42,7 @@ public class SubCategoriesWithInfrequentSum {
 
     /**
      * Getter
+     *
      * @return sum
      */
     public int getSumOfInfrequent() {
@@ -50,6 +51,7 @@ public class SubCategoriesWithInfrequentSum {
 
     /**
      * Getter
+     *
      * @return name
      */
     public String getNameOfSubCategory() {
@@ -58,6 +60,7 @@ public class SubCategoriesWithInfrequentSum {
 
     /**
      * Getter
+     *
      * @return sign
      */
     public String getSign() {

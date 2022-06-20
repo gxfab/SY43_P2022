@@ -6,17 +6,19 @@ import android.widget.TextView;
  * POJO for ZeroBudget
  */
 public class ZeroBudget {
-    private int infrequentExpenses=0;
-    private int infrequentIncomes=0;
-    private int stableExpenses=0;
-    private int stableIncomes=0;
-    private int savings=0;
-    private int resultBudgetZero=0;
+    private int infrequentExpenses = 0;
+    private int infrequentIncomes = 0;
+    private int stableExpenses = 0;
+    private int stableIncomes = 0;
+    private int savings = 0;
+    private int resultBudgetZero = 0;
+
     public ZeroBudget() {
     }
 
     /**
      * Get infrequent Expenses
+     *
      * @return int infrequentExpenses
      */
     public int getInfrequentExpenses() {
@@ -25,6 +27,7 @@ public class ZeroBudget {
 
     /**
      * Set infrequent Expenses
+     *
      * @param infrequentExpenses new infrequent expenses
      */
     public void setInfrequentExpenses(int infrequentExpenses) {
@@ -33,6 +36,7 @@ public class ZeroBudget {
 
     /**
      * Get infrequent Incomes
+     *
      * @return int infrequentIncomes
      */
     public int getInfrequentIncomes() {
@@ -41,6 +45,7 @@ public class ZeroBudget {
 
     /**
      * Set infrequent Expenses
+     *
      * @param infrequentIncomes new infrequent incomes
      */
     public void setInfrequentIncomes(int infrequentIncomes) {
@@ -49,6 +54,7 @@ public class ZeroBudget {
 
     /**
      * Get stable Expenses
+     *
      * @return int stableExpenses
      */
     public int getStableExpenses() {
@@ -57,6 +63,7 @@ public class ZeroBudget {
 
     /**
      * Set stable Expenses
+     *
      * @param stableExpenses new stable expenses
      */
     public void setStableExpenses(int stableExpenses) {
@@ -65,6 +72,7 @@ public class ZeroBudget {
 
     /**
      * Get stable Incomes
+     *
      * @return int stableIncomes
      */
     public int getStableIncomes() {
@@ -73,6 +81,7 @@ public class ZeroBudget {
 
     /**
      * Set stable incomes
+     *
      * @param stableIncomes new stable incomes
      */
     public void setStableIncomes(int stableIncomes) {
@@ -81,6 +90,7 @@ public class ZeroBudget {
 
     /**
      * Get savings
+     *
      * @return int savings
      */
     public int getSavings() {
@@ -89,6 +99,7 @@ public class ZeroBudget {
 
     /**
      * Set savings
+     *
      * @param savings new savings
      */
     public void setSavings(int savings) {
@@ -97,6 +108,7 @@ public class ZeroBudget {
 
     /**
      * Get result of Budget Zero calculation
+     *
      * @return int resultBudgetZero
      */
     public int getResultBudgetZero() {
@@ -105,17 +117,18 @@ public class ZeroBudget {
 
     /**
      * Set infrequent Expenses
+     *
      * @param textView textView printing out the result on the ZeroBudgetFragment
      */
     public void setResultBudgetZero(TextView textView) {
-        this.resultBudgetZero = (this.infrequentIncomes + this.stableIncomes) - (this.infrequentExpenses +this.stableExpenses + this.savings);
-        if(this.resultBudgetZero > 0){
+        this.resultBudgetZero = (this.infrequentIncomes + this.stableIncomes) - (this.infrequentExpenses + this.stableExpenses + this.savings);
+        if (this.resultBudgetZero > 0) {
             textView.setTextColor(-16711936);
-        }else if (this.resultBudgetZero == 0){
+        } else if (this.resultBudgetZero == 0) {
             textView.setTextColor(-16776961);
-        }else{
+        } else {
             textView.setTextColor(-65536);
         }
-        textView.setText(this.resultBudgetZero+"€");
+        textView.setText(this.resultBudgetZero + "€");
     }
 }

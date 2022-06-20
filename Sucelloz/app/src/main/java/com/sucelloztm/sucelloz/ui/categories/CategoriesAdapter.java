@@ -1,22 +1,15 @@
 package com.sucelloztm.sucelloz.ui.categories;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.LiveData;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.models.Categories;
-import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
 
 import java.util.List;
 
@@ -27,9 +20,6 @@ import java.util.List;
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
 
     private List<Categories> categoriesList;
-
-
-
 
 
     /**
@@ -44,6 +34,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
         /**
          * Custom constructor
+         *
          * @param view current view
          */
         public ViewHolder(View view) {
@@ -55,6 +46,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
         /**
          * Get text view
+         *
          * @return text view
          */
         public TextView getTextView() {
@@ -64,6 +56,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
     /**
      * Custom constructor
+     *
      * @param dataSet list of categories
      */
     public CategoriesAdapter(List<Categories> dataSet) {
@@ -72,8 +65,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
     /**
      * Create new views (invoked by the layout manager)
+     *
      * @param viewGroup view group
-     * @param viewType view type
+     * @param viewType  view type
      * @return created view of the desired group and type
      */
     @NonNull
@@ -88,8 +82,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
     /**
      * Replace the contents of a view (invoked by the layout manager)
+     *
      * @param viewHolder view
-     * @param position position
+     * @param position   position
      */
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
@@ -99,6 +94,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     /**
      * Return the size of the dataset (invoked by the layout manager)
      * getter
+     *
      * @return size of the dataset
      */
     @Override

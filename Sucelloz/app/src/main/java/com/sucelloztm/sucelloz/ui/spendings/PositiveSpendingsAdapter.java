@@ -19,7 +19,7 @@ import java.util.List;
 public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpendingsAdapter.ViewHolder> {
     private List<Spendings> positiveSpendingsList;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameTextView;
         private final TextView dateTextView;
         private final TextView subCategoryTextView;
@@ -28,15 +28,16 @@ public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpend
         public ViewHolder(@NonNull View view) {
             super(view);
 
-            nameTextView=view.findViewById(R.id.spendings_name_text_view);
-            dateTextView=view.findViewById(R.id.spendings_date_text_view);
-            subCategoryTextView=view.findViewById(R.id.spendings_subcategory_text_view);
-            amountTextView=view.findViewById(R.id.spendings_amount_text_view);
+            nameTextView = view.findViewById(R.id.spendings_name_text_view);
+            dateTextView = view.findViewById(R.id.spendings_date_text_view);
+            subCategoryTextView = view.findViewById(R.id.spendings_subcategory_text_view);
+            amountTextView = view.findViewById(R.id.spendings_amount_text_view);
             amountTextView.setTextColor(Color.parseColor("#99CC00"));
         }
 
         /**
          * Getter
+         *
          * @return name
          */
         public TextView getNameTextView() {
@@ -45,6 +46,7 @@ public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpend
 
         /**
          * Getter
+         *
          * @return date
          */
         public TextView getDateTextView() {
@@ -53,6 +55,7 @@ public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpend
 
         /**
          * Getter
+         *
          * @return subcategory name
          */
         public TextView getSubCategoryTextView() {
@@ -61,6 +64,7 @@ public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpend
 
         /**
          * Getter
+         *
          * @return amount
          */
         public TextView getAmountTextView() {
@@ -70,9 +74,12 @@ public class PositiveSpendingsAdapter extends RecyclerView.Adapter<PositiveSpend
 
     /**
      * Custom constructor
+     *
      * @param dataSet list of spendings
      */
-    public PositiveSpendingsAdapter(List<Spendings> dataSet) { this.positiveSpendingsList = dataSet; }
+    public PositiveSpendingsAdapter(List<Spendings> dataSet) {
+        this.positiveSpendingsList = dataSet;
+    }
 
     @NonNull
     @Override

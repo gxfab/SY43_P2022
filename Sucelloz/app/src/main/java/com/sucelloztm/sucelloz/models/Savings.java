@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.lang.String;
-
 /**
  * Savings entity for the DAO
  */
@@ -40,8 +38,9 @@ public class Savings {
 
     /**
      * custom constructor
-     * @param name n   ame
-     * @param deadline deadline
+     *
+     * @param name          n   ame
+     * @param deadline      deadline
      * @param initialAmount initial amount
      */
     public Savings(String name, String deadline, int initialAmount) {
@@ -49,11 +48,8 @@ public class Savings {
         this.deadline = deadline;
         this.initialAmount = initialAmount;
         this.reachedAmount = 0;
-        this.percentage = ((float)reachedAmount/initialAmount)*100;
+        this.percentage = ((float) reachedAmount / initialAmount) * 100;
     }
-
-
-
 
 
     //GETTER

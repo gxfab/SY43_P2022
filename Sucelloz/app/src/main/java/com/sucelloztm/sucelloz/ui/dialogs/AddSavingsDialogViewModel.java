@@ -16,6 +16,7 @@ public class AddSavingsDialogViewModel extends AndroidViewModel {
 
     /**
      * Custom constructor
+     *
      * @param application application
      */
     public AddSavingsDialogViewModel(@NonNull Application application) {
@@ -25,7 +26,10 @@ public class AddSavingsDialogViewModel extends AndroidViewModel {
 
     /**
      * Invokes the insert saving query
+     *
      * @param saving saving
      */
-    public void insert(Savings saving) { this.savingsRepository.insert(saving);}
+    public void insert(Savings saving) {
+        this.savingsRepository.insert(saving);
+    }
 }

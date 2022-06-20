@@ -20,41 +20,46 @@ public class CategoriesRepository {
 
     /**
      * Custom constructor
+     *
      * @param application current application in which this constructor is used
      */
-    public CategoriesRepository(Application application){
-        SucellozDatabase database=SucellozDatabase.getInstance(application);
-        this.categoriesDao=database.categoriesDao();
+    public CategoriesRepository(Application application) {
+        SucellozDatabase database = SucellozDatabase.getInstance(application);
+        this.categoriesDao = database.categoriesDao();
     }
 
     /**
      * Invokes the query to get a livedata of all categories
+     *
      * @return livedata of the list of categories
      */
-    public LiveData<List<Categories>> getAllCategories(){
+    public LiveData<List<Categories>> getAllCategories() {
         return categoriesDao.getAllCategories();
     }
 
     /**
      * Invokes the query to insert a category
+     *
      * @param category categiry to insert
      */
-    public void insert(Categories category){
+    public void insert(Categories category) {
         categoriesDao.insertCategory(category);
     }
 
 
     /**
      * Invokes a query to get a category thanks to its name
+     *
      * @param categoryName name of the category
      * @return category
      */
     public Categories getCategoryByName(String categoryName) {
-       return this.categoriesDao.getCategoryByName(categoryName);
+        return this.categoriesDao.getCategoryByName(categoryName);
     }
 
     /**
      * Getter
+     *
      * @return current category
      */
     public static Categories getCurrentCategory() {
@@ -63,6 +68,7 @@ public class CategoriesRepository {
 
     /**
      * Setter
+     *
      * @param currentCategory new current category to set
      */
     public static void setCurrentCategory(Categories currentCategory) {
@@ -71,17 +77,19 @@ public class CategoriesRepository {
 
     /**
      * Invokes the query to delete a category
+     *
      * @param category category to delete
      */
-    public void deleteCategory(Categories category){
+    public void deleteCategory(Categories category) {
         this.categoriesDao.deleteCategory(category);
     }
 
     /**
      * Invokes the query to update a category
+     *
      * @param category category to update
      */
-    public void updateCategory(Categories category){
+    public void updateCategory(Categories category) {
         this.categoriesDao.updateCategory(category);
     }
 

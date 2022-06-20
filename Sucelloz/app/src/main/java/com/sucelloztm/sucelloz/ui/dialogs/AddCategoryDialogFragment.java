@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.models.Categories;
-import com.sucelloztm.sucelloz.ui.categories.CategoriesViewModel;
 
 /**
  * DialogFragment to add a dialog to CategoriesFragment
@@ -23,19 +22,19 @@ public class AddCategoryDialogFragment extends DialogFragment {
 
     @NonNull
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
-        addCategoryDialogViewModel= new ViewModelProvider(this).get(AddCategoryDialogViewModel.class);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        addCategoryDialogViewModel = new ViewModelProvider(this).get(AddCategoryDialogViewModel.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.add_category_dialog_fragment,null))
+        builder.setView(inflater.inflate(R.layout.add_category_dialog_fragment, null))
                 .setTitle(R.string.title_category)
                 .setPositiveButton(R.string.ok_category, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
                         String nameOfCategory;
-                        EditText nameEditText= AddCategoryDialogFragment.this.getDialog().findViewById(R.id.name_category);
-                        nameOfCategory=nameEditText.getText().toString();
-                        Categories categoryToInsert= new Categories(nameOfCategory,false);
+                        EditText nameEditText = AddCategoryDialogFragment.this.getDialog().findViewById(R.id.name_category);
+                        nameOfCategory = nameEditText.getText().toString();
+                        Categories categoryToInsert = new Categories(nameOfCategory, false);
                         addCategoryDialogViewModel.insert(categoryToInsert);
                     }
                 })
@@ -47,5 +46,6 @@ public class AddCategoryDialogFragment extends DialogFragment {
                 });
         return builder.create();
     }
-    public static String TAG= "AddCategoryDialog";
+
+    public static String TAG = "AddCategoryDialog";
 }

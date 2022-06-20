@@ -37,6 +37,7 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
 
         /**
          * Getter
+         *
          * @return text
          */
         public TextView getTextView() {
@@ -47,6 +48,7 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
 
     /**
      * Custom constructor
+     *
      * @param dataSet list of the subcategories
      */
     public SubCategoriesAdapter(List<SubCategories> dataSet) {
@@ -69,7 +71,7 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.getTextView().setText(subCategoriesList.get(position).getName());
-        
+
     }
 
     @Override

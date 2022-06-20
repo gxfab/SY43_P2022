@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -17,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.AddStableDialogFragmentBinding;
 import com.sucelloztm.sucelloz.models.StableExpensesAndIncome;
-import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,6 +31,7 @@ public class AddStableDialogFragment extends DialogFragment {
 
     /**
      * On create dialog method
+     *
      * @param savedInstanceState saved instance state
      * @return dialog
      */
@@ -42,12 +41,12 @@ public class AddStableDialogFragment extends DialogFragment {
 
         addStableDialogViewModel = new ViewModelProvider(this).get(AddStableDialogViewModel.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View inflater = requireActivity().getLayoutInflater().inflate(R.layout.add_stable_dialog_fragment,null);
+        View inflater = requireActivity().getLayoutInflater().inflate(R.layout.add_stable_dialog_fragment, null);
         NumberPicker frequencyStableNumberPicker = inflater.findViewById(R.id.frequency_stable_number_picker);
         frequencyStableNumberPicker.setMinValue(1);
         frequencyStableNumberPicker.setMaxValue(31);
         builder.setView(inflater)
-                .setTitle("Add to "+addStableDialogViewModel.getCurrentSubCategory().getName())
+                .setTitle("Add to " + addStableDialogViewModel.getCurrentSubCategory().getName())
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -72,16 +71,15 @@ public class AddStableDialogFragment extends DialogFragment {
                         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
                         dateOfStable = dateFormat.format(date);
 
-                        if(addStableDialogViewModel.getCurrentSubCategory().getName().equals("Incomes")){
-                            signOfStable="+";
-                        }
-                        else{
-                            signOfStable="-";
+                        if (addStableDialogViewModel.getCurrentSubCategory().getName().equals("Incomes")) {
+                            signOfStable = "+";
+                        } else {
+                            signOfStable = "-";
                         }
 
-                        subCategoryIdOfStable=addStableDialogViewModel.getCurrentSubCategory().getId();
+                        subCategoryIdOfStable = addStableDialogViewModel.getCurrentSubCategory().getId();
 
-                        StableExpensesAndIncome stableToInsert = new StableExpensesAndIncome(nameOfStable,amountOfStable,signOfStable,dateOfStable,frequencyOfStable,subCategoryIdOfStable);
+                        StableExpensesAndIncome stableToInsert = new StableExpensesAndIncome(nameOfStable, amountOfStable, signOfStable, dateOfStable, frequencyOfStable, subCategoryIdOfStable);
                         addStableDialogViewModel.insert(stableToInsert);
                     }
                 })
@@ -93,5 +91,6 @@ public class AddStableDialogFragment extends DialogFragment {
                 });
         return builder.create();
     }
-    public static String TAG="AddStableDialog";
+
+    public static String TAG = "AddStableDialog";
 }

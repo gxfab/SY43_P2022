@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.SubCategoriesFragmentBinding;
-import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.ui.dialogs.AddCategoryDialogFragment;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSubCategoryDialogFragment;
@@ -42,7 +41,7 @@ public class SubCategoriesFragment extends Fragment {
     private SubCategoriesViewModel subCategoriesViewModel;
     private List<SubCategories> currentSubCategoriesList;
     private RecyclerView recyclerView;
-    private  int itemIndex;
+    private int itemIndex;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +54,7 @@ public class SubCategoriesFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        binding = SubCategoriesFragmentBinding.inflate(inflater,container,false);
+        binding = SubCategoriesFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         subCategoriesViewModel = new ViewModelProvider(this).get(SubCategoriesViewModel.class);
         currentSubCategoriesList = new ArrayList<>();
@@ -69,7 +68,7 @@ public class SubCategoriesFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         };
-        subCategoriesViewModel.getSubCategories().observe(getViewLifecycleOwner(),subCategoriesDataSet);
+        subCategoriesViewModel.getSubCategories().observe(getViewLifecycleOwner(), subCategoriesDataSet);
         recyclerView = binding.innerRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -77,7 +76,7 @@ public class SubCategoriesFragment extends Fragment {
         ItemClickSupport.addTo(recyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
-                itemIndex=position;
+                itemIndex = position;
                 return false;
             }
         });
@@ -85,8 +84,8 @@ public class SubCategoriesFragment extends Fragment {
         return root;
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
-        super.onViewCreated(view,savedInstanceState);
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         binding.returnCategoriesButtonSubcategories.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,11 +96,10 @@ public class SubCategoriesFragment extends Fragment {
         binding.addSubcategoryButtonSubcategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddSubCategoryDialogFragment().show(getChildFragmentManager(),AddCategoryDialogFragment.TAG);
+                new AddSubCategoryDialogFragment().show(getChildFragmentManager(), AddCategoryDialogFragment.TAG);
             }
         });
     }
-
 
 
     @Override
@@ -114,14 +112,14 @@ public class SubCategoriesFragment extends Fragment {
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater menuInflater = getActivity().getMenuInflater();
-        menuInflater.inflate(R.menu.context_menu,menu);
+        menuInflater.inflate(R.menu.context_menu, menu);
     }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.modify_menu_item:
-                dialogForModifySubCategory(getActivity(),currentSubCategoriesList.get(itemIndex).getId(),currentSubCategoriesList.get(itemIndex).getCategoriesId()).show();
+                dialogForModifySubCategory(getActivity(), currentSubCategoriesList.get(itemIndex).getId(), currentSubCategoriesList.get(itemIndex).getCategoriesId()).show();
                 return true;
             case R.id.delete_menu_item:
                 subCategoriesViewModel.deleteSubCategory(currentSubCategoriesList.get(itemIndex));
@@ -133,12 +131,13 @@ public class SubCategoriesFragment extends Fragment {
 
     /**
      * Dialog to modify the selected subcategory
-     * @param activity activity
+     *
+     * @param activity        activity
      * @param idOfSubCategory id of the subcategory
-     * @param idOfCategory id of the category
+     * @param idOfCategory    id of the category
      * @return dialog
      */
-    public Dialog dialogForModifySubCategory(Activity activity, long idOfSubCategory,long idOfCategory){
+    public Dialog dialogForModifySubCategory(Activity activity, long idOfSubCategory, long idOfCategory) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         final EditText nameEditText = new EditText(activity);
 
@@ -147,7 +146,7 @@ public class SubCategoriesFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 final String nameOfSubCategory = nameEditText.getText().toString();
-                final SubCategories subCategoryToModify = new SubCategories(nameOfSubCategory,idOfCategory);
+                final SubCategories subCategoryToModify = new SubCategories(nameOfSubCategory, idOfCategory);
                 subCategoryToModify.setId(idOfSubCategory);
                 subCategoriesViewModel.updateSubCategory(subCategoryToModify);
             }

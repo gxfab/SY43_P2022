@@ -5,15 +5,13 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
-import androidx.room.Update;
-import androidx.room.Transaction;
 import androidx.room.Query;
-import java.util.List;
+import androidx.room.Update;
 
 import com.sucelloztm.sucelloz.models.SubCategories;
-import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
-import com.sucelloztm.sucelloz.models.SubCategoriesWithStableExpensesAndIncome;
+
+import java.util.List;
 
 /**
  * Interface for the subcategory entity of the dao
@@ -22,6 +20,7 @@ import com.sucelloztm.sucelloz.models.SubCategoriesWithStableExpensesAndIncome;
 public interface SubCategoriesDao {
     /**
      * Inserts a subcategory
+     *
      * @param subCategory subcategory to insert
      * @return id of the inserted subcategory
      */
@@ -30,6 +29,7 @@ public interface SubCategoriesDao {
 
     /**
      * Inserts a list of subcategories
+     *
      * @param subCategories subcategories to insert
      * @return list of the ids of the inserted subcategories
      */
@@ -38,6 +38,7 @@ public interface SubCategoriesDao {
 
     /**
      * Updates a subcategory
+     *
      * @param subCategory subcategory to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -45,6 +46,7 @@ public interface SubCategoriesDao {
 
     /**
      * Updates a list of subcategories
+     *
      * @param subCategories list of subcategories to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -52,6 +54,7 @@ public interface SubCategoriesDao {
 
     /**
      * Deletes a subcategory
+     *
      * @param subCategory subcategory to delete
      */
     @Delete
@@ -59,6 +62,7 @@ public interface SubCategoriesDao {
 
     /**
      * Deletes a list of subcategories
+     *
      * @param subCategories list of subcategories to delete
      */
     @Delete
@@ -66,6 +70,7 @@ public interface SubCategoriesDao {
 
     /**
      * Query to get all subcategories
+     *
      * @return list of subcategories
      */
     @Query("SELECT * FROM sub_categories")
@@ -73,6 +78,7 @@ public interface SubCategoriesDao {
 
     /**
      * Query to get all the names of the subcategories
+     *
      * @return list of the names of the subcategories
      */
     @Query("SELECT name FROM sub_categories")
@@ -80,6 +86,7 @@ public interface SubCategoriesDao {
 
     /**
      * Query to get a specific subcategory thanks to its id
+     *
      * @param id searched id
      * @return searched subcategory
      */
@@ -88,6 +95,7 @@ public interface SubCategoriesDao {
 
     /**
      * Query to get a specific subcategory thanks to its name
+     *
      * @param nameOfSubCategory searched name
      * @return searched subcategory
      */
@@ -96,6 +104,7 @@ public interface SubCategoriesDao {
 
     /**
      * Query to get a name of a subcategory thanks to its id
+     *
      * @param idOfSubCategory searched id
      * @return searched name
      */
@@ -105,6 +114,7 @@ public interface SubCategoriesDao {
 
     /**
      * Query to get the sum of all positive infrequent expenses from all sub-categories
+     *
      * @return live data of a list of all sum of all positive infrequent expenses from all sub-categories
      */
     @Query("SELECT *,CAST(total(infrequent_expenses.amount) AS INTEGER) AS sum_of_infrequent, " +
@@ -118,6 +128,7 @@ public interface SubCategoriesDao {
 
     /**
      * Query to get the sum of all negative infrequent expenses from all sub-categories
+     *
      * @return live data of a list of all sum of all negative infrequent expenses from all sub-categories
      */
     @Query("SELECT *,CAST(total(infrequent_expenses.amount) AS INTEGER) AS sum_of_infrequent, " +

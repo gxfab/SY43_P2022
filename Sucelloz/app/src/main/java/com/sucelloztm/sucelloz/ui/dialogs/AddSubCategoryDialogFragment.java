@@ -22,26 +22,27 @@ public class AddSubCategoryDialogFragment extends DialogFragment {
 
     /**
      * On create dialog method
+     *
      * @param savedInstanceState saved instance state
      * @return dialog
      */
     @NonNull
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         addSubCategoryDialogViewModel = new ViewModelProvider(this).get(AddSubCategoryDialogViewModel.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.add_sub_category_dialog_fragment,null))
+        builder.setView(inflater.inflate(R.layout.add_sub_category_dialog_fragment, null))
                 .setTitle(R.string.title_subcategory)
                 .setPositiveButton(R.string.ok_category, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
                         String nameOfSubCategory;
                         long categoriesIdOfSubCategory;
-                        EditText nameEditText =  AddSubCategoryDialogFragment.this.getDialog().findViewById(R.id.name_subcategory);
-                        nameOfSubCategory=nameEditText.getText().toString();
+                        EditText nameEditText = AddSubCategoryDialogFragment.this.getDialog().findViewById(R.id.name_subcategory);
+                        nameOfSubCategory = nameEditText.getText().toString();
                         categoriesIdOfSubCategory = addSubCategoryDialogViewModel.getCurrentCategoryId();
-                        SubCategories subCategoryToInsert = new SubCategories(nameOfSubCategory,categoriesIdOfSubCategory);
+                        SubCategories subCategoryToInsert = new SubCategories(nameOfSubCategory, categoriesIdOfSubCategory);
                         addSubCategoryDialogViewModel.insert(subCategoryToInsert);
                     }
                 })
@@ -53,5 +54,6 @@ public class AddSubCategoryDialogFragment extends DialogFragment {
                 });
         return builder.create();
     }
-    public static String TAG= "AddSubCategoryDialog";
+
+    public static String TAG = "AddSubCategoryDialog";
 }

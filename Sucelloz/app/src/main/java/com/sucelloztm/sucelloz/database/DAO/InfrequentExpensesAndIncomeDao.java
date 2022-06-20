@@ -19,6 +19,7 @@ import java.util.List;
 public interface InfrequentExpensesAndIncomeDao {
     /**
      * Inserts an infrequent element
+     *
      * @param infrequentExpensesAndIncome element to insert
      * @return id of the inserted element
      */
@@ -27,6 +28,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Inserts a list of infrequent elements
+     *
      * @param infrequentExpensesAndIncomes elements to insert
      * @return list of the id of the inserted elements
      */
@@ -35,6 +37,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Updates an infrequent element
+     *
      * @param infrequentExpenseOrIncome element to update
      */
     @Update
@@ -42,6 +45,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Updates a list of infrequent elements
+     *
      * @param infrequentExpensesAndIncomes elements to update
      */
     @Update
@@ -49,6 +53,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Deletes an infrequent element
+     *
      * @param infrequentExpenseOrIncome element to delete
      */
     @Delete
@@ -56,6 +61,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Deletes a list of infrequent elements
+     *
      * @param infrequentExpensesAndIncomes list of elements to delete
      */
     @Delete
@@ -63,6 +69,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Query to get all infrequent elements
+     *
      * @return livedata of the infrequent elements
      */
     @Query("SELECT * FROM infrequent_expenses")
@@ -70,6 +77,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Query to get all infrequent elements in a list
+     *
      * @return list of the infrequent elements
      */
     @Query("SELECT * FROM infrequent_expenses")
@@ -77,6 +85,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Query to get positively signed infrequent elements
+     *
      * @return livedata of all the positively signed infrequent elements
      */
     @Query("SELECT * FROM infrequent_expenses WHERE sign LIKE '+'")
@@ -84,6 +93,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Query to get negatively signed infrequent elements
+     *
      * @return livedata of all the negatively signed infrequent elements
      */
     @Query("SELECT * FROM infrequent_expenses WHERE sign LIKE '-'")
@@ -91,6 +101,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Query to get the sum of all infrequent expenses
+     *
      * @return livedata of all the negatively signed infrequent elements
      */
     @Query("SELECT CAST(total(amount) AS INTEGER) FROM infrequent_expenses WHERE sign LIKE '-'")
@@ -98,6 +109,7 @@ public interface InfrequentExpensesAndIncomeDao {
 
     /**
      * Query to get the sum of all infrequent incomes
+     *
      * @return livedata of all the positively signed infrequent elements
      */
     @Query("SELECT CAST(total(amount) AS INTEGER) FROM infrequent_expenses WHERE sign LIKE '+'")

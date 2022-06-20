@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.models.SubCategories;
-import com.sucelloztm.sucelloz.ui.subZeroBudget.SubZeroBudgetAdapter;
 
 import java.util.List;
+
 /**
  * Adapter for ZeroBudgetFragment
  */
@@ -58,7 +58,7 @@ public class ZeroBudgetAdapter extends RecyclerView.Adapter<ZeroBudgetAdapter.Vi
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-       viewHolder.getTextView().setText(subCategoriesList.get(position).getName());
+        viewHolder.getTextView().setText(subCategoriesList.get(position).getName());
 
     }
 

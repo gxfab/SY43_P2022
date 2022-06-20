@@ -20,6 +20,7 @@ public class HomeViewModel extends ViewModel {
 
     /**
      * Get text
+     *
      * @return text
      */
     public LiveData<String> getText() {

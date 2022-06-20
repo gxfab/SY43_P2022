@@ -19,7 +19,7 @@ import java.util.List;
 public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdapter.ViewHolder> {
     private List<StableExpensesAndIncome> stableExpensesAndIncomeList;
 
-    public static class ViewHolder extends  RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameTextView;
         private final TextView dateTextView;
         private final TextView amountTextView;
@@ -34,6 +34,7 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
 
         /**
          * Getter
+         *
          * @return name
          */
         public TextView getNameTextView() {
@@ -42,6 +43,7 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
 
         /**
          * Getter
+         *
          * @return date
          */
         public TextView getDateTextView() {
@@ -50,6 +52,7 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
 
         /**
          * Getter
+         *
          * @return amount
          */
         public TextView getAmountTextView() {
@@ -59,16 +62,19 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
 
     /**
      * Custom constructor
+     *
      * @param dataSet list of stables
      */
-    public SubZeroBudgetAdapter(List<StableExpensesAndIncome> dataSet) { this.stableExpensesAndIncomeList = dataSet; }
+    public SubZeroBudgetAdapter(List<StableExpensesAndIncome> dataSet) {
+        this.stableExpensesAndIncomeList = dataSet;
+    }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.sub_zero_budget_item,viewGroup,false);
+                .inflate(R.layout.sub_zero_budget_item, viewGroup, false);
 
         return new ViewHolder(view);
     }

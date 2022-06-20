@@ -9,11 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.models.Savings;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +34,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
 
         /**
          * Custom constructor
+         *
          * @param view current view inside RecyclerView
          */
         public ViewHolder(View view) {
@@ -49,6 +48,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
 
         /**
          * Getter
+         *
          * @return name
          */
         public TextView getNameTextView() {
@@ -57,6 +57,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
 
         /**
          * Getter
+         *
          * @return deadline
          */
         public TextView getDeadlineTextView() {
@@ -65,6 +66,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
 
         /**
          * Getter
+         *
          * @return goal
          */
         public TextView getGoalTextView() {
@@ -73,6 +75,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
 
         /**
          * Getter
+         *
          * @return progress bar
          */
         public ProgressBar getProgressBar() {
@@ -89,7 +92,6 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
     public SavingsAdapter(List<Savings> dataSet) {
         this.savingsList = dataSet;
     }
-
 
 
     @NonNull
@@ -109,9 +111,9 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         // contents of the view with that element
         viewHolder.getNameTextView().setText(savingsList.get(position).getName());
         viewHolder.getDeadlineTextView().setText(savingsList.get(position).getDeadline());
-        String amount = savingsList.get(position).getReachedAmount()+"/"+ savingsList.get(position).getInitialAmount()+"€";
+        String amount = savingsList.get(position).getReachedAmount() + "/" + savingsList.get(position).getInitialAmount() + "€";
         viewHolder.getGoalTextView().setText(amount);
-        viewHolder.getProgressBar().setProgress((int)savingsList.get(position).getPercentage(),true);
+        viewHolder.getProgressBar().setProgress((int) savingsList.get(position).getPercentage(), true);
 
 
     }

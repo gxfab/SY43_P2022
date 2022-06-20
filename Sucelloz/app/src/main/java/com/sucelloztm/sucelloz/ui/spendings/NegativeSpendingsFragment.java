@@ -42,14 +42,14 @@ public class NegativeSpendingsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding=NegativeSpendingsFragmentBinding.inflate(inflater,container,false);
+        binding = NegativeSpendingsFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         spendingsViewModel = new ViewModelProvider(this).get(SpendingsViewModel.class);
         currentNegativeSpendingsList = new ArrayList<>();
         NegativeSpendingsAdapter adapter = new NegativeSpendingsAdapter(currentNegativeSpendingsList);
         currentSubCategoriesWithInfrequentSumList = new ArrayList<>();
         pieGen = new PieChartSubCategoriesGenerator(currentSubCategoriesWithInfrequentSumList);
-        pieGen.createPieChart(getContext(),binding.frameLayoutNegativeSpendings);
+        pieGen.createPieChart(getContext(), binding.frameLayoutNegativeSpendings);
         final Observer<List<InfrequentExpensesAndIncome>> negativeSpendingsDataSet = new Observer<List<InfrequentExpensesAndIncome>>() {
             @Override
             public void onChanged(List<InfrequentExpensesAndIncome> infrequentExpensesAndIncomes) {
@@ -80,8 +80,8 @@ public class NegativeSpendingsFragment extends Fragment {
             }
         };
 
-        spendingsViewModel.getAllNegativeSpendings().observe(getViewLifecycleOwner(),negativeSpendingsDataSet);
-        spendingsViewModel.getAllSubCategoriesWithNegativeInfrequentSum().observe(getViewLifecycleOwner(),subCategoriesWithNegativeInfrequentSumObserver);
+        spendingsViewModel.getAllNegativeSpendings().observe(getViewLifecycleOwner(), negativeSpendingsDataSet);
+        spendingsViewModel.getAllSubCategoriesWithNegativeInfrequentSum().observe(getViewLifecycleOwner(), subCategoriesWithNegativeInfrequentSumObserver);
         recyclerView = binding.spendingsRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -96,7 +96,7 @@ public class NegativeSpendingsFragment extends Fragment {
         binding.addSpendingButtonSpendings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddSpendingDialogFragment().show(getChildFragmentManager(),AddSpendingDialogFragment.TAG);
+                new AddSpendingDialogFragment().show(getChildFragmentManager(), AddSpendingDialogFragment.TAG);
             }
         });
     }

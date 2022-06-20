@@ -8,10 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-
-import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.StableExpensesAndIncome;
-import com.sucelloztm.sucelloz.models.SubCategories;
 
 import java.util.List;
 
@@ -22,6 +19,7 @@ import java.util.List;
 public interface StableExpensesAndIncomeDao {
     /**
      * Inserts a stable element
+     *
      * @param stableExpenseOrIncome element to insert
      * @return id of the inserted element
      */
@@ -30,6 +28,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Inserts a list of stable elements
+     *
      * @param stableExpensesAndIncomes list of elements to insert
      * @return list of the ids of the inserted elements
      */
@@ -38,6 +37,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Updates a stable element
+     *
      * @param stableExpenseOrIncome element to update
      */
     @Update
@@ -45,6 +45,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Updates a list of stable elements
+     *
      * @param stableExpensesAndIncomes list of elements to update
      */
     @Update
@@ -52,6 +53,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Deletes a stable element
+     *
      * @param stableExpenseOrIncome element to delete
      */
     @Delete
@@ -59,6 +61,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Updates a list of stable elements
+     *
      * @param stableExpensesAndIncomes list of elements to delete
      */
     @Delete
@@ -66,6 +69,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Query to get all stable elements
+     *
      * @return list of all stable elements
      */
     @Query("SELECT * FROM stable_expenses")
@@ -73,6 +77,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Query to get negatively signed infrequent elements
+     *
      * @return livedata of all the negatively signed infrequent elements
      */
     @Query("SELECT * FROM stable_expenses WHERE sign LIKE '-'")
@@ -80,6 +85,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Query to get all stable elements in a list
+     *
      * @return livedata of list of the infrequent elements
      */
 
@@ -87,9 +93,9 @@ public interface StableExpensesAndIncomeDao {
     LiveData<List<StableExpensesAndIncome>> getAllStable();
 
 
-
     /**
      * Query to get positively signed stable elements
+     *
      * @return livedata of a list of all the positively signed infrequent elements
      */
     @Query("SELECT * FROM stable_expenses WHERE sign LIKE '+'")
@@ -98,6 +104,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Query to get all stable elements from a specific sub-category
+     *
      * @param idOfSubCategory id of specific sub-category
      * @return livedata of a list of all stable elements from a specific sub-category
      */
@@ -106,6 +113,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Query to get the sum of all infrequent expenses
+     *
      * @return livedata of all the negatively signed infrequent elements
      */
     @Query("SELECT CAST(total(amount) AS INTEGER) FROM stable_expenses WHERE sign LIKE '-'")
@@ -113,6 +121,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Query to get the sum of all infrequent incomes
+     *
      * @return livedata of all the positively signed infrequent elements
      */
     @Query("SELECT CAST(total(amount) AS INTEGER) FROM stable_expenses WHERE sign LIKE '+'")
@@ -120,6 +129,7 @@ public interface StableExpensesAndIncomeDao {
 
     /**
      * Query to get a specific stable element with an id
+     *
      * @param idOfStable id of a specific stable element
      * @return resulting stable element
      */

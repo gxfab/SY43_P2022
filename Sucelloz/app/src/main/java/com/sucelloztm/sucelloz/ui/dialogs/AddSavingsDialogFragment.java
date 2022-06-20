@@ -17,7 +17,6 @@ import com.sucelloztm.sucelloz.models.Savings;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * DialogFragment to add a dialog in SavingsFragment
@@ -28,11 +27,11 @@ public class AddSavingsDialogFragment extends DialogFragment {
 
     @NonNull
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
-        addSavingsDialogViewModel =  new ViewModelProvider(this).get(AddSavingsDialogViewModel.class);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        addSavingsDialogViewModel = new ViewModelProvider(this).get(AddSavingsDialogViewModel.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.add_savings_dialog_fragment,null))
+        builder.setView(inflater.inflate(R.layout.add_savings_dialog_fragment, null))
                 .setTitle(R.string.title_savings)
                 .setPositiveButton(R.string.ok_savings, new DialogInterface.OnClickListener() {
                     @Override
@@ -43,21 +42,21 @@ public class AddSavingsDialogFragment extends DialogFragment {
                         int initialAmountOfSaving;
 
                         EditText nameEditText = AddSavingsDialogFragment.this.getDialog().findViewById(R.id.name_savings);
-                        nameOfSaving=nameEditText.getText().toString();
+                        nameOfSaving = nameEditText.getText().toString();
 
                         DatePicker deadlineDatePicker = AddSavingsDialogFragment.this.getDialog().findViewById(R.id.date_picker_savings);
-                        int day  = deadlineDatePicker.getDayOfMonth();
-                        int month= deadlineDatePicker.getMonth();
+                        int day = deadlineDatePicker.getDayOfMonth();
+                        int month = deadlineDatePicker.getMonth();
                         int year = deadlineDatePicker.getYear();
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, month, day);
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         String formattedDate = sdf.format(calendar.getTime());
-                        deadlineOfSaving=formattedDate;
+                        deadlineOfSaving = formattedDate;
 
-                        EditText goalEditText= AddSavingsDialogFragment.this.getDialog().findViewById(R.id.goal_savings);
-                        initialAmountOfSaving=Integer.parseInt(goalEditText.getText().toString());
-                        Savings savingToInsert= new Savings(nameOfSaving,deadlineOfSaving,initialAmountOfSaving);
+                        EditText goalEditText = AddSavingsDialogFragment.this.getDialog().findViewById(R.id.goal_savings);
+                        initialAmountOfSaving = Integer.parseInt(goalEditText.getText().toString());
+                        Savings savingToInsert = new Savings(nameOfSaving, deadlineOfSaving, initialAmountOfSaving);
                         addSavingsDialogViewModel.insert(savingToInsert);
 
                     }
@@ -70,5 +69,6 @@ public class AddSavingsDialogFragment extends DialogFragment {
                 });
         return builder.create();
     }
-    public static String TAG= "AddSavingsDialog";
+
+    public static String TAG = "AddSavingsDialog";
 }

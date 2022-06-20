@@ -24,10 +24,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.charts.BarChart;
 import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.databinding.SavingsFragmentBinding;
-import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.Savings;
 import com.sucelloztm.sucelloz.ui.charts.BarChartGenerator;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSavingsDialogFragment;
@@ -65,7 +63,7 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
         savingsViewModel = new ViewModelProvider(this).get(SavingsViewModel.class);
         currentSavingsList = new ArrayList<>();
         barGen = new BarChartGenerator(currentSavingsList);
-        barGen.createBarChart(getContext(),binding.frameLayoutSavings);
+        barGen.createBarChart(getContext(), binding.frameLayoutSavings);
         SavingsAdapter adapter = new SavingsAdapter(currentSavingsList);
         final Observer<List<Savings>> savingsObserver = new Observer<List<Savings>>() {
             @Override
@@ -121,9 +119,9 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.modify_menu_item:
-                dialogForModifySaving(getActivity(),currentSavingsList.get(itemIndex).getId()).show();
+                dialogForModifySaving(getActivity(), currentSavingsList.get(itemIndex).getId()).show();
                 return true;
             case R.id.delete_menu_item:
                 savingsViewModel.deleteSaving(currentSavingsList.get(itemIndex));
@@ -135,11 +133,12 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
 
     /**
      * Dialog to Modify selected Saving
-     * @param activity activity
+     *
+     * @param activity   activity
      * @param idOfSaving id of the saving
      * @return dialog
      */
-    public Dialog dialogForModifySaving(Activity activity, long idOfSaving){
+    public Dialog dialogForModifySaving(Activity activity, long idOfSaving) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         final EditText amountEditText = new EditText(activity);
 
@@ -150,7 +149,7 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
                 final int amountOfSaving = Integer.valueOf(amountEditText.getText().toString());
                 final Savings savingToModify = savingsViewModel.getSavingById(idOfSaving);
                 savingToModify.setReachedAmount(amountOfSaving);
-                savingToModify.setPercentage(((float)savingToModify.getReachedAmount()/savingToModify.getInitialAmount())*100);
+                savingToModify.setPercentage(((float) savingToModify.getReachedAmount() / savingToModify.getInitialAmount()) * 100);
                 savingsViewModel.updateSaving(savingToModify);
             }
         });

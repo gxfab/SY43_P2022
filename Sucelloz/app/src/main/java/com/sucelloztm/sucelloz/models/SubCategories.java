@@ -1,13 +1,9 @@
 package com.sucelloztm.sucelloz.models;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-import androidx.room.Transaction;
-import androidx.room.Query;
-import java.util.List;
-
-import java.lang.String;
 
 /**
  * Subcategories Entity for the DAO
@@ -26,68 +22,80 @@ public class SubCategories {
     @ColumnInfo(name = "name")
     private String name;
 
-    @ColumnInfo(name="categories_id")
+    @ColumnInfo(name = "categories_id")
     private long categoriesId;
 
     /**
      * Default constructor
      */
-    public SubCategories(){}
+    public SubCategories() {
+    }
 
     /**
      * Custom constructor
-     * @param name  name
+     *
+     * @param name         name
      * @param categoriesId id of the category
      */
-    public SubCategories(String name,long categoriesId){
-        this.name=name;
-        this.categoriesId=categoriesId;
+    public SubCategories(String name, long categoriesId) {
+        this.name = name;
+        this.categoriesId = categoriesId;
     }
 
     /**
      * Getter
+     *
      * @return id
      */
-    public long getId(){
+    public long getId() {
         return id;
     }
 
     /**
      * Getter
+     *
      * @return name
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     /**
      * Getter
+     *
      * @return category id
      */
-    public long getCategoriesId(){ return categoriesId; }
+    public long getCategoriesId() {
+        return categoriesId;
+    }
 
 
     /**
      * Setter
+     *
      * @param id id
      */
-    public void setId(long id){
-        this.id=id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     /**
      * Setter
+     *
      * @param name name
      */
-    public void setName(String name){
-        this.name=name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
      * Setter
+     *
      * @param categoriesId id of the category
      */
-    public void setCategoriesId(long categoriesId){ this.categoriesId=categoriesId; }
+    public void setCategoriesId(long categoriesId) {
+        this.categoriesId = categoriesId;
+    }
 
 
 }
