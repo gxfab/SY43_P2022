@@ -17,18 +17,27 @@ import com.example.gestimali.income.Income
 const val MONTH_NAME = "com.example.gestimali.MONTH_NAME"
 const val MONTH_VALUE = "com.example.gestimali.MONTH_VALUE"
 
+/**
+ * Class used for the recycler view in the MonthOverviewActivity.
+ * It will display the correct month (i.e. january, february,...) and the sum up of money flow on this month.
+ *
+ * @param context: A reference to the context of the activity that use this recycler view
+ */
 class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.ViewHolder>() {
 
 
     companion object{
         @JvmStatic
+        /**
+         * A static property that store the number of month that we already planned
+         */
         private var monthCount = 0
     }
+
     private var monthList = listOf("January", "February", "March", "April","May","June","July","August","September","October","November","December")
     private var containerTitle = listOf("Income", "Expense", "Wish/Saving", "Envelope","Result")
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-
         val monthModel = itemView.findViewById<TextView>(R.id.month_name)
         val incomeContainer = itemView.findViewById<View>(R.id.income)
         val expenseContainer = itemView.findViewById<View>(R.id.expense)
@@ -63,7 +72,7 @@ class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.Vie
                 var strName : String? =null
                 context.startActivity(Intent(context,AddBudgetActivity::class.java).apply {
                     putExtra(MONTH_NAME,monthList[position])
-                    putExtra(MONTH_VALUE,position)
+                    putExtra(MONTH_VALUE,position+1)
                 })
             }
         }
@@ -78,5 +87,8 @@ class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.Vie
         }
     }
 
+    /**
+     * @return The number of month that we planned + 1, because the final view will be the button to
+     */
     override fun getItemCount(): Int = monthCount + 1
 }

@@ -15,6 +15,7 @@ class WishActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wish)
 
+        //Setting up the recycler view
         val wishRecyclerView = this.findViewById<RecyclerView>(R.id.WishRecyclerView)
         wishRecyclerView.adapter = WishAdapter()
 

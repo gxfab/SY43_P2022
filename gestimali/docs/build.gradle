@@ -1,0 +1,40 @@
+plugins {
+    id "com.eden.orchidPlugin" version "0.21.0"
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+dependencies {
+    orchidRuntime "io.github.javaeden.orchid:OrchidDocs:0.21.0"
+    orchidRuntime "io.github.javaeden.orchid:OrchidKotlindoc:0.21.0"
+    orchidRuntime "io.github.javaeden.orchid:OrchidPluginDocs:0.21.0"
+}
+
+repositories {
+    jcenter()
+    maven { url = "https://kotlin.bintray.com/kotlinx/" }
+}
+
+
+orchid {
+    theme = "Editorial"
+    version = "1.0.0"
+    srcDir  = "src/orchid/resources"
+    destDir = "build/docs/orchid"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+/*
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+*/

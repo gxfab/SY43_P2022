@@ -22,14 +22,24 @@ import com.example.gestimali.wish.WishViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlin.math.min
 
-
+/**
+ * Class used for the recycler view in the AddBudgetActivity.
+ * It will display the correct category (i.e. income, expense,...) and the money flow associated of that category
+ *
+ * @param intMonth: It corresponds to the integer associated to the current (1 = january, 2 = february,...)
+ * @param activity: A reference to the activity that use this recycler view
+ */
 internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivity ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+
 
     private lateinit var  mIncomeViewModel : IncomeViewModel
     private lateinit var  mFixedExpenseViewModel : FixedExpenseViewModel
     private lateinit var  mWishViewModel : WishViewModel
     private lateinit var  mEnvelopeViewModel : EnvelopeViewModel
 
+    /**
+     * List of the different categories
+     */
     private var categoryList = listOf("Income", "Expense", "Wish/Saving", "Envelope")
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -54,11 +64,14 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
         return CategoryAdapter.ViewHolder(view)
     }
 
+
+    /**
+     * Set the corresponding function for the add buttons and add the correct adapter for the recycler view of money flow
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.categoryTitle.text = categoryList[position]
 
         if(position==0){
-
             holder.floatingButton.setOnClickListener{onClickIncome(holder.itemView)}
         }
         else if(position == 1 ){
@@ -84,7 +97,12 @@ internal class CategoryAdapter(var intMonth: Int, var activity: AppCompatActivit
         holder.moneyFlowRecyclerView.adapter = moneyFlowAdapter
     }
 
+
+    /**
+     * @return Integer : The number of category to display (income, expense, wish, envelope)
+     */
     override fun getItemCount(): Int = 4
+
 
     private fun onClickIncome(p0: View?) {
         val fragment: NewIncomeFragment? =

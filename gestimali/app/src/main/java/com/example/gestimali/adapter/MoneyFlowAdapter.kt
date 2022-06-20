@@ -14,6 +14,13 @@ import com.example.gestimali.fixexpense.FixedExpense
 import com.example.gestimali.income.Income
 import com.example.gestimali.wish.Wish
 
+/**
+ * Class used for the recycler view in the AddBudgetActivity.
+ * This recycler view is supposed to be inside the recycler view of CategoryAdapter
+ * It will display the money flow associated of that category
+ *
+ * @param categoryInt: the integer associated to the category (i.e. 1 = income, 2 = expense)
+ */
 class MoneyFlowAdapter (var categoryInt : Int): RecyclerView.Adapter<MoneyFlowAdapter.ViewHolder>() {
     private var incomeList = emptyList<Income>()
     private var expenseList = emptyList<FixedExpense>()
@@ -90,8 +97,14 @@ class MoneyFlowAdapter (var categoryInt : Int): RecyclerView.Adapter<MoneyFlowAd
         notifyDataSetChanged()
     }
 
+
     override fun getItemCount(): Int = getSize(categoryInt)
 
+    /**
+     * @param categoryInt : the integer associated to the category (i.e. 1 = income, 2 = expense)
+     *
+     * @return return the right number of money flow depending the current category
+     */
     private fun getSize(categoryInt : Int) : Int{
         if(categoryInt == 0 ){
             return incomeList.size

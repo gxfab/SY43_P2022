@@ -98,6 +98,15 @@ class NewIncomeFragment : Fragment() {
         }
     }
 
+    /**
+     * check if all the necessary input (ie. string, integer,...) are correctly fill
+     *
+     * @param incomeName: name that the user fill in the text box
+     * @param incomeValue: amount that the user fill in the text box
+     * @param incomeDay: integer that the user fill in the text box
+     *
+     * @return a boolean, true if the inputs are valid, false if not
+     */
     private fun inputCheck(incomeName : String, incomeValue : Editable, incomeDay : Editable): Boolean {
         return !(TextUtils.isEmpty(incomeName) && incomeValue.isEmpty() && incomeDay.isEmpty())
     }

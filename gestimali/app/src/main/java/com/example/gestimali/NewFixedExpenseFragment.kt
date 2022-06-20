@@ -100,6 +100,14 @@ class NewFixedExpenseFragment : Fragment() {
         }
     }
 
+    /**
+     * check if all the necessary input (ie. string, integer,...) are correctly fill
+     *
+     * @param name: name that the user fill in the text box
+     * @param value: amount that the user fill in the text box
+     *
+     * @return a boolean, true if the inputs are valid, false if not
+     */
     private fun inputCheck(name : String, value : Editable, day : Editable): Boolean {
         return !(TextUtils.isEmpty(name) && value.isEmpty() && day.isEmpty())
     }
