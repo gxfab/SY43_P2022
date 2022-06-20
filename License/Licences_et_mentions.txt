@@ -1,6 +1,6 @@
 La bibliothèque permettant la création des graphiques est intitulée MPAndroidChart
 Elle est disponible sur Github à cette adresse : https://github.com/PhilJay/MPAndroidChart
-Elle est distribuée sous License Apache 2.0 ( copie fournie dans le fichier courant )
+Elle est distribuée sous License Apache 2.0 ( copie fournie dans le dossier courant )
 
 Les icônes utilisés pour les différentes catégories ( revenus / dépenses ) proviennent du site : Flaticon.com
 Et plus précisément du graphiste : Freepik
