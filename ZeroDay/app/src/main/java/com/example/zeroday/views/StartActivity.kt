@@ -45,6 +45,7 @@ class StartActivity : AppCompatActivity() {
                 nameObject.setHintTextColor(Color.parseColor("#88FF0000"))
             }
         }
+
     }
 
 }
