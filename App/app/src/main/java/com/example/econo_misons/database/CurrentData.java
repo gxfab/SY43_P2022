@@ -4,6 +4,7 @@ import com.example.econo_misons.database.models.Budget;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 import com.example.econo_misons.database.models.User;
 
+//Public class Used to store and share the Current Data between activities
 public class CurrentData {
     private static User user;
     private static Budget budget;
@@ -42,15 +43,4 @@ public class CurrentData {
             CurrentData.prevBudget = new PrevisionalBudget(1,"2022-06");
         }
     }
-
-    public static void init(PrevisionalBudget prevBudget){
-        if ((CurrentData.user == null) && (CurrentData.budget == null) && (CurrentData.prevBudget == null)){
-            CurrentData.user = new User("Suiram");
-            CurrentData.user.id = 1;
-            CurrentData.budget = new Budget("Budget perso");
-            CurrentData.budget.id = 1;
-            CurrentData.prevBudget = new PrevisionalBudget(1,"2022-06");
-        }
-    }
-
 }
