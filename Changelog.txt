@@ -2,3 +2,68 @@ V0.1:
 25/03/22:
     Initialised project
     Created README.md and Changelog.txt
+
+V0.2:
+13/03/22:
+    Created MVVM structure
+    Created categories layout
+    
+V0.3:
+26/05/22:
+    Created database with DAO
+V0.4:
+10/06/22:
+    Database without mainthread usage
+    Fixed layouts
+V0.5:
+11/06/22:
+    Added redirection on categories
+    Fixed Category Details layout by adding constraints
+    Added 2 last activities
+
+V0.6:
+12/06/22:
+    Sync between MVVM and DAO
+    Added objectives in category activity
+    Fixed get request from DB
+    Working category add
+    Objectives can be added
+
+V0.7:
+13/06/22:
+    Objective montant is working + icon changed
+    Added calendar
+    Added category details fetch
+    Added objective details fetch
+    Added SubCategory Viewmodel+Repo
+
+V0.8:
+14/06/22:
+    Added SubCategory view
+    Slight graphical improvement on button
+    Added Switch in Add
+    SubCategory can be deleted
+    Added expense
+ 
+V0.9:
+15/06/22:
+    Added transaction & fixed cascade deletion
+    Added expense page
+    Added color feedback in progressbar
+    Patched objective
+    Added date on category
+    Updating categories in database is working
+    Updated objectives value correctly each month 
+    Added graph
+
+V1:
+16/06/22:
+    Added color to graph
+
+
+
+
+
+
+   
+ 
