@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,52 +29,90 @@ import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
 import com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-/**
- * fragment for the zero budget
- */
+
+
 public class ZeroBudgetFragment extends Fragment {
 
     private ZeroBudgetFragmentBinding binding;
-    private List<SubCategories> zeroBudgetSubCategoriesList;
+    private ArrayList<SubCategories> zeroBudgetSubCategoriesList;
     private ZeroBudgetViewModel zeroBudgetViewModel;
     private TextView zeroBudgetTextView;
     private ZeroBudget zeroBudget;
 
     /**
-     * on create view method
-     * @param inflater inflater
-     * @param container container
-     * @param savedInstanceState saved instance state
-     * @return view
+     * Creates and returns the view hierarchy associated with the fragment
+     * @param inflater LayoutInflater instantiates a layout XML file into its corresponding View objects
+     * @param container ViewGroup parent container of fragment
+     * @param savedInstanceState Bundle
+     * @return root outermost View in the associated layout file
      */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        /*
+          Instantiate ZeroBudgetViewModel and assign it to a local variable
+         */
         zeroBudgetViewModel =
                 new ViewModelProvider(this).get(ZeroBudgetViewModel.class);
+
+        /*
+          Get binding from ZeroBudgetFragmentViewBinding
+         */
         binding = ZeroBudgetFragmentBinding.inflate(inflater, container, false);
+
+        /*
+          Get outermost view in the associated layout file
+         */
         View root = binding.getRoot();
-        zeroBudgetTextView = binding.zeroBudgetTextView;
+
+        /*
+          Instantiating ZeroBudget
+         */
         zeroBudget = new ZeroBudget();
+
+        /*
+          Get recyclerView from binding
+         */
         RecyclerView recyclerView = binding.zeroBudgetRecyclerView;
+
+        /*
+          Create a new ArrayList of subCategories
+         */
         zeroBudgetSubCategoriesList = new ArrayList<>();
+
+        /*
+          Get fragment's TextView from binding
+         */
         zeroBudgetTextView = binding.zeroBudgetTextView;
+
+        /*
+          Populate zeroBudgetSubCategoriesList from zeroBudgetViewModel
+         */
         String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
-                "Sinking Funds", "Extra Debt", "Extra Savings"};
+                "Sinking Funds", "Extra debt", "Extra Savings"};
         for (String name:zeroBudgetNameList
              ) {
             zeroBudgetSubCategoriesList.add(zeroBudgetViewModel.getSubCategoryByName(name));
         }
 
+        /*
+          Create Adapter for subCategories recycler view
+         */
+        SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(zeroBudgetSubCategoriesList);
 
-        ZeroBudgetAdapter zeroBudgetAdapter = new ZeroBudgetAdapter(zeroBudgetSubCategoriesList);
-
+        /*
+          Set layout manager and adapter of recycler view
+         */
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
-        recyclerView.setAdapter(zeroBudgetAdapter);
+        recyclerView.setAdapter(subCategoriesAdapter);
+
         registerForContextMenu(recyclerView);
+
+        /*
+          Navigation into sub-categories fragment on click
+         */
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
-            TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.zero_budget_text_view);
+            TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.text_view_subcategories);
             String currentZeroBudgetCategoryName = currentZeroBudgetCategoryTextView.getText().toString();
             SubCategories currentSubCategory = zeroBudgetViewModel.getSubCategoryByName(currentZeroBudgetCategoryName);
             zeroBudgetViewModel.setCurrentSubCategory(currentSubCategory);
@@ -83,6 +120,9 @@ public class ZeroBudgetFragment extends Fragment {
         });
 
 
+        /*
+          Set of observers to retrieve results of queries concerning expenses, incomes and savings
+         */
         final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> { zeroBudget.setInfrequentExpenses(newInfrequentExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
         final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes ->{zeroBudget.setInfrequentIncomes(newInfrequentIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
@@ -93,35 +133,24 @@ public class ZeroBudgetFragment extends Fragment {
 
         final Observer<Integer> savingsObserver = newSavings -> {zeroBudget.setSavings(newSavings);zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
+        /*
+          Observing expenses, incomes and savings
+         */
         zeroBudgetViewModel.getInfrequentExpenses().observe(getViewLifecycleOwner(),infrequentExpensesObserver);
         zeroBudgetViewModel.getInfrequentIncomes().observe(getViewLifecycleOwner(),infrequentIncomesObserver);
         zeroBudgetViewModel.getStableExpenses().observe(getViewLifecycleOwner(),stableExpensesObserver);
         zeroBudgetViewModel.getStableIncomes().observe(getViewLifecycleOwner(),stableIncomesObserver);
         zeroBudgetViewModel.getSavings().observe(getViewLifecycleOwner(),savingsObserver);
 
-
-
-
-
-
-
         return root;
     }
 
-    /**
-     * on view created method
-     * @param view view
-     * @param savedInstanceState saved instance state
-     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
 
-    /**
-     * on destroy view method
-     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

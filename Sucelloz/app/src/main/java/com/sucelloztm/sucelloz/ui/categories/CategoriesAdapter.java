@@ -22,7 +22,7 @@ import java.util.List;
 
 
 /**
- * adapter for the categories
+ * Adapter for the categories
  */
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
 
@@ -43,7 +43,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
 
         /**
-         * custom constructor
+         * Custom constructor
          * @param view current view
          */
         public ViewHolder(View view) {
@@ -54,7 +54,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         }
 
         /**
-         * getter
+         * Get text view
          * @return text view
          */
         public TextView getTextView() {
@@ -63,7 +63,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     }
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param dataSet list of categories
      */
     public CategoriesAdapter(List<Categories> dataSet) {

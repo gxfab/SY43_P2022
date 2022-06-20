@@ -18,11 +18,19 @@ public class CategoriesViewModel extends AndroidViewModel {
 
     private LiveData<List<Categories>> currentCategories;
 
+    /**
+     * Constructor of CategoriesViewModel Class
+     * @param application instance of Application
+     */
     public CategoriesViewModel(Application application) {
         super(application);
         this.categoriesRepository = new CategoriesRepository(application);
     }
 
+    /**
+     * Get a LiveDate list of Categories
+     * @return currentCategories a LiveData<List<Categories>>
+     */
     public LiveData<List<Categories>> getAllCategories() {
         if (this.currentCategories == null) {
             this.currentCategories = categoriesRepository.getAllCategories();
@@ -30,18 +38,35 @@ public class CategoriesViewModel extends AndroidViewModel {
         return this.currentCategories;
     }
 
+    /**
+     * Get a category by it's name
+     * @param categoryName a String name of the category to search
+     * @return category Category found
+     */
     public Categories getCategoryByName(String categoryName){
         return this.categoriesRepository.getCategoryByName(categoryName);
     }
 
+    /**
+     * Set current category as given category
+     * @param category given category
+     */
     public void setCurrentCategory(Categories category){
         CategoriesRepository.setCurrentCategory(category);
     }
 
+    /**
+     * Delete given category
+     * @param category given category
+     */
     public void deleteCategory(Categories category){
         this.categoriesRepository.deleteCategory(category);
     }
 
+    /**
+     * Update given category
+     * @param category given category
+     */
     public void updateCategory(Categories category){
         this.categoriesRepository.updateCategory(category);
     }

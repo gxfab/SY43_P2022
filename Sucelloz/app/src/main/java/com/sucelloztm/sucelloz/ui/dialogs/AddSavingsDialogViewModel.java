@@ -9,13 +9,13 @@ import com.sucelloztm.sucelloz.models.Savings;
 import com.sucelloztm.sucelloz.repositories.SavingsRepository;
 
 /**
- * class to add a savings dialog to a viewmodel
+ * Class to add a savings dialog to a viewmodel
  */
 public class AddSavingsDialogViewModel extends AndroidViewModel {
     private SavingsRepository savingsRepository;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application application
      */
     public AddSavingsDialogViewModel(@NonNull Application application) {
@@ -24,7 +24,7 @@ public class AddSavingsDialogViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the insert saving query
+     * Invokes the insert saving query
      * @param saving saving
      */
     public void insert(Savings saving) { this.savingsRepository.insert(saving);}

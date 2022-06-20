@@ -25,14 +25,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * class to add a stable dialog to a fragment
+ * Class to add a stable dialog to a fragment
  */
 public class AddStableDialogFragment extends DialogFragment {
     private AddStableDialogViewModel addStableDialogViewModel;
     private AddStableDialogFragmentBinding binding;
 
     /**
-     * on create dialog method
+     * On create dialog method
      * @param savedInstanceState saved instance state
      * @return dialog
      */

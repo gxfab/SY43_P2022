@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * class to generate pie charts for the subcategories fragment
+ * Class to generate pie charts for the subcategories fragment
  */
 public class  PieChartSubCategoriesGenerator {
 
@@ -34,7 +34,7 @@ public class  PieChartSubCategoriesGenerator {
 
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param subCategoriesWithInfrequentSumList list of subcategories
      */
     public PieChartSubCategoriesGenerator(List<SubCategoriesWithInfrequentSum> subCategoriesWithInfrequentSumList){
@@ -42,7 +42,7 @@ public class  PieChartSubCategoriesGenerator {
     }
 
     /**
-     * getter
+     * Get pie chart
      * @return pie chart
      */
     public PieChart getPieChart() {
@@ -50,7 +50,7 @@ public class  PieChartSubCategoriesGenerator {
     }
 
     /**
-     * creates a pie chart
+     * Create pie chart
      * @param context context
      * @param parent frame layout
      * @return created pie chart
@@ -107,7 +107,7 @@ public class  PieChartSubCategoriesGenerator {
 
 
     /**
-     * generates data for the pie chart
+     * Generates data for the pie chart
      * @return pie data
      */
     public PieData generatePieData() {
@@ -140,7 +140,7 @@ public class  PieChartSubCategoriesGenerator {
     }
 
     /**
-     * generates a pie chart entry
+     * Generates a pie chart entry
      * @return map of the entries
      */
     public Map<String,Integer> generatePieEntry(){

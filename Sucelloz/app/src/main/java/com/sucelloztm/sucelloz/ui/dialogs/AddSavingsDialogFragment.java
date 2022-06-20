@@ -20,13 +20,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * class to add a savings dialog to a fragment
+ * Class to add a savings dialog to a fragment
  */
 public class AddSavingsDialogFragment extends DialogFragment {
     private AddSavingsDialogViewModel addSavingsDialogViewModel;
 
     /**
-     * on create dialog method
+     * On create dialog method
      * @param savedInstanceState saved instance state
      * @return dialog
      */

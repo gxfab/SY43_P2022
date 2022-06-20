@@ -2,9 +2,6 @@ package com.sucelloztm.sucelloz.ui.zerobudget;
 
 import android.widget.TextView;
 
-/**
- * class for the zero budget
- */
 public class ZeroBudget {
     private int infrequentExpenses=0;
     private int infrequentIncomes=0;
@@ -15,74 +12,97 @@ public class ZeroBudget {
     public ZeroBudget() {
     }
 
+    /**
+     * Get infrequent Expenses
+     * @return int infrequentExpenses
+     */
     public int getInfrequentExpenses() {
         return infrequentExpenses;
     }
 
     /**
-     * setter
-     * @param infrequentExpenses infrequent
+     * Set infrequent Expenses
+     * @param infrequentExpenses new infrequent expenses
      */
     public void setInfrequentExpenses(int infrequentExpenses) {
         this.infrequentExpenses = infrequentExpenses;
     }
 
+    /**
+     * Get infrequent Incomes
+     * @return int infrequentIncomes
+     */
     public int getInfrequentIncomes() {
         return infrequentIncomes;
     }
 
     /**
-     * setter
-     * @param infrequentIncomes infrequent
+     * Set infrequent Expenses
+     * @param infrequentIncomes new infrequent incomes
      */
     public void setInfrequentIncomes(int infrequentIncomes) {
         this.infrequentIncomes = infrequentIncomes;
     }
 
+    /**
+     * Get stable Expenses
+     * @return int stableExpenses
+     */
     public int getStableExpenses() {
         return stableExpenses;
     }
 
     /**
-     * setter
-     * @param stableExpenses stable
+     * Set stable Expenses
+     * @param stableExpenses new stable expenses
      */
     public void setStableExpenses(int stableExpenses) {
         this.stableExpenses = stableExpenses;
     }
 
+    /**
+     * Get stable Incomes
+     * @return int stableIncomes
+     */
     public int getStableIncomes() {
         return stableIncomes;
     }
 
     /**
-     * setter
-     * @param stableIncomes stable
+     * Set stable incomes
+     * @param stableIncomes new stable incomes
      */
     public void setStableIncomes(int stableIncomes) {
         this.stableIncomes = stableIncomes;
     }
 
-
+    /**
+     * Get savings
+     * @return int savings
+     */
     public int getSavings() {
         return savings;
     }
 
+    /**
+     * Set savings
+     * @param savings new savings
+     */
     public void setSavings(int savings) {
         this.savings = savings;
     }
 
-  /**
-   * getter
-   * @return result budget zero
-   */
+    /**
+     * Get result of Budget Zero calculation
+     * @return int resultBudgetZero
+     */
     public int getResultBudgetZero() {
         return resultBudgetZero;
     }
 
     /**
-     * setter
-     * @param textView text
+     * Set infrequent Expenses
+     * @param textView textView printing out the result on the ZeroBudgetFragment
      */
     public void setResultBudgetZero(TextView textView) {
         this.resultBudgetZero = (this.infrequentIncomes + this.stableIncomes) - (this.infrequentExpenses +this.stableExpenses + this.savings);

@@ -30,7 +30,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * class to add a spending dialog to a fragment
+ * Class to add a spending dialog to a fragment
  */
 public class AddSpendingDialogFragment extends DialogFragment {
 
@@ -38,7 +38,7 @@ public class AddSpendingDialogFragment extends DialogFragment {
     private List<String> subCategoriesList;
 
     /**
-     * on create dialog method
+     * On create dialog method
      * @param savedInstanceState savid instance state
      * @return dialog
      */

@@ -11,13 +11,13 @@ import com.sucelloztm.sucelloz.repositories.StableExpensesAndIncomeRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 /**
- * class to add a cstable dialog to a view model
+ * Class to add a cstable dialog to a view model
  */
 public class AddStableDialogViewModel extends AndroidViewModel {
     private StableExpensesAndIncomeRepository stableExpensesAndIncomeRepository;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application application
      */
     public AddStableDialogViewModel(@NonNull Application application) {
@@ -26,7 +26,7 @@ public class AddStableDialogViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the insert stable query
+     * Invokes the insert stable query
      * @param stableExpensesAndIncome stable
      */
     public void insert(StableExpensesAndIncome stableExpensesAndIncome){
@@ -34,7 +34,7 @@ public class AddStableDialogViewModel extends AndroidViewModel {
     }
 
     /**
-     * getter
+     * Get current sub-category
      * @return subcategory
      */
     public SubCategories getCurrentSubCategory(){
