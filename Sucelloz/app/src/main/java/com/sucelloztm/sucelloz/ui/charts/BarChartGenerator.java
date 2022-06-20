@@ -24,21 +24,36 @@ import com.sucelloztm.sucelloz.ui.savings.SavingsAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class to generate bar charts for the savings fragment
+ */
 public class BarChartGenerator {
     private List<Savings> currentSavingsArrayList;
     private BarChart barChart;
 
+    /**
+     * custom constructor
+     * @param currentSavingsArrayList list of the current savings
+     */
     public BarChartGenerator(List<Savings> currentSavingsArrayList) {
         this.currentSavingsArrayList = currentSavingsArrayList;
     }
 
 
-
+    /**
+     * getter
+     * @return bar chart
+     */
     public BarChart getBarChart() {
         return barChart;
     }
 
 
+    /**
+     * creates the bar chart
+     * @param context context
+     * @param parent frame layout
+     */
     public void createBarChart(Context context, FrameLayout parent) {
 
         barChart = new BarChart(context);
@@ -74,6 +89,10 @@ public class BarChartGenerator {
 
     }
 
+    /**
+     * generates the data for the bar chart
+     * @return bar chart data
+     */
     public BarData generateBarData() {
 
         ArrayList<BarEntry> entries = new ArrayList<>();
@@ -101,6 +120,10 @@ public class BarChartGenerator {
 
     }
 
+    /**
+     * generates an entry for the bar chart
+     * @return list of the bar chart entries
+     */
     private List<Float> generateBarEntry(){
 
         List<Float> percentageArrayList = new ArrayList<>();

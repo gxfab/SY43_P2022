@@ -33,6 +33,9 @@ import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * fragment for the subcategories
+ */
 public class SubCategoriesFragment extends Fragment {
 
     private SubCategoriesFragmentBinding binding;
@@ -41,12 +44,23 @@ public class SubCategoriesFragment extends Fragment {
     private RecyclerView recyclerView;
     private  int itemIndex;
 
+    /**
+     * on create method
+     * @param savedInstanceState saved instance state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
 
+    /**
+     * on create view method
+     * @param inflater inflater
+     * @param container container
+     * @param savedInstanceState saved instance state
+     * @return view
+     */
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -82,6 +96,11 @@ public class SubCategoriesFragment extends Fragment {
         return root;
     }
 
+    /**
+     * on view created method
+     * @param view view
+     * @param savedInstanceState saved instance state
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
 
@@ -100,13 +119,21 @@ public class SubCategoriesFragment extends Fragment {
     }
 
 
-
+    /**
+     * on destroy view method
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
 
+    /**
+     * on create context menu method
+     * @param menu menu
+     * @param v view
+     * @param menuInfo menu info
+     */
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -114,6 +141,11 @@ public class SubCategoriesFragment extends Fragment {
         menuInflater.inflate(R.menu.context_menu,menu);
     }
 
+    /**
+     * on context item selected method
+     * @param item menu item
+     * @return boolean to know if the method executed properly
+     */
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -128,6 +160,13 @@ public class SubCategoriesFragment extends Fragment {
         }
     }
 
+    /**
+     * updates the dialog to modify the subcategory fragment
+     * @param activity activity
+     * @param idOfSubCategory id of the subcategory
+     * @param idOfCategory id of the category
+     * @return dialog
+     */
     public Dialog dialogForModifySubCategory(Activity activity, long idOfSubCategory,long idOfCategory){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         final EditText nameEditText = new EditText(activity);

@@ -37,7 +37,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+/**
+ * class for the savings fragment
+ */
 public class SavingsFragment extends Fragment implements LifecycleOwner {
 
     private SavingsFragmentBinding binding;
@@ -47,11 +49,22 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
     private int itemIndex;
     private BarChartGenerator barGen;
 
+    /**
+     * on create method
+     * @param savedInstanceState saved instance state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * on create view method
+     * @param inflater inflater
+     * @param container container
+     * @param savedInstanceState saved instance state
+     * @return view
+     */
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -92,6 +105,11 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
         return root;
     }
 
+    /**
+     * on view created method
+     * @param view view
+     * @param savedInstanceState saved instance state
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.addSavingsButtonSavings.setOnClickListener(new View.OnClickListener() {
@@ -102,12 +120,21 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
         });
     }
 
+    /**
+     * on destroy view method
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
 
+    /**
+     * on create context menu method
+     * @param menu menu
+     * @param v view
+     * @param menuInfo menu info
+     */
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -115,6 +142,11 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
         menuInflater.inflate(R.menu.context_menu, menu);
     }
 
+    /**
+     * on context item selected method
+     * @param item menu item
+     * @return boolean to know if the method succeeded
+     */
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
@@ -130,6 +162,12 @@ public class SavingsFragment extends Fragment implements LifecycleOwner {
         }
     }
 
+    /**
+     * updates the dialog to modify the savings fragment
+     * @param activity activity
+     * @param idOfSaving id of the saving
+     * @return dialog
+     */
     public Dialog dialogForModifySaving(Activity activity, long idOfSaving){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         final EditText amountEditText = new EditText(activity);
