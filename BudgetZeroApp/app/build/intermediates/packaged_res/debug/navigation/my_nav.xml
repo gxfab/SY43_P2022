@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.budgetzeroapp.fragment.HomeFragment"
+        android:label="Home" >
+        <action
+            android:id="@+id/action_homeFragment_to_selectExpenseTypeFragment2"
+            app:destination="@id/selectExpenseTypeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editExpenseCatFragment"
+            app:destination="@id/editExpenseCatFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_viewExpenseCatFragment"
+            app:destination="@id/viewExpenseCatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="com.example.budgetzeroapp.fragment.BudgetFragment"
+        android:label="Budget"
+        tools:layout="@layout/fragment_budget" >
+        <action
+            android:id="@+id/action_budgetFragment_to_selectExpenseTypeFragment2"
+            app:destination="@id/selectExpenseTypeFragment" />
+        <action
+            android:id="@+id/action_budgetFragment_to_editExpenseCatFragment"
+            app:destination="@id/editExpenseCatFragment" />
+        <action
+            android:id="@+id/action_budgetFragment_to_viewExpenseCatFragment"
+            app:destination="@id/viewExpenseCatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cashFlowFragment"
+        android:name="com.example.budgetzeroapp.fragment.CashFlowFragment"
+        android:label="Cash Flow"
+        tools:layout="@layout/fragment_cash_flow" >
+        <action
+            android:id="@+id/navigate_to_viewExpenseFragment_from_cashflow"
+            app:destination="@id/viewExpenseFragment"/>
+        <argument
+            android:name="id_expense"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_cashFlowFragment_to_selectExpenseTypeFragment2"
+            app:destination="@id/selectExpenseTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savingsFragment"
+        android:name="com.example.budgetzeroapp.fragment.SavingsFragment"
+        android:label="Savings"
+        tools:layout="@layout/fragment_savings" >
+        <action
+            android:id="@+id/navigate_to_viewSavingCat_from_savings"
+            app:destination="@id/viewSavingCatFragment" />
+        <action
+            android:id="@+id/navigate_to_viewDebt_from_savings"
+            app:destination="@id/viewDebtFragment" />
+        <action
+            android:id="@+id/action_savingsFragment_to_selectExpenseTypeFragment2"
+            app:destination="@id/selectExpenseTypeFragment" />
+        <action
+            android:id="@+id/action_savingsFragment_to_editDebtFragment"
+            app:destination="@id/editDebtFragment" >
+            <argument
+                android:name="id_debt_edit"
+                android:defaultValue="0" />
+        </action>
+        <action
+            android:id="@+id/action_savingsFragment_to_editSavingCatFragment"
+            app:destination="@id/editSavingCatFragment" >
+            <argument
+                android:name="id_saving_cat"
+                android:defaultValue="0" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/viewExpenseFragment"
+        android:name="com.example.budgetzeroapp.fragment.view.ViewExpenseFragment"
+        android:label="Expenses"
+        tools:layout="@layout/fragment_view_expense" >
+        <action
+            android:id="@+id/navigate_to_editExpense_from_expense"
+            app:destination="@id/editExpenseFragment" />
+        <argument android:name="id_expense"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewSavingCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.view.ViewSavingCatFragment"
+        android:label="Savings per category"
+        tools:layout="@layout/fragment_view_saving_cat" >
+        <action
+            android:id="@+id/navigate_to_editSavingCat_from_saving_cat"
+            app:destination="@id/editSavingCatFragment" />
+        <argument
+            android:name="id_savings"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_viewSavingCatFragment_to_viewExpenseFragment"
+            app:destination="@id/viewExpenseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editExpenseCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.EditExpenseCatFragment"
+        android:label="Edit expense categories"
+        tools:layout="@layout/fragment_edit_expense_cat" >
+        <argument
+            android:name="id_expense_cat_edit"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editExpenseCatFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editExpenseFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.EditExpenseFragment"
+        android:label="Edit expenses"
+        tools:layout="@layout/fragment_edit_expense" >
+        <argument
+            android:name="id_expense_edit"
+            app:argType="integer" />
+        <argument android:name="type_expense"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editExpenseFragment_to_cashFlowFragment"
+            app:destination="@id/cashFlowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editSavingCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.EditSavingCatFragment"
+        android:label="Edit saving categories"
+        tools:layout="@layout/fragment_edit_saving_cat" >
+        <argument
+            android:name="id_saving_cat"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editSavingCatFragment_to_savingsFragment"
+            app:destination="@id/savingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewDebtFragment"
+        android:name="com.example.budgetzeroapp.fragment.view.ViewDebtFragment"
+        android:label="Debts"
+        tools:layout="@layout/fragment_view_debt" >
+        <action
+            android:id="@+id/navigate_to_savings_from_debt"
+            app:destination="@id/savingsFragment" />
+        <action
+            android:id="@+id/navigate_to_editDebt_from_debt"
+            app:destination="@id/editDebtFragment" />
+        <argument
+            android:name="id_debt"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_viewDebtFragment_to_viewExpenseFragment"
+            app:destination="@id/viewExpenseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editDebtFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.EditDebtFragment"
+        android:label="Edit debts"
+        tools:layout="@layout/fragment_edit_debt" >
+        <argument
+            android:name="id_debt_edit"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editDebtFragment_to_savingsFragment"
+            app:destination="@id/savingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectExpenseTypeFragment"
+        android:name="com.example.budgetzeroapp.fragment.edit.SelectExpenseTypeFragment"
+        android:label="fragment_select_expense_type"
+        tools:layout="@layout/fragment_select_expense_type" >
+        <action
+            android:id="@+id/action_selectExpenseTypeFragment_to_editExpenseFragment3"
+            app:destination="@id/editExpenseFragment" >
+            <argument
+                android:name="id_expense_edit"
+                android:defaultValue="0" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/viewExpenseCatFragment"
+        android:name="com.example.budgetzeroapp.fragment.view.ViewExpenseCatFragment"
+        android:label="fragment_view_expense_cat"
+        tools:layout="@layout/fragment_view_expense_cat" >
+        <action
+            android:id="@+id/action_viewExpenseCatFragment_to_editExpenseCatFragment"
+            app:destination="@id/editExpenseCatFragment" />
+        <action
+            android:id="@+id/action_viewExpenseCatFragment_self"
+            app:destination="@id/viewExpenseCatFragment" />
+        <action
+            android:id="@+id/action_viewExpenseCatFragment_to_viewExpenseFragment"
+            app:destination="@id/viewExpenseFragment" />
+        <argument android:name="id_expense_cat"
+            app:argType="integer" />
+    </fragment>
+</navigation>

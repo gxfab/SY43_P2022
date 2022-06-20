@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.edit.EditExpenseFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="390dp">
+        <TextView
+            android:id="@+id/textViewExpName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/exp_name" />
+
+        <EditText
+            android:id="@+id/editTextExpName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBottom="@+id/textViewExpName"
+            android:layout_marginStart="140dp"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/textViewExpDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewExpName"
+            android:layout_alignTop="@+id/textViewExpName"
+            android:layout_marginTop="70dp"
+            android:text="@string/exp_date" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_alignStart="@id/editTextExpName"
+            android:layout_alignTop="@id/textViewExpDate"
+            android:layout_marginTop="-40dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner" />
+
+        <TextView
+            android:id="@+id/textViewExpAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewExpDate"
+            android:layout_alignTop="@+id/textViewExpDate"
+            android:layout_marginTop="70dp"
+            android:text="@string/exp_amount" />
+
+        <EditText
+            android:id="@+id/editTextExpAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/editTextExpName"
+            android:layout_alignBottom="@+id/textViewExpAmount"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="numberDecimal|number" />
+
+        <TextView
+            android:id="@+id/textViewExpType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewExpAmount"
+            android:layout_alignTop="@+id/textViewExpAmount"
+            android:layout_marginTop="60dp"
+            android:text="@string/category" />
+
+        <Spinner
+            android:id="@+id/spinner_cat"
+            android:layout_width="209dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/editTextExpAmount"
+            android:layout_alignBottom="@+id/textViewExpType" />
+
+        <TextView
+            android:id="@+id/textViewExpStable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewExpType"
+            android:layout_alignTop="@+id/textViewExpType"
+            android:layout_marginTop="60dp"
+            android:text="@string/exp_stable" />
+
+        <CheckBox
+            android:id="@+id/checkBoxExpStable"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_alignStart="@+id/editTextExpAmount"
+            android:layout_alignBottom="@+id/textViewExpStable"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="-12dp" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewExpStable"
+            android:layout_marginBottom="-80dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/save"
+            tools:ignore="UsingOnClickInXml" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.view.ViewSavingCatFragment" >
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <include
+            layout="@layout/toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textViewSaveName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/save_cat_name" />
+
+        <TextView
+            android:id="@+id/textViewSaveNameEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewSaveName"
+            android:layout_marginStart="180dp" />
+
+        <TextView
+            android:id="@+id/textViewSaveGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveName"
+            android:layout_alignTop="@+id/textViewSaveName"
+            android:layout_marginTop="40dp"
+            android:text="@string/save_cat_goal" />
+
+        <TextView
+            android:id="@+id/textViewSaveGoalEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveNameEntry"
+            android:layout_alignBottom="@+id/textViewSaveGoal" />
+
+        <TextView
+            android:id="@+id/textViewSaveCurrent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveGoal"
+            android:layout_alignBottom="@+id/textViewSaveGoal"
+            android:layout_marginBottom="-40dp"
+            android:text="@string/save_cat_current" />
+
+        <TextView
+            android:id="@+id/textViewSaveCurrentEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveGoalEntry"
+            android:layout_alignBottom="@+id/textViewSaveCurrent" />
+
+
+        <TextView
+            android:id="@+id/textViewSaveList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveCurrentEntry"
+            android:layout_alignBottom="@+id/textViewSaveCurrentEntry"
+            android:layout_marginBottom="-40dp"
+            android:text="@string/save_cat_list" />
+
+        <ImageView
+            android:id="@+id/imageDummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveList"
+            android:layout_alignBottom="@+id/textViewSaveList"
+            android:layout_marginBottom="-10dp" />
+
+        <ListView
+            android:id="@+id/listViewSaveList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/imageDummy"
+            android:orientation="vertical" >
+
+        </ListView>
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/listViewSaveList"
+            android:layout_marginBottom="-80dp"
+            android:text="@string/edit" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

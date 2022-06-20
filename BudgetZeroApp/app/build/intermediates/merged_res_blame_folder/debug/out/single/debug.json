@@ -1,0 +1,286 @@
+[
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_coffee.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_coffee.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_car.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_car.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\menu_cash_flow_menu.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\menu\\cash_flow_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_savings.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_savings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\navigation_my_nav.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\navigation\\my_nav.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_view_saving_cat.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_view_saving_cat.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_savings_debts_tab.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_savings_debts_tab.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_toolbar_home.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\toolbar_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_budget.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_budget.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\menu_savings_menu.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\menu\\savings_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_heart.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_heart.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_budget.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_budget.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_menu.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_view_expense_cat.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_view_expense_cat.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_text_border.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\text_border.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_edit_expense_cat.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_edit_expense_cat.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_sorting_budget_item.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\sorting_budget_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_seekbar_border.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\seekbar_border.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_sorting_budget.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\sorting_budget.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_view_debt.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_view_debt.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\menu_home_menu.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\menu\\home_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_toolbar_savings.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\toolbar_savings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_menu_24.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_baseline_menu_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_expense.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\expense.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_edit_income_cat.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_edit_income_cat.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_toolbar_cashflow.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\toolbar_cashflow.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_savings.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_savings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_edit_saving_cat.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_edit_saving_cat.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_spinner_element.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\spinner_element.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_seekbar_progress.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\seekbar_progress.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_view_income_cat.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_view_income_cat.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_progress_bar_savings_debt.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\progress_bar_savings_debt.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_view_expense.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_view_expense.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_toolbar.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\toolbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_cash_flow.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_cash_flow.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_home.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_cash_flow_stable.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_cash_flow_stable.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_auto_mode.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_auto_mode.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_seekbar_drawable.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\seekbar_drawable.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_edit_debt.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_edit_debt.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_cash_flow.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_cash_flow.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\menu_bottom_nav_menu.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\menu\\bottom_nav_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_cash_flow_general.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_cash_flow_general.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_progress_bar_cat.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\progress_bar_cat.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_next.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_next.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_toolbar_budget.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\toolbar_budget.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_cash_flow_evolution.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_cash_flow_evolution.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_dialogue.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\dialogue.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_default_thumb.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_default_thumb.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_leisure.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_leisure.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_edit_expense.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_edit_expense.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_select_expense_type.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\fragment_select_expense_type.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\menu_budget_menu.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\menu\\budget_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\layout_category.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\layout\\category.xml"
+    },
+    {
+        "merged": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_shopping.xml.flat",
+        "source": "C:\\Users\\Leo\\Desktop\\UTBM\\BR02\\SY43\\TPs\\SY43_P2022\\BudgetZeroApp\\app\\src\\main\\res\\drawable\\ic_shopping.xml"
+    }
+]

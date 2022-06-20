@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.view.ViewExpenseCatFragment" >
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textViewCatName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="90dp"
+            android:text="@string/exp_cat_name" />
+
+        <TextView
+            android:id="@+id/textViewCatNameEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewCatName"
+            android:layout_marginStart="140dp" />
+
+        <TextView
+            android:id="@+id/textViewCatBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatName"
+            android:layout_alignTop="@+id/textViewCatName"
+            android:layout_marginTop="40dp"
+            android:text="@string/exp_cat_budget" />
+
+        <TextView
+            android:id="@+id/textViewCatBudgetEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatNameEntry"
+            android:layout_alignBottom="@+id/textViewCatBudget" />
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewCatBudget"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/edit" />
+
+        <TextView
+            android:id="@+id/textViewCatClickSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatBudget"
+            android:layout_alignBottom="@+id/editButton"
+            android:layout_marginBottom="-30dp"
+            android:text="@string/exp_cat_click_sub" />
+
+        <ImageView
+            android:id="@+id/imageDummy1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatClickSub"
+            android:layout_alignBottom="@+id/textViewCatClickSub"
+            android:layout_marginBottom="-10dp" />
+
+        <ListView
+            android:id="@+id/listViewCatClickSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/imageDummy1"
+            android:clickable="true"
+            android:orientation="vertical">
+
+        </ListView>
+
+        <TextView
+            android:id="@+id/textViewCatExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatClickSub"
+            android:layout_alignBottom="@+id/listViewCatClickSub"
+            android:layout_marginBottom="-50dp"
+            android:text="@string/exp_cat_expenses" />
+
+        <ImageView
+            android:id="@+id/imageDummy2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewCatExpenses"
+            android:layout_alignBottom="@+id/textViewCatExpenses"
+            android:layout_marginBottom="-10dp" />
+
+        <ListView
+            android:id="@+id/listViewCatExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/imageDummy2"
+            android:orientation="vertical">
+        </ListView>
+
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

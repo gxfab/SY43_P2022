@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragment.edit.EditSavingCatFragment" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textViewSaveName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/save_cat_name" />
+
+        <EditText
+            android:id="@+id/editTextSaveName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewSaveName"
+            android:layout_marginStart="170dp"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/textViewSaveGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textViewSaveName"
+            android:layout_alignTop="@+id/textViewSaveName"
+            android:layout_marginTop="50dp"
+            android:text="@string/save_cat_goal" />
+
+        <EditText
+            android:id="@+id/editTextSaveGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/editTextSaveName"
+            android:layout_alignBottom="@+id/textViewSaveGoal"
+            android:layout_marginBottom="-10dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/editTextSaveGoal"
+            android:layout_marginBottom="-80dp"
+            android:layout_centerHorizontal="true"
+            android:onClick="run"
+            android:text="@string/save"
+            tools:ignore="UsingOnClickInXml" />
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
