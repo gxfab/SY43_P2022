@@ -25,7 +25,7 @@ public class Evenement {
     //Constructor
 
     /**
-     * Création d'un évènement
+     * Constructor Evenement
      * @param idSemestre
      * @param type
      * @param name
@@ -56,7 +56,7 @@ public class Evenement {
 
     /**
      *
-     * @return
+     * @return type
      */
     public String getType(){
         return type;
@@ -64,7 +64,7 @@ public class Evenement {
 
     /**
      *
-     * @return
+     * @return name
      */
     public String getName(){
         return name;
@@ -72,7 +72,7 @@ public class Evenement {
 
     /**
      *
-     * @return
+     * @return date
      */
     public String getDate(){
         return date;
@@ -80,7 +80,7 @@ public class Evenement {
 
     /**
      *
-     * @return
+     * @return amountExpense
      */
     public float getAmountExpense() {
         return amountExpense;
@@ -88,7 +88,7 @@ public class Evenement {
 
     /**
      *
-     * @return
+     * @return amountPrevisionnel
      */
     public float getAmountPrevisionnel() {
         return amountPrevisionnel;
@@ -96,7 +96,7 @@ public class Evenement {
 
     /**
      *
-     * @return
+     * @return amountRecipe
      */
     public float getAmountRecipe() {
         return amountRecipe;
@@ -104,7 +104,7 @@ public class Evenement {
 
     /**
      *
-     * @return
+     * @return idSemestre
      */
     public int getIdSemestre() {
         return idSemestre;

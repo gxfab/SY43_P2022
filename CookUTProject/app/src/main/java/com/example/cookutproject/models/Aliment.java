@@ -40,7 +40,7 @@ public class Aliment {
 
     /**
      *
-     * @return
+     * @return price
      */
     public float getPrice() {
         return price;
@@ -48,7 +48,7 @@ public class Aliment {
 
     /**
      *
-     * @return
+     * @return idFacture
      */
     public int getIdFacture(){
         return idFacture;
@@ -56,7 +56,7 @@ public class Aliment {
 
     /**
      *
-     * @return
+     * @return id
      */
     public int getId() {
         return id;
@@ -64,7 +64,7 @@ public class Aliment {
 
     /**
      *
-     * @return
+     * @return quantity
      */
     public int getQuantity() {
         return quantity;
@@ -72,7 +72,7 @@ public class Aliment {
 
     /**
      *
-     * @return
+     * @return name
      */
     public String getName() {
         return name;
@@ -80,7 +80,7 @@ public class Aliment {
 
     /**
      *
-     * @return
+     * @return type
      */
     public String getType() {
         return type;
