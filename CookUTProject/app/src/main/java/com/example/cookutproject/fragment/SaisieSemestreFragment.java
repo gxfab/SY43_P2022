@@ -26,6 +26,9 @@ public class SaisieSemestreFragment extends Fragment {
     }
 
     @Override
+    /**
+     * affiche les éléments de la saisie d'un semestre dans un fragment
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -43,6 +46,9 @@ public class SaisieSemestreFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Ajoute les valeurs saisies dans la base de données
+     */
     private void insertDatatoDatabase() {
         String nom = ((EditText) view.findViewById(R.id.nomSemestre)).getText().toString();
         String montantPrev = ((EditText) view.findViewById(R.id.montantPrevSemestre)).getText().toString();
@@ -57,6 +63,12 @@ public class SaisieSemestreFragment extends Fragment {
             Toast.makeText(requireContext(),"Please fill out all fields!", Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * vérifie que les champs du formulaire sont bien remplis
+     * @param nom
+     * @param montantPrev
+     * @return
+     */
     private boolean inputCheck(String nom,String montantPrev){
         return !(TextUtils.isEmpty(nom) && TextUtils.isEmpty(montantPrev));
     }

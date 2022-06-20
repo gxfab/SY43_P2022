@@ -27,7 +27,11 @@ public abstract class CookUTDatabase extends RoomDatabase {
     private static final int NUMBER_OF_THREADS = 4;
     static  final ExecutorService databasWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-
+    /**
+     * Créer une instance unique de la BDD, permet d'éviter la création de plusieur BDD
+     * @param context
+     * @return instance
+     */
     public static CookUTDatabase getDatabase(Context context){
         if(INSTANCE !=null){
             return INSTANCE;

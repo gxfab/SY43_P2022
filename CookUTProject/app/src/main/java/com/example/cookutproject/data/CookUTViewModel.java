@@ -17,6 +17,10 @@ public class CookUTViewModel extends AndroidViewModel {
     private LiveData<List<Evenement>> readAllEvenement;
     private CookUTRepository repository;
 
+    /**
+     *
+     * @param application
+     */
     public CookUTViewModel(@NonNull Application application) {
         super(application);
         CookUTDao cookUTDao = CookUTDatabase.getDatabase(application).cookUTDao();

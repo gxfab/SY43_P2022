@@ -36,6 +36,9 @@ public class saisieEvenementFragment extends Fragment implements AdapterView.OnI
     }
 
     @Override
+    /**
+     * Set le fragment de saisie des évènements
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -66,6 +69,9 @@ public class saisieEvenementFragment extends Fragment implements AdapterView.OnI
         return view;
     }
 
+    /**
+     * Ajoute les données entrée par l'utilisateur dans le formulaire d'évènement
+     */
     private void insertDatatoDatabase() {
         String nom = ((EditText) view.findViewById(R.id.nomEvenement)).getText().toString();
         String montantPrev = ((EditText) view.findViewById(R.id.montantPrevEvenement)).getText().toString();
@@ -82,11 +88,23 @@ public class saisieEvenementFragment extends Fragment implements AdapterView.OnI
             Toast.makeText(requireContext(),"Please fill out all fields!", Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Vérifie que les champs ont été complétés
+     * @param nom
+     * @param montantPrev
+     * @param type
+     * @param date
+     * @param idSemestre
+     * @return
+     */
     private boolean inputCheck(String nom,String montantPrev,String type,String date,String idSemestre){
         return !(TextUtils.isEmpty(nom) && TextUtils.isEmpty(montantPrev) && TextUtils.isEmpty(type) && TextUtils.isEmpty(date) && TextUtils.isEmpty(idSemestre));
     }
 
     @Override
+    /**
+     * Permet de récupérer la valeur contenue dans le spinner
+     */
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Object item = adapterView.getItemAtPosition(i);
         if (item != null) {

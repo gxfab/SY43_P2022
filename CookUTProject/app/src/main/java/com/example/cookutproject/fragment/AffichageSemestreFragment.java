@@ -22,6 +22,9 @@ public class AffichageSemestreFragment extends Fragment {
     }
 
     @Override
+    /**
+     * Set le fragment qui affiche les données stockées dans la BDD concernant les semestres
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

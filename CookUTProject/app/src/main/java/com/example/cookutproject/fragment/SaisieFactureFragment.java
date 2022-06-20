@@ -18,6 +18,9 @@ public class SaisieFactureFragment extends Fragment {
     }
 
     @Override
+    /**
+     *  Associe aux boutons les fonctions correspondantes
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

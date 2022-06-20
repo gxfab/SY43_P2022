@@ -18,6 +18,9 @@ public class AffichageFragment extends Fragment {
     }
 
     @Override
+    /**
+     * Permet d'associer aux boutons l'affichage des fragments affichant soit les évènements soit les semestres contenus dans la BDD
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

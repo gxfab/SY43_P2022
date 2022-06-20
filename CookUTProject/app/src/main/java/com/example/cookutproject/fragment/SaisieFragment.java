@@ -18,6 +18,9 @@ public class SaisieFragment extends Fragment {
     }
 
     @Override
+    /**
+     * Associe les boutons à la navigation pour pouvoir naviguer entre les fragments
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

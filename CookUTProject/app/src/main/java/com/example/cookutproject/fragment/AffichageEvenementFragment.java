@@ -23,6 +23,9 @@ public class AffichageEvenementFragment extends Fragment {
     }
 
     @Override
+    /**
+     * Affiche les données liées aux évènements contenus dans la BDD
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

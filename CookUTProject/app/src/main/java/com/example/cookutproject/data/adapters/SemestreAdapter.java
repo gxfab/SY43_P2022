@@ -20,11 +20,17 @@ public class SemestreAdapter extends RecyclerView.Adapter<SemestreAdapter.MyView
 
     @NonNull
     @Override
+    /**
+     *créer un objet de la class myviewholder
+     */
     public SemestreAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.semestre_row,parent,false));
     }
 
     @Override
+    /**
+     * View affichant les valeurs contenues dans la BDD
+     */
     public void onBindViewHolder(@NonNull SemestreAdapter.MyViewHolder holder, int position) {
         Semestre current = semestreList.get(position);
         TextView tv = holder.itemView.findViewById(R.id.idSemestre_txt);
@@ -36,15 +42,25 @@ public class SemestreAdapter extends RecyclerView.Adapter<SemestreAdapter.MyView
     }
 
     @Override
+    /**
+     * Récupère la liste des semestres
+     */
     public int getItemCount() {
         return semestreList.size();
     }
 
+    /**
+     *Setter de la liste des semestres
+     * @param semestreList
+     */
     public void setSemestreList(List<Semestre> semestreList) {
         this.semestreList = semestreList;
         notifyDataSetChanged();
     }
 
+    /**
+     * Constructeur et déclaration de la classe MyViewHolder
+     */
     public class MyViewHolder extends RecyclerView.ViewHolder{
         MyViewHolder(View itemView){super(itemView);}
     }

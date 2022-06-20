@@ -15,6 +15,9 @@ import com.example.cookutproject.models.Semestre;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Pour le fonctionnement de cette classe, se référer à SemestreAdapter dont le fonctionnement est identique
+ */
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
     private List<Evenement> eventList = new ArrayList<>();
 
