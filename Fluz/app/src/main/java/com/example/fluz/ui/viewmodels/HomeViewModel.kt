@@ -11,16 +11,35 @@ import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+/**
+ * View Model class for Home fragment
+ *
+ * @property userRepository
+ * @property budgetRepository
+ */
 class HomeViewModel(private val userRepository: UserRepository, private val budgetRepository: BudgetRepository) : ViewModel() {
     val budgets = MutableLiveData<List<Budget>>()
     val totalTransactions = MutableLiveData<Int>()
 
+    /**
+     * Retrieve list of budgets of the connected user
+     *
+     * @param userId the id of the user
+     * @return
+     */
     fun getUserBudgetList(userId: Int) = viewModelScope.launch {
         val userWithBudgets = userRepository.oneWithBudgets(userId)
 
         budgets.value = userWithBudgets.first().budgets
     }
 
+    /**
+     * Retrieve all transactions for the current budget
+     *
+     * @param userId
+     * @param budgetId
+     * @return
+     */
     fun getTransactions(userId: Int, budgetId: Int) = viewModelScope.launch {
         val localTransactions: MutableList<Transaction> = mutableListOf()
 
@@ -44,6 +63,12 @@ class HomeViewModel(private val userRepository: UserRepository, private val budg
     }
 }
 
+/**
+ * Factory class used for dependency injection
+ *
+ * @property repository
+ * @property budgetRepository
+ */
 class HomeViewModelFactory(private val repository: UserRepository, private val budgetRepository: BudgetRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {

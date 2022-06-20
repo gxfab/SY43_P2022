@@ -15,6 +15,14 @@ import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+/**
+ * View Model class for Expenses fragment
+ *
+ * @property userRepository
+ * @property budgetRepository
+ * @property budgetItemRepository
+ * @property transactionRepository
+ */
 class ExpensesViewModel(
     private val userRepository: UserRepository,
     val budgetRepository: BudgetRepository,
@@ -31,12 +39,24 @@ class ExpensesViewModel(
         budgetItems.value = emptyList()
     }
 
+    /**
+     * Retrieve last budget of the user
+     *
+     * @param userId the id of the user
+     * @return
+     */
     fun getLastBudget(userId: Int) = viewModelScope.launch {
         val userWithBudgets = userRepository.oneWithBudgets(userId)
 
         lastBudget.value = userWithBudgets.first().budgets.last()
     }
 
+    /**
+     * retrieve all budget items of current budget
+     *
+     * @param budgetId the id of the budget
+     * @return
+     */
     fun getAllBudgetItems(budgetId: Int) = viewModelScope.launch {
         val budgetWithBudgetItems = budgetRepository.oneWithBudgetItems(budgetId).first()
         println(budgetWithBudgetItems)
@@ -51,6 +71,13 @@ class ExpensesViewModel(
         budgetItems.value = budgetItemsWithCategory.toList()
     }
 
+    /**
+     * retrieve total transactions for the current budget
+     *
+     * @param userId the id of the user
+     * @param budgetId the id of the budget
+     * @return
+     */
     fun getTransactions(userId: Int, budgetId: Int) = viewModelScope.launch {
         val localTransactions: MutableList<Transaction> = mutableListOf()
         val localTransactionsAndCategory: MutableList<TransactionAndCategory> = mutableListOf()
@@ -83,6 +110,14 @@ class ExpensesViewModel(
 
 }
 
+/**
+ * Factory class used for dependency injection
+ *
+ * @property userRepository
+ * @property budgetRepository
+ * @property budgetItemRepository
+ * @property transactionRepository
+ */
 class ExpensesViewModelFactory(
     private val userRepository: UserRepository,
     private val budgetRepository: BudgetRepository,

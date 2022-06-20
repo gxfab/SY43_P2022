@@ -5,6 +5,9 @@ import com.example.fluz.data.dao.SubCategoryDao
 import com.example.fluz.data.entities.Category
 import com.example.fluz.data.entities.SubCategory
 
+/**
+ * SubCategory repository
+ */
 class SubCategoryRepository(private val subCategoryDao: SubCategoryDao) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

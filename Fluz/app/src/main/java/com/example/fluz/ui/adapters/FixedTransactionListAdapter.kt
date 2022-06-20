@@ -17,6 +17,11 @@ import com.example.fluz.ui.fragments.FixedIncome
 import com.example.fluz.ui.viewmodels.FixedTransactionViewModel
 import com.example.fluz.ui.viewmodels.FixedTransactionViewModelFactory
 
+/**
+ * Custom adapter of the fixed transactions (income + expenses) list recyclerview
+ *
+ * @param fragment fragment that holds the recyclerview
+ */
 class FixedTransactionListAdapter(fragment: Fragment) :
     ListAdapter<TransactionAndCategory, FixedTransactionListAdapter.ViewHolder>(TransactionComparator()) {
 

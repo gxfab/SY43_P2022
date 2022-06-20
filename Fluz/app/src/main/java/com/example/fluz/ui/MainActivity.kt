@@ -56,6 +56,28 @@ class MainActivity : AppCompatActivity() {
                 categoryDao.insert(Category(id = 3, title = "Transportation", type = "Global"))
                 categoryDao.insert(Category(id = 4, title = "Clothing", type = "Global"))
                 categoryDao.insert(Category(id = 5, title = "Savings", type = "Global"))
+                categoryDao.insert(Category(id = 6, title = "rent", type = "Global"))
+                categoryDao.insert(Category(id = 7, title = "Property taxes", type = "Global"))
+                categoryDao.insert(Category(id = 8, title = "Household repairs", type = "Global"))
+                categoryDao.insert(Category(id = 9, title = "Car payment", type = "Global"))
+                categoryDao.insert(Category(id = 10, title = "Car warranty", type = "Global"))
+                categoryDao.insert(Category(id = 11, title = "Gas", type = "Global"))
+                categoryDao.insert(Category(id = 12, title = "Tires", type = "Global"))
+                categoryDao.insert(Category(id = 13, title = "Maintenance and oil changes", type = "Global"))
+                categoryDao.insert(Category(id = 14, title = "Groceries", type = "Global"))
+                categoryDao.insert(Category(id = 15, title = "Restaurants", type = "Global"))
+                categoryDao.insert(Category(id = 16, title = "Electricity", type = "Global"))
+                categoryDao.insert(Category(id = 17, title = "Water", type = "Global"))
+                categoryDao.insert(Category(id = 18, title = "Garbage", type = "Global"))
+                categoryDao.insert(Category(id = 19, title = "Phones", type = "Global"))
+                categoryDao.insert(Category(id = 20, title = "Internet", type = "Global"))
+                categoryDao.insert(Category(id = 21, title = "Primary care", type = "Global"))
+                categoryDao.insert(Category(id = 22, title = "Urgent care", type = "Global"))
+                categoryDao.insert(Category(id = 23, title = "Movies", type = "Global"))
+                categoryDao.insert(Category(id = 24, title = "Concerts", type = "Global"))
+                categoryDao.insert(Category(id = 25, title = "Vacations", type = "Global"))
+                categoryDao.insert(Category(id = 26, title = "Work", type = "Global"))
+
             }
         }
 

@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_nav_expenses_to_budgetItemTransactions"
             app:destination="@id/budgetItemTransactions" />
+        <action
+            android:id="@+id/action_nav_expenses_to_statistics"
+            app:destination="@id/statistics" />
     </fragment>
     <fragment
         android:id="@+id/nav_spendingHistory"
@@ -63,4 +66,8 @@
             android:id="@+id/action_categories_to_nav_transaction"
             app:destination="@id/nav_transaction" />
     </fragment>
+    <fragment
+        android:id="@+id/statistics"
+        android:name="com.example.fluz.ui.fragments.Statistics"
+        android:label="Statistics" />
 </navigation>

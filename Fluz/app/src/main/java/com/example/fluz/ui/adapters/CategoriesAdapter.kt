@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fluz.data.AppDatabase
 import com.example.fluz.data.entities.Category
 import com.example.fluz.data.relashionships.BudgetItemAndCategory
+import com.example.fluz.data.repositories.BudgetRepository
 import com.example.fluz.data.repositories.CategoryRepository
 import com.example.fluz.data.repositories.UserCategoryRepository
 import com.example.fluz.data.repositories.UserRepository
@@ -23,14 +24,19 @@ import com.example.fluz.ui.fragments.ExpensesDirections
 import com.example.fluz.ui.viewmodels.CategoriesViewModel
 import com.example.fluz.ui.viewmodels.CategoriesViewModelFactory
 
+/**
+ * Custom adapter for categories list recycler view
+ *
+ * @property fragment the fragment that holds the recycler view
+ */
 class CategoriesAdapter(private val fragment: Fragment): ListAdapter<Category, CategoriesAdapter.ViewHolder>(CategoryComparator()) {
     private val database by lazy { AppDatabase(fragment.context!!) }
     private val userRepository by lazy { UserRepository(database.UserDao()) }
+    private val budgetRepository by lazy { BudgetRepository(database.BudgetDao()) }
     private val categoryRepository by lazy { CategoryRepository(database.CategoryDao()) }
-    private val userCategoryRepository by lazy { UserCategoryRepository(database.UserCategoryDao()) }
 
     private val categoriesViewModel: CategoriesViewModel by fragment.viewModels {
-        CategoriesViewModelFactory(userRepository, categoryRepository, userCategoryRepository)
+        CategoriesViewModelFactory(userRepository, budgetRepository, categoryRepository)
     }
 
 
@@ -66,10 +72,6 @@ class CategoriesAdapter(private val fragment: Fragment): ListAdapter<Category, C
 
             if (current.type == "Global") {
                 deleteBtn.visibility = View.GONE
-            }
-
-            deleteBtn.setOnClickListener {
-                categoriesViewModel.deleteOne(current.id)
             }
 
             button.setOnClickListener {

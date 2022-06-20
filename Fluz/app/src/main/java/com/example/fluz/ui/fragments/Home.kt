@@ -26,6 +26,10 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
 
+/**
+ * Home fragment
+ *
+ */
 class Home : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding

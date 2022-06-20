@@ -9,6 +9,9 @@ import com.example.fluz.data.relashionships.CategoriesWithUsers
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 
+/**
+ * Category repository
+ */
 class CategoryRepository(private val categoryDao: CategoryDao) {
     fun allCategories(): Flow<List<Category>> = categoryDao.getAll()
 

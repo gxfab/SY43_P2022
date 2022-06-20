@@ -5,6 +5,9 @@ import androidx.room.Relation
 import com.example.fluz.data.entities.Category
 import com.example.fluz.data.entities.SubCategory
 
+/**
+ * Relationship between categories and subcategories
+ */
 data class CategoriesWithSubCategories(
     @Embedded val category: Category,
     @Relation(

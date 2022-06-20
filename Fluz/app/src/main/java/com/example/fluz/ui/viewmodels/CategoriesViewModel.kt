@@ -8,7 +8,18 @@ import com.example.fluz.data.repositories.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class CategoriesViewModel(private val userRepository: UserRepository, private val categoryRepository: CategoryRepository, private val userCategoryRepository: UserCategoryRepository) : ViewModel() {
+/**
+ * View Model class for Categories fragment
+ *
+ * @property userRepository
+ * @property budgetRepository
+ * @property categoryRepository
+ */
+class CategoriesViewModel(
+    private val userRepository: UserRepository,
+    private val budgetRepository: BudgetRepository,
+    private val categoryRepository: CategoryRepository
+) : ViewModel() {
     val categories: MutableLiveData<List<Category>> = MutableLiveData()
     val allCategories = categoryRepository.allCategories().asLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
@@ -18,64 +29,47 @@ class CategoriesViewModel(private val userRepository: UserRepository, private va
         errorMessage.value = ""
     }
 
+    /**
+     * Retrieve all the categories of the budget items of the last budget
+     *
+     * @param userId the id of the user
+     * @return
+     */
     fun getAllCategories(userId: Int) = viewModelScope.launch {
-        val globalCategories = categoryRepository.allCategories().first()
-        val userCategories = userRepository.oneWithCategories(userId).first()
-
         val localCategories: MutableList<Category> = mutableListOf()
-        for (category in globalCategories) {
-            if (category.type == "Global") {
-                localCategories.add(category)
-            }
-        }
 
-        for (category in userCategories.categories) {
+        val userWithBudgets = userRepository.oneWithBudgets(userId).first()
+        val lastBudget = userWithBudgets.budgets.last()
+        val budgetWithBudgetitems = budgetRepository.oneWithBudgetItems(lastBudget.id).first()
+
+        for (budgetItem in budgetWithBudgetitems.budgetItems) {
+            val category = categoryRepository.oneById(budgetItem.categoryId).first()
             localCategories.add(category)
         }
 
         categories.value = localCategories.toList()
     }
-
-    fun addCategory(title: String, userId: Int) = viewModelScope.launch {
-        val category = Category(title = title, type = "User")
-
-        for (category in categories.value!!) {
-            if (category.title == title) {
-                errorMessage.value = "This category already exists"
-                return@launch
-            }
-        }
-
-        errorMessage.value = ""
-        categoryRepository.insert(category)
-    }
-
-    fun addUserCategory(userId: Int, categoryId : Int) = viewModelScope.launch {
-        val userCategory = UserCategory(userId, categoryId)
-
-        userCategoryRepository.insert(userCategory)
-
-        getAllCategories(userId)
-    }
-
-    fun deleteOne(categoryId: Int) = viewModelScope.launch {
-        userCategoryRepository.deleteOne(categoryId)
-        categoryRepository.deleteOne(categoryId)
-    }
 }
 
+/**
+ * Factory class used for dependency injection
+ *
+ * @property userRepository
+ * @property budgetRepository
+ * @property categoryRepository
+ */
 class CategoriesViewModelFactory(
     private val userRepository: UserRepository,
-    private val categoryRepository: CategoryRepository,
-    private val userCategoryRepository: UserCategoryRepository
+    private val budgetRepository: BudgetRepository,
+    private val categoryRepository: CategoryRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CategoriesViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return CategoriesViewModel(
                 userRepository,
-                categoryRepository,
-                userCategoryRepository
+                budgetRepository,
+                categoryRepository
             ) as T
         }
 

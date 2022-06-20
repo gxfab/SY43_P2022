@@ -19,7 +19,7 @@ import com.example.fluz.ui.viewmodels.LoginViewModel
 import com.example.fluz.ui.viewmodels.LoginViewModelFactory
 
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * Login fragment
  */
 class Login : Fragment() {
 

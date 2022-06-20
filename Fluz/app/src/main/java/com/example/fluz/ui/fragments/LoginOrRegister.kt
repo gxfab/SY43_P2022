@@ -10,7 +10,7 @@ import com.example.fluz.R
 import com.example.fluz.databinding.LoginOrRegisterBinding
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * LoginOrRegister fragment
  */
 class LoginOrRegister : Fragment() {
 
@@ -39,10 +39,6 @@ class LoginOrRegister : Fragment() {
 
         binding.btnRegister.setOnClickListener {
             findNavController().navigate(R.id.action_LoginOrRegister_to_Register)
-        }
-
-        binding.txtWithoutLogin.setOnClickListener {
-            findNavController().navigate(R.id.LoginOrRegister_to_Login)
         }
     }
 

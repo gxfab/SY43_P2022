@@ -27,6 +27,10 @@ import com.example.fluz.ui.viewmodels.FixedTransactionViewModelFactory
 import com.example.fluz.ui.viewmodels.VariableExpensesViewModel
 import com.example.fluz.ui.viewmodels.VariableExpensesViewModelFactory
 
+/**
+ * VariableExpenses fragment
+ *
+ */
 class VariableExpenses : Fragment() {
 
     private lateinit var binding: FragmentVariableExpensesBinding

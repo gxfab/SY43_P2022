@@ -28,6 +28,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_transaction.*
 import java.util.*
 
+/**
+ * Transaction fragment
+ *
+ */
 class Transaction : Fragment() {
     private lateinit var binding: FragmentTransactionBinding
 

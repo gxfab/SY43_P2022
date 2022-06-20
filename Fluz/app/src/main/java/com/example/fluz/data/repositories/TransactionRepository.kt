@@ -7,6 +7,9 @@ import com.example.fluz.data.entities.User
 import com.example.fluz.data.relashionships.TransactionAndCategory
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Transaction repository
+ */
 class TransactionRepository(private val transactionDao: TransactionDao) {
     fun oneWithCategory(transactionId: Int): Flow<TransactionAndCategory> =
         transactionDao.getWithCategory(transactionId)

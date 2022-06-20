@@ -28,17 +28,21 @@ import com.example.fluz.ui.viewmodels.CategoriesViewModelFactory
 import com.example.fluz.ui.viewmodels.ExpensesViewModel
 import com.example.fluz.ui.viewmodels.ExpensesViewModelFactory
 
+/**
+ * Categories fragment
+ *
+ */
 class Categories : Fragment() {
 
     private lateinit var binding: FragmentCategoriesBinding
 
     private val database by lazy { AppDatabase(this.context!!) }
     private val userRepository by lazy { UserRepository(database.UserDao()) }
+    private val budgetRepository by lazy { BudgetRepository(database.BudgetDao()) }
     private val categoryRepository by lazy { CategoryRepository(database.CategoryDao()) }
-    private val userCategoryRepository by lazy { UserCategoryRepository(database.UserCategoryDao()) }
 
     private val categoriesViewModel: CategoriesViewModel by viewModels {
-        CategoriesViewModelFactory(userRepository, categoryRepository, userCategoryRepository)
+        CategoriesViewModelFactory(userRepository, budgetRepository, categoryRepository)
     }
 
     override fun onCreateView(
@@ -59,36 +63,8 @@ class Categories : Fragment() {
             findNavController().navigate(R.id.action_categories_to_nav_transaction)
         }
 
-        binding.floatingActionButton.setOnClickListener {
-            val alert: AlertDialog.Builder = AlertDialog.Builder(this.context!!)
-
-            val edittext = EditText(this.context!!)
-            alert.setMessage("Add a category")
-
-            alert.setView(edittext)
-
-            alert.setPositiveButton("Add",
-                DialogInterface.OnClickListener { dialog, whichButton -> //What ever you want to do with the value
-                    val categoryTitle = edittext.text.toString()
-                    categoriesViewModel.addCategory(categoryTitle, connectedUserId.toInt())
-                })
-
-            alert.setNegativeButton("Cancel",
-                DialogInterface.OnClickListener { dialog, whichButton ->
-                    // what ever you want to do with No option.
-                })
-
-            alert.show()
-        }
-
         categoriesViewModel.categories.observe(this) {categories ->
             categories.let { adapter.submitList(it) }
-        }
-
-        categoriesViewModel.allCategories.observe(this) {allCategories ->
-            if (allCategories.last().type == "User") {
-                categoriesViewModel.addUserCategory(connectedUserId.toInt(), allCategories.last().id)
-            }
         }
 
         categoriesViewModel.errorMessage.observe(this) {errorMessage ->

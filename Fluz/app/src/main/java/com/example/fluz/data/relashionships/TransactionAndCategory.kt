@@ -5,7 +5,9 @@ import androidx.room.Relation
 import com.example.fluz.data.entities.Category
 import com.example.fluz.data.entities.Transaction
 
-
+/**
+ * Relationship between transaction and category
+ */
 data class TransactionAndCategory(
     @Embedded val transaction: Transaction,
     @Relation(

@@ -8,6 +8,9 @@ import com.example.fluz.data.relashionships.UserWithCategories
 import com.example.fluz.data.relashionships.UserWithTransactions
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * User repository
+ */
 class UserRepository(private val userDao: UserDao) {
 
     fun allUsers(): Flow<List<User>> = userDao.getAll()

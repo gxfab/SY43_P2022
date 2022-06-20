@@ -24,6 +24,10 @@ import com.example.fluz.ui.viewmodels.BudgetItemTransactionsViewModelFactory
 import com.example.fluz.ui.viewmodels.ExpensesViewModel
 import com.example.fluz.ui.viewmodels.ExpensesViewModelFactory
 
+/**
+ * BudgetItemTransactions fragment
+ *
+ */
 class BudgetItemTransactions : Fragment() {
 
     private lateinit var binding: FragmentBudgetItemTransactionsBinding
@@ -51,9 +55,11 @@ class BudgetItemTransactions : Fragment() {
     ): View? {
         binding = FragmentBudgetItemTransactionsBinding.inflate(layoutInflater)
 
+        // Get connected user
         val sharedPref = this.activity!!.getSharedPreferences("shared-pref", Context.MODE_PRIVATE)
         val connectedUserId = sharedPref.getLong("connectedUserId", -1)
 
+        // Set adapter to recycler view
         val recyclerView = binding.rvListTransactions
         val adapter = TransactionsAdapter(this)
         recyclerView.adapter = adapter
@@ -87,6 +93,7 @@ class BudgetItemTransactions : Fragment() {
 
         budgetItemTransactionsViewModel.getLastBudget(connectedUserId.toInt())
 
+        // When back arrow is clicked
         binding.backArrowBudgetItemTransactions.setOnClickListener {
             findNavController().navigate(R.id.action_budgetItemTransactions_to_nav_expenses)
         }

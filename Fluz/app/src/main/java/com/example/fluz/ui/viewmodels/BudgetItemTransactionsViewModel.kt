@@ -14,6 +14,14 @@ import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+/**
+ * View model class for BudgetItemTransactions fragment
+ *
+ * @property userRepository
+ * @property budgetRepository
+ * @property budgetItemRepository
+ * @property transactionRepository
+ */
 class BudgetItemTransactionsViewModel(
     private val userRepository: UserRepository,
     private val budgetRepository: BudgetRepository,
@@ -25,12 +33,24 @@ class BudgetItemTransactionsViewModel(
     val totalTransactions: MutableLiveData<Int> = MutableLiveData()
     val budgetItemAndCategory: MutableLiveData<BudgetItemAndCategory> = MutableLiveData()
 
+    /**
+     * Retrieve last budget from all user budgets
+     *
+     * @param userId the id of the user
+     */
     fun getLastBudget(userId: Int) = viewModelScope.launch {
         val userWithBudgets = userRepository.oneWithBudgets(userId).first()
 
         lastBudget.value = userWithBudgets.budgets.last()
     }
 
+    /**
+     * Retrieve all the transactions of a specific budget item
+     *
+     * @param budgetId the id of the budget
+     * @param budgetItemId the id of the budget item
+     * @return
+     */
     fun getAllTransactionsForBudgetItem(budgetId: Int, budgetItemId: Int) = viewModelScope.launch {
         val localBudgetItemAndCategory = budgetItemRepository.oneWithCategory(budgetItemId).first()
 
@@ -54,8 +74,26 @@ class BudgetItemTransactionsViewModel(
         totalTransactions.value = total
         budgetItemTransactions.value = transactions.toList()
     }
+
+    /**
+     * Delete one transaction with budget id
+     *
+     * @param transactionId the id of the transaction
+     * @return
+     */
+    fun deleteOne(transactionId: Int) = viewModelScope.launch {
+        transactionRepository.deleteOne(transactionId)
+    }
 }
 
+/**
+ * Factory class used for dependency injection
+ *
+ * @property userRepository
+ * @property budgetRepository
+ * @property budgetItemRepository
+ * @property transactionRepository
+ */
 class BudgetItemTransactionsViewModelFactory(
     private val userRepository: UserRepository,
     private val budgetRepository: BudgetRepository,

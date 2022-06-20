@@ -5,6 +5,9 @@ import androidx.room.Relation
 import com.example.fluz.data.entities.Budget
 import com.example.fluz.data.entities.User
 
+/**
+ * Relationship between user and budgets
+ */
 data class UserWithBudgets(
     @Embedded val user: User,
     @Relation(

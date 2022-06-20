@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fluz.R
 import com.example.fluz.data.AppDatabase
@@ -25,6 +26,10 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+/**
+ * Expenses fragment
+ *
+ */
 class Expenses : Fragment() {
     private lateinit var binding: FragmentExpensesBinding
 
@@ -75,6 +80,10 @@ class Expenses : Fragment() {
         expensesViewModel.budgetItems.observe(this) {budgetItems ->
             println(budgetItems)
             budgetItems.let { adapter.submitList(it) }
+        }
+
+        binding.txtShowStats.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_expenses_to_statistics)
         }
 
         return binding.root

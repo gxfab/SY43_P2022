@@ -13,6 +13,15 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * View Model class for VariableExpenses fragment
+ *
+ * @property userRepository
+ * @property categoriesRepository
+ * @property budgetItemRepository
+ * @property budgetRepository
+ * @property transactionRepository
+ */
 class VariableExpensesViewModel(
     private val userRepository: UserRepository,
     private val categoriesRepository: CategoryRepository,
@@ -37,6 +46,12 @@ class VariableExpensesViewModel(
         errorMessage.value = ""
     }
 
+    /**
+     * Get all budgets of the connected user
+     *
+     * @param userId
+     * @return
+     */
     fun getBudgets(userId: Int) = viewModelScope.launch {
         val localBudgets: MutableList<Budget> = mutableListOf()
 
@@ -48,6 +63,12 @@ class VariableExpensesViewModel(
         budgets.value = localBudgets.toList()
     }
 
+    /**
+     * Insert a new budget in the database
+     *
+     * @param userId
+     * @return
+     */
     fun createBudget(userId: Int) = viewModelScope.launch {
         val currentUser = userRepository.oneUser(userId).first()
 
@@ -81,6 +102,12 @@ class VariableExpensesViewModel(
         getBudgets(userId)
     }
 
+    /**
+     * Insert a new budget item in the database
+     *
+     * @param amount
+     * @param category
+     */
     fun addBudgetItem(amount: Int, category: Category) {
         val newList = budgetItems.value?.toMutableList()
         val newBudgetItem = BudgetItem(amount = amount, budgetId = 0, categoryId = category.id)
@@ -99,6 +126,11 @@ class VariableExpensesViewModel(
 
     }
 
+    /**
+     * Delete a budget item with its category
+     *
+     * @param category
+     */
     fun deleteBudgetItem(category: Category) {
         val newList = budgetItems.value?.toMutableList()
         for (budgetItem in budgetItems.value!!) {
@@ -112,6 +144,12 @@ class VariableExpensesViewModel(
         budgetItems.value = newList?.toList()
     }
 
+    /**
+     * check if a category is already in budget
+     *
+     * @param category
+     * @return
+     */
     private fun checkCategoryAlreadyPresent(category: Category): Boolean {
         var res: Boolean = false
         for (budgetItem in budgetItems.value!!) {
@@ -124,10 +162,22 @@ class VariableExpensesViewModel(
         return res
     }
 
+    /**
+     * Checks if total amount of expenses is superior to income
+     *
+     * @param amount
+     * @return
+     */
     private fun checkAmountSuperiorToIncome(amount: Int): Boolean {
         return expenses.value!! + amount > income.value!!
     }
 
+    /**
+     * Retrieve total income amount
+     *
+     * @param userId
+     * @return
+     */
     fun getTotalIncome(userId: Int) = viewModelScope.launch {
         var userWithTransactions: UserWithTransactions = userRepository.oneWithTransactions(userId).first()
 
@@ -149,6 +199,12 @@ class VariableExpensesViewModel(
 
     }
 
+    /**
+     * Retrieve total expenses of a user
+     *
+     * @param userId
+     * @return
+     */
     fun getTotalExpenses(userId: Int) = viewModelScope.launch {
         var userWithTransactions: UserWithTransactions = userRepository.oneWithTransactions(userId).first()
 
@@ -175,6 +231,15 @@ class VariableExpensesViewModel(
 
 }
 
+/**
+ * Factory class used for dependency injection
+ *
+ * @property userRepository
+ * @property categoriesRepository
+ * @property budgetItemRepository
+ * @property budgetRepository
+ * @property transactionRepository
+ */
 class VariableExpensesViewModelFactory(
     private val userRepository: UserRepository,
     private val categoriesRepository: CategoryRepository,

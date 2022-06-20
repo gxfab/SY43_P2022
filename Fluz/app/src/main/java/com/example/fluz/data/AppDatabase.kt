@@ -7,6 +7,10 @@ import androidx.room.RoomDatabase
 import com.example.fluz.data.dao.*
 import com.example.fluz.data.entities.*
 
+/**
+ * Represents an instance of the database
+ *
+ */
 @Database(
     entities = [Budget::class, BudgetItem::class, Category::class, SubCategory::class, Transaction::class, User::class, UserCategory::class],
     version = 6
@@ -20,6 +24,9 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun TransactionDao(): TransactionDao
     abstract fun UserCategoryDao(): UserCategoryDao
 
+    /**
+     * Singleton to only get one instance of the database
+     */
     companion object {
         @Volatile
         private var instance: AppDatabase? = null

@@ -27,6 +27,10 @@ import com.example.fluz.ui.adapters.FixedTransactionListAdapter
 import com.example.fluz.ui.viewmodels.FixedTransactionViewModel
 import com.example.fluz.ui.viewmodels.FixedTransactionViewModelFactory
 
+/**
+ * Fixed expenses fragment
+ *
+ */
 class FixedExpenses : Fragment() {
 
     private lateinit var binding: FragmentFixedExpensesBinding

@@ -7,6 +7,9 @@ import com.example.fluz.data.relashionships.BudgetWithBudgetItems
 import com.example.fluz.data.relashionships.BudgetWithTransactions
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Budget repository
+ */
 class BudgetRepository(private val budgetDao: BudgetDao) {
     fun oneWithBudgetItems(budgetId: Int): Flow<BudgetWithBudgetItems> =
         budgetDao.getWithBudgetItems(budgetId)

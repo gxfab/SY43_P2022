@@ -7,6 +7,11 @@ import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.launch
 import java.lang.RuntimeException
 
+/**
+ * View Model class for Register fragment
+ *
+ * @property repository
+ */
 class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
     var userId = MutableLiveData<Long?>()
     var errorMessage = MutableLiveData<String?>()
@@ -18,6 +23,16 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
 
     val allUsers = repository.allUsers().asLiveData()
 
+    /**
+     * Register a new user with their data
+     *
+     * @param email_address
+     * @param password
+     * @param username
+     * @param currency
+     * @param budget_start_day
+     * @return
+     */
     fun register(email_address: String, password: String, username: String, currency: String, budget_start_day: Int) =
         viewModelScope.launch {
             val hashPassword = HashUtils.sha256(password)
@@ -42,12 +57,13 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
             }
 
         }
-
-    fun deleteAll() = viewModelScope.launch {
-        repository.deleteAll()
-    }
 }
 
+/**
+ * Factory class used for dependency injection
+ *
+ * @property repository
+ */
 class RegisterViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {

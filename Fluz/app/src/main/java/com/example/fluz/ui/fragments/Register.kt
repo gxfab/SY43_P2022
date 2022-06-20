@@ -9,6 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.fluz.R
 import com.example.fluz.databinding.RegisterBinding
 
+/**
+ * Register fragment
+ *
+ */
 class Register : Fragment() {
     private var _binding: RegisterBinding? = null
 

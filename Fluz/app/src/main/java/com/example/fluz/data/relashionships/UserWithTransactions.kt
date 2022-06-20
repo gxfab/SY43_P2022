@@ -8,6 +8,9 @@ import com.example.fluz.data.entities.Transaction
 import com.example.fluz.data.entities.User
 import com.example.fluz.data.entities.UserCategory
 
+/**
+ * Relationship between user and transactions
+ */
 data class UserWithTransactions(
     @Embedded val user: User,
     @Relation(

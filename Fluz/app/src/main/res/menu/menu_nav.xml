@@ -13,8 +13,8 @@
         android:title="" />
     <item
         android:id="@+id/nav_spendingHistory"
-        android:title="Accounts"
-        android:icon="@drawable/ic_accounts"/>
+        android:icon="@drawable/history"
+        android:title="History" />
     <item
         android:id="@+id/nav_parameters"
         android:title="Parameters"

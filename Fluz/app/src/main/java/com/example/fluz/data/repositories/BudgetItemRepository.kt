@@ -6,6 +6,9 @@ import com.example.fluz.data.entities.BudgetItem
 import com.example.fluz.data.relashionships.BudgetItemAndCategory
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * BudgetItem repository
+ */
 class BudgetItemRepository(private val budgetItemDao: BudgetItemDao) {
     fun oneWithCategory(budgetItemId: Int): Flow<BudgetItemAndCategory> =
         budgetItemDao.getWithCategory(budgetItemId)

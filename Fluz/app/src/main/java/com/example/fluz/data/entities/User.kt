@@ -4,6 +4,9 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
+/**
+ * Represents a user in the database
+ */
 @Entity(indices = [Index(value = ["email_address"], unique = true)])
 data class User(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,

@@ -10,6 +10,13 @@ import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+/**
+ * View Model class for FixedTransactions fragment
+ *
+ * @property userRepository
+ * @property transactionRepository
+ * @property categoryRepository
+ */
 class FixedTransactionViewModel(
     private val userRepository: UserRepository,
     private val transactionRepository: TransactionRepository,
@@ -23,6 +30,12 @@ class FixedTransactionViewModel(
 
     val allCategories = categoryRepository.allCategories().asLiveData()
 
+    /**
+     * retrieve all transactions with their category
+     *
+     * @param type type of the transaction
+     * @return
+     */
     fun getTransactionsWithCategory(type: String) = viewModelScope.launch {
         var userWithTransactions: UserWithTransactions = userRepository.oneWithTransactions(connectedUserId).first()
 
@@ -46,6 +59,16 @@ class FixedTransactionViewModel(
 
     }
 
+    /**
+     * Insert a new transaction
+     *
+     * @param amount
+     * @param tag
+     * @param type
+     * @param categoryId
+     * @param userId
+     * @return
+     */
     fun insert(amount: Int, tag: String?, type: String, categoryId: Int, userId: Int) =
         viewModelScope.launch {
             transactionRepository.insert(
@@ -63,6 +86,13 @@ class FixedTransactionViewModel(
             getTransactionsWithCategory(type)
         }
 
+    /**
+     * Delete a transaction
+     *
+     * @param transactionId
+     * @param type
+     * @return
+     */
     fun delete(transactionId: Int, type: String) = viewModelScope.launch {
         transactionRepository.deleteOne(transactionId)
         getTransactionsWithCategory(type)

@@ -7,6 +7,11 @@ import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+/**
+ * View Model class for Login fragment
+ *
+ * @property repository
+ */
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     var errorMessage = MutableLiveData<String?>()
     var userId = MutableLiveData<Long?>()
@@ -16,6 +21,13 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
         userId.value = -1
     }
 
+    /**
+     * Login a user by checking its credentials
+     *
+     * @param emailAddress
+     * @param password
+     * @return
+     */
     fun login(emailAddress: String, password: String) = viewModelScope.launch {
         val retreivedUser = repository.oneByEmailAddress(emailAddress)
 
@@ -34,6 +46,11 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
 }
 
+/**
+ * Factory class used for dependency injection
+ *
+ * @property repository
+ */
 class LoginViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {

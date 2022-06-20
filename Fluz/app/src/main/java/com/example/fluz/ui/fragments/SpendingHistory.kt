@@ -11,6 +11,10 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+/**
+ * Spending history fragment
+ *
+ */
 class SpendingHistory : Fragment() {
     private lateinit var binding: FragmentSpendingHistoryBinding
 

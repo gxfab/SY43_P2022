@@ -24,6 +24,11 @@ import com.example.fluz.ui.viewmodels.FixedTransactionViewModel
 import com.example.fluz.ui.viewmodels.FixedTransactionViewModelFactory
 import kotlinx.android.synthetic.main.fragment_expenses.view.*
 
+/**
+ * Custom adapter of the expenses list recyclerview
+ *
+ * @property fragment the fragment that holds the recyclerview
+ */
 class ExpensesAdapter(private val fragment: Fragment) : ListAdapter<BudgetItemAndCategory, ExpensesAdapter.ViewHolder>(BudgetItemComparator()) {
 
     private val database by lazy { AppDatabase(fragment.requireContext()) }

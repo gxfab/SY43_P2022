@@ -15,6 +15,11 @@ import com.example.fluz.databinding.VariableExpenseItemBinding
 import com.example.fluz.ui.viewmodels.VariableExpensesViewModel
 import com.example.fluz.ui.viewmodels.VariableExpensesViewModelFactory
 
+/**
+ * Custom adapter of the variable expenses list recyclerview
+ *
+ * @param fragment fragment that holds the recyclerview
+ */
 class VariableExpensesListAdapter(fragment: Fragment) :
     ListAdapter<BudgetItemAndCategory, VariableExpensesListAdapter.ViewHolder>(
         TransactionComparatorBudgetItemAndCategory()

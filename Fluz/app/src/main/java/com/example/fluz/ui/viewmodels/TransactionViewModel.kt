@@ -10,6 +10,13 @@ import com.example.fluz.data.repositories.UserRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+/**
+ * View Model class for Transaction fragment
+ *
+ * @property transactionRepository
+ * @property userRepository
+ * @property categoryRepository
+ */
 class TransactionViewModel(
     private val transactionRepository: TransactionRepository,
     private val userRepository: UserRepository,
@@ -19,19 +26,40 @@ class TransactionViewModel(
     val category: MutableLiveData<Category> = MutableLiveData()
     val transactions = transactionRepository.allTransactions().asLiveData()
 
+    /**
+     * Retrieve last budget of the user
+     *
+     * @param userId id of the user
+     * @return
+     */
     fun getLastBudget(userId: Int) = viewModelScope.launch {
         val userWithBudgets = userRepository.oneWithBudgets(userId).first()
 
         lastBudget.value = userWithBudgets.budgets.last()
     }
 
+    /**
+     * Retrieve a single category with its id
+     *
+     * @param categoryId
+     * @return
+     */
     fun getCategory(categoryId: Int) = viewModelScope.launch {
         val cat = categoryRepository.oneById(categoryId).first()
 
         category.value = cat
     }
 
-
+    /**
+     * Insert a new transaction with all its information
+     *
+     * @param title
+     * @param amount
+     * @param date
+     * @param categoryId
+     * @param budgetId
+     * @return
+     */
     fun addTransaction(title: String, amount: Int, date: String, categoryId: Int, budgetId: Int) =
         viewModelScope.launch {
             transactionRepository.insert(
@@ -48,6 +76,13 @@ class TransactionViewModel(
         }
 }
 
+/**
+ * Factory class used for dependency injection
+ *
+ * @property transactionRepository
+ * @property userRepository
+ * @property categoryRepository
+ */
 class TransactionViewModelFactory(
     private val transactionRepository: TransactionRepository,
     private val userRepository: UserRepository,

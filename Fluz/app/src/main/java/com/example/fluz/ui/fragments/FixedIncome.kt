@@ -26,6 +26,10 @@ import com.example.fluz.ui.adapters.FixedTransactionListAdapter
 import com.example.fluz.ui.viewmodels.*
 import java.util.*
 
+/**
+ * Fixed income fragment
+ *
+ */
 class FixedIncome : Fragment() {
 
     private lateinit var binding: FragmentFixedIncomeBinding

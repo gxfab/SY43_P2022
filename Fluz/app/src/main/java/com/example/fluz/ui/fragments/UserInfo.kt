@@ -21,9 +21,8 @@ import com.example.fluz.ui.viewmodels.RegisterViewModel
 import com.example.fluz.ui.viewmodels.RegisterViewModelFactory
 
 /**
- * A simple [Fragment] subclass.
- * Use the [UserInfo.newInstance] factory method to
- * create an instance of this fragment.
+ * UserInfo fragment
+ *
  */
 class UserInfo : Fragment() {
 
