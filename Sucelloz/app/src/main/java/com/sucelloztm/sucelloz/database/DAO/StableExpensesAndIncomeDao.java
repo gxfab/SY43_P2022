@@ -16,12 +16,12 @@ import com.sucelloztm.sucelloz.models.SubCategories;
 import java.util.List;
 
 /**
- * interface for the stable expenses and income entity of the dao
+ * Interface for the stable expenses and income entity of the dao
  */
 @Dao
 public interface StableExpensesAndIncomeDao {
     /**
-     * inserts a stable element in the dao
+     * Inserts a stable element
      * @param stableExpenseOrIncome element to insert
      * @return id of the inserted element
      */
@@ -29,7 +29,7 @@ public interface StableExpensesAndIncomeDao {
     long insertStableExpenseOrIncome(StableExpensesAndIncome stableExpenseOrIncome);
 
     /**
-     * inserts a list of stable elements
+     * Inserts a list of stable elements
      * @param stableExpensesAndIncomes list of elements to insert
      * @return list of the ids of the inserted elements
      */
@@ -37,50 +37,50 @@ public interface StableExpensesAndIncomeDao {
     List<Long> insertStableExpensesAndIncome(StableExpensesAndIncome... stableExpensesAndIncomes);
 
     /**
-     * updates a stable element
+     * Updates a stable element
      * @param stableExpenseOrIncome element to update
      */
     @Update
     void updateStableExpenseOrIncome(StableExpensesAndIncome stableExpenseOrIncome);
 
     /**
-     * updates a list of stable elements
+     * Updates a list of stable elements
      * @param stableExpensesAndIncomes list of elements to update
      */
     @Update
     void updateStableExpensesAndIncome(StableExpensesAndIncome... stableExpensesAndIncomes);
 
     /**
-     * deletes a stable element
+     * Deletes a stable element
      * @param stableExpenseOrIncome element to delete
      */
     @Delete
     void deleteStableExpenseOrIncome(StableExpensesAndIncome stableExpenseOrIncome);
 
     /**
-     * updates a list of stable elements
+     * Updates a list of stable elements
      * @param stableExpensesAndIncomes list of elements to delete
      */
     @Delete
     void deleteStableExpensesAndIncome(StableExpensesAndIncome... stableExpensesAndIncomes);
 
     /**
-     * query to get all stable elements
+     * Query to get all stable elements
      * @return list of all stable elements
      */
     @Query("SELECT * FROM stable_expenses")
     List<StableExpensesAndIncome> getStable();
 
     /**
-     * query to get negatively signed infrequent elements
+     * Query to get negatively signed infrequent elements
      * @return livedata of all the negatively signed infrequent elements
      */
     @Query("SELECT * FROM stable_expenses WHERE sign LIKE '-'")
     LiveData<List<StableExpensesAndIncome>> getAllNegativeStable();
 
     /**
-     * query to get all stable elements in a list
-     * @return list of the infrequent elements
+     * Query to get all stable elements in a list
+     * @return livedata of list of the infrequent elements
      */
 
     @Query("SELECT * FROM stable_expenses")
@@ -89,29 +89,40 @@ public interface StableExpensesAndIncomeDao {
 
 
     /**
-     * query to get positively signed stable elements
-     * @return livedata of all the positively signed infrequent elements
+     * Query to get positively signed stable elements
+     * @return livedata of a list of all the positively signed infrequent elements
      */
     @Query("SELECT * FROM stable_expenses WHERE sign LIKE '+'")
     LiveData<List<StableExpensesAndIncome>> getAllPositiveStable();
 
+
+    /**
+     * Query to get all stable elements from a specific sub-category
+     * @param idOfSubCategory id of specific sub-category
+     * @return livedata of a list of all stable elements from a specific sub-category
+     */
     @Query("SELECT * FROM stable_expenses WHERE sub_categories_id=:idOfSubCategory")
     LiveData<List<StableExpensesAndIncome>> getAllStableFromSubCategory(long idOfSubCategory);
 
     /**
-     * query to get the sum of all infrequent expenses
+     * Query to get the sum of all infrequent expenses
      * @return livedata of all the negatively signed infrequent elements
      */
     @Query("SELECT CAST(total(amount) AS INTEGER) FROM stable_expenses WHERE sign LIKE '-'")
     LiveData<Integer> getSumOfStableExpenses();
 
     /**
-     * query to get the sum of all infrequent incomes
+     * Query to get the sum of all infrequent incomes
      * @return livedata of all the positively signed infrequent elements
      */
     @Query("SELECT CAST(total(amount) AS INTEGER) FROM stable_expenses WHERE sign LIKE '+'")
     LiveData<Integer> getSumOfStableIncomes();
 
+    /**
+     * Query to get a specific stable element with an id
+     * @param idOfStable id of a specific stable element
+     * @return resulting stable element
+     */
     @Query("SELECT * FROM stable_expenses WHERE id=:idOfStable")
     StableExpensesAndIncome getStableById(long idOfStable);
 

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.lang.String;
 
 /**
- * entity for the stable expenses and income entity of the dao
+ * Stable expenses and income entity for the DAO
  */
 @Entity(tableName = "stable_expenses",
         foreignKeys = {@ForeignKey(entity = SubCategories.class,
@@ -40,12 +40,12 @@ public class StableExpensesAndIncome {
 
 
     /**
-     * default constructor
+     * Default constructor
      */
     public StableExpensesAndIncome(){}
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param name name
      * @param amount amount
      * @param sign sign
@@ -64,7 +64,7 @@ public class StableExpensesAndIncome {
 
 
     /**
-     * getter
+     * Getter
      * @return id
      */
     public long getId(){
@@ -72,7 +72,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return name
      */
     public String getName(){
@@ -80,7 +80,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return amount
      */
     public int getAmount(){
@@ -88,7 +88,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return sign
      */
     public String getSign(){
@@ -96,7 +96,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return date
      */
     public String getDate(){
@@ -104,7 +104,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return frequency
      */
     public int getFrequency(){
@@ -112,7 +112,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return id of the subcategory
      */
     public long getSubCategoriesId(){
@@ -121,7 +121,7 @@ public class StableExpensesAndIncome {
 
 
     /**
-     * setter
+     * Setter
      * @param id id
      */
     public void setId(long id){
@@ -129,7 +129,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Setter
      * @param name name
      */
     public void setName(String name){
@@ -137,7 +137,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Setter
      * @param amount amount
      */
     public void setAmount(int amount){
@@ -145,7 +145,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Setter
      * @param sign sign
      */
     public void setSign(String sign){
@@ -153,7 +153,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Setter
      * @param date date
      */
     public void setDate(String date){
@@ -161,7 +161,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Setter
      * @param frequency frequency
      */
     public void setFrequency(int frequency){
@@ -169,7 +169,7 @@ public class StableExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Setter
      * @param subCategoriesId id of the subcategory
      */
     public void setSubCategoriesId(long subCategoriesId){

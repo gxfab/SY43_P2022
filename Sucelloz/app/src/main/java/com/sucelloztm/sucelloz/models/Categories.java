@@ -6,7 +6,7 @@ import androidx.room.ForeignKey;
 import java.lang.String;
 
 /**
- * category entity for the dao
+ * Category entity for the DAO
  */
 @Entity(tableName = "categories")
 public class Categories {
@@ -23,13 +23,13 @@ public class Categories {
 
 
     /**
-     * default constructor
+     * Default constructor
      */
     //CONSTRUCTOR
     public Categories(){}
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param name name of the category
      * @param readOnly state of the category
      */
@@ -39,7 +39,7 @@ public class Categories {
     }
 
     /**
-     * getter
+     * Getter
      * @return id
      */
     public long getId(){
@@ -47,7 +47,7 @@ public class Categories {
     }
 
     /**
-     * getter
+     * Getter
      * @return name
      */
     public String getName(){
@@ -55,7 +55,7 @@ public class Categories {
     }
 
     /**
-     * getter
+     * Getter
      * @return state
      */
     public boolean getReadOnly(){
@@ -63,7 +63,7 @@ public class Categories {
     }
 
     /**
-     * setter
+     * Setter
      * @param id id
      */
     public void setId(long id){
@@ -71,7 +71,7 @@ public class Categories {
     }
 
     /**
-     * setter
+     * Setter
      * @param name name
      */
     public void setName(String name){
@@ -79,7 +79,7 @@ public class Categories {
     }
 
     /**
-     * setter
+     * Setter
      * @param readOnly state
      */
     public void setReadOnly(boolean readOnly){

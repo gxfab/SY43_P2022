@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.lang.String;
 
 /**
- * savings entity for the dao
+ * Savings entity for the DAO
  */
 @Entity(tableName = "savings")
 public class Savings {

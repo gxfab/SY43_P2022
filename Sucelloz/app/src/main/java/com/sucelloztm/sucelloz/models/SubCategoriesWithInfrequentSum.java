@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey;
         onDelete = ForeignKey.CASCADE)}
 )
 /**
- * entity for the subcategory with infrequent sum of the dao
+ *  Subcategory with infrequent sum Entity the DAO
  */
 public class SubCategoriesWithInfrequentSum {
     @Embedded
@@ -33,7 +33,7 @@ public class SubCategoriesWithInfrequentSum {
 
 
     /**
-     * getter
+     * Getter
      * @return subcategory
      */
     public SubCategories getSubCategory() {
@@ -41,7 +41,7 @@ public class SubCategoriesWithInfrequentSum {
     }
 
     /**
-     * getter
+     * Getter
      * @return sum
      */
     public int getSumOfInfrequent() {
@@ -49,17 +49,17 @@ public class SubCategoriesWithInfrequentSum {
     }
 
     /**
-     * getter
+     * Getter
      * @return name
      */
     public String getNameOfSubCategory() {
         return nameOfSubCategory;
     }
 
-    public long getIdOfCategory() {
-        return idOfCategory;
-    }
-
+    /**
+     * Getter
+     * @return sign
+     */
     public String getSign() {
         return sign;
     }

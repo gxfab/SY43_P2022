@@ -10,7 +10,7 @@ import java.util.List;
 import java.lang.String;
 
 /**
- * entity for the subcategory of the dao
+ * Subcategories Entity for the DAO
  */
 @Entity(tableName = "sub_categories",
         foreignKeys = {@ForeignKey(entity = Categories.class,
@@ -30,12 +30,12 @@ public class SubCategories {
     private long categoriesId;
 
     /**
-     * default constructor
+     * Default constructor
      */
     public SubCategories(){}
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param name  name
      * @param categoriesId id of the category
      */
@@ -45,7 +45,7 @@ public class SubCategories {
     }
 
     /**
-     * getter
+     * Getter
      * @return id
      */
     public long getId(){
@@ -53,7 +53,7 @@ public class SubCategories {
     }
 
     /**
-     * getter
+     * Getter
      * @return name
      */
     public String getName(){
@@ -61,14 +61,14 @@ public class SubCategories {
     }
 
     /**
-     * getter
+     * Getter
      * @return category id
      */
     public long getCategoriesId(){ return categoriesId; }
 
 
     /**
-     * setter
+     * Setter
      * @param id id
      */
     public void setId(long id){
@@ -76,7 +76,7 @@ public class SubCategories {
     }
 
     /**
-     * setter
+     * Setter
      * @param name name
      */
     public void setName(String name){
@@ -84,7 +84,7 @@ public class SubCategories {
     }
 
     /**
-     * setter
+     * Setter
      * @param categoriesId id of the category
      */
     public void setCategoriesId(long categoriesId){ this.categoriesId=categoriesId; }

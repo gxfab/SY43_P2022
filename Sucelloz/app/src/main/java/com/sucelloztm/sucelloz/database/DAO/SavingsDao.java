@@ -13,12 +13,12 @@ import com.sucelloztm.sucelloz.models.Savings;
 import java.util.List;
 
 /**
- * interface for the savings entity of the dao
+ * Interface for the savings entity of the dao
  */
 @Dao
 public interface SavingsDao {
     /**
-     * inserts a saving in the dao
+     * Inserts a saving
      * @param savings saving to insert
      * @return id of the inserted saving
      */
@@ -26,7 +26,7 @@ public interface SavingsDao {
     long insertSaving(Savings savings);
 
     /**
-     * inserts a list of savings
+     * Inserts a list of savings
      * @param savings list fo savings to insert
      * @return ids of the inserted savings
      */
@@ -34,55 +34,59 @@ public interface SavingsDao {
     List<Long> insertSavings(Savings... savings);
 
     /**
-     * updates a saving
+     * Updates a saving
      * @param saving saving to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateSaving(Savings saving);
 
     /**
-     * updates a list of savings
+     * Updates a list of savings
      * @param savings list of savings to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateSavings(Savings... savings);
 
     /**
-     * deletes a saving
+     * Deletes a saving
      * @param saving saving to delete
      */
     @Delete
     void deleteSaving(Savings saving);
 
     /**
-     * deletes a list of savings
+     * Deletes a list of savings
      * @param savings list of savings to delete
      */
     @Delete
     void deleteSavings(Savings... savings);
 
     /**
-     * query to get all savings in a livedata
+     * Query to get all savings
      * @return livedata of all savings
      */
     @Query("SELECT * FROM savings")
     LiveData<List<Savings>> getAllSavings();
 
     /**
-     * query to get all savings in a list
+     * Query to get all savings in a list
      * @return list of all savings
      */
     @Query("SELECT * FROM savings")
     List<Savings> getSavings();
 
     /**
-     * query to get a saving with a specific id
+     * Query to get a saving with a specific id
      * @param idOfSaving id searched
      * @return the searched saving
      */
     @Query("SELECT * FROM savings WHERE savings_id=:idOfSaving")
     Savings getSavingById(long idOfSaving);
 
+    /**
+     * Query to get the Sum of all savings
+     * @return livedata of resulting sum
+     */
     @Query("SELECT CAST(total(reached_amount) AS INTEGER) FROM savings")
     LiveData<Integer> getSumOfSavings();
 }

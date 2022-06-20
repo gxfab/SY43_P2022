@@ -1,22 +1,17 @@
 package com.sucelloztm.sucelloz.repositories;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
 import com.sucelloztm.sucelloz.database.DAO.CategoriesDao;
 import com.sucelloztm.sucelloz.database.SucellozDatabase;
 import com.sucelloztm.sucelloz.models.Categories;
-import com.sucelloztm.sucelloz.models.CategoriesWithSubCategoriesWithInfrequentSum;
-import com.sucelloztm.sucelloz.repositories.MainRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * class for the categories repository
+ * Class for the categories repository
  */
 public class CategoriesRepository {
     private CategoriesDao categoriesDao;
@@ -24,8 +19,8 @@ public class CategoriesRepository {
     private static Categories currentCategory;
 
     /**
-     * custom constructor
-     * @param application current application
+     * Custom constructor
+     * @param application current application in which this constructor is used
      */
     public CategoriesRepository(Application application){
         SucellozDatabase database=SucellozDatabase.getInstance(application);
@@ -33,15 +28,15 @@ public class CategoriesRepository {
     }
 
     /**
-     * invokes the query to get a livedata of all categories
-     * @return livedata of the categories
+     * Invokes the query to get a livedata of all categories
+     * @return livedata of the list of categories
      */
     public LiveData<List<Categories>> getAllCategories(){
         return categoriesDao.getAllCategories();
     }
 
     /**
-     * invokes the query to insert a category
+     * Invokes the query to insert a category
      * @param category categiry to insert
      */
     public void insert(Categories category){
@@ -50,16 +45,16 @@ public class CategoriesRepository {
 
 
     /**
-     * invokes a query to get a category thanks to its name
+     * Invokes a query to get a category thanks to its name
      * @param categoryName name of the category
-     * @return categiry
+     * @return category
      */
     public Categories getCategoryByName(String categoryName) {
        return this.categoriesDao.getCategoryByName(categoryName);
     }
 
     /**
-     * getter
+     * Getter
      * @return current category
      */
     public static Categories getCurrentCategory() {
@@ -67,15 +62,15 @@ public class CategoriesRepository {
     }
 
     /**
-     * setter
-     * @param currentCategory new current category
+     * Setter
+     * @param currentCategory new current category to set
      */
     public static void setCurrentCategory(Categories currentCategory) {
         CategoriesRepository.currentCategory = currentCategory;
     }
 
     /**
-     * invokes the query to delete a category
+     * Invokes the query to delete a category
      * @param category category to delete
      */
     public void deleteCategory(Categories category){
@@ -83,7 +78,7 @@ public class CategoriesRepository {
     }
 
     /**
-     * invokes the query to update a category
+     * Invokes the query to update a category
      * @param category category to update
      */
     public void updateCategory(Categories category){

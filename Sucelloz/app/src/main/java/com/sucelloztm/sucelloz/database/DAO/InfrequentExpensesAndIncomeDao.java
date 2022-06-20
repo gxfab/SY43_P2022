@@ -13,12 +13,12 @@ import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import java.util.List;
 
 /**
- * interface for the infrequent expenses and incomes entity of the dao
+ * Interface for the infrequent expenses and incomes entity of the dao
  */
 @Dao
 public interface InfrequentExpensesAndIncomeDao {
     /**
-     * inserts an infrequent element in the dao
+     * Inserts an infrequent element
      * @param infrequentExpensesAndIncome element to insert
      * @return id of the inserted element
      */
@@ -26,7 +26,7 @@ public interface InfrequentExpensesAndIncomeDao {
     long insertInfrequentExpenseAndIncome(InfrequentExpensesAndIncome infrequentExpensesAndIncome);
 
     /**
-     * inserts a list of infrequent elements
+     * Inserts a list of infrequent elements
      * @param infrequentExpensesAndIncomes elements to insert
      * @return list of the id of the inserted elements
      */
@@ -34,70 +34,70 @@ public interface InfrequentExpensesAndIncomeDao {
     List<Long> insertInfrequentExpensesAndIncome(InfrequentExpensesAndIncome... infrequentExpensesAndIncomes);
 
     /**
-     * updates an infrequent element
+     * Updates an infrequent element
      * @param infrequentExpenseOrIncome element to update
      */
     @Update
     void updateInfrequentExpenseAndIncome(InfrequentExpensesAndIncome infrequentExpenseOrIncome);
 
     /**
-     * updates a list of infrequent elements
+     * Updates a list of infrequent elements
      * @param infrequentExpensesAndIncomes elements to update
      */
     @Update
     void updateInfrequentExpensesAndIncome(InfrequentExpensesAndIncome... infrequentExpensesAndIncomes);
 
     /**
-     * deletes an infrequent element
+     * Deletes an infrequent element
      * @param infrequentExpenseOrIncome element to delete
      */
     @Delete
     void deleteInfrequentExpenseAndIncome(InfrequentExpensesAndIncome infrequentExpenseOrIncome);
 
     /**
-     * deletes a list of infrequent elements
+     * Deletes a list of infrequent elements
      * @param infrequentExpensesAndIncomes list of elements to delete
      */
     @Delete
     void deleteInfrequentExpensesAndIncome(InfrequentExpensesAndIncome... infrequentExpensesAndIncomes);
 
     /**
-     * query to get all infrequent elements in a livedata
+     * Query to get all infrequent elements
      * @return livedata of the infrequent elements
      */
     @Query("SELECT * FROM infrequent_expenses")
     LiveData<List<InfrequentExpensesAndIncome>> getAllInfrequent();
 
     /**
-     * query to get all infrquent elements in a list
+     * Query to get all infrequent elements in a list
      * @return list of the infrequent elements
      */
     @Query("SELECT * FROM infrequent_expenses")
     List<InfrequentExpensesAndIncome> getInfrequent();
 
     /**
-     * query to get positively signed infrequent elements
+     * Query to get positively signed infrequent elements
      * @return livedata of all the positively signed infrequent elements
      */
     @Query("SELECT * FROM infrequent_expenses WHERE sign LIKE '+'")
     LiveData<List<InfrequentExpensesAndIncome>> getAllPositiveInfrequent();
 
     /**
-     * query to get negatively signed infrequent elements
+     * Query to get negatively signed infrequent elements
      * @return livedata of all the negatively signed infrequent elements
      */
     @Query("SELECT * FROM infrequent_expenses WHERE sign LIKE '-'")
     LiveData<List<InfrequentExpensesAndIncome>> getAllNegativeInfrequent();
 
     /**
-     * query to get the sum of all infrequent expenses
+     * Query to get the sum of all infrequent expenses
      * @return livedata of all the negatively signed infrequent elements
      */
     @Query("SELECT CAST(total(amount) AS INTEGER) FROM infrequent_expenses WHERE sign LIKE '-'")
     LiveData<Integer> getSumOfInfrequentExpenses();
 
     /**
-     * query to get the sum of all infrequent incomes
+     * Query to get the sum of all infrequent incomes
      * @return livedata of all the positively signed infrequent elements
      */
     @Query("SELECT CAST(total(amount) AS INTEGER) FROM infrequent_expenses WHERE sign LIKE '+'")

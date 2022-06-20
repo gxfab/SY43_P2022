@@ -6,7 +6,7 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 /**
- * Infrequent expenses and income entity for the dao
+ * Infrequent expenses and income entity for the DAO
  */
 @Entity(tableName = "infrequent_expenses",
         foreignKeys = {@ForeignKey(entity = SubCategories.class,
@@ -34,13 +34,13 @@ public class InfrequentExpensesAndIncome {
     private long subCategoriesId;
 
     /**
-     * default constructor
+     * Default constructor
      */
     //CONSTRUCTOR
     public InfrequentExpensesAndIncome(){}
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param name name
      * @param amount amount
      * @param sign sign, + or -
@@ -56,7 +56,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return id
      */
     public long getId(){
@@ -64,7 +64,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return name
      */
     public String getName(){
@@ -72,7 +72,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return amount
      */
     public int getAmount(){
@@ -80,7 +80,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return sign
      */
     public String getSign(){
@@ -88,7 +88,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return date
      */
     public String getDate(){
@@ -96,7 +96,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * getter
+     * Getter
      * @return subcategory id
      */
     public long getSubCategoriesId(){
@@ -104,7 +104,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Getter
      * @param id id
      */
     public void setId(long id){
@@ -112,7 +112,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Getter
      * @param name name
      */
     public void setName(String name){
@@ -120,7 +120,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Getter
      * @param amount amount
      */
     public void setAmount(int amount){
@@ -128,7 +128,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Getter
      * @param sign sign
      */
     public void setSign(String sign){
@@ -136,7 +136,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Getter
      * @param date date
      */
     public void setDate(String date){
@@ -144,7 +144,7 @@ public class InfrequentExpensesAndIncome {
     }
 
     /**
-     * setter
+     * Getter
      * @param subCategoriesId subcategory id
      */
     public void setSubCategoriesId(long subCategoriesId){

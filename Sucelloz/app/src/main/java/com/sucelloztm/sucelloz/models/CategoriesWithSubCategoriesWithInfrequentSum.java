@@ -9,7 +9,7 @@ import androidx.room.Relation;
 import java.util.List;
 
 /**
- * link between categories, subcategories and infrequent sums
+ * Link between categories, subcategories and infrequent sums
  */
 public class CategoriesWithSubCategoriesWithInfrequentSum {
     @Embedded
@@ -23,17 +23,25 @@ public class CategoriesWithSubCategoriesWithInfrequentSum {
 
 
     /**
-     * getter
+     * Getter
      * @return category
      */
     public Categories getCategory() {
         return category;
     }
 
+    /**
+     * Getter
+     * @return sum of the sub-category
+     */
     public int getSumOfSubCategory() {
         return sumOfSubCategory;
     }
 
+    /**
+     * Getter
+     * @return get name of the Category
+     */
     public String getNameOfCategory() {
         return nameOfCategory;
     }

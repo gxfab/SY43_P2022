@@ -22,6 +22,7 @@ import com.sucelloztm.sucelloz.models.StableExpensesAndIncome;
 import com.sucelloztm.sucelloz.models.SubCategories;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
 
+
 @Database(entities={Categories.class,
         SubCategories.class,
         InfrequentExpensesAndIncome.class,
@@ -31,6 +32,9 @@ import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
         },
         version=1
 )
+/**
+ * Abstract Class of the Database following the singleton pattern
+ */
 public abstract class SucellozDatabase extends RoomDatabase {
     //SINGLETON https://en.wikipedia.org/wiki/Singleton_pattern because our application works only on one process
     private static volatile SucellozDatabase INSTANCE;
@@ -43,6 +47,12 @@ public abstract class SucellozDatabase extends RoomDatabase {
     public abstract SavingsDao savingsDao();
 
     //INSTANCE
+
+    /**
+     * Get an instance of the current Database
+     * @param context the current context in which the method is called
+     * @return an instance of the current Database
+     */
     public static SucellozDatabase getInstance(Context context) {
         if (INSTANCE == null) {
             synchronized (SucellozDatabase.class) {

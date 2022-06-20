@@ -16,12 +16,12 @@ import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.CategoriesWithSubCategoriesWithInfrequentSum;
 
 /**
- * interface for the categories entity of the database
+ * Interface for the categories entity of the database
  */
 @Dao
 public interface CategoriesDao {
     /**
-     * inserts a specific category
+     * Inserts a specific category
      * @param category category to insert
      * @return id of the inserted category
      */
@@ -29,7 +29,7 @@ public interface CategoriesDao {
     long insertCategory(Categories category);
 
     /**
-     * inserts a list of categories
+     * Inserts a list of categories
      * @param categories list of categories to insert
      * @return list of the id of the inserted categories
      */
@@ -37,49 +37,49 @@ public interface CategoriesDao {
     List<Long> insertCategories(Categories... categories);
 
     /**
-     * updates a category based on the id of the given category
+     * Updates a category
      * @param category category to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateCategory(Categories category);
 
     /**
-     * updates a list of categories based on the ids of the given categories
+     * Updates a list of Categories
      * @param categories list of categories to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateCategories(Categories... categories);
 
     /**
-     * deletes a given category
+     * Deletes a given category
      * @param category category to delete
      */
     @Delete
     void deleteCategory(Categories category);
 
     /**
-     * deletes a list of categories
+     * Deletes a list of categories
      * @param categories list of categories to delete
      */
     @Delete
     void deleteCategories(Categories... categories);
 
     /**
-     * query to get all categories in a livedata
+     * Query to get all categories with read_only=0
      * @return livedata with the list of all categories
      */
     @Query("SELECT * FROM categories WHERE read_only=0")
     LiveData<List<Categories>> getAllCategories();
 
     /**
-     * query to get all categories in a list
+     *Query to get all categories in a list
      * @return list of all categories
      */
     @Query("SELECT * FROM categories")
     List<Categories> getCategories();
 
     /**
-     * get categories with a given name
+     * Get categories with a given name
      * @param categoryName name to search for
      * @return category object with the wanted name
      */

@@ -16,12 +16,12 @@ import com.sucelloztm.sucelloz.models.SubCategoriesWithInfrequentSum;
 import com.sucelloztm.sucelloz.models.SubCategoriesWithStableExpensesAndIncome;
 
 /**
- * interface for the subcategory entity of the dao
+ * Interface for the subcategory entity of the dao
  */
 @Dao
 public interface SubCategoriesDao {
     /**
-     * inserts a subcategory in the dao
+     * Inserts a subcategory
      * @param subCategory subcategory to insert
      * @return id of the inserted subcategory
      */
@@ -29,7 +29,7 @@ public interface SubCategoriesDao {
     long insertSubCategory(SubCategories subCategory);
 
     /**
-     * inserts a list of subcategories
+     * Inserts a list of subcategories
      * @param subCategories subcategories to insert
      * @return list of the ids of the inserted subcategories
      */
@@ -37,57 +37,49 @@ public interface SubCategoriesDao {
     List<Long> insertSubCategories(SubCategories... subCategories);
 
     /**
-     * updates a subcategory
+     * Updates a subcategory
      * @param subCategory subcategory to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateSubCategory(SubCategories subCategory);
 
     /**
-     * updates a list of subcategories
+     * Updates a list of subcategories
      * @param subCategories list of subcategories to update
      */
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateSubCategories(SubCategories... subCategories);
 
     /**
-     * deletes a subcategory
+     * Deletes a subcategory
      * @param subCategory subcategory to delete
      */
     @Delete
     void deleteSubCategory(SubCategories subCategory);
 
     /**
-     * deletes a list of subcategories
+     * Deletes a list of subcategories
      * @param subCategories list of subcategories to delete
      */
     @Delete
     void deleteSubCategories(SubCategories... subCategories);
 
     /**
-     * query to get all subcategories
+     * Query to get all subcategories
      * @return list of subcategories
      */
     @Query("SELECT * FROM sub_categories")
     List<SubCategories> getSubCategories();
 
     /**
-     * query to get all the names of the subcategories
+     * Query to get all the names of the subcategories
      * @return list of the names of the subcategories
      */
     @Query("SELECT name FROM sub_categories")
     List<String> getSubCategoriesNames();
 
-    @Transaction
-    @Query("SELECT * FROM sub_categories")
-    List<SubCategoriesWithStableExpensesAndIncome> getSubCategoriesWithStableExpensesAndIncome();
-
-    @Transaction
-    @Query("SELECT * FROM sub_categories")
-    List<SubCategoriesWithInfrequentExpensesAndIncome> getSubCategoriesWithInfrequentExpensesAndIncome();
-
     /**
-     * query to get a specific subcategory thanks to its id
+     * Query to get a specific subcategory thanks to its id
      * @param id searched id
      * @return searched subcategory
      */
@@ -95,7 +87,7 @@ public interface SubCategoriesDao {
     LiveData<List<SubCategories>> getSubCategoriesWithCategoryId(long id);
 
     /**
-     * query to get a specific subcategory thanks to its name
+     * Query to get a specific subcategory thanks to its name
      * @param nameOfSubCategory searched name
      * @return searched subcategory
      */
@@ -103,13 +95,18 @@ public interface SubCategoriesDao {
     SubCategories getSubCategoryWithName(String nameOfSubCategory);
 
     /**
-     * query to get a name of a subcategory thanks to its id
+     * Query to get a name of a subcategory thanks to its id
      * @param idOfSubCategory searched id
      * @return searched name
      */
     @Query("Select name FROM sub_categories WHERE id=:idOfSubCategory")
     String getSubcategoryNameWithId(long idOfSubCategory);
 
+
+    /**
+     * Query to get the sum of all positive infrequent expenses from all sub-categories
+     * @return live data of a list of all sum of all positive infrequent expenses from all sub-categories
+     */
     @Query("SELECT *,CAST(total(infrequent_expenses.amount) AS INTEGER) AS sum_of_infrequent, " +
             "sub_categories.name AS nameOfSubCategory, " +
             "sub_categories.categories_id AS id_of_category, " +
@@ -119,6 +116,10 @@ public interface SubCategoriesDao {
             "GROUP BY sub_categories.id")
     LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithPositiveInfrequentSum();
 
+    /**
+     * Query to get the sum of all negative infrequent expenses from all sub-categories
+     * @return live data of a list of all sum of all negative infrequent expenses from all sub-categories
+     */
     @Query("SELECT *,CAST(total(infrequent_expenses.amount) AS INTEGER) AS sum_of_infrequent, " +
             "sub_categories.name AS nameOfSubCategory, " +
             "sub_categories.categories_id AS id_of_category, " +

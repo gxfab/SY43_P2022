@@ -11,13 +11,13 @@ import com.sucelloztm.sucelloz.models.InfrequentExpensesAndIncome;
 import java.util.List;
 
 /**
- * class for the infrequent expenses and income repository
+ * Class for the infrequent expenses and income repository
  */
 public class InfrequentExpensesAndIncomeRepository {
     private InfrequentExpensesAndIncomeDao infrequentExpensesAndIncomeDao;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application current application
      */
     public InfrequentExpensesAndIncomeRepository(Application application){
@@ -30,7 +30,7 @@ public class InfrequentExpensesAndIncomeRepository {
     }
 
     /**
-     * invokes the query to get all infrequents positevely signed
+     * Invokes the query to get all infrequents positevely signed
      * @return livedata of the infrequents
      */
     public LiveData<List<InfrequentExpensesAndIncome>> getAllPositiveInfrequent(){
@@ -38,7 +38,7 @@ public class InfrequentExpensesAndIncomeRepository {
     }
 
     /**
-     * invokes the query to get all infrequents negatively signed
+     * Invokes the query to get all infrequents negatively signed
      * @return livedata of the infrequents
      */
     public LiveData<List<InfrequentExpensesAndIncome>> getAllNegativeInfrequent(){
@@ -46,7 +46,7 @@ public class InfrequentExpensesAndIncomeRepository {
     }
 
     /**
-     * invokes the query to insert an infrequent
+     * Invokes the query to insert an infrequent
      * @param spending infrequent to insert
      */
     public void insert(InfrequentExpensesAndIncome spending){
@@ -54,7 +54,7 @@ public class InfrequentExpensesAndIncomeRepository {
     }
 
     /**
-     * invokes the query to sum all infrequent expenses
+     * Invokes the query to sum all infrequent expenses
      * @return livedata of the sum
      */
 
@@ -63,7 +63,7 @@ public class InfrequentExpensesAndIncomeRepository {
     }
 
     /**
-     * invokes the query to sum all infrequent incomes
+     * Invokes the query to sum all infrequent incomes
      * @return livedata of the sum
      */
 

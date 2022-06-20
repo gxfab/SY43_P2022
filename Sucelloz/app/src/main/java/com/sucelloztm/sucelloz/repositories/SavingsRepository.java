@@ -11,13 +11,13 @@ import com.sucelloztm.sucelloz.models.Savings;
 import java.util.List;
 
 /**
- * class for the savings repository
+ * Class for the savings repository
  */
 public class SavingsRepository {
     private SavingsDao savingsDao;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application current application
      */
     public SavingsRepository(Application application){
@@ -26,7 +26,7 @@ public class SavingsRepository {
     }
 
     /**
-     * invokes the query to get all savings
+     * Invokes the query to get all savings
      * @return livedata of the savings
      */
     public LiveData<List<Savings>> getAllSavings(){
@@ -34,13 +34,13 @@ public class SavingsRepository {
     }
 
     /**
-     * invokes the query to insert a saving
+     * Invokes the query to insert a saving
      * @param saving saving to insert
      */
     public void insert(Savings saving) { savingsDao.insertSaving(saving); }
 
     /**
-     * invokes the query to delete a saving
+     * Invokes the query to delete a saving
      * @param saving saving to delete
      */
     public void deleteSaving(Savings saving){
@@ -48,7 +48,7 @@ public class SavingsRepository {
     }
 
     /**
-     * invokes the query to get a saving by its id
+     * Invokes the query to get a saving by its id
      * @param idOfSaving id of the searched saving
      * @return searched saving
      */
@@ -57,7 +57,7 @@ public class SavingsRepository {
     }
 
     /**
-     * invokes the query to update a saving
+     * Invokes the query to update a saving
      * @param saving saving to update
      */
     public void updateSaving(Savings saving){
