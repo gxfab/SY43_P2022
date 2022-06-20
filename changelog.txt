@@ -1,1 +1,47 @@
-[25.03.2022] - v0.0 - Ajout du README
+# Changelog
+
+## [1.0] - 2022-06-20
+### Changed
+- Improve UI (all forms updated)
+
+### Fixed
+- Navigation fully working
+- Savings manager now working (distributing positive amount to savings at the end of the month)
+- Stable movements (add automatically new stable movements that occured on the same day of the previous month)
+
+### Removed
+- Cancel buttons (going back is done through back button of the phone)
+
+## [0.3] - 2022-06-17
+### Added
+- Default values to database
+- Internal date
+- Spinners du forms requiring category selection
+
+### Changed
+- Main pages nom linked to database
+- all View / Edit pages implemented
+- Change navigation system (fragments creation --> Navigation UI) to improve performances. Not fully working yet (parameters passing missing)
+
+### Fixed
+- Database bugs (creation order of tables)
+- Sorting of categories in Savings / budget page
+
+## [0.2] - 2022-06-13
+### Added
+- view and edit pages of each table of the database
+- navigation system using fragments creation
+- Clickable lists leading to Movement / category view page
+- Savings manager (auto savings mode, auto budget, stable expenses)
+
+### Changed 
+- Main pages fully designed
+- Classes organized into packages
+
+## [0.1] - 2022-06-10
+### Added
+- Database fully implemented
+- Main screens unimplemented (Home, Cash Flow, Savings)
+- Bottom view navigation to change the main screen
+- Toolbar displaying main screen name, current money amount and menu
+- Movement type selector
