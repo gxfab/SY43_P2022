@@ -5,6 +5,19 @@
       <map>
         <entry key="..\:/Users/folly/codes/SY43_P2022/ZeroDay/app/src/main/res/layout/activity_expense.xml" value="0.2391304347826087" />
         <entry key="..\:/Users/folly/codes/SY43_P2022/ZeroDay/app/src/main/res/layout/fragment_expense_grid.xml" value="0.2391304347826087" />
+        <entry key="app/src/main/res/layout/activity_category.xml" value="0.11231884057971014" />
+        <entry key="app/src/main/res/layout/activity_cycle_setting.xml" value="0.11231884057971014" />
+        <entry key="app/src/main/res/layout/activity_expense.xml" value="0.11231884057971014" />
+        <entry key="app/src/main/res/layout/activity_incomes_test.xml" value="0.12318840579710146" />
+        <entry key="app/src/main/res/layout/activity_setting_home.xml" value="0.11231884057971014" />
+        <entry key="app/src/main/res/layout/activity_start.xml" value="0.12318840579710146" />
+        <entry key="app/src/main/res/layout/category_expenses_incomes_adapter.xml" value="0.7598388671875" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.11231884057971014" />
+        <entry key="app/src/main/res/layout/fragment_expense_grid.xml" value="0.12318840579710146" />
+        <entry key="app/src/main/res/layout/fragment_income_grid.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_list_expense.xml" value="0.12318840579710146" />
+        <entry key="app/src/main/res/layout/income_expense_details_adapter.xml" value="0.3497142847033515" />
+        <entry key="app/src/main/res/layout/item_popup_template.xml" value="0.2839420705601789" />
       </map>
     </option>
   </component>

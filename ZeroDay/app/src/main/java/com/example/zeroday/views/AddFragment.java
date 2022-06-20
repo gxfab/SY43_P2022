@@ -19,7 +19,7 @@ import com.example.zeroday.R;
 public class AddFragment extends Fragment {
 
     /** Fonction appelée à la création du fragment.
-     * @param inflater
+     * @param inflater Inflater du layout
      * @param container Conteneur du fragment.
      * @param savedInstanceState
      * @return Le fragment

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.zeroday.R;
 
+//Popup permettant l'ajout d'une dépense ou d'un revenu dans une catégorie donnée
 public class ItemPopup extends Dialog {
 
     private String title;

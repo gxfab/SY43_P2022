@@ -15,6 +15,9 @@ public class PiggyFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_piggy, container, false);
 
+        //Ici : chargement du fragment affichant les différentes catégories de dépenses avec l'argent dépensé acctuellement
+        // et l'argent dépensé prévu par le budget prévisionnel ( manque de temps pour l'implémentation )
+
         return view;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.zeroday.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,15 +56,15 @@ public class GridIncomeAdapter extends BaseAdapter {
 
         switch (code)
         {
-            case "cat-inc-salary":
+            case "cat-inc-sal":
                 itemPicture.setImageResource(R.drawable.mainincome);
                 itemLabel.setTextColor(ContextCompat.getColor(inflater.getContext(), R.color.salary_color));
                 break;
-            case "cat-inc-bonus":
+            case "cat-inc-bon":
                 itemPicture.setImageResource(R.drawable.bonus);
                 itemLabel.setTextColor(ContextCompat.getColor(inflater.getContext(), R.color.bonus_color));
                 break;
-            case "cat-inc-gift":
+            case "cat-inc-gif":
                 itemPicture.setImageResource(R.drawable.gift);
                 itemLabel.setTextColor(ContextCompat.getColor(inflater.getContext(), R.color.gifts_color));
                 break;
@@ -76,6 +77,17 @@ public class GridIncomeAdapter extends BaseAdapter {
                 itemLabel.setTextColor(ContextCompat.getColor(inflater.getContext(), R.color.custom_income_color));
                 break;
         }
+
+        itemPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,CategoryActivity.class);
+                intent.putExtra("itemType", false); //On lance l'activité en mode income
+                intent.putExtra("itemCode", code); //On transmet le code de la catégorie de l'item
+                intent.putExtra("itemLabel", label); //On transmet le label de la catégorie de l'item
+                context.startActivity(intent);
+            }
+        });
 
 
         return view;

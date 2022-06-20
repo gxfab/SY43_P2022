@@ -22,8 +22,11 @@ class CycleSettingActivity : AppCompatActivity() {
 
         val cycleSpinner = findViewById<Spinner>(R.id.cycle_setting_cycle)
         val cycleArray = ArrayAdapter(this, android.R.layout.simple_spinner_item, cycles)
+
+
         cycleArray.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
         cycleSpinner.adapter = cycleArray
+
 
         val startingDate = findViewById<EditText>(R.id.cycle_setting_start_date)
         val dateSetListener = object: DatePickerDialog.OnDateSetListener{
@@ -35,6 +38,7 @@ class CycleSettingActivity : AppCompatActivity() {
             }
         }
 
+        //Affichage date picker
         startingDate.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View)
             {
@@ -52,6 +56,7 @@ class CycleSettingActivity : AppCompatActivity() {
         }
     }
 
+    //Fonction permettant de mettre à jour l'edittext en fonction de la date selectionnée dans le date picker
     private fun updateEditTextDate()
     {
         val myFormat = "dd/MM/yyyy"

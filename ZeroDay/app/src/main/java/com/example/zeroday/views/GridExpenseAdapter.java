@@ -1,6 +1,7 @@
 package com.example.zeroday.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.zeroday.R;
@@ -89,6 +91,18 @@ public class GridExpenseAdapter extends BaseAdapter {
                 itemLabel.setTextColor(ContextCompat.getColor(inflater.getContext(), R.color.custom_expense_color));
                 break;
         }
+
+        //On affecte l'ouverture de l'activité listant les dépenses contenues dans la catégorie représentée par itemPicture
+        itemPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            Intent intent = new Intent(context,CategoryActivity.class);
+            intent.putExtra("itemType", true); //On lance l'activité en mode expense
+            intent.putExtra("itemCode", code); //On transmet le code de la catégorie de l'item
+            intent.putExtra("itemLabel", label); //On transmet le label de la catégorie de l'item
+            context.startActivity(intent);
+            }
+        });
 
 
         return view;

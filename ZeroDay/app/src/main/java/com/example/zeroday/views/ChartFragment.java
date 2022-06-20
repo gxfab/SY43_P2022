@@ -48,6 +48,7 @@ public class ChartFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_chart, container, false);
 
+        //Lancement de l'activité des paramètres lorsque le bouton profil est cliqué
         ImageButton imageButton = view.findViewById(R.id.profil_button);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override

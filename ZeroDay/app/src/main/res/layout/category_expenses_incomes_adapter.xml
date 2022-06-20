@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/category_circle"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerInside"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/custom_expense"/>
+        android:scaleType="centerInside"
+        android:src="@drawable/custom_expense" />
 
 
     <TextView
         android:id="@+id/category_name"
-        android:layout_width="100dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
         android:text="Bouton"
         android:textAlignment="center"
         android:textColor="@color/custom_expense_color"
-        android:textSize="20dp"
-        />
+        android:textSize="12dp" />
 
-</FrameLayout>
+</LinearLayout>

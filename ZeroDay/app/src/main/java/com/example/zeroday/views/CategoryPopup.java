@@ -45,6 +45,8 @@ public class CategoryPopup extends Dialog {
 
     public String getEditText(){return this.label.getText().toString();}
 
+    public EditText getFullEditText(){return this.label;}
+
     public void build(){
         show();
     }
