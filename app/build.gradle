@@ -3,6 +3,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id "org.jetbrains.dokka"
 }
 
 android {
@@ -58,4 +59,17 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     kapt "android.arch.lifecycle:common-java8:1.1.1"
 
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.21")
+
+}
+
+dokkaHtml.configure {
+    moduleName.set("Lafo-cheuse")
+    suppressInheritedMembers.set(true)
+    dokkaSourceSets {
+        named("main") {
+            noAndroidSdkLink.set(false)
+        }
+
+    }
 }
