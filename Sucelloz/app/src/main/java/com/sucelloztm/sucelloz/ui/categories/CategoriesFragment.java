@@ -55,13 +55,34 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
+        /*
+          Get binding from CategoriesFragmentViewBinding
+         */
         binding = CategoriesFragmentBinding.inflate(inflater,container,false);
+
+        /*
+          Get outermost view in the associated layout file
+         */
         View root = binding.getRoot();
+
+        /*
+          Instantiate CategoriesViewModel and assign it to a local variable
+         */
         categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
+
+        /*
+          Create a new ArrayList of Categories
+         */
         currentCategoriesList = new ArrayList<>();
+
+        /*
+          Create Adapter for Categories recycler view
+         */
         CategoriesAdapter adapter=new CategoriesAdapter(currentCategoriesList);
 
+        /*
+            Observer retrieving changed values of currentCategoriesList
+         */
         final Observer<List<Categories>> categoriesDataSet= new Observer<List<Categories>>() {
             @Override
             public void onChanged(List<Categories> categoriesList) {
@@ -70,10 +91,26 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
                 adapter.notifyDataSetChanged();
             }
         };
+
+        /*
+            Observing categories
+         */
         categoriesViewModel.getAllCategories().observe(getViewLifecycleOwner(),categoriesDataSet);
+
+        /*
+          Get recyclerView from binding
+         */
         recyclerView = binding.outerRecyclerView;
+
+        /*
+          Set layout manager and adapter of recycler view
+         */
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.setAdapter(adapter);
+
+        /*
+          Navigation into categories fragment on click
+         */
         registerForContextMenu(recyclerView);
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
@@ -86,6 +123,7 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
                 //Log.d("CategoriesFragment",currentCategoryName);
             }
         });
+
         ItemClickSupport.addTo(recyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
@@ -146,11 +184,24 @@ public class CategoriesFragment extends Fragment implements LifecycleOwner {
         }
     }
 
+    /**
+     * Return dialog to render when the user needs to modify a category
+     * @param activity current activity
+     * @param idOfCategory category to modify
+     * @return alertDialog AlertDialog generated
+     */
     public Dialog dialogForModifyCategory(Activity activity, long idOfCategory){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         final EditText nameEditText = new EditText(activity);
 
+        /*
+            Set title and message
+         */
         builder.setTitle("Change name of category").setMessage("New name").setView(nameEditText);
+
+        /*
+            Invoke listener when button pressed
+         */
         builder.setPositiveButton("Change", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
