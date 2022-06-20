@@ -1,2 +1,27 @@
 Imali_1 [V_1.0.0] : 22/03/2022 
 	->Project initialisation 
+
+Imali_1 [V_1.0.1] : 10/04/2022
+	->Add Menu screen
+
+Imali_1 [V_1.0.2] : 25/04/2022
+	->Add Month Overview screen
+
+Imali_1 [V_1.0.3] : 02/05/2022
+	->Add Wish & Saving screen
+
+Imali_1 [V_1.1.1] : 24/05/2022
+	->Implement the list of different month
+	->We can now see the month and the sum up of the budget for this month
+		->But this is arbitrary value not link to database
+
+Imali_1 [V_1.2.1] : 31/05/2022
+	->Add a database to the project
+
+Imali_1 [V_1.2.2] : 08/06/2022
+	->First linked of the database to the view
+	->We can now add income and wish to the database
+
+Imali_1 [V1.2.3] : 17/06/2022
+	->Display the content of the database
+	->We can now see the income, expense, wish and envelope of the database
