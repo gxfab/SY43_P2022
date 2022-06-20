@@ -7,6 +7,8 @@ import com.example.econo_misons.database.models.User;
 
 import java.util.List;
 
+//The functions called by the DBViewModel on a new thread.
+//The comments for the functions are in the DBViewModel file if they aren't here
 public class UserDataRepository {
 
     private final userDAO userDao;

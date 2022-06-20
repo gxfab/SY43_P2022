@@ -1,17 +1,15 @@
 package com.example.econo_misons.database.repositories;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 
-import com.anychart.data.Tree;
 import com.example.econo_misons.database.dao.prevBudgetDAO;
 import com.example.econo_misons.database.models.Envelope;
 import com.example.econo_misons.database.models.PrevisionalBudget;
 
 import java.util.List;
-import java.util.TreeMap;
 
+//The functions called by the DBViewModel on a new thread.
+//The comments for the functions are in the DBViewModel file if they aren't here
 public class PrevBudgetDataRepository {
 
     private final prevBudgetDAO prevDAO;
