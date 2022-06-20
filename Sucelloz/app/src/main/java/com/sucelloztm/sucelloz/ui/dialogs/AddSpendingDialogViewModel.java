@@ -13,7 +13,7 @@ import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 import java.util.List;
 
 /**
- * Class to add a spending dialog to a view model
+ * ViewModel for AddSpendingDialogFragment
  */
 public class AddSpendingDialogViewModel extends AndroidViewModel {
     private InfrequentExpensesAndIncomeRepository spendingRepository;

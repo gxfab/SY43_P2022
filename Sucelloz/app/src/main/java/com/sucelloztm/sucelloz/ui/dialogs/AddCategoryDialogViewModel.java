@@ -8,6 +8,9 @@ import androidx.lifecycle.AndroidViewModel;
 import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
 
+/**
+ * ViewModel for AddCategoryDialogFragment
+ */
 public class AddCategoryDialogViewModel extends AndroidViewModel {
     private CategoriesRepository categoriesRepository;
 

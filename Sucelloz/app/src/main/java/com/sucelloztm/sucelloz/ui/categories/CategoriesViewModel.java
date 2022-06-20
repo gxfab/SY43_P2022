@@ -13,6 +13,9 @@ import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
 
 import java.util.List;
 
+/**
+ * ViewModel for Categories
+ */
 public class CategoriesViewModel extends AndroidViewModel {
     private CategoriesRepository categoriesRepository;
 

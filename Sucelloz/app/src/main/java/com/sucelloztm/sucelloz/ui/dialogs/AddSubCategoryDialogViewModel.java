@@ -10,7 +10,7 @@ import com.sucelloztm.sucelloz.repositories.CategoriesRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 /**
- * Class to add a subcategory dialog to a view model
+ * ViewModel for AddSubCategoryViewModel
  */
 public class AddSubCategoryDialogViewModel extends AndroidViewModel {
     private SubCategoriesRepository subCategoriesRepository;

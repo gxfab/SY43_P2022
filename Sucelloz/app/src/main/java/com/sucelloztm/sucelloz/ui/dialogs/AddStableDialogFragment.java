@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Class to add a stable dialog to a fragment
+ * DialogFragment to add Stable elements to SubZeroBudgetFragment
  */
 public class AddStableDialogFragment extends DialogFragment {
     private AddStableDialogViewModel addStableDialogViewModel;

@@ -9,7 +9,7 @@ import com.sucelloztm.sucelloz.models.Savings;
 import com.sucelloztm.sucelloz.repositories.SavingsRepository;
 
 /**
- * Class to add a savings dialog to a viewmodel
+ * ViewModel for AddSavingsDialogFragment
  */
 public class AddSavingsDialogViewModel extends AndroidViewModel {
     private SavingsRepository savingsRepository;

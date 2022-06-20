@@ -34,6 +34,9 @@ import com.sucelloztm.sucelloz.ui.miscellaneous.ItemClickSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fragment For Categories
+ */
 public class CategoriesFragment extends Fragment implements LifecycleOwner {
 
     private CategoriesFragmentBinding binding;

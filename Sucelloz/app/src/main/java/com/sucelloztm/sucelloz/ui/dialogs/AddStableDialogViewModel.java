@@ -11,7 +11,7 @@ import com.sucelloztm.sucelloz.repositories.StableExpensesAndIncomeRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 /**
- * Class to add a cstable dialog to a view model
+ * ViewModel for AddStableDialogFragment
  */
 public class AddStableDialogViewModel extends AndroidViewModel {
     private StableExpensesAndIncomeRepository stableExpensesAndIncomeRepository;

@@ -15,7 +15,7 @@ import com.sucelloztm.sucelloz.R;
 import com.sucelloztm.sucelloz.models.SubCategories;
 
 /**
- * Class to add a subcategory dialog to a fragment
+ * DialogFragment to add SubCategories to SubCategoriesFragment
  */
 public class AddSubCategoryDialogFragment extends DialogFragment {
     private AddSubCategoryDialogViewModel addSubCategoryDialogViewModel;
