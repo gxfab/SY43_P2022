@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * adapter for the spendings tab fragment
+ * Adapter for SpendingsTabsFragment ViewPager
  */
 public class SpendingsTabsFragmentAdapter extends FragmentStateAdapter {
 
@@ -19,7 +19,7 @@ public class SpendingsTabsFragmentAdapter extends FragmentStateAdapter {
     private NegativeSpendingsFragment negativeSpendingsFragment;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param fragmentManager fragment manager
      * @param lifecycle life cycle
      */
@@ -32,31 +32,15 @@ public class SpendingsTabsFragmentAdapter extends FragmentStateAdapter {
         this.spendingsFragmentList.add(negativeSpendingsFragment);
     }
 
-    /**
-     * creates a fragment
-     * @param position position
-     * @return fragment
-     */
     @NonNull
     @Override
     public Fragment createFragment(int position) {
         return this.spendingsFragmentList.get(position);
     }
 
-    /**
-     * getter
-     * @return item count
-     */
     @Override
     public int getItemCount() {
         return 2;
     }
 
-    public PositiveSpendingsFragment getPositiveSpendingsFragment() {
-        return positiveSpendingsFragment;
-    }
-
-    public NegativeSpendingsFragment getNegativeSpendingsFragment() {
-        return negativeSpendingsFragment;
-    }
 }

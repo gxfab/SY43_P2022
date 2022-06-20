@@ -15,7 +15,7 @@ import java.util.List;
 
 
 /**
- * adapter for the subcategories
+ * Adapter for SubCategoriesFragment RecyclerView
  */
 public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdapter.ViewHolder> {
 
@@ -36,7 +36,7 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
         }
 
         /**
-         * getter
+         * Getter
          * @return text
          */
         public TextView getTextView() {
@@ -46,7 +46,7 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
 
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param dataSet list of the subcategories
      */
     public SubCategoriesAdapter(List<SubCategories> dataSet) {
@@ -54,12 +54,6 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
     }
 
 
-    /**
-     * Create new views (invoked by the layout manager)
-     * @param viewGroup view group
-     * @param viewType view type
-     * @return view holder
-     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -69,12 +63,6 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
         return new ViewHolder(view);
     }
 
-
-    /**
-     * Replace the contents of a view (invoked by the layout manager)
-     * @param viewHolder view holder
-     * @param position position
-     */
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
@@ -84,11 +72,6 @@ public class SubCategoriesAdapter extends RecyclerView.Adapter<SubCategoriesAdap
         
     }
 
-
-    /**
-     * Return the size of your dataset (invoked by the layout manager)
-     * @return item count
-     */
     @Override
     public int getItemCount() {
         return subCategoriesList.size();

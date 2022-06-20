@@ -22,29 +22,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * fragment for the spendings window
+ * Fragment to create a ViewPager For Spendings
  */
 public class SpendingsTabsFragment extends Fragment {
     private ViewPager2 viewPager;
     private SpendingsTabsFragmentBinding binding;
     private FragmentStateAdapter pagerAdapter;
 
-    /**
-     * on create method
-     * @param savedInstanceState saved instance state
-     */
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
     }
 
-    /**
-     * on create view method
-     * @param inflater inflater
-     * @param container container
-     * @param savedInstanceState saved instance state
-     * @return view
-     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -63,10 +52,6 @@ public class SpendingsTabsFragment extends Fragment {
         return root;
     }
 
-
-    /**
-     * on destroy view method
-     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

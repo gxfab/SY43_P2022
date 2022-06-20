@@ -14,7 +14,7 @@ import com.sucelloztm.sucelloz.ui.subZeroBudget.SubZeroBudgetAdapter;
 
 import java.util.List;
 /**
- * adapter for the zero budget
+ * Adapter for ZeroBudgetFragment
  */
 public class ZeroBudgetAdapter extends RecyclerView.Adapter<ZeroBudgetAdapter.ViewHolder> {
 
@@ -44,7 +44,6 @@ public class ZeroBudgetAdapter extends RecyclerView.Adapter<ZeroBudgetAdapter.Vi
         this.subCategoriesList = dataSet;
     }
 
-    // Create new views (invoked by the layout manager)
     @NonNull
     @Override
     public ZeroBudgetAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -54,7 +53,6 @@ public class ZeroBudgetAdapter extends RecyclerView.Adapter<ZeroBudgetAdapter.Vi
         return new ZeroBudgetAdapter.ViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ZeroBudgetAdapter.ViewHolder viewHolder, final int position) {
 
@@ -64,7 +62,6 @@ public class ZeroBudgetAdapter extends RecyclerView.Adapter<ZeroBudgetAdapter.Vi
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return subCategoriesList.size();

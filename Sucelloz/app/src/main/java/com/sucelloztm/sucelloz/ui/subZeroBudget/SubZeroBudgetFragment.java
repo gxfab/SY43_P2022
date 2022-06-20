@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * fragment for the sub zero budget
+ * Fragment for SubZeroBudget
  */
 public class SubZeroBudgetFragment extends Fragment {
 
@@ -43,22 +43,11 @@ public class SubZeroBudgetFragment extends Fragment {
     private RecyclerView recyclerView;
     private int itemIndex;
 
-    /**
-     * on create method
-     * @param savedInstanceState saved instance state
-     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    /**
-     * on create view method
-     * @param inflater inflater
-     * @param container container
-     * @param savedInstanceState saved instance state
-     * @return view
-     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -93,11 +82,7 @@ public class SubZeroBudgetFragment extends Fragment {
 
     }
 
-    /**
-     * on view created method
-     * @param view view
-     * @param savedInstanceState saved instance state
-     */
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -115,21 +100,12 @@ public class SubZeroBudgetFragment extends Fragment {
         });
     }
 
-    /**
-     * on destroy view method
-     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding =null;
     }
 
-    /**
-     * on create context menu method
-     * @param menu menu
-     * @param v view
-     * @param menuInfo menu info
-     */
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -137,11 +113,6 @@ public class SubZeroBudgetFragment extends Fragment {
         menuInflater.inflate(R.menu.context_menu,menu);
     }
 
-    /**
-     * on context item selected method
-     * @param item item
-     * @return boolean to know if the method executed properly
-     */
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -157,7 +128,7 @@ public class SubZeroBudgetFragment extends Fragment {
     }
 
     /**
-     * updates the dialog to modify the stable fragment
+     * Dialog to modify selected Stable element
      * @param activity activity
      * @param idOfStable id of the stable
      * @return dialog

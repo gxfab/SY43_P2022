@@ -2,6 +2,9 @@ package com.sucelloztm.sucelloz.ui.zerobudget;
 
 import android.widget.TextView;
 
+/**
+ * POJO for ZeroBudget
+ */
 public class ZeroBudget {
     private int infrequentExpenses=0;
     private int infrequentIncomes=0;

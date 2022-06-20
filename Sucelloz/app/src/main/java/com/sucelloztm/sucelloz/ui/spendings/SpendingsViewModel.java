@@ -17,19 +17,18 @@ import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 import java.util.List;
 
 /**
- * view model for the spendings
+ * ViewModel for Spendings
  */
 public class SpendingsViewModel extends AndroidViewModel {
     private InfrequentExpensesAndIncomeRepository spendingsRepository;
     private SubCategoriesRepository subCategoriesRepository;
-    private CategoriesRepository categoriesRepository;
 
     private LiveData<List<InfrequentExpensesAndIncome>> currentPositiveSpendings;
 
     private LiveData<List<InfrequentExpensesAndIncome>> currentNegativeSpendings;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application application
      */
     public SpendingsViewModel(@NonNull Application application) {
@@ -39,8 +38,8 @@ public class SpendingsViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the get all positive spendings query
-     * @return livedata of the positive spendings
+     * Invokes the getAllPositiveSpendings Method from SpendingsRepository
+     * @return livedata of a list of all the positive spendings
      */
     public LiveData<List<InfrequentExpensesAndIncome>> getAllPositiveSpendings(){
         if (this.currentPositiveSpendings == null){
@@ -51,8 +50,8 @@ public class SpendingsViewModel extends AndroidViewModel {
 
 
     /**
-     * invokes the get all negative spendings query
-     * @return livedata of the negative spendings
+     * Invokes the getAllNegativeSpendings Method from SpendingsRepository
+     * @return livedata of a list of all the negative spendings
      */
     public LiveData<List<InfrequentExpensesAndIncome>> getAllNegativeSpendings(){
         if(this.currentNegativeSpendings==null){
@@ -61,12 +60,9 @@ public class SpendingsViewModel extends AndroidViewModel {
         return  this.currentNegativeSpendings;
     }
 
-    public SubCategories getSubCategoryByName(String nameOfSubCategory){
-        return this.subCategoriesRepository.getSubCategoryWithName(nameOfSubCategory);
-    }
 
     /**
-     * invokes the query to get a subcategory name thanks to its id
+     * Invokes the getSubCategoryNameWithId Method from SubCategoriesRepository
      * @param idOfSubCategory id of the subcategory
      * @return name of the subcategory
      */
@@ -75,16 +71,16 @@ public class SpendingsViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the query to get all subcategories with a positive sum
-     * @return livedata of the subcategories with positive sums
+     * Invokes the getAllSubCategoriesWithPositiveInfrequentSum Method from SubCategoriesRepository
+     * @return livedata of the list of all subcategories with their respective positive sums
      */
     public LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithPositiveInfrequentSum(){
         return subCategoriesRepository.getAllSubCategoriesWithPositiveInfrequentSum();
     }
 
     /**
-     * invokes the query to get all subcatgories with a negative sum
-     * @return livedata of the subcategories with negative sums
+     * Invokes the getAllSubCategoriesWithNegativeInfrequentSum Method from SubCategoriesRepository
+     * @return livedata of the list of all subcategories with their respective negative sums
      */
     public LiveData<List<SubCategoriesWithInfrequentSum>> getAllSubCategoriesWithNegativeInfrequentSum(){
         return subCategoriesRepository.getAllSubCategoriesWithNegativeInfrequentSum();

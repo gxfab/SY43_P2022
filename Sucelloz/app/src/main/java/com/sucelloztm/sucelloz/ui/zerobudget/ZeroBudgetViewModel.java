@@ -13,7 +13,9 @@ import com.sucelloztm.sucelloz.repositories.StableExpensesAndIncomeRepository;
 import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 
 
-
+/**
+ * ViewModel for ZeroBudget
+ */
 public class ZeroBudgetViewModel extends AndroidViewModel {
 
     private SubCategoriesRepository subCategoriesRepository;
@@ -110,7 +112,7 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
     }
 
     /**
-     * Get a LiveData<integer> of stable incomes from stable expenses and incomes category
+     * Get a LiveData<Integer> of stable incomes from stable expenses and incomes category
      * @return stableIncomes LiveData<integer>
      */
     public LiveData<Integer> getStableIncomes(){
@@ -121,7 +123,7 @@ public class ZeroBudgetViewModel extends AndroidViewModel {
     }
 
     /**
-     * Get a LiveData<integer> of savings from savings category
+     * Get a LiveData<Integer> of savings from savings category
      * @return savings a LiveData<integer>
      */
     public LiveData<Integer> getSavings(){

@@ -11,7 +11,7 @@ import com.sucelloztm.sucelloz.repositories.SavingsRepository;
 import java.util.List;
 
 /**
- * class for the savings view model
+ * ViewModel SavingsFragment
  */
 public class SavingsViewModel extends AndroidViewModel {
     private SavingsRepository savingsRepository;
@@ -19,7 +19,7 @@ public class SavingsViewModel extends AndroidViewModel {
     private LiveData<List<Savings>> currentSavings;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application application
      */
     public SavingsViewModel(Application application){
@@ -28,8 +28,8 @@ public class SavingsViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the get all savings query
-     * @return livedata of the savings
+     * Invokes the getAllSavings Method from SavingsRepository
+     * @return livedata of a list of the savings
      */
     public LiveData<List<Savings>> getAllSavings(){
         if (this.currentSavings == null){
@@ -39,15 +39,15 @@ public class SavingsViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the delete saving query
-     * @param saving saving
+     * invokes the deleteSaving method from SavingsRepository
+     * @param saving saving to delete
      */
     public void deleteSaving(Savings saving){
         this.savingsRepository.deleteSaving(saving);
     }
 
     /**
-     * invokes the get saving by its id query
+     * Invokes the getSavingsById Method from SavingsRepository
      * @param idOfSaving id of the saving
      * @return saving
      */
@@ -56,8 +56,8 @@ public class SavingsViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the update saving query
-     * @param saving saving
+     * invokes the updateSaving Method from SavingsRepository
+     * @param saving saving to update
      */
     public void updateSaving(Savings saving){
         this.savingsRepository.updateSaving(saving);

@@ -14,7 +14,7 @@ import com.sucelloztm.sucelloz.models.StableExpensesAndIncome;
 import java.util.List;
 
 /**
- * adapter for the sub zero budget
+ * Adapter for SubZeroBudgetFragment RecyclerView
  */
 public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdapter.ViewHolder> {
     private List<StableExpensesAndIncome> stableExpensesAndIncomeList;
@@ -33,7 +33,7 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
         }
 
         /**
-         * getter
+         * Getter
          * @return name
          */
         public TextView getNameTextView() {
@@ -41,7 +41,7 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
         }
 
         /**
-         * getter
+         * Getter
          * @return date
          */
         public TextView getDateTextView() {
@@ -49,7 +49,7 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
         }
 
         /**
-         * getter
+         * Getter
          * @return amount
          */
         public TextView getAmountTextView() {
@@ -58,17 +58,12 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
     }
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param dataSet list of stables
      */
     public SubZeroBudgetAdapter(List<StableExpensesAndIncome> dataSet) { this.stableExpensesAndIncomeList = dataSet; }
 
-    /**
-     * on create view holder method
-     * @param viewGroup view group
-     * @param viewType view type
-     * @return view holder
-     */
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -78,11 +73,6 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
         return new ViewHolder(view);
     }
 
-    /**
-     * on bind view holder method
-     * @param viewHolder view holder
-     * @param position position
-     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         StableExpensesAndIncome currentStable = stableExpensesAndIncomeList.get(position);
@@ -92,10 +82,6 @@ public class SubZeroBudgetAdapter extends RecyclerView.Adapter<SubZeroBudgetAdap
         viewHolder.getDateTextView().setText(currentStable.getDate());
     }
 
-    /**
-     * getter
-     * @return item count
-     */
     @Override
     public int getItemCount() {
         return stableExpensesAndIncomeList.size();

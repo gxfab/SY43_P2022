@@ -12,7 +12,7 @@ import com.sucelloztm.sucelloz.repositories.StableExpensesAndIncomeRepository;
 import java.util.List;
 
 /**
- * view model for the sub zero budget
+ * ViewModel for SubZeroBudgetFragment
  */
 public class SubZeroBudgetViewModel extends AndroidViewModel {
     private StableExpensesAndIncomeRepository stableExpensesAndIncomeRepository;
@@ -20,7 +20,7 @@ public class SubZeroBudgetViewModel extends AndroidViewModel {
     private LiveData<List<StableExpensesAndIncome>> currentStableList;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application application
      */
     public SubZeroBudgetViewModel(@NonNull Application application) {
@@ -29,9 +29,9 @@ public class SubZeroBudgetViewModel extends AndroidViewModel {
     }
 
     /**
-     * ivokes the query to get all stables of a subcategory
+     * Invokes the getAllStableFromSubCategory Method from StableExpensesAndIncomeRepository
      * @param idOfSubCategory id of the subcategory
-     * @return livedata with the list of stables
+     * @return livedata with the list of all stables from specific subcategory
      */
     public LiveData<List<StableExpensesAndIncome>> getAllStableFromSubCategory(long idOfSubCategory){
         if(this.currentStableList == null) {
@@ -41,7 +41,7 @@ public class SubZeroBudgetViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the query to get a stable thanks to its id
+     * Invokes the getStableById Method from StableExpensesAndIncomeRepository
      * @param idOfStable id of the stable
      * @return stable
      */
@@ -50,16 +50,16 @@ public class SubZeroBudgetViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the update stable query
-     * @param stableExpensesAndIncome stable
+     * Invokes the updateStable Method from StableExpensesAndIncomeRepository
+     * @param stableExpensesAndIncome stable to update
      */
     public void updateStable(StableExpensesAndIncome stableExpensesAndIncome){
         stableExpensesAndIncomeRepository.updateStable(stableExpensesAndIncome);
     }
 
     /**
-     * invokes the delete stable query
-     * @param stableExpensesAndIncome stable
+     * invokes the deleteStable from StableExpensesAndIncomeRepository
+     * @param stableExpensesAndIncome stable to delete
      */
     public void deleteStable(StableExpensesAndIncome stableExpensesAndIncome){
         stableExpensesAndIncomeRepository.deleteStable(stableExpensesAndIncome);

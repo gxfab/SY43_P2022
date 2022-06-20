@@ -14,7 +14,7 @@ import com.sucelloztm.sucelloz.R;
 import java.util.List;
 
 /**
- * adapter for negative spendings
+ * Adapter for NegativeSpendingsFragment RecyclerView
  */
 public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpendingsAdapter.ViewHolder> {
 
@@ -37,7 +37,7 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
         }
 
         /**
-         * getter
+         * Getter
          * @return name
          */
         public TextView getNameTextView() {
@@ -45,7 +45,7 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
         }
 
         /**
-         * getter
+         * Getter
          * @return date
          */
         public TextView getDateTextView() {
@@ -53,7 +53,7 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
         }
 
         /**
-         * getter
+         * Getter
          * @return subcategory name
          */
         public TextView getSubCategoryTextView() {
@@ -61,7 +61,7 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
         }
 
         /**
-         * getter
+         * Getter
          * @return amount
          */
         public TextView getAmountTextView() {
@@ -70,17 +70,11 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
     }
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param dataSet list of spendings
      */
     public NegativeSpendingsAdapter(List<Spendings> dataSet) { this.negativeSpendingsList = dataSet; }
 
-    /**
-     * on create view holder method
-     * @param viewGroup view group
-     * @param viewType view type
-     * @return view holder
-     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -90,11 +84,6 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
         return new ViewHolder(view);
     }
 
-    /**
-     * on bind view holder method
-     * @param viewHolder view holder
-     * @param position position
-     */
     @Override
     public void onBindViewHolder(@NonNull NegativeSpendingsAdapter.ViewHolder viewHolder, int position) {
         viewHolder.getNameTextView().setText(negativeSpendingsList.get(position).getName());
@@ -104,10 +93,6 @@ public class NegativeSpendingsAdapter extends RecyclerView.Adapter<NegativeSpend
         viewHolder.getSubCategoryTextView().setText(negativeSpendingsList.get(position).getSubCategory());
     }
 
-    /**
-     * getter
-     * @return item count
-     */
     @Override
     public int getItemCount() {
         return negativeSpendingsList.size();

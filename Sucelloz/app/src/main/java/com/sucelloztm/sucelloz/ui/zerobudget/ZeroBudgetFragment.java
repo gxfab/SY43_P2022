@@ -31,7 +31,9 @@ import com.sucelloztm.sucelloz.ui.subcategories.SubCategoriesAdapter;
 import java.util.ArrayList;
 
 
-
+/**
+ * Fragment for ZeroBudget
+ */
 public class ZeroBudgetFragment extends Fragment {
 
     private ZeroBudgetFragmentBinding binding;
@@ -40,13 +42,7 @@ public class ZeroBudgetFragment extends Fragment {
     private TextView zeroBudgetTextView;
     private ZeroBudget zeroBudget;
 
-    /**
-     * Creates and returns the view hierarchy associated with the fragment
-     * @param inflater LayoutInflater instantiates a layout XML file into its corresponding View objects
-     * @param container ViewGroup parent container of fragment
-     * @param savedInstanceState Bundle
-     * @return root outermost View in the associated layout file
-     */
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         /*

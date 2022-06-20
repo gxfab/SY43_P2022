@@ -19,7 +19,7 @@ import com.sucelloztm.sucelloz.models.SubCategories;
 
 
 /**
- * main activity of the application
+ * Main activity of the application
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -28,10 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private Categories zeroBudgetCat;
     public String[] zeroBudgetNameList;
 
-    /**
-     * on create method
-     * @param savedInstanceState saved instance state
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SucellozDatabase database = SucellozDatabase.getInstance(this);

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * adapter for the savings
+ * Adapter for SavingsFragment RecyclerView
  */
 public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHolder> {
 
@@ -34,6 +34,10 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         private final TextView goalTextView;
         private final ProgressBar progressBar;
 
+        /**
+         * Custom constructor
+         * @param view current view inside RecyclerView
+         */
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
@@ -44,7 +48,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         }
 
         /**
-         * getter
+         * Getter
          * @return name
          */
         public TextView getNameTextView() {
@@ -52,7 +56,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         }
 
         /**
-         * getter
+         * Getter
          * @return deadline
          */
         public TextView getDeadlineTextView() {
@@ -60,7 +64,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         }
 
         /**
-         * getter
+         * Getter
          * @return goal
          */
         public TextView getGoalTextView() {
@@ -68,7 +72,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         }
 
         /**
-         * getter
+         * Getter
          * @return progress bar
          */
         public ProgressBar getProgressBar() {
@@ -87,12 +91,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
     }
 
 
-    /**
-     * Create new views (invoked by the layout manager)
-     * @param viewGroup view group
-     * @param viewType view type
-     * @return created view holder of the desired group and type
-     */
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -104,11 +103,6 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
     }
 
 
-    /**
-     * Replace the contents of a view (invoked by the layout manager)
-     * @param viewHolder view holder
-     * @param position position
-     */
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         // Get element from your dataset at this position and replace the
@@ -123,11 +117,6 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
     }
 
 
-    /**
-     * Return the size of your dataset (invoked by the layout manager)
-     * getter
-     * @return item count
-     */
     @Override
     public int getItemCount() {
         return savingsList.size();

@@ -1,7 +1,7 @@
 package com.sucelloztm.sucelloz.ui.spendings;
 
 /**
- * spendings class
+ * POJO for displaying Spendings
  */
 public class Spendings {
     private String name;
@@ -10,7 +10,7 @@ public class Spendings {
     private String subCategory;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param name name
      * @param amount amount
      * @param date date
@@ -24,7 +24,7 @@ public class Spendings {
     }
 
     /**
-     * getter
+     * Getter
      * @return name
      */
     public String getName() {
@@ -32,7 +32,7 @@ public class Spendings {
     }
 
     /**
-     * setter
+     *Getter
      * @param name name
      */
     public void setName(String name) {
@@ -40,7 +40,7 @@ public class Spendings {
     }
 
     /**
-     * getter
+     * Getter
      * @return amount
      */
     public int getAmount() {
@@ -48,7 +48,7 @@ public class Spendings {
     }
 
     /**
-     * setter
+     * Setter
      * @param amount amount
      */
     public void setAmount(int amount) {
@@ -56,7 +56,7 @@ public class Spendings {
     }
 
     /**
-     * getter
+     * Getter
      * @return date
      */
     public String getDate() {
@@ -64,7 +64,7 @@ public class Spendings {
     }
 
     /**
-     * setter
+     * Setter
      * @param date date
      */
     public void setDate(String date) {

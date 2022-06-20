@@ -12,7 +12,7 @@ import com.sucelloztm.sucelloz.repositories.SubCategoriesRepository;
 import java.util.List;
 
 /**
- * view model for the subcategories
+ * ViewModel for SubCategoriesFragment
  */
 public class SubCategoriesViewModel extends AndroidViewModel {
     private SubCategoriesRepository subCategoriesRepository;
@@ -20,7 +20,7 @@ public class SubCategoriesViewModel extends AndroidViewModel {
     private LiveData<List<SubCategories>> currentSubCategories;
 
     /**
-     * custom constructor
+     * Custom constructor
      * @param application application
      */
     public SubCategoriesViewModel(@NonNull Application application) {
@@ -29,8 +29,8 @@ public class SubCategoriesViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the get subcategories query
-     * @return livedata of the subcategories
+     * Invokes the getSubCategories Method from SubCategoriesRepository
+     * @return livedata of the list of all subcategories
      */
     public LiveData<List<SubCategories>> getSubCategories(){
         if (this.currentSubCategories == null){
@@ -40,16 +40,16 @@ public class SubCategoriesViewModel extends AndroidViewModel {
     }
 
     /**
-     * invokes the delete subcategory query
-     * @param subCategory subcategory
+     * invokes the deleteSubCategory Method from SubCategoriesRepository
+     * @param subCategory subcategory to delete
      */
     public void deleteSubCategory(SubCategories subCategory){
         subCategoriesRepository.deleteSubCategory(subCategory);
     }
 
     /**
-     * invokes the delete subcategory query
-     * @param subCategory subcategory
+     * invokes the updateSubCategory Method from SubCategoriesRepository
+     * @param subCategory subcategory to delete
      */
     public void updateSubCategory(SubCategories subCategory){
         subCategoriesRepository.updateSubCategory(subCategory);

@@ -28,7 +28,7 @@ import java.util.List;
 
 
 /**
- * class for the positive spendings fragment
+ * Fragment for PositiveSpendings
  */
 public class PositiveSpendingsFragment extends Fragment {
     private PositiveSpendingsFragmentBinding binding;
@@ -38,23 +38,11 @@ public class PositiveSpendingsFragment extends Fragment {
     private RecyclerView recyclerView;
     private PieChartSubCategoriesGenerator pieGen;
 
-    /**
-     * on create method
-     * @param savedInstanceState saved instance state
-     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-
-    /**
-     * on create view method
-     * @param inflater inflater
-     * @param container container
-     * @param savedInstanceState saved instance state
-     * @return view
-     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -107,11 +95,6 @@ public class PositiveSpendingsFragment extends Fragment {
         return root;
     }
 
-    /**
-     * on view created method
-     * @param view view
-     * @param savedInstanceState saved instance state
-     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -124,9 +107,6 @@ public class PositiveSpendingsFragment extends Fragment {
         });
     }
 
-    /**
-     * on destroy view method
-     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

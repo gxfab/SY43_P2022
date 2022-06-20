@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * class for the negative spendings fragment
+ * Fragment for Negative Spendings
  */
 public class NegativeSpendingsFragment extends Fragment {
     private NegativeSpendingsFragmentBinding binding;
@@ -34,22 +34,11 @@ public class NegativeSpendingsFragment extends Fragment {
     private RecyclerView recyclerView;
     private PieChartSubCategoriesGenerator pieGen;
 
-    /**
-     * on create method
-     * @param savedInstanceState saved instance state
-     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    /**
-     * on create view method
-     * @param inflater inflater
-     * @param container container
-     * @param savedInstanceState saved instance state
-     * @return view
-     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -99,11 +88,7 @@ public class NegativeSpendingsFragment extends Fragment {
         return root;
     }
 
-    /**
-     * on view created method
-     * @param view view
-     * @param savedInstanceState saved instance state
-     */
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -116,9 +101,6 @@ public class NegativeSpendingsFragment extends Fragment {
         });
     }
 
-    /**
-     * on destroy view method
-     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
