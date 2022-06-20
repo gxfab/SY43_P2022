@@ -56,7 +56,7 @@ public class ZeroBudgetFragment extends Fragment {
                 new ViewModelProvider(this).get(ZeroBudgetViewModel.class);
 
         /*
-          Get binding from zeroBudgetFragmentViewBinding
+          Get binding from ZeroBudgetFragmentViewBinding
          */
         binding = ZeroBudgetFragmentBinding.inflate(inflater, container, false);
 
@@ -109,7 +109,7 @@ public class ZeroBudgetFragment extends Fragment {
         registerForContextMenu(recyclerView);
 
         /*
-          Navigation into sub categories on click
+          Navigation into sub-categories fragment on click
          */
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
             TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.text_view_subcategories);
