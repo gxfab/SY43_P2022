@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 /**
- * class for the home view model
+ * Class for the home view model
  */
 public class HomeViewModel extends ViewModel {
     private final MutableLiveData<String> mText;
 
     /**
-     * default constructor
+     * Default constructor
      */
     public HomeViewModel() {
         mText = new MutableLiveData<>();
@@ -19,7 +19,7 @@ public class HomeViewModel extends ViewModel {
     }
 
     /**
-     * getter
+     * Get text
      * @return text
      */
     public LiveData<String> getText() {

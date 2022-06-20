@@ -17,14 +17,14 @@ import com.sucelloztm.sucelloz.ui.dialogs.AddSavingsDialogFragment;
 import com.sucelloztm.sucelloz.ui.dialogs.AddSpendingDialogFragment;
 
 /**
- * class for the home fragment
+ * Class for the home fragment
  */
 public class HomeFragment extends Fragment {
 
     private HomeFragmentBinding binding;
 
     /**
-     * on create view method
+     * On create view method
      * @param inflater inflater
      * @param container container
      * @param savedInstanceState saved instance state
@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
     }
 
     /**
-     * on view created method
+     * On view created method
      * @param view view
      * @param savedInstanceState saved instance state
      */
@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
     }
 
     /**
-     * on destroy view method
+     * On destroy view method
      */
     @Override
     public void onDestroyView() {
