@@ -1,7 +1,8 @@
 package com.sucelloztm.sucelloz.database.DAO;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
@@ -49,16 +50,16 @@ public class StableExpensesAndIncomeDaoTest {
         long categoriesId = categoriesDao.insertCategory(category);
         SubCategories subCategory = new SubCategories("test", categoriesId);
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
-        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+',1990,2, subCategoriesId);
+        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+', 1990, 2, subCategoriesId);
         stableExpensesAndIncomeDao.insertStableExpenseOrIncome(stable);
         List<StableExpensesAndIncome> stables = stableExpensesAndIncomeDao.getStable();
 
-        assertEquals(stables.get(0).getName(),stable.getName());
-        assertEquals(stables.get(0).getAmount(),stable.getAmount());
-        assertEquals(stables.get(0).getSign(),stable.getSign());
-        assertEquals(stables.get(0).getDate(),stable.getDate());
-        assertEquals(stables.get(0).getFrequency(),stable.getFrequency());
-        assertEquals(stables.get(0).getSubCategoriesId(),stable.getSubCategoriesId());
+        assertEquals(stables.get(0).getName(), stable.getName());
+        assertEquals(stables.get(0).getAmount(), stable.getAmount());
+        assertEquals(stables.get(0).getSign(), stable.getSign());
+        assertEquals(stables.get(0).getDate(), stable.getDate());
+        assertEquals(stables.get(0).getFrequency(), stable.getFrequency());
+        assertEquals(stables.get(0).getSubCategoriesId(), stable.getSubCategoriesId());
     }
 
     @Test
@@ -69,24 +70,24 @@ public class StableExpensesAndIncomeDaoTest {
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory1);
         SubCategories subCategory2 = new SubCategories("test2", categoriesId);
         long subCategoriesId2 = subCategoriesDao.insertSubCategory(subCategory2);
-        StableExpensesAndIncome stable1 = new StableExpensesAndIncome("test1", 20, '+',1990,2, subCategoriesId);
-        StableExpensesAndIncome stable2 = new StableExpensesAndIncome("test2", 2, '-',1999,22, subCategoriesId2);
-        stableExpensesAndIncomeDao.insertStableExpensesAndIncome(stable1,stable2);
+        StableExpensesAndIncome stable1 = new StableExpensesAndIncome("test1", 20, '+', 1990, 2, subCategoriesId);
+        StableExpensesAndIncome stable2 = new StableExpensesAndIncome("test2", 2, '-', 1999, 22, subCategoriesId2);
+        stableExpensesAndIncomeDao.insertStableExpensesAndIncome(stable1, stable2);
         List<StableExpensesAndIncome> stables = stableExpensesAndIncomeDao.getStable();
 
-        assertEquals(stables.get(0).getName(),stable1.getName());
-        assertEquals(stables.get(0).getAmount(),stable1.getAmount());
-        assertEquals(stables.get(0).getSign(),stable1.getSign());
-        assertEquals(stables.get(0).getDate(),stable1.getDate());
-        assertEquals(stables.get(0).getFrequency(),stable1.getFrequency());
-        assertEquals(stables.get(0).getSubCategoriesId(),stable1.getSubCategoriesId());
+        assertEquals(stables.get(0).getName(), stable1.getName());
+        assertEquals(stables.get(0).getAmount(), stable1.getAmount());
+        assertEquals(stables.get(0).getSign(), stable1.getSign());
+        assertEquals(stables.get(0).getDate(), stable1.getDate());
+        assertEquals(stables.get(0).getFrequency(), stable1.getFrequency());
+        assertEquals(stables.get(0).getSubCategoriesId(), stable1.getSubCategoriesId());
 
-        assertEquals(stables.get(1).getName(),stable2.getName());
-        assertEquals(stables.get(1).getAmount(),stable2.getAmount());
-        assertEquals(stables.get(1).getSign(),stable2.getSign());
-        assertEquals(stables.get(1).getDate(),stable2.getDate());
-        assertEquals(stables.get(1).getFrequency(),stable2.getFrequency());
-        assertEquals(stables.get(1).getSubCategoriesId(),stable2.getSubCategoriesId());
+        assertEquals(stables.get(1).getName(), stable2.getName());
+        assertEquals(stables.get(1).getAmount(), stable2.getAmount());
+        assertEquals(stables.get(1).getSign(), stable2.getSign());
+        assertEquals(stables.get(1).getDate(), stable2.getDate());
+        assertEquals(stables.get(1).getFrequency(), stable2.getFrequency());
+        assertEquals(stables.get(1).getSubCategoriesId(), stable2.getSubCategoriesId());
     }
 
     @Test
@@ -97,7 +98,7 @@ public class StableExpensesAndIncomeDaoTest {
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
         SubCategories subCategory2 = new SubCategories("test2", categoriesId);
         long subCategoriesId2 = subCategoriesDao.insertSubCategory(subCategory2);
-        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+',1990,2, subCategoriesId);
+        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+', 1990, 2, subCategoriesId);
         long insertedID = stableExpensesAndIncomeDao.insertStableExpenseOrIncome(stable);
         stable.setId(insertedID);
         stable.setAmount(3);
@@ -109,12 +110,12 @@ public class StableExpensesAndIncomeDaoTest {
         stableExpensesAndIncomeDao.updateStableExpenseOrIncome(stable);
         List<StableExpensesAndIncome> stables = stableExpensesAndIncomeDao.getStable();
 
-        assertEquals(stables.get(0).getName(),stable.getName());
-        assertEquals(stables.get(0).getAmount(),stable.getAmount());
-        assertEquals(stables.get(0).getSign(),stable.getSign());
-        assertEquals(stables.get(0).getDate(),stable.getDate());
-        assertEquals(stables.get(0).getFrequency(),stable.getFrequency());
-        assertEquals(stables.get(0).getSubCategoriesId(),stable.getSubCategoriesId());
+        assertEquals(stables.get(0).getName(), stable.getName());
+        assertEquals(stables.get(0).getAmount(), stable.getAmount());
+        assertEquals(stables.get(0).getSign(), stable.getSign());
+        assertEquals(stables.get(0).getDate(), stable.getDate());
+        assertEquals(stables.get(0).getFrequency(), stable.getFrequency());
+        assertEquals(stables.get(0).getSubCategoriesId(), stable.getSubCategoriesId());
     }
 
     @Test
@@ -125,14 +126,14 @@ public class StableExpensesAndIncomeDaoTest {
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
         SubCategories subCategory2 = new SubCategories("test2", categoriesId);
         long subCategoriesId2 = subCategoriesDao.insertSubCategory(subCategory2);
-        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+',1990,2, subCategoriesId);
+        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+', 1990, 2, subCategoriesId);
         SubCategories subCategory3 = new SubCategories("test3", categoriesId);
         long subCategoriesId3 = subCategoriesDao.insertSubCategory(subCategory3);
         SubCategories subCategory4 = new SubCategories("test4", categoriesId);
         long subCategoriesId4 = subCategoriesDao.insertSubCategory(subCategory4);
-        StableExpensesAndIncome stable2 = new StableExpensesAndIncome("test5", 2, '-',199,25, subCategoriesId3);
+        StableExpensesAndIncome stable2 = new StableExpensesAndIncome("test5", 2, '-', 199, 25, subCategoriesId3);
 
-        List<Long> insertedID = stableExpensesAndIncomeDao.insertStableExpensesAndIncome(stable,stable2);
+        List<Long> insertedID = stableExpensesAndIncomeDao.insertStableExpensesAndIncome(stable, stable2);
         stable.setId(insertedID.get(0));
         stable.setAmount(3);
         stable.setDate(1880);
@@ -149,22 +150,22 @@ public class StableExpensesAndIncomeDaoTest {
         stable2.setSign('+');
         stable2.setSubCategoriesId(subCategoriesId4);
 
-        stableExpensesAndIncomeDao.updateStableExpensesAndIncome(stable,stable2);
+        stableExpensesAndIncomeDao.updateStableExpensesAndIncome(stable, stable2);
         List<StableExpensesAndIncome> stables = stableExpensesAndIncomeDao.getStable();
 
-        assertEquals(stables.get(0).getName(),stable.getName());
-        assertEquals(stables.get(0).getAmount(),stable.getAmount());
-        assertEquals(stables.get(0).getSign(),stable.getSign());
-        assertEquals(stables.get(0).getDate(),stable.getDate());
-        assertEquals(stables.get(0).getFrequency(),stable.getFrequency());
-        assertEquals(stables.get(0).getSubCategoriesId(),stable.getSubCategoriesId());
+        assertEquals(stables.get(0).getName(), stable.getName());
+        assertEquals(stables.get(0).getAmount(), stable.getAmount());
+        assertEquals(stables.get(0).getSign(), stable.getSign());
+        assertEquals(stables.get(0).getDate(), stable.getDate());
+        assertEquals(stables.get(0).getFrequency(), stable.getFrequency());
+        assertEquals(stables.get(0).getSubCategoriesId(), stable.getSubCategoriesId());
 
-        assertEquals(stables.get(1).getName(),stable2.getName());
-        assertEquals(stables.get(1).getAmount(),stable2.getAmount());
-        assertEquals(stables.get(1).getSign(),stable2.getSign());
-        assertEquals(stables.get(1).getDate(),stable2.getDate());
-        assertEquals(stables.get(1).getFrequency(),stable2.getFrequency());
-        assertEquals(stables.get(1).getSubCategoriesId(),stable2.getSubCategoriesId());
+        assertEquals(stables.get(1).getName(), stable2.getName());
+        assertEquals(stables.get(1).getAmount(), stable2.getAmount());
+        assertEquals(stables.get(1).getSign(), stable2.getSign());
+        assertEquals(stables.get(1).getDate(), stable2.getDate());
+        assertEquals(stables.get(1).getFrequency(), stable2.getFrequency());
+        assertEquals(stables.get(1).getSubCategoriesId(), stable2.getSubCategoriesId());
     }
 
     @Test
@@ -173,7 +174,7 @@ public class StableExpensesAndIncomeDaoTest {
         long categoriesId = categoriesDao.insertCategory(category);
         SubCategories subCategory = new SubCategories("test", categoriesId);
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
-        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+',1990,2, subCategoriesId);
+        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+', 1990, 2, subCategoriesId);
         long insertedId = stableExpensesAndIncomeDao.insertStableExpenseOrIncome(stable);
         stable.setId(insertedId);
         stableExpensesAndIncomeDao.deleteStableExpenseOrIncome(stable);
@@ -187,15 +188,15 @@ public class StableExpensesAndIncomeDaoTest {
         long categoriesId = categoriesDao.insertCategory(category);
         SubCategories subCategory = new SubCategories("test", categoriesId);
         long subCategoriesId = subCategoriesDao.insertSubCategory(subCategory);
-        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+',1990,2, subCategoriesId);
+        StableExpensesAndIncome stable = new StableExpensesAndIncome("test", 20, '+', 1990, 2, subCategoriesId);
         SubCategories subCategory3 = new SubCategories("test3", categoriesId);
         long subCategoriesId3 = subCategoriesDao.insertSubCategory(subCategory3);
-        StableExpensesAndIncome stable2 = new StableExpensesAndIncome("test5", 2, '-',199,25, subCategoriesId3);
+        StableExpensesAndIncome stable2 = new StableExpensesAndIncome("test5", 2, '-', 199, 25, subCategoriesId3);
 
-        List<Long> insertedID = stableExpensesAndIncomeDao.insertStableExpensesAndIncome(stable,stable2);
+        List<Long> insertedID = stableExpensesAndIncomeDao.insertStableExpensesAndIncome(stable, stable2);
         stable.setId(insertedID.get(0));
         stable2.setId(insertedID.get(1));
-        stableExpensesAndIncomeDao.deleteStableExpensesAndIncome(stable,stable2);
+        stableExpensesAndIncomeDao.deleteStableExpensesAndIncome(stable, stable2);
 
         List<StableExpensesAndIncome> stables = stableExpensesAndIncomeDao.getStable();
         assertThat(stables.isEmpty(), is(true));

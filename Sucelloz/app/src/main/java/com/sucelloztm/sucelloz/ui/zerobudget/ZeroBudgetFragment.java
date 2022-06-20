@@ -78,7 +78,7 @@ public class ZeroBudgetFragment extends Fragment {
           Populate zeroBudgetSubCategoriesList from zeroBudgetViewModel
          */
         String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
-                "Sinking Funds", "Extra debt", "Extra Savings"};
+                "Sinking Funds", "Extra Debt", "Extra Savings"};
         for (String name : zeroBudgetNameList
         ) {
             zeroBudgetSubCategoriesList.add(zeroBudgetViewModel.getSubCategoryByName(name));
@@ -87,13 +87,13 @@ public class ZeroBudgetFragment extends Fragment {
         /*
           Create Adapter for subCategories recycler view
          */
-        SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(zeroBudgetSubCategoriesList);
+        ZeroBudgetAdapter zeroBudgetAdapter = new ZeroBudgetAdapter(zeroBudgetSubCategoriesList);
 
         /*
           Set layout manager and adapter of recycler view
          */
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        recyclerView.setAdapter(subCategoriesAdapter);
+        recyclerView.setAdapter(zeroBudgetAdapter);
 
         registerForContextMenu(recyclerView);
 
@@ -101,7 +101,7 @@ public class ZeroBudgetFragment extends Fragment {
           Navigation into sub-categories fragment on click
          */
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
-            TextView currentZeroBudgetCategoryTextView = v.findViewById(R.id.text_view_subcategories);
+            TextView currentZeroBudgetCategoryTextView = v.findViewById(R.id.zero_budget_text_view);
             String currentZeroBudgetCategoryName = currentZeroBudgetCategoryTextView.getText().toString();
             SubCategories currentSubCategory = zeroBudgetViewModel.getSubCategoryByName(currentZeroBudgetCategoryName);
             zeroBudgetViewModel.setCurrentSubCategory(currentSubCategory);

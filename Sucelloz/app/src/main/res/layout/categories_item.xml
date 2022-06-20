@@ -6,8 +6,14 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="96dp"
-    android:layout_margin="4dp"
-    android:longClickable="true">
+    android:layout_margin="16dp"
+    android:longClickable="true"
+    app:strokeWidth="4dp"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    app:strokeColor="@color/black"
+
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,8 +23,8 @@
             android:id="@+id/text_view_categories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
             android:text="@string/categories_text"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

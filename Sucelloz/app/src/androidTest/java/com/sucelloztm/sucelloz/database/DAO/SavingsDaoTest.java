@@ -1,15 +1,14 @@
 package com.sucelloztm.sucelloz.database.DAO;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.sucelloztm.sucelloz.database.SucellozDatabase;
-import com.sucelloztm.sucelloz.models.Categories;
 import com.sucelloztm.sucelloz.models.Savings;
 
 import org.junit.After;

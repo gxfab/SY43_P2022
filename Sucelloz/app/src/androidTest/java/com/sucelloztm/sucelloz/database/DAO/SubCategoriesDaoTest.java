@@ -1,7 +1,8 @@
 package com.sucelloztm.sucelloz.database.DAO;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
