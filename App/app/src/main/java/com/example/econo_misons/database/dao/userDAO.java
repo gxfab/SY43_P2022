@@ -11,6 +11,7 @@ import com.example.econo_misons.database.models.User;
 
 import java.util.List;
 
+//Data access object with all the SQL Query for the user functions
 @Dao
 public interface userDAO {
     @Insert

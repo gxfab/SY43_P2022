@@ -12,6 +12,7 @@ import com.example.econo_misons.database.models.Budget_User;
 
 import java.util.List;
 
+//Data access object with all the SQL Query for the Budget functions
 @Dao
 public interface budgetDAO {
     @Insert

@@ -1,7 +1,6 @@
 package com.example.econo_misons.database.dao;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -14,6 +13,7 @@ import com.example.econo_misons.database.models.TreemapEnv;
 
 import java.util.List;
 
+//Data access object with all the SQL Query for the transactions functions
 @Dao
 public interface transactionDAO {
     @Insert

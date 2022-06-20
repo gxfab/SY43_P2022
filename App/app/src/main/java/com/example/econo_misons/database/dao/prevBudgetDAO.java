@@ -12,6 +12,7 @@ import com.example.econo_misons.database.models.PrevisionalBudget;
 
 import java.util.List;
 
+//Data access object with all the SQL Query for the prevBudget and envelopes functions
 @Dao
 public interface prevBudgetDAO {
     @Insert
