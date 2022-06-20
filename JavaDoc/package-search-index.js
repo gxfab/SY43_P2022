@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.example.sy43"},{"l":"com.example.sy43.adapters"},{"l":"com.example.sy43.db.DAO"},{"l":"com.example.sy43.db.entity"},{"l":"com.example.sy43.db.mainDB"},{"l":"com.example.sy43.models"},{"l":"com.example.sy43.repositories"},{"l":"com.example.sy43.viewmodels"}]

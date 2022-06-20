@@ -1,0 +1,8 @@
+com.example.sy43
+com.example.sy43.adapters
+com.example.sy43.db.DAO
+com.example.sy43.db.entity
+com.example.sy43.db.mainDB
+com.example.sy43.models
+com.example.sy43.repositories
+com.example.sy43.viewmodels
