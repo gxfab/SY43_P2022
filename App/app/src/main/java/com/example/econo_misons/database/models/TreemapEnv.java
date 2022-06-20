@@ -1,5 +1,6 @@
 package com.example.econo_misons.database.models;
 
+//TreemapEnv class that is used to query the data used for the treemap
 public class TreemapEnv {
     public int budgetID;
     public String dateEnv;

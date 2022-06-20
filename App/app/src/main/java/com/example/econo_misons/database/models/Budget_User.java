@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
+//Model of the Budget_User Table
 @Entity(tableName = "Budget_User", primaryKeys = {"BUD_ID", "USER_ID"}, foreignKeys = {@ForeignKey(entity = Budget.class,
         parentColumns = "ID",
         childColumns = "BUD_ID",

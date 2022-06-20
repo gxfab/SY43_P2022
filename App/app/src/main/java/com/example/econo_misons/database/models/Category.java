@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+//Model of the Category Table
 @Entity(tableName = "Category")
 public class Category {
     @PrimaryKey(autoGenerate = true)

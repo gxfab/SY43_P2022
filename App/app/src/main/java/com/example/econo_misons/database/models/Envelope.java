@@ -5,8 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
+//Model of the Envelope Table
 @Entity(tableName = "Envelope", primaryKeys ={"PREV_DATE", "BUD_ID", "CAT_ID"}, foreignKeys = {
         @ForeignKey(entity = Category.class,
                 parentColumns = "ID",

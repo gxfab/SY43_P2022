@@ -4,10 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
 
-import com.example.econo_misons.database.repositories.PrevBudgetDataRepository;
-
+//Model of the PrevisionalBudget Table
 @Entity(tableName = "PrevisionalBudget", primaryKeys = {"BUD_ID", "YEAR_MONTH"}, foreignKeys = {
         @ForeignKey(entity = Budget.class,
                 parentColumns = "ID",
