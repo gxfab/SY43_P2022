@@ -7,3 +7,7 @@ Cook'UT
 - Ajout des boutons avec leurs utilités, ajout d'un bouton Home pour l'acitivité "saisie", ajout d'une barre de saisie (Christian et Sulyvan)
 - Ajout du logo de l'application, réarrangement de l'interface et mise en place d'une liste déroulante (Sulyvan)
 - Mise en place de la base de donnée (Christian)
+- Création des formulaires (Sulyvan)
+- Stockage des semestres et factures (Guillaume)
+- Fragments pour naviguer entre les formulaires (Christian)
+- Réarrangement visuel des formulaires et de l'interface (Sulyvan)
