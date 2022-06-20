@@ -19,13 +19,14 @@ public class BudgetViewHolder extends RecyclerView.ViewHolder implements View.On
         this.binding = binding;
     }
 
+    // function called for every initialized item in the recycler view
     public void initializeItem(Budget budget, BudgetAdapter.Listener callback){
         binding.budgetName.setText(budget.budgetName);
         binding.removeBudget.setOnClickListener(this);
         this.callbackWeakRef = new WeakReference<BudgetAdapter.Listener>(callback);
     }
 
-
+    // Function that verifies the clicks and tells for which item the click is
     @Override
     public void onClick(View view) {
         // 5 - When a click happens, we fire our listener.

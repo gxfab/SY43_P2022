@@ -46,6 +46,8 @@ public class allTransactions extends AppCompatActivity implements TransactionAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_transactions);
 
+        // initializing the date, bottom menu bar and the widgets
+
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
 
         budgetName = findViewById(R.id.budget_name);
@@ -69,19 +71,23 @@ public class allTransactions extends AppCompatActivity implements TransactionAda
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    // Function that puts the observers on the database
     private void getData(){
         this.dbViewModel.getAllCategories().observe(this, this::categoriesObserver);
         this.dbViewModel.getBudgetTransactions(CurrentData.getBudget().id).observe(this,this::transactionObserver);
     }
 
+    // Function called when the categories are modified in the database
     private void categoriesObserver(List<Category> categories){
         adapter.getCategories(categories);
     }
 
+    // Function called when the transactions are modified in the database
     private void transactionObserver(List<Transaction> transactionList){
         adapter.getAllTransactions(transactionList);
     }
 
+    // Function that creates and initializes the bottom menu bar
     private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable
@@ -110,11 +116,13 @@ public class allTransactions extends AppCompatActivity implements TransactionAda
         });
     }
 
+    // Function called when modify is clicked on an item
     @Override
     public void onClickModifyButton(int position) {
         this.onButtonShowPopupWindowClick(findViewById(R.id.content).getRootView(), adapter.transactions.get(position));
     }
 
+    // Function called when delete is clicked on an item
     @Override
     public void onClickDeleteButton(int position) {
         Transaction trans = adapter.getTransaction(position);
@@ -176,6 +184,7 @@ public class allTransactions extends AppCompatActivity implements TransactionAda
         });
         spinner.setSelection(categories.indexOf(trans.categoryID));
 
+        // setting the date picker
         int lastSelectedYear = Integer.parseInt(trans.date.substring(6,10));
         int lastSelectedMonth = Integer.parseInt(trans.date.substring(3,5))-1;
         int lastSelectedDayOfMonth = Integer.parseInt(trans.date.substring(0,2));
@@ -190,6 +199,7 @@ public class allTransactions extends AppCompatActivity implements TransactionAda
         ajoutCat.setOnClickListener(v -> changeActivity());
     }
 
+    // Function that changes the activity
     private void changeActivity() {
         Intent intent = new Intent(this, AjoutCategorie.class);
         startActivity(intent);
@@ -215,6 +225,7 @@ public class allTransactions extends AppCompatActivity implements TransactionAda
         datePickerDialog.show();
     }
 
+    // Setting the date in an edit text
     private void setDate(int year, int monthOfYear, int dayOfMonth, EditText dateText){
         String day,month;
         if (dayOfMonth < 10){
@@ -230,6 +241,7 @@ public class allTransactions extends AppCompatActivity implements TransactionAda
         dateText.setText(day + "-" + month + "-" + year);
     }
 
+    // Function that updates a transaction in the database
     private void modifyTransaction(PopupWindow popupWindow, EditText dateText, EditText title, EditText cout, CheckBox check, int id, int cat){
         if(!dateText.getText().toString().isEmpty() && !title.getText().toString().isEmpty() && !cout.getText().toString().isEmpty()) {
             String dateMonthYear = dateText.getText().toString().substring(6, 10) + "-" + dateText.getText().toString().substring(3, 5);

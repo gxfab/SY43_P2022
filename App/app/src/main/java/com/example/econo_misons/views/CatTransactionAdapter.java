@@ -21,6 +21,7 @@ public class CatTransactionAdapter extends RecyclerView.Adapter<CatTransactionVi
         this.categoryList = new ArrayList<>();
     }
 
+    // Sets the context for the created view holder
     @NonNull
     @Override
     public CatTransactionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,10 +41,12 @@ public class CatTransactionAdapter extends RecyclerView.Adapter<CatTransactionVi
         return categoryList.size();
     }
 
+    // returns the number of items in the recycler view
     public Category getCat(int position){
         return categoryList.get(position);
     }
 
+    // updates the categories in the local list
     public void updateList(List<Category> categories){
         this.categoryList = categories;
         this.notifyDataSetChanged();

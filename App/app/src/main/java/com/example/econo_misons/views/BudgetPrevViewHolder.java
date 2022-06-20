@@ -1,6 +1,5 @@
 package com.example.econo_misons.views;
 
-import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +21,7 @@ public class BudgetPrevViewHolder extends RecyclerView.ViewHolder implements Vie
         this.binding = binding;
     }
 
+    // function called for every initialized item in the recycler view
     public void initializeItem(List<Category> categoryList, Envelope envelope, BudgetPrevAdapter.Listener callback){
         binding.envelopeName.setText(categoryList.get(this.getIndexCategory(categoryList,envelope)).categoryName);
         binding.valueEnvelope.setText(String.valueOf(envelope.sumEnv));
@@ -29,6 +29,7 @@ public class BudgetPrevViewHolder extends RecyclerView.ViewHolder implements Vie
         this.callbackWeakRef = new WeakReference<BudgetPrevAdapter.Listener>(callback);
     }
 
+    // Function that returns the index of an envelope in a list
     public int getIndexCategory(List<Category> categoryList, Envelope envelope){
         int index = 0;
         for (Category cat : categoryList) {
@@ -40,6 +41,7 @@ public class BudgetPrevViewHolder extends RecyclerView.ViewHolder implements Vie
         return index;
     }
 
+    // Function that verifies the clicks and tells for which item the click is
     @Override
     public void onClick(View view) {
         BudgetPrevAdapter.Listener callback = callbackWeakRef.get();

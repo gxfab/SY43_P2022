@@ -1,12 +1,9 @@
 package com.example.econo_misons.views;
 
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.econo_misons.R;
@@ -25,6 +22,7 @@ public class TransactionViewHolder extends RecyclerView.ViewHolder implements Vi
         this.binding = binding;
     }
 
+    // function called for every initialized item in the recycler view
     public void initializeItem(Transaction transaction, TransactionAdapter.Listener callback){
         binding.transName.setText(transaction.transactionName);
         binding.transDate.setText(transaction.date);
@@ -43,6 +41,7 @@ public class TransactionViewHolder extends RecyclerView.ViewHolder implements Vi
         this.callbackWeakRef = new WeakReference<TransactionAdapter.Listener>(callback);
     }
 
+    // Function that verifies the clicks and tells for which item the click is
     @Override
     public void onClick(View view) {
         TransactionAdapter.Listener callback = callbackWeakRef.get();

@@ -48,6 +48,7 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categorie);
 
+        // initializing the bottom menu bar, the widgets and the date
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
 
         budgetName = findViewById(R.id.budget_name);
@@ -62,6 +63,7 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
         this.makeBottomBar();
     }
 
+    // Function that reads the send key to extract the category to view
     private void getCategory(){
         Bundle b = getIntent().getExtras();
         int value = -1; // or other values
@@ -71,6 +73,7 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
         this.dbViewModel.getCategoryByID(value).observe(this,this::categoryObserver);
     }
 
+    // Function called when the categories in the database are changed
     public void categoryObserver(List<Category> categoryList){
         adapter.category = categoryList.get(0);
         catName.setText(adapter.category.categoryName);
@@ -87,19 +90,23 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    // Function that puts observers on the data
     private void getData(){
         this.dbViewModel.getAllCategories().observe(this, this::categoriesObserver);
         this.dbViewModel.getBudgetTransactions(CurrentData.getBudget().id).observe(this,this::transactionObserver);
     }
 
+    // Function called when the categories are modified in the database
     private void categoriesObserver(List<Category> categories){
         adapter.getCategories(categories);
     }
 
+    // Function called when the transactions are modified in the database
     private void transactionObserver(List<Transaction> transactionList){
         adapter.getSomeTransactions(transactionList);
     }
 
+    // Function that creates and initializes the menu bottom bar
     private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable
@@ -128,11 +135,13 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
         });
     }
 
+    // function called when the modify button is clicked on an item
     @Override
     public void onClickModifyButton(int position) {
         this.onButtonShowPopupWindowClick(findViewById(R.id.content).getRootView(), adapter.transactions.get(position));
     }
 
+    // function called when the delete button is clicked on an item
     @Override
     public void onClickDeleteButton(int position) {
         Transaction trans = adapter.getTransaction(position);
@@ -194,6 +203,7 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
         });
         spinner.setSelection(categories.indexOf(trans.categoryID));
 
+        // setting the date picker
         int lastSelectedYear = Integer.parseInt(trans.date.substring(6,10));
         int lastSelectedMonth = Integer.parseInt(trans.date.substring(3,5))-1;
         int lastSelectedDayOfMonth = Integer.parseInt(trans.date.substring(0,2));
@@ -208,6 +218,7 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
         ajoutCat.setOnClickListener(v -> changeActivity());
     }
 
+    // function that changes the current activity to the AjoutCategory activity
     private void changeActivity() {
         Intent intent = new Intent(this, AjoutCategorie.class);
         startActivity(intent);
@@ -233,6 +244,7 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
         datePickerDialog.show();
     }
 
+    // Setting the date in an edit text
     private void setDate(int year, int monthOfYear, int dayOfMonth, EditText dateText){
         String day,month;
         if (dayOfMonth < 10){
@@ -248,6 +260,7 @@ public class Categorie extends AppCompatActivity implements TransactionAdapter.L
         dateText.setText(day + "-" + month + "-" + year);
     }
 
+    // Function that updates a transaction in the database
     private void modifyTransaction(PopupWindow popupWindow, EditText dateText, EditText title, EditText cout, CheckBox check, int id, int cat){
         if(!dateText.getText().toString().isEmpty() && !title.getText().toString().isEmpty() && !cout.getText().toString().isEmpty()) {
             String dateMonthYear = dateText.getText().toString().substring(6, 10) + "-" + dateText.getText().toString().substring(3, 5);

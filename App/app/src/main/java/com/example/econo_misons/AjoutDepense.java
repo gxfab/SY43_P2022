@@ -49,6 +49,8 @@ public class AjoutDepense extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_depense);
 
+        // setting up the widget, bottom bar menu and data
+
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
         this.adapter = new DepenseAdapter();
         this.getCategories();
@@ -65,6 +67,7 @@ public class AjoutDepense extends AppCompatActivity {
 
         ajoutCat.setOnClickListener(v -> changeActivity());
 
+        // stting up the date picker
         final Calendar c = Calendar.getInstance();
         this.lastSelectedYear = c.get(Calendar.YEAR);
         this.lastSelectedMonth = c.get(Calendar.MONTH);
@@ -80,6 +83,7 @@ public class AjoutDepense extends AppCompatActivity {
         this.makeBottomBar();
     }
 
+    // Function that adds the transaction to the DB
     private void addToBase(){
         if(!dateText.getText().toString().isEmpty() && !title.getText().toString().isEmpty() && !cout.getText().toString().isEmpty()) {
             String dateMonthYear = dateText.getText().toString().substring(6, 10) + "-" + dateText.getText().toString().substring(3, 5);
@@ -93,6 +97,7 @@ public class AjoutDepense extends AppCompatActivity {
         }
     }
 
+    // Function that sets up the category spinner
     private void setupSpinner(){
         //Setup spinner
         ArrayList<String> categories = new ArrayList<>();
@@ -116,15 +121,18 @@ public class AjoutDepense extends AppCompatActivity {
         });
     }
 
+    // Function that puts an observer to the category table
     private void getCategories(){
         this.dbViewModel.getAllCategories().observe(this, this::catObserver);
     }
 
+    // function called when the category table is modified
     private void catObserver(List<Category> categoryList){
         this.adapter.updateCategories(categoryList);
         setupSpinner();
     }
 
+    // Functions that makes and initializes the bottom menu
     private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable
@@ -153,11 +161,13 @@ public class AjoutDepense extends AppCompatActivity {
         });
     }
 
+    // Function to change activity
     private void changeActivity(){
         Intent intent = new Intent(this, AjoutCategorie.class);
         startActivity(intent);
     }
 
+    // date management
     private void selectDate(){
 
         // Date Select Listener.
@@ -178,6 +188,7 @@ public class AjoutDepense extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    // Setting the date in the edit text
     private void setDate(int year, int monthOfYear, int dayOfMonth){
         String day,month;
         if (dayOfMonth < 10){

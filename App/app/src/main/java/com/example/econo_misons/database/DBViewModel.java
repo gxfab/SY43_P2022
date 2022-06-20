@@ -118,7 +118,7 @@ public class DBViewModel extends ViewModel {
     //PREVISIONAL BUDGET
 
     //Add a new previsional Budget
-    public void addPrevBudget(PrevisionalBudget prevBud) {executor.execute(() -> prevBudgetDataSource.addPrevBudget(prevBud));}
+    public void addPrevBudget(PrevisionalBudget prevBud) {executor.execute(() -> prevBudgetDataSource.addPrevinBudget(prevBud));}
 
     //Delete a previsional budget
     public void deletePrevBudget(PrevisionalBudget prevBud) {executor.execute(() -> prevBudgetDataSource.deletePrevBudget(prevBud));}

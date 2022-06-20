@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // setting up the interface, the data and the bottom menu bar
         catVoir = findViewById(R.id.voir_cat);
         budgetName = findViewById(R.id.budget_name);
         transVoir = findViewById(R.id.voir_trans);
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         this.makeBottomBar();
     }
 
+    // getting the list of the previsional budget
     private void seeList(List<PrevisionalBudget> list){
         String st = new String();
 
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         budgetName.setText("Budget : "+CurrentData.getBudget().budgetName);
     }
 
+    // Function that creates and initializes the bottom bar menu
     private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable
@@ -123,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Function that configures the view model
     private void configureViewModel(){
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
     }
@@ -135,22 +139,25 @@ public class MainActivity extends AppCompatActivity {
         this.dbViewModel.newUser(new User(username));
     }
 
+    // function that shows the user list on a toast
     private void showUserList(User list){
         Log.d("MA","toast");
         Toast toast = Toast.makeText(getApplicationContext(), list.toString(), Toast.LENGTH_LONG);
         toast.show();
     }
 
+    // function that changes the current activity to the activity cl
     private void changeActivity(Class cl){
         Intent intent = new Intent(this, cl);
         startActivity(intent);
     }
 
+    // Function that updates the treemap
     private void updateTreeMap(List<TreemapEnv> envList){
         dbViewModel.getTreemap(envList).observe(this,this::drawTreemap);
 
     }
-
+    // Function that draws the treemap
     private void drawTreemap(TreeMap treeMap){
 
         anyChartView.setChart(treeMap);

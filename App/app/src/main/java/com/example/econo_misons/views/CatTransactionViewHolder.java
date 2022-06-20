@@ -20,6 +20,7 @@ public class CatTransactionViewHolder extends RecyclerView.ViewHolder{
         this.binding = binding;
     }
 
+    // itiliazing the items
     public void initializeItem(Category cat){
         binding.text.setText(cat.categoryName);
     }

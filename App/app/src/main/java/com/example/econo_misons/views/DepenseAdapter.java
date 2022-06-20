@@ -13,6 +13,7 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseViewHolder> {
 
     public List<Category> categories;
 
+    // update the categories in the local list
     public void updateCategories(List<Category> categoryList){
         categories = categoryList;
         this.notifyDataSetChanged();

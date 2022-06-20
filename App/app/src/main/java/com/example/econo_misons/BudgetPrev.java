@@ -48,9 +48,10 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_prev);
 
+        // initializing the view model
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
 
-
+        // finding and initializing all the widgets
         valider = findViewById(R.id.valider);
         ajoutCat = findViewById(R.id.ajout_cat);
         name = findViewById(R.id.budget_name);
@@ -60,8 +61,10 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         valider.setOnClickListener(v -> finish());
         ajoutCat.setOnClickListener(this::onButtonShowPopupWindowClick);
 
+        // getting all the date needed
         this.getCurrentPrevBudgets();
 
+        // making the bottom bar and preparing the recycle view
         this.configureRecyclerView();
         this.makeBottomBar();
     }
@@ -83,7 +86,7 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         // which view you pass in doesn't matter, it is only used for the window token
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        // make buttons work
+        // Assigning widgets
         Button valider = popupView.findViewById(R.id.valider);
         Button annuler = popupView.findViewById(R.id.annuler);
         Button ajoutCat = popupView.findViewById(R.id.ajout_cat);
@@ -112,6 +115,7 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
             }
         });
 
+        // Setting the button listeners
         valider.setOnClickListener(v -> addCategory(popupWindow, montant.getText().toString(), cat[0]));
 
         annuler.setOnClickListener(v -> popupWindow.dismiss());
@@ -136,7 +140,7 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         // which view you pass in doesn't matter, it is only used for the window token
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        // make buttons work
+        // assigning widgets
         Button valider = popupView.findViewById(R.id.valider);
         Button annuler = popupView.findViewById(R.id.annuler);
         TextView categorie = popupView.findViewById(R.id.categorie);
@@ -145,16 +149,19 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         categorie.setText(adapter.categoryList.get(adapter.getIndexCategory(adapter.categoryList,envelope)).categoryName);
         montant.setText(Float.toString(envelope.sumEnv));
 
+        // setting the buttons listeners
         valider.setOnClickListener(v -> modifyEnvelope(popupWindow, montant.getText().toString(), envelope));
 
         annuler.setOnClickListener(v -> popupWindow.dismiss());
     }
 
+    // Function that changes the activity to the ajout categorie
     private void changeActivity() {
         Intent intent = new Intent(this, AjoutCategorie.class);
         startActivity(intent);
     }
 
+    // Function to create and initialize the bottom bar
     private void makeBottomBar() {
         //  Bottom Bar controller
         // Initialize and assign variable
@@ -180,8 +187,7 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         });
     }
 
-    // making buttons work
-
+    // Function that creates calls the create modifying popup window for the corresponding envelope
     @Override
     public void onClickModifyButton(int position) {
         Log.e("BP","Clicked on "+position);
@@ -198,11 +204,13 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    // Setting the necessary observers
     private void getCurrentPrevBudgets() {
         this.dbViewModel.getPrevBudgetEnvelopes(CurrentData.getPrevBudget()).observe(this, this::updateList);
         this.dbViewModel.getAllCategories().observe(this, this::updateCategoryList);
     }
 
+    // Functions that update the envelope and category lists
     private void updateList(List<Envelope> envelopes) {
         this.adapter.updateData(envelopes);
     }
@@ -211,7 +219,10 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         this.adapter.updateCategories(categories);
     }
 
+    // Function that adds the category to the data base
     private void addCategory(PopupWindow popupWindow, @NonNull String value, Category cat) {
+
+        // Verifying that the data is not already in the budget prev
         boolean exists = false;
         for (Envelope envelope : adapter.envelopes) {
             if (cat.id == envelope.categoryID) {
@@ -220,6 +231,7 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
             }
         }
 
+        // adding the category if all the informations were given and it doesn't already exists
         Log.e("BP", Boolean.toString(value.isEmpty() && exists));
         if (!value.isEmpty() && !exists) {
             dbViewModel.addEnvelope(new Envelope(CurrentData.getPrevBudget(), cat.id, Float.parseFloat(value)));
@@ -231,6 +243,7 @@ public class BudgetPrev extends AppCompatActivity implements BudgetPrevAdapter.L
         }
     }
 
+    // Function that updates the envelope with the new informations
     private void modifyEnvelope(PopupWindow popupWindow, @NonNull String value, Envelope envelope) {
         dbViewModel.updateEnvelope(new Envelope(envelope.budgetID, envelope.dateEnv, envelope.categoryID, Float.parseFloat(value)));
         popupWindow.dismiss();

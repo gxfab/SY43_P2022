@@ -43,6 +43,7 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changer_budget);
 
+        // initializing the interface, the viewmodel and the bottom bar
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
 
         createBudget = findViewById(R.id.button);
@@ -84,6 +85,7 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         annuler.setOnClickListener(v -> popupWindow.dismiss());
     }
 
+    // Function that adds the budget to the database and closes the popup window
     private void addBudgetToBase(EditText nameBudget, PopupWindow popupWindow){
         String name = nameBudget.getText().toString();
         if (!name.isEmpty()) {
@@ -94,6 +96,7 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         }
     }
 
+    // Function that makes and initializes the bottom bar
     private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable
@@ -130,10 +133,12 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    // Function that puts an observer to the budget list
     private void getCurrentBudgets(){
         this.dbViewModel.getAllBudgets().observe(this, this::updateList);
     }
 
+    // Function that calls the update list when a modification in the budget list is made
     private void updateList(List<Budget> budgets){
         this.adapter.updateData(budgets);
     }
@@ -150,24 +155,29 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
                 });
     }
 
+    // Function that sets the current budget
     private void setBudget(Budget budget){
         CurrentData.setBudget(budget);
         showCurrentBudget(CurrentData.getBudget());
     }
 
+    // Function that calls the update list when a modification in the budget prev list is made
     private void getAllBudgetPrev(List<PrevisionalBudget> previsionalBudgetList){
         this.adapter.updatePrevBudgets(previsionalBudgetList);
     }
 
+    // Function that puts an observer to the budget prev list
     private void searchBudgetPrev(){
         this.dbViewModel.getAllPrevBudgets().observe(this, this::getAllBudgetPrev);
     }
 
+    // Function that shows the current budget in a toast
     private void showCurrentBudget(Budget budget){
         Toast toast = Toast.makeText(this, budget.toString(), Toast.LENGTH_SHORT);
         toast.show();
     }
 
+    // Function called when clicked on the delete button of an item
     @Override
     public void onClickDeleteButton(int position) {
         Budget budget = adapter.getBudget(position);
@@ -179,7 +189,10 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         }
     }
 
+    // Function that updates the current previsional budget depending on the budget
     public void updatePrevBudget(Budget budget){
+
+        // getting all the previsional budgets which correspond to our current budget
         int index = 0;
         List<PrevisionalBudget> toRemove = new ArrayList<>() ;
         for (PrevisionalBudget budgets : adapter.previsionalBudgets) {
@@ -190,6 +203,7 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
         }
         adapter.previsionalBudgets.removeAll(toRemove);
 
+        // searching the last previsionnal budget
         index = 0;
         int max = -1;
         int greatestYear = 0;
@@ -210,6 +224,7 @@ public class ChangerBudget extends AppCompatActivity implements BudgetAdapter.Li
             index++;
         }
 
+        // making a new previsionnal budget if none was found else taking the most recent one
         if (max == -1){
             String date = LocalDate.now().toString();
             PrevisionalBudget prev = new PrevisionalBudget(CurrentData.getBudget().id, date.substring(0,7));

@@ -27,6 +27,7 @@ public class AjoutCategorie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_categorie);
 
+        // setting up the widget, bottom bar menu and data
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
 
         valider = findViewById(R.id.valider);
@@ -42,6 +43,7 @@ public class AjoutCategorie extends AppCompatActivity {
         this.makeBottomBar();
     }
 
+    // Function that adds a category to the DB
     private void addCategory(){
         if (!(name.getText().toString().isEmpty() && color.getText().toString().isEmpty())) {
             dbViewModel.addCategory(new Category(name.getText().toString(),color.getText().toString()));
@@ -50,6 +52,7 @@ public class AjoutCategorie extends AppCompatActivity {
         }
     }
 
+    // Functions that makes and initializes the bottom menu
     private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable

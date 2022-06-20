@@ -16,6 +16,7 @@ import java.util.List;
 
 public class BudgetPrevAdapter extends RecyclerView.Adapter<BudgetPrevViewHolder> {
 
+    // Creating a custom listener
     public interface Listener {
         void onClickModifyButton(int position);
     }
@@ -24,13 +25,15 @@ public class BudgetPrevAdapter extends RecyclerView.Adapter<BudgetPrevViewHolder
     public List<Envelope> envelopes;
     public List<Category> categoryList;
 
-
+    // initialize the adapter
     public BudgetPrevAdapter(Listener callback){
         this.envelopes = new ArrayList<>();
         this.categoryList = new ArrayList<>();
         this.callback = callback;
     }
 
+    // Sets the context for the created view holder
+    @NonNull
     @Override
     public BudgetPrevViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -44,21 +47,25 @@ public class BudgetPrevAdapter extends RecyclerView.Adapter<BudgetPrevViewHolder
         holder.initializeItem(this.categoryList, this.envelopes.get(position),this.callback);
     }
 
+    // returns the number of items in the recycler view
     @Override
     public int getItemCount() {
         return this.envelopes.size();
     }
 
+    // update the categories in the local list
     public void updateCategories(List<Category> categories){
         this.categoryList = categories;
         this.notifyDataSetChanged();
     }
 
+    // update the envelopes in the local list
     public void updateData(List<Envelope> envelopes){
         this.envelopes = envelopes;
         this.notifyDataSetChanged();
     }
 
+    // function that gets the index of the category of an envelope in a list of categories
     public int getIndexCategory(List<Category> categoryList, Envelope envelope){
         int index = 0;
         for (Category cat : categoryList) {

@@ -18,6 +18,7 @@ import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionViewHolder>{
 
+    // Custom listener
     public interface Listener {
         void onClickModifyButton(int position);
         void onClickDeleteButton(int position);
@@ -28,7 +29,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionViewHold
     public List<Category> categories;
     public Category category;
 
-
+    // initializing adapter
     public TransactionAdapter(TransactionAdapter.Listener callback){
         this.transactions = new ArrayList<>();
         this.categories = new ArrayList<>();
@@ -49,15 +50,18 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionViewHold
         holder.initializeItem(this.transactions.get(position),this.callback);
     }
 
+    // return the number of items int the recyclerview
     @Override
     public int getItemCount() {
         return this.transactions.size();
     }
 
+    // gets all transaction
     public void getAllTransactions(List<Transaction> transactionList) {
         this.transactions = transactionList;
     }
 
+    // get the list of transaction for the current category
     public void getSomeTransactions(List<Transaction> transactionList) {
         this.transactions = transactionList;
 
@@ -75,11 +79,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionViewHold
         this.notifyDataSetChanged();
     }
 
+    // update the categories in the local list
     public void getCategories(List<Category> categories) {
         this.categories = categories;
         this.notifyDataSetChanged();
     }
 
+    // returns the transaction in position "position"
     public Transaction getTransaction(int position) {
         return this.transactions.get(position);
     }

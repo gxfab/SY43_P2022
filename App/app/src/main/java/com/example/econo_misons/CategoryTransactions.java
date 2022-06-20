@@ -33,8 +33,10 @@ public class CategoryTransactions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_transactions);
 
+        // initializing the view model
         this.dbViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(DBViewModel.class);
 
+        // initializing the widgets and getting the date
         nameBudget = findViewById(R.id.budget_name);
         recyclerView = findViewById(R.id.trans_list);
 
@@ -44,17 +46,21 @@ public class CategoryTransactions extends AppCompatActivity {
 
         nameBudget.setText("Budget : "+ CurrentData.getBudget().budgetName);
 
+        // Making the bottom bar
         this.makeBottomBar();
     }
 
+    // Function that puts an observer for the categories
     public void getData(){
         this.dbViewModel.getAllCategories().observe(this,this::catObserver);
     }
 
+    // Function that calls the update function when it observes a modification of the categories
     public void catObserver(List<Category> categories){
         adapter.updateList(categories);
     }
 
+    // Functions that changes the activity to the list of transactions of a category and giving the category
     public void transCategory(int category){
         Intent intent = new Intent(this, Categorie.class);
         Bundle b = new Bundle();
@@ -63,7 +69,7 @@ public class CategoryTransactions extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // making buttons work
+    // Function that links a change on activity when clicking on an item
     private void configureOnClickRecyclerView(){
         ItemClickSupport.addTo(recyclerView, R.layout.item_category)
                 .setOnItemClickListener((recyclerView, position, v) -> {
@@ -72,6 +78,7 @@ public class CategoryTransactions extends AppCompatActivity {
                 });
     }
 
+    // Function that creates and initializes the bottom bar
     private void makeBottomBar(){
         //  Bottom Bar controller
         // Initialize and assign variable
