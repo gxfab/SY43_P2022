@@ -16,7 +16,6 @@ import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     ListView listViewRecapProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

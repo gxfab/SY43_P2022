@@ -119,6 +119,5 @@ public class AddDetailActivity extends AppCompatActivity {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(AddDetailActivity.this);
 
         boolean success = dataBaseHelper.addOne(transactionModel);
-        //Toast.makeText(this,"Success = " + success,Toast.LENGTH_LONG).show();
     }
 }

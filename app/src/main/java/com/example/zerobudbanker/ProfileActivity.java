@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,6 +25,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Toast.makeText(this,"Hold an item to delete it",Toast.LENGTH_LONG).show();
 
         textViewListProfile = findViewById(R.id.textViewListProfile);
         Intent i2 = getIntent();
@@ -35,16 +37,28 @@ public class ProfileActivity extends AppCompatActivity {
             listViewTransaction = findViewById(R.id.listViewTransaction);
         DataBaseHelper dataBaseHelper = new DataBaseHelper(ProfileActivity.this);
         List<TransactionModel> everyone = dataBaseHelper.getEveryone();
-        //Toast.makeText(ProfileActivity.this, everyone.toString(), Toast.LENGTH_LONG).show();
         ArrayAdapter transactionArrayAdapter = new ArrayAdapter<TransactionModel>(ProfileActivity.this, android.R.layout.simple_list_item_1, everyone);
         listViewTransaction.setAdapter(transactionArrayAdapter);
+
+        listViewTransaction.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TransactionModel clickedTransaction = (TransactionModel) adapterView.getItemAtPosition(i);
+                dataBaseHelper.deleteOne(clickedTransaction);
+                List<TransactionModel> everyone = dataBaseHelper.getEveryone();
+                ArrayAdapter transactionArrayAdapter = new ArrayAdapter<TransactionModel>(ProfileActivity.this, android.R.layout.simple_list_item_1, everyone);
+                listViewTransaction.setAdapter(transactionArrayAdapter);
+
+                return false;
+            }
+        });
+
 
         Intent i = getIntent();
         String choice = i.getStringExtra("CHOICE");
         if (choice != null) {
             ((Button)findViewById(R.id.buttonCategoryProfile)).setText(choice);
             List<TransactionModel> filtered = dataBaseHelper.getByCategory(choice);
-            //Toast.makeText(ProfileActivity.this, filtered.toString(), Toast.LENGTH_LONG).show();
             transactionArrayAdapter.clear();
             transactionArrayAdapter.addAll(filtered);
         } else {
@@ -58,7 +72,6 @@ public class ProfileActivity extends AppCompatActivity {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(ProfileActivity.this);
         List<TransactionModel> everyone = dataBaseHelper.getEveryone();
 
-        //Toast.makeText(ProfileActivity.this, everyone.toString(), Toast.LENGTH_LONG).show();
         ArrayAdapter transactionArrayAdapter = new ArrayAdapter<TransactionModel>(ProfileActivity.this, android.R.layout.simple_list_item_1, everyone);
         listViewTransaction.setAdapter(transactionArrayAdapter);
     }
