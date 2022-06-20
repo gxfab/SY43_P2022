@@ -1,0 +1,8 @@
+[0.0] - 18/03/2022
+-creation of the repository for the Fluz app
+
+[0.1] - 15/02/2022
+- all database models are implemented
+
+[0.2] - 20/06/2022
+- last stable build of the app and added documentation
