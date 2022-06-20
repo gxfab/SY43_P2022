@@ -61,15 +61,20 @@ class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.Vie
         holder.monthModel.text = currentMonth
 
         if(position == monthCount){
+            //If this the last month
+            //We only display the button to plan the month
             holder.incomeContainer.visibility = View.INVISIBLE
             holder.expenseContainer.visibility = View.INVISIBLE
             holder.wishContainer.visibility = View.INVISIBLE
             holder.envelopeContainer.visibility = View.INVISIBLE
             holder.resultContainer.visibility = View.INVISIBLE
 
+            //And we add the listener to the button
             holder.planButton.setOnClickListener {
                 monthCount++
                 var strName : String? =null
+                //Starting the activity to plan the month
+                //And we pass with extra message the name and the associate int to the activity
                 context.startActivity(Intent(context,AddBudgetActivity::class.java).apply {
                     putExtra(MONTH_NAME,monthList[position])
                     putExtra(MONTH_VALUE,position+1)
@@ -77,6 +82,9 @@ class MonthAdapter(var context: Context) : RecyclerView.Adapter<MonthAdapter.Vie
             }
         }
         else{
+            //In the other case
+            //We remove the button
+            //And we adapt the money flow (dont display date and tag because we just sum up the month
             holder.planButton.visibility = View.INVISIBLE
             for (i in 0 until holder.containers.size) {
                 holder.containers[i].findViewById<TextView>(R.id.name_flow).text = containerTitle[i]
