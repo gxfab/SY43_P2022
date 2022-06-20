@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,17 +40,54 @@ public class ZeroBudgetFragment extends Fragment {
     private TextView zeroBudgetTextView;
     private ZeroBudget zeroBudget;
 
+    /**
+     * Creates and returns the view hierarchy associated with the fragment
+     * @param inflater LayoutInflater instantiates a layout XML file into its corresponding View objects
+     * @param container ViewGroup parent container of fragment
+     * @param savedInstanceState Bundle
+     * @return root outermost View in the associated layout file
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        /*
+          Instantiate ZeroBudgetViewModel and assign it to a local variable
+         */
         zeroBudgetViewModel =
                 new ViewModelProvider(this).get(ZeroBudgetViewModel.class);
+
+        /*
+          Get binding from zeroBudgetFragmentViewBinding
+         */
         binding = ZeroBudgetFragmentBinding.inflate(inflater, container, false);
+
+        /*
+          Get outermost view in the associated layout file
+         */
         View root = binding.getRoot();
-        zeroBudgetTextView = binding.zeroBudgetTextView;
+
+        /*
+          Instantiating ZeroBudget
+         */
         zeroBudget = new ZeroBudget();
+
+        /*
+          Get recyclerView from binding
+         */
         RecyclerView recyclerView = binding.zeroBudgetRecyclerView;
+
+        /*
+          Create a new ArrayList of subCategories
+         */
         zeroBudgetSubCategoriesList = new ArrayList<>();
+
+        /*
+          Get fragment's TextView from binding
+         */
         zeroBudgetTextView = binding.zeroBudgetTextView;
+
+        /*
+          Populate zeroBudgetSubCategoriesList from zeroBudgetViewModel
+         */
         String[] zeroBudgetNameList = new String[]{"Incomes", "Bills", "Envelopes",
                 "Sinking Funds", "Extra debt", "Extra Savings"};
         for (String name:zeroBudgetNameList
@@ -59,12 +95,22 @@ public class ZeroBudgetFragment extends Fragment {
             zeroBudgetSubCategoriesList.add(zeroBudgetViewModel.getSubCategoryByName(name));
         }
 
-
+        /*
+          Create Adapter for subCategories recycler view
+         */
         SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(zeroBudgetSubCategoriesList);
 
+        /*
+          Set layout manager and adapter of recycler view
+         */
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
         recyclerView.setAdapter(subCategoriesAdapter);
+
         registerForContextMenu(recyclerView);
+
+        /*
+          Navigation into sub categories on click
+         */
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener((recyclerView1, position, v) -> {
             TextView currentZeroBudgetCategoryTextView= v.findViewById(R.id.text_view_subcategories);
             String currentZeroBudgetCategoryName = currentZeroBudgetCategoryTextView.getText().toString();
@@ -74,6 +120,9 @@ public class ZeroBudgetFragment extends Fragment {
         });
 
 
+        /*
+          Set of observers to retrieve results of queries concerning expenses, incomes and savings
+         */
         final Observer<Integer> infrequentExpensesObserver= newInfrequentExpenses -> { zeroBudget.setInfrequentExpenses(newInfrequentExpenses); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
         final Observer<Integer> infrequentIncomesObserver= newInfrequentIncomes ->{zeroBudget.setInfrequentIncomes(newInfrequentIncomes); zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
@@ -84,17 +133,14 @@ public class ZeroBudgetFragment extends Fragment {
 
         final Observer<Integer> savingsObserver = newSavings -> {zeroBudget.setSavings(newSavings);zeroBudget.setResultBudgetZero(zeroBudgetTextView);};
 
+        /*
+          Observing expenses, incomes and savings
+         */
         zeroBudgetViewModel.getInfrequentExpenses().observe(getViewLifecycleOwner(),infrequentExpensesObserver);
         zeroBudgetViewModel.getInfrequentIncomes().observe(getViewLifecycleOwner(),infrequentIncomesObserver);
         zeroBudgetViewModel.getStableExpenses().observe(getViewLifecycleOwner(),stableExpensesObserver);
         zeroBudgetViewModel.getStableIncomes().observe(getViewLifecycleOwner(),stableIncomesObserver);
-        //zeroBudgetViewModel.getSavings().observe(getViewLifecycleOwner(),savingsObserver);
-
-
-
-
-
-
+        zeroBudgetViewModel.getSavings().observe(getViewLifecycleOwner(),savingsObserver);
 
         return root;
     }
