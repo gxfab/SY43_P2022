@@ -19,6 +19,11 @@ public class Event extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
     }
+
+    /**
+     * Renvoie au main
+     * @param view ici main
+     */
     public void changeActivityMain(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

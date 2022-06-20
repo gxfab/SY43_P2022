@@ -17,8 +17,12 @@
         <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/fragment_saisie_facture.xml" value="0.1" />
         <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/fragment_saisie_semestre.xml" value="0.2" />
         <entry key="..\:/OneDrive UTBM/OneDrive - Universite De Technologie De Belfort-Montbeliard/UTBM/INFO1 Bis/SY43/Projet/SY43_P2022/CookUTProject/app/src/main/res/layout/semestre_row.xml" value="0.33" />
+        <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2555" />
+        <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/drawable/decorateurs.xml" value="0.2555" />
+        <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_event.xml" value="0.20521590423257802" />
         <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/layout/activity_saisie.xml" value="0.2" />
+        <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/layout/fragment_saisie_evenement.xml" value="0.20521590423257802" />
         <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/layout/searchable.xml" value="0.20521590423257802" />
         <entry key="..\:/UTBM/INFO/INFO02/SY43/Cook'UT/SY43_P2022/CookUTProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2095" />
         <entry key="..\:/Users/duran/Documents/UTBM/Branche/INFO2/SY43/SY43_P2022/CookUTProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1745" />
@@ -30,6 +34,10 @@
         <entry key="..\:/Users/duran/Documents/UTBM/Branche/INFO2/SY43/SY43_P2022/CookUTProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
+  </component>
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/.." />
+    <option name="OPTION_INCLUDE_LIBS" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

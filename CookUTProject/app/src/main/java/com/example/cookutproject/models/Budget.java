@@ -3,6 +3,9 @@ package com.example.cookutproject.models;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe budget permettant d'avoir les différents budgets (d'un évènement ou d'un semestre par exemple)
+ */
 public abstract class Budget {
     private float previsionnel;
     private float depense;
@@ -53,7 +56,6 @@ public abstract class Budget {
      * @param id l'identifiant de la Operation
      * @return une Operation ou null si la Operation n'existe pas
      */
-
     public Operation getOperationById (int id){
         Operation OperationToReturn;
         int i=0;
@@ -68,6 +70,9 @@ public abstract class Budget {
 
     }
 
+    /**
+     * Permet d'avoir le total des dépenses associées aux opérations
+     */
     public void sumDepenses (){
         float totalDepense = 0;
         int i=0;
@@ -77,6 +82,9 @@ public abstract class Budget {
         this.depense = totalDepense;
     }
 
+    /**
+     * Permet d'avoir le total des recettes associées aux opérations
+     */
     public void sumRecettes(){
         float totalRecette = 0;
         int i=0;

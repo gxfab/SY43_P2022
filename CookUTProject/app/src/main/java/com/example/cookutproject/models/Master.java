@@ -11,14 +11,26 @@ public class Master {
         evenementList = null;
     }
 
+    /**
+     * récupération de la liste d'évènements
+     * @return
+     */
     public List<Evenement> getEvenementList() {
         return evenementList;
     }
 
+    /**
+     * Setter pour la liste d'évènements
+     * @param evenementList
+     */
     public void setEvenementList(List<Evenement> evenementList) {
         this.evenementList = evenementList;
     }
 
+    /**
+     * Fonction permettant le calcul de la totalité des recettes faites sur un évènement
+     * @return somme des recettes
+     */
     public float sumRecetteEvenement(){
         float sommeRecette = 0;
         int i=0;
@@ -28,6 +40,12 @@ public class Master {
         return sommeRecette;
     }
 
+    /**
+     * Fonction permettant le calcul de la totalité des dépenses effectuée lors d'un évènement
+     * @param t
+     * @param <T>
+     * @return somme des dépenses
+     */
     public  <T extends Budget> float sumDepenseEvenement(List<T> t){
         float sommeDepense = 0;
         int i=0;

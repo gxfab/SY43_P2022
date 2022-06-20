@@ -22,9 +22,12 @@ public class Recap extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recap);
-
-
     }
+
+    /**
+     * Renvoie au main
+     * @param view ici main
+     */
     public void changeActivityMain(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
