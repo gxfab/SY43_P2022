@@ -35,6 +35,9 @@ class NewWishFragment: Fragment() {
         }
         return view}
 
+    /**
+     * insert a new wish in the DataBase
+     */
     private fun insertDateToDateBase(view: View) {
         val wishName = view.findViewById<EditText>(R.id.editWishName).text.toString()
         val wishAmountNeeded = view.findViewById<EditText>(R.id.editWishValue).text

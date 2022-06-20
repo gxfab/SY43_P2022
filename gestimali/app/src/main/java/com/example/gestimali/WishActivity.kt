@@ -18,19 +18,20 @@ class WishActivity : AppCompatActivity(){
         val wishRecyclerView = this.findViewById<RecyclerView>(R.id.WishRecyclerView)
         wishRecyclerView.adapter = WishAdapter()
 
-
-
-
-
-
     }
 
+    /**
+     * Function to see wishes activity
+     */
     fun seeSavingsOverview(view : View) {
         val intent = Intent(this, SavingActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         startActivity(intent)
     }
 
+    /**
+     * Show a popup to add a wish
+     */
     fun popupAddWish(view: View){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container_wish, NewWishFragment())
